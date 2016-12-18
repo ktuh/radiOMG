@@ -1,0 +1,23 @@
+<template name='chatForm' xmlns='http://www.w3.org/1999/html'>
+    <div class='chat'>
+        <h3 class='chat__header'>808 Chat</h3>
+        <div id='chat__text'>
+            {{#each chat}}
+                {{>chatItem}}
+            {{/each}}
+        </div>
+
+        <form class='chat__form'>
+            <div class='chat__input-div'><input id='chat__input' type='text' placeholder='Enter your message here' /></div>
+            <button class='chat__button' type='submit'>Send</button>
+        </form>
+    </div>
+</template>
+
+<template name='chatItem'>
+    <p>
+        <span class='chat__date'>{{formatDate chatDate}} | </span>
+        <span class='chat__username'>{{chatUserName}}:</span>
+        <span class='chat__message'>{{chatText}}</span>
+    </p>
+</template>

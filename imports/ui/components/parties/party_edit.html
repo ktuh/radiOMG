@@ -1,0 +1,4 @@
+<template name='partyEdit'>
+  <h1>Edit Party</h1>
+  {{> quickForm id="partyForm" collection=parties doc=editing type="update" omitFields="commentCount,upvoters,upvoteCount,isPinned,submitted,userId,approved,author"}}
+</template>

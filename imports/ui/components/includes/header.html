@@ -1,0 +1,54 @@
+<head>
+  <title>808mix</title>
+</head>
+
+<template name='header'>
+  <nav class='navbar navbar-default' role='navigation'>
+    <div class='info-box'>
+      <a href='/'><img class='logo-img' src='/img/808-mixtapes-logo.png'></a>
+    </div>
+    <div class='navbar-header'>
+      <button type='button' class='navbar-toggle collapsed' data-toggle='collapse' data-target='#navigation'>
+        <span class='sr-only'>Toggle navigation</span>
+        <span class='icon-bar'></span>
+        <span class='icon-bar'></span>
+        <span class='icon-bar'></span>
+      </button>
+    </div>
+    <div class='collapse navbar-collapse' id='navigation'>
+      <ul class='nav navbar-nav navbar-left'>
+        <li class='{{activePage 'home' 'mix' 'podcastPage'}} nav-item nav-item__mixes'>
+          <a href='/'>Mix</a>
+        </li>
+        <li class='{{activePage 'party' 'partyPage'}} nav-item nav-item__parties'>
+          <a href={{partyPage}}>Party</a>
+        </li>
+        <li class='{{activePage 'news' 'newsPage'}} nav-item nav-item__news'>
+          <a href={{newsPage}}>News</a>
+        </li>
+<!-- 				<li class='{{activePage 'review' 'reviewsPage'}} nav-item nav-item__reviews'>
+          <a href={{reviewsPage}}>Reviews</a>
+        </li> -->
+      </ul>
+      <ul class='nav navbar-nav navbar-right'>
+        <li class='nav-item'>
+          <div class='audio-player'>
+            <audio id='audio-player' src='/audio/808-mixtapes-v108.mp3' type='audio/mp3' controls='controls' title='{{nowPlaying}}'></audio>
+          </div>
+        </li>
+        <li>
+          <div class='info-box__social'>
+            <a href='http://soundcloud.com/808mixtapes' target="_blank"><img src='/img/soundcloud.png'></a>
+            <a href='http://808mixtapes.tumblr.com' target="_blank"><img src='/img/tumblr.png'></a>
+            <a href='http://twitter.com/daveyshindig' target="_blank"><img src='/img/twitter.png'></a>
+            <a href='http://facebook.com/808mix' target="_blank"><img src='/img/facebook.png'></a>
+          </div>
+        </li>
+        <li class='nav-item nav__search'>
+          {{> EasySearch.Input index=podcastsIndex timeout=200}}
+        </li>
+      {{> loginButtons}}
+      </ul>
+    </div>
+  </nav>
+</template>

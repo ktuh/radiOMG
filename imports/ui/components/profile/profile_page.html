@@ -1,0 +1,27 @@
+<template name='profilePage'>
+  <div class='profilePage'>
+    {{#with profile}}
+    <img class='profile__pic' src='{{photo}}'>
+    <div class='profile__info'>
+      {{#if name}}<h1 class='profile__header'><b>{{name}}</b>{{#if social}}<span class='profile__header-separator'> |</span>{{/if}}</h1>{{/if}}
+      <div class='profile__social'>
+        {{#if website}}<a href='{{website}}'><img class='profile__social-icon' src='/img/website.png'></a>{{/if}}
+        {{#if soundcloud}}<a href='http://soundcloud.com/{{soundcloud}}'><img class='profile__social-icon' src='/img/soundcloud.png'></a>{{/if}}
+        {{#if instagram}}<a href='http://instagram.com/{{instagram}}'><img class='profile__social-icon' src='/img/instagram.png'></a>{{/if}}
+        {{#if facebook}}<a href='http://facebook.com/{{facebook}}'><img class='profile__social-icon' src='/img/facebook.png'></a>{{/if}}
+        {{#if twitter}}<a href='http://twitter.com/{{twitter}}'><img class='profile__social-icon' src='/img/twitter.png'></a>{{/if}}
+        {{#if snapchat}}<a href='{{snapchat}}'><img class='profile__social-icon' src='/img/snapchat.png'></a>{{/if}}
+      </div>
+      <div class='profile__bio'>{{#if bio}}{{{bio}}}{{else}}<i><small>({{name}} hasn't filled out a bio yet.)</small></i>{{/if}}</div>
+    </div>
+    {{/with}}
+    {{#if podcasts}}
+    <div class='profile__mixes'>
+      <h3><b>Mixes</b></h3>
+      {{#each podcasts}}
+        {{> podcastItem}}
+      {{/each}}
+    </div>
+    {{/if}}
+  </div>
+</template>

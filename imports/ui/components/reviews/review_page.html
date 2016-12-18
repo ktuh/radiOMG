@@ -1,0 +1,13 @@
+<template name='reviewPage'>
+	<div class="page">
+		{{#if Template.subscriptionsReady}}
+			{{#with review}}
+				<h1>{{artist}} - {{releaseName}} ({{year}})</h1>
+				<h4>posted by {{author}} at {{submitted}}</h4>
+				<h4>Label: {{label}}</h4>
+				<h4>Rating: {{rating}} / 5.0</h4>
+				{{body}}
+			{{/with}}
+		{{/if}}
+	</div>
+</template>

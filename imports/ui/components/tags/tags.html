@@ -1,0 +1,13 @@
+<template name='tags'>
+  <div class='tags hidden'>
+    <div class='tags__tag-box'>
+      {{#each tags}}
+        <button class='tags__tag'>#{{this}}</button>
+      {{/each}}
+      {{#if moreTags}}
+        <button class='tags__more-tags'>More</button>
+      {{/if}}
+    </div>
+  </div>
+  <div class='clear'></div>
+</template>

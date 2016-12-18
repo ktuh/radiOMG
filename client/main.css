@@ -1,0 +1,824 @@
+@font-face {
+    font-family: 'Sweden Sans';
+    src: url('/fonts/swedensans-webfont.eot');
+    src: url('/fonts/swedensans-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/swedensans-webfont.woff2') format('woff2'),
+         url('/fonts/swedensans-webfont.woff') format('woff'),
+         url('/fonts/swedensans-webfont.ttf') format('truetype'),
+         url('/fonts/swedensans-webfont.svg#sweden_sansregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Sweden Sans';
+    src: url('/fonts/swedensansbold-webfont.eot');
+    src: url('/fonts/swedensansbold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/swedensansbold-webfont.woff2') format('woff2'),
+         url('/fonts/swedensansbold-webfont.woff') format('woff'),
+         url('/fonts/swedensansbold-webfont.ttf') format('truetype'),
+         url('/fonts/swedensansbold-webfont.svg#sweden_sansbold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+
+}
+
+/* Search icon by IcoMoon, made with http://icomoon.io/app/ */
+@font-face {
+    font-family: 'icomoon';
+    src:url('/fonts/icomoon.eot');
+    src:url('/fonts/icomoon.eot?#iefix') format('embedded-opentype'),
+        url('/fonts/icomoon.woff') format('woff'),
+        url('/fonts/icomoon.ttf') format('truetype'),
+        url('/fonts/icomoon.svg#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Colors */
+.red { color: #0067b3 }
+.yellow { color: #ffd103 }
+.blue { color: #f3c1b9 }
+.green { color: #0067b3 }
+.grid-block,
+.main,
+.podcast,
+.comments li,
+.comment-form {
+    background: #fff;
+    border-radius: 3px;
+    margin-bottom: 10px;
+}
+body {
+    background: #fff;
+    color: #333;
+    font-family: 'Sweden Sans';
+}
+img {
+    max-width: 100%;
+    height: auto;
+}
+#main {
+    position: relative;
+}
+.clear {
+    clear: both;
+}
+.alert {
+    float: left !important;
+    animation: fadeOut 2700ms ease-in 0s 1 forwards;
+    -webkit-animation: fadeOut 2700ms ease-in 0s 1 forwards;
+    -moz-animation: fadeOut 2700ms ease-in 0s 1 forwards;
+    clear: both;
+    margin-bottom: 5px;
+    pointer-events: auto;
+}
+.page {
+    position: absolute;
+    top: 0px;
+    width: 100%;
+}
+.navbar {
+    margin: 15px 0 10px;
+    border: none;
+}
+.navbar-nav {
+    margin: 12px 0 12px 10px;
+}
+.navbar-collapse {
+    padding: 0;
+    border-top: none;
+}
+.navbar .navbar-inner {
+    border-radius: 0;
+}
+.navbar-default .navbar-brand,
+.navbar-default .navbar-nav > li > a {
+    color: #333;
+}
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-nav > li > a:hover {
+    color: #777;
+}
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:focus,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:active
+{
+    background: #000;
+    color: #fff;
+    outline: none;
+}
+#login-dropdown-list {
+    margin-left: 5px;
+}
+.nav__play-img {
+    max-height: 12px;
+    width: auto;
+}
+.nav__logo {
+    max-width: 36px;
+}
+.nav__search {
+    margin: 0 0 0 15px;
+}
+.nav__search input {
+    height: 28px;
+    width: 90px;
+    margin-top: 10px;
+    padding-left: 5px;
+    font-size: 14px;
+    font-family: 'Glyphicons Halflings';
+    border: 1pt solid #ccc;
+    -webkit-transition-property: width;
+       -moz-transition-property: width;
+         -o-transition-property: width;
+            transition-property: width;
+    -webkit-transition-duration: .15s;
+       -moz-transition-duration: .15s;
+         -o-transition-duration: .15s;
+            transition-duration: .15s;
+    -webkit-transition-timing-function: ease-out;
+       -moz-transition-timing-function: ease-out;
+         -o-transition-timing-function: ease-out;
+            transition-timing-function: ease-out;
+}
+.nav__search input:focus {
+    width: 140px;
+    -webkit-transition-property: width;
+       -moz-transition-property: width;
+         -o-transition-property: width;
+            transition-property: width;
+    -webkit-transition-duration: .15s;
+       -moz-transition-duration: .15s;
+         -o-transition-duration: .15s;
+            transition-duration: .15s;
+    -webkit-transition-timing-function: ease-out;
+       -moz-transition-timing-function: ease-out;
+         -o-transition-timing-function: ease-out;
+            transition-timing-function: ease-out;
+}
+#spinner, .spinner {
+    margin-top: 25%;
+    height: 25%;
+}
+.navbar-default {
+    background-color: #fff;
+}
+.info-box {
+    float: left;
+    max-width: 120px;
+    margin: 0 20px 0 0;
+}
+.info-box__social {
+    padding: 9px 0 0;
+    margin: 0 0 0 10px;
+}
+.info-box__social img {
+    max-width: 30px;
+}
+.logo-img {
+    max-width: 100%;
+    margin: auto;
+}
+.podcasts {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    width: 100%;
+    background: #fff;
+}
+.party,
+.podcast {
+    position: relative;
+    float: left;
+    opacity: 1;
+    width: 33.333333333%;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    box-shadow: none;
+    border-radius: 0;
+}
+.podcast__sizer {
+    width: 33.333333333%;
+    height: 0;
+}
+.podcast p {
+    margin: 0;
+}
+.podcast .discuss {
+    display: block;
+    float: left;
+    margin-top: 7px;
+}
+.podcast__dbl-wide {
+    width: 66.666666666%;
+}
+.podcast.invisible {
+    opacity: 0;
+}
+.podcast.instant {
+    -webkit-transition: none;
+    -moz-transition: none;
+    -o-transition: none;
+    transition: none;
+}
+.podcast.animate {
+    -webkit-transition: all 300ms 0ms;
+    -moz-transition: all 300ms 0ms ease-in;
+    -o-transition: all 300ms 0ms ease-in;
+    transition: all 300ms 0ms ease-in;
+}
+.podcast .upvote {
+    display: block;
+    margin: 7px 12px 0 0;
+    float: left;
+}
+.podcast__cover-img {
+    position: relative;
+    width: 100%;
+    padding: 1px;
+}
+.podcast__overlay {
+    position: absolute;
+    left: 0; right: 0; top: 30%;
+    margin: auto;
+    width: 55%;
+}
+.podcast__details {
+    position: absolute;
+    width: 100%;
+    background: rgba(256, 256, 256, .8);
+    border-radius: 4px;
+}
+.podcast__tags {
+    padding: 10px 0;
+    text-align: center;
+    font-size: 13px;
+    color: #666;
+}
+.party__tag,
+.podcast__tag {
+    font-size: 13px;
+    color: #666;
+    cursor: pointer;
+}
+.podcast__link h3 {
+    text-align: center;
+    margin: 10px 0 0;
+    line-height: 1.4em;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+}
+.podcast__mixed-by {
+    font-size: 13px;
+    font-weight: normal;
+    color: #666;
+}
+.podcast__controls {
+    margin: auto;
+    margin-top: 10px;
+}
+.podcast__play-btn {
+    display: block;
+    margin: 10px auto 0;
+    width: 55px;
+    height: 55px;
+    cursor: pointer;
+}
+.podcast-page__info {
+    max-width: 50%;
+    float: left;
+}
+.podcast-page__play-btn {
+    width: 55px; height: 55px;
+    margin-top: 7px;
+}
+.podcast-page__title,
+.podcast-page__host {
+    font-size: 1.5em;
+}
+.podcast__playlist,
+.podcast-page__playlist {
+    font-size: 13px;
+}
+.podcast-page__playlist {
+    margin: 12px 0 10px 0;
+}
+.podcast-page__playlist ol {
+    margin-left: -40px;
+    list-style: inside decimal;
+}
+.podcast-page__cover-div {
+    float: left;
+    max-width: 50%;
+    padding: 0 30px 0 0;
+}
+.flyer-div {
+    float: left;
+    width: 50%;
+    padding-right: 20px;
+}
+.flyer-div__front,
+.flyer-div__back {
+    position: relative;
+    margin: 0 20px 20px 0;
+    float: left;
+}
+.comments {
+    clear: both;
+}
+.comments__header {
+    padding: 60px 0 10px;
+    margin: 0;
+    font-size: 18px;
+}
+.comments__list {
+    list-style-type: none;
+    padding-left: 0;
+}
+.comments__list h4 {
+    margin: 0;
+}
+.comments__list p:last-child {
+    margin-bottom: 0;
+}
+.comment__author {
+    font-size: 16px;
+}
+.comment__date {
+    font-weight: normal;
+    font-size: 11px;
+    color: #888;
+}
+.dropdown-menu span {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    line-height: 20px;
+    color: #bbb;
+    white-space: nowrap;
+}
+.load-more-button button {
+    display: block;
+    height: 45px;
+    margin: 10px auto;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    text-align: center;
+    line-height: 45px;
+    background: none;
+}
+.load-more-button button:hover{
+    background-color: #ddd;
+    text-decoration: none;
+    background: rgba(0, 0, 0, 0.1);
+}
+.podcasts .spinner-container {
+    position: relative;
+    height: 100px;
+}
+.jumbotron {
+    text-align: center;
+}
+.jumbotron h2 {
+    font-size: 60px;
+    font-weight: 100;
+}
+.index-table img {
+    max-width: 80px;
+    height: auto;
+}
+.notifications {
+  position: absolute;
+  top: 10; left: 10;
+  z-index: 1;
+}
+.notification {
+  background: rgba(51,51,51, .95);
+  color: #fff;
+  position: relative;
+  width: 100%;
+}
+.icon-sync {
+  position: absolute;
+  height: 12px);
+  font-size: 1.5em;
+}
+.icon-sync. .title-notification {
+  padding-left: 40px;
+}
+.title-notification {
+  font-size: 1em;
+  font-weight: bold;
+  color: #fff;
+  display: block;
+  line-height: 1rem;
+  padding: 1rem .75rem;
+}
+
+.alert {
+    animation: fadeOut 2700ms ease-in 0s 1 forwards;
+    -webkit-animation: fadeOut 2700ms ease-in 0s 1 forwards;
+    -moz-animation: fadeOut 2700ms ease-in 0s 1 forwards;
+    width: 250px;
+    float: right;
+    clear: both;
+    margin-bottom: 5px;
+    pointer-events: auto;
+}
+.hidden {
+    visibility: hidden;
+}
+#login-other-options a {
+    color: #666;
+    border-color: #333;
+}
+
+/** audio player styles **/
+.audio-player, .audio-player div, .audio-player h2, .audio-player a, .audio-player span, .audio-player button {
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+}
+div.audio-player {
+  position: relative;
+  height: 20px;
+  margin: 5px 5px 0 0;
+  padding: 15px 15px 15px 10px;
+}
+div.audio-player,
+.mejs-container {
+  width: 115px !important;
+}
+.mejs-container,
+.mejs-container .mejs-controls {
+    background: none;
+    background-image: none;
+}
+.mejs-offscreen { display: none !important; }
+
+/* play/pause control */
+.mejs-controls .mejs-button button {
+  cursor: pointer;
+  display: block;
+  position: absolute;
+  text-indent: -9999px;
+  width: 14px;
+  height: 14px;
+  background: url('/img/playpause.png') no-repeat scroll;
+  background-size: cover;
+}
+.mejs-controls .mejs-pause button { background-position: 0 -14px; }
+
+/* time scrubber bar */
+.mejs-controls div.mejs-time-rail { width: 89px !important; }
+
+.mejs-controls .mejs-time-rail a,
+.mejs-controls .mejs-time-rail span {
+  position: absolute;
+  display: block;
+  width: 75px;
+  height: 5px;
+  top: 7px;
+  left: 25px;
+  cursor: pointer;
+}
+.mejs-controls .mejs-time-rail .mejs-time-total {
+  background: #999;
+  width: 79px !important; /* fixes display bug using jQuery 1.8+ */
+}
+.mejs-controls .mejs-time-rail .mejs-time-loaded {
+  top: 0;
+  left: 0;
+  width: 0;
+  background: #53C1B9;
+}
+.mejs-controls .mejs-time-rail .mejs-time-current {
+  top: 0;
+  left: 0;
+  width: 0;
+  background: #999;
+}
+
+/* metallic sliders */
+.mejs-controls .mejs-time-rail .mejs-time-handle {
+  position: absolute;
+  display: block;
+  width: 11px;
+  height: 11px;
+  top: -3px;
+  background: url('/img/handle-lg.png') no-repeat;
+}
+/* time progress tooltip */
+.mejs-controls .mejs-time-rail .mejs-time-float {
+  position: absolute;
+  display: none;
+  width: 33px;
+  height: 16px;
+  top: -23px;
+  margin-left: -20px;
+  z-index: 9999;
+  background: url('/img/time-box.png');
+}
+.mejs-controls .mejs-time-rail .mejs-time-float-current {
+  width: 33px;
+  display: block;
+  left: -3px;
+  top: 0;
+  font-family: 'Sweden Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 9px;
+  font-weight: bold;
+  color: #666;
+  text-align: center;
+  z-index: 9999;
+}
+.bert-alert .now-playing {
+    background: #ccc;
+    color: #333;
+}
+.tags {
+    padding: 0 10px 10px;
+}
+.tags__tag-btn {
+    width: 30px;
+    height: 30px;
+    margin-left: 7px;
+    border-radius: 3px;
+    border: 1px solid #ddd;
+    background: none;
+}
+.tags__tag-btn:hover {
+    background-color: #ddd;
+}
+.tags__text-box input {
+    height: 30px;
+}
+.tags__no-results {
+    margin-left: 15px;
+}
+.tags__tag {
+    padding: 5px;
+    margin-top: 3px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    background: none;
+}
+.chat {
+    position:relative;
+    width:100%;
+    height:100%;
+    padding:0;
+    margin-top: 60px;
+}
+.chat__form {
+    width:100%;
+    height:11%;
+    padding-bottom: 1%;
+}
+.chat__input-div {
+    width:89%;
+    float:left;
+    height:100%;
+}
+#chat__input {
+    width:100%;
+    height:100%;
+    padding:0;
+    border:1px inset;
+}
+.chat__button {
+    width:10%;
+    height:100%;
+    float:right;
+    border:1px;
+}
+#chat__text {
+    height: 250px;
+    overflow: auto;
+}
+.chat__date,
+.chat__username {
+    color: #666;
+}
+.party-header__button {
+    float: right;
+    margin-bottom: 10px;
+}
+.party__flyer {
+    padding: 1px;
+}
+.party {
+    width: 50%;
+}
+.party-link {
+    margin: 20px 0;
+}
+.party-link a:hover,
+.party-link a {
+    color: gray;
+    font-size: 12px;
+}
+.party-details {
+    position: absolute;
+    right: 15px; bottom: 15px;
+    padding: 5px;
+    background: rgba(0,0,0,.4);
+}
+.party-upvotes__star,
+.party-upvotes__count {
+    color: #fff;
+    font-size: 16px;
+}
+.party-upvotes__star {
+    cursor: pointer;
+    font-size: 14px;
+}
+.party-upvotes__count {
+    margin: 0 0 0 10px;
+}
+.party-info {
+    float: left;
+    width: 50%;
+}
+.party-info h3 {
+    margin: 0;
+}
+.party-info__details{
+    width: 43px;
+    height: 29px;
+    padding: 5px;
+    background: rgba(0,0,0,.4);
+}
+.party-info__star {
+    padding-right: 7px;
+    color: #fff;
+    cursor: pointer;
+}
+.party-info__upvotes-count {
+    color: #fff;
+}
+.upvoted {
+    color: #ffd103;
+}
+.profile__pic {
+    float: left;
+    margin-bottom: 15px;
+}
+.profile__header {
+    float: left;
+    margin: 0 10px 15px 0;
+}
+.profile__social {
+    height: 35px;
+    margin: 0 0 10px;
+}
+.profile__social-icon {
+    float: left;
+    max-height: 100%;
+    width: auto;
+    padding: 0 7px 0 0;
+    margin-top: 5px;
+}
+.profile__bio { 
+    clear: both;
+}
+.profile__mixes {
+    margin-bottom: 20px;
+    clear: both;
+}
+@-webkit-keyframes fadeOut {
+    0% {
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+@keyframes fadeOut {
+    0% {
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@media (min-width: 1200px) {
+    .podcast__sizer,
+    .podcast {
+        width: 25%;
+    }
+    .party {
+        width: 33.3333333%;
+    }
+    .podcast__dbl-wide {
+        width: 50%;
+    }
+    .profile__pic {
+        max-width: 50%;
+        padding: 0 25px 0 0;
+    }
+    .profile__info {
+        float: left;
+        max-width: 50%;
+    }
+}
+@media (max-width: 992px) {
+    .info-box {
+        max-width: 90px;
+    }
+    .info-box__social {
+        display: none;
+    }
+    .navbar-nav {
+        margin: 4px 0;
+    }
+}
+@media (min-width: 768px) {
+    .podcast__link {
+        font-size: 18px;
+    }
+}
+@media (max-width: 767px) {
+    div.audio-player {
+        margin: 0;
+    }
+    .flyer-div {
+        width: 100%;
+        margin-right: 0;
+        padding-right: 0;
+    }
+    .flyer-div__front,
+    .flyer-div__back {
+        margin: 0 0 20px 0;
+    }
+    .info-box__social {
+        display: inherit;
+        margin-top: 5px;
+    }
+    .info-box {
+        margin-bottom: 10px;
+    }
+    .nav__search {
+        margin: 5px 0 10px 10px;
+    }
+}
+@media (max-width: 666px) {
+    .podcast__sizer,
+    .podcast {
+        width: 50%;
+    }
+    .party {
+        width: 100%;
+    }
+    .party-info {
+        margin-top: 20px;
+    }
+    .podcast__dbl-wide {
+        width: 100%;
+    }
+    .podcast-page__cover-div {
+        float: none;
+        max-width: 100%;
+        margin: 0;
+    }
+    .podcast-page__info {
+        width: 100%;
+        padding: 20px 0;
+    }
+    .profile__header { 
+        float: none;
+        margin-bottom: 8px 
+    }
+    .profile__header-separator { display: none; }
+    .profile__social { margin-bottom: 15px; }
+}
+@media (max-width: 430px) {
+    .podcast__overlay {
+        top: 18%;
+        width: 75%;
+    }
+    .podcast__sizer,
+    .podcast {
+        width: 100%;
+    }
+    .podcast__dbl-wide {
+        width: 100%;
+    }
+}

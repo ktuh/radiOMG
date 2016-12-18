@@ -1,0 +1,10 @@
+<template name="reviewList">
+	<div>
+		<h1>Reviews</h1>
+	</div>
+	<div class="reviews">
+		{{#EasySearch.Each index=reviewsIndex}}
+      {{> reviewItem}}
+    {{/EasySearch.Each}}
+	</div>
+</template>

@@ -1,0 +1,16 @@
+<template name='podcastItem'>
+  <div class='podcast'>
+    <img class='podcast__cover-img' src='{{coverImage}}'>
+    <div class='podcast__overlay hidden'>
+      <div class='podcast__details'>
+        <img class='podcast__play-btn' data-path='{{mp3}}' src={{#if isPlaying mp3}}/img/pause.png{{else}}/img/play.png{{/if}}>
+        <a class='podcast__link' href='{{podcastPage episodeNumber}}'><h3>{{title}}<br><span class='podcast__mixed-by'>mixed by</span><br>{{host}}</h3></a>
+        <div class='podcast__tags'>
+          {{#each tags}}
+            <span class='podcast__tag'>#{{this}}</span>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
