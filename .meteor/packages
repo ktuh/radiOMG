@@ -1,0 +1,51 @@
+# Meteor packages used by this project, one per line.
+# Check this file (and the other files in this directory) into your repository.
+#
+# 'meteor add' and 'meteor remove' will edit this file for you,
+# but you can also edit it by hand.
+
+meteor-base             # Packages every Meteor app needs to have
+mobile-experience       # Packages for a great mobile UX
+mongo                   # The database Meteor supports right now
+blaze-html-templates    # Compile .html files into Meteor Blaze views
+session                 # Client-side reactive dictionary for your app
+jquery                  # Helpful client-side library
+tracker                 # Meteor's client-side reactive programming library
+
+es5-shim                # ECMAScript 5 compatibility for older browsers.
+ecmascript              # Enable ECMAScript2015+ syntax in app code
+
+twbs:bootstrap
+kadira:flow-router
+kadira:blaze-layout
+sacha:spin
+accounts-password
+orionjs:core
+fortawesome:fontawesome
+orionjs:bootstrap
+ian:accounts-ui-bootstrap-3
+orionjs:relationships
+check
+audit-argument-checks
+delgermurun:mediaelementjs
+easy:search
+iamkevingreen:imagesloaded
+orionjs:summernote
+orionjs:image-attribute
+orionjs:file-attribute
+orionjs:s3
+tomwasd:flow-router-seo
+todda00:friendly-slugs
+email
+meteorhacks:picker
+rss
+themeteorchef:bert
+momentjs:moment
+standard-minifier-css
+standard-minifier-js
+sjors:meteor-masonry
+summernote:standalone
+okgrow:analytics
+aldeed:autoform
+tsega:bootstrap3-datetimepicker
+qubitdev:autoform-bs-datetimepicker-updated
