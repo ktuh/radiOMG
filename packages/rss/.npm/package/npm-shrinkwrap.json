@@ -2,12 +2,18 @@
   "dependencies": {
     "rss": {
       "version": "1.0.0",
+      "resolved": "https://registry.npmjs.org/rss/-/rss-1.0.0.tgz",
+      "from": "rss@1.0.0",
       "dependencies": {
         "mime": {
-          "version": "1.3.4"
+          "version": "1.3.4",
+          "resolved": "https://registry.npmjs.org/mime/-/mime-1.3.4.tgz",
+          "from": "mime@1.3.4"
         },
         "xml": {
-          "version": "1.0.0"
+          "version": "1.0.0",
+          "resolved": "https://registry.npmjs.org/xml/-/xml-1.0.0.tgz",
+          "from": "xml@1.0.0"
         }
       }
     }
