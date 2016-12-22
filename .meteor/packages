@@ -44,7 +44,7 @@ momentjs:moment
 standard-minifier-css
 standard-minifier-js
 sjors:meteor-masonry
-summernote:standalone
+summernote:standalone@0.6.16
 okgrow:analytics
 aldeed:autoform
 tsega:bootstrap3-datetimepicker
