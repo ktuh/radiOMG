@@ -42,7 +42,6 @@
 .green { color: #0067b3 }
 .grid-block,
 .main,
-.podcast,
 .comments li,
 .comment-form {
     background: #fff;
@@ -181,15 +180,7 @@ img {
     max-width: 100%;
     margin: auto;
 }
-.podcasts {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: flex-start;
-    width: 100%;
-    background: #fff;
-}
-.party,
-.podcast {
+.party {
     position: relative;
     float: left;
     opacity: 1;
@@ -200,121 +191,10 @@ img {
     box-shadow: none;
     border-radius: 0;
 }
-.podcast__sizer {
-    width: 33.333333333%;
-    height: 0;
-}
-.podcast p {
-    margin: 0;
-}
-.podcast .discuss {
-    display: block;
-    float: left;
-    margin-top: 7px;
-}
-.podcast__dbl-wide {
-    width: 66.666666666%;
-}
-.podcast.invisible {
-    opacity: 0;
-}
-.podcast.instant {
-    -webkit-transition: none;
-    -moz-transition: none;
-    -o-transition: none;
-    transition: none;
-}
-.podcast.animate {
-    -webkit-transition: all 300ms 0ms;
-    -moz-transition: all 300ms 0ms ease-in;
-    -o-transition: all 300ms 0ms ease-in;
-    transition: all 300ms 0ms ease-in;
-}
-.podcast .upvote {
-    display: block;
-    margin: 7px 12px 0 0;
-    float: left;
-}
-.podcast__cover-img {
-    position: relative;
-    width: 100%;
-    padding: 1px;
-}
-.podcast__overlay {
-    position: absolute;
-    left: 0; right: 0; top: 30%;
-    margin: auto;
-    width: 55%;
-}
-.podcast__details {
-    position: absolute;
-    width: 100%;
-    background: rgba(256, 256, 256, .8);
-    border-radius: 4px;
-}
-.podcast__tags {
-    padding: 10px 0;
-    text-align: center;
-    font-size: 13px;
-    color: #666;
-}
-.party__tag,
-.podcast__tag {
+.party__tag {
     font-size: 13px;
     color: #666;
     cursor: pointer;
-}
-.podcast__link h3 {
-    text-align: center;
-    margin: 10px 0 0;
-    line-height: 1.4em;
-    font-size: 20px;
-    font-weight: bold;
-    color: #333;
-}
-.podcast__mixed-by {
-    font-size: 13px;
-    font-weight: normal;
-    color: #666;
-}
-.podcast__controls {
-    margin: auto;
-    margin-top: 10px;
-}
-.podcast__play-btn {
-    display: block;
-    margin: 10px auto 0;
-    width: 55px;
-    height: 55px;
-    cursor: pointer;
-}
-.podcast-page__info {
-    max-width: 50%;
-    float: left;
-}
-.podcast-page__play-btn {
-    width: 55px; height: 55px;
-    margin-top: 7px;
-}
-.podcast-page__title,
-.podcast-page__host {
-    font-size: 1.5em;
-}
-.podcast__playlist,
-.podcast-page__playlist {
-    font-size: 13px;
-}
-.podcast-page__playlist {
-    margin: 12px 0 10px 0;
-}
-.podcast-page__playlist ol {
-    margin-left: -40px;
-    list-style: inside decimal;
-}
-.podcast-page__cover-div {
-    float: left;
-    max-width: 50%;
-    padding: 0 30px 0 0;
 }
 .flyer-div {
     float: left;
@@ -375,10 +255,6 @@ img {
     background-color: #ddd;
     text-decoration: none;
     background: rgba(0, 0, 0, 0.1);
-}
-.podcasts .spinner-container {
-    position: relative;
-    height: 100px;
 }
 .jumbotron {
     text-align: center;
@@ -683,7 +559,7 @@ div.audio-player,
     padding: 0 7px 0 0;
     margin-top: 5px;
 }
-.profile__bio { 
+.profile__bio {
     clear: both;
 }
 .profile__mixes {
@@ -720,15 +596,8 @@ div.audio-player,
 }
 
 @media (min-width: 1200px) {
-    .podcast__sizer,
-    .podcast {
-        width: 25%;
-    }
     .party {
         width: 33.3333333%;
-    }
-    .podcast__dbl-wide {
-        width: 50%;
     }
     .profile__pic {
         max-width: 50%;
@@ -751,9 +620,7 @@ div.audio-player,
     }
 }
 @media (min-width: 768px) {
-    .podcast__link {
-        font-size: 18px;
-    }
+
 }
 @media (max-width: 767px) {
     div.audio-player {
@@ -780,45 +647,19 @@ div.audio-player,
     }
 }
 @media (max-width: 666px) {
-    .podcast__sizer,
-    .podcast {
-        width: 50%;
-    }
     .party {
         width: 100%;
     }
     .party-info {
         margin-top: 20px;
     }
-    .podcast__dbl-wide {
-        width: 100%;
-    }
-    .podcast-page__cover-div {
+    .profile__header {
         float: none;
-        max-width: 100%;
-        margin: 0;
-    }
-    .podcast-page__info {
-        width: 100%;
-        padding: 20px 0;
-    }
-    .profile__header { 
-        float: none;
-        margin-bottom: 8px 
+        margin-bottom: 8px
     }
     .profile__header-separator { display: none; }
     .profile__social { margin-bottom: 15px; }
 }
 @media (max-width: 430px) {
-    .podcast__overlay {
-        top: 18%;
-        width: 75%;
-    }
-    .podcast__sizer,
-    .podcast {
-        width: 100%;
-    }
-    .podcast__dbl-wide {
-        width: 100%;
-    }
+
 }

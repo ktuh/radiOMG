@@ -2,19 +2,13 @@ import './header.html';
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { EasySearch } from 'meteor/easy:search';
-import { Podcasts } from '../../../api/podcasts/podcasts_collection.js';
-import { PodcastsIndex } from '../../../api/podcasts/podcast_index.js';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { $ } from 'meteor/jquery';
 
 Template.header.onCreated(function () {
   var self = this;
   self.autorun(function () {
-    self.subscribe('latestPodcast', function() {
-      var latest = Podcasts.findOne({}, { sort: {episodeNumber: -1} });
-      $('#audio-player').attr('src', latest.mp3);
-      Session.set('nowPlaying', latest.title + ' mixed by ' + latest.host);
-    });
+
   });
 });
 
@@ -41,10 +35,7 @@ Template.header.onRendered(function () {
       // another song first.
       $('.mejs-playpause-button').click(function () {
         if (Session.equals('defaultLoaded', true)) {
-          var latest = Podcasts.findOne({}, { sort: {episodeNumber: -1} });
-          var message = 'Now playing ' + latest.title + ', mixed by '
-                                                   + latest.host + '.';
-
+          var message = 'Now playing';
           Session.set('defaultLoaded', false);
           Session.set('nowLoaded', latest.mp3);
           Bert.alert(message, 'default', 'growl-top-right', 'fa-music');
@@ -83,8 +74,6 @@ Template.header.helpers({
   newsPage: () => FlowRouter.path('news'),
   partyPage: () => FlowRouter.path('party'),
 	reviewsPage: () => FlowRouter.path('reviewsPage'),
-  latest: () => Podcasts.findOne(),
-  podcastsIndex: () => PodcastsIndex, // instanceof EasySearch.Index
   nowPlaying: () => Session.get('nowPlaying')
 });
 

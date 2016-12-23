@@ -3,7 +3,6 @@ import { createCommentNotification } from '../notifications/notifications_collec
 
 import { Parties } from '../parties/parties_collection.js';
 import { Posts } from '../posts/posts_collection.js';
-import { Podcasts } from '../podcasts/podcasts_collection.js';
 import { Comments } from '../comments/comments_collection.js';
 
 Meteor.methods({
@@ -23,10 +22,8 @@ Meteor.methods({
       submitted: new Date()
     };
 
-    // update the post or podcast with the number of comments
-    if (commentAttributes.type === "podcastPage") {
-      Podcasts.update(comment.postId, {$inc: {commentCount: 1}});
-    } else if (commentAttributes.type === "newsItem") {
+    // update the post with the number of comments
+    if (commentAttributes.type === "newsItem") {
       Posts.update(comment.postId, {$inc: {commentCount: 1}});
     } else if (commentAttributes.type === "partyPage") {
       Parties.update(comment.postId, {$inc: {commentCount: 1}});

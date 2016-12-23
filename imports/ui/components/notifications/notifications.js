@@ -1,5 +1,5 @@
 import './notifications.html';
-import { Template } from 'meteor/templating'; 
+import { Template } from 'meteor/templating';
 
 Template.notifications.onCreated(function () {
   var self = this;
@@ -17,12 +17,6 @@ Template.notifications.helpers({
     return Notifications.find({
       userId: Meteor.userId(),
       read: false}).count();
-  }
-});
-
-Template.notificationItem.helpers({
-  notificationPostPath: function(itemId) {
-    return FlowRouter.path('podcastPage', this.itemId);
   }
 });
 

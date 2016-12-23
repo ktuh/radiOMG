@@ -8,7 +8,6 @@ import { throwError } from '../../../../client/helpers/errors.js';
 
 import { Parties } from '../../../api/parties/parties_collection.js';
 import { Posts } from '../../../api/posts/posts_collection.js';
-import { Podcasts } from '../../../api/podcasts/podcasts_collection.js';
 
 Template.commentSubmit.onCreated( function() {
   Session.set('commentSubmitErrors', {});
@@ -37,11 +36,6 @@ Template.commentSubmit.events({
           break;
       case "newsPage":
           postId = Posts.findOne()._id;
-          break;
-      case "podcastPage":
-          var epNum = FlowRouter.getParam('episodeNumber');
-
-          postId = Podcasts.findOne({ episodeNumber: Number(epNum) })._id;
           break;
       default:
           throwError("Cannot comment on this page!");

@@ -17,9 +17,6 @@
     </div>
     <div class='collapse navbar-collapse' id='navigation'>
       <ul class='nav navbar-nav navbar-left'>
-        <li class='{{activePage 'home' 'mix' 'podcastPage'}} nav-item nav-item__mixes'>
-          <a href='/'>Mix</a>
-        </li>
         <li class='{{activePage 'party' 'partyPage'}} nav-item nav-item__parties'>
           <a href={{partyPage}}>Party</a>
         </li>
@@ -43,9 +40,6 @@
             <a href='http://twitter.com/daveyshindig' target="_blank"><img src='/img/twitter.png'></a>
             <a href='http://facebook.com/808mix' target="_blank"><img src='/img/facebook.png'></a>
           </div>
-        </li>
-        <li class='nav-item nav__search'>
-          {{> EasySearch.Input index=podcastsIndex timeout=200}}
         </li>
       {{> loginButtons}}
       </ul>

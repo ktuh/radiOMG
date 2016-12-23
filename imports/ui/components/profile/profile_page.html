@@ -15,13 +15,5 @@
       <div class='profile__bio'>{{#if bio}}{{{bio}}}{{else}}<i><small>({{name}} hasn't filled out a bio yet.)</small></i>{{/if}}</div>
     </div>
     {{/with}}
-    {{#if podcasts}}
-    <div class='profile__mixes'>
-      <h3><b>Mixes</b></h3>
-      {{#each podcasts}}
-        {{> podcastItem}}
-      {{/each}}
-    </div>
-    {{/if}}
   </div>
 </template>
