@@ -13,7 +13,12 @@ export const Shows = new orion.collection('shows', {
 			 {
         data: 'author',
         title: 'Author'
-      }, {
+      },
+			{
+				data: 'host',
+				title: 'Host'
+			},
+ 			{
         data: 'showName',
         title: 'Show Name',
       },

@@ -28,6 +28,10 @@ export const ShowsSchema = new SimpleSchema({
 			if (!this.isSet) return Meteor.user().username;
 		}
   },
+	host: {
+		type: String,
+		optional: false
+	},
 	startDay: {
 		type: String,
 		label: "Start Day",
