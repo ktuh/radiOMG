@@ -42,6 +42,18 @@ if (!Accounts.findUserByUsername('davey')) {
   });
 
   Roles.addUserToRoles( nickiId,  ['admin'] );
+
+	// Brah, dis steh one dummy acct, keh? No delete it.
+	kkzId = Accounts.createUser({
+		profile: {name: 'DJ Kodekrakkerz'},
+		username: 'kodekrakkerz',
+		emails: [
+			{address: 'kodekrakkerz@gmail.com', verified: true}
+		],
+		password: '666666'
+	});
+
+	Roles.addUserToRoles(kkzId, ['dj']);
 };
 
 if (Podcasts.find().count() === 0) {

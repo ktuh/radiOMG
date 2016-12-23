@@ -1,6 +1,7 @@
 import '../../api/chats/server/publications.js';
 import '../../api/comments/server/publications.js';
 import '../../api/notifications/server/publications.js';
+import '../../api/shows/server/publications.js';
 import '../../api/parties/server/publications.js';
 import '../../api/playlists/server/publications.js';
 import '../../api/podcasts/server/publications.js';
