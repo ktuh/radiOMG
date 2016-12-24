@@ -106,6 +106,10 @@ export const ShowsSchema = new SimpleSchema({
 			label: false
 		}
 	},
+	active: {
+		type: Boolean,
+		optional: false
+	},
 	commentCount: {
 		type: Number,
 		label: 'Comment Count',

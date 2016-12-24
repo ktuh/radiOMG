@@ -4,6 +4,7 @@
 			{{#with show}}
 				<h1>{{showName}} with {{host}}</h1>
 				<h2>{{startDay}}s from {{startHour}}:{{#if lessThanTen startMinute}}0{{/if}}{{startMinute}} to {{endHour}}:{{#if lessThanTen endMinute}}0{{/if}}{{endMinute}}</h2>
+				{{#if featuredImage}}<img src="{{featuredImage.url}}">{{/if}}
 				{{body}}
 			{{/with}}
 		{{/if}}
