@@ -1,5 +1,4 @@
 //electric boogaloo
-import { Podcasts } from '/imports/api/podcasts/podcasts_collection.js';
 import { Playlists } from '/imports/api/playlists/playlists_collection.js';
 import { Parties } from '/imports/api/parties/parties_collection.js';
 import { Accounts } from 'meteor/accounts-base';
@@ -55,53 +54,6 @@ if (!Accounts.findUserByUsername('davey')) {
 
 	Roles.addUserToRoles(kkzId, ['dj']);
 };
-
-if (Podcasts.find().count() === 0) {
-  var davey = Accounts.findUserByUsername( 'davey' );
-  // missing mixes
-  var a = [40, 49, 62, 63, 68, 78, 80, 99];
-
-  for (var i = 1; i <= 108; i++ ) {
-    if (a.indexOf(i) > -1) {
-      continue;
-    }
-
-    var davey = Accounts.findUserByUsername( 'davey' );
-    var v;
-
-    if (i < 10) {
-      v = '00' + i.toString();
-    } else if (i < 100) {
-      v = '0' + i.toString();
-    } else {
-      v = i.toString();
-    }
-
-    var postId = Podcasts.insert({
-      title: '808 Mixtapes v.' + v,
-      mp3: '/audio/808-mixtapes-v' + v + '.mp3',
-      episodeNumber: v,
-      host: '?',
-      coverImage: '/img/coverart/808-mixtapes-v' + v + '.jpg',
-      imageCredit: '',
-      userId: davey._id,
-      commentCount: 0,
-      tags: []
-    });
-
-    Playlists.insert({
-      episodeNumber: i,
-      tracks: [{
-        title: 'title1',
-        artist: 'artist1',
-        remix: 'remix1',
-        featuring: 'featuring1',
-        album: 'album1',
-        label: 'label1'
-      }]
-    });
-  }
-}
 
 if (Parties.find().count() === 0) {
   var davey = Accounts.findUserByUsername( 'davey' );

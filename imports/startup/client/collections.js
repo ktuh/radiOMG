@@ -3,7 +3,6 @@ import '../../api/comments/comments_collection.js';
 import '../../api/notifications/notifications_collection.js';
 import '../../api/parties/parties_collection.js';
 import '../../api/playlists/playlists_collection.js';
-import '../../api/podcasts/podcasts_collection.js';
 import '../../api/posts/posts_collection.js';
 import '../../api/reviews/reviews_collection.js';
 import '../../api/shows/shows_collection.js';
