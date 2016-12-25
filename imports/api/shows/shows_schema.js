@@ -35,16 +35,16 @@ export const ShowsSchema = new SimpleSchema({
 	startDay: {
 		type: String,
 		label: "Start Day",
-		allowedValues: ['sunday', 'monday', 'tuesday', 'wednesday','thursday','friday','saturday'],
+		allowedValues: ['Sunday', 'Monday', 'Tuesday', 'Wednesday','Thursday','Friday','Saturday'],
 		autoform: {
 			options: [
-				{label: "Sunday", value: 'sunday'},
-				{label: "Monday", value: 'monday'},
+				{label: "Sunday", value: 'Sunday'},
+				{label: "Monday", value: 'Monday'},
 				{label: "Tuesday", value: 'Tuesday'},
 				{label: "Wednesday", value: 'Wednesday'},
-				{label: "Thursday", value: 'thursday'},
-				{label: "Friday", value: 'friday'},
-				{label: "Saturday", value: 'saturday'}
+				{label: "Thursday", value: 'Thursday'},
+				{label: "Friday", value: 'Friday'},
+				{label: "Saturday", value: 'Saturday'}
 			]
 		},
 		optional: false
@@ -63,17 +63,17 @@ export const ShowsSchema = new SimpleSchema({
 	},
 	endDay: {
 		type: String,
-		label: "End Day",
-		allowedValues: ['sunday', 'monday', 'tuesday', 'wednesday','thursday','friday','saturday'],
+		label: "Start Day",
+		allowedValues: ['Sunday', 'Monday', 'Tuesday', 'Wednesday','Thursday','Friday','Saturday'],
 		autoform: {
 			options: [
-				{label: "Sunday", value: 'sunday'},
-				{label: "Monday", value: 'monday'},
+				{label: "Sunday", value: 'Sunday'},
+				{label: "Monday", value: 'Monday'},
 				{label: "Tuesday", value: 'Tuesday'},
 				{label: "Wednesday", value: 'Wednesday'},
-				{label: "Thursday", value: 'thursday'},
-				{label: "Friday", value: 'friday'},
-				{label: "Saturday", value: 'saturday'}
+				{label: "Thursday", value: 'Thursday'},
+				{label: "Friday", value: 'Friday'},
+				{label: "Saturday", value: 'Saturday'}
 			]
 		},
 		optional: false
@@ -105,6 +105,10 @@ export const ShowsSchema = new SimpleSchema({
 			type: 'hidden',
 			label: false
 		}
+	},
+	active: {
+		type: Boolean,
+		optional: false
 	},
 	commentCount: {
 		type: Number,

@@ -9,3 +9,7 @@ Meteor.publish('singleShow', function (slug) {
   check(slug, String);
   return Shows.find({ slug: slug });
 });
+
+Meteor.publish('activeShows', function() {
+	return Shows.find({active: true});
+});
