@@ -14,7 +14,6 @@ import '../../ui/components/news/news_item.js';
 import '../../ui/components/news/news_list.js';
 import '../../ui/components/chats/chat.js';
 import '../../ui/components/application/not_found.js';
-import '../../ui/components/shindig/shindig.js';
 import '../../ui/components/profile/profile_edit.js';
 import '../../ui/components/profile/profile_page.js';
 import '../../ui/components/shows/show_page.js';
