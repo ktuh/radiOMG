@@ -7,13 +7,25 @@ var ProfileSchema = new SimpleSchema({
     label: 'DJ Name',
     optional: true
   },
-  "profile.photo": orion.attribute('image', {
+  "profile.photo": {
+		type: String,
     label: 'Photo',
-    optional: true
-  }),
+    optional: false,
+		autoform: {
+			type: "slingshotFileUpload",
+			afFieldInput: {
+				slingshotdirective: 'uploadImg'
+			}
+		}
+  },
   "profile.bio": {
     type: String,
     label: 'Bio',
+		autoform: {
+			afFieldInput: {
+				type: 'summernote'
+			}
+		},
     optional: true
   },
   "profile.website": {
@@ -49,6 +61,10 @@ var ProfileSchema = new SimpleSchema({
 });
 
 export const UsersSchema = new SimpleSchema({
+	services: {
+		type: Object,
+ 		blackbox: true
+	},
   username: {
     type: String,
     regEx: /^[a-z0-9A-Z_]{3,20}$/
@@ -69,7 +85,7 @@ export const UsersSchema = new SimpleSchema({
   },
   profile: {
     type: ProfileSchema,
-    optional: true
+    optional: false
   },
   services: {
     type: Object,

@@ -1,10 +1,10 @@
 <template name='profileEdit'>
   <div class='profileEdit'>
-  {{#if currentUser}}
-<!--     {{#autoForm id="profileEdit" collection="Meteor.users" doc=currentUser type="update"}}
+  {{#if loggedInUser}}
+{{#autoForm id="profileEdit" collection="Meteor.users" doc=loggedInUser type="update"}}
       {{> afQuickField name="profile.name"}}
-      {{> afQuickField name="profile.photo"}}
-      {{> afQuickField name="profile.bio" rows="6"}}
+   		{{> afQuickField name="profile.photo" type="slingshotFileUpload"}}
+      {{> afQuickField name="profile.bio" type="summernote"}}
       {{> afQuickField name="profile.website"}}
       {{> afQuickField name="profile.soundcloud"}}
       {{> afQuickField name="profile.instagram"}}
@@ -14,8 +14,8 @@
         <button type="submit" class="btn btn-primary" disabled="{{disableButtons}}">Submit</button>
       </div>
       {{/unless}}
-    {{/autoForm}} -->
-    {{> quickForm id="profileEdit" collection="Meteor.users" doc=currentUser type="update"}}
+    {{/autoForm}}
+<!--    {{> quickForm id="profileEdit" collection="Meteor.users" doc=loggedInUser type="update"}} -->
   {{else}}
     Please login (or signup) to edit your profile.
   {{/if}}
