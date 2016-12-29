@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/daveyshindig/radiOMG",
   "dependencies": {
-    "babel-runtime": "^6.20.0"
+    "babel-runtime": "^6.20.0",
+    "bcrypt": "^1.0.1"
   }
 }
