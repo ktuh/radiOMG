@@ -86,9 +86,14 @@ FlowRouter.route('/review/:slug', {
 		BlazeLayout.render('layout', {content: 'reviewPage'});
 	}
 });
-
+FlowRouter.route('/show', {
+  name: 'show',
+  action: function() {
+    BlazeLayout.render('layout', {content: 'showList'});
+  }
+});
 FlowRouter.route('/show/:slug', {
-	name: 'show',
+	name: 'showPage',
 	action: function() {
 		BlazeLayout.render('layout', {content: 'showPage'});
 	}
