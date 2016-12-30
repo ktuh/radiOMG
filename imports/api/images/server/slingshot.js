@@ -16,6 +16,6 @@ Slingshot.createDirective("uploadImg", Slingshot.S3Storage, {
 		return true;
 	},
 	key: function(f) {
-		return Meteor.user().profile.username + "_" + f.name;
+		return Meteor.user().username + "_" + f.name;
 	}
 });

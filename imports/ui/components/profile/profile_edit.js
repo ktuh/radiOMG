@@ -17,7 +17,7 @@ Template.profileEdit.helpers({
 
 Template.profileEdit.events({
 	'change .file-upload': function(evt) {
-		evt.preventDefault();
+//		evt.preventDefault();
 	 	var upload = new Slingshot.Upload("uploadImg");
 		upload.send($("input[type='file']")[0].files[0], function(error, dUrl) {
 			if (error) {
@@ -25,6 +25,9 @@ Template.profileEdit.events({
 			}
 			else {
 				console.log("Success!");
+			}
+			if (dUrl) {
+				 // Meteor.users.update(Meteor.userId(), {'$unset': {"profile.photo": ""}, '$push':{"profile.photo": dUrl}})
 			}
 		});
 	}
