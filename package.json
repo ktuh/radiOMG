@@ -19,5 +19,19 @@
   "dependencies": {
     "babel-runtime": "^6.20.0",
     "bcrypt": "^1.0.1"
+  },
+
+  "awsKey": "AKIAJE3XORTWQIL7QIDA",
+  "awsSecret": "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",
+  "awsRegion": "us-west-2",
+  "emailUsername": "davey@ktuh.org",
+  "emailPassword": "recurrencerelation997",
+  "emailServer": "smtp.gmail.com",
+  "emailPort": "25",
+  "public": {
+    "analyticsSettings": {
+      "Google Analytics": {"trackingId": "UA-79266652-1"}
+    }
   }
+
 }
