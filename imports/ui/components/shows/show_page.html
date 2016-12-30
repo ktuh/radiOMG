@@ -22,7 +22,8 @@
   {{#if Template.subscriptionsReady}}
     {{#with show}}
       <div class='flyer-div'>
-        <img class='flyer-div__front' src='{{featuredImage.url}}'>
+        <!-- <img class='flyer-div__front' src='{{featuredImage.url}}'> -->
+        <img class='flyer-div__front' src='https://images.pexels.com/photos/70222/pexels-photo-70222.jpeg?h=350&auto=compress'>
         {{#if flyerBack.url}}
           <img class='flyer-div__back' src='{{flyerBack.url}}'>
         {{/if}}
@@ -36,21 +37,19 @@
         <p>{{body}}</p>
       </div>
     {{/with}}
-    {{#if comments}}
-      <div class='comments'>
-        <h3 class='comments__header'>Comments</h3>
-        <ul class='comments__list'>
-          {{#each comments}}
-            {{> commentItem}}
-          {{/each}}
-        </ul>
-        {{#if currentUser}}
-          {{> commentSubmit}}
-        {{else}}
-          <p class='comments__text'>Please log in to leave a comment.</p>
-        {{/if}}
-      </div>
-    {{/if}}
+	<div class='comments'>
+	<h3 class='comments__header'>Comments</h3>
+	<ul class='comments__list'>
+	  {{#each comments}}
+	    {{> commentItem}}
+	  {{/each}}
+	</ul>
+	{{#if currentUser}}
+	  {{> commentSubmit}}
+	{{else}}
+	  <p class='comments__text'>Please log in to leave a comment.</p>
+	{{/if}}
+	</div>
   {{else}}
     {{> spinner}}
   {{/if}}
