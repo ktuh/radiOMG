@@ -1,0 +1,19 @@
+<template name='showList'>
+  <div class='party-header'>
+    {{#if currentUser}}
+      <a href='/show/new'><button type="button" class="btn btn-default btn-md party-header__button">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create
+      </button></a>
+    {{/if}}
+  </div>
+  <div class='clear'></div>
+  <div class='parties'>
+  {{#if Template.subscriptionsReady}}
+    {{#each shows}}
+      {{> showItem}}
+    {{/each}}
+  {{else}}
+    {{> spinner}}
+  {{/if}}
+  </div>
+</template>

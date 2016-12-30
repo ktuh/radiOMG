@@ -10,6 +10,10 @@ import '../../ui/components/parties/party_list.js';
 import '../../ui/components/parties/party_page.js';
 import '../../ui/components/parties/party_edit.js';
 import '../../ui/components/parties/party_create.js';
+import '../../ui/components/shows/show_list.js';
+import '../../ui/components/shows/show_page.js';
+import '../../ui/components/shows/show_edit.js';
+import '../../ui/components/shows/show_create.js';
 import '../../ui/components/news/news_item.js';
 import '../../ui/components/news/news_list.js';
 import '../../ui/components/chats/chat.js';
@@ -86,17 +90,32 @@ FlowRouter.route('/review/:slug', {
 		BlazeLayout.render('layout', {content: 'reviewPage'});
 	}
 });
+
 FlowRouter.route('/show', {
   name: 'show',
   action: function() {
     BlazeLayout.render('layout', {content: 'showList'});
   }
 });
+FlowRouter.route('/show/new', {
+  name: 'showCreate',
+  action: function () {
+    BlazeLayout.render('layout', {content: 'showCreate'});
+  }
+});
+
 FlowRouter.route('/show/:slug', {
-	name: 'showPage',
-	action: function() {
-		BlazeLayout.render('layout', {content: 'showPage'});
-	}
+  name: 'showPage',
+  action: function () {
+    BlazeLayout.render('layout', {content: 'showPage'});
+  }
+});
+
+FlowRouter.route('/show/edit/:slug', {
+  name: 'showEdit',
+  action: function () {
+    BlazeLayout.render('layout', {content: 'showEdit'});
+  }
 });
 
 FlowRouter.route('/profile', {

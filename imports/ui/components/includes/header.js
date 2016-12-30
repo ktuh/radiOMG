@@ -73,6 +73,7 @@ Template.header.onRendered(function () {
 Template.header.helpers({
   newsPage: () => FlowRouter.path('news'),
   partyPage: () => FlowRouter.path('party'),
+  showPage: () => FlowRouter.path('show'),
 	reviewsPage: () => FlowRouter.path('reviewsPage'),
   nowPlaying: () => Session.get('nowPlaying')
 });
