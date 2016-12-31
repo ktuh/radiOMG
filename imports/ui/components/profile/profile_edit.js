@@ -3,32 +3,13 @@ import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { AutoForm } from 'meteor/aldeed:autoform';
+import '../../../api/users/users_collection.js';
 import { UsersSchema } from '../../../api/users/users_schema.js';
+import { check } from 'meteor/check';
 
 Template.profileEdit.onRendered(function() {
   var self = this;
-});
-
-Template.profileEdit.helpers({
-	loggedInUser: function(){
-		return Meteor.users.findOne({_id: Meteor.userId()});
-	}
-});
-
-Template.profileEdit.events({
-	'change .file-upload': function(evt) {
-//		evt.preventDefault();
-	 	var upload = new Slingshot.Upload("uploadImg");
-		upload.send($("input[type='file']")[0].files[0], function(error, dUrl) {
-			if (error) {
-				console.error("Error uploading.");
-			}
-			else {
-				console.log("Success!");
-			}
-			if (dUrl) {
-				 // Meteor.users.update(Meteor.userId(), {'$unset': {"profile.photo": ""}, '$push':{"profile.photo": dUrl}})
-			}
-		});
-	}
+	self.autorun(function() {
+	  self.subscribe("users");
+  });
 });

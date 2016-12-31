@@ -1,7 +1,7 @@
 <template name='profilePage'>
   <div class='profilePage'>
     {{#with profile}}
-    <img class='profile__pic' src='{{photo}}'>
+    <img class='profile__pic' src='{{photo.url}}'>
     <div class='profile__info'>
       {{#if name}}<h1 class='profile__header'><b>{{name}}</b>{{#if social}}<span class='profile__header-separator'> |</span>{{/if}}</h1>{{/if}}
       <div class='profile__social'>
