@@ -566,6 +566,12 @@ div.audio-player,
     margin-bottom: 20px;
     clear: both;
 }
+.note-editable.panel-body {
+	min-height: 30px;
+}
+.note-editing-area {
+	min-height: 100px;
+}
 @-webkit-keyframes fadeOut {
     0% {
         opacity: 0;
