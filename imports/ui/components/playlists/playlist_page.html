@@ -1,0 +1,9 @@
+<template name="playlistPage">
+	{{#if Template.subscriptionsReady}}
+		<ul>
+		{{#each songs}}
+			<!-- <li>{{Timestamp}} | {{ArtistName}} - {{SongName}}</li> -->
+		{{/each}}
+		</ul>
+	{{/if}}
+</template>

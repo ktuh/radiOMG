@@ -1,11 +1,19 @@
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
+import { Shows } from '../shows/shows_collection.js';
 
 export const PlaylistsSchema = new SimpleSchema({
-  episodeNumber: {
-    type: Number,
-    label: 'Episode Number',
-    optional: false
-  },
+	showId: orion.attribute("hasOne", {
+		label: "Show"
+	}, {
+		collection: Shows,
+		titleField: "showName",
+		publicationName: "them_shows"
+	}),
+	spinPlaylistId: {
+		type: Number,
+		label: "Spinitron Playlist ID"
+	}
+	/* ,
   tracks: {
     type: [Object],
     minCount: 1
@@ -39,5 +47,5 @@ export const PlaylistsSchema = new SimpleSchema({
     type: String,
     label: 'Label',
     optional: true
-  }
+  } */
 });

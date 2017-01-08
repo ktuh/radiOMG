@@ -17,6 +17,7 @@ import '../../ui/components/application/not_found.js';
 import '../../ui/components/profile/profile_edit.js';
 import '../../ui/components/profile/profile_page.js';
 import '../../ui/components/shows/show_page.js';
+import '../../ui/components/playlists/playlist_page.js';
 
 FlowRouter.route('/', {
   name: 'home',
@@ -71,6 +72,12 @@ FlowRouter.route('/party/edit/:slug', {
   action: function () {
     BlazeLayout.render('layout', {content: 'partyEdit'});
   }
+});
+
+FlowRouter.route('/playlist/:id', {
+	action: function() {
+		BlazeLayout.render('layout', {content: 'playlistPage'});
+	}
 });
 
 FlowRouter.route('/reviews/', {
