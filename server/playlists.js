@@ -1,4 +1,5 @@
 import { Meteor } from 'meteor/meteor';
+import { Session } from 'meteor/session';
 import { HTTP } from 'meteor/http';
 import CryptoJS from 'crypto-js';
 import '/node_modules/crypto-js/enc-base64.js';
@@ -7,7 +8,6 @@ import { check } from 'meteor/check';
 
 Meteor.methods({
 	getPlaylist: function(id) {
-		console.log(id);
 		check(id, Number);
 		var date = new Date();
 
@@ -33,30 +33,19 @@ Meteor.methods({
 		for (var k = 0; k < keys.length; k++) {
 			query.push(encodeURIComponent(keys[k]) + '=' + encodeURIComponent(params[keys[k]]));
 		}
-		console.log(query);
 		query = query.join("&");
-		console.log(query);
 		var subject = "spinitron.com\n/public/spinpapi.php\n" + query;
 
 	  var sig = CryptoJS.HmacSHA256(subject, Meteor.settings.spinitronSecret);
 
 		sig = sig.toString(CryptoJS.enc.Base64);
-		console.log(sig);
-//		sig = sig.replace(/=/g, '');
-		sig = encodeURIComponent(sig);
+  	sig = encodeURIComponent(sig);
 
 		params.signature = sig;
 		var q_sig = encodeURIComponent("signature") + "=" + sig;
 		query = query + "&" + q_sig;
-		console.log(query);
-
-		return HTTP.get("http://spinitron.com/public/spinpapi.php", {
-			query: query
-		}, function(error, result) {
-			if (!error) {
-				return JSON.parse(result.content).results;
-			}
-			else console.error(error);
-		});
+		this.unblock();
+	 	var res = HTTP.get("http://spinitron.com/public/spinpapi.php", {query: query});
+		return JSON.parse(res.content).results;
 	}
 });

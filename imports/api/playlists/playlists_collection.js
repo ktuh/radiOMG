@@ -11,7 +11,11 @@ export const Playlists = new orion.collection('playlists', {
       {
         data: 'spinPlaylistId',
         title: 'Playlist ID'
-      }
+      },
+			{
+				data: "showDate",
+				title: "Date of Show"
+			}
     ]
   }
 });

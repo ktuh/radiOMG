@@ -12,6 +12,10 @@ export const PlaylistsSchema = new SimpleSchema({
 	spinPlaylistId: {
 		type: Number,
 		label: "Spinitron Playlist ID"
+	},
+	showDate: {
+		type: Date,
+		label: "Date of Show"
 	}
 	/* ,
   tracks: {
