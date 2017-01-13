@@ -12,7 +12,6 @@ export const Parties = new orion.collection('parties', {
         data: 'flyerFront',
         title: 'Title',
         render: function (val, type, doc) {
-          console.log(val);
           return "<img src=" + val.url + ">";
         }
       }, {

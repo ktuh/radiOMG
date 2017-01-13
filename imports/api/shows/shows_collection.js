@@ -28,7 +28,6 @@ export const Shows = new orion.collection('shows', {
         render: function (val, type, doc) {
 					if (!val)
 						return;
-          console.log(val);
           return "<img src=" + val.url + ">";
         }
       },

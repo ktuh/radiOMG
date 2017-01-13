@@ -23,7 +23,6 @@ Template.showSchedule.helpers({
 		var list = $("<ul>", {class: "showList"});
 		var res = Shows.find({startDay: day, active: true}, {sort: {startHour: 1, startMinute: 1}});
 		res.forEach(function(show) {
-			console.log(show);
 			list.append("<li>" + show.startHour + ":" + (show.startMinute < 10 ? "0" + show.startMinute : show.startMinute) + "-" + show.endHour + ":" + (show.endMinute < 10 ? "0" + show.endMinute : show.endMinute) +
 									": " + show.showName + " with " + show.host + "</li>");
 		});

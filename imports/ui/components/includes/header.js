@@ -12,7 +12,6 @@ Template.header.onCreated(function () {
 		Meteor.call('latestSong', function(error, result) {
 			if (!error) {
 				if (result) {
-					console.log(result);
 					Session.set("latestSong", result);
  				}
 			}
