@@ -17,6 +17,8 @@ import '../../ui/components/application/not_found.js';
 import '../../ui/components/profile/profile_edit.js';
 import '../../ui/components/profile/profile_page.js';
 import '../../ui/components/shows/show_page.js';
+import '../../ui/components/playlists/playlist_page.js';
+import '../../ui/components/shows/show_schedule.js';
 
 FlowRouter.route('/', {
   name: 'home',
@@ -73,6 +75,12 @@ FlowRouter.route('/party/edit/:slug', {
   }
 });
 
+FlowRouter.route('/playlist/:id', {
+	action: function() {
+		BlazeLayout.render('layout', {content: 'playlistPage'});
+	}
+});
+
 FlowRouter.route('/reviews/', {
 	name: 'reviewsPage',
 	action: function() {
@@ -99,6 +107,13 @@ FlowRouter.route('/profile', {
   action: function () {
     BlazeLayout.render('layout', {content: 'profileEdit'});
   }
+});
+
+FlowRouter.route('/schedule', {
+	name: 'schedule',
+	action: function() {
+		BlazeLayout.render('layout', {content: 'showSchedule'});
+	}
 });
 
 FlowRouter.route('/:username', {

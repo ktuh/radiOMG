@@ -9,9 +9,13 @@ export const Playlists = new orion.collection('playlists', {
   tabular: {
     columns: [
       {
-        data: 'episodeNumber',
-        title: 'Episode #'
-      }
+        data: 'spinPlaylistId',
+        title: 'Playlist ID'
+      },
+			{
+				data: "showDate",
+				title: "Date of Show"
+			}
     ]
   }
 });
