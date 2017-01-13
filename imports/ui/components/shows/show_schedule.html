@@ -1,8 +1,8 @@
 <template name="showSchedule">
-	<h1>Schedule</h1>
 	{{#if Template.subscriptionsReady}}
 	<div id="schedule-container">
-		{{{ calendar }}}
+		<h1>Schedule for {{dayOfTheWeek}}</h1>
+		{{{ showList dayOfTheWeek}}}
 	</div>
 	{{/if}}
 </template>
