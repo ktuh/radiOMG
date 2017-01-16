@@ -1,3 +1,3 @@
-import './fixtures2.js';
+import './fixtures.js';
 import './routes.js';
 import './register_apis.js';
