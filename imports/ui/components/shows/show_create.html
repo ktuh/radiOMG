@@ -1,0 +1,4 @@
+<template name='showCreate'>
+  <h1>Create Show</h1>
+  {{> quickForm id="showForm" collection=shows type="insert" omitFields="commentCount,upvoters,upvoteCount,isPinned,submitted,userId,approved,author"}}
+</template>
