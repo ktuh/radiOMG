@@ -3,19 +3,15 @@ import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { EasySearch } from 'meteor/easy:search';
 import { FlowRouter } from 'meteor/kadira:flow-router';
+import { NowPlaying } from '../../../api/playlists/now_playing.js';
 import { $ } from 'meteor/jquery';
 
 Template.header.onCreated(function () {
   var self = this;
 
   self.autorun(function () {
-		Meteor.call('latestSong', function(error, result) {
-			if (!error) {
-				if (result) {
-					Session.set("latestSong", result);
- 				}
-			}
-		});
+		var meh = self.subscribe('nowPlaying');
+		if (meh.ready()) Session.set("latestSong", NowPlaying.findOne().content);
   });
 });
 
@@ -51,7 +47,7 @@ Template.header.onRendered(function () {
       player = mediaElement; // make it available for other functions
     },
     error: function () {
-      console.log("Encountered an error while initializing the media element.")
+      console.error("Encountered an error while initializing the media element.")
     }
   });
   var mp3 = $('#audio-player').attr('src');
