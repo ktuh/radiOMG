@@ -10,12 +10,5 @@ Meteor.publish('playlist', function (id) {
 });
 
 Meteor.publish('nowPlaying', function() {
-	var self = this;
-	try {
-     var resp = HTTP.get('http://spinitron.com/radio/newestsong.php', {params: {station: Meteor.settings.spinitronStation, num: 1}});
-		 self.added("nowPlaying", Random.id(), {content: resp.content});
-		 self.ready();
-	} catch (error) {
-		console.error(error);
-	}
+	return NowPlaying.find({});
 });

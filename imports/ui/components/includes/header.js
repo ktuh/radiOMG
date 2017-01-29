@@ -9,10 +9,14 @@ import { $ } from 'meteor/jquery';
 Template.header.onCreated(function () {
   var self = this;
 
-  self.autorun(function () {
-		var meh = self.subscribe('nowPlaying');
-		if (meh.ready()) Session.set("latestSong", NowPlaying.findOne().content);
-  });
+	self.subscribe("nowPlaying");
+	if (NowPlaying.find({}).count() < 1) {
+		Meteor.call("latestSong", function (e, r) {
+			if (!e) {
+				NowPlaying.insert({current: r});
+			}
+		});
+	}
 });
 
 Template.header.onRendered(function () {
@@ -79,7 +83,7 @@ Template.header.helpers({
   showPage: () => FlowRouter.path('show'),
 	reviewsPage: () => FlowRouter.path('reviewsPage'),
   nowPlaying: () => Session.get('nowPlaying'),
-	latestSong: () => Session.get('latestSong')
+	latestSong: () =>	NowPlaying.findOne().current
 });
 
 Template.header.events({
