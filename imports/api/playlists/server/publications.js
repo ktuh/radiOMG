@@ -10,5 +10,5 @@ Meteor.publish('playlist', function (id) {
 });
 
 Meteor.publish('nowPlaying', function() {
-	return NowPlaying.find({});
+  return NowPlaying.find({});
 });

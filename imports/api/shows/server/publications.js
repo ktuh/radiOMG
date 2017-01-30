@@ -11,5 +11,5 @@ Meteor.publish('singleShow', function (slug) {
 });
 
 Meteor.publish('activeShows', function() {
-	return Shows.find({active: true});
+  return Shows.find({active: true});
 });

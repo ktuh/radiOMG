@@ -13,7 +13,7 @@ Template.showCreate.onRendered(function() {
 });
 
 Template.showCreate.helpers({
-	shows: function() {
-		return Shows;
-	}
+  shows: function() {
+    return Shows;
+  }
 });

@@ -21,10 +21,10 @@ Template.partyEdit.onRendered(function() {
 
 
 Template.partyEdit.helpers({
-	parties: function() {
-		return Parties;
-	},
-	editing: function() {
-		return Parties.findOne({slug: FlowRouter.getParam('slug')});
-	}
+  parties: function() {
+    return Parties;
+  },
+  editing: function() {
+    return Parties.findOne({slug: FlowRouter.getParam('slug')});
+  }
 });

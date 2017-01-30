@@ -80,23 +80,23 @@ FlowRouter.route('/party/edit/:slug', {
 });
 
 FlowRouter.route('/playlist/:id', {
-	action: function() {
-		BlazeLayout.render('layout', {content: 'playlistPage'});
-	}
+  action: function() {
+    BlazeLayout.render('layout', {content: 'playlistPage'});
+  }
 });
 
 FlowRouter.route('/reviews/', {
-	name: 'reviewsPage',
-	action: function() {
-		BlazeLayout.render('layout', {content: 'reviewList'});
-	}
+  name: 'reviewsPage',
+  action: function() {
+    BlazeLayout.render('layout', {content: 'reviewList'});
+  }
 });
 
 FlowRouter.route('/review/:slug', {
-	name: 'review',
-	action: function() {
-		BlazeLayout.render('layout', {content: 'reviewPage'});
-	}
+  name: 'review',
+  action: function() {
+    BlazeLayout.render('layout', {content: 'reviewPage'});
+  }
 });
 
 FlowRouter.route('/show', {
@@ -134,10 +134,10 @@ FlowRouter.route('/profile', {
 });
 
 FlowRouter.route('/schedule', {
-	name: 'schedule',
-	action: function() {
-		BlazeLayout.render('layout', {content: 'showSchedule'});
-	}
+  name: 'schedule',
+  action: function() {
+    BlazeLayout.render('layout', {content: 'showSchedule'});
+  }
 });
 
 FlowRouter.route('/:username', {

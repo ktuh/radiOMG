@@ -30,10 +30,10 @@ export const Posts = new orion.collection('posts', {
 });
 
 Posts.friendlySlugs({
-	slugFrom: 'title',
-	slugField: 'slug',
-	distinct: true,
-	updateSlug: false
+  slugFrom: 'title',
+  slugField: 'slug',
+  distinct: true,
+  updateSlug: false
 });
 
 Posts.attachSchema(PostsSchema);

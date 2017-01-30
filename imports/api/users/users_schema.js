@@ -11,11 +11,11 @@ var ProfileSchema = new SimpleSchema({
   "bio": {
     type: String,
     label: 'Bio',
-		autoform: {
-			afFieldInput: {
-				type: 'summernote'
-			}
-		},
+    autoform: {
+      afFieldInput: {
+        type: 'summernote'
+      }
+    },
     optional: true
   },
   "website": {
@@ -51,10 +51,10 @@ var ProfileSchema = new SimpleSchema({
 });
 
 export const UsersSchema = new SimpleSchema({
-	services: {
-		type: Object,
- 		blackbox: true
-	},
+  services: {
+    type: Object,
+     blackbox: true
+  },
   username: {
     type: String,
     regEx: /^[a-z0-9A-Z_]{3,20}$/
@@ -72,18 +72,18 @@ export const UsersSchema = new SimpleSchema({
   },
   createdAt: {
     type: Date,
-		label: "Created on",
-		autoValue: function() {
-			if (this.isInsert) {
-				return new Date();
-			}
-			else {
-				this.unset();
-			}
-		}
+    label: "Created on",
+    autoValue: function() {
+      if (this.isInsert) {
+        return new Date();
+      }
+      else {
+        this.unset();
+      }
+    }
   },
-	modified: {
-		type: Date,
+  modified: {
+    type: Date,
     label: "Modified on",
     autoValue: function () {
         if (this.isInsert) {
@@ -92,7 +92,7 @@ export const UsersSchema = new SimpleSchema({
           return new Date;
         }
     }
-	},
+  },
   profile: {
     type: ProfileSchema,
     optional: false

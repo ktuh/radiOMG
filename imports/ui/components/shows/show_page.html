@@ -1,16 +1,3 @@
-<!-- <template name="showPage">
-	<div>
-		{{#if Template.subscriptionsReady}}
-			{{#with show}}
-				<h1>{{showName}} with {{host}}</h1>
-				<h2>{{startDay}}s from {{startHour}}:{{#if lessThanTen startMinute}}0{{/if}}{{startMinute}} to {{endHour}}:{{#if lessThanTen endMinute}}0{{/if}}{{endMinute}}</h2>
-				{{#if featuredImage}}<img src="{{featuredImage.url}}">{{/if}}
-				{{body}}
-			{{/with}}
-		{{/if}}
-	</div>
-</template> -->
-
 <template name='showPage'>
   <div class='party-link'>
     <a href='/show'>← all shows</a>
@@ -36,19 +23,19 @@
         <p>{{body}}</p>
       </div>
     {{/with}}
-	<div class='comments'>
-	<h3 class='comments__header'>Comments</h3>
-	<ul class='comments__list'>
-	  {{#each comments}}
-	    {{> commentItem}}
-	  {{/each}}
-	</ul>
-	{{#if currentUser}}
-	  {{> commentSubmit}}
-	{{else}}
-	  <p class='comments__text'>Please log in to leave a comment.</p>
-	{{/if}}
-	</div>
+  <div class='comments'>
+  <h3 class='comments__header'>Comments</h3>
+  <ul class='comments__list'>
+    {{#each comments}}
+      {{> commentItem}}
+    {{/each}}
+  </ul>
+  {{#if currentUser}}
+    {{> commentSubmit}}
+  {{else}}
+    <p class='comments__text'>Please log in to leave a comment.</p>
+  {{/if}}
+  </div>
   {{else}}
     {{> spinner}}
   {{/if}}

@@ -43,21 +43,21 @@ Template.partyPage.helpers({
   slug: function () {
     return FlowRouter.getParam('slug');
   },
-	upvoted: function(upvoters) {
-		var username = Meteor.user().username;
+  upvoted: function(upvoters) {
+    var username = Meteor.user().username;
     var a = upvoters || [];
     var i = a.indexOf(username);
-		var r = '';
+    var r = '';
 
     if (i >= 0) {
       r = 'upvoted';
     };
 
-		return r;
-	},
-	upvoters: function() {
-		return Parties.findOne({slug: FlowRouter.getParam('slug')}).upvoters;
-	}
+    return r;
+  },
+  upvoters: function() {
+    return Parties.findOne({slug: FlowRouter.getParam('slug')}).upvoters;
+  }
 });
 
 Template.partyPage.events({
@@ -72,4 +72,3 @@ Template.partyPage.events({
     }
   }
 });
-
