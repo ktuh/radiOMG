@@ -27,7 +27,6 @@ ian:accounts-ui-bootstrap-3
 orionjs:relationships
 check
 audit-argument-checks
-delgermurun:mediaelementjs
 easy:search
 iamkevingreen:imagesloaded
 orionjs:summernote
@@ -51,3 +50,4 @@ tsega:bootstrap3-datetimepicker
 qubitdev:autoform-bs-datetimepicker-updated
 mpowaga:autoform-summernote
 lepozepo:s3
+delgermurun:mediaelementjs

@@ -19,6 +19,7 @@
   "dependencies": {
     "babel-runtime": "^6.20.0",
     "body-parser": "^1.16.0",
+    "bcrypt": "^1.0.2",
     "crypto-js": "^3.1.9-1",
     "moment-timezone": "^0.5.11"
   }

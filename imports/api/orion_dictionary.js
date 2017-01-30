@@ -15,9 +15,9 @@ orion.dictionary.addDefinition('description', 'mainPage',
   })
 );
 
-orion.dictionary.addDefinition('termsAndConditions', 'submitPostPage',
-  orion.attribute('summernote', {
-    label: 'Terms and Conditions',
+orion.dictionary.addDefinition('audioUrl', 'mainPage', {
+    type: String,
+    label: 'URL of the station\'s streaming audio feed',
     optional: true
-  })
-);
+});
+

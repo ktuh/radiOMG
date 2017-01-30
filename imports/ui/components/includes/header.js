@@ -22,10 +22,12 @@ Template.header.onCreated(function () {
 Template.header.onRendered(function () {
   var $searchInput = $('.nav__search input');
 
+  Session.set('nowPlaying', 'Live audio stream.');
   $('#audio-player').mediaelementplayer({
+    pluginPath: "/packages/delgermurun_mediaelementjs/",
     alwaysShowControls: true,
     features: ['playpause', 'progress'],
-    audioVolume: 'horizontal',
+    type: 'audio/mp3',
     audioWidth: 200,
     audioHeight: 20,
     iPadUseNativeControls: false,
@@ -40,11 +42,12 @@ Template.header.onRendered(function () {
       }, false);
       // Display what's playing if user clicks the player without loading
       // another song first.
-      $('.mejs-playpause-button').click(function () {
+      $('.mejs__playpause-button').click(function () {
         if (Session.equals('defaultLoaded', true)) {
-          var message = 'Now playing';
+          var message = 'Now playing the ' + 
+              orion.dictionary.get('mainPage.title', 'station\'s') + ' live stream';
           Session.set('defaultLoaded', false);
-          Session.set('nowLoaded', latest.mp3);
+          Session.set('nowLoaded', orion.dictionary.get('mainPage.audioUrl', ''));
           Bert.alert(message, 'default', 'growl-top-right', 'fa-music');
         }
       });
