@@ -3,8 +3,8 @@ import { Parties } from '../imports/api/parties/parties_collection.js';
 import { check } from 'meteor/check';
 
 Meteor.methods({
-	upvoteParty: function(partyId) {
-		check(partyId, String);
+  upvoteParty: function(partyId) {
+    check(partyId, String);
 
     var p = Parties.findOne({_id: partyId});
     var u = Meteor.user();
@@ -24,5 +24,5 @@ Meteor.methods({
     else {
       throw new Meteor.Error(100003, 'No method \'indexOf\' of undefined.');
     }
-	}
+  }
 });

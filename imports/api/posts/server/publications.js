@@ -15,5 +15,5 @@ Meteor.publish('singlePost', function (slug) {
 });
 
 Meteor.publish('allPosts', function() {
-	return Posts.find();
+  return Posts.find();
 });

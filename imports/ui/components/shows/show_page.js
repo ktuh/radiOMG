@@ -5,26 +5,26 @@ import { Template } from 'meteor/templating';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 
 Template.showPage.onCreated(function() {
-	var self = this;
-	self.autorun(function(){
-		var slug = FlowRouter.getParam('slug');
-		self.subscribe('shows', {
-			onReady: function() {
-			var obj = Shows.findOne({slug: slug});
-			Session.set('documentTitle', obj.showName);
-			}
-		});
-	});
+  var self = this;
+  self.autorun(function(){
+    var slug = FlowRouter.getParam('slug');
+    self.subscribe('shows', {
+      onReady: function() {
+      var obj = Shows.findOne({slug: slug});
+      Session.set('documentTitle', obj.showName);
+      }
+    });
+  });
 });
 
 Template.showPage.helpers({
-	show: function() {
-		return Shows.findOne({slug: FlowRouter.getParam("slug") });
-	},
-	lessThanTen: function (n) {
-	return Math.abs(n) < 10;
-	},
-	ownShow: function () {
+  show: function() {
+    return Shows.findOne({slug: FlowRouter.getParam("slug") });
+  },
+  lessThanTen: function (n) {
+  return Math.abs(n) < 10;
+  },
+  ownShow: function () {
     return Meteor.userId() && Shows.findOne() &&
            Shows.findOne().userId == Meteor.userId();
   },
@@ -38,19 +38,19 @@ Template.showPage.helpers({
   slug: function () {
     return FlowRouter.getParam('slug');
   },
-	upvoted: function(upvoters) {
-		var username = Meteor.user().username;
+  upvoted: function(upvoters) {
+    var username = Meteor.user().username;
     var a = upvoters || [];
     var i = a.indexOf(username);
-		var r = '';
+    var r = '';
 
     if (i >= 0) {
       r = 'upvoted';
     };
 
-		return r;
-	},
-	upvoters: function() {
-		return Shows.findOne({slug: FlowRouter.getParam('slug')}).upvoters;
-	}
+    return r;
+  },
+  upvoters: function() {
+    return Shows.findOne({slug: FlowRouter.getParam('slug')}).upvoters;
+  }
 });
