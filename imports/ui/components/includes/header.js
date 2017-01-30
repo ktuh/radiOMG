@@ -3,20 +3,20 @@ import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { EasySearch } from 'meteor/easy:search';
 import { FlowRouter } from 'meteor/kadira:flow-router';
+import { NowPlaying } from '../../../api/playlists/now_playing.js';
 import { $ } from 'meteor/jquery';
 
 Template.header.onCreated(function () {
   var self = this;
 
-  self.autorun(function () {
-		Meteor.call('latestSong', function(error, result) {
-			if (!error) {
-				if (result) {
-					Session.set("latestSong", result);
- 				}
+	self.subscribe("nowPlaying");
+	if (NowPlaying.find({}).count() < 1) {
+		Meteor.call("latestSong", function (e, r) {
+			if (!e) {
+				NowPlaying.insert({current: r});
 			}
 		});
-  });
+	}
 });
 
 Template.header.onRendered(function () {
@@ -54,7 +54,7 @@ Template.header.onRendered(function () {
       player = mediaElement; // make it available for other functions
     },
     error: function () {
-      console.log("Encountered an error while initializing the media element.")
+      console.error("Encountered an error while initializing the media element.")
     }
   });
   var mp3 = $('#audio-player').attr('src');
@@ -86,7 +86,7 @@ Template.header.helpers({
   showPage: () => FlowRouter.path('show'),
 	reviewsPage: () => FlowRouter.path('reviewsPage'),
   nowPlaying: () => Session.get('nowPlaying'),
-	latestSong: () => Session.get('latestSong')
+	latestSong: () =>	NowPlaying.findOne().current
 });
 
 Template.header.events({
