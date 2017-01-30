@@ -13,7 +13,7 @@ Template.partyCreate.onRendered(function() {
 });
 
 Template.partyCreate.helpers({
-	parties: function() {
-		return Parties;
-	}
+  parties: function() {
+    return Parties;
+  }
 });

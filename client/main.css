@@ -468,10 +468,10 @@ img {
     clear: both;
 }
 .note-editable.panel-body {
-	min-height: 30px;
+  min-height: 30px;
 }
 .note-editing-area {
-	min-height: 100px;
+  min-height: 100px;
 }
 @-webkit-keyframes fadeOut {
     0% {

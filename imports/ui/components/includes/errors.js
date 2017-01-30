@@ -21,7 +21,7 @@ Template.error.onRendered(function() {
 });
 
 Template.errors.helpers({
-	notifications: function () {
+  notifications: function () {
     return Notifications.find({userId: Meteor.userId(),
                                read: false});
   },

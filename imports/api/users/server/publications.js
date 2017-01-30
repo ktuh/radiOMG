@@ -9,5 +9,5 @@ Meteor.publish('userData', function (username) {
 });
 
 Meteor.publish("users", function() {
-	return Meteor.users.find();
+  return Meteor.users.find();
 });

@@ -14,21 +14,21 @@ Template.showItem.helpers({
 
     var upvoters_ = upvoters || [];
     var i = upvoters_.indexOf(username);
-		var str = '';
+    var str = '';
 
     if (i >= 0) {
       str = 'upvoted';
     };
 
-		return str;
+    return str;
   }
 });
 
 Template.showItem.onRendered(function() {
-	$('.party').imagesLoaded(function() {
-		$('.parties').masonry('reloadItems')
-									.masonry('layout');
-	});
+  $('.party').imagesLoaded(function() {
+    $('.parties').masonry('reloadItems')
+                  .masonry('layout');
+  });
 });
 
 Template.showItem.events({

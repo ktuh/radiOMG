@@ -9,14 +9,14 @@ import { $ } from 'meteor/jquery';
 Template.header.onCreated(function () {
   var self = this;
 
-	self.subscribe("nowPlaying");
-	if (NowPlaying.find({}).count() < 1) {
-		Meteor.call("latestSong", function (e, r) {
-			if (!e) {
-				NowPlaying.insert({current: r});
-			}
-		});
-	}
+  self.subscribe("nowPlaying");
+  if (NowPlaying.find({}).count() < 1) {
+    Meteor.call("latestSong", function (e, r) {
+      if (!e) {
+        NowPlaying.insert({current: r});
+      }
+    });
+  }
 });
 
 Template.header.onRendered(function () {
@@ -44,7 +44,7 @@ Template.header.onRendered(function () {
       // another song first.
       $('.mejs__playpause-button').click(function () {
         if (Session.equals('defaultLoaded', true)) {
-          var message = 'Now playing the ' + 
+          var message = 'Now playing the ' +
               orion.dictionary.get('mainPage.title', 'station\'s') + ' live stream';
           Session.set('defaultLoaded', false);
           Session.set('nowLoaded', orion.dictionary.get('mainPage.audioUrl', ''));
@@ -84,9 +84,9 @@ Template.header.helpers({
   newsPage: () => FlowRouter.path('news'),
   partyPage: () => FlowRouter.path('party'),
   showPage: () => FlowRouter.path('show'),
-	reviewsPage: () => FlowRouter.path('reviewsPage'),
+  reviewsPage: () => FlowRouter.path('reviewsPage'),
   nowPlaying: () => Session.get('nowPlaying'),
-	latestSong: () =>	NowPlaying.findOne().current
+  latestSong: () =>  NowPlaying.findOne().current
 });
 
 Template.header.events({

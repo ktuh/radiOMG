@@ -9,7 +9,7 @@ import { check } from 'meteor/check';
 
 Template.profileEdit.onRendered(function() {
   var self = this;
-	self.autorun(function() {
-	  self.subscribe("users");
+  self.autorun(function() {
+    self.subscribe("users");
   });
 });

@@ -3,31 +3,31 @@ import { ShowsSchema } from './shows_schema.js';
 import { orion } from 'meteor/orionjs:core';
 
 export const Shows = new orion.collection('shows', {
-	singularName: 'show',
+  singularName: 'show',
   pluralName: 'shows',
   link: {
     title: 'Shows'
   },
-	tabular: {
+  tabular: {
     columns: [
-			 {
+       {
         data: 'author',
         title: 'Author'
       },
-			{
-				data: 'host',
-				title: 'Host'
-			},
- 			{
+      {
+        data: 'host',
+        title: 'Host'
+      },
+       {
         data: 'showName',
         title: 'Show Name',
       },
-			{
+      {
         data: 'featuredImage',
         title: 'Featured Image',
         render: function (val, type, doc) {
-					if (!val)
-						return;
+          if (!val)
+            return;
           return "<img src=" + val.url + ">";
         }
       },
@@ -37,10 +37,10 @@ export const Shows = new orion.collection('shows', {
 });
 
 Shows.friendlySlugs({
-	slugFrom: 'showName',
-	slugField: 'slug',
-	distinct: true,
-	updateSlug: false
+  slugFrom: 'showName',
+  slugField: 'slug',
+  distinct: true,
+  updateSlug: false
 });
 
 Shows.attachSchema(ShowsSchema);

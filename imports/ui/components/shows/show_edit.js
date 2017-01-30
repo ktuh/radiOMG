@@ -21,10 +21,10 @@ Template.showEdit.onRendered(function() {
 
 
 Template.showEdit.helpers({
-	shows: function() {
-		return Shows;
-	},
-	editing: function() {
-		return Shows.findOne({slug: FlowRouter.getParam('slug')});
-	}
+  shows: function() {
+    return Shows;
+  },
+  editing: function() {
+    return Shows.findOne({slug: FlowRouter.getParam('slug')});
+  }
 });
