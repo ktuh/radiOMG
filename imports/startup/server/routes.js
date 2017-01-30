@@ -22,13 +22,11 @@ Picker.route('/feed.xml', function(params, req, res, next) {
 });
 
 Picker.route('/spinitron/latest', function(params, req, res, next) {
-  console.log(params);
-  console.log(req.body);
   check(params.query, {playlistId: Match.Where(function(str) {
                                                 check(str, String);
                                                  return /[0-9]+/.test(str);
                                               }), showName: String});
-  var show = Shows.findOne({active: true, showName: params.query.showName}) || Shows.findOne({showName: "The Hard On"});
+  var show = Shows.findOne({active: true, showName: params.query.showName}) || Shows.findOne();
   var playlist = Playlists.findOne({showId: show._id, spinPlaylistId: params.query.playlistId}) || undefined;
   var today = new Date();
   var newToday = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 0, 0, 0, 0);
