@@ -10,6 +10,10 @@ import '../../ui/components/parties/party_list.js';
 import '../../ui/components/parties/party_page.js';
 import '../../ui/components/parties/party_edit.js';
 import '../../ui/components/parties/party_create.js';
+import '../../ui/components/shows/show_list.js';
+import '../../ui/components/shows/show_page.js';
+import '../../ui/components/shows/show_edit.js';
+import '../../ui/components/shows/show_create.js';
 import '../../ui/components/news/news_item.js';
 import '../../ui/components/news/news_list.js';
 import '../../ui/components/chats/chat.js';
@@ -17,6 +21,8 @@ import '../../ui/components/application/not_found.js';
 import '../../ui/components/profile/profile_edit.js';
 import '../../ui/components/profile/profile_page.js';
 import '../../ui/components/shows/show_page.js';
+import '../../ui/components/playlists/playlist_page.js';
+import '../../ui/components/shows/show_schedule.js';
 
 FlowRouter.route('/', {
   name: 'home',
@@ -73,6 +79,12 @@ FlowRouter.route('/party/edit/:slug', {
   }
 });
 
+FlowRouter.route('/playlist/:id', {
+	action: function() {
+		BlazeLayout.render('layout', {content: 'playlistPage'});
+	}
+});
+
 FlowRouter.route('/reviews/', {
 	name: 'reviewsPage',
 	action: function() {
@@ -87,11 +99,31 @@ FlowRouter.route('/review/:slug', {
 	}
 });
 
+FlowRouter.route('/show', {
+  name: 'show',
+  action: function() {
+    BlazeLayout.render('layout', {content: 'showList'});
+  }
+});
+FlowRouter.route('/show/new', {
+  name: 'showCreate',
+  action: function () {
+    BlazeLayout.render('layout', {content: 'showCreate'});
+  }
+});
+
 FlowRouter.route('/show/:slug', {
-	name: 'show',
-	action: function() {
-		BlazeLayout.render('layout', {content: 'showPage'});
-	}
+  name: 'showPage',
+  action: function () {
+    BlazeLayout.render('layout', {content: 'showPage'});
+  }
+});
+
+FlowRouter.route('/show/edit/:slug', {
+  name: 'showEdit',
+  action: function () {
+    BlazeLayout.render('layout', {content: 'showEdit'});
+  }
 });
 
 FlowRouter.route('/profile', {
@@ -99,6 +131,13 @@ FlowRouter.route('/profile', {
   action: function () {
     BlazeLayout.render('layout', {content: 'profileEdit'});
   }
+});
+
+FlowRouter.route('/schedule', {
+	name: 'schedule',
+	action: function() {
+		BlazeLayout.render('layout', {content: 'showSchedule'});
+	}
 });
 
 FlowRouter.route('/:username', {

@@ -1,4 +1,4 @@
-<template name="showPage">
+<!-- <template name="showPage">
 	<div>
 		{{#if Template.subscriptionsReady}}
 			{{#with show}}
@@ -9,4 +9,47 @@
 			{{/with}}
 		{{/if}}
 	</div>
+</template> -->
+
+<template name='showPage'>
+  <div class='party-link'>
+    <a href='/show'>← all shows</a>
+    {{#if ownShow}}
+      <a href='/show/edit/{{slug}}'><button type="button" class="btn btn-default btn-md party-header__button">
+      <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit</button></a>
+    {{/if}}
+  </div>
+  {{#if Template.subscriptionsReady}}
+    {{#with show}}
+      <div class='flyer-div'>
+        <img class='flyer-div__front' src='{{featuredImage.url}}'>
+        {{#if flyerBack.url}}
+          <img class='flyer-div__back' src='{{flyerBack.url}}'>
+        {{/if}}
+      </div>
+      <div class='party-info'>
+        <h3><b>{{showName}}</b></h3>
+        <h4>{{host}}</h4>
+        <h5>{{startDay}}s from {{startHour}}:{{#if lessThanTen startMinute}}0{{/if}}{{startMinute}} to {{endHour}}:{{#if lessThanTen endMinute}}0{{/if}}{{endMinute}}</h5>
+        <p>Comments {{commentCount}}</p>
+        <p class='party__tag'>{{#each tag in tags}}#{{tag}}&nbsp;{{/each}}</p>
+        <p>{{body}}</p>
+      </div>
+    {{/with}}
+	<div class='comments'>
+	<h3 class='comments__header'>Comments</h3>
+	<ul class='comments__list'>
+	  {{#each comments}}
+	    {{> commentItem}}
+	  {{/each}}
+	</ul>
+	{{#if currentUser}}
+	  {{> commentSubmit}}
+	{{else}}
+	  <p class='comments__text'>Please log in to leave a comment.</p>
+	{{/if}}
+	</div>
+  {{else}}
+    {{> spinner}}
+  {{/if}}
 </template>

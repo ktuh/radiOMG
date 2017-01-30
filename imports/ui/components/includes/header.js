@@ -5,6 +5,20 @@ import { EasySearch } from 'meteor/easy:search';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { $ } from 'meteor/jquery';
 
+Template.header.onCreated(function () {
+  var self = this;
+
+  self.autorun(function () {
+		Meteor.call('latestSong', function(error, result) {
+			if (!error) {
+				if (result) {
+					Session.set("latestSong", result);
+ 				}
+			}
+		});
+  });
+});
+
 Template.header.onRendered(function () {
   var $searchInput = $('.nav__search input');
 
@@ -69,8 +83,10 @@ Template.header.onRendered(function () {
 Template.header.helpers({
   newsPage: () => FlowRouter.path('news'),
   partyPage: () => FlowRouter.path('party'),
+  showPage: () => FlowRouter.path('show'),
 	reviewsPage: () => FlowRouter.path('reviewsPage'),
-  nowPlaying: () => Session.get('nowPlaying')
+  nowPlaying: () => Session.get('nowPlaying'),
+	latestSong: () => Session.get('latestSong')
 });
 
 Template.header.events({

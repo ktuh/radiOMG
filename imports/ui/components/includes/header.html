@@ -23,6 +23,9 @@
         <li class='{{activePage 'news' 'newsPage'}} nav-item nav-item__news'>
           <a href={{newsPage}}>News</a>
         </li>
+        <li class='{{activePage 'show' 'showPage'}} nav-item nav-item__news'>
+          <a href={{showPage}}>Show</a>
+        </li>
 <!-- 				<li class='{{activePage 'review' 'reviewsPage'}} nav-item nav-item__reviews'>
           <a href={{reviewsPage}}>Reviews</a>
         </li> -->
@@ -44,5 +47,8 @@
       {{> loginButtons}}
       </ul>
     </div>
+		<div class="now-playing-bar">
+			Last Played Song: {{{latestSong}}}
+		</div>
   </nav>
 </template>
