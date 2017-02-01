@@ -46,6 +46,7 @@ Template.header.onRendered(function () {
 
   // This kludge is necessary because the onRendered callback fires before
   // some of the DOM is fully rendered. Sad.
+  // setTimeout(function() {  
     $('audio').mediaelementplayer({
       pluginPath: "/mejs/"
       // alwaysShowControls: true,
@@ -81,7 +82,8 @@ Template.header.onRendered(function () {
       // error: function () {
       //   console.error("Encountered an error while initializing the media element.")
       // }
-    });
+    // });
+  }, 1000);
 });
 
 Template.header.helpers({
