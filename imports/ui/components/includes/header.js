@@ -82,8 +82,8 @@ Template.header.onRendered(function () {
       // error: function () {
       //   console.error("Encountered an error while initializing the media element.")
       // }
-    // });
-  }, 1000);
+    });
+  // }, 1000);
 });
 
 Template.header.helpers({
