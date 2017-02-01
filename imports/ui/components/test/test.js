@@ -79,32 +79,36 @@ Template.header.onRendered(function () {
 
   });
 
+  setTimeout(function() { 
+    $(document).ready(function () {
 
-  mejs.i18n.language(lang);
+      mejs.i18n.language(lang);
 
-  $('video, audio').mediaelementplayer({
-    stretching: stretching,
-    pluginPath: '/mejs/',
-    success: function (media) {
-      $(media).closest('.media-wrapper').children('div:first').attr('lang', mejs.i18n.language());
+      $('video, audio').mediaelementplayer({
+        stretching: stretching,
+        pluginPath: '/mejs/',
+        success: function (media) {
+          $(media).closest('.media-wrapper').children('div:first').attr('lang', mejs.i18n.language());
 
-      var renderer = $('#' + media.id + '-rendername');
+          var renderer = $('#' + media.id + '-rendername');
 
-      media.addEventListener('loadedmetadata', function (e) {
-        var src = media.originalNode.getAttribute('src').replace('&amp;', '&');
-        if (src !== null && src !== undefined) {
-          renderer.find('.src').html('<a href="' + src + '" target="_blank">' + src + '</a>')
-          .end()
-          .find('.renderer').html(media.rendererName)
-          .end()
-          .find('.error').html('')
-          ;
+          media.addEventListener('loadedmetadata', function (e) {
+            var src = media.originalNode.getAttribute('src').replace('&amp;', '&');
+            if (src !== null && src !== undefined) {
+              renderer.find('.src').html('<a href="' + src + '" target="_blank">' + src + '</a>')
+              .end()
+              .find('.renderer').html(media.rendererName)
+              .end()
+              .find('.error').html('')
+              ;
+            }
+          }, false);
+
+          media.addEventListener('error', function (e) {
+            renderer.find('.error').html('<strong>Error</strong>: ' + e.message);
+          }, false);
         }
-      }, false);
-
-      media.addEventListener('error', function (e) {
-        renderer.find('.error').html('<strong>Error</strong>: ' + e.message);
-      }, false);
-    }
-  });
+      });
+    });
+  }, 1000);
 });
