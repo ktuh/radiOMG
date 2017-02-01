@@ -295,6 +295,106 @@ img {
   padding: 1rem .75rem;
 }
 
+
+/** audio player styles **/
+.audio-player, .audio-player div, .audio-player h2, .audio-player a, .audio-player span, .audio-player button {
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+}
+div.audio-player {
+  position: relative;
+  height: 20px;
+  margin: 5px 5px 0 0;
+  padding: 15px 15px 15px 10px;
+}
+div.audio-player,
+.mejs__container {
+  width: 115px !important;
+}
+.mejs__container,
+.mejs__controls {
+    background: none !important;
+    background-image: none !important;
+}
+.mejs__offscreen { display: none !important; }
+
+/* play/pause control */
+.mejs__button button {
+  cursor: pointer;
+  display: block;
+  position: absolute;
+  text-indent: -9999px;
+  width: 14px;
+  height: 14px;
+  background: url('/img/playpause.png') no-repeat scroll;
+  background-size: cover;
+}
+.mejs__pause button { background-position: 0 -14px; }
+
+/* time scrubber bar */
+div.mejs__time-rail { width: 89px !important; }
+
+.mejs__controls .mejs__time-rail a,
+.mejs__controls .mejs__time-rail span {
+  position: absolute;
+  display: block;
+  width: 75px;
+  height: 5px;
+  top: 7px;
+  left: 25px;
+  cursor: pointer;
+}
+.mejs__controls .mejs__time-rail .mejs__time-total {
+  background: #999;
+  width: 79px !important; /* fixes display bug using jQuery 1.8+ */
+}
+.mejs__controls .mejs__time-rail .mejs__time-loaded {
+  top: 0;
+  left: 0;
+  width: 0;
+  background: #53C1B9;
+}
+.mejs__controls .mejs__time-rail .mejs__time-current {
+  top: 0;
+  left: 0;
+  width: 0;
+  background: #999;
+}
+
+/* metallic sliders */
+.mejs__controls .mejs__time-rail .mejs__time-handle {
+  position: absolute;
+  display: block;
+  width: 11px;
+  height: 11px;
+  top: -3px;
+  background: url('/img/handle-lg.png') no-repeat;
+}
+/* time progress tooltip */
+.mejs__controls .mejs__time-rail .mejs__time-float {
+  position: absolute;
+  display: none;
+  width: 33px;
+  height: 16px;
+  top: -23px;
+  margin-left: -20px;
+  z-index: 9999;
+  background: url('/img/time-box.png');
+}
+.mejs__controls .mejs__time-rail .mejs__time-float-current {
+  width: 33px;
+  display: block;
+  left: -3px;
+  top: 0;
+  font-family: 'Sweden Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 9px;
+  font-weight: bold;
+  color: #666;
+  text-align: center;
+  z-index: 9999;
+}
 .alert {
     animation: fadeOut 2700ms ease-in 0s 1 forwards;
     -webkit-animation: fadeOut 2700ms ease-in 0s 1 forwards;
