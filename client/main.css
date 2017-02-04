@@ -172,6 +172,7 @@ img {
 .info-box__social {
     padding: 9px 0 0;
     margin: 0 0 0 10px;
+    clear: both;
 }
 .info-box__social img {
     max-width: 30px;
@@ -297,47 +298,54 @@ img {
 
 
 /** audio player styles **/
-.audio-player, .audio-player div, .audio-player h2, .audio-player a, .audio-player span, .audio-player button {
-  margin: 0;
-  padding: 0;
-  border: none;
-  outline: none;
+audio {
+    display: none;
 }
-div.audio-player {
-  position: relative;
-  height: 20px;
-  margin: 5px 5px 0 0;
-  padding: 15px 15px 15px 10px;
+.audio-player, .audio-player div, .audio-player h2, .audio-player a, 
+.audio-player span, .audio-player > button {
 }
-div.audio-player,
+.audio-player, .mejs__container, .mejs__mediaelement {
+  width: 130px;
+}
+.mejs__controls {
+    position: static !important;
+}
 .mejs__container {
-  width: 115px !important;
+    margin-top: 4px;
 }
-.mejs__container,
+.mejs__container, 
 .mejs__controls {
     background: none !important;
-    background-image: none !important;
 }
 .mejs__offscreen { display: none !important; }
-
-/* play/pause control */
-.mejs__button button {
-  cursor: pointer;
-  display: block;
-  position: absolute;
-  text-indent: -9999px;
-  width: 14px;
-  height: 14px;
-  background: url('/img/playpause.png') no-repeat scroll;
-  background-size: cover;
+.mejs__broadcast { 
+  color: #333 !important;
+  font-family: 'Sweden Sans' !important;
+  font-size: 12px !important;
 }
-.mejs__pause button { background-position: 0 -14px; }
+/* play/pause control */
+.mejs__button {
+  margin: 3px 0 0 0 !important;
+  cursor: pointer;
+}
+.mejs__button > button {
+  width: 17px !important;
+  height: 17px !important;
+  background: url('/img/playpause.png') !important; 
+  background-repeat: no-repeat !important;
+  background-attachment: scroll !important;
+  background-size: cover !important;
+}
+.mejs__pause > button { background-position: 0 -17px !important; }
 
 /* time scrubber bar */
-div.mejs__time-rail { width: 89px !important; }
+.mejs__time-rail { 
+  width: 90px;
+  margin: 2px 7px 0 7px !important;
+}
 
-.mejs__controls .mejs__time-rail a,
-.mejs__controls .mejs__time-rail span {
+/*.mejs__time-rail a,
+.mejs__time-rail span {
   position: absolute;
   display: block;
   width: 75px;
@@ -346,17 +354,20 @@ div.mejs__time-rail { width: 89px !important; }
   left: 25px;
   cursor: pointer;
 }
-.mejs__controls .mejs__time-rail .mejs__time-total {
-  background: #999;
-  width: 79px !important; /* fixes display bug using jQuery 1.8+ */
+.mejs__button, .mejs__time, .mejs__time-rail {
+  
 }
-.mejs__controls .mejs__time-rail .mejs__time-loaded {
+.mejs__time-rail .mejs__time-total {
+  background: #999;
+  width: 79px !important; // fixes display bug using jQuery 1.8+ 
+}
+.mejs__time-rail .mejs__time-loaded {
   top: 0;
   left: 0;
   width: 0;
   background: #53C1B9;
 }
-.mejs__controls .mejs__time-rail .mejs__time-current {
+.mejs__time-rail .mejs__time-current {
   top: 0;
   left: 0;
   width: 0;
@@ -364,16 +375,16 @@ div.mejs__time-rail { width: 89px !important; }
 }
 
 /* metallic sliders */
-.mejs__controls .mejs__time-rail .mejs__time-handle {
+/*.mejs__time-rail .mejs__time-handle {
   position: absolute;
   display: block;
   width: 11px;
   height: 11px;
   top: -3px;
   background: url('/img/handle-lg.png') no-repeat;
-}
+}*/
 /* time progress tooltip */
-.mejs__controls .mejs__time-rail .mejs__time-float {
+/*.mejs__time-rail .mejs__time-float {
   position: absolute;
   display: none;
   width: 33px;
@@ -383,7 +394,7 @@ div.mejs__time-rail { width: 89px !important; }
   z-index: 9999;
   background: url('/img/time-box.png');
 }
-.mejs__controls .mejs__time-rail .mejs__time-float-current {
+.mejs__time-rail .mejs__time-float-current {
   width: 33px;
   display: block;
   left: -3px;
@@ -394,7 +405,7 @@ div.mejs__time-rail { width: 89px !important; }
   color: #666;
   text-align: center;
   z-index: 9999;
-}
+}*/
 .alert {
     animation: fadeOut 2700ms ease-in 0s 1 forwards;
     -webkit-animation: fadeOut 2700ms ease-in 0s 1 forwards;
@@ -630,8 +641,8 @@ div.mejs__time-rail { width: 89px !important; }
 
 }
 @media (max-width: 767px) {
-    div.audio-player {
-        margin: 0;
+    .mejs__container {
+        margin-top: 0;
     }
     .flyer-div {
         width: 100%;
@@ -644,7 +655,7 @@ div.mejs__time-rail { width: 89px !important; }
     }
     .info-box__social {
         display: inherit;
-        margin-top: 5px;
+        margin-bottom: 8px;
     }
     .info-box {
         margin-bottom: 10px;

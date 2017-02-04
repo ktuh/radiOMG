@@ -59,13 +59,14 @@ Template.header.onRendered(function () {
       iPhoneUseNativeControls: false,
       AndroidUseNativeControls: false,
       success: function (mediaElement, domObject) {
-        setSrc(orion.dictionary.get('mainPage.audioUrl'));
         mediaElement.addEventListener('play', function(e) {
           Session.set('paused', false);
         }, false);
         mediaElement.addEventListener('pause', function(e) {
           Session.set('paused', true);
         }, false);
+        $('.mejs__time-rail').empty().html('<span class="mejs__broadcast">Live ' + 
+        'Broadcast</span>');
         // Display what's playing if user clicks the player without loading
         // another song first.
         $('.mejs__playpause-button').click(function () {
@@ -98,5 +99,10 @@ Template.header.helpers({
 Template.header.events({
   'click .glyphicon-search': function (event) {
     $('.nav__search input').focus();
+  },
+  'click .mejs__playpause-button': function (event) {
+    stopImmediatePropagation();
+    $('.mejs__playpause-button button').click();
   }
+
 });
