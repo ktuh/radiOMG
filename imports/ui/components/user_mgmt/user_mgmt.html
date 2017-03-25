@@ -1,0 +1,13 @@
+<template name="userMgmt">
+  {{#if correctRole}}
+    <h1>Manage Users</h1>
+    <table border="1">
+      <tr><td><b>Username</b></td><td>Ban User</td></tr>
+      {{#each userList}}
+        <tr><td>{{username}}</td><td><input type="checkbox"></td></tr>
+      {{/each}}
+    </table>
+  {{else}}
+    <p>Thou lacks proper creds to access this here page.</p>
+  {{/if}}
+</template>

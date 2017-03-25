@@ -47,6 +47,16 @@ var ProfileSchema = new SimpleSchema({
     type: String,
     label: 'Snapchat',
     optional: true
+  },
+  "banned": {
+    type: Boolean,
+    label: 'Ban User',
+    optional: false,
+    defaultValue: false,
+    autoform: {
+      type: "hidden",
+      label: false
+    }
   }
 });
 
