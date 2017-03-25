@@ -4,10 +4,13 @@
     <table border="1">
       <tr><td><b>Username</b></td><td>Ban User</td></tr>
       {{#each userList}}
-        <tr><td>{{username}}</td><td><input type="checkbox"></td></tr>
+        <tr>
+          <td>{{username}}</td>
+          <td><input type="checkbox" checked={{profile.banned}}></td>
+        </tr>
       {{/each}}
     </table>
   {{else}}
-    <p>Thou lacks proper creds to access this here page.</p>
+    <p>You do not have the credentials to view this part of the website.</p>
   {{/if}}
 </template>

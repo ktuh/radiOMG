@@ -7,7 +7,7 @@ var ProfileSchema = new SimpleSchema({
     label: 'DJ Name',
     optional: true
   },
-  "photo": orion.attribute("image", {label: "Image"}),
+  "photo": orion.attribute("image", {label: "Image", optional: true}),
   "bio": {
     type: String,
     label: 'Bio',
