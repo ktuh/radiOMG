@@ -1,6 +1,5 @@
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
-import { pagination } from 'meteor/kurounin:pagination';
 import '../users_collection.js';
 
 Meteor.publish('userData', function (username) {
