@@ -7,7 +7,7 @@ var ProfileSchema = new SimpleSchema({
     label: 'DJ Name',
     optional: true
   },
-  "photo": orion.attribute("image", {label: "Image"}),
+  "photo": orion.attribute("image", {label: "Image", optional: true}),
   "bio": {
     type: String,
     label: 'Bio',
@@ -47,6 +47,16 @@ var ProfileSchema = new SimpleSchema({
     type: String,
     label: 'Snapchat',
     optional: true
+  },
+  "banned": {
+    type: Boolean,
+    label: 'Ban User',
+    optional: false,
+    defaultValue: false,
+    autoform: {
+      type: "hidden",
+      label: false
+    }
   }
 });
 

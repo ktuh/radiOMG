@@ -24,6 +24,7 @@ import '../../ui/components/shows/show_page.js';
 import '../../ui/components/playlists/playlist_page.js';
 import '../../ui/components/shows/show_schedule.js';
 import '../../ui/components/test/test.js';
+import '../../ui/components/user_mgmt/user_mgmt.js';
 
 FlowRouter.route('/', {
   name: 'home',
@@ -145,6 +146,13 @@ FlowRouter.route('/schedule', {
   name: 'schedule',
   action: function() {
     BlazeLayout.render('layout', {content: 'showSchedule'});
+  }
+});
+
+FlowRouter.route('/user_mgmt', {
+  name: 'userMgmt',
+  action: function() {
+    BlazeLayout.render('layout', {content: 'userMgmt'});
   }
 });
 
