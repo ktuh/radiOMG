@@ -1,16 +1,19 @@
 <template name="userMgmt">
-  {{#if correctRole}}
-    <h1>Manage Users</h1>
-    <table border="1">
-      <tr><td><b>Username</b></td><td>Ban User</td></tr>
-      {{#each userList}}
-        <tr>
-          <td>{{username}}</td>
-          <td><input type="checkbox" checked={{profile.banned}}></td>
-        </tr>
-      {{/each}}
-    </table>
-  {{else}}
-    <p>You do not have the credentials to view this part of the website.</p>
+  {{#if isReady}}
+    {{#if correctRole}}
+      <h1>Manage Users</h1>
+      <table border="1">
+        <tr><td><b>Username</b></td><td>Ban User</td></tr>
+        {{#each pages}}
+          <tr>
+            <td>{{username}}</td>
+            <td><input type="checkbox" checked={{profile.banned}}></td>
+          </tr>
+        {{/each}}
+      </table>
+      {{> defaultBootstrapPaginator pagination=templatePagination limit=10 containerClass="text-center"}}
+    {{else}}
+      <p>You do not have the credentials to view this part of the website.</p>
+    {{/if}}
   {{/if}}
 </template>

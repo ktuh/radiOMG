@@ -2,6 +2,7 @@ import { Playlists } from '/imports/api/playlists/playlists_collection.js';
 import { Parties } from '/imports/api/parties/parties_collection.js';
 import { Accounts } from 'meteor/accounts-base';
 import { Roles } from 'meteor/nicolaslopezj:roles';
+import { Fake } from 'meteor/anti:fake';
 
 if (!Accounts.findUserByUsername('davey')) {
   var now = new Date().getTime();
@@ -51,6 +52,11 @@ if (!Accounts.findUserByUsername('davey')) {
   });
 
   Roles.addUserToRoles(kkzId, ['dj']);
+  for (var p = 0; p < 117; p++) {
+    fake = Accounts.createUser(Fake.user({fields: ["username", "emails.address", "profile.name"]}));
+    Roles.addUserToRoles(fake, 'dj');
+    Meteor.users.update(fake, {$set: {password: "000000"}});
+  }
 };
 
 if (Parties.find().count() === 0) {
