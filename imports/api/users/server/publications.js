@@ -9,9 +9,6 @@ Meteor.publish('userData', function (username) {
                            {fields: {'username': 1, 'profile': 1, '_id': 1}});
 });
 
-Meteor.publish("usersIndex", function() {
+Meteor.publish("users", function() {
   return Meteor.users.find();
 });
-
-
-new Meteor.Pagination(Meteor.users);

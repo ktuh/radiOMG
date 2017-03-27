@@ -72,7 +72,7 @@ img {
     margin-bottom: 5px;
     pointer-events: auto;
 }
-.page {
+.review-page {
     position: absolute;
     top: 0px;
     width: 100%;
@@ -301,7 +301,7 @@ img {
 audio {
     display: none;
 }
-.audio-player, .audio-player div, .audio-player h2, .audio-player a, 
+.audio-player, .audio-player div, .audio-player h2, .audio-player a,
 .audio-player span, .audio-player > button {
 }
 .audio-player, .mejs__container, .mejs__mediaelement {
@@ -313,12 +313,12 @@ audio {
 .mejs__container {
     margin-top: 4px;
 }
-.mejs__container, 
+.mejs__container,
 .mejs__controls {
     background: none !important;
 }
 .mejs__offscreen { display: none !important; }
-.mejs__broadcast { 
+.mejs__broadcast {
   color: #333 !important;
   font-family: 'Sweden Sans' !important;
   font-size: 12px !important;
@@ -331,7 +331,7 @@ audio {
 .mejs__button > button {
   width: 17px !important;
   height: 17px !important;
-  background: url('/img/playpause.png') !important; 
+  background: url('/img/playpause.png') !important;
   background-repeat: no-repeat !important;
   background-attachment: scroll !important;
   background-size: cover !important;
@@ -339,7 +339,7 @@ audio {
 .mejs__pause > button { background-position: 0 -17px !important; }
 
 /* time scrubber bar */
-.mejs__time-rail { 
+.mejs__time-rail {
   width: 90px;
   margin: 2px 7px 0 7px !important;
 }
@@ -355,11 +355,11 @@ audio {
   cursor: pointer;
 }
 .mejs__button, .mejs__time, .mejs__time-rail {
-  
+
 }
 .mejs__time-rail .mejs__time-total {
   background: #999;
-  width: 79px !important; // fixes display bug using jQuery 1.8+ 
+  width: 79px !important; // fixes display bug using jQuery 1.8+
 }
 .mejs__time-rail .mejs__time-loaded {
   top: 0;
@@ -583,6 +583,15 @@ audio {
 }
 .note-editing-area {
   min-height: 100px;
+}
+.pagination {
+  list-style-type: none;
+  text-align: center;
+}
+.pagination .page {
+  display: inline-block;;
+  padding: 5px 0;
+  margin: 0 2px;
 }
 @-webkit-keyframes fadeOut {
     0% {

@@ -1,29 +1,31 @@
 import './user_mgmt.html';
+import './user.js';
+import { Meteor } from 'meteor/meteor';
+import { EasySearch } from 'meteor/easy:search';
 import '../../../api/users/users_collection.js';
-import { pagination } from 'meteor/kurounin:pagination';
+import { UsersIndex } from '../../../api/users/users_index.js';
 
 Template.userMgmt.onCreated(function() {
   var self = this;
-  self.pagination = new Meteor.Pagination(Meteor.users, {sort: {username: 1}});
   self.subscribe("users");
 });
 
 Template.userMgmt.helpers({
-  isReady: function() {
-    return Template.instance().pagination.ready();
-  },
   correctRole: function() {
-    return Meteor.user().roles.indexOf("admin") > -1 || Meteor.user().roles.indexOf("moderator") > -1;
+    return Meteor.user().roles.indexOf('admin') || Meteor.user().roles.indexOf('moderator');
   },
-  userList: function() {
+  attr: function() {
+    return {'placeholder': 'Search Users...'};
+  },
+  users: function() {
     return Meteor.users.find({}, {sort: {username: 1}});
   },
-  templatePagination: function() {
-    return Template.instance().pagination;
+  index: function() {
+    return UsersIndex;
   },
-  pages: function() {
-    return Template.instance().pagination.getPage();
-  }
+  count: function() {
+    return UsersIndex.getComponentDict().get('count');
+  },
 });
 
 Template.userMgmt.events({
