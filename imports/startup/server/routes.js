@@ -26,19 +26,16 @@ Picker.route('/spinitron/latest', function(params, req, res, next) {
                                                 check(str, String);
                                                  return /[0-9]+/.test(str);
                                               }), showName: String});
-  var show = Shows.findOne({active: true, showName: params.query.showName}) || Shows.findOne();
-  var playlist = Playlists.findOne({showId: show._id, spinPlaylistId: params.query.playlistId}) || undefined;
-  var today = new Date();
-  var newToday = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 0, 0, 0, 0);
-  if (!playlist) {
-    Playlists.insert({spinPlaylistId: params.query.playlistId, showId: show._id, showDate: newToday});
-  }
+    var show = Shows.findOne({active: true, showName: params.query.showName}) || Shows.findOne();
+    var playlist = Playlists.findOne({showId: show._id, spinPlaylistId: params.query.playlistId}) || undefined;
+    var today = new Date();
+    var newToday = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 0, 0, 0, 0);
 
-  Meteor.call('latestSong', function (e,resp) {
+  Meteor.call('latestSong', function (e, resp) {
     if (!e) {
       if (NowPlaying.find({}).count() < 1) {
          NowPlaying.insert({current: resp});
-       }
+      }
       else {
         NowPlaying.update(NowPlaying.findOne()._id, {$set: {current: resp}});
       }
