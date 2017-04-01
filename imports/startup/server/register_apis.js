@@ -13,4 +13,3 @@ import '../../api/users/users_index.js';
 
 import '../../api/reviews/review_index.js';
 import '../../api/orion_dictionary.js';
-import '../../api/flow-router-seo-config.js';

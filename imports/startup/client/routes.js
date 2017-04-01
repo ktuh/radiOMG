@@ -30,12 +30,14 @@ import '../../ui/components/pages/pages_item.js'
 FlowRouter.route('/', {
   name: 'home',
   action: function () {
+    $('head meta[data-flow-router-seo="true"]').removeAttr("data-flow-router-seo");
     BlazeLayout.render('layout', {content: 'notFound'});
   }
 });
 
 FlowRouter.notFound = {
   action: function () {
+    $('head meta[data-flow-router-seo="true"]').removeAttr("data-flow-router-seo");
     BlazeLayout.render('layout', {content: 'notFound'});
   }
 }
@@ -43,6 +45,7 @@ FlowRouter.notFound = {
 FlowRouter.route('/test', {
   name: 'testPage',
   action: function () {
+    $('head meta[data-flow-router-seo="true"]').removeAttr("data-flow-router-seo");
     BlazeLayout.render('layout', {content: 'testPage'});
   }
 });
@@ -50,6 +53,7 @@ FlowRouter.route('/test', {
 FlowRouter.route('/news', {
   name: 'news',
   action: function () {
+    $('head meta[data-flow-router-seo="true"]').removeAttr("data-flow-router-seo");
     BlazeLayout.render('layout', {content: 'newsList'});
   }
 });
@@ -57,6 +61,7 @@ FlowRouter.route('/news', {
 FlowRouter.route('/news/:slug', {
   name: 'newsPage',
   action: function () {
+    $('head meta[data-flow-router-seo="true"]').removeAttr("data-flow-router-seo");
     BlazeLayout.render('layout', {content: 'newsItem'});
   }
 });
@@ -64,6 +69,7 @@ FlowRouter.route('/news/:slug', {
 FlowRouter.route('/party', {
   name: 'party',
   action: function () {
+    $('head meta[data-flow-router-seo="true"]').removeAttr("data-flow-router-seo");
     BlazeLayout.render('layout', {content: 'partyList'});
   }
 });
@@ -71,6 +77,7 @@ FlowRouter.route('/party', {
 FlowRouter.route('/party/new', {
   name: 'partyCreate',
   action: function () {
+    $('head meta[data-flow-router-seo="true"]').removeAttr("data-flow-router-seo");
     BlazeLayout.render('layout', {content: 'partyCreate'});
   }
 });
@@ -78,6 +85,7 @@ FlowRouter.route('/party/new', {
 FlowRouter.route('/party/:slug', {
   name: 'partyPage',
   action: function () {
+    $('head meta[data-flow-router-seo="true"]').removeAttr("data-flow-router-seo");
     BlazeLayout.render('layout', {content: 'partyPage'});
   }
 });
@@ -85,12 +93,14 @@ FlowRouter.route('/party/:slug', {
 FlowRouter.route('/party/edit/:slug', {
   name: 'partyEdit',
   action: function () {
+    $('head meta[data-flow-router-seo="true"]').removeAttr("data-flow-router-seo");
     BlazeLayout.render('layout', {content: 'partyEdit'});
   }
 });
 
 FlowRouter.route('/playlist/:id', {
   action: function() {
+    $('head meta[data-flow-router-seo="true"]').removeAttr("data-flow-router-seo");
     BlazeLayout.render('layout', {content: 'playlistPage'});
   }
 });
@@ -98,6 +108,7 @@ FlowRouter.route('/playlist/:id', {
 FlowRouter.route('/reviews/', {
   name: 'reviewsPage',
   action: function() {
+    $('head meta[data-flow-router-seo="true"]').removeAttr("data-flow-router-seo");
     BlazeLayout.render('layout', {content: 'reviewList'});
   }
 });
@@ -105,6 +116,7 @@ FlowRouter.route('/reviews/', {
 FlowRouter.route('/review/:slug', {
   name: 'review',
   action: function() {
+    $('head meta[data-flow-router-seo="true"]').removeAttr("data-flow-router-seo");
     BlazeLayout.render('layout', {content: 'reviewPage'});
   }
 });
@@ -112,12 +124,14 @@ FlowRouter.route('/review/:slug', {
 FlowRouter.route('/show', {
   name: 'show',
   action: function() {
+    $('head meta[data-flow-router-seo="true"]').removeAttr("data-flow-router-seo");
     BlazeLayout.render('layout', {content: 'showList'});
   }
 });
 FlowRouter.route('/show/new', {
   name: 'showCreate',
   action: function () {
+    $('head meta[data-flow-router-seo="true"]').removeAttr("data-flow-router-seo");
     BlazeLayout.render('layout', {content: 'showCreate'});
   }
 });
@@ -125,6 +139,7 @@ FlowRouter.route('/show/new', {
 FlowRouter.route('/show/:slug', {
   name: 'showPage',
   action: function () {
+    $('head meta[data-flow-router-seo="true"]').removeAttr("data-flow-router-seo");
     BlazeLayout.render('layout', {content: 'showPage'});
   }
 });
@@ -132,6 +147,7 @@ FlowRouter.route('/show/:slug', {
 FlowRouter.route('/show/edit/:slug', {
   name: 'showEdit',
   action: function () {
+    $('head meta[data-flow-router-seo="true"]').removeAttr("data-flow-router-seo");
     BlazeLayout.render('layout', {content: 'showEdit'});
   }
 });
@@ -139,6 +155,7 @@ FlowRouter.route('/show/edit/:slug', {
 FlowRouter.route('/profile/:username', {
   name: 'profilePage',
   action: function () {
+    $('head meta[data-flow-router-seo="true"]').removeAttr("data-flow-router-seo");
     BlazeLayout.render('layout', {content: 'profilePage'});
   }
 });
@@ -146,6 +163,7 @@ FlowRouter.route('/profile/:username', {
 FlowRouter.route('/profile', {
   name: 'profileEdit',
   action: function () {
+    $('head meta[data-flow-router-seo="true"]').removeAttr("data-flow-router-seo");
     BlazeLayout.render('layout', {content: 'profileEdit'});
   }
 });
@@ -153,6 +171,7 @@ FlowRouter.route('/profile', {
 FlowRouter.route('/schedule', {
   name: 'schedule',
   action: function() {
+    $('head meta[data-flow-router-seo="true"]').removeAttr("data-flow-router-seo");
     BlazeLayout.render('layout', {content: 'showSchedule'});
   }
 });
@@ -160,6 +179,7 @@ FlowRouter.route('/schedule', {
 FlowRouter.route('/user_mgmt', {
   name: 'userMgmt',
   action: function() {
+    $('head meta[data-flow-router-seo="true"]').removeAttr("data-flow-router-seo");
     BlazeLayout.render('layout', {content: 'userMgmt'});
   }
 });
@@ -167,6 +187,7 @@ FlowRouter.route('/user_mgmt', {
 FlowRouter.route('/:slug', {
   name: 'page',
   action: function() {
+    $('head meta[data-flow-router-seo="true"]').removeAttr("data-flow-router-seo");
     BlazeLayout.render('layout', {content: 'pagesItem'});
   }
 });
