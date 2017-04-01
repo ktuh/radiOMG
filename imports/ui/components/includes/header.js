@@ -8,18 +8,7 @@ import 'mediaelement/player';
 
 Template.header.onCreated(function () {
   var self = this;
-
   self.subscribe("nowPlaying");
-  Meteor.call("latestSong", function (e, r) {
-    if (!e) {
-      if (NowPlaying.find({}).count() < 1) {
-        NowPlaying.insert({current: r});
-      }
-      else {
-        NowPlaying.update(NowPlaying.findOne()._id, {$set: {current: r}});
-      }
-    }
-  });
 });
 
 Template.header.onRendered(function () {
