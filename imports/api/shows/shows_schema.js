@@ -8,6 +8,10 @@ export const ShowsSchema = new SimpleSchema({
     label: "Show Name",
     optional: false
   },
+  showId: {
+    type: Number,
+    label: "Spinitron Show ID"
+  },
   userId: {
     type: String,
     autoform: {

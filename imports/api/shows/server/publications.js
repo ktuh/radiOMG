@@ -2,7 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Shows } from '../shows_collection.js'
 
 Meteor.publish('shows', function () {
-  return Shows.find();
+  return Shows.find({});
 });
 
 Meteor.publish('singleShow', function (slug) {

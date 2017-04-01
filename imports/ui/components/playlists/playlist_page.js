@@ -28,12 +28,12 @@ Template.playlistPage.helpers({
     return Session.get("currentPlaylist");
   },
   showName: function() {
-    return Shows.findOne({_id: Playlists.findOne().showId}).showName;
+    return Shows.findOne({showId: Playlists.findOne().showId}).showName;
   },
   showDate: function() {
     return moment(Playlists.findOne().showDate).tz("Etc/UTC").format("YYYY/MM/DD");
   },
   showSlug: function() {
-    return Shows.findOne({_id: Playlists.findOne().showId}).slug;
+    return Shows.findOne({showId: Playlists.findOne().showId}).slug;
   }
 });
