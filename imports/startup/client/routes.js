@@ -28,6 +28,12 @@ import '../../ui/components/test/test.js';
 import '../../ui/components/user_mgmt/user_mgmt.js';
 import '../../ui/components/pages/pages_item.js'
 
+/*
+ *  So, you know that annoying jQuery statement in every route?
+ *  Yeah... because the writer of the SEO package seems to like
+ *  putting random data attributes in meta tags...
+ */
+
 FlowRouter.route('/', {
   name: 'home',
   action: function () {
