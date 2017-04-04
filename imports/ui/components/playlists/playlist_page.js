@@ -31,7 +31,7 @@ Template.playlistPage.helpers({
     return Shows.findOne({showId: Playlists.findOne().showId}).showName;
   },
   showDate: function() {
-    return moment(Playlists.findOne().showDate).tz("Etc/UTC").format("YYYY/MM/DD");
+    return moment(Playlists.findOne().showDate).tz("US/Hawaii").format("YYYY/MM/DD");
   },
   showSlug: function() {
     return Shows.findOne({showId: Playlists.findOne().showId}).slug;
