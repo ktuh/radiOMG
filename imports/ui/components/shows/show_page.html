@@ -22,6 +22,12 @@
         <p class='party__tag'>{{#each tag in tags}}#{{tag}}&nbsp;{{/each}}</p>
         <p>{{body}}</p>
       </div>
+      <div>
+        <h4>Playlists</h4>
+        {{#each playlists}}
+          <a href="/playlist/{{spinPlaylistId}}">{{showDate}}</a>
+        {{/each}}
+      </div>
     {{/with}}
   <div class='comments'>
   <h3 class='comments__header'>Comments</h3>

@@ -7,6 +7,7 @@ import '../../api/posts/posts_collection.js';
 import '../../api/reviews/reviews_collection.js';
 import '../../api/shows/shows_collection.js';
 import '../../api/users/users_collection.js';
+import '../../api/pages/pages_collection.js';
 
 import '../../api/reviews/review_index.js';
 import '../../api/orion_dictionary.js';

@@ -22,23 +22,27 @@ Picker.route('/feed.xml', function(params, req, res, next) {
 });
 
 Picker.route('/spinitron/latest', function(params, req, res, next) {
+  console.log(params.query);
   check(params.query, {playlistId: Match.Where(function(str) {
                                                 check(str, String);
                                                  return /[0-9]+/.test(str);
-                                              }), showName: String});
-  var show = Shows.findOne({active: true, showName: params.query.showName}) || Shows.findOne();
-  var playlist = Playlists.findOne({showId: show._id, spinPlaylistId: params.query.playlistId}) || undefined;
-  var today = new Date();
-  var newToday = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 0, 0, 0, 0);
-  if (!playlist) {
-    Playlists.insert({spinPlaylistId: params.query.playlistId, showId: show._id, showDate: newToday});
+                                              }), show: Match.Where(function(str) {
+                                                check(str, String);
+                                                return /[0-9]+/.test(str);
+                                            })});
+
+  var showId = Number.parseInt(params.query.show);
+  var showItself = Shows.find({showId: showId});
+  if (showItself) {
+    if (!Playlists.findOne({showId: showId, spinPlaylistId: Number.parseInt(params.query.playlistId)}))
+      Playlists.insert({showId: showId, spinPlaylistId: Number.parseInt(params.query.playlistId), showDate: new Date()});
   }
 
-  Meteor.call('latestSong', function (e,resp) {
+  Meteor.call('latestSong', function (e, resp) {
     if (!e) {
       if (NowPlaying.find({}).count() < 1) {
          NowPlaying.insert({current: resp});
-       }
+      }
       else {
         NowPlaying.update(NowPlaying.findOne()._id, {$set: {current: resp}});
       }

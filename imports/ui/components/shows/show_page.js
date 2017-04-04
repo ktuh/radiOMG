@@ -1,5 +1,7 @@
 import './show_page.html';
 import { Shows } from '../../../api/shows/shows_collection.js';
+import { Playlists } from '../../../api/playlists/playlists_collection.js';
+import { Comments } from '../../../api/comments/comments_collection.js';
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { FlowRouter } from 'meteor/kadira:flow-router';
@@ -8,12 +10,8 @@ Template.showPage.onCreated(function() {
   var self = this;
   self.autorun(function(){
     var slug = FlowRouter.getParam('slug');
-    self.subscribe('shows', {
-      onReady: function() {
-      var obj = Shows.findOne({slug: slug});
-      Session.set('documentTitle', obj.showName);
-      }
-    });
+    self.subscribe('shows');
+    self.subscribe('playlists');
   });
 });
 
@@ -52,5 +50,8 @@ Template.showPage.helpers({
   },
   upvoters: function() {
     return Shows.findOne({slug: FlowRouter.getParam('slug')}).upvoters;
+  },
+  playlists: function() {
+    return Playlists.find({showId: Shows.findOne({slug: FlowRouter.getParam('slug')}).showId });
   }
 });
