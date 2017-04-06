@@ -36,16 +36,4 @@ Picker.route('/spinitron/latest', function(params, req, res, next) {
   else {
     NowPlaying.update(NowPlaying.findOne()._id, {$set: {current: html}});
   }
-
-  /*
-  Meteor.call('latestSong', function (e, resp) {
-    if (!e) {
-      if (NowPlaying.find({}).count() < 1) {
-         NowPlaying.insert({current: resp});
-      }
-      else {
-        NowPlaying.update(NowPlaying.findOne()._id, {$set: {current: resp}});
-      }
-    }
-  }); */
 });
