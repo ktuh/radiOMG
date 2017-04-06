@@ -85,7 +85,7 @@ Template.header.helpers({
   showPage: () => FlowRouter.path('show'),
   reviewsPage: () => FlowRouter.path('reviewsPage'),
   nowPlaying: () => Session.get('nowPlaying'),
-  latestSong: () =>  (NowPlaying.findOne() !== undefined) ? NowPlaying.findOne().current : "<p>Nothing ATM.</p>"
+  latestSong: () =>  (NowPlaying.findOne() !== undefined) ? NowPlaying.findOne().current : ""
 });
 
 Template.header.events({
