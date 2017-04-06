@@ -12,15 +12,6 @@ import bodyParser from 'body-parser';
 Picker.middleware(bodyParser.json());
 Picker.middleware(bodyParser.urlencoded({extended: false}));
 
-Picker.route('/feed.xml', function(params, req, res, next) {
-  var feed = new RSS({
-    title: 'New 808 Mixes',
-    description: 'The latest mixes from 808 Mixtapes, Honolulu, Hawaii.'
-  });
-  res.write(feed.xml());
-  res.end();
-});
-
 Picker.route('/spinitron/latest', function(params, req, res, next) {
   console.log(params.query);
   check(params.query, {playlistId: Match.Where(function(str) {
