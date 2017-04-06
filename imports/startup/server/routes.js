@@ -13,14 +13,13 @@ Picker.middleware(bodyParser.json());
 Picker.middleware(bodyParser.urlencoded({extended: false}));
 
 Picker.route('/spinitron/latest', function(params, req, res, next) {
-  console.log(params.query);
   check(params.query, {playlistId: Match.Where(function(str) {
                                                 check(str, String);
                                                  return /[0-9]+/.test(str);
                                               }), show: Match.Where(function(str) {
                                                 check(str, String);
                                                 return /[0-9]+/.test(str);
-                                            })});
+                                            }), artist: String, song: String});
 
   var showId = Number.parseInt(params.query.show);
   var showItself = Shows.find({showId: showId});
@@ -29,6 +28,16 @@ Picker.route('/spinitron/latest', function(params, req, res, next) {
       Playlists.insert({showId: showId, spinPlaylistId: Number.parseInt(params.query.playlistId), showDate: new Date()});
   }
 
+  var html = params.query.artist + " - " + params.query.song;
+
+  if (NowPlaying.find({}).count() < 1) {
+     NowPlaying.insert({current: html});
+  }
+  else {
+    NowPlaying.update(NowPlaying.findOne()._id, {$set: {current: html}});
+  }
+
+  /*
   Meteor.call('latestSong', function (e, resp) {
     if (!e) {
       if (NowPlaying.find({}).count() < 1) {
@@ -38,5 +47,5 @@ Picker.route('/spinitron/latest', function(params, req, res, next) {
         NowPlaying.update(NowPlaying.findOne()._id, {$set: {current: resp}});
       }
     }
-  });
+  }); */
 });
