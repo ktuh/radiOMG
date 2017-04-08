@@ -1,6 +1,5 @@
 import { Meteor } from 'meteor/meteor';
 import { Picker } from 'meteor/meteorhacks:picker';
-import { RSS } from 'meteor/rss';
 import { check } from 'meteor/check';
 import { Shows } from '../../api/shows/shows_collection.js';
 import { Playlists } from '../../api/playlists/playlists_collection.js';
