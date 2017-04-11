@@ -8,9 +8,11 @@
   </div>
   {{#if Template.subscriptionsReady}}
     {{#with show}}
+      {{#if featuredImage}}
       <div class='show__image-div'>
         <img class='show__image' src='{{featuredImage.url}}'>
       </div>
+      {{/if}}
       <div class='show__info'>
         <h3 class='show__name'><b>{{showName}}</b></h3>
         <h4 class=''>Hosted by {{host}}</h4>
@@ -18,18 +20,12 @@
         <p class='show__tag'>{{#each tag in tags}}#{{tag}}&nbsp;{{/each}}</p>
         <p>{{body}}</p>
       </div>
-      <div>
-        <h4>Playlists</h4>
-        {{#each playlists}}
-          <a href="/playlist/{{spinPlaylistId}}">{{showDate}}</a>
-        {{/each}}
-      </div>
     {{/with}}
     {{#if playlists}}
-      <div class='shows__playlists'>
+      <div class='show__playlists'>
       <h3>Playlists</h3>
       {{#each playlists}}
-        <span class='shows__playlist-time'><a href='/playlist/{{spinPlaylistId}}'>{{time showDate}}</a></span>
+        <span class='show__playlist-time'><a href='/playlist/{{spinPlaylistId}}'>{{time showDate}}</a></span>
       {{/each}}
       </div>
     {{/if}}

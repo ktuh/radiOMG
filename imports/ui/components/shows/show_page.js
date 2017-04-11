@@ -1,8 +1,10 @@
 import './show_page.html';
 import { Shows } from '../../../api/shows/shows_collection.js';
+import { Playlists } from '../../../api/playlists/playlists_collection.js';
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { FlowRouter } from 'meteor/kadira:flow-router';
+
 
 Template.showPage.onCreated(function() {
   var self = this;
@@ -13,6 +15,7 @@ Template.showPage.onCreated(function() {
         var show = Shows.findOne({ slug: slug });
         Session.set('documentTitle', show.showName);
         self.subscribe('showPlaylists', show._id);
+        self.subscribe('comments', show._id);
       }
     });
   });
@@ -35,5 +38,8 @@ Template.showPage.helpers({
   },
   playlists: function() {
     return Playlists.find();
+  },
+  slug: function() {
+    return FlowRouter.getParam("slug");
   }
 });

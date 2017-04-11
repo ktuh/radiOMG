@@ -584,6 +584,9 @@ audio {
     color: #999;
     font-size: 11px;
 }
+.show__info {
+    float: left;
+}
 .show__link {
     margin: 20px 0;
 }
@@ -602,10 +605,6 @@ audio {
     margin: 0 20px 20px 0;
     float: left;
 }
-.show__info {
-    float: left;
-    width: 50%;
-}
 .show__name, .show__host {
     margin: 0 0 5px 0;
 }
@@ -618,6 +617,10 @@ audio {
 .show__header-button {
     float: right;
     margin-bottom: 10px;
+}
+.show__playlists {
+  clear: both;
+  margin-top: 30px;
 }
 .note-editable.panel-body {
   min-height: 30px;
