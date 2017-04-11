@@ -12,3 +12,8 @@ Meteor.publish('playlist', function (id) {
 Meteor.publish('nowPlaying', function() {
   return NowPlaying.find({});
 });
+
+Meteor.publish('showPlaylists', function(id) {
+  check(id, String);
+  return Playlists.find({ showId: id });
+});

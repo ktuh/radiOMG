@@ -22,7 +22,6 @@
     font-style: normal;
 
 }
-
 /* Search icon by IcoMoon, made with http://icomoon.io/app/ */
 @font-face {
     font-family: 'icomoon';
@@ -34,7 +33,6 @@
     font-weight: normal;
     font-style: normal;
 }
-
 /* Colors */
 .red { color: #0067b3 }
 .yellow { color: #ffd103 }
@@ -295,8 +293,6 @@ img {
   line-height: 1rem;
   padding: 1rem .75rem;
 }
-
-
 /** audio player styles **/
 audio {
     display: none;
@@ -578,6 +574,51 @@ audio {
     margin-bottom: 20px;
     clear: both;
 }
+.playlist__artist {
+    font-weight: bold;
+}
+.playlist__title {
+
+}
+.playlist__timestamp {
+    color: #999;
+    font-size: 11px;
+}
+.show__link {
+    margin: 20px 0;
+}
+.show__link a:hover,
+.show__link a {
+    color: gray;
+    font-size: 12px;
+}
+.show__image-div {
+    float: left;
+    max-width: 50%;
+    padding-right: 20px;
+}
+.show__image {
+    position: relative;
+    margin: 0 20px 20px 0;
+    float: left;
+}
+.show__info {
+    float: left;
+    width: 50%;
+}
+.show__name, .show__host {
+    margin: 0 0 5px 0;
+}
+.show__title
+.show__tag {
+    font-size: 13px;
+    color: #666;
+    cursor: pointer;
+}
+.show__header-button {
+    float: right;
+    margin-bottom: 10px;
+}
 .note-editable.panel-body {
   min-height: 30px;
 }
@@ -637,9 +678,6 @@ audio {
         margin: 4px 0;
     }
 }
-@media (min-width: 768px) {
-
-}
 @media (max-width: 767px) {
     .mejs__container {
         margin-top: 0;
@@ -677,7 +715,4 @@ audio {
     }
     .profile__header-separator { display: none; }
     .profile__social { margin-bottom: 15px; }
-}
-@media (max-width: 430px) {
-
 }

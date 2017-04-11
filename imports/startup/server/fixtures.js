@@ -1,5 +1,6 @@
-import { Playlists } from '/imports/api/playlists/playlists_collection.js';
 import { Parties } from '/imports/api/parties/parties_collection.js';
+import { Shows } from '/imports/api/shows/shows_collection.js';
+import { Playlists } from '/imports/api/playlists/playlists_collection.js';
 import { Accounts } from 'meteor/accounts-base';
 import { Roles } from 'meteor/nicolaslopezj:roles';
 
@@ -63,7 +64,7 @@ if (Parties.find().count() === 0) {
     location : 'Davey\'s House',
     flyerFront : {
       fileId : '7QMJycqBipCXvYzH4',
-      url : 'https://www2.hawaii.edu/~dwilkie/808flyer.jpg',
+      url : 'http://ktuh.org/wp-content/uploads/2015/01/808-mixtapes-square-300x300.jpg',
       info : {
         width : 500,
         height : 500,
@@ -130,3 +131,44 @@ if (Parties.find().count() === 0) {
     slug : 'club-underground'
   });
 }
+
+if (Shows.find().count() === 0) {
+  var davey = Accounts.findUserByUsername( 'davey' );
+
+  Shows.insert({
+    showName: '808mix',
+    userId: davey._id,
+    author: 'Davey',
+    host: 'Davey',
+    startDay: 'Sunday',
+    startHour: '12',
+    startMinute: '00',
+    endDay: 'Sunday',
+    endHour: '1',
+    endMinute: '00',
+    genres: ['House', 'Electro'],
+    body: 'P cool show tbh',
+    slug: '808-mix',
+    active: true,
+    featuredImage : {
+      fileId : '7QMJycqBipCXvYzH4',
+      url : 'http://ktuh.org/wp-content/uploads/2015/01/808-mixtapes-square-300x300.jpg',
+      info : {
+        width : 500,
+        height : 500,
+        backgroundColor : '#0e0e0b',
+        primaryColor : '#fcfcfa',
+        secondaryColor : '#807d78'
+      }
+    }
+  });
+};
+
+if (Playlists.find().count() === 0) {
+    Playlists.insert({
+      showId: Shows.findOne()._id,
+      spinPlaylistId: 52,
+      showDate: '11/04/2016'
+    });
+};
+

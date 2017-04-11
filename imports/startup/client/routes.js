@@ -23,7 +23,6 @@ import '../../ui/components/profile/profile_page.js';
 import '../../ui/components/shows/show_page.js';
 import '../../ui/components/playlists/playlist_page.js';
 import '../../ui/components/shows/show_schedule.js';
-import '../../ui/components/test/test.js';
 
 FlowRouter.route('/', {
   name: 'home',
@@ -37,13 +36,6 @@ FlowRouter.notFound = {
     BlazeLayout.render('layout', {content: 'notFound'});
   }
 }
-
-FlowRouter.route('/test', {
-  name: 'testPage',
-  action: function () {
-    BlazeLayout.render('layout', {content: 'testPage'});
-  }
-});
 
 FlowRouter.route('/news', {
   name: 'news',
