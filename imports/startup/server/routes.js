@@ -1,6 +1,5 @@
 import { Meteor } from 'meteor/meteor';
 import { Picker } from 'meteor/meteorhacks:picker';
-import { RSS } from 'meteor/rss';
 import { check } from 'meteor/check';
 import { Shows } from '../../api/shows/shows_collection.js';
 import { Playlists } from '../../api/playlists/playlists_collection.js';
@@ -12,24 +11,14 @@ import bodyParser from 'body-parser';
 Picker.middleware(bodyParser.json());
 Picker.middleware(bodyParser.urlencoded({extended: false}));
 
-Picker.route('/feed.xml', function(params, req, res, next) {
-  var feed = new RSS({
-    title: 'New 808 Mixes',
-    description: 'The latest mixes from 808 Mixtapes, Honolulu, Hawaii.'
-  });
-  res.write(feed.xml());
-  res.end();
-});
-
 Picker.route('/spinitron/latest', function(params, req, res, next) {
-  console.log(params.query);
   check(params.query, {playlistId: Match.Where(function(str) {
                                                 check(str, String);
                                                  return /[0-9]+/.test(str);
                                               }), show: Match.Where(function(str) {
                                                 check(str, String);
                                                 return /[0-9]+/.test(str);
-                                            })});
+                                            }), artist: String, song: String});
 
   var showId = Number.parseInt(params.query.show);
   var showItself = Shows.find({showId: showId});
@@ -38,14 +27,12 @@ Picker.route('/spinitron/latest', function(params, req, res, next) {
       Playlists.insert({showId: showId, spinPlaylistId: Number.parseInt(params.query.playlistId), showDate: new Date()});
   }
 
-  Meteor.call('latestSong', function (e, resp) {
-    if (!e) {
-      if (NowPlaying.find({}).count() < 1) {
-         NowPlaying.insert({current: resp});
-      }
-      else {
-        NowPlaying.update(NowPlaying.findOne()._id, {$set: {current: resp}});
-      }
-    }
-  });
+  var html = params.query.artist + " - " + params.query.song;
+
+  if (NowPlaying.find({}).count() < 1) {
+     NowPlaying.insert({current: html});
+  }
+  else {
+    NowPlaying.update(NowPlaying.findOne()._id, {$set: {current: html}});
+  }
 });
