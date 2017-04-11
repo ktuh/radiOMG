@@ -140,6 +140,7 @@ if (Shows.find().count() === 0) {
     userId: davey._id,
     author: 'Davey',
     host: 'Davey',
+    showId: 35,
     startDay: 'Sunday',
     startHour: '12',
     startMinute: '00',
@@ -171,4 +172,3 @@ if (Playlists.find().count() === 0) {
       showDate: '11/04/2016'
     });
 };
-
