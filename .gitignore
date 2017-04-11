@@ -1,2 +1,5 @@
 node_modules/
 settings.json
+build
+*~
+.meteor/dev_bundle

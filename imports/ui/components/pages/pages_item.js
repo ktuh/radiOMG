@@ -4,25 +4,22 @@ import { Meteor } from 'meteor/meteor';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { Pages } from '../../../api/pages/pages_collection.js';
 
-Template.newsItem.onCreated(function () {
+Template.pagesItem.onCreated(function () {
   var self = this;
   self.autorun(function () {
     var slug = FlowRouter.getParam('slug');
     self.subscribe('singlePage', slug, {
       onReady: function () {
         var page = Pages.findOne({ slug: slug });
-
-        // Dirty solution, should be handled in the router but we don't have a
-        // data control layer/controller there, so we redirect in the template.
-        if (slug === undefined) {
-          BlazeLayout.render('layout', {content: 'notFound'});
-        }
-      });
+        Session.set('documentTitle', page.title);
+      }
+    });
   });
 });
 
-Template.newsItem.helpers({
+Template.pagesItem.helpers({
   page: function () {
-    return Pages.findOne();
+    var slug = FlowRouter.getParam('slug');
+    return Pages.findOne({slug: slug});
   }
 });

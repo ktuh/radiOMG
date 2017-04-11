@@ -9,6 +9,10 @@ Meteor.publish('playlist', function (id) {
   return Playlists.find({ spinPlaylistId: id });
 });
 
+Meteor.publish('playlists', function() {
+  return Playlists.find({});
+});
+
 Meteor.publish('nowPlaying', function() {
   return NowPlaying.find({});
 });

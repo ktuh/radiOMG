@@ -18,6 +18,12 @@
         <p class='show__tag'>{{#each tag in tags}}#{{tag}}&nbsp;{{/each}}</p>
         <p>{{body}}</p>
       </div>
+      <div>
+        <h4>Playlists</h4>
+        {{#each playlists}}
+          <a href="/playlist/{{spinPlaylistId}}">{{showDate}}</a>
+        {{/each}}
+      </div>
     {{/with}}
     {{#if playlists}}
       <div class='shows__playlists'>

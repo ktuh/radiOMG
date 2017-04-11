@@ -6,18 +6,10 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 import { NowPlaying } from '../../../api/playlists/now_playing.js';
 import 'mediaelement/player';
 
-// Template.header.onCreated(function () {
-//   var self = this;
-
-//   self.subscribe("nowPlaying");
-//   if (NowPlaying.find({}).count() < 1) {
-//     Meteor.call("latestSong", function (e, r) {
-//       if (!e) {
-//         NowPlaying.insert({current: r});
-//       }
-//     });
-//   }
-// });
+Template.header.onCreated(function () {
+  var self = this;
+  self.subscribe("nowPlaying");
+});
 
 Template.header.onRendered(function () {
   var $searchInput = $('.nav__search input');
@@ -46,7 +38,7 @@ Template.header.onRendered(function () {
 
   // This kludge is necessary because the onRendered callback fires before
   // some of the DOM is fully rendered. Sad.
-  setTimeout(function() {  
+  setTimeout(function() {
     $('#audio-player').mediaelementplayer({
       pluginPath: "/mejs/",
       alwaysShowControls: true,
@@ -65,7 +57,7 @@ Template.header.onRendered(function () {
         mediaElement.addEventListener('pause', function(e) {
           Session.set('paused', true);
         }, false);
-        $('.mejs__time-rail').empty().html('<span class="mejs__broadcast">Live ' + 
+        $('.mejs__time-rail').empty().html('<span class="mejs__broadcast">Live ' +
         'Broadcast</span>');
         // Display what's playing if user clicks the player without loading
         // another song first.
@@ -93,7 +85,7 @@ Template.header.helpers({
   showPage: () => FlowRouter.path('show'),
   reviewsPage: () => FlowRouter.path('reviewsPage'),
   nowPlaying: () => Session.get('nowPlaying'),
-  // latestSong: () =>  NowPlaying.findOne().current
+  latestSong: () =>  (NowPlaying.findOne() !== undefined) ? NowPlaying.findOne().current : ""
 });
 
 Template.header.events({

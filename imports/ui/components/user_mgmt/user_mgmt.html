@@ -1,0 +1,24 @@
+<template name="userMgmt">
+  {{#if Template.subscriptionsReady}}
+    {{#if correctRole}}
+      <h1>Manage Users</h1>
+      <p>{{count}}</p>
+      {{> EasySearch.Input index=index attributes=attr}}
+
+      <table border="1">
+        <tr><td><b>Username</b></td><td><b>Ban User</b></td></tr>
+        {{#EasySearch.Each index=index}}
+          {{> user}}
+        {{/EasySearch.Each}}
+      </table>
+
+      {{#EasySearch.IfNoResults index=index}}
+        <p>No users found</p>
+      {{/EasySearch.IfNoResults}}
+
+      {{> EasySearch.Pagination index=index maxPages=20}}
+    {{else}}
+      <p>You do not have the credentials to view this part of the website.</p>
+    {{/if}}
+  {{/if}}
+</template>
