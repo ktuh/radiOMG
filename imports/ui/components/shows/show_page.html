@@ -15,7 +15,7 @@
       {{/if}}
       <div class='show__info'>
         <h3 class='show__name'><b>{{showName}}</b></h3>
-        <h4 class=''>Hosted by {{host}}</h4>
+        <h4 class='show__host'>Hosted by <a href="{{profileUrl userId}}">{{host}}</a></h4>
         <h5>{{startDay}}s from {{startHour}}:{{#if lessThanTen startMinute}}0{{/if}}{{startMinute}} to {{endHour}}:{{#if lessThanTen endMinute}}0{{/if}}{{endMinute}}</h5>
         <p class='show__tag'>{{#each tag in tags}}#{{tag}}&nbsp;{{/each}}</p>
         <p>{{body}}</p>
@@ -23,7 +23,7 @@
     {{/with}}
     {{#if playlists}}
       <div class='show__playlists'>
-      <h3>Playlists</h3>
+      <h4>Playlists</h4>
       {{#each playlists}}
         <span class='show__playlist-time'><a href='/playlist/{{spinPlaylistId}}'>{{time showDate}}</a></span>
       {{/each}}

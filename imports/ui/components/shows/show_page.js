@@ -16,6 +16,7 @@ Template.showPage.onCreated(function() {
         Session.set('documentTitle', show.showName);
         self.subscribe('showPlaylists', show._id);
         self.subscribe('comments', show._id);
+        self.subscribe('showHostUser', show.userId);
       }
     });
   });
@@ -41,5 +42,9 @@ Template.showPage.helpers({
   },
   slug: function() {
     return FlowRouter.getParam("slug");
+  },
+  profileUrl: function(id) {
+    var username = Meteor.users.findOne({"_id": id}).username;
+    return "/profile/" + username;
   }
 });

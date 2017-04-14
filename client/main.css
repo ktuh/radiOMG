@@ -210,7 +210,7 @@ img {
     clear: both;
 }
 .comments__header {
-    padding: 60px 0 10px;
+    padding: 30px 0 0;
     margin: 0;
     font-size: 18px;
 }
@@ -585,7 +585,9 @@ audio {
     font-size: 11px;
 }
 .show__info {
-    float: left;
+    float: right;
+    max-width: 50%;
+    margin-bottom: 30px;
 }
 .show__link {
     margin: 20px 0;
@@ -596,17 +598,20 @@ audio {
     font-size: 12px;
 }
 .show__image-div {
-    float: left;
     max-width: 50%;
     padding-right: 20px;
 }
 .show__image {
     position: relative;
-    margin: 0 20px 20px 0;
     float: left;
+    margin: 0 20px 20px 0;
 }
 .show__name, .show__host {
     margin: 0 0 5px 0;
+}
+.show__host a {
+    text-decoration: underline;
+    text-decoration-style: wavy;
 }
 .show__title
 .show__tag {
@@ -722,6 +727,14 @@ audio {
     .nav__search {
         margin: 5px 0 10px 10px;
     }
+  .show__info {
+      float: none;
+      max-width: 100%;
+  }
+  .show__image-div {
+      float: none;
+      max-width: 100%;
+  }
 }
 @media (max-width: 666px) {
     .party {
