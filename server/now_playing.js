@@ -1,6 +1,10 @@
 import { Meteor } from 'meteor/meteor';
 import { HTTP } from 'meteor/http';
 
+/*
+ * Server-side method to call Spinitron API to obtain latest song recorded.
+ * Returns HTML containing latest recorded track information.
+ */
 Meteor.methods({
   latestSong: function() {
     var queryObj = {'station': Meteor.settings.spinitronStation, 'num': 1};
