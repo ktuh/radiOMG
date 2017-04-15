@@ -6,6 +6,10 @@ import '/node_modules/crypto-js/enc-base64.js';
 import moment from 'moment-timezone';
 import { check } from 'meteor/check';
 
+/*
+ * Server-side method to call Spinitron API to obtain playlist given a playlist ID.
+ * Returns an array of objects containing track information.
+ */
 Meteor.methods({
   getPlaylist: function(id) {
     check(id, Number);
@@ -30,14 +34,15 @@ Meteor.methods({
 
     var query = [];
 
+    // Form query string
     for (var k = 0; k < keys.length; k++) {
       query.push(encodeURIComponent(keys[k]) + '=' + encodeURIComponent(params[keys[k]]));
     }
     query = query.join("&");
     var subject = "spinitron.com\n/public/spinpapi.php\n" + query;
 
+    // Encode above variable to form signature
     var sig = CryptoJS.HmacSHA256(subject, Meteor.settings.spinitronSecret);
-
     sig = sig.toString(CryptoJS.enc.Base64);
     sig = encodeURIComponent(sig);
 
@@ -45,7 +50,7 @@ Meteor.methods({
     var q_sig = encodeURIComponent("signature") + "=" + sig;
     query = query + "&" + q_sig;
     this.unblock();
-     var res = HTTP.get("http://spinitron.com/public/spinpapi.php", {query: query});
+    var res = HTTP.get("http://spinitron.com/public/spinpapi.php", {query: query});
     return JSON.parse(res.content).results;
   }
 });
