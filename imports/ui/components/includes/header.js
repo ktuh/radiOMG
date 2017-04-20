@@ -82,18 +82,27 @@ Template.header.onRendered(function () {
   }, 1000);
 });
 
+setInterval(function() {
+  if (new Date() - NowPlaying.findOne().timestamp > 360000) {
+    Session.set('timeout', true);
+  }
+  else if (new Date() - NowPlaying.findOne().timestamp <= 360000 && Session.set('timeout')) {
+    Session.set('timeout', false);
+  }
+  console.log("Bruh");
+}, 60000);
+
 Template.header.helpers({
   newsPage: () => FlowRouter.path('news'),
   partyPage: () => FlowRouter.path('party'),
   showPage: () => FlowRouter.path('show'),
   reviewsPage: () => FlowRouter.path('reviewsPage'),
   nowPlaying: () => Session.get('nowPlaying'),
-  latestSong: () =>  (NowPlaying.findOne() !== undefined) ? NowPlaying.findOne().current : ""
+  latestSong: () =>  (NowPlaying.findOne() !== undefined && !Session.get('timeout')) ? "<div>Last Played Song: " + NowPlaying.findOne().current + "</div>" : ""
 });
 
 Template.header.events({
   'click .glyphicon-search': function (event) {
     $('.nav__search input').focus();
   }
-
 });

@@ -30,9 +30,9 @@ Picker.route('/spinitron/latest', function(params, req, res, next) {
   var html = params.query.artist + " - " + params.query.song;
 
   if (NowPlaying.find({}).count() < 1) {
-     NowPlaying.insert({current: html});
+     NowPlaying.insert({current: html, timestamp: new Date()});
   }
   else {
-    NowPlaying.update(NowPlaying.findOne()._id, {$set: {current: html}});
+    NowPlaying.update(NowPlaying.findOne()._id, {$set: {current: html, timestamp: new Date()}});
   }
 });
