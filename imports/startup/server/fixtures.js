@@ -151,6 +151,7 @@ if (Shows.find().count() === 0) {
     body: 'P cool show tbh',
     slug: '808-mix',
     active: true,
+    latestEpisodeUrl: 'http://stream.ktuh.org/archives/5.friday/6-9pm.mp3',
     featuredImage : {
       fileId : '7QMJycqBipCXvYzH4',
       url : 'http://ktuh.org/wp-content/uploads/2015/01/808-mixtapes-square-300x300.jpg',

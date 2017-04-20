@@ -627,6 +627,12 @@ audio {
   clear: both;
   margin-top: 30px;
 }
+.show__play-btn {
+  border-color: #333;
+}
+.show__play-btn:hover {
+  border-color: #333;
+}
 .note-editable.panel-body {
   min-height: 30px;
 }

@@ -26,5 +26,8 @@ Template.showEdit.helpers({
   },
   editing: function() {
     return Shows.findOne({slug: FlowRouter.getParam('slug')});
+  },
+  show: function() {
+    return FlowRouter.getParam('slug');
   }
 });

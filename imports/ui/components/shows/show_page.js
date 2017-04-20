@@ -46,5 +46,31 @@ Template.showPage.helpers({
   profileUrl: function(id) {
     var username = Meteor.users.findOne({"_id": id}).username;
     return "/profile/" + username;
+  },
+  isPlaying: function(mp3) {
+    return Session.get('nowLoaded') == mp3
+           && Session.get('paused') === false;
   }
 });
+
+Template.showPage.events({
+  'click .show__play-btn': function (event) {
+    event.preventDefault();
+    var mp3Url = $(event.currentTarget).data('path');
+    var nowLoaded = Session.get('nowLoaded');
+
+    if (nowLoaded != mp3Url) {
+      player.setSrc(mp3Url);
+      Session.set('nowLoaded', mp3Url);
+    }
+
+    if (player.paused) {
+      event.stopImmediatePropagation();
+      player.play();
+    }
+    else if (!player.paused) {
+      event.stopImmediatePropagation();
+      player.pause();
+    }
+  }
+})

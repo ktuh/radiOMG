@@ -123,6 +123,11 @@ export const ShowsSchema = new SimpleSchema({
     label: 'Featured Image',
     optional: true
   }),
+  latestEpisodeUrl: {
+    type: String,
+    label: 'Link to Latest Episode',
+    optional: true
+  },
   submitted: {
     type: Date,
     autoform: {
