@@ -57,11 +57,10 @@ Template.header.onRendered(function () {
         mediaElement.addEventListener('pause', function(e) {
           Session.set('paused', true);
         }, false);
-        mediaElement.addEventListener('loadedmetadata', function(e) {
-          console.log("Hi");
-        }, false);
-        //$('.mejs__time-rail').empty().html('<span class="mejs__broadcast">Live ' +
-        // 'Broadcast</span>');
+
+        $('.mejs__time-rail').append('<span class="mejs__broadcast">Live ' +
+        'Broadcast</span>');
+        $('.mejs__time-slider').css('visibility', 'hidden');
         // Display what's playing if user clicks the player without loading
         // another song first.
         $('.mejs__playpause-button').click(function () {
