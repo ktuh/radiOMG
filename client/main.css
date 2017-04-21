@@ -302,6 +302,7 @@ audio {
 }
 .audio-player, .mejs__container, .mejs__mediaelement {
   width: 130px;
+  height: 40px;
 }
 .mejs__controls {
     position: static !important;
@@ -340,7 +341,7 @@ audio {
   margin: 2px 7px 0 7px !important;
 }
 
-/*.mejs__time-rail a,
+.mejs__time-rail a,
 .mejs__time-rail span {
   position: absolute;
   display: block;
@@ -355,7 +356,7 @@ audio {
 }
 .mejs__time-rail .mejs__time-total {
   background: #999;
-  width: 79px !important; // fixes display bug using jQuery 1.8+
+  width: 79px !important; /* fixes display bug using jQuery 1.8+ */
 }
 .mejs__time-rail .mejs__time-loaded {
   top: 0;
@@ -371,16 +372,16 @@ audio {
 }
 
 /* metallic sliders */
-/*.mejs__time-rail .mejs__time-handle {
+.mejs__time-rail .mejs__time-handle {
   position: absolute;
   display: block;
   width: 11px;
   height: 11px;
   top: -3px;
   background: url('/img/handle-lg.png') no-repeat;
-}*/
+}
 /* time progress tooltip */
-/*.mejs__time-rail .mejs__time-float {
+.mejs__time-rail .mejs__time-float {
   position: absolute;
   display: none;
   width: 33px;
@@ -401,7 +402,7 @@ audio {
   color: #666;
   text-align: center;
   z-index: 9999;
-}*/
+}
 .alert {
     animation: fadeOut 2700ms ease-in 0s 1 forwards;
     -webkit-animation: fadeOut 2700ms ease-in 0s 1 forwards;

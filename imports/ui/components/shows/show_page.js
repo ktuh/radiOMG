@@ -60,6 +60,8 @@ Template.showPage.events({
     var nowLoaded = Session.get('nowLoaded');
 
     if (nowLoaded != mp3Url) {
+      $('.mejs__time-slider').css('visibility', 'visible');
+      $('.mejs__broadcast').css('visibility', 'hidden');
       player.setSrc(mp3Url);
       Session.set('nowLoaded', mp3Url);
     }
