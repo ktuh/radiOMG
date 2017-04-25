@@ -663,11 +663,7 @@ audio {
 }
 .playlist {
   text-align: center;
-}/*
-.mejs__time-rail__correction {
-  top: -36px;
-  width: inherit !important;
-}*/
+}
 @-webkit-keyframes fadeOut {
     0% {
         opacity: 0;
