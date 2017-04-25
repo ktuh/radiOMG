@@ -88,7 +88,6 @@ setInterval(function() {
   else if (new Date() - NowPlaying.findOne().timestamp <= 360000 && Session.set('timeout')) {
     Session.set('timeout', false);
   }
-  console.log("Bruh");
 }, 60000);
 
 Template.header.helpers({

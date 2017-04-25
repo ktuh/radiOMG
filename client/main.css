@@ -337,8 +337,10 @@ audio {
 
 /* time scrubber bar */
 .mejs__time-rail {
-  width: 90px;
-  margin: 2px 7px 0 7px !important;
+  width: inherit;
+  top: 7px;
+  right: 20px;
+  margin: 2px 7px 0 0 !important;
 }
 
 .mejs__time-rail a,
@@ -655,6 +657,9 @@ audio {
   text-align: center;
   vertical-align: middle;
   height: 10vh;
+}
+.footer div {
+  margin-bottom: 10px;
 }
 .playlist {
   text-align: center;
