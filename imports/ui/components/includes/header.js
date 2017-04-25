@@ -60,6 +60,7 @@ Template.header.onRendered(function () {
 
         $('.mejs__time-rail').append('<span class="mejs__broadcast">Live ' +
         'Broadcast</span>');
+        $('.mejs__time-rail').addClass('mejs__time-rail__correction');
         $('.mejs__time-slider').css('visibility', 'hidden');
         // Display what's playing if user clicks the player without loading
         // another song first.
@@ -88,7 +89,6 @@ setInterval(function() {
   else if (new Date() - NowPlaying.findOne().timestamp <= 360000 && Session.set('timeout')) {
     Session.set('timeout', false);
   }
-  console.log("Bruh");
 }, 60000);
 
 Template.header.helpers({
