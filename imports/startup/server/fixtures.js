@@ -168,7 +168,7 @@ if (Shows.find().count() === 0) {
 
 if (Playlists.find().count() === 0) {
     Playlists.insert({
-      showId: Shows.findOne()._id,
+      showId: Shows.findOne().showId,
       spinPlaylistId: 52,
       showDate: '11/04/2016'
     });
