@@ -66,9 +66,9 @@ Template.header.onRendered(function () {
         $('.mejs__playpause-button').click(function () {
           if (Session.equals('defaultLoaded', true)) {
             var message = 'Now playing the ' +
-                orion.dictionary.get('mainPage.title', 'station\'s') + ' live stream';
+                scorpius.dictionary.get('mainPage.title', 'station\'s') + ' live stream';
             Session.set('defaultLoaded', false);
-            Session.set('nowLoaded', orion.dictionary.get('mainPage.audioUrl', ''));
+            Session.set('nowLoaded', scorpius.dictionary.get('mainPage.audioUrl', ''));
             Bert.alert(message, 'default', 'growl-top-right', 'fa-music');
           }
         });
@@ -82,11 +82,13 @@ Template.header.onRendered(function () {
 });
 
 setInterval(function() {
-  if (new Date() - NowPlaying.findOne().timestamp > 360000) {
-    Session.set('timeout', true);
-  }
-  else if (new Date() - NowPlaying.findOne().timestamp <= 360000 && Session.set('timeout')) {
-    Session.set('timeout', false);
+  if (NowPlaying.findOne()) {
+    if (new Date() - NowPlaying.findOne().timestamp > 360000) {
+      Session.set('timeout', true);
+    }
+    else if (new Date() - NowPlaying.findOne().timestamp <= 360000 && Session.set('timeout')) {
+      Session.set('timeout', false);
+    }
   }
 }, 60000);
 

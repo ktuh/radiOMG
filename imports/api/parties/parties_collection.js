@@ -1,9 +1,9 @@
 import { Mongo } from 'meteor/mongo';
-import { orion } from 'meteor/orionjs:core';
+import { scorpius } from 'meteor/scorpiusjs:core';
 
 import { PartySchema } from './parties_schema.js';
 
-export const Parties = new orion.collection('parties', {
+export const Parties = new scorpius.collection('parties', {
   singularName: 'party',
   pluralName: 'parties',
   tabular: {

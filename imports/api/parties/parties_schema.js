@@ -1,5 +1,5 @@
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
-import { orion } from 'meteor/orionjs:core';
+import { scorpius } from 'meteor/scorpiusjs:core';
 
 export const PartySchema = new SimpleSchema({
   title: {
@@ -35,10 +35,10 @@ export const PartySchema = new SimpleSchema({
     label: 'Address',
     optional: true
   },
-  flyerFront: orion.attribute('image', {
+  flyerFront: scorpius.attribute('image', {
     label: 'Flyer Front Image'
   }),
-  flyerBack: orion.attribute('image', {
+  flyerBack: scorpius.attribute('image', {
     label: 'Flyer Back Image (Optional)',
     optional: true
   }),

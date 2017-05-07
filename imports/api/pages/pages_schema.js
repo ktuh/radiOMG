@@ -1,5 +1,5 @@
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
-import { orion } from 'meteor/orionjs:core';
+import { scorpius } from 'meteor/scorpiusjs:core';
 
 export const PagesSchema = new SimpleSchema({
   userId: {
@@ -41,7 +41,7 @@ export const PagesSchema = new SimpleSchema({
       if (FlowRouter._routes.map((obj) => obj.path.substr(1)).indexOf(this.value.replace(/'/g, '').replace(/[^0-9a-z-]/g, '-').replace(/\-\-+/g, '-').replace(/^-+/, '').replace(/-+$/, '')) >= 0) return "Nope.";
     }
   },
-  body: orion.attribute('summernote', {
+  body: scorpius.attribute('summernote', {
     type: String,
     label: 'Body',
     optional: false

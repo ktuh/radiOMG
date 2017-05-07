@@ -38,7 +38,7 @@ export const PostsSchema = new SimpleSchema({
     type: [String],
     optional: true
   },
-  body: orion.attribute('summernote', {
+  body: scorpius.attribute('summernote', {
     type: String,
     label: 'Body',
     optional: false
