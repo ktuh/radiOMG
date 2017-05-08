@@ -1,8 +1,8 @@
 import { Mongo } from 'meteor/mongo';
-import { orion } from 'meteor/orionjs:core';
+import { scorpius } from 'meteor/scorpiusjs:core';
 import { PostsSchema } from './posts_schema.js';
 
-export const Posts = new orion.collection('posts', {
+export const Posts = new scorpius.collection('posts', {
   singularName: 'post',
   pluralName: 'posts',
   link: {
@@ -24,7 +24,7 @@ export const Posts = new orion.collection('posts', {
         title: 'Body',
         tmpl: Meteor.isClient && Template.commentsIndexBlurbCell
       },
-      orion.attributeColumn('createdAt', 'submitted', 'Timestamp')
+      scorpius.attributeColumn('createdAt', 'submitted', 'Timestamp')
     ]
   }
 });

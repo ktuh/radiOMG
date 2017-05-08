@@ -21,7 +21,7 @@ export const CommentsSchema = new SimpleSchema({
     label: 'Timestamp',
     optional: false
   },
-  body: orion.attribute('summernote', {
+  body: scorpius.attribute('summernote', {
     type: String,
     label: 'Comment',
     optional: false

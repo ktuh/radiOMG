@@ -1,8 +1,8 @@
 import { Mongo } from 'meteor/mongo';
 import { ShowsSchema } from './shows_schema.js';
-import { orion } from 'meteor/orionjs:core';
+import { scorpius } from 'meteor/scorpiusjs:core';
 
-export const Shows = new orion.collection('shows', {
+export const Shows = new scorpius.collection('shows', {
   singularName: 'show',
   pluralName: 'shows',
   link: {
@@ -31,7 +31,7 @@ export const Shows = new orion.collection('shows', {
           return "<img src=" + val.url + ">";
         }
       },
-      orion.attributeColumn('createdAt', 'submitted', 'Timestamp')
+      scorpius.attributeColumn('createdAt', 'submitted', 'Timestamp')
     ]
   }
 });

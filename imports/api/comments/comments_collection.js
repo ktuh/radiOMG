@@ -1,10 +1,10 @@
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
-import { orion } from 'meteor/orionjs:core';
+import { scorpius } from 'meteor/scorpiusjs:core';
 import { Template } from 'meteor/templating';
 import { CommentsSchema } from './comments_schema.js';
 
-export const Comments = new orion.collection('comments', {
+export const Comments = new scorpius.collection('comments', {
   singularName: 'comment',
   pluralName: 'comments',
   link: {
@@ -23,7 +23,7 @@ export const Comments = new orion.collection('comments', {
         title: 'Comment',
         tmpl: Meteor.isClient && Template.commentsIndexBlurbCell
       },
-      orion.attributeColumn('createdAt', 'submitted', 'Timestamp')
+      scorpius.attributeColumn('createdAt', 'submitted', 'Timestamp')
     ]
   }
 });

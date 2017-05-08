@@ -1,5 +1,5 @@
 import { Mongo } from 'meteor/mongo';
-import { orion } from 'meteor/orionjs:core';
+import { scorpius } from 'meteor/scorpiusjs:core';
 
 export const Notifications = new Mongo.Collection('notifications');
 

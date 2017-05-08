@@ -1,7 +1,7 @@
 import { Mongo } from 'meteor/mongo';
-import { orion } from 'meteor/orionjs:core';
+import { scorpius } from 'meteor/scorpiusjs:core';
 import { ReviewsSchema } from './reviews_schema';
-export const Reviews = new orion.collection('reviews', {
+export const Reviews = new scorpius.collection('reviews', {
   singularName: 'review',
   pluralName: 'reviews',
   link: {
@@ -42,7 +42,7 @@ export const Reviews = new orion.collection('reviews', {
         title: 'Body',
         tmpl: Meteor.isClient && Template.commentsIndexBlurbCell
       },
-      orion.attributeColumn('createdAt', 'submitted', 'Timestamp')
+      scorpius.attributeColumn('createdAt', 'submitted', 'Timestamp')
     ]
   }
 });

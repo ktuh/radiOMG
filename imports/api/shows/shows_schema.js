@@ -1,5 +1,5 @@
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
-import { orion } from 'meteor/orionjs:core';
+import { scorpius } from 'meteor/scorpiusjs:core';
 import { Meteor } from 'meteor/meteor';
 
 export const ShowsSchema = new SimpleSchema({
@@ -98,7 +98,7 @@ export const ShowsSchema = new SimpleSchema({
     type: [String],
     optional: false
   },
-  body: orion.attribute('summernote', {
+  body: scorpius.attribute('summernote', {
     type: String,
     label: 'Body',
     optional: false
@@ -119,7 +119,7 @@ export const ShowsSchema = new SimpleSchema({
     label: 'Comment Count',
     defaultValue: 0
   },
-  featuredImage: orion.attribute('image', {
+  featuredImage: scorpius.attribute('image', {
     label: 'Featured Image',
     optional: true
   }),

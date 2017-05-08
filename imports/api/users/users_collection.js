@@ -4,8 +4,10 @@ import { UsersSchema } from './users_schema.js';
 
 Meteor.users.allow({
     update: function (userId, doc, fieldNames, modifier) {
-      var valid = Meteor.user().roles.indexOf('admin') > -1 || Meteor.user().roles.indexOf('moderator') > -1;
-      return valid;
+      var adm = Meteor.user().roles.indexOf('admin') > -1 || false;
+      var mod = Meteor.user().roles.indexOf('moderator') > -1 || false;
+      var own = doc._id === userId;
+      return adm || mod || own;
     },
     fetch: ['userId']
 });

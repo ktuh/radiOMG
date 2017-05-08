@@ -1,6 +1,6 @@
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { Meteor } from 'meteor/meteor';
-import { orion } from 'meteor/orionjs:core';
+import { scorpius } from 'meteor/scorpiusjs:core';
 
 export const ReviewsSchema = new SimpleSchema({
   userId: {
@@ -71,11 +71,11 @@ export const ReviewsSchema = new SimpleSchema({
     label: 'Rating',
     optional: false
   },
-  image: orion.attribute('image', {
+  image: scorpius.attribute('image', {
     label: 'Featured Image',
     optional: true
   }),
-  body: orion.attribute('summernote', {
+  body: scorpius.attribute('summernote', {
     type: String,
     label: 'Body',
     optional: false

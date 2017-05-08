@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
-import { Accounts } from 'meteor/accounts-base';
+import { AccountsServer } from 'meteor/accounts-base';
 import { Bert } from 'meteor/themeteorchef:bert';
+import { _ } from 'meteor/underscore';
 
 Meteor.startup(function () {
   process.env.MAIL_URL = 'smtp://' +
@@ -9,29 +10,29 @@ Meteor.startup(function () {
     encodeURIComponent(Meteor.settings.emailServer) + ':'  +
     Meteor.settings.emailPort;
 
-  Accounts.emailTemplates.siteName = '808mix';
+  Accounts.emailTemplates.siteName = 'KTUH Honolulu';
 
   Accounts.emailTemplates.verifyEmail.from = function() {
-    return '808Mix Accounts <davey@ktuh.org>';
+    return 'KTUH Accounts <davey@ktuh.org>';
   };
 
   Accounts.emailTemplates.verifyEmail.subject = function(user) {
-    return 'Confirm Your Email Address for 808mix';
+    return 'Confirm Your Email Address for KTUH Honolulu';
   };
 
   Accounts.emailTemplates.verifyEmail.text = function(user, url) {
     return 'Hi, ' + user.username + ',\n\n'
-      + 'Mahalo for registering for the 808mix app. Please click on the '
+      + 'Mahalo for registering for the KTUH Honolulu website. Please click on the '
       + 'following link to verify your email address: \r\n\n' + url
       + '\n\n';
   };
 
   Accounts.emailTemplates.resetPassword.from = function() {
-    return '808Mix Accounts <davey@ktuh.org>';
+    return 'KTUH Accounts <davey@ktuh.org>';
   };
 
   Accounts.emailTemplates.resetPassword.subject = function(user) {
-    return 'Reset Your Password on 808mix';
+    return 'Reset Your Password on KTUH Honolulu';
   };
 
   Accounts.config({
@@ -43,7 +44,7 @@ Meteor.startup(function () {
   Accounts._options.forbidClientAccountCreation = false;
 
   Accounts.validateLoginAttempt(function(type) {
-    if (type.user && type.user.emails && !type.user.emails[0].verified )
+    if (type.user && type.user.emails && !type.user.emails[0].verified ) {
       if (type.user && type.user.firstLogin == true) {
         type.user.firstLogin = false;
         return true;
@@ -51,8 +52,20 @@ Meteor.startup(function () {
         throw new Meteor.Error(100001, "Please verify your email address. (Check your inbox.)");
         return false;
       }
+    }
+    return true;
+  });
 
-      return true;
-    });
+  Accounts.onCreateUser((options, user) => {
+    if (!_.isEmpty(options.profile)) {
+      user.profile = options.profile;
+    }
+    else {
+      user.profile = {name: "", bio: "", website: "", soundcloud: "", facebook: "", instagram: "", snapchat: "", banned: false};
+    }
+    return user;
+  });
+
+  Accounts.validateNewUser((user) =>
+     user.username !== "" && user.emails !== undefined);
 });
-

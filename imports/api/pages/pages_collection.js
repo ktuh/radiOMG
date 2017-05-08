@@ -1,8 +1,8 @@
 import { Mongo } from 'meteor/mongo';
-import { orion } from 'meteor/orionjs:core';
+import { scorpius } from 'meteor/scorpiusjs:core';
 import { PagesSchema } from './pages_schema.js';
 
-export const Pages = new orion.collection('pages', {
+export const Pages = new scorpius.collection('pages', {
   singularName: 'page',
   pluralName: 'pages',
   link: {
@@ -20,7 +20,7 @@ export const Pages = new orion.collection('pages', {
         data: 'slug',
         title: 'Slug',
       },
-      orion.attributeColumn('createdAt', 'submitted', 'Timestamp')
+      scorpius.attributeColumn('createdAt', 'submitted', 'Timestamp')
     ]
   }
 });
