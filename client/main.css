@@ -363,7 +363,7 @@ audio {
 .mejs__time-rail .mejs__time-loaded {
   top: 0;
   left: 0;
-  width: 0;
+    width: 0;
   background: #53C1B9;
 }
 .mejs__time-rail .mejs__time-current {
@@ -577,6 +577,15 @@ audio {
     margin-bottom: 20px;
     clear: both;
 }
+.playlist {
+  text-align: left;
+}
+.playlist__info-row{
+  text-transform: uppercase;
+}
+.playlist td { 
+  padding: 2px 15px 2px 0;
+}
 .playlist__artist {
     font-weight: bold;
 }
@@ -584,7 +593,7 @@ audio {
 
 }
 .playlist__timestamp {
-    color: #999;
+    color: #666;
     font-size: 11px;
 }
 .shows__header {
@@ -691,9 +700,6 @@ audio {
 }
 .footer div {
   margin-bottom: 10px;
-}
-.playlist {
-  text-align: center;
 }
 @-webkit-keyframes fadeOut {
     0% {
