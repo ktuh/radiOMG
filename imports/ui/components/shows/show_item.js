@@ -1,45 +1,26 @@
 import './show_item.html';
 import { Template } from 'meteor/templating';
 import { Meteor } from 'meteor/meteor';
-import { Bert } from 'meteor/themeteorchef:bert';
-import { _ } from 'meteor/underscore';
+import { Shows } from '../../../api/shows/shows_collection.js';
 
-Template.showItem.helpers({
-  upvoted: upvoters => {
-    var username;
-    if (Meteor.user() && Meteor.user().username) {
-      username = Meteor.user().username;
-    }
-    else return '';
-
-    var upvoters_ = upvoters || [];
-    var i = upvoters_.indexOf(username);
-    var str = '';
-
-    if (i >= 0) {
-      str = 'upvoted';
-    };
-
-    return str;
-  }
-});
-
-Template.showItem.onRendered(function() {
-  $('.party').imagesLoaded(function() {
-    $('.parties').masonry('reloadItems')
-                  .masonry('layout');
+Template.showItem.onCreated(function() {
+  var self = this;
+  self.autorun(function() {
+        var show = Shows.findOne();
+        self.subscribe('showHostUserName', show.userId);
   });
 });
 
-Template.showItem.events({
-  'click .party-upvotes__heart': (event, template) => {
-    let user = Meteor.userId();
-
-    if (user === null) {
-      Bert.alert('Please log in (or register) to upvote.', 'info');
-    }
-    else {
-      Meteor.call('upvoteParty', template.data._id);
-    }
+Template.showItem.helpers({
+  formattedTime: function(startHour, startMinute) {
+    var hour = startHour < 10 ? '0' + startHour : startHour;
+    var minute = startMinute < 10 ? '0' + startMinute : startMinute;
+    var period = startHour < 12 ? 'a.m.' : 'p.m.';
+    return hour + ':' + minute + ' ' + period;
+  },
+  profileLink: function(id) {
+    var user = Meteor.users.findOne({ _id: id });
+    if (user !== undefined)
+      return "/profile/" + user.username;
   }
 });

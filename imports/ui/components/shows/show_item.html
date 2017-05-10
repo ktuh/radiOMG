@@ -1,6 +1,14 @@
 <template name='showItem'>
-  <div class='party'>
-    <a href='/show/{{slug}}'><img class='party__flyer' src='{{featuredImage.url}}'></a>
-<!--     <div class='party-details'><span class='party-upvotes__heart glyphicon glyphicon-heart {{upvoted upvoters}}'></span><span class='party-upvotes__count'>{{upvoteCount}}</span></div> -->
+  <div class='show-item'>
+    <div class='show-item__image-div'>
+      <a href='/shows/{{slug}}'><img class='show-item__image' src='{{featuredImage.url}}'></a>
+    </div>
+    <div class='show-item__info-container'>
+      <div class='show-item__info'>
+        <a href='/shows/{{slug}}'><h4>{{showName}}</h4></a>
+        <h5>Hosted by <a href='{{profileLink userId}}'>{{host}}</a></h5>
+        <h5>{{formattedTime startHour startMinute}} to {{formattedTime endHour endMinute}}</h5>
+      </div>
+    </div>
   </div>
 </template>

@@ -13,20 +13,57 @@ Template.showList.onCreated(function() {
   });
 });
 
-Template.showList.onRendered(function () {
-  var $parties = $('.parties');
-
-  $parties.imagesLoaded(function() {
-    $parties.masonry({
-      itemSelector: '.party',
-      transitionDuration: 0,
-      isResizeBound: true
-    });
-  });
-  Session.set('documentTitle', '808party');
-});
-
 Template.showList.helpers({
   newPartyUrl: () => FlowRouter.path('showCreate'),
-  shows: () => Shows.find()
+  day: () => {
+    var day = FlowRouter.getQueryParam('day');
+    var daze = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    var date = new Date();
+
+    if (day === undefined || $.inArray(day, daze) === -1)
+      return daze[date.getDay()];
+    else return day;
+  },
+  daysShows: () => {
+    var day = FlowRouter.getQueryParam('day');
+    var daze = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    var date = new Date();
+    var dayNum = 0;
+    if (day === undefined || $.inArray(day, daze) < 0) {
+      dayNum = date.getDay();
+    } else { 
+      dayNum = $.inArray(day, daze);
+    }
+    return Shows.find({startDay: dayNum}, 
+                      {sort: {startHour: 1, startMinute: 1}});
+  }
+});
+
+Template.showList.events({
+  'click .shows__previous-day': function (event) {
+    var day = FlowRouter.getQueryParam('day');
+    var daze = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    var date = new Date();
+    var prevDayNum = 0;
+    if (day === undefined || $.inArray(day, daze) < 0)
+      prevDayNum = date.getDay() - 1 < 0 ? 6 : date.getDay() - 1;
+    else {
+      var dayNum = $.inArray(day, daze);
+      prevDayNum = dayNum - 1 < 0 ? 6 : dayNum - 1;
+    }
+    FlowRouter.go(FlowRouter.getRouteName(), {}, {day: daze[prevDayNum]})
+  },
+  'click .shows__next-day': function (event) {
+    var day = FlowRouter.getQueryParam('day');
+    var daze = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    var date = new Date();
+    var nextDayNum = 0;
+    if (day === undefined || $.inArray(day, daze) < 0)
+      nextDayNum = date.getDay() + 1 > 6 ? 0 : date.getDay() + 1;
+    else {
+      var dayNum = $.inArray(day, daze);
+      nextDayNum = dayNum + 1 > 6 ? 0 : dayNum + 1;
+    }
+    FlowRouter.go(FlowRouter.getRouteName(), {}, {day: daze[nextDayNum]})
+  }
 });

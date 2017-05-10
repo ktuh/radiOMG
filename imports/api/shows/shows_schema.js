@@ -37,18 +37,18 @@ export const ShowsSchema = new SimpleSchema({
     optional: false
   },
   startDay: {
-    type: String,
+    type: Number,
     label: "Start Day",
-    allowedValues: ['Sunday', 'Monday', 'Tuesday', 'Wednesday','Thursday','Friday','Saturday'],
+    allowedValues: [0, 1, 2, 3, 4, 5, 6],
     autoform: {
       options: [
-        {label: "Sunday", value: 'Sunday'},
-        {label: "Monday", value: 'Monday'},
-        {label: "Tuesday", value: 'Tuesday'},
-        {label: "Wednesday", value: 'Wednesday'},
-        {label: "Thursday", value: 'Thursday'},
-        {label: "Friday", value: 'Friday'},
-        {label: "Saturday", value: 'Saturday'}
+        {label: "Sunday", value: 0},
+        {label: "Monday", value: 1},
+        {label: "Tuesday", value: 2},
+        {label: "Wednesday", value: 3},
+        {label: "Thursday", value: 4},
+        {label: "Friday", value: 5},
+        {label: "Saturday", value: 6}
       ]
     },
     optional: false
@@ -66,18 +66,18 @@ export const ShowsSchema = new SimpleSchema({
     max: 59
   },
   endDay: {
-    type: String,
+    type: Number,
     label: "Start Day",
-    allowedValues: ['Sunday', 'Monday', 'Tuesday', 'Wednesday','Thursday','Friday','Saturday'],
+    allowedValues: [0, 1, 2, 3, 4, 5, 6],
     autoform: {
       options: [
-        {label: "Sunday", value: 'Sunday'},
-        {label: "Monday", value: 'Monday'},
-        {label: "Tuesday", value: 'Tuesday'},
-        {label: "Wednesday", value: 'Wednesday'},
-        {label: "Thursday", value: 'Thursday'},
-        {label: "Friday", value: 'Friday'},
-        {label: "Saturday", value: 'Saturday'}
+        {label: "Sunday", value: 0},
+        {label: "Monday", value: 1},
+        {label: "Tuesday", value: 2},
+        {label: "Wednesday", value: 3},
+        {label: "Thursday", value: 4},
+        {label: "Friday", value: 5},
+        {label: "Saturday", value: 6}
       ]
     },
     optional: false

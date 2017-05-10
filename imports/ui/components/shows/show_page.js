@@ -16,7 +16,7 @@ Template.showPage.onCreated(function() {
         Session.set('documentTitle', show.showName);
         self.subscribe('showPlaylists', show._id);
         self.subscribe('comments', show._id);
-        self.subscribe('showHostUser', show.userId);
+        self.subscribe('showHostUserName', show.userId);
       }
     });
   });
@@ -27,7 +27,7 @@ Template.showPage.helpers({
     return Shows.findOne({ slug: FlowRouter.getParam("slug") });
   },
   lessThanTen: function (n) {
-  return Math.abs(n) < 10;
+    return Math.abs(n) < 10;
   },
   ownShow: function () {
     return Meteor.userId() && Shows.findOne() &&
@@ -44,12 +44,16 @@ Template.showPage.helpers({
     return FlowRouter.getParam("slug");
   },
   profileUrl: function(id) {
-    var username = Meteor.users.findOne({"_id": id}).username;
-    return "/profile/" + username;
+    var user = Meteor.users.findOne({ _id: id });
+    return "/profile/" + user.username;
   },
   isPlaying: function(mp3) {
     return Session.get('nowLoaded') == mp3
            && Session.get('paused') === false;
+  },
+  day: function(num) {
+    var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    return days[num];
   }
 });
 

@@ -23,7 +23,6 @@ import '../../ui/components/profile/profile_edit.js';
 import '../../ui/components/profile/profile_page.js';
 import '../../ui/components/shows/show_page.js';
 import '../../ui/components/playlists/playlist_page.js';
-import '../../ui/components/shows/show_schedule.js';
 import '../../ui/components/user_mgmt/user_mgmt.js';
 import '../../ui/components/pages/pages_item.js'
 
@@ -119,14 +118,14 @@ FlowRouter.route('/review/:slug', {
   }
 });
 
-FlowRouter.route('/show', {
+FlowRouter.route('/shows', {
   name: 'show',
   action: function() {
     $('head meta[data-flow-router-seo="true"]').removeAttr("data-flow-router-seo");
     BlazeLayout.render('layout', {content: 'showList'});
   }
 });
-FlowRouter.route('/show/new', {
+FlowRouter.route('/shows/new', {
   name: 'showCreate',
   action: function () {
     $('head meta[data-flow-router-seo="true"]').removeAttr("data-flow-router-seo");
@@ -134,7 +133,7 @@ FlowRouter.route('/show/new', {
   }
 });
 
-FlowRouter.route('/show/:slug', {
+FlowRouter.route('/shows/:slug', {
   name: 'showPage',
   action: function () {
     $('head meta[data-flow-router-seo="true"]').removeAttr("data-flow-router-seo");
@@ -142,7 +141,7 @@ FlowRouter.route('/show/:slug', {
   }
 });
 
-FlowRouter.route('/show/edit/:slug', {
+FlowRouter.route('/shows/edit/:slug', {
   name: 'showEdit',
   action: function () {
     $('head meta[data-flow-router-seo="true"]').removeAttr("data-flow-router-seo");
@@ -163,14 +162,6 @@ FlowRouter.route('/profile', {
   action: function () {
     $('head meta[data-flow-router-seo="true"]').removeAttr("data-flow-router-seo");
     BlazeLayout.render('layout', {content: 'profileEdit'});
-  }
-});
-
-FlowRouter.route('/schedule', {
-  name: 'schedule',
-  action: function() {
-    $('head meta[data-flow-router-seo="true"]').removeAttr("data-flow-router-seo");
-    BlazeLayout.render('layout', {content: 'showSchedule'});
   }
 });
 

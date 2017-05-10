@@ -63,25 +63,20 @@ export const UsersSchema = new SimpleSchema({
   username: {
     type: String,
     regEx: /^[a-z0-9A-Z_]{3,20}$/,
-    optional: true
   },
   emails: {
     type: [Object],
-    optional: true
   },
   "emails.$.address": {
     type: String,
     regEx: SimpleSchema.RegEx.Email,
-    optional: true
   },
   "emails.$.verified": {
     type: Boolean,
-    optional: true
   },
   createdAt: {
     type: Date,
     label: "Created on",
-    optional: true,
     autoValue: function() {
       if (this.isInsert) {
         return new Date();
@@ -105,7 +100,6 @@ export const UsersSchema = new SimpleSchema({
   },
   profile: {
     type: ProfileSchema,
-    optional: true
   },
   services: {
     type: Object,

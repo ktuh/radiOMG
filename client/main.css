@@ -587,8 +587,39 @@ audio {
     color: #999;
     font-size: 11px;
 }
+.shows__header {
+    width: 300px;
+    text-align: center;    
+    margin: auto;
+}
+.shows__header span {
+    font-size: .65em;
+}
+.shows__previous-day {
+    float: left;  
+}
+.shows__next-day {
+    float: right;  
+}
+.show-item {
+    margin-bottom: 15px;
+}
+.show-item__image {
+    float: left;
+    width: 150px;
+    margin-right: 20px;
+}
+.show-item__info-container {
+    display: flex;
+    align-items: center;
+    height: 150px;
+}
+.show-item__info h4 {
+  font-weight: bold;
+  margin-top: 3px;
+}
 .show__info {
-    float: right;
+    float: left;
     max-width: 50%;
     margin-bottom: 30px;
 }
