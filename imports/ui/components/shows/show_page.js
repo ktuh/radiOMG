@@ -14,7 +14,7 @@ Template.showPage.onCreated(function() {
       onReady: function() {
         var show = Shows.findOne({ slug: slug });
         Session.set('documentTitle', show.showName);
-        self.subscribe('showPlaylists', show._id);
+        self.subscribe('showPlaylists', show.showId);
         self.subscribe('comments', show._id);
         self.subscribe('showHostUserName', show.userId);
       }
@@ -79,4 +79,4 @@ Template.showPage.events({
       player.pause();
     }
   }
-})
+});

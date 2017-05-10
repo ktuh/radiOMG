@@ -2,29 +2,29 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 import { BlazeLayout } from 'meteor/kadira:blaze-layout';
 
 import '../../ui/components/application/layout.js';
-import '../../ui/components/includes/header.js';
-import '../../ui/components/includes/footer.js';
+import '../../ui/components/application/not_found.js';
+import '../../ui/components/chats/chat.js';
+import '../../ui/components/home/home.js'
 import '../../ui/components/includes/errors.js';
-import '../../ui/components/reviews/review_list.js';
-import '../../ui/components/reviews/review_page.js';
-import '../../ui/components/parties/party_list.js';
-import '../../ui/components/parties/party_page.js';
-import '../../ui/components/parties/party_edit.js';
-import '../../ui/components/parties/party_create.js';
-import '../../ui/components/shows/show_list.js';
-import '../../ui/components/shows/show_page.js';
-import '../../ui/components/shows/show_edit.js';
-import '../../ui/components/shows/show_create.js';
+import '../../ui/components/includes/footer.js';
+import '../../ui/components/includes/header.js';
 import '../../ui/components/news/news_item.js';
 import '../../ui/components/news/news_list.js';
-import '../../ui/components/chats/chat.js';
-import '../../ui/components/application/not_found.js';
+import '../../ui/components/pages/pages_item.js'
+import '../../ui/components/playlists/playlist_page.js';
 import '../../ui/components/profile/profile_edit.js';
 import '../../ui/components/profile/profile_page.js';
+import '../../ui/components/reviews/review_list.js';
+import '../../ui/components/reviews/review_page.js';
+import '../../ui/components/parties/party_edit.js';
+import '../../ui/components/parties/party_create.js';
+import '../../ui/components/parties/party_list.js';
+import '../../ui/components/parties/party_page.js';
+import '../../ui/components/shows/show_list.js';
+import '../../ui/components/shows/show_create.js';
+import '../../ui/components/shows/show_edit.js';
 import '../../ui/components/shows/show_page.js';
-import '../../ui/components/playlists/playlist_page.js';
 import '../../ui/components/user_mgmt/user_mgmt.js';
-import '../../ui/components/pages/pages_item.js'
 
 /*
  *  So, you know that annoying jQuery statement in every route?
@@ -36,16 +36,9 @@ FlowRouter.route('/', {
   name: 'home',
   action: function () {
     $('head meta[data-flow-router-seo="true"]').removeAttr("data-flow-router-seo");
-    BlazeLayout.render('layout', {content: 'notFound'});
+    BlazeLayout.render('layout', {content: 'home'});
   }
 });
-
-FlowRouter.notFound = {
-  action: function () {
-    $('head meta[data-flow-router-seo="true"]').removeAttr("data-flow-router-seo");
-    BlazeLayout.render('layout', {content: 'notFound'});
-  }
-}
 
 FlowRouter.route('/news', {
   name: 'news',
@@ -180,3 +173,10 @@ FlowRouter.route('/:slug', {
     BlazeLayout.render('layout', {content: 'pagesItem'});
   }
 });
+
+FlowRouter.notFound = {
+  action: function () {
+    $('head meta[data-flow-router-seo="true"]').removeAttr("data-flow-router-seo");
+    BlazeLayout.render('layout', {content: 'notFound'});
+  }
+}

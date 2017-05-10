@@ -18,6 +18,6 @@ Meteor.publish('nowPlaying', function() {
 });
 
 Meteor.publish('showPlaylists', function(id) {
-  check(id, String);
+  check(id, Number);
   return Playlists.find({ showId: id });
 });

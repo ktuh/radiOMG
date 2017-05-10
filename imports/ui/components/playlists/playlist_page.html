@@ -1,11 +1,19 @@
 <template name="playlistPage">
   {{#if Template.subscriptionsReady}}
-    <h1>Playlist for <a href="/show/{{showSlug}}">{{showName}}</a> on {{showDate}}</h1>
-    <table class="playlist" width="100%" border="1">
-      <tr><td><b>Time Played</b></td><td><b>Artist</b></td><td><b>Song</b></td></tr>
-    {{#each songs}}
-      <tr><td>{{Timestamp}}</td><td>{{ArtistName}}</td><td>{{SongName}}</td></tr>
-    {{/each}}
+    <h3>Playlist for <a href="/show/{{showSlug}}">{{showName}}</a> on {{showDate}}</h3>
+    <table class="playlist">
+      <tr class="playlist__info-row">
+        <td><b>Time Played</b></td>
+        <td><b>Artist</b></td>
+        <td><b>Song</b></td>
+      </tr>
+      {{#each songs}}
+      <tr>
+        <td class='playlist__timestamp'>{{Timestamp}}</td>
+        <td class='playlist__artist'>{{ArtistName}}</td>
+        <td class='playlist__title'>{{SongName}}</td>
+      </tr>
+      {{/each}}
     </table>
   {{/if}}
 </template>
