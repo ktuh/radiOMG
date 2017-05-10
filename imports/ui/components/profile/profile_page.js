@@ -2,6 +2,7 @@ import './profile_page.html';
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { BlazeLayout } from 'meteor/kadira:blaze-layout';
+import { Posts } from '../../../api/posts/posts_collection.js'
 import '../application/layout.js';
 
 Template.profilePage.onCreated(function() {
@@ -21,6 +22,8 @@ Template.profilePage.onCreated(function() {
         }
       }
     });
+
+    self.subscribe('allPosts');
   });
 });
 
@@ -40,5 +43,11 @@ Template.profilePage.helpers({
              user.profile.facebook || user.profile.snapchat ||
              user.profile.soundcloud;
     } else return false;
+  },
+  posts: function () {
+    var username = FlowRouter.getParam('username');
+    var user = Meteor.users.findOne({username: username});
+    var i = user._id;
+    return Posts.find({userId: i});
   }
 });
