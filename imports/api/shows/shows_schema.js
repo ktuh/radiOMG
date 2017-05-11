@@ -42,13 +42,13 @@ export const ShowsSchema = new SimpleSchema({
     allowedValues: [0, 1, 2, 3, 4, 5, 6],
     autoform: {
       options: [
-        {label: "Sunday", value: 0},
-        {label: "Monday", value: 1},
-        {label: "Tuesday", value: 2},
-        {label: "Wednesday", value: 3},
-        {label: "Thursday", value: 4},
-        {label: "Friday", value: 5},
-        {label: "Saturday", value: 6}
+        { label: "Sunday", value: 0 },
+        { label: "Monday", value: 1 },
+        { label: "Tuesday", value: 2 },
+        { label: "Wednesday", value: 3 },
+        { label: "Thursday", value: 4 },
+        { label: "Friday", value: 5 },
+        { label: "Saturday", value: 6 }
       ]
     },
     optional: false
@@ -71,13 +71,13 @@ export const ShowsSchema = new SimpleSchema({
     allowedValues: [0, 1, 2, 3, 4, 5, 6],
     autoform: {
       options: [
-        {label: "Sunday", value: 0},
-        {label: "Monday", value: 1},
-        {label: "Tuesday", value: 2},
-        {label: "Wednesday", value: 3},
-        {label: "Thursday", value: 4},
-        {label: "Friday", value: 5},
-        {label: "Saturday", value: 6}
+        { label: "Sunday", value: 0 },
+        { label: "Monday", value: 1 },
+        { label: "Tuesday", value: 2 },
+        { label: "Wednesday", value: 3 },
+        { label: "Thursday", value: 4 },
+        { label: "Friday", value: 5 },
+        { label: "Saturday", value: 6 }
       ]
     },
     optional: false

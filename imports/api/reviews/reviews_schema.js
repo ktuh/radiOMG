@@ -67,8 +67,9 @@ export const ReviewsSchema = new SimpleSchema({
     type: Number,
     min: 0,
     max: 5,
+    allowedValues: [0, .5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5],
     decimal: true,
-    label: 'Rating',
+    label: 'Rating (0-5 in increments of .5)',
     optional: false
   },
   image: scorpius.attribute('image', {

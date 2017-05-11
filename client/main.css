@@ -337,9 +337,9 @@ audio {
 
 /* time scrubber bar */
 .mejs__time-rail {
-  width: inherit;
+  width: 140px !important;
   top: 7px;
-  right: 20px;
+  right: 10px;
   margin: 2px 7px 0 0 !important;
 }
 
@@ -363,7 +363,7 @@ audio {
 .mejs__time-rail .mejs__time-loaded {
   top: 0;
   left: 0;
-    width: 0;
+  width: 0;
   background: #53C1B9;
 }
 .mejs__time-rail .mejs__time-current {
@@ -605,10 +605,14 @@ audio {
     font-size: .65em;
 }
 .shows__previous-day {
-    float: left;  
+    float: left;
+    padding: 5px 10px 0px 10px;
+    cursor: pointer;
 }
 .shows__next-day {
-    float: right;  
+    float: right; 
+    padding: 5px 10px 0px 10px;
+    cursor: pointer;
 }
 .show-item {
     margin-bottom: 15px;
@@ -675,6 +679,32 @@ audio {
 }
 .show__play-btn:hover {
   border-color: #333;
+}
+.home {
+
+}
+.home__news,
+.home__reviews {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.home__reviews-item,
+.home__news-item {
+  width: 25%;
+  padding: 0 20px 20px 0;
+}
+.home__reviews-img,
+.home__news-img {
+  clear: both;
+  height: 125px;
+  width: auto;  
+  margin: 0 12px 0 0;
+}
+.home__news-title,
+.home__reviews-title {
+  color: #333;
 }
 .note-editable.panel-body {
   min-height: 30px;

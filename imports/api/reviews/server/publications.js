@@ -1,8 +1,12 @@
 import { Meteor } from 'meteor/meteor';
 import { Reviews } from '../reviews_collection.js';
 
-Meteor.publish('reviews', function() {
-  return Reviews.find();
+Meteor.publish('reviews', function(options) {
+  check(options, {
+    sort: Object,
+    limit: Number
+  });
+  return Reviews.find({}, options);
 });
 
 Meteor.publish('singleReview', function(selector) {

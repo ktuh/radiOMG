@@ -11,9 +11,6 @@ export const Posts = new scorpius.collection('posts', {
   tabular: {
     columns: [
       {
-        data: 'userId',
-        title: 'User ID'
-      }, {
         data: 'author',
         title: 'Author'
       }, {

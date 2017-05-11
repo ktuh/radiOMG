@@ -21,6 +21,10 @@ export const PostsSchema = new SimpleSchema({
       if (!this.isSet) return Meteor.user().username;
     }
   },
+  photo: scorpius.attribute('image', {
+    label: 'Image', 
+    optional: true
+  }),
   submitted: {
     type: Date,
     autoform: {
@@ -53,6 +57,10 @@ export const PostsSchema = new SimpleSchema({
   commentCount: {
     type: Number,
     label: 'Comment Count',
-    defaultValue: 0
+    defaultValue: 0,
+    autoform: {
+      type: 'hidden',
+      label: false
+    }
   }
 });

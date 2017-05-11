@@ -2,13 +2,16 @@ import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { scorpius } from 'meteor/scorpiusjs:core';
 
 const ProfileSchema = new SimpleSchema({
-  "name": {
+  name: {
     type: String,
     label: 'DJ Name',
     optional: true
   },
-  "photo": scorpius.attribute("image", {label: "Image", optional: true}),
-  "bio": {
+  photo: scorpius.attribute("image", {
+    label: "Image", 
+    optional: true
+  }),
+  bio: {
     type: String,
     label: 'Bio',
     autoform: {
@@ -18,37 +21,37 @@ const ProfileSchema = new SimpleSchema({
     },
     optional: true
   },
-  "website": {
+  website: {
     type: String,
     label: 'Website',
     optional: true
   },
-  "soundcloud": {
+  soundcloud: {
     type: String,
     label: 'Soundcloud',
     optional: true
   },
-  "instagram": {
+  instagram: {
     type: String,
     label: 'Instagram',
     optional: true
   },
-  "facebook": {
+  facebook: {
     type: String,
     label: 'Facebook',
     optional: true
   },
-  "twitter": {
+  twitter: {
     type: String,
     label: 'Twitter',
     optional: true
   },
-  "snapchat": {
+  snapchat: {
     type: String,
     label: 'Snapchat',
     optional: true
   },
-  "banned": {
+  banned: {
     type: Boolean,
     label: 'Ban User',
     optional: true,
@@ -67,11 +70,11 @@ export const UsersSchema = new SimpleSchema({
   emails: {
     type: [Object],
   },
-  "emails.$.address": {
+  'emails.$.address': {
     type: String,
     regEx: SimpleSchema.RegEx.Email,
   },
-  "emails.$.verified": {
+  'emails.$.verified': {
     type: Boolean,
   },
   createdAt: {

@@ -24,7 +24,7 @@ Template.showPage.onCreated(function() {
 
 Template.showPage.helpers({
   show: function() {
-    return Shows.findOne({ slug: FlowRouter.getParam("slug") });
+    return Shows.findOne({ slug: FlowRouter.getParam('slug') });
   },
   lessThanTen: function (n) {
     return Math.abs(n) < 10;
@@ -34,18 +34,18 @@ Template.showPage.helpers({
            Shows.findOne().userId == Meteor.userId();
   },
   time: function (t) {
-    var fmt = "dddd, MMMM Do YYYY, h:mm a"
+    var fmt = 'dddd, MMMM Do YYYY, h:mm a'
     return moment(t).format(fmt);
   },
   playlists: function() {
     return Playlists.find();
   },
   slug: function() {
-    return FlowRouter.getParam("slug");
+    return FlowRouter.getParam('slug');
   },
   profileUrl: function(id) {
     var user = Meteor.users.findOne({ _id: id });
-    return "/profile/" + user.username;
+    return '/profile/' + user.username;
   },
   isPlaying: function(mp3) {
     return Session.get('nowLoaded') == mp3
@@ -59,23 +59,26 @@ Template.showPage.helpers({
 
 Template.showPage.events({
   'click .show__play-btn': function (event) {
+    event.stopImmediatePropagation();
     event.preventDefault();
     var mp3Url = $(event.currentTarget).data('path');
     var nowLoaded = Session.get('nowLoaded');
 
     if (nowLoaded != mp3Url) {
+      var show = Shows.findOne({ slug: FlowRouter.getParam('slug') });
       $('.mejs__time-slider').css('visibility', 'visible');
       $('.mejs__broadcast').css('visibility', 'hidden');
       player.setSrc(mp3Url);
+      var message = 'Now playing the latest episode of ' + show.showName;
+      Session.set('defaultLoaded', false);
       Session.set('nowLoaded', mp3Url);
+      Bert.alert(message, 'default', 'growl-top-right', 'fa-music');
     }
 
     if (player.paused) {
-      event.stopImmediatePropagation();
       player.play();
     }
     else if (!player.paused) {
-      event.stopImmediatePropagation();
       player.pause();
     }
   }

@@ -37,11 +37,6 @@ export const Reviews = new scorpius.collection('reviews', {
         data: 'image',
         title: 'Featured Image'
       },
-       {
-        data: 'body',
-        title: 'Body',
-        tmpl: Meteor.isClient && Template.commentsIndexBlurbCell
-      },
       scorpius.attributeColumn('createdAt', 'submitted', 'Timestamp')
     ]
   }
