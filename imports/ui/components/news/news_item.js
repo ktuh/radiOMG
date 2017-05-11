@@ -24,5 +24,8 @@ Template.newsItem.helpers({
   },
   comments: function () {
     return Comments.find();
+  },
+  author: function() {
+    return Meteor.users.findOne({_id: Posts.findOne().userId}).username;
   }
 });
