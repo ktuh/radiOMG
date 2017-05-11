@@ -17,3 +17,8 @@ Meteor.publish('singlePost', function (slug) {
 Meteor.publish('allPosts', function() {
   return Posts.find();
 });
+
+Meteor.publish('postsByUser', function(username) {
+  check(username, String);
+  return Posts.find({author: username}, {fields: {submitted: 1, title: 1, author: 1, userId: 1}});
+});

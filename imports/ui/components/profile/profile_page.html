@@ -15,5 +15,19 @@
       <div class='profile__bio'>{{#if bio}}{{{bio}}}{{else}}<i><small>({{name}} hasn't filled out a bio yet.)</small></i>{{/if}}</div>
     </div>
     {{/with}}
-  </div>
+    <h3>Posts</h3>
+    {{#if Template.subscriptionsReady}}
+      {{#if posts}}
+      <div>
+        {{#each posts}}
+          <span class='profile__posts'><a href='/news/{{slug}}'>{{title}}</a><br /><i>{{submitted}}</i></span>
+        {{/each}}
+      </div>
+      {{else}}
+      <div>
+        <p>{{profile.name}} hasn't written any posts.</p>
+      </div>
+      {{/if}}
+    {{/if}}
+</div>
 </template>
