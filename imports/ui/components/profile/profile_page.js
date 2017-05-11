@@ -23,7 +23,7 @@ Template.profilePage.onCreated(function() {
       }
     });
 
-    self.subscribe('allPosts');
+    self.subscribe('postsByUser', username);
   });
 });
 
@@ -48,6 +48,6 @@ Template.profilePage.helpers({
     var username = FlowRouter.getParam('username');
     var user = Meteor.users.findOne({username: username});
     var i = user._id;
-    return Posts.find({userId: i});
+    return Posts.find({userId: i}, {sort: {submitted: -1}});
   }
 });
