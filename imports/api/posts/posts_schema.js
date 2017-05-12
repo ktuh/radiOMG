@@ -22,7 +22,7 @@ export const PostsSchema = new SimpleSchema({
     }
   },
   photo: scorpius.attribute('image', {
-    label: 'Image', 
+    label: 'Image',
     optional: true
   }),
   submitted: {
@@ -62,5 +62,8 @@ export const PostsSchema = new SimpleSchema({
       type: 'hidden',
       label: false
     }
+  },
+  isChart: {
+    type: Boolean
   }
 });
