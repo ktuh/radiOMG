@@ -7,7 +7,7 @@ import { Shows } from '../../../api/shows/shows_collection.js';
 Template.musicPlaylists.onCreated(function() {
   var self = this;
   self.autorun(function() {
-    self.subscribe('playlists', { limit: 10, sort: { showDate: -1 }});
+    self.subscribe('allPlaylists');
     self.subscribe('shows');
   });
 });

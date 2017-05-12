@@ -1,7 +1,5 @@
 import { Meteor } from 'meteor/meteor';
 import { Playlists } from '../playlists_collection.js';
-import { HTTP } from 'meteor/http';
-import { Random } from 'meteor/random';
 import { NowPlaying } from '../now_playing.js';
 
 Meteor.publish('playlist', function (id) {
@@ -15,6 +13,10 @@ Meteor.publish('playlists', function(options) {
     limit: Number
   });
   return Playlists.find({}, options);
+});
+
+Meteor.publish('allPlaylists', function() {
+  return Playlists.find();
 });
 
 Meteor.publish('nowPlaying', function() {
