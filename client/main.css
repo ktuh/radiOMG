@@ -55,6 +55,9 @@ img {
     max-width: 100%;
     height: auto;
 }
+.container { 
+  min-height: calc(100vh - 30px);
+}
 #main {
     position: relative;
 }
@@ -156,8 +159,8 @@ img {
             transition-timing-function: ease-out;
 }
 #spinner, .spinner {
-    margin-top: 25%;
-    height: 25%;
+  position: static;
+  margin: 150px auto !important;
 }
 .navbar-default {
     background-color: #fff;
@@ -350,11 +353,11 @@ audio {
   width: 75px;
   height: 5px;
   top: 7px;
-  left: 25px;
+  left: 20px;
   cursor: pointer;
 }
-.mejs__button, .mejs__time, .mejs__time-rail {
-
+.mejs__time-float-corner {
+  display: none !important;
 }
 .mejs__time-rail .mejs__time-total {
   background: #999;
@@ -722,11 +725,9 @@ audio {
   margin: 0 2px;
 }
 .footer {
-  float: left;
   width: 100%;
   text-align: center;
   vertical-align: middle;
-  height: 10vh;
 }
 .footer div {
   margin-bottom: 10px;
