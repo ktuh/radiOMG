@@ -10,29 +10,29 @@ import { $ } from 'meteor/jquery';
 Template.home.onCreated(function () {
   var self = this;
   self.autorun(function () {
-    self.subscribe('posts', { limit: 5, sort: { submitted: -1 }});
+    self.subscribe('posts0', { limit: 5, sort: { submitted: -1 }});
     self.subscribe('reviews', { limit: 5, sort: { submitted: -1 }});
-    self.subscribe('playlists', { limit: 10, sort: { showDate: -1 }});
+    self.subscribe('playlists0', { limit: 10, sort: { showDate: -1 }});
   });
 });
 
 Template.home.helpers({
-  hasPosts: () => { 
+  hasPosts: () => {
     return Posts.find({}, { sort: { submitted: -1 }}).count() > 0;
   },
-  posts: () => { 
+  posts: () => {
     return Posts.find({}, { sort: { submitted: -1 }});
   },
-  hasPlaylists: () => { 
+  hasPlaylists: () => {
     return Playlists.find({}, { sort: { showDate: -1 }}).count() > 0;
   },
-  playlists: () => { 
+  playlists: () => {
     return Playlists.find({}, { sort: { showDate: -1 }});
   },
-  hasReviews: () => { 
+  hasReviews: () => {
     return Reviews.find({}, { sort: { submitted: -1 }}).count() > 0;
   },
-  reviews: () => { 
+  reviews: () => {
     return Reviews.find({}, { sort: { submitted: -1 }});
   }
 });

@@ -2,15 +2,16 @@ import './charts.html';
 import { Template } from 'meteor/templating';
 import { Posts } from '../../../api/posts/posts_collection.js';
 import { PostsIndex } from '../../../api/posts/post_index.js';
+import { pagination } from 'meteor/kurounin:pagination';
 
 Template.charts.onCreated(function() {
   var self = this;
-  self.autorun(function() {
-    self.subscribe('chartsPosts');
-  });
+  self.pagination = new Meteor.Pagination(Posts, {sort: {submitted: -1}, filter: {isChart: true}});
+  self.subscribe('posts');
 });
 
 Template.charts.helpers({
-  index: () => PostsIndex,
-  attr: () => ({'placeholder': "Search Charts..."})
+  ready: () => Template.instance().pagination.ready(),
+  tempPag: () => Template.instance().pagination,
+  docs: () => Template.instance().pagination.getPage()
 });

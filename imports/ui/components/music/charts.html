@@ -1,21 +1,14 @@
 <template name="charts">
   <h1>Music Charts</h1>
   <div>
-    {{#if Template.subscriptionsReady}}
-      {{> EasySearch.Input index=index  attributes=attr}}
-      <div>
-      <ul>
-      {{#EasySearch.Each index=index}}
-        <li><a href="/news/{{slug}}/">{{title}}</a></li>
-      {{/EasySearch.Each}}
+    {{#if ready}}
+    <ul>
+    {{#each docs}}
+      <li><a href="/news/{{slug}}/">{{title}}</a></li>
+    {{/each}}
       </ul>
 
-      {{#EasySearch.IfNoResults index=index}}
-        <p>No charts found</p>
-      {{/EasySearch.IfNoResults}}
-
-      {{> EasySearch.Pagination index=index maxPages=20}}
-      </div>
+      {{> defaultBootstrapPaginator pagination=tempPag limit=10}}
     {{/if}}
   </div>
 </template>
