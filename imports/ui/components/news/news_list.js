@@ -18,7 +18,7 @@ Template.newsList.onCreated(function () {
 });
 
 Template.newsList.onRendered(function () {
-  Session.set('documentTitle', '808news');
+  Session.set('documentTitle', 'KTUH Honolulu | Radio For The People');
 });
 
 Template.newsList.helpers({
