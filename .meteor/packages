@@ -55,6 +55,5 @@ kadira:flow-router
 scorpiusjs:config
 scorpiusjs:materialize-admin-only
 useraccounts:bootstrap
-alethes:pages
 kurounin:pagination
 kurounin:pagination-blaze
