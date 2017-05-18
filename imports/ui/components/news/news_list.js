@@ -11,7 +11,7 @@ Template.newsList.onCreated(function () {
   Session.set('chat-historysince', new Date(0));
   self.autorun(function() {
     var limit = FlowRouter.getParam('limit') || 8;
-    self.subscribe('posts0', {sort: {submitted: -1}, limit: limit});
+    self.subscribe('postsLimited', {sort: {submitted: -1}, limit: limit});
     self.subscribe('chats', Session.get('chat-docid'),
                              Session.get('chat-historysince'));
   });

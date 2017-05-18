@@ -10,8 +10,6 @@ import '../../api/users/users_collection.js';
 import '../../api/pages/pages_collection.js';
 
 import '../../api/reviews/review_index.js';
-import '../../api/posts/post_index.js';
-import '../../api/playlists/playlist_index.js';
 
 import '../../api/scorpius_dictionary.js';
 import '../../api/flow-router-seo-config.js';

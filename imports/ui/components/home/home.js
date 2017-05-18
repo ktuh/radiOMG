@@ -10,9 +10,9 @@ import { $ } from 'meteor/jquery';
 Template.home.onCreated(function () {
   var self = this;
   self.autorun(function () {
-    self.subscribe('posts0', { limit: 5, sort: { submitted: -1 }});
+    self.subscribe('postsLimited', { limit: 5, sort: { submitted: -1 }});
     self.subscribe('reviews', { limit: 5, sort: { submitted: -1 }});
-    self.subscribe('playlists0', { limit: 10, sort: { showDate: -1 }});
+    self.subscribe('playlistsLimited', { limit: 10, sort: { showDate: -1 }});
   });
 });
 

@@ -8,16 +8,12 @@ Meteor.publish('playlist', function (id) {
   return Playlists.find({ spinPlaylistId: id });
 });
 
-Meteor.publish('playlists0', function(options) {
+Meteor.publish('playlistsLimited', function(options) {
   check(options, {
     sort: Object,
     limit: Number
   });
   return Playlists.find({}, options);
-});
-
-Meteor.publish('allPlaylists', function() {
-  return Playlists.find();
 });
 
 Meteor.publish('nowPlaying', function() {
