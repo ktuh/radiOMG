@@ -1,17 +1,19 @@
 <template name="musicPlaylists">
-  <h1>Playlists</h1>
-  <div>
-    {{#if ready}}
-    <table class="playlist-list" border="1">
-    {{#each docs}}
-      <tr>
-        <td><img height="150px" src="{{img showId}}" /></td>
-        <td>{{showName showId}}</td>
-        <td><a href="/playlist/{{spinPlaylistId}}/">{{showDate}}</a></td>
-      </tr>
-    {{/each}}
-    </table>
-    {{> defaultBootstrapPaginator pagination=tempPag limit=10}}
-    {{/if}}
+  <div class='music__playlists'>
+    <h1>Playlists</h1>
+    <div>
+      {{#if ready}}
+      <table class="playlist-list" border="1">
+      {{#each docs}}
+        <tr>
+          <td><img height="150px" src="{{img showId}}" /></td>
+          <td>{{showName showId}}</td>
+          <td><a href="/playlist/{{spinPlaylistId}}/">{{showDate}}</a></td>
+        </tr>
+      {{/each}}
+      </table>
+      {{> defaultBootstrapPaginator pagination=tempPag limit=8}}
+      {{/if}}
+    </div>
   </div>
 </template>

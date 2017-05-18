@@ -1,7 +1,6 @@
 import './charts.html';
 import { Template } from 'meteor/templating';
 import { Posts } from '../../../api/posts/posts_collection.js';
-import { PostsIndex } from '../../../api/posts/post_index.js';
 import { pagination } from 'meteor/kurounin:pagination';
 
 Template.charts.onCreated(function() {

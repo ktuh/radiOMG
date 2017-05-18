@@ -1,14 +1,16 @@
 <template name="charts">
-  <h1>Music Charts</h1>
-  <div>
-    {{#if ready}}
-    <ul>
-    {{#each docs}}
-      <li><a href="/news/{{slug}}/">{{title}}</a></li>
-    {{/each}}
-      </ul>
+  <div class='music__charts'>
+    <h1>Music Charts</h1>
+    <div>
+      {{#if ready}}
+      <ul>
+      {{#each docs}}
+        <li><a href="/news/{{slug}}/">{{title}}</a></li>
+      {{/each}}
+        </ul>
 
-      {{> defaultBootstrapPaginator pagination=tempPag limit=10}}
-    {{/if}}
+        {{> defaultBootstrapPaginator pagination=tempPag limit=10}}
+      {{/if}}
+    </div>`
   </div>
 </template>

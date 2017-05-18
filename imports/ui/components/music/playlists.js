@@ -6,8 +6,7 @@ import { pagination } from 'meteor/kurounin:pagination';
 
 Template.musicPlaylists.onCreated(function() {
   var self = this;
-  self.pagination = new Meteor.Pagination(Playlists, {sort: {showDate: -1}});
-  self.subscribe('allPlaylists');
+  self.pagination = new Meteor.Pagination(Playlists, {sort: {showDate: -1}, perPage: 7});
   self.subscribe('shows');
 });
 
