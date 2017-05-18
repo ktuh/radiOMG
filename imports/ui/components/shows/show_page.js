@@ -38,7 +38,7 @@ Template.showPage.helpers({
     return moment(t).format(fmt);
   },
   playlists: function() {
-    return Playlists.find();
+    return Playlists.find({}, {sort: {showDate: -1}});
   },
   slug: function() {
     return FlowRouter.getParam('slug');

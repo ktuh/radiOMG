@@ -23,7 +23,7 @@ Template.partyList.onRendered(function () {
       isResizeBound: true
     });
   });
-  Session.set('documentTitle', '808party');
+  Session.set('documentTitle', 'KTUH Honolulu | Radio For The People');
 });
 
 Template.partyList.helpers({

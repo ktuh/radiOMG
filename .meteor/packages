@@ -20,7 +20,6 @@ sacha:spin
 fortawesome:fontawesome
 ian:accounts-ui-bootstrap-3
 check@1.2.5
-audit-argument-checks@1.0.7
 easy:search
 iamkevingreen:imagesloaded
 tomwasd:flow-router-seo
@@ -56,3 +55,5 @@ kadira:flow-router
 scorpiusjs:config
 scorpiusjs:materialize-admin-only
 useraccounts:bootstrap
+kurounin:pagination
+kurounin:pagination-blaze

@@ -25,6 +25,9 @@ import '../../ui/components/shows/show_create.js';
 import '../../ui/components/shows/show_edit.js';
 import '../../ui/components/shows/show_page.js';
 import '../../ui/components/user_mgmt/user_mgmt.js';
+import '../../ui/components/music/charts.js';
+import '../../ui/components/music/playlists.js';
+import '../../ui/components/music/music.js';
 
 /*
  *  So, you know that annoying jQuery statement in every route?
@@ -37,6 +40,14 @@ FlowRouter.route('/', {
   action: function () {
     $('head meta[data-flow-router-seo="true"]').removeAttr("data-flow-router-seo");
     BlazeLayout.render('layout', {content: 'home'});
+  }
+});
+
+FlowRouter.route('/music', {
+  name: 'music',
+  action: function() {
+    $('head meta[data-flow-router-seo="true"]').removeAttr("data-flow-router-seo");
+    BlazeLayout.render('layout', {content: 'music'});
   }
 });
 

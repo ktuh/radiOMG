@@ -93,6 +93,7 @@ setInterval(function() {
 }, 60000);
 
 Template.header.helpers({
+  musicPage: () => FlowRouter.path('music'),
   newsPage: () => FlowRouter.path('news'),
   partyPage: () => FlowRouter.path('party'),
   showPage: () => FlowRouter.path('show'),
