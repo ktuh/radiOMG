@@ -2,7 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Posts } from '../posts_collection.js'
 import { pagination } from 'meteor/kurounin:pagination';
 
-Meteor.publish('posts0', function (options) {
+Meteor.publish('postsLimited', function (options) {
   check(options, {
     sort: Object,
     limit: Number

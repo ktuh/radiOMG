@@ -16,7 +16,7 @@ player = null;
 Session.set('hashesOpen', false);
 Session.set('isSearching', false);
 Session.set('numTags', 10);
-Session.set('documentTitle', '808mix');
+Session.set('documentTitle', 'KTUH FM Honolulu | Radio For The People');
 Session.set('defaultLoaded', true);
 Session.set('mouseIsOverTag', false);
 

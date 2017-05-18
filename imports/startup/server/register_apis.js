@@ -11,7 +11,5 @@ import '../../api/pages/server/publications.js';
 
 import '../../api/users/users_index.js';
 import '../../api/reviews/review_index.js';
-import '../../api/posts/post_index.js';
-import '../../api/playlists/playlist_index.js'
 
 import '../../api/scorpius_dictionary.js';

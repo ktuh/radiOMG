@@ -167,7 +167,8 @@ if (Posts.find().count() === 0) {
     friendlySlugs: {
       slug: {
         base: 'hello-world',
-        index: 0 }
+        index: 0
+      }
     },
     photo: {
       fileId: '7QMJycqBipCXvYzH4',
@@ -223,7 +224,8 @@ if (Posts.find().count() === 0) {
     friendlySlugs: {
       slug: {
         base: 'music-charts',
-        index: 0 }
+        index: 0
+      }
     },
     photo: {
       fileId: '7QMJycqBipCXvYzH4',

@@ -11,7 +11,7 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 Template.partyPage.onCreated(function () {
   var self = this;
 
-  Session.set('documentTitle', '808party');
+  Session.set('documentTitle', 'KTUH Honolulu | Radio For The People');
 
   self.autorun(function () {
     var slug = FlowRouter.getParam('slug');
