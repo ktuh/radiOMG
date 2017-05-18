@@ -28,9 +28,11 @@
     {{#if playlists}}
       <div class='show__playlists'>
       <h4>Playlists</h4>
+      <ul>
       {{#each playlists}}
-        <span class='show__playlist-time'><a href='/playlist/{{spinPlaylistId}}'>{{time showDate}}</a></span>
+        <li><span class='show__playlist-time'><a href='/playlist/{{spinPlaylistId}}'>{{time showDate}}</a></span></li>
       {{/each}}
+      </ul>
       </div>
     {{/if}}
   <div class='comments'>
