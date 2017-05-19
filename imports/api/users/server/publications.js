@@ -13,7 +13,6 @@ Meteor.publish('users', function() {
 });
 
 Meteor.publish('profileData', function(userId) {
-  console.log(userId);
   check(userId, String);
   return Profiles.find({ userId: userId });
 });

@@ -58,8 +58,7 @@ Meteor.startup(function () {
   });
 
   Accounts.onCreateUser((options, user) => {
-    Profiles.insert({userId: user._id});
-    var docId = Profiles.findOne({userId: user._id})._id;
+    Profiles.insert({userId: user._id});\
     return user;
   });
 
