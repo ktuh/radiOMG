@@ -18,4 +18,11 @@ export const Profiles = new scorpius.collection('profiles', {
   }
 });
 
+Profiles.allow(
+  update: function (userId, doc, fieldNames, modifier) {
+    return userId === doc.userId;
+  }
+});
+
+
 Profiles.attachSchema(ProfilesSchema);

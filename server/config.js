@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { AccountsServer } from 'meteor/accounts-base';
 import { Bert } from 'meteor/themeteorchef:bert';
 import { _ } from 'meteor/underscore';
+import { Profiles } from '../imports/api/users/profiles_collection.js';
 
 Meteor.startup(function () {
   process.env.MAIL_URL = 'smtp://' +
@@ -57,12 +58,7 @@ Meteor.startup(function () {
   });
 
   Accounts.onCreateUser((options, user) => {
-    if (!_.isEmpty(options.profile)) {
-      user.profile = options.profile;
-    }
-    else {
-      user.profile = {name: "", bio: "", website: "", soundcloud: "", facebook: "", instagram: "", snapchat: "", banned: false};
-    }
+    Profiles.insert({userId: user._id});\
     return user;
   });
 
