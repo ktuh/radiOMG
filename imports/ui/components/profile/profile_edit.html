@@ -1,7 +1,7 @@
 <template name='profileEdit'>
   <div class='profileEdit'>
   {{#if currentUser}}
-    {{> quickForm id="profileEdit" collection="Meteor.users" doc=currentUser type="update" fields="profile"}}
+    {{> quickForm id="profileEdit" collection=collection doc=currentProfile type="update" omitFields="userId"}}
   {{else}}
     Please login (or signup) to edit your profile.
   {{/if}}

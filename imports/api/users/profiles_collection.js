@@ -18,4 +18,14 @@ export const Profiles = new scorpius.collection('profiles', {
   }
 });
 
+Profiles.allow({
+  insert: function (userId, doc, fieldNames, modifier) {
+    return Profiles.findOne({userId: userId}) !== undefined;
+  },
+  update: function (userId, doc, fieldNames, modifier) {
+    return userId === doc.userId || Profile.findOne({userId: userId}).keys.length === 1;
+  }
+});
+
+
 Profiles.attachSchema(ProfilesSchema);

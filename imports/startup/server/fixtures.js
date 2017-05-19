@@ -24,7 +24,7 @@ if (!Accounts.findUserByUsername('davey')) {
   // This update is necessary because the createUser function is fussy. If you
   // give it an email object instead of updating here, bizarrely the user will
   // be unable to login using their email address.
-  Meteor.users.update({ _id: daveyId }, { $set: { emails: [{ address: 
+  Meteor.users.update({ _id: daveyId }, { $set: { emails: [{ address:
                       'davey@example.com', verified: true }]}});
 
   nickiId = Accounts.createUser({
@@ -38,19 +38,19 @@ if (!Accounts.findUserByUsername('davey')) {
 
   Roles.addUserToRoles( nickiId,  ['admin'] );
 
-  Meteor.users.update({ _id: daveyId }, { $set: { emails: [{ address: 
+  Meteor.users.update({ _id: nickiId }, { $set: { emails: [{ address:
                       'nickiralar@gmail.com', verified: true }]}});
 
-  kkzId = Accounts.createUser({
+  derekId = Accounts.createUser({
     profile: {name: 'DJ Kodekrakkerz'},
     username: 'kodekrakkerz',
     emails: 'kodekrakkerz@gmail.com',
     password: '666666'
   });
 
-  Roles.addUserToRoles(kkzId, ['dj']);
+  Roles.addUserToRoles(derekId, ['dj']);
 
-  Meteor.users.update({ _id: daveyId }, { $set: { emails: [{ address: 
+  Meteor.users.update({ _id: derekId }, { $set: { emails: [{ address:
                       'kodekrakkerz@gmail.com', verified: true }]}});
 };
 
