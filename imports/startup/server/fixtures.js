@@ -5,6 +5,7 @@ import { Playlists } from '/imports/api/playlists/playlists_collection.js';
 import { Posts } from '/imports/api/posts/posts_collection.js';
 import { Reviews } from '/imports/api/reviews/reviews_collection.js';
 import { Shows } from '/imports/api/shows/shows_collection.js';
+import { Profiles } from '/imports/api/users/profiles_collection.js';
 
 if (!Accounts.findUserByUsername('davey')) {
   var now = new Date().getTime();
@@ -12,48 +13,61 @@ if (!Accounts.findUserByUsername('davey')) {
   daveyId = Accounts.createUser({
     profile: {
       name: 'Davey Shindig',
-      bio: ' <p>After his youth in the frozen exurbs of the Twin Cities, David Wilkie, a.k.a. <b>Davey Shindig</b>, moved to Honolulu, Hawaii, where he has become a regular fixture in the nightlife. With current residencies at local hotspots like the Downbeat Lounge and Bevy, as well as opening sets for everyone from Diplo, A-Trak, and Steve Aoki to Andy Stott, Tokimonsta, and John Maus, Shindig has been gathering enthusiastic audience response and critical praise for his uniquely-styled indie electro-pop.</p><p>Classically trained in music and theater, and informed by degrees in computer science and audio production, Shindig brings his appreciation and deep understanding of the performing arts to bear in the kinetic, surprise-filled late night sets he\'s built his reputation upon. Quite simply, Shindig takes listeners on a cathartic journey through melodic electronic and acoustical sounds.</p><p>Seeing Honolulu in a musical rut, Shindig launched a weekly FM radio show called <b>808 Mixtapes</b>, to feature the talents of local DJs as well as talent passing through town. Along the way, he has played host to some big stars, with Tim Sweeney, Louisahhh!!!, Tamara Sky, Classixx, and Com Truise to name a few contributing to the show.</p><p>Shindig has stayed in Honolulu to help keep the local music scene from being completely overrun by cash-grabbing industry hacks. Simultaneously, with his multicultural perspective and budding multidisciplinary success, it is easy to see why Davey Shindig\'s renown is quickly growing beyond Hawaii\'s shores.</p><p><br><small>Photo c/o: <a href="https://www.google.com/search?q=vincent+ricafort">Vincent Ricafort</a></small></p>',
-      website: 'http://808mix.com',
-      soundcloud: '808mix',
-      instagram: 'daveyshindig',
-      facebook: 'davey.shindig',
-      tumblr: '808mixtapes',
-      twitter: 'daveyshindig',
-      snapchat: ''
     },
     username: 'davey',
-    emails: [
-      { address: 'davey@example.com', verified: true }
-    ],
+    email: 'davey@example.com',
     password: '123456',
   });
 
   Roles.addUserToRoles( daveyId,  ['admin'] );
+
+  // This update is necessary because the createUser function is fussy. If you
+  // give it an email object instead of updating here, bizarrely the user will
+  // be unable to login using their email address.
+  Meteor.users.update({ _id: daveyId }, { $set: { emails: [{ address: 
+                      'davey@example.com', verified: true }]}});
 
   nickiId = Accounts.createUser({
     profile: {
       name: 'Nicki Ralar'
     },
     username: 'badlimbs',
-    emails: [
-      { address: 'nickiralar@gmail.com', verified: true }
-    ],
+    email: 'nickiralar@gmail.com',
     password: '654321'
   });
 
   Roles.addUserToRoles( nickiId,  ['admin'] );
 
-  // Brah, dis steh one dummy acct, keh? No delete it.
+  Meteor.users.update({ _id: daveyId }, { $set: { emails: [{ address: 
+                      'nickiralar@gmail.com', verified: true }]}});
+
   kkzId = Accounts.createUser({
     profile: {name: 'DJ Kodekrakkerz'},
     username: 'kodekrakkerz',
-    emails: [
-      {address: 'kodekrakkerz@gmail.com', verified: true}
-    ],
+    emails: 'kodekrakkerz@gmail.com',
     password: '666666'
   });
 
   Roles.addUserToRoles(kkzId, ['dj']);
+
+  Meteor.users.update({ _id: daveyId }, { $set: { emails: [{ address: 
+                      'kodekrakkerz@gmail.com', verified: true }]}});
+};
+
+if (Profiles.find().count() === 0) {
+  var davey = Meteor.users.findOne({ username: 'davey' });
+
+  Profiles.insert({
+    userId: davey._id,
+    name: 'Davey Shindig',
+    bio: ' <p>After his youth in the frozen exurbs of the Twin Cities, David Wilkie, a.k.a. <b>Davey Shindig</b>, moved to Honolulu, Hawaii, where he has become a regular fixture in the nightlife. With current residencies at local hotspots like the Downbeat Lounge and Bevy, as well as opening sets for everyone from Diplo, A-Trak, and Steve Aoki to Andy Stott, Tokimonsta, and John Maus, Shindig has been gathering enthusiastic audience response and critical praise for his uniquely-styled indie electro-pop.</p><p>Classically trained in music and theater, and informed by degrees in computer science and audio production, Shindig brings his appreciation and deep understanding of the performing arts to bear in the kinetic, surprise-filled late night sets he\'s built his reputation upon. Quite simply, Shindig takes listeners on a cathartic journey through melodic electronic and acoustical sounds.</p><p>Seeing Honolulu in a musical rut, Shindig launched a weekly FM radio show called <b>808 Mixtapes</b>, to feature the talents of local DJs as well as talent passing through town. Along the way, he has played host to some big stars, with Tim Sweeney, Louisahhh!!!, Tamara Sky, Classixx, and Com Truise to name a few contributing to the show.</p><p>Shindig has stayed in Honolulu to help keep the local music scene from being completely overrun by cash-grabbing industry hacks. Simultaneously, with his multicultural perspective and budding multidisciplinary success, it is easy to see why Davey Shindig\'s renown is quickly growing beyond Hawaii\'s shores.</p><p><br><small>Photo c/o: <a href="https://www.google.com/search?q=vincent+ricafort">Vincent Ricafort</a></small></p>',
+    website: 'http://808mix.com',
+    soundcloud: '808mix',
+    instagram: 'daveyshindig',
+    facebook: 'davey.shindig',
+    twitter: 'daveyshindig',
+    snapchat: '123',
+  });
 };
 
 if (Shows.find().count() === 0) {

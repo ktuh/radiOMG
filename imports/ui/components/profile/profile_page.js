@@ -3,6 +3,7 @@ import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { BlazeLayout } from 'meteor/kadira:blaze-layout';
 import { Posts } from '../../../api/posts/posts_collection.js'
+import { Profiles } from '../../../api/users/profiles_collection.js'
 import '../application/layout.js';
 
 Template.profilePage.onCreated(function() {
@@ -20,9 +21,9 @@ Template.profilePage.onCreated(function() {
         if (user === undefined) {
           BlazeLayout.render('layout', {content: 'notFound'});
         }
+        else self.subscribe('profileData', user._id);
       }
     });
-
     self.subscribe('postsByUser', username);
   });
 });
@@ -31,23 +32,27 @@ Template.profilePage.helpers({
   profile: function() {
     var username = FlowRouter.getParam('username');
     var user = Meteor.users.findOne({username: username});
-    if (user) {
-      return user.profile;
-    }
+    var profile = Profiles.findOne({ userId: user._id });
+
+    if (profile !== undefined) {
+      return profile;
+    } else return false;
   },
   social: function() {
     var username = FlowRouter.getParam('username');
-    var user = Meteor.users.findOne({username: username});
-    if (user !== undefined && user.profile) {
-      return user.profile.website || user.profile.twitter ||
-             user.profile.facebook || user.profile.snapchat ||
-             user.profile.soundcloud;
+    var user = Meteor.users.findOne({ username: username});
+    var profile = Profiles.findOne({ userId: user._id });
+
+    if (profile !== undefined) {
+      return profile.website || profile.twitter || profile.facebook ||
+             profile.snapchat || profile.soundcloud;
     } else return false;
   },
   posts: function () {
     var username = FlowRouter.getParam('username');
     var user = Meteor.users.findOne({username: username});
     var i = user._id;
+
     return Posts.find({userId: i}, {sort: {submitted: -1}});
   }
 });
