@@ -10,7 +10,7 @@ export const Parties = new scorpius.collection('parties', {
     columns: [
       {
         data: 'flyerFront',
-        title: 'Title',
+        title: 'Flyer',
         render: function (val, type, doc) {
           return "<img src=" + val.url + ">";
         }

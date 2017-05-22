@@ -1,9 +1,10 @@
 import { Meteor } from 'meteor/meteor';
-import { createCommentNotification } from '../notifications/notifications_collection.js';
-
 import { Parties } from '../parties/parties_collection.js';
+import { Playlists } from '../playlists/playlists_collection.js';
 import { Posts } from '../posts/posts_collection.js';
 import { Comments } from '../comments/comments_collection.js';
+import { Shows } from '../shows/shows_collection.js';
+import { FlowRouter } from 'meteor/kadira:flow-router';
 
 Meteor.methods({
   commentInsert: function(commentAttributes) {
@@ -21,16 +22,75 @@ Meteor.methods({
       author: user.username,
       submitted: new Date()
     };
+    var to = '';
+    var subject = '';
+    var body = '';
+    var url = 'https://ktuh.org';
 
-    // update the post with the number of comments
-    if (commentAttributes.type === "newsItem") {
-      Posts.update(comment.postId, {$inc: {commentCount: 1}});
-    } else if (commentAttributes.type === "partyPage") {
-      Parties.update(comment.postId, {$inc: {commentCount: 1}});
+    if (!(commentAttributes.type === 'partyPage' || 
+          commentAttributes.type === 'playlistPage' ||
+          commentAttributes.type === 'newsPage')) {      
+      throwError('Cannot comment on this page!');
+      return;
     }
+
     // create the comment, save the id
     comment._id = Comments.insert(comment);
-    createCommentNotification(comment);
+
+    if (this.isSimulation)
+      return comment._id;
+
+    switch(commentAttributes.type) {
+      case 'partyPage':
+        var party = Parties.findOne({ _id: commentAttributes.postId});
+        var url = FlowRouter.url('partyPage', party.slug);
+        var recipient = Meteor.users.findOne({ _id: party.userId });
+
+        to = recipient.emails && recipient.emails[0].address;
+        // So we don't email if the party page's author is commenting.          
+        if (party.userId === comment.userId)
+          break;
+        subject = 'New Comment on Your Event "' + party.title + '"';
+        body = 'Hello,\n\nYou have a new comment on your event, ' + party.title
+            + '. User ' + comment.author + ' said: \n\n"' + comment.body + 
+            '".\n\n<a target="_blank" href="' + url + '">Click here to view ' +
+            'this comment in context.</a>';
+        Meteor.call('sendEmailNotification', to, subject, body);
+        break;
+      case 'playlistPage':
+        var playlist = Playlists.findOne({ _id: commentAttributes.postId });
+        var url = FlowRouter.url('playlistPage', playlist.spinPlaylistId);
+        var show = Shows.findOne({ showId: playlist.showId });
+        var recipient = Meteor.users.findOne({ _id: show.userId });
+
+        to = recipient.emails && recipient.emails[0].address;
+        if (comment.userId === show.userId)
+          break;
+        subject = 'New Comment on Your Playlist';
+        body = 'Hello,\n\nYou have a new comment on your playlist from ' + playlist.showDate
+            + '. User ' + comment.author + ' said: \n\n"' + comment.body + 
+            '".\n\n<a target="_blank" href="' + url + '">Click here to view '
+            + 'this comment in context.</a>';
+        Meteor.call('sendEmailNotification', to, subject, body);
+        break;
+      case 'newsPage':
+        var post = Parties.findOne(commentAttributes);
+        var url = FlowRouter.url('newsPage', post.slug);
+        var recipient = Meteor.users.findOne({ _id: post.userId });
+
+        to = recipient.emails && recipient.emails[0].address;
+        if (post.userId === comment.userId)
+          break;
+        subject = 'New Comment on Your Post, "' + post.title + '"';
+        body = 'Hello,\n\nYou have a new comment on your post, ' + post.title
+            + '. User ' + comment.author + ' said: \n\n"' + comment.body + 
+            '".\n\n<a target="_blank" href="' + url + '">Click here to view '
+            + 'this comment in context.</a>';
+        Meteor.call('sendEmailNotification', to, subject, body);
+        break;
+    };
+
+    // createCommentNotification(comment);
     return comment._id;
   }
 });

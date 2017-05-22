@@ -1,6 +1,7 @@
 <template name="playlistPage">
   {{#if Template.subscriptionsReady}}
-    <h3>Playlist for <a href="/show/{{showSlug}}">{{showName}}</a> on {{showDate}}</h3>
+    {{#if showImage}}<img class='playlist__show-image' src='{{showImage}}'>{{/if}}
+    <h3>Playlist for <a href="/shows/{{showSlug}}">{{showName}}</a> on {{showDate}}</h3>
     <table class="playlist">
       <tr class="playlist__info-row">
         <td><b>Time Played</b></td>
@@ -15,5 +16,6 @@
       </tr>
       {{/each}}
     </table>
+    {{> commentContainer}}
   {{/if}}
 </template>

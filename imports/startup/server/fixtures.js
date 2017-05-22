@@ -15,7 +15,7 @@ if (!Accounts.findUserByUsername('davey')) {
       name: 'Davey Shindig',
     },
     username: 'davey',
-    email: 'davey@example.com',
+    email: 'davey@ktuh.org',
     password: '123456',
   });
 
@@ -25,7 +25,7 @@ if (!Accounts.findUserByUsername('davey')) {
   // give it an email object instead of updating here, bizarrely the user will
   // be unable to login using their email address.
   Meteor.users.update({ _id: daveyId }, { $set: { emails: [{ address:
-                      'davey@example.com', verified: true }]}});
+                      'davey@ktuh.org', verified: true }]}});
 
   nickiId = Accounts.createUser({
     profile: {

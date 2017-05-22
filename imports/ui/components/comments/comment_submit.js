@@ -7,6 +7,7 @@ import { $ } from 'meteor/jquery';
 import { throwError } from '../../../../client/helpers/errors.js';
 
 import { Parties } from '../../../api/parties/parties_collection.js';
+import { Playlists } from '../../../api/playlists/playlists_collection.js';
 import { Posts } from '../../../api/posts/posts_collection.js';
 
 Template.commentSubmit.onCreated( function() {
@@ -33,6 +34,9 @@ Template.commentSubmit.events({
     switch(FlowRouter.getRouteName()) {
       case "partyPage":
           postId = Parties.findOne()._id;
+          break;
+      case "playlistPage":
+          postId = Playlists.findOne()._id;
           break;
       case "newsPage":
           postId = Posts.findOne()._id;

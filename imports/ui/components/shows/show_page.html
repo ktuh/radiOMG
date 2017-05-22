@@ -35,19 +35,6 @@
       </ul>
       </div>
     {{/if}}
-  <div class='comments'>
-    <h3 class='comments__header'>Comments</h3>
-    <ul class='comments__list'>
-      {{#each comments}}
-        {{> commentItem}}
-      {{/each}}
-    </ul>
-    {{#if currentUser}}
-      {{> commentSubmit}}
-    {{else}}
-      <p class='comments__text'>Please log in to leave a comment.</p>
-    {{/if}}
-  </div>
   {{else}}
     {{> spinner}}
   {{/if}}

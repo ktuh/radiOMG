@@ -100,6 +100,7 @@ FlowRouter.route('/party/edit/:slug', {
 });
 
 FlowRouter.route('/playlist/:id', {
+  name: 'playlistPage',
   action: function() {
     $('head meta[data-flow-router-seo="true"]').removeAttr("data-flow-router-seo");
     BlazeLayout.render('layout', {content: 'playlistPage'});

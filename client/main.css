@@ -581,7 +581,12 @@ audio {
     clear: both;
 }
 .playlist {
+  clear: both;
   text-align: left;
+}
+.playlist__show-image {
+  max-width: 160px;
+  margin: 0 15px 0 0;
 }
 .playlist__info-row{
   text-transform: uppercase;

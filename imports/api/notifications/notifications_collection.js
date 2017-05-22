@@ -4,14 +4,14 @@ import { scorpius } from 'meteor/scorpiusjs:core';
 export const Notifications = new Mongo.Collection('notifications');
 
 Notifications.allow({
-  update: function(userId, doc, fieldNames) {
-    return ownsDocument(userId, doc)
+  update: (userId, doc, fieldNames) => {
+    return doc && doc.userId === userId
         && fieldNames.length === 1
         && fieldNames[0] === 'read';
   }
 });
 
-export const createCommentNotification = function (comment) {
+export const createCommentNotification = (comment) => {
   Notifications.insert({
     userId: comment.userId,
     postId: comment.postId,
