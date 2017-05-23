@@ -1,6 +1,4 @@
 import './playlist_page.html';
-import '../comments/comment_container.js';
-import '../comments/comment_item.js';
 import { Meteor } from 'meteor/meteor';
 import { Comments } from '../../../api/comments/comments_collection.js';
 import { Playlists } from '../../../api/playlists/playlists_collection.js';
@@ -37,7 +35,10 @@ Template.playlistPage.onCreated(function(){
 
 Template.playlistPage.helpers({
   comments: function() {
-    return Comments.find();
+    var id = parseInt(FlowRouter.getParam('id'));
+    var playlist = Playlists.findOne({ spinPlaylistId: id });
+
+    return Comments.find({ postId: playlist._id });
   },
   songs: function() {
     return Session.get("currentPlaylist");

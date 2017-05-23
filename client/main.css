@@ -213,22 +213,19 @@ img {
     clear: both;
 }
 .comments__header {
-    padding: 30px 0 0;
-    margin: 0;
+    margin: 30px 0 10px;
     font-size: 18px;
 }
 .comments__list {
     list-style-type: none;
     padding-left: 0;
 }
-.comments__list h4 {
-    margin: 0;
-}
-.comments__list p:last-child {
-    margin-bottom: 0;
+.comments__list h4,
+.comments__list p {
+    margin-bottom: -2px;
 }
 .comment__author {
-    font-size: 16px;
+    font-size: 11px;
 }
 .comment__date {
     font-weight: normal;

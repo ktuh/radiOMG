@@ -18,7 +18,7 @@ Template.partyPage.onCreated(function () {
 
     self.subscribe('singleParty', slug, {
       onReady: function () {
-        var post = Parties.findOne();
+        var post = Parties.findOne({ slug: slug });
         self.subscribe('comments', post._id);
       }
     });
@@ -27,7 +27,10 @@ Template.partyPage.onCreated(function () {
 
 Template.partyPage.helpers({
   party: function () {
-    return Parties.findOne();
+    var slug = FlowRouter.getParam('slug');
+    var post = Parties.findOne({ slug: slug });
+
+    return Parties.findOne({ slug: slug });
   },
   ownParty: function () {
     return Meteor.userId() && Parties.findOne() &&

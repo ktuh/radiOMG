@@ -11,8 +11,8 @@ Template.newsItem.onCreated(function () {
     var slug = FlowRouter.getParam('slug');
     self.subscribe('singlePost', slug, {
       onReady: function () {
-        var post = Posts.findOne();
-        self.subscribe('comments', post._id);
+        var post = Posts.findOne({ slug: slug });
+        self.subscribe('comments', post._id); 
       }
     });
   });
@@ -20,6 +20,9 @@ Template.newsItem.onCreated(function () {
 
 Template.newsItem.helpers({
   post: function () {
+    var slug = FlowRouter.getParam('slug');
+    var post = Posts.findOne({ slug: slug });
+  
     return Posts.findOne();
   },
   comments: function () {
