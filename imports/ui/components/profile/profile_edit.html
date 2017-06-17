@@ -1,9 +1,9 @@
 <template name='profileEdit'>
-  <div class='profileEdit'>
-  {{#if currentUser}}
-    {{> quickForm id="profileEdit" collection=collection doc=currentProfile type="update" omitFields="userId"}}
-  {{else}}
-    Please login (or signup) to edit your profile.
-  {{/if}}
+  <div class='profile-edit'>
+    {{#if currentUser}}
+      {{> quickForm id="profileEdit" collection=collection doc=currentProfile type="update" omitFields="userId"}}
+    {{else}}
+      Please login (or signup) to edit your profile.
+    {{/if}}
   </div>
 </template>

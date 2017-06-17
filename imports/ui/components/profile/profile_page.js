@@ -13,7 +13,7 @@ Template.profilePage.onCreated(function() {
     var username = FlowRouter.getParam('username');
 
     self.subscribe('userData', username, {
-      onReady: function () {
+      onReady: function() {
         var user = Meteor.users.findOne({ username: username });
 
         // Dirty solution, should be handled in the router but we don't have a
@@ -48,11 +48,18 @@ Template.profilePage.helpers({
              profile.snapchat || profile.soundcloud;
     } else return false;
   },
-  posts: function () {
+  posts: function() {
     var username = FlowRouter.getParam('username');
     var user = Meteor.users.findOne({username: username});
-    var i = user._id;
+    var posts = Posts.find({userId: user._id}, {sort: {submitted: -1}})
 
-    return Posts.find({userId: i}, {sort: {submitted: -1}});
+    return posts.count() > 0 && posts;
+  },
+  ownProfile: function() {
+    var username = FlowRouter.getParam('username');
+    var user = Meteor.users.findOne({username: username});
+    var profile = Profiles.findOne({ userId: user._id });
+
+    return Meteor.userId() && profile.userId === Meteor.userId();
   }
 });

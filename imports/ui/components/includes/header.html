@@ -1,7 +1,7 @@
 <template name='header'>
   <nav class='navbar navbar-default' role='navigation'>
     <div class='info-box'>
-      <a href='/'><img class='logo-img' src='/img/ktuh-logo.jpg'></a>
+      <a class='info-box__link' href='/'>KTUH FM</a>
     </div>
     <div class='navbar-header'>
       <button type='button' class='navbar-toggle collapsed' data-toggle='collapse' data-target='#navigation'>
@@ -13,21 +13,24 @@
     </div>
     <div class='collapse navbar-collapse' id='navigation'>
       <ul class='nav navbar-nav navbar-left'>
-        <li class='{{activePage 'party' 'partyPage'}} nav-item nav-item__parties'>
-          <a href={{partyPage}}>Party</a>
-        </li>
-        <li class='{{activePage 'news' 'newsPage'}} nav-item nav-item__news'>
-          <a href={{newsPage}}>News</a>
+        <li class='{{activePage 'about' 'aboutPage'}} nav-item nav-item__news'>
+          <a href='#'>About Us</a>
         </li>
         <li class='{{activePage 'show' 'showPage'}} nav-item nav-item__news'>
           <a href={{showPage}}>Shows</a>
         </li>
-<!--         <li class='{{activePage 'review' 'reviewsPage'}} nav-item nav-item__reviews'>
-          <a href={{reviewsPage}}>Reviews</a>
-        </li> -->
         <li class='{{activePage 'music'}} nav-item nav-item__music'>
           <a href={{musicPage}}>Music</a>
         </li>
+        <li class='{{activePage 'party' 'partyPage'}} nav-item nav-item__parties'>
+          <a href={{partyPage}}>Events</a>
+        </li>
+        <li class='{{activePage 'news' 'newsPage'}} nav-item nav-item__news'>
+          <a href={{newsPage}}>Radioblog</a>
+        </li>
+<!--         <li class='{{activePage 'review' 'reviewsPage'}} nav-item nav-item__reviews'>
+          <a href={{reviewsPage}}>Reviews</a>
+        </li> -->
       </ul>
       <ul class='nav navbar-nav navbar-right'>
         <li class='nav-item'>

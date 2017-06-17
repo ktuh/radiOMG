@@ -1,14 +1,19 @@
 <template name='layout'>
   <div class='container'>
-    {{> header }}
-    {{> errors }}
+    {{#if home}}
+      {{> landing}}
+    {{/if}}
+    {{> header}}
+    {{> errors}}
     <div id='main'>
-      {{#if allowed}}
-        {{>Template.dynamic template=content}}
-      {{else}}
-        <p>You are banned from using this site at this time.</p>
-      {{/if}}
+      <div class='spacer'>
+        {{#if allowed}}
+          {{> Template.dynamic template=content}}
+        {{else}}
+          <p>You are banned from using this site at this time.</p>
+        {{/if}}
+      </div>
     </div>
   </div>
-  {{> footer }}
+  {{> footer}}
 </template>

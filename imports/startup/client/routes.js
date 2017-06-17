@@ -8,6 +8,7 @@ import '../../ui/components/home/home.js'
 import '../../ui/components/includes/errors.js';
 import '../../ui/components/includes/footer.js';
 import '../../ui/components/includes/header.js';
+import '../../ui/components/includes/landing.js';
 import '../../ui/components/news/news_item.js';
 import '../../ui/components/news/news_list.js';
 import '../../ui/components/pages/pages_item.js'
@@ -47,7 +48,7 @@ FlowRouter.route('/music', {
   name: 'music',
   action: function() {
     $('head meta[data-flow-router-seo="true"]').removeAttr("data-flow-router-seo");
-    BlazeLayout.render('layout', {content: 'music'});
+  BlazeLayout.render('layout', {content: 'music'});
   }
 });
 

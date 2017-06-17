@@ -1,7 +1,9 @@
 <template name='profilePage'>
-  <div class='profilePage'>
-    {{#with profile}}
-    <img class='profile__pic' src='{{photo.url}}'>
+  {{#with profile}}
+    {{#if ownProfile}}
+      <a href='/profile'><button type='button' class='btn btn-default btn-md party-header__button'><span class='glyphicon glyphicon-edit' aria-hidden='true'></span>Edit</button></a>
+    {{/if}}
+    {{#if photo.url}}<img class='profile__pic' src='{{photo.url}}'>{{/if}}
     <div class='profile__info'>
       {{#if name}}<h1 class='profile__header'><b>{{name}}</b>{{#if social}}<span class='profile__header-separator'> |</span>{{/if}}</h1>{{/if}}
       <div class='profile__social'>
@@ -12,22 +14,23 @@
         {{#if twitter}}<a href='http://twitter.com/{{twitter}}'><img class='profile__social-icon' src='/img/twitter.png'></a>{{/if}}
         {{#if snapchat}}<a href='{{snapchat}}'><img class='profile__social-icon' src='/img/snapchat.png'></a>{{/if}}
       </div>
-      <div class='profile__bio'>{{#if bio}}{{{bio}}}{{else}}<i><small>({{name}} hasn't filled out a bio yet.)</small></i>{{/if}}</div>
-    </div>
-    {{/with}}
-    <h3>Posts</h3>
-    {{#if Template.subscriptionsReady}}
-      {{#if posts}}
-      <div>
-        {{#each posts}}
-          <span class='profile__posts'><a href='/news/{{slug}}'>{{title}}</a><br /><i>{{submitted}}</i></span>
-        {{/each}}
+      <div class='profile__bio'>
+        {{#if bio}}{{{bio}}}{{else}}<i><small>({{name}} hasn't filled out a bio yet.)</small></i>{{/if}}
       </div>
-      {{else}}
-      <div>
-        <p>{{profile.name}} hasn't written any posts.</p>
-      </div>
+      {{#if Template.subscriptionsReady}}
+        {{#if posts}}
+          <div class='profile__posts'>
+            <h3>Posts</h3>
+            {{#each posts}}
+              <span class='profile__posts'><a href='/news/{{slug}}'>{{title}}</a><br /><i>{{submitted}}</i></span>
+            {{/each}}
+          </div>
+        {{else}}
+          <div>
+            <p><i>{{profile.name}} hasn't written any posts yet.</i></p>
+          </div>
+        {{/if}}
       {{/if}}
-    {{/if}}
-</div>
+    </div>
+  {{/with}}
 </template>

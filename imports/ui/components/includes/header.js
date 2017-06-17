@@ -99,11 +99,12 @@ Template.header.helpers({
   showPage: () => FlowRouter.path('show'),
   reviewsPage: () => FlowRouter.path('reviewsPage'),
   nowPlaying: () => Session.get('nowPlaying'),
-  latestSong: () =>  (NowPlaying.findOne() !== undefined && !Session.get('timeout')) ? "<div>Last Played Song: " + NowPlaying.findOne().current + "</div>" : ""
+  latestSong: () =>  (NowPlaying.findOne() !== undefined && !Session.get('timeout')) ? 
+                     "<div>Last Played Song: " + NowPlaying.findOne().current + "</div>" : ""
 });
 
 Template.header.events({
-  'click .glyphicon-search': function (event) {
+  'click .glyphicon-search': function(event) {
     $('.nav__search input').focus();
   }
 });
