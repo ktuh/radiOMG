@@ -11,23 +11,31 @@ Template.newsList.onCreated(function () {
   Session.set('chat-historysince', new Date(0));
   self.autorun(function() {
     var limit = FlowRouter.getParam('limit') || 8;
-    self.subscribe('postsLimited', {sort: {submitted: -1}, limit: limit});
+    self.subscribe('postsLimited', {sort: {submitted: -1}, limit: limit}, {
+      onReady: function() {
+        window.setTimeout(function() {
+          $('.news-list').masonry('reloadItems').masonry('layout');
+        }, 250);
+      }
+    });
     self.subscribe('chats', Session.get('chat-docid'),
-                             Session.get('chat-historysince'));
+                            Session.get('chat-historysince'));
   });
 });
 
 Template.newsList.onRendered(function () {
   Session.set('documentTitle', 'KTUH Honolulu | Radio For The People');
+  $('.news-list').imagesLoaded(function() {
+    $('.news-list').masonry({
+      itemSelector: '.news-list__post',
+      transitionDuration: 0,
+      isResizeBound: true
+    });
+  });
 });
 
 Template.newsList.helpers({
-  posts: function () {
-    return Posts.find();
-  },
-  newsPagePath: function (slug) {
-    var params = { slug: slug };
-
-    return FlowRouter.path('news/:slug', params);
-  }
+  posts: () => Posts.find(),
+  newsPagePath: (slug) => FlowRouter.path('news/:slug', { slug: slug }),
+  excerpt: (body) => body.replace(/(([^\s]+\s\s*){100})(.*)/,"$1…")
 });

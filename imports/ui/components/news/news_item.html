@@ -1,9 +1,12 @@
 <template name='newsItem'>
+  <div class='news-item'>
   {{#with post}}
     <h1>{{title}}</h1>
-    <h3>by <a href="/profile/{{author}}">{{author}}</a></h3>
-    <div>{{{body}}}</div>
-    {{#if comments}}
+    {{#if author}}<h3>by <a href="/profile/{{author}}">{{displayName}}</a></h3>{{/if}}
+    {{#if photo}}<img class='news-item__photo' src='{{photo.url}}'>{{/if}}
+    <div class='news-item__body'>{{{body}}}</div>
+  {{/with}}
+  {{#if comments}}
     <div class='comments'>
       <h3 class='comments__header'>Comments</h3>
       <ul class='comments__list'>
@@ -14,22 +17,9 @@
       {{#if currentUser}}
         {{> commentSubmit}}
       {{else}}
-        <p class='comments__text'>Please log in to leave a comment.</p>
+        <p class='comments__text'><i>Please log in to leave a comment.</i></p>
       {{/if}}
     </div>
-    <div class='comments'>
-      <h3 class='comments__header'>Comments</h3>
-      <ul class='comments__list'>
-        {{#each comments}}
-          {{> commentItem}}
-        {{/each}}
-      </ul>
-        {{#if currentUser}}
-          {{> commentSubmit}}
-        {{else}}
-        <p class='comments__text'>Please log in to leave a comment.</p>
-      {{/if}}
-    </div>
-    {{/if}}
-  {{/with}}
+  {{/if}}
+  </div>
 </template>

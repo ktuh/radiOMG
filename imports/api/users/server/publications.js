@@ -16,3 +16,9 @@ Meteor.publish('profileData', function(userId) {
   check(userId, String);
   return Profiles.find({ userId: userId });
 });
+
+Meteor.publish('profileDataByUsername', function(username) {
+  check(username, String);
+  var user = Meteor.users.findOne({ username: username });
+  return Profiles.find({ userId: user._id });
+});

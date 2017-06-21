@@ -4,6 +4,7 @@ import { Meteor } from 'meteor/meteor';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { Posts } from '../../../api/posts/posts_collection.js';
 import { Comments } from '../../../api/comments/comments_collection.js';
+import { Profiles } from '../../../api/users/profiles_collection.js';
 
 Template.newsItem.onCreated(function () {
   var self = this;
@@ -12,23 +13,30 @@ Template.newsItem.onCreated(function () {
     self.subscribe('singlePost', slug, {
       onReady: function () {
         var post = Posts.findOne({ slug: slug });
-        self.subscribe('comments', post._id); 
+
+        if (post === undefined) {
+          FlowRouter.go('/news');
+        }
+
+        self.subscribe('comments', post._id);
+        self.subscribe('profileDataByUsername', post.author);
       }
     });
   });
 });
 
 Template.newsItem.helpers({
-  post: function () {
+  post: () => {
     var slug = FlowRouter.getParam('slug');
     var post = Posts.findOne({ slug: slug });
-  
-    return Posts.findOne();
+    return post;
   },
-  comments: function () {
-    return Comments.find();
-  },
-  author: function() {
-    return Meteor.users.findOne({_id: Posts.findOne().userId}).username;
+  comments: () => { Comments.find(); },
+  displayName: () => { 
+    var slug = FlowRouter.getParam('slug');
+    var post = Posts.findOne({ slug: slug });
+    var profile = Profiles.findOne({ userId: post.userId });
+    console.log(post && post.userId);
+    return profile && profile.name;
   }
 });

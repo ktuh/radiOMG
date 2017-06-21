@@ -1,19 +1,11 @@
 <template name='newsList'>
-  <div class='news'>
-    <div class='news__content'>
-      {{#each posts}}
-        <a href={{newsPagePath slug}}><h3>{{title}}</h3></a>
-        <div>{{{body}}}</div>
-      {{/each}}
+  <div class='news-list'>
+  {{#each posts}}
+    <div class='news-list__post'>
+      <a class='news-list__title' href={{newsPagePath slug}}><h3>{{title}}</h3></a>
+      {{#if photo}}<a href={{newsPagePath slug}}><img class='news-list__photo' src='{{photo.url}}'></a>{{/if}}
+      <p class='news-list__excerpt'>{{excerpt body}}... <a href='{{newsPagePath slug}}'>Read More</a></p>
     </div>
-<!--     {{#if currentUser}}
-    <div class='news__chat'>
-      {{#if Template.subscriptionsReady}}
-        {{> chatForm}}
-      {{/if}}
-    </div>
-    {{else}}
-      <p class='comments__text'>Please login (or register) to chat.</p>
-    {{/if}} -->
+  {{/each}}
   </div>
 </template>

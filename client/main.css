@@ -45,13 +45,13 @@ img {
   color: #fff;
 }
 /* Fixes an issue on the profileEdit page */
-.profile-edit .row {
+.row {
   margin: 5px 0;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 a.landing__logo {
   display: inline-block;
-  padding: 30px 0 0 30px;
+  padding: 22px 0 0 25px;
   font-family: 'din-2014', sans-serif;
   font-size: 21px;
   color: #fff;
@@ -239,14 +239,6 @@ a.landing__logo:hover {
   font-family: 'din-2014', sans-serif;
   font-size: 21px;
   color: #000;
-}
-.info-box__social {
-  padding: 9px 0 0;
-  margin: 0 0 0 10px;
-  clear: both;
-}
-.info-box__social img {
-  max-width: 30px;
 }
 .party {
   position: relative;
@@ -755,11 +747,41 @@ audio {
 .show__playlists ul {
   padding: 0 0 0 16px;
 }
-.show__play-btn {
-  border-color: #333;
-}
+.show__play-btn,
 .show__play-btn:hover {
   border-color: #333;
+}
+.news-list {
+}
+.news-list__post {
+  float: left;
+  width: 50%;
+  padding: 0 20px 20px 0;
+}
+.news-list__post h3 {
+  margin-top: 0;
+}
+.news-list__title {
+  color: #333;
+}
+.news-list__photo {
+  width: 240px;
+  max-width: 100%;
+  height: auto;
+  float: left;
+  margin: 0 20px 10px 0;
+}
+.news-list__excerpt {
+}
+.news-item h1,
+.news-item h3 {
+  margin: 0 0 5px 0;
+}
+.news-item__photo {
+  margin: 15px 0;
+}
+.news-item__body {
+  margin: 0 0 30px 0;
 }
 .home {
 
@@ -809,11 +831,36 @@ audio {
 }
 .footer {
   width: 100%;
+  padding: 30px 25px 0;
   text-align: center;
   vertical-align: middle;
 }
-.footer div {
+.footer__subheading {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-family: 'din-2014', sans-serif;
+  font-weight: bold;
+}
+.footer__links {
+  float: left;
+  width: 33.3%;
   margin-bottom: 10px;
+}
+.footer__links p {
+  margin: 0 0 6px;
+}
+.footer__links p a {
+    color: #333;
+}
+.footer__social {
+  margin: 0 auto;
+}
+.footer__social img {
+  max-width: 30px;
+}
+.footer__copyright {
+  clear: both;
+  margin: 15px auto;
 }
 .playlist-list tr td {
   padding: 5px;
@@ -899,8 +946,9 @@ audio {
     float: none;
     max-width: 100%;
   }
+  .navbar-nav > li > a,
   .dropdown-toggle {
-      padding: 9px 10px !important;
+    padding: 8px 10px 8px 16px;
   }
 }
 @media (max-width: 666px) {
@@ -919,4 +967,54 @@ audio {
   }
   .profile__header-separator { display: none; }
   .profile__social { margin-bottom: 15px; }
+  .landing__play-btn {
+    border-width: 2.25em 0 2.25em 5em;
+  }
+  .landing__box {
+    margin: calc(43vh - 10em) auto;
+    text-align: center;
+    max-width: 17em;
+  }
+  .landing__info {
+    float: none;
+    width: 17em;
+    height: auto;
+    margin: 0 0 20px 0;
+  }
+  .landing__play-btn-outer {
+    float: none;
+    width: 10em;
+    height: 10em;
+    margin: 0 auto;
+  }
+  .landing__show-name,
+  .landing__show-host,
+  .landing__song-title,
+  .landing__host-name {
+    font-size: 18px;
+    line-height: 26px;
+  }
+  .landing__pause-btn {
+    top: 30%;
+    width: 4.5em;
+    height: 4em;
+    border-left: solid 1.6em #fff;
+    border-right: solid 1.6em #fff;
+  }
+  .news-list__post {
+    float: none;
+    width: 100%;
+    padding: 0 0 20px 0;
+  }
+  .news-list__photo {
+    float: none;
+    margin: 0 0 10px 0;
+  }
+}
+@media (max-width: 480px) {
+  .footer__links { 
+    float: none; 
+    width: 100%;
+    margin-bottom: 20px;
+  }
 }

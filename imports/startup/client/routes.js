@@ -68,7 +68,7 @@ FlowRouter.route('/news/:slug', {
   }
 });
 
-FlowRouter.route('/party', {
+FlowRouter.route('/events', {
   name: 'party',
   action: function () {
     $('head meta[data-flow-router-seo="true"]').removeAttr("data-flow-router-seo");
@@ -76,7 +76,7 @@ FlowRouter.route('/party', {
   }
 });
 
-FlowRouter.route('/party/new', {
+FlowRouter.route('/events/new', {
   name: 'partyCreate',
   action: function () {
     $('head meta[data-flow-router-seo="true"]').removeAttr("data-flow-router-seo");
@@ -84,7 +84,7 @@ FlowRouter.route('/party/new', {
   }
 });
 
-FlowRouter.route('/party/:slug', {
+FlowRouter.route('/events/:slug', {
   name: 'partyPage',
   action: function () {
     $('head meta[data-flow-router-seo="true"]').removeAttr("data-flow-router-seo");
@@ -92,7 +92,7 @@ FlowRouter.route('/party/:slug', {
   }
 });
 
-FlowRouter.route('/party/edit/:slug', {
+FlowRouter.route('/events/edit/:slug', {
   name: 'partyEdit',
   action: function () {
     $('head meta[data-flow-router-seo="true"]').removeAttr("data-flow-router-seo");

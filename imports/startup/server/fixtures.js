@@ -1,6 +1,5 @@
 import { Accounts } from 'meteor/accounts-base';
 import { Roles } from 'meteor/nicolaslopezj:roles';
-
 import { Playlists } from '/imports/api/playlists/playlists_collection.js';
 import { Posts } from '/imports/api/posts/posts_collection.js';
 import { Reviews } from '/imports/api/reviews/reviews_collection.js';
@@ -11,9 +10,6 @@ if (!Accounts.findUserByUsername('davey')) {
   var now = new Date().getTime();
 
   daveyId = Accounts.createUser({
-    profile: {
-      name: 'Davey Shindig',
-    },
     username: 'davey',
     email: 'davey@ktuh.org',
     password: '123456',
@@ -28,9 +24,6 @@ if (!Accounts.findUserByUsername('davey')) {
                       'davey@ktuh.org', verified: true }]}});
 
   nickiId = Accounts.createUser({
-    profile: {
-      name: 'Nicki Ralar'
-    },
     username: 'badlimbs',
     email: 'nickiralar@gmail.com',
     password: '654321'
@@ -42,7 +35,6 @@ if (!Accounts.findUserByUsername('davey')) {
                       'nickiralar@gmail.com', verified: true }]}});
 
   derekId = Accounts.createUser({
-    profile: {name: 'DJ Kodekrakkerz'},
     username: 'kodekrakkerz',
     emails: 'kodekrakkerz@gmail.com',
     password: '666666'
@@ -113,6 +105,8 @@ if (Playlists.find().count() === 0) {
 };
 
 if (Posts.find().count() === 0) {
+  var davey = Meteor.users.findOne({ username: 'davey' });
+
   Posts.insert({
     _id: 'WmAF8ovhjhh2cwc2m',
     submitted: Date('2017-05-11T02:47:19Z'),
@@ -120,7 +114,7 @@ if (Posts.find().count() === 0) {
     body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
     commentCount: 0,
     slug: 'hello-world',
-    userId: 'v7fFs2pJnDnRammS7',
+    userId: davey._id,
     author: 'davey',
     friendlySlugs: {
       slug: {
@@ -148,7 +142,7 @@ if (Posts.find().count() === 0) {
     body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
     commentCount: 0,
     slug: 'hello-world',
-    userId: 'v7fFs2pJnDnRfmmS7',
+    userId: davey._id,
     author: 'davey',
     friendlySlugs: {
       slug: {
@@ -176,7 +170,7 @@ if (Posts.find().count() === 0) {
     body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
     commentCount: 0,
     slug: 'hello-world',
-    userId: 'v7fFs2pJnDnRfmmS7',
+    userId: davey._id,
     author: 'davey',
     friendlySlugs: {
       slug: {
@@ -205,7 +199,7 @@ if (Posts.find().count() === 0) {
     body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
     commentCount: 0,
     slug: 'hello-world',
-    userId: 'v7fFs2pJnDnRfmmS7',
+    userId: davey._id,
     author: 'davey',
     friendlySlugs: {
       slug: {
@@ -233,7 +227,7 @@ if (Posts.find().count() === 0) {
     body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
     commentCount: 0,
     slug: 'music-charts-2017-01-11',
-    userId: 'v7fFs2pJnDnRfmmS7',
+    userId: davey._id,
     author: 'davey',
     friendlySlugs: {
       slug: {

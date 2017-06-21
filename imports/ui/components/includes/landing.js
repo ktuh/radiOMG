@@ -30,7 +30,6 @@ Template.landing.helpers({
 
 Template.landing.events({
   'click .landing__play-btn-outer': function(event) {
-    console.log("hi davey");
     var url = scorpius.dictionary.get('mainPage.audioUrl', '');
 
     if (Session.get('paused') === false)

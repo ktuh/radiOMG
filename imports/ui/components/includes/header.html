@@ -13,21 +13,27 @@
     </div>
     <div class='collapse navbar-collapse' id='navigation'>
       <ul class='nav navbar-nav navbar-left'>
-        <li class='{{activePage 'about' 'aboutPage'}} nav-item nav-item__news'>
-          <a href='#'>About Us</a>
+        <li class="dropdown {{activePage 'page'}}">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About Us <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/about-us">KTUH History</a></li>
+            <li><a href="/join-ktuh">Donate</a></li>
+            <li><a href="/donate">Join KTUH</a></li>
+            <li><a href="/contact-us">Contact Us</a></li>
+            <li><a href="/faq">FAQ</a></li>
+          </ul>
         </li>
-        <li class='{{activePage 'show' 'showPage'}} nav-item nav-item__news'>
-          <a href={{showPage}}>Shows</a>
+        <li class="dropdown {{activePage 'show' 'showPage' 'showCreate' 'showEdit' 'playlistPage' 'reviewsPage'}}">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Music <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/shows">Show Schedule</a></li>
+            <li><a href="/playlists">Playlists</a></li>
+            <li><a href="/reviews">Reviews</a></li>
+            <li><a href="/charts">Charts</a></li>
+          </ul>
         </li>
-        <li class='{{activePage 'music'}} nav-item nav-item__music'>
-          <a href={{musicPage}}>Music</a>
-        </li>
-        <li class='{{activePage 'party' 'partyPage'}} nav-item nav-item__parties'>
-          <a href={{partyPage}}>Events</a>
-        </li>
-        <li class='{{activePage 'news' 'newsPage'}} nav-item nav-item__news'>
-          <a href={{newsPage}}>Radioblog</a>
-        </li>
+        <li class='{{activePage 'party' 'partyPage' 'partyCreate' 'partyEdit'}} nav-item nav-item__parties'><a href={{partyPage}}>Events</a></li>
+        <li class='{{activePage 'news' 'newsPage'}} nav-item nav-item__news'><a href={{newsPage}}>Radioblog</a></li>
 <!--         <li class='{{activePage 'review' 'reviewsPage'}} nav-item nav-item__reviews'>
           <a href={{reviewsPage}}>Reviews</a>
         </li> -->
