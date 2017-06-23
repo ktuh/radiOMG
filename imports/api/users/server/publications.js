@@ -12,6 +12,10 @@ Meteor.publish('users', function() {
   return Meteor.users.find();
 });
 
+Meteor.publish('profiles', function() {
+  return Profiles.find();
+});
+
 Meteor.publish('profileData', function(userId) {
   check(userId, String);
   return Profiles.find({ userId: userId });
