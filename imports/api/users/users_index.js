@@ -19,7 +19,7 @@ export const UsersIndex = new Index({
     }
   }),
   collection: Meteor.users,
-  fields: ['username', 'banned'],
+  fields: ['username'],
   defaultSearchOptions: {
     limit: 20
   },

@@ -4,10 +4,12 @@ import { Meteor } from 'meteor/meteor';
 import { EasySearch } from 'meteor/easy:search';
 import '../../../api/users/users_collection.js';
 import { UsersIndex } from '../../../api/users/users_index.js';
+import { Profiles } from '../../../api/users/profiles_collection.js';
 
 Template.userMgmt.onCreated(function() {
   var self = this;
-  self.subscribe("users");
+  self.subscribe('users');
+  self.subscribe('profiles');
 });
 
 Template.userMgmt.helpers({
@@ -24,14 +26,15 @@ Template.userMgmt.helpers({
     return UsersIndex;
   },
   count: function() {
-    return UsersIndex.getComponentDict().get('count');
+    return Meteor.users.find({}).length;
   },
 });
 
 Template.userMgmt.events({
   'click input[type="checkbox"]': function(e) {
-    var profile = Meteor.users.findOne({username: $(e.target).parent().prev().html()}).profile;
-    profile["banned"] = !profile["banned"];
-    Meteor.users.update(Meteor.users.findOne({username: $(e.target).parent().prev().html()})._id, {$set: {profile: profile}});
+    var id = Meteor.users.findOne({username: $(e.target).parent().prev().html()})._id;
+    var profile = Profiles.findOne({userId: id});
+    var newVal = !profile["banned"];
+    Profiles.update(profile._id, {$set: {banned: newVal}});
   }
 });

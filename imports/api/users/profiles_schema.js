@@ -12,7 +12,7 @@ export const ProfilesSchema = new SimpleSchema({
     optional: true
   },
   photo: scorpius.attribute('image', {
-    label: 'Image', 
+    label: 'Image',
     optional: true
   }),
   bio: {
@@ -54,5 +54,11 @@ export const ProfilesSchema = new SimpleSchema({
     type: String,
     label: 'Snapchat',
     optional: true
+  },
+  banned: {
+    type: Boolean,
+    label: 'Banned',
+    optional: true,
+    defaultValue: false
   }
 });
