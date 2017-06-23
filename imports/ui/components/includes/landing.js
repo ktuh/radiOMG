@@ -12,7 +12,7 @@ Template.landing.onCreated(function() {
 });
 
 Template.landing.helpers({
-  nowPlaying: () =>  (NowPlaying.findOne() !== undefined) /*&& !Session.get('timeout')) */ ?
+  nowPlaying: () =>  (NowPlaying.findOne() !== undefined && !Session.get('timeout')) ?
                      NowPlaying.findOne().current : false,
   formatNP: (str) => '<p>' + str.split(" - ")[1] + '</p>' +
                      '<p class="lading__show-host"> by </p>' +
