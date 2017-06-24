@@ -8,14 +8,6 @@ Meteor.publish('userData', function(username) {
                            {fields: {'username': 1, '_id': 1}});
 });
 
-Meteor.publish('users', function() {
-  return Meteor.users.find();
-});
-
-Meteor.publish('profiles', function() {
-  return Profiles.find();
-});
-
 Meteor.publish('bannedProfiles', function() {
   return Profiles.find({banned: true});
 });
