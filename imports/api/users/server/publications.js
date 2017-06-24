@@ -16,6 +16,10 @@ Meteor.publish('profiles', function() {
   return Profiles.find();
 });
 
+Meteor.publish('bannedProfiles', function() {
+  return Profiles.find({banned: true});
+});
+
 Meteor.publish('profileData', function(userId) {
   check(userId, String);
   return Profiles.find({ userId: userId });

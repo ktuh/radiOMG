@@ -4,6 +4,7 @@ import { Bert } from 'meteor/themeteorchef:bert';
 import { AutoForm } from 'meteor/aldeed:autoform';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { Profiles } from '../imports/api/users/profiles_collection.js';
+import { throwError } from './helpers/errors.js';
 
 var IGNORE_CONNECTION_ISSUE_KEY = 'ignoreConnectionIssue';
 var CONNECTION_ISSUE_TIMEOUT = 5000;
@@ -39,12 +40,13 @@ AutoForm.addHooks(['partyForm'],{
   }
 });
 
-Meteor.subscribe('profiles');
+Meteor.subscribe('bannedProfiles');
 
-Meteor.setInterval(() => {
+Tracker.autorun(() => {
   if (Meteor.loggingIn() || Meteor.user()) {
     if (Profiles.findOne({userId: Meteor.userId()}).banned) {
+      throwError("Login denied. This account is currently disabled.");
       Meteor.logout();
     }
   }
-}, 100);
+});
