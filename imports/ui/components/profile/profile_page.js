@@ -39,9 +39,7 @@ Template.profilePage.helpers({
   },
   profile: function() {
     var username = FlowRouter.getParam('username');
-    console.log(username);
     var user = Meteor.users.findOne({username: username});
-    console.log(user);
     var profile = Profiles.findOne({ userId: user._id });
 
     if (profile !== undefined) {
