@@ -44,9 +44,11 @@ Meteor.subscribe('bannedProfiles');
 
 Tracker.autorun(() => {
   if (Meteor.loggingIn() || Meteor.user()) {
-    if (Profiles.findOne({userId: Meteor.userId()}).banned) {
-      throwError("Login denied. This account is currently disabled.");
-      Meteor.logout();
+    if (Profiles.findOne({userId: Meteor.userId()}) !== undefined) {
+      if (Profiles.findOne({userId: Meteor.userId()}).banned) {
+        throwError("Login denied. This account is currently disabled.");
+        Meteor.logout();
+      }
     }
   }
 });

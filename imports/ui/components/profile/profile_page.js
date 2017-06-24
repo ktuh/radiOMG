@@ -2,8 +2,9 @@ import './profile_page.html';
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { BlazeLayout } from 'meteor/kadira:blaze-layout';
-import { Posts } from '../../../api/posts/posts_collection.js'
-import { Profiles } from '../../../api/users/profiles_collection.js'
+import { Posts } from '../../../api/posts/posts_collection.js';
+import { Profiles } from '../../../api/users/profiles_collection.js';
+import { Bert } from 'meteor/themeteorchef:bert';
 import '../application/layout.js';
 
 Template.profilePage.onCreated(function() {
@@ -29,9 +30,18 @@ Template.profilePage.onCreated(function() {
 });
 
 Template.profilePage.helpers({
+  negB1orB2: (b1,b2) => (!b1 || b2),
+  isAdmin: () => Meteor.user() !== null ? Meteor.user().roles.indexOf('admin') > -1 : false,
+  isBanned: () => {
+    var user = Meteor.users.findOne({username: FlowRouter.getParam("username")});
+    var profile = Profiles.findOne({ userId: user._id });
+    return profile.banned;
+  },
   profile: function() {
     var username = FlowRouter.getParam('username');
+    console.log(username);
     var user = Meteor.users.findOne({username: username});
+    console.log(user);
     var profile = Profiles.findOne({ userId: user._id });
 
     if (profile !== undefined) {
@@ -61,5 +71,22 @@ Template.profilePage.helpers({
     var profile = Profiles.findOne({ userId: user._id });
 
     return Meteor.userId() && profile.userId === Meteor.userId();
+  }
+});
+
+Template.profilePage.events({
+  'click #ban-user-from-profile': (e) => {
+    var username = FlowRouter.getParam("username");
+    var user = Meteor.users.findOne({username: username});
+    var profile = Profiles.findOne({ userId: user._id });
+    Profiles.update(profile._id, {$set: {banned: true}});
+    Bert.alert("User @" + username + " banned.", "default");
+  },
+  'click #unban-user-from-profile': (e) => {
+    var username = FlowRouter.getParam("username");
+    var user = Meteor.users.findOne({username: username});
+    var profile = Profiles.findOne({ userId: user._id });
+    Profiles.update(profile._id, {$set: {banned: false}});
+    Bert.alert("User @" + username + "'s ban lifted.", "default");
   }
 });
