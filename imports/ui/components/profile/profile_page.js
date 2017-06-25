@@ -74,17 +74,21 @@ Template.profilePage.helpers({
 
 Template.profilePage.events({
   'click #ban-user-from-profile': (e) => {
-    var username = FlowRouter.getParam("username");
-    var user = Meteor.users.findOne({username: username});
-    var profile = Profiles.findOne({ userId: user._id });
-    Profiles.update(profile._id, {$set: {banned: true}});
-    Bert.alert("User @" + username + " banned.", "default");
+    if (Meteor.user().roles.indexOf('admin') > -1) {
+      var username = FlowRouter.getParam("username");
+      var user = Meteor.users.findOne({username: username});
+      var profile = Profiles.findOne({ userId: user._id });
+      Profiles.update(profile._id, {$set: {banned: true}});
+      Bert.alert("User @" + username + " banned.", "default");
+    }
   },
   'click #unban-user-from-profile': (e) => {
-    var username = FlowRouter.getParam("username");
-    var user = Meteor.users.findOne({username: username});
-    var profile = Profiles.findOne({ userId: user._id });
-    Profiles.update(profile._id, {$set: {banned: false}});
-    Bert.alert("User @" + username + "'s ban lifted.", "default");
+    if (Meteor.user().roles.indexOf('admin') > -1) {
+      var username = FlowRouter.getParam("username");
+      var user = Meteor.users.findOne({username: username});
+      var profile = Profiles.findOne({ userId: user._id });
+      Profiles.update(profile._id, {$set: {banned: false}});
+      Bert.alert("User @" + username + "'s ban lifted.", "default");
+    }
   }
 });
