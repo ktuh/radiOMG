@@ -1,36 +1,49 @@
 <template name='profilePage'>
+  {{#if Template.subscriptionsReady}}
   {{#with profile}}
-    {{#if ownProfile}}
-      <a href='/profile'><button type='button' class='btn btn-default btn-md party-header__button'><span class='glyphicon glyphicon-edit' aria-hidden='true'></span>Edit</button></a>
-    {{/if}}
-    {{#if photo.url}}<img class='profile__pic' src='{{photo.url}}'>{{/if}}
-    <div class='profile__info'>
-      {{#if name}}<h1 class='profile__header'><b>{{name}}</b>{{#if social}}<span class='profile__header-separator'> |</span>{{/if}}</h1>{{/if}}
-      <div class='profile__social'>
-        {{#if website}}<a href='{{website}}'><img class='profile__social-icon' src='/img/website.png'></a>{{/if}}
-        {{#if soundcloud}}<a href='http://soundcloud.com/{{soundcloud}}'><img class='profile__social-icon' src='/img/soundcloud.png'></a>{{/if}}
-        {{#if instagram}}<a href='http://instagram.com/{{instagram}}'><img class='profile__social-icon' src='/img/instagram.png'></a>{{/if}}
-        {{#if facebook}}<a href='http://facebook.com/{{facebook}}'><img class='profile__social-icon' src='/img/facebook.png'></a>{{/if}}
-        {{#if twitter}}<a href='http://twitter.com/{{twitter}}'><img class='profile__social-icon' src='/img/twitter.png'></a>{{/if}}
-        {{#if snapchat}}<a href='{{snapchat}}'><img class='profile__social-icon' src='/img/snapchat.png'></a>{{/if}}
-      </div>
-      <div class='profile__bio'>
-        {{#if bio}}{{{bio}}}{{else}}<i><small>({{name}} hasn't filled out a bio yet.)</small></i>{{/if}}
-      </div>
-      {{#if Template.subscriptionsReady}}
-        {{#if posts}}
-          <div class='profile__posts'>
-            <h3>Posts</h3>
-            {{#each posts}}
-              <span class='profile__posts'><a href='/news/{{slug}}'>{{title}}</a><br /><i>{{submitted}}</i></span>
-            {{/each}}
-          </div>
-        {{else}}
-          <div>
-            <p><i>{{profile.name}} hasn't written any posts yet.</i></p>
-          </div>
-        {{/if}}
+    {{#if negB1orB2 isBanned isAdmin}}
+      {{#if ownProfile}}
+        <a href='/profile'><button type='button' class='btn btn-default btn-md party-header__button'><span class='glyphicon glyphicon-edit' aria-hidden='true'></span>Edit</button></a>
       {{/if}}
-    </div>
+      {{#if photo.url}}<img class='profile__pic' src='{{photo.url}}'>{{/if}}
+      <div class='profile__info'>
+        {{#if name}}<h1 class='profile__header'><b>{{name}}</b>{{#if social}}<span class='profile__header-separator'> |</span>{{/if}}</h1>{{/if}}
+        <div class='profile__social'>
+          {{#if website}}<a href='{{website}}'><img class='profile__social-icon' src='/img/website.png'></a>{{/if}}
+          {{#if soundcloud}}<a href='http://soundcloud.com/{{soundcloud}}'><img class='profile__social-icon' src='/img/soundcloud.png'></a>{{/if}}
+          {{#if instagram}}<a href='http://instagram.com/{{instagram}}'><img class='profile__social-icon' src='/img/instagram.png'></a>{{/if}}
+          {{#if facebook}}<a href='http://facebook.com/{{facebook}}'><img class='profile__social-icon' src='/img/facebook.png'></a>{{/if}}
+          {{#if twitter}}<a href='http://twitter.com/{{twitter}}'><img class='profile__social-icon' src='/img/twitter.png'></a>{{/if}}
+          {{#if snapchat}}<a href='{{snapchat}}'><img class='profile__social-icon' src='/img/snapchat.png'></a>{{/if}}
+          {{#if isAdmin}}
+          {{#unless isBanned}}
+          <input id='ban-user-from-profile' type="button" value="Ban User">
+          {{else}}
+          <input id='unban-user-from-profile' type="button" value="Lift User Ban">
+          {{/unless}}
+          {{/if}}
+        </div>
+        <div class='profile__bio'>
+          {{#if bio}}{{{bio}}}{{else}}<i><small>({{name}} hasn't filled out a bio yet.)</small></i>{{/if}}
+        </div>
+        {{#if Template.subscriptionsReady}}
+          {{#if posts}}
+            <div class='profile__posts'>
+              <h3>Posts</h3>
+              {{#each posts}}
+                <span class='profile__posts'><a href='/news/{{slug}}'>{{title}}</a><br /><i>{{submitted}}</i></span>
+              {{/each}}
+            </div>
+          {{else}}
+            <div>
+              <p><i>{{profile.name}} hasn't written any posts yet.</i></p>
+            </div>
+          {{/if}}
+        {{/if}}
+      </div>
+    {{else}}
+    <p>This user does not have a profile.</p>
+    {{/if}}
   {{/with}}
+  {{/if}}
 </template>
