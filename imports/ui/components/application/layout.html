@@ -7,11 +7,7 @@
     {{> errors}}
     <div id='main'>
       <div class='spacer'>
-        {{#if allowed}}
-          {{> Template.dynamic template=content}}
-        {{else}}
-          <p>You are banned from using this site at this time.</p>
-        {{/if}}
+        {{> Template.dynamic template=content}}
       </div>
     </div>
   </div>

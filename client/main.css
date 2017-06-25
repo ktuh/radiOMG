@@ -31,6 +31,18 @@ img {
   max-width: 100%;
   height: auto;
 }
+a, a:hover, a:focus {
+  color: #333;
+}
+.hidden {
+  visibility: hidden;
+}
+.wavy,
+.wavy:hover,
+.wavy:focus {
+  text-decoration: underline;
+  text-decoration-style: wavy;
+}
 .container {
   width: 100%;
   min-height: calc(100vh - 30px);
@@ -219,7 +231,6 @@ a.landing__logo:hover {
           transition-timing-function: ease-out;
 }
 #spinner, .spinner {
-  position: static;
   margin: 150px auto !important;
 }
 .navbar {
@@ -239,6 +250,10 @@ a.landing__logo:hover {
   font-family: 'din-2014', sans-serif;
   font-size: 21px;
   color: #000;
+}
+.info-box__link:focus,
+.info-box__link:hover {
+  text-decoration: none;
 }
 .party {
   position: relative;
@@ -473,14 +488,10 @@ audio {
   margin-bottom: 5px;
   pointer-events: auto;
 }
-.hidden {
-  visibility: hidden;
-}
 #login-other-options a {
   color: #666;
   border-color: #333;
 }
-
 .bert-alert[class*="growl-"] .bert-content p {
   font-size: 12px !important;
 }
@@ -647,10 +658,15 @@ audio {
   text-align: left;
 }
 .playlist__show-image {
+  float: left;
   max-width: 160px;
-  margin: 0 15px 0 0;
+  margin: 10px 15px 15px 0;
+}
+.playlist__show-name {
+  padding: 8px 0 0;
 }
 .playlist__info-row{
+  font-family: 'din-2014', sans-serif;
   text-transform: uppercase;
 }
 .playlist td {
@@ -862,10 +878,25 @@ audio {
   clear: both;
   margin: 15px auto;
 }
-.playlist-list tr td {
-  padding: 5px;
+.playlist-list__list,
+.playlist-list__latest {
+  float: left;
+  width: 50%;
 }
-.playlist-list tr td img {
+.playlist-list__list {
+  padding: 0 0 0 25px;
+}
+.playlist-list__header {
+  margin-top: 0;
+}
+.playlist-list__table {
+  border-color: transparent;
+}
+.playlist-list__table tr td {
+  padding: 5px;
+  border-color: transparent;
+}
+.playlist-list__table tr td img {
   width: 75px !important;
 }
 @-webkit-keyframes fadeOut {
@@ -949,6 +980,14 @@ audio {
   .navbar-nav > li > a,
   .dropdown-toggle {
     padding: 8px 10px 8px 16px;
+  }
+  .playlist-list__list,
+  .playlist-list__latest {
+    float: none;
+    width: 100%;
+  }
+  .playlist-list__list {
+    padding: 30px 0 20px 0;
   }
 }
 @media (max-width: 666px) {

@@ -1,16 +1,17 @@
 <template name="playlistPage">
   {{#if Template.subscriptionsReady}}
-    {{#if showImage}}<img class='playlist__show-image' src='{{showImage}}'>{{/if}}
-    <h3>Playlist for <a href="/shows/{{showSlug}}">{{showName}}</a> on {{showDate}}</h3>
+    {{#if showImage}}<a href="/shows/{{showSlug}}"><img class='playlist__show-image' src='{{showImage}}'></a>{{/if}}
+    <h3 class='playlist__show-name'><a class='wavy' href="/shows/{{showSlug}}">{{showName}}</a> playlist</h3>
+    <h4>{{showDate}}</h4>
     <table class="playlist">
       <tr class="playlist__info-row">
-        <td><b>Time Played</b></td>
+        <td><b>Time</b></td>
         <td><b>Artist</b></td>
         <td><b>Song</b></td>
       </tr>
       {{#each songs}}
       <tr>
-        <td class='playlist__timestamp'>{{Timestamp}}</td>
+        <td class='playlist__timestamp'>{{truncated Timestamp}}</td>
         <td class='playlist__artist'>{{ArtistName}}</td>
         <td class='playlist__title'>{{SongName}}</td>
       </tr>

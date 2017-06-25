@@ -1,0 +1,40 @@
+<template name="playlistList">
+  <div class='playlist-list__latest'>
+    <h3 class='playlist-list__header'>Latest Playlist</h3>
+    {{#if Template.subscriptionsReady}}
+      {{#if latestShowImage}}<a href="/shows/{{latestShowSlug}}"><img class='playlist__show-image' src='{{latestShowImage}}'></a>{{/if}}
+      <h3 class='playlist__show-name'><a class='wavy' href="/shows/{{latestShowSlug}}">{{latestShowName}}</a></h3>
+      <h4>{{latestShowDate}}</h4>
+      <table class="playlist">
+        <tr class="playlist__info-row">
+          <td><b>Time</b></td>
+          <td><b>Artist</b></td>
+          <td><b>Song</b></td>
+        </tr>
+        {{#each latestSongs}}
+        <tr>
+          <td class='playlist__timestamp'>{{truncated Timestamp}}</td>
+          <td class='playlist__artist'>{{ArtistName}}</td>
+          <td class='playlist__title'>{{SongName}}</td>
+        </tr>
+        {{/each}}
+      </table>
+    {{/if}}
+  </div>
+  <div class='playlist-list__list'>
+    <h4 class='playlist-list__header'>More Playlists</h4>
+    {{#if Template.subscriptionsReady}}
+      <table class="playlist-list__table" border="1">
+        {{#each docs}}
+          <tr>
+            <td><a href="/playlists/{{spinPlaylistId}}/"><img src="{{img showId}}" /></a></td>
+            <td><a class='wavy' href="/playlists/{{spinPlaylistId}}/">{{showName showId}}</a><br>{{date showDate}}</td>
+          </tr>
+        {{/each}}
+      </table>
+      {{> defaultBootstrapPaginator pagination=tempPag limit=8}}
+    {{else}}
+      {{> spinner}}
+    {{/if}}
+  </div>
+</template>

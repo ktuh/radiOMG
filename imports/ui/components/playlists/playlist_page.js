@@ -18,9 +18,8 @@ Template.playlistPage.onCreated(function(){
         var playlist = Playlists.findOne({ spinPlaylistId: id });
 
         Meteor.call("getPlaylist", parseInt(playlist.spinPlaylistId), function(error, result) {
-          if (!error) {
-            if (result) Session.set("currentPlaylist", result);
-          }
+          if (!error && result) 
+            Session.set("currentPlaylist", result);
         });
         self.subscribe('showBySpinitronId', playlist.showId, {
           onReady: function() {
@@ -34,27 +33,20 @@ Template.playlistPage.onCreated(function(){
 
 
 Template.playlistPage.helpers({
-  comments: function() {
+  comments: () => {
     var id = parseInt(FlowRouter.getParam('id'));
     var playlist = Playlists.findOne({ spinPlaylistId: id });
 
     return Comments.find({ postId: playlist._id });
   },
-  songs: function() {
-    return Session.get("currentPlaylist");
-  },
-  showName: function() {
-    return Shows.findOne({ showId: Playlists.findOne().showId }).showName;
-  },
-  showDate: function() {
-    return moment(Playlists.findOne().showDate).tz("US/Hawaii").format("LL");
-  },
-  showSlug: function() {
-    return Shows.findOne({ showId: Playlists.findOne().showId }).slug;
-  },
-  showImage: function() {
+  songs: () => Session.get("currentPlaylist"),
+  showName: () => Shows.findOne({ showId: Playlists.findOne().showId }).showName,
+  showDate: () => moment(Playlists.findOne().showDate).tz("US/Hawaii").format("LL"),
+  showSlug: () => Shows.findOne({ showId: Playlists.findOne().showId }).slug,
+  showImage: () => {
     var show = Shows.findOne({ showId: Playlists.findOne().showId })
 
     return (show === undefined) ? false : show.featuredImage.url;
-  }
+  },
+  truncated: (str) => str.substring(0, str.length - 3)
 });

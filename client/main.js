@@ -34,6 +34,6 @@ Meteor.startup(function () {
 AutoForm.addHooks(['partyForm'],{
   onSuccess: function(formType, result) {
     console.log("Successfully submitted partyForm!\nthis.docId = " + this.docId);
-    FlowRouter.go('/party/' + this.docId);
+    FlowRouter.go('/event' + this.docId);
   }
 });

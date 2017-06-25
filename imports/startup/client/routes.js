@@ -12,15 +12,16 @@ import '../../ui/components/includes/landing.js';
 import '../../ui/components/news/news_item.js';
 import '../../ui/components/news/news_list.js';
 import '../../ui/components/pages/pages_item.js'
+import '../../ui/components/parties/party_edit.js';
+import '../../ui/components/parties/party_create.js';
+import '../../ui/components/parties/party_list.js';
+import '../../ui/components/parties/party_page.js';
+import '../../ui/components/playlists/playlist_list.js';
 import '../../ui/components/playlists/playlist_page.js';
 import '../../ui/components/profile/profile_edit.js';
 import '../../ui/components/profile/profile_page.js';
 import '../../ui/components/reviews/review_list.js';
 import '../../ui/components/reviews/review_page.js';
-import '../../ui/components/parties/party_edit.js';
-import '../../ui/components/parties/party_create.js';
-import '../../ui/components/parties/party_list.js';
-import '../../ui/components/parties/party_page.js';
 import '../../ui/components/shows/show_list.js';
 import '../../ui/components/shows/show_create.js';
 import '../../ui/components/shows/show_edit.js';
@@ -100,7 +101,15 @@ FlowRouter.route('/events/edit/:slug', {
   }
 });
 
-FlowRouter.route('/playlist/:id', {
+FlowRouter.route('/playlists', {
+  name: 'playlistList',
+  action: function() {
+    $('head meta[data-flow-router-seo="true"]').removeAttr("data-flow-router-seo");
+    BlazeLayout.render('layout', {content: 'playlistList'});
+  }
+});
+
+FlowRouter.route('/playlists/:id', {
   name: 'playlistPage',
   action: function() {
     $('head meta[data-flow-router-seo="true"]').removeAttr("data-flow-router-seo");
