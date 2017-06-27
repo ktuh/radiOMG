@@ -58,3 +58,6 @@ useraccounts:bootstrap
 kurounin:pagination
 kurounin:pagination-blaze
 dynamic-import
+accounts-facebook
+service-configuration
+accounts-google

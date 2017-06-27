@@ -61,19 +61,6 @@ a, a:hover, a:focus {
   margin: 5px 0;
   margin-bottom: 10px;
 }
-a.landing__logo {
-  display: inline-block;
-  padding: 22px 0 0 25px;
-  font-family: 'din-2014', sans-serif;
-  font-size: 21px;
-  color: #fff;
-}
-a.landing__logo:visited {
-  color: #fff;
-}
-a.landing__logo:hover {
-  text-decoration: none;
-}
 .landing__box {
   margin: calc(50vh - 10em) auto;
   max-width: 30em;
@@ -181,6 +168,10 @@ a.landing__logo:hover {
   background: #fff;
   outline: none;
 }
+#login-dropdown-list,
+#login-dropdown-list a {
+  background: none;
+}
 #login-dropdown-list {
   margin-left: 5px;
 }
@@ -230,14 +221,13 @@ a.landing__logo:hover {
        -o-transition-timing-function: ease-out;
           transition-timing-function: ease-out;
 }
-#spinner, .spinner {
-  margin: 150px auto !important;
-}
-.navbar {
-  margin: 0;
-}
-.navbar-default {
-  background-color: #fff;
+#spinner, .spinner { margin: 150px auto !important; }
+.navbar { margin: 0; }
+.navbar-default { background-color: #fff; }
+.header__aloha { 
+  margin-right: -15px;
+  padding: 15px 0 15px 15px; 
+  font-style: italic;
 }
 .info-box {
   float: left;

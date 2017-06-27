@@ -14,7 +14,7 @@ Template.profileEdit.onCreated(function() {
   self.autorun(function() {
     var userId = Meteor.userId();
 
-    if (userId === undefined) {
+    if (userId === null) {
       FlowRouter.go('home');
     }
     else self.subscribe('profileData', userId);

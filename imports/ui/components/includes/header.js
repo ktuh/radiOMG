@@ -100,7 +100,8 @@ Template.header.helpers({
   reviewsPage: () => FlowRouter.path('reviewsPage'),
   nowPlaying: () => Session.get('nowPlaying'),
   latestSong: () =>  (NowPlaying.findOne() !== undefined && !Session.get('timeout')) ? 
-                     "<div>Last Played Song: " + NowPlaying.findOne().current + "</div>" : ""
+                     "<div>Last Played Song: " + NowPlaying.findOne().current + "</div>" : "",
+  aloha: () => (Meteor.user() === null) ? '' : 'Aloha, '
 });
 
 Template.header.events({

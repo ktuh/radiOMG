@@ -3,6 +3,7 @@ import { AccountsServer } from 'meteor/accounts-base';
 import { Bert } from 'meteor/themeteorchef:bert';
 import { _ } from 'meteor/underscore';
 import { Profiles } from '../imports/api/users/profiles_collection.js';
+import { ServiceConfiguration } from 'meteor/service-configuration';
 
 Meteor.startup(function () {
   process.env.MAIL_URL = 'smtp://' +
@@ -50,7 +51,7 @@ Meteor.startup(function () {
         type.user.firstLogin = false;
         return true;
       } else {
-        throw new Meteor.Error(100001, "Please verify your email address. (Check your inbox.)");
+        throw new Meteor.Error(100001, 'Please verify your email address. (Check your inbox.)');
         return false;
       }
     }
@@ -58,10 +59,58 @@ Meteor.startup(function () {
   });
 
   Accounts.onCreateUser((options, user) => {
-    Profiles.insert({userId: user._id});
+    var id = Profiles.insert({userId: user._id});
+    // We want to save email, user name, and first/last names if they used a login svc.
+    if (user.services.facebook || user.services.google) {
+      var email = user.services.facebook ? user.services.facebook.email
+                                         : user.services.google.email;
+      var username = email.substring(0, email.indexOf('@'));
+      var existentUser = Meteor.users.findOne({ username: username });
+
+      for (i = 1; i < 1000000; i++) {
+        if (existentUser === undefined)
+          break;
+        var numStr = Number(i).toString();
+        username = username + "-" +  numStr;
+        existentUser = Meteor.users.findOne({ username: username });
+      }
+
+      if (user.services.google && user.services.google.given_name &&
+          user.services.google.given_name !== '') {
+        Profiles.update({ _id: id }, { $set: { name: user.services.google.name }});
+      }
+      else if (user.services.facebook && user.services.facebook.name &&
+               user.services.facebook.given_name !== '') {
+        Profiles.update({ _id: id }, { $set: { name: user.services.facebook.name }});
+      }
+
+      user.username = username;
+      user.emails = [{ address: email, verified: true }];
+    }
     return user;
   });
 
-  Accounts.validateNewUser((user) =>
-     user.username !== "" && user.emails !== undefined);
+  Accounts.validateNewUser((user) => 
+     (user.services && user.services.facebook) || (user.services && user.services.google) ||
+     (user.username !== '' && user.emails !== undefined));
+
+  ServiceConfiguration.configurations.remove({
+    service: 'facebook'
+  });
+
+  ServiceConfiguration.configurations.insert({
+      service: 'facebook',
+      appId: Meteor.settings.facebookAppId,
+      secret: Meteor.settings.facebookAppSecret
+  });
+
+  ServiceConfiguration.configurations.remove({
+    service: 'google'
+  });
+
+  ServiceConfiguration.configurations.insert({
+      service: 'google',
+      clientId: Meteor.settings.googleClientId,
+      secret: Meteor.settings.googleClientSecret
+  });
 });
