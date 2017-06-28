@@ -8,7 +8,7 @@ import 'mediaelement/player';
 
 Template.header.onCreated(function () {
   var self = this;
-  self.subscribe("nowPlaying");
+  self.subscribe('nowPlaying');
 });
 
 Template.header.onRendered(function () {
@@ -36,11 +36,11 @@ Template.header.onRendered(function () {
     }
   });
 
-  // This kludge is necessary because the onRendered callback fires before
-  // some of the DOM is fully rendered. Sad.
+  // This timeout kludge is necessary because the onRendered callback fires before
+  // some of the DOM is fully rendered.
   setTimeout(function() {
     $('#audio-player').mediaelementplayer({
-      pluginPath: "/mejs/",
+      pluginPath: '/mejs/',
       alwaysShowControls: true,
       features: ['playpause', 'progress'],
       type: 'audio/mp3',
@@ -75,22 +75,22 @@ Template.header.onRendered(function () {
         player = mediaElement; // make it available for other functions
       },
       error: function () {
-        console.error("Encountered an error while initializing the media element.")
+        console.error('Encountered an error while initializing the media element.')
       }
     });
   }, 1000);
-});
 
-setInterval(function() {
-  if (NowPlaying.findOne()) {
-    if (new Date() - NowPlaying.findOne().timestamp > 360000) {
-      Session.set('timeout', true);
+  setInterval(function() {
+    if (NowPlaying.findOne()) {
+      if (new Date() - NowPlaying.findOne().timestamp > 360000) {
+        Session.set('timeout', true);
+      }
+      else if (new Date() - NowPlaying.findOne().timestamp <= 360000 && Session.set('timeout')) {
+        Session.set('timeout', false);
+      }
     }
-    else if (new Date() - NowPlaying.findOne().timestamp <= 360000 && Session.set('timeout')) {
-      Session.set('timeout', false);
-    }
-  }
-}, 60000);
+  }, 60000);
+});
 
 Template.header.helpers({
   musicPage: () => FlowRouter.path('music'),
@@ -100,8 +100,8 @@ Template.header.helpers({
   reviewsPage: () => FlowRouter.path('reviewsPage'),
   nowPlaying: () => Session.get('nowPlaying'),
   latestSong: () =>  (NowPlaying.findOne() !== undefined && !Session.get('timeout')) ? 
-                     "<div>Last Played Song: " + NowPlaying.findOne().current + "</div>" : "",
-  aloha: () => (Meteor.user() === null) ? '' : 'Aloha, '
+                     '<div>Last Played Song: ' + NowPlaying.findOne().current + '</div>' : '',
+  aloha: () => (Meteor.user() === null || window.innerWidth < 768) ? '' : 'Aloha, '
 });
 
 Template.header.events({

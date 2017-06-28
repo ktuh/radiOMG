@@ -2,13 +2,14 @@
   <div class='container'>
     {{#if home}}
       {{> landing}}
+      <div class='spacer-lg'></div>
+    {{else}}
+      <div class='spacer-sm'></div>
     {{/if}}
-    {{> header}}
     {{> errors}}
+    {{> header}}
     <div id='main'>
-      <div class='spacer'>
-        {{> Template.dynamic template=content}}
-      </div>
+      {{> Template.dynamic template=content}}
     </div>
   </div>
   {{> footer}}

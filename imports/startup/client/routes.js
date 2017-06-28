@@ -5,10 +5,10 @@ import '../../ui/components/application/layout.js';
 import '../../ui/components/application/not_found.js';
 import '../../ui/components/chats/chat.js';
 import '../../ui/components/home/home.js'
+import '../../ui/components/home/landing.js';
 import '../../ui/components/includes/errors.js';
 import '../../ui/components/includes/footer.js';
 import '../../ui/components/includes/header.js';
-import '../../ui/components/includes/landing.js';
 import '../../ui/components/news/news_item.js';
 import '../../ui/components/news/news_list.js';
 import '../../ui/components/pages/pages_item.js'
@@ -30,11 +30,13 @@ import '../../ui/components/music/charts.js';
 import '../../ui/components/music/playlists.js';
 import '../../ui/components/music/music.js';
 
-/*
- *  So, you know that annoying jQuery statement in every route?
- *  Yeah... because the writer of the SEO package seems to like
- *  putting random data attributes in meta tags...
- */
+FlowRouter.triggers.enter(
+  [function() {
+      $('head meta[data-flow-router-seo="true"]').removeAttr("data-flow-router-seo");
+  }],
+  { except: ['home'] }
+);
+
 
 FlowRouter.route('/', {
   name: 'home',
@@ -47,15 +49,13 @@ FlowRouter.route('/', {
 FlowRouter.route('/music', {
   name: 'music',
   action: function() {
-    $('head meta[data-flow-router-seo="true"]').removeAttr("data-flow-router-seo");
-  BlazeLayout.render('layout', {content: 'music'});
+    BlazeLayout.render('layout', {content: 'music'});
   }
 });
 
 FlowRouter.route('/news', {
   name: 'news',
   action: function () {
-    $('head meta[data-flow-router-seo="true"]').removeAttr("data-flow-router-seo");
     BlazeLayout.render('layout', {content: 'newsList'});
   }
 });
@@ -63,7 +63,6 @@ FlowRouter.route('/news', {
 FlowRouter.route('/news/:slug', {
   name: 'newsPage',
   action: function () {
-    $('head meta[data-flow-router-seo="true"]').removeAttr("data-flow-router-seo");
     BlazeLayout.render('layout', {content: 'newsItem'});
   }
 });
@@ -71,7 +70,6 @@ FlowRouter.route('/news/:slug', {
 FlowRouter.route('/events', {
   name: 'party',
   action: function () {
-    $('head meta[data-flow-router-seo="true"]').removeAttr("data-flow-router-seo");
     BlazeLayout.render('layout', {content: 'partyList'});
   }
 });
@@ -79,7 +77,6 @@ FlowRouter.route('/events', {
 FlowRouter.route('/events/new', {
   name: 'partyCreate',
   action: function () {
-    $('head meta[data-flow-router-seo="true"]').removeAttr("data-flow-router-seo");
     BlazeLayout.render('layout', {content: 'partyCreate'});
   }
 });
@@ -87,7 +84,6 @@ FlowRouter.route('/events/new', {
 FlowRouter.route('/events/:slug', {
   name: 'partyPage',
   action: function () {
-    $('head meta[data-flow-router-seo="true"]').removeAttr("data-flow-router-seo");
     BlazeLayout.render('layout', {content: 'partyPage'});
   }
 });
@@ -95,7 +91,6 @@ FlowRouter.route('/events/:slug', {
 FlowRouter.route('/events/edit/:slug', {
   name: 'partyEdit',
   action: function () {
-    $('head meta[data-flow-router-seo="true"]').removeAttr("data-flow-router-seo");
     BlazeLayout.render('layout', {content: 'partyEdit'});
   }
 });
@@ -103,7 +98,6 @@ FlowRouter.route('/events/edit/:slug', {
 FlowRouter.route('/playlists', {
   name: 'playlistList',
   action: function() {
-    $('head meta[data-flow-router-seo="true"]').removeAttr("data-flow-router-seo");
     BlazeLayout.render('layout', {content: 'playlistList'});
   }
 });
@@ -111,7 +105,6 @@ FlowRouter.route('/playlists', {
 FlowRouter.route('/playlists/:id', {
   name: 'playlistPage',
   action: function() {
-    $('head meta[data-flow-router-seo="true"]').removeAttr("data-flow-router-seo");
     BlazeLayout.render('layout', {content: 'playlistPage'});
   }
 });
@@ -119,7 +112,6 @@ FlowRouter.route('/playlists/:id', {
 FlowRouter.route('/reviews/', {
   name: 'reviewsPage',
   action: function() {
-    $('head meta[data-flow-router-seo="true"]').removeAttr("data-flow-router-seo");
     BlazeLayout.render('layout', {content: 'reviewList'});
   }
 });
@@ -127,7 +119,6 @@ FlowRouter.route('/reviews/', {
 FlowRouter.route('/review/:slug', {
   name: 'review',
   action: function() {
-    $('head meta[data-flow-router-seo="true"]').removeAttr("data-flow-router-seo");
     BlazeLayout.render('layout', {content: 'reviewPage'});
   }
 });
@@ -135,14 +126,12 @@ FlowRouter.route('/review/:slug', {
 FlowRouter.route('/shows', {
   name: 'show',
   action: function() {
-    $('head meta[data-flow-router-seo="true"]').removeAttr("data-flow-router-seo");
     BlazeLayout.render('layout', {content: 'showList'});
   }
 });
 FlowRouter.route('/shows/new', {
   name: 'showCreate',
   action: function () {
-    $('head meta[data-flow-router-seo="true"]').removeAttr("data-flow-router-seo");
     BlazeLayout.render('layout', {content: 'showCreate'});
   }
 });
@@ -150,7 +139,6 @@ FlowRouter.route('/shows/new', {
 FlowRouter.route('/shows/:slug', {
   name: 'showPage',
   action: function () {
-    $('head meta[data-flow-router-seo="true"]').removeAttr("data-flow-router-seo");
     BlazeLayout.render('layout', {content: 'showPage'});
   }
 });
@@ -158,7 +146,6 @@ FlowRouter.route('/shows/:slug', {
 FlowRouter.route('/shows/edit/:slug', {
   name: 'showEdit',
   action: function () {
-    $('head meta[data-flow-router-seo="true"]').removeAttr("data-flow-router-seo");
     BlazeLayout.render('layout', {content: 'showEdit'});
   }
 });
@@ -166,7 +153,6 @@ FlowRouter.route('/shows/edit/:slug', {
 FlowRouter.route('/profile/:username', {
   name: 'profilePage',
   action: function () {
-    $('head meta[data-flow-router-seo="true"]').removeAttr("data-flow-router-seo");
     BlazeLayout.render('layout', {content: 'profilePage'});
   }
 });
@@ -174,7 +160,6 @@ FlowRouter.route('/profile/:username', {
 FlowRouter.route('/profile', {
   name: 'profileEdit',
   action: function () {
-    $('head meta[data-flow-router-seo="true"]').removeAttr("data-flow-router-seo");
     BlazeLayout.render('layout', {content: 'profileEdit'});
   }
 });
@@ -182,14 +167,12 @@ FlowRouter.route('/profile', {
 FlowRouter.route('/:slug', {
   name: 'page',
   action: function() {
-    $('head meta[data-flow-router-seo="true"]').removeAttr("data-flow-router-seo");
     BlazeLayout.render('layout', {content: 'pagesItem'});
   }
 });
 
 FlowRouter.notFound = {
   action: function () {
-    $('head meta[data-flow-router-seo="true"]').removeAttr("data-flow-router-seo");
     BlazeLayout.render('layout', {content: 'notFound'});
   }
 }

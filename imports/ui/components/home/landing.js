@@ -28,6 +28,20 @@ Template.landing.helpers({
   isPlaying: () => {
     return Session.get('nowLoaded') === scorpius.dictionary.get('mainPage.audioUrl', '')
            && Session.get('paused') === false;
+  },
+  background: () => {
+    var h = new Date().getHours();
+    var $landing = $('.landing');
+
+    if (h >= 6 && h < 11) {
+      return 'url(\'/img/tantalus-morning.jpg\')';
+    }
+    else if (h >= 11 && h < 18) {
+      return 'url(\'/img/tantalus-day.jpg\')';
+    }
+    else if ((h >= 19 && h <= 23) || (h >= 0 && h < 6)) {
+      return 'url(\'/img/tantalus-evening.jpg\')';
+    }
   }
 });
 
