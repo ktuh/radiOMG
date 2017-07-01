@@ -39,11 +39,13 @@ a, a:hover, a:focus {
 }
 .container {
   width: 100%;
+  max-width: 1920px;
   min-height: calc(100vh - 30px);
   padding: 0;
 }
 .spacer-lg {
   height: 100vh;
+  max-height: 1080px;
   width: 0;
 }
 .spacer-sm {
@@ -61,8 +63,9 @@ a, a:hover, a:focus {
 }
 #main {
   position: relative;
+  min-height: 70vh;
+  padding: 25px 60px;
   background: #fff;
-  min-height: 100vh;
 }
 .clear {
   clear: both;
@@ -80,9 +83,9 @@ a, a:hover, a:focus {
   position: fixed;
   top: 0; left: 0;
   height: 100vh;
+  max-height: 1080px;
   width: 100%;
   color: #fff;
-  background: #e8e8e8;
   background-size: auto 100%;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -130,24 +133,45 @@ a, a:hover, a:focus {
   cursor: pointer;
 }
 .landing__play-btn {
-  margin: 0 auto;
-  top: 29%;
-  left: 5%;
   position: relative;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 3.25em 0 3.25em 7em;
-  border-color: transparent transparent transparent #fff;
+  top: 3.75em;
+  left: 1em;
+  margin: auto;
+  width: 5em;
+  height: 7em;
+  border-left: 2px solid #fff;
 }
-.landing__pause-btn {
-  margin: 0 auto;
+.landing__play-btn-triangle {
+  border-right: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  height: 5em;
+  width: 5em;
+  position: relative;
+  left: -2.5em;
+  top: 1em;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+}
+.landing__pause-btn-r {
+  margin: 0 11px;
   top: 31%;
   position: relative;
-  width: 5.5em;
+  width: 2.5em;
   height: 5.5em;
-  border-left: solid 2em #fff;
-  border-right: solid 2em #fff;
+  border: solid 2px #fff;
+  float: left;
+}
+.landing__pause-btn-l {
+  margin: 0 8px 0 4em;
+  top: 31%;
+  position: relative;
+  width: 2.5em;
+  height: 5.5em;
+  border: solid 2px #fff;
+  float: left;
 }
 .navbar {
   position: fixed;
@@ -155,6 +179,7 @@ a, a:hover, a:focus {
   z-index: 20;
   width: 100%;
   margin: 0;
+  padding: 0 45px;
   border: none;
   border-radius: 0;
 }
@@ -841,9 +866,6 @@ audio {
 .news-item__body {
   margin: 0 0 30px 0;
 }
-.home {
-
-}
 .home__news,
 .home__reviews {
   display: flex;
@@ -853,19 +875,22 @@ audio {
 }
 .home__reviews-item,
 .home__news-item {
-  width: 25%;
+  width: 20%;
   padding: 0 20px 20px 0;
 }
 .home__reviews-img,
 .home__news-img {
   clear: both;
   height: 125px;
-  width: auto;
+  width: 125px;
   margin: 0 12px 0 0;
 }
-.home__news-title,
-.home__reviews-title {
-  color: #333;
+.home__title,
+.home__subtitle {
+  margin: 0;
+}
+.home__subtitle {
+  color: #888888;
 }
 .review-page {
     position: absolute;
@@ -889,11 +914,12 @@ audio {
 }
 .footer {
   position: relative;
+  float: left;
   width: 100%;
-  padding: 30px 25px 0;
-  background: #d8d8d8;
-  text-align: center;
+  padding: 30px 60px 25px;
   vertical-align: middle;
+  background: #eee;
+  color: #333;
 }
 .footer__subheading {
   text-transform: uppercase;
@@ -903,7 +929,7 @@ audio {
 }
 .footer__links {
   float: left;
-  width: 33.3%;
+  width: 25%;
   margin-bottom: 10px;
 }
 .footer__links p {
@@ -919,9 +945,13 @@ audio {
   max-width: 30px;
 }
 .footer__copyright {
+  position: relative;
   clear: both;
   margin: 15px auto 0;
   padding: 15px;
+  text-align: center;
+  background: #333;
+  color: #fff;
 }
 .playlist-list__list,
 .playlist-list__latest {
@@ -974,6 +1004,15 @@ audio {
 }
 
 @media (min-width: 1200px) {
+  .landing {
+    background-size: auto;
+    background-attachment: initial;
+  }
+  .landing__box {
+    position: relative;
+    top: 33%;
+    margin: auto;
+  }
   .party {
     width: 33.3333333%;
   }
@@ -995,9 +1034,18 @@ audio {
     margin: 4px 0;
   }
 }
-@media (max-width: 767px) {
+@media (max-width: 768px) {
+  #main {
+    padding: 25px 40px;    
+  }
   .mejs__container {
     margin-top: 0;
+  }
+  .footer {
+    padding: 30px 40px 25px;
+  }
+  .info-box__link {
+    margin-top: 10px;
   }
   .dropdown-menu.fixed-theme > li > a,
   .dropdown-menu.fixed-theme > li > a:hover,
@@ -1014,6 +1062,9 @@ audio {
   .flyer-div__front,
   .flyer-div__back {
     margin: 0 0 20px 0;
+  }
+  .navbar {
+    padding: 0 25px;
   }
   .nav__search {
     margin: 5px 0 10px 10px;
@@ -1055,8 +1106,17 @@ audio {
   }
   .profile__header-separator { display: none; }
   .profile__social { margin-bottom: 15px; }
-  .landing__play-btn {
-    border-width: 2.25em 0 2.25em 5em;
+  .landing__play-btn { 
+    left: 1.75em;
+    top: 2.25em;
+    width: 5em;
+    height: 5em;
+  }
+  .landing__play-btn-triangle { 
+    height: 3.5em;
+    width: 3.5em;
+    left: -1.7em;
+    top: .8em;
   }
   .landing__box {
     margin: calc(43vh - 10em) auto;
@@ -1079,8 +1139,8 @@ audio {
   .landing__show-host,
   .landing__song-title,
   .landing__host-name {
-    font-size: 18px;
-    line-height: 26px;
+    font-size: 26px;
+    line-height: 32px;
   }
   .landing__pause-btn {
     top: 30%;
@@ -1098,8 +1158,22 @@ audio {
     float: none;
     margin: 0 0 10px 0;
   }
+  .footer__links { 
+    width: 50%;
+    margin-bottom: 20px;
+  }
+  .footer__links__clear {
+    clear: both;
+  }
 }
 @media (max-width: 480px) {
+  #main, .footer {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .navbar {
+    padding: 0 20px 0 5px;
+  }
   .footer__links { 
     float: none; 
     width: 100%;
