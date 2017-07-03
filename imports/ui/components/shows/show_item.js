@@ -12,15 +12,24 @@ Template.showItem.onCreated(function() {
 });
 
 Template.showItem.helpers({
-  formattedTime: function(startHour, startMinute) {
+  formattedTime: (startHour, startMinute) => {
     var hour = startHour < 10 ? '0' + startHour : startHour;
     var minute = startMinute < 10 ? '0' + startMinute : startMinute;
-    var period = startHour < 12 ? 'a.m.' : 'p.m.';
-    return hour + ':' + minute + ' ' + period;
+    var period = startHour < 12 ? 'am' : 'pm';
+    return hour + ':' + minute + period;
   },
-  profileLink: function(id) {
+  profileLink: (id) => {
     var user = Meteor.users.findOne({ _id: id });
     if (user !== undefined)
       return "/profile/" + user.username;
+  },
+  genreString: (genres) => {
+    var str = '';
+    for (var i = 0; i < genres.length; i++) {
+      str = str + genres[i];
+      if (i !== genres.length - 1) 
+        str = str + ', ';
+    }
+    return str;
   }
 });

@@ -15,14 +15,15 @@ Template.showList.onCreated(function() {
 
 Template.showList.helpers({
   newPartyUrl: () => FlowRouter.path('showCreate'),
-  day: () => {
+  active: (d) => {
     var day = FlowRouter.getQueryParam('day');
     var daze = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     var date = new Date();
 
+    // We're not routed to a particular day of the week
     if (day === undefined || $.inArray(day, daze) === -1)
-      return daze[date.getDay()];
-    else return day;
+      return d === daze[date.getDay()] ? 'active' : '';
+    else return d === daze[$.inArray(day, daze)] ? 'active' : '';
   },
   daysShows: () => {
     var day = FlowRouter.getQueryParam('day');

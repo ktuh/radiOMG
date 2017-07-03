@@ -40,7 +40,6 @@ a, a:hover, a:focus {
 .container {
   width: 100%;
   max-width: 1920px;
-  min-height: calc(100vh - 30px);
   padding: 0;
 }
 .spacer-lg {
@@ -49,7 +48,7 @@ a, a:hover, a:focus {
   width: 0;
 }
 .spacer-sm {
-  height: 70px;
+  height: 58px;
   width: 0;
 }
 /* The landing's negative z-index was a problem, which setting these all to positive fixed. */
@@ -63,7 +62,7 @@ a, a:hover, a:focus {
 }
 #main {
   position: relative;
-  min-height: 70vh;
+  min-height: 80vh;
   padding: 25px 60px;
   background: #fff;
 }
@@ -195,6 +194,10 @@ a, a:hover, a:focus {
   color: #fff;
   transition: .3s;
 }
+.nav > li > a {
+  margin: 0 15px;
+  padding: 13px 0 15px;
+}
 .navbar-nav {
   margin: 12px 0 12px 10px;
 }
@@ -213,15 +216,20 @@ a, a:hover, a:focus {
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
-  color: #eee;
+  color: #fff;
+}
+.navbar-default .navbar-nav > li > a,
+.navbar-default .navbar-nav > li > a:focus,
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:active {
+  border-top: 2px solid transparent;
 }
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:focus,
 .navbar-default .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > .active > a:active {
+  border-top: 2px solid #a164e8;
   color: #fff;
-  font-size: 15px;
-  font-style: italic;
   background: none;
   outline: none;
 }
@@ -231,9 +239,9 @@ a, a:hover, a:focus {
   background: none;
   color: #fff;
 }
-#login-dropdown-list,
-#login-dropdown-list a {
-  background: none;
+#login-dropdown-list .dropdown-menu {
+  background: #333;
+  border: 1px solid #444;
 }
 #login-dropdown-list {
   margin-left: 5px;
@@ -284,7 +292,7 @@ a, a:hover, a:focus {
        -o-transition-timing-function: ease-out;
           transition-timing-function: ease-out;
 }
-#spinner, .spinner { margin: 150px auto !important; }
+#spinner, .spinner { margin: 80px auto !important; }
 .header__aloha {
   margin-right: -15px;
   padding: 15px 0 15px 15px; 
@@ -690,35 +698,57 @@ audio {
 .upvoted {
   color: #ffd103;
 }
-.profile__pic {
+.profile {
+  width: 675px;
+  margin: auto;
+}
+.profile__first-header {
+  display: none;
+}
+.profile__left {
   clear: both;
   float: left;
+  max-width: 325px;
+  margin-right: 25px
+}
+.profile__info {
+  float: left;
+  max-width: 325px;
+}
+.profile__pic {
+  float: right;
   margin-bottom: 15px;
 }
-.profile__header {
-  float: left;
-  margin: 0 10px 15px 0;
+.profile__header,
+.profile__info h4 {
+  margin: 0 0 15px 0;
+  font-stretch: bold;
 }
-.profile__social {
-  height: 35px;
-  margin: 0 0 10px;
+.profile__info a {
+  text-decoration: underline;
+  text-decoration-style: wavy;
+}
+.profile__social-icons {
+  float: right;
+  height: 28px;
+  margin: 0 0 9px;
 }
 .profile__social-icon {
   float: left;
   max-height: 100%;
   width: auto;
-  padding: 0 7px 0 0;
-  margin-top: 5px;
+  padding: 0 6px 0 0;
 }
 .profile__bio {
   clear: both;
 }
-.profile__posts,
-.profile__mixes {
-  margin-bottom: 20px;
+.profile__posts {
+  margin: 0;
   clear: both;
 }
-.profile__edit { 
+#profile__ban-user,
+#profile__unban-user {
+  margin: 10px 0;
 }
 .playlist {
   clear: both;
@@ -749,13 +779,20 @@ audio {
   color: #666;
   font-size: 11px;
 }
-.shows__header {
-  width: 300px;
-  text-align: center;
-  margin: auto;
+.shows { 
+  padding-bottom: 40px;
 }
-.shows__header span {
-  font-size: .65em;
+.shows__header {
+  margin: 20px 0 40px;
+  font-weight: bold;
+}
+.shows__days {
+  margin: 10px 0 20px;
+  font-family: 'din-2014', sans-serif;
+  text-transform: uppercase;
+}
+.shows__days span:first-child {
+  margin-left: 0;
 }
 .shows__previous-day {
   float: left;
@@ -767,13 +804,28 @@ audio {
   padding: 5px 10px 0px 10px;
   cursor: pointer;
 }
+.shows__day {
+  border-top: 2px solid transparent;  
+  margin: 0 10px;
+  padding: 8px 0;
+  font-size: 14px;
+}
+.shows__day.active {
+  border-top: 2px solid #a164e8;  
+}
 .show-item {
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 .show-item__image {
   float: left;
   width: 150px;
   margin-right: 20px;
+}
+.show-item__time {
+  margin-bottom: 7px;
+  font-family: 'din-2014', sans-serif;
+  text-transform: uppercase;
+  font-size: 11px;
 }
 .show-item__info-container {
   display: flex;
@@ -781,8 +833,18 @@ audio {
   height: 150px;
 }
 .show-item__info h4 {
-  font-weight: bold;
   margin-top: 3px;
+  font-weight: bold;
+}
+.show-item__host {
+  text-decoration: underline;
+  text-decoration-style: wavy;
+}
+.show-item__genres {
+  margin-top: 28px;
+  font-family: 'din-2014', sans-serif;
+  font-size: 10px;
+  text-transform: uppercase;
 }
 .show__info {
   float: left;
@@ -854,8 +916,6 @@ audio {
   float: left;
   margin: 0 20px 10px 0;
 }
-.news-list__excerpt {
-}
 .news-item h1,
 .news-item h3 {
   margin: 0 0 5px 0;
@@ -876,14 +936,14 @@ audio {
 .home__reviews-item,
 .home__news-item {
   width: 20%;
-  padding: 0 20px 20px 0;
+  padding: 0 15px 20px 0;
 }
 .home__reviews-img,
 .home__news-img {
   clear: both;
   height: 125px;
   width: 125px;
-  margin: 0 12px 0 0;
+  margin: 0 12px 6px 0;
 }
 .home__title,
 .home__subtitle {
@@ -1016,14 +1076,6 @@ audio {
   .party {
     width: 33.3333333%;
   }
-  .profile__pic {
-    max-width: 50%;
-    padding: 0 25px 0 0;
-  }
-  .profile__info {
-    float: left;
-    max-width: 50%;
-  }
 }
 @media (max-width: 992px) {
   .info-box__link {
@@ -1033,10 +1085,22 @@ audio {
   .navbar-nav {
     margin: 4px 0;
   }
+  .news-list__excerpt {
+    clear: both;
+  }
+}
+@media (max-width: 807px) {
+  .nav > li > a {
+      margin: 0 10px;
+  }
 }
 @media (max-width: 768px) {
   #main {
     padding: 25px 40px;    
+  }
+  .spacer-sm {
+    height: 50px;
+    width: 0;
   }
   .mejs__container {
     margin-top: 0;
@@ -1050,9 +1114,18 @@ audio {
   .dropdown-menu.fixed-theme > li > a,
   .dropdown-menu.fixed-theme > li > a:hover,
   .dropdown-menu.fixed-theme > li > a:focus,
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
   .navbar-default .fixed-theme,
   .fixed-theme {
+    color: #fff;
     background-color: #333 !important;
+  }
+  .navbar-default .navbar-nav > .active > a,
+  .navbar-default .navbar-nav > .active > a:focus,
+  .navbar-default .navbar-nav > .active > a:hover,
+  .navbar-default .navbar-nav > .active > a:active {
+    border-top: 2px solid transparent;
+    font-style: italic;
   }
   .flyer-div {
     width: 100%;
@@ -1079,7 +1152,14 @@ audio {
   }
   .navbar-nav > li > a,
   .dropdown-toggle {
-    padding: 8px 10px 8px 16px;
+    margin: 0 10px 0 16px;
+    padding: 8px 0 8px 0;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+    padding: 8px 15px 8px 25px;
+  }
+  #login-dropdown-list .dropdown-menu {
+    margin-bottom: 10px;
   }
   .playlist-list__list,
   .playlist-list__latest {
@@ -1089,6 +1169,29 @@ audio {
   .playlist-list__list {
     padding: 30px 0 20px 0;
   }
+  li.header__aloha { 
+    display: none; 
+  }
+  .home__reviews-item,
+  .home__news-item {
+    width: 33.3%;
+  }
+  .profile {
+    width: inherit;
+  }
+  .profile__left { 
+    width: 50%; 
+    max-width: none;
+    margin: 0;
+    padding-right: 25px;
+  }
+  .profile__info {
+    width: 50%;
+    max-width: none;
+  }
+  .profile__header {
+    font-size: 26px;
+  }
 }
 @media (max-width: 666px) {
   .party {
@@ -1097,15 +1200,6 @@ audio {
   .party-info {
     margin-top: 20px;
   }
-  .profile__pic {
-    float: none;
-  }
-  .profile__header {
-    float: none;
-    margin-bottom: 8px
-  }
-  .profile__header-separator { display: none; }
-  .profile__social { margin-bottom: 15px; }
   .landing__play-btn { 
     left: 1.75em;
     top: 2.25em;
@@ -1174,9 +1268,37 @@ audio {
   .navbar {
     padding: 0 20px 0 5px;
   }
-  .footer__links { 
+  .navbar-toggle {
+    margin-right: 5px;
+  }
+  .profile__pic {
+    float: none;
+  }
+  .profile__header-separator { display: none; }
+  .profile__social { margin-bottom: 15px; }  .footer__links { 
     float: none; 
     width: 100%;
     margin-bottom: 20px;
+  }
+  .profile__social-icons {
+    float: none;
+  }
+  .profile__first-header {
+    display: block;
+  }
+  .profile__info .profile__header {
+    display: none
+  }
+  .home__reviews-item,
+  .home__news-item {
+    width: 50%;
+  }
+  .profile__left { 
+    width: 100%; 
+    margin: 0;
+    padding: 0;
+  }
+  .profile__info {
+    width: 100%;
   }
 }

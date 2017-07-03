@@ -24,6 +24,11 @@ Meteor.publish('showHostUserName', function(id) {
   return Meteor.users.find({ _id: id });
 });
 
+Meteor.publish('showByUserId', function(id) {
+  check(id, String);
+  return Shows.find({ userId: id, active: true });
+});
+
 Meteor.publish('showNowPlaying', function() {
   var d = new Date();
   var day = d.getDay();

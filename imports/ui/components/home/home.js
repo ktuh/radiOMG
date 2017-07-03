@@ -75,6 +75,7 @@ Template.home.onDestroyed(function() {
   for (var i = 0; i < objs.length; i++) {
     objs[i].removeClass('fixed-theme');
   }
+  window.scroll(0, 0);
   window.onscroll = null;
 });
 
