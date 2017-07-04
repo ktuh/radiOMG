@@ -29,7 +29,7 @@ Template.playlistList.helpers({
   latestSongs: () => Session.get("currentPlaylist"),
   img: (id) => Shows.findOne({ showId: id }).featuredImage.url,
   showName: (id) => Shows.findOne({ showId: id }).showName,
-  date: (showDate) => moment(showDate).format('dddd, h:mm a, MMM DD YYYY'),
+  date: (showDate) => moment(showDate).format('dddd, h:mm a,<br>MMM DD YYYY'),
   ready: () => Template.instance().pagination.ready(),
   docs: () => Template.instance().pagination.getPage(),
   latestShowName: () => {
@@ -38,7 +38,7 @@ Template.playlistList.helpers({
   },
   latestShowDate: () => {
     var list = Playlists.findOne({}, { sort: { showDate: -1 }});
-    return moment(list.showDate).format('dddd, h:mm a, MMM DD YYYY')
+    return moment(list.showDate).format('dddd, h:mm a,<br>MMM DD YYYY');
   },
   latestShowSlug: () => {
     var list = Playlists.findOne({}, { sort: { showDate: -1 }});

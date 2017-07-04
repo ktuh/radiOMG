@@ -97,7 +97,7 @@ export const ShowsSchema = new SimpleSchema({
   genres: {
     type: [String],
     optional: false,
-    max: 3
+    maxCount: 3
   },
   body: scorpius.attribute('summernote', {
     type: String,

@@ -26,4 +26,4 @@ Meteor.publish('postsByUser', function(username) {
 
 Meteor.publish('chartsPosts', () => Posts.find({isChart: true}, {sort: {submitted: -1}, fields: {slug: 1, submitted: 1, title: 1}}));
 
-new Meteor.Pagination(Posts, {filters: {isChart: true}});
+new Meteor.Pagination(Posts);

@@ -6,21 +6,7 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 
 Template.newsList.onCreated(function () {
   var self = this;
-
-  Session.set('chat-docid', '808mix');
-  Session.set('chat-historysince', new Date(0));
-  self.autorun(function() {
-    var limit = FlowRouter.getParam('limit') || 8;
-    self.subscribe('postsLimited', {sort: {submitted: -1}, limit: limit}, {
-      onReady: function() {
-        window.setTimeout(function() {
-          $('.news-list').masonry('reloadItems').masonry('layout');
-        }, 250);
-      }
-    });
-    self.subscribe('chats', Session.get('chat-docid'),
-                            Session.get('chat-historysince'));
-  });
+  self.pagination = new Meteor.Pagination(Posts, { sort: { showDate: -1 }, perPage: 8 });
 });
 
 Template.newsList.onRendered(function () {
@@ -32,10 +18,19 @@ Template.newsList.onRendered(function () {
       isResizeBound: true
     });
   });
+  window.setTimeout(function() {
+    $('.news-list').masonry('reloadItems').masonry('layout');
+  }, 1500);
 });
 
 Template.newsList.helpers({
-  posts: () => Posts.find(),
   newsPagePath: (slug) => FlowRouter.path('news/:slug', { slug: slug }),
-  excerpt: (body) => body.replace(/(([^\s]+\s\s*){100})(.*)/,"$1…")
+  excerpt: (body) => body.replace(/(([^\s]+\s\s*){100})(.*)/,"$1…"),
+  posts: () => Template.instance().pagination.getPage(),
+  templatePagination: () => Template.instance().pagination,
+  clickEvent: () => {
+    window.setTimeout(function() {
+      $('.news-list').masonry('reloadItems').masonry('layout');
+    }, 1000);
+  }
 });

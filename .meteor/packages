@@ -61,3 +61,4 @@ dynamic-import
 accounts-facebook
 service-configuration
 accounts-google
+reactive-var

@@ -1,11 +1,14 @@
 <template name='newsList'>
   <div class='news-list'>
-  {{#each posts}}
-    <div class='news-list__post'>
-      <a class='news-list__title' href={{newsPagePath slug}}><h3>{{title}}</h3></a>
-      {{#if photo}}<a href={{newsPagePath slug}}><img class='news-list__photo' src='{{photo.url}}'></a>{{/if}}
-      <p class='news-list__excerpt'>{{excerpt body}}... <a href='{{newsPagePath slug}}'>Read More</a></p>
-    </div>
-  {{/each}}
+    {{#each posts}}
+      <div class='news-list__post'>
+        <a class='news-list__title' href={{newsPagePath slug}}><h3>{{title}}</h3></a>
+        {{#if photo}}<a href={{newsPagePath slug}}><img class='news-list__photo' src='{{photo.url}}'></a>{{/if}}
+        <p class='news-list__excerpt'>{{excerpt body}}... <a href='{{newsPagePath slug}}'>Read More</a></p>
+      </div>
+    {{/each}}
+  </div>
+  <div class='news-list__paginator'>
+    {{> defaultBootstrapPaginator pagination=templatePagination limit=10 containerClass="text-center" onClick=clickEvent}}
   </div>
 </template>

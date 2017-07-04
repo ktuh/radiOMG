@@ -292,7 +292,10 @@ a, a:hover, a:focus {
        -o-transition-timing-function: ease-out;
           transition-timing-function: ease-out;
 }
-#spinner, .spinner { margin: 80px auto !important; }
+.spinner { 
+  top: unset;
+  margin-top: 50px; 
+}
 .header__aloha {
   margin-right: -15px;
   padding: 15px 0 15px 15px; 
@@ -306,7 +309,7 @@ a, a:hover, a:focus {
 }
 .info-box__link {
   display: inline-block;
-  margin: 22px 5px 0 25px;
+  margin: 22px 5px 0 15px;
   font-family: 'din-2014', sans-serif;
   font-size: 21px;
   color: #fff;
@@ -896,8 +899,6 @@ audio {
 .show__play-btn:hover {
   border-color: #333;
 }
-.news-list {
-}
 .news-list__post {
   float: left;
   width: 50%;
@@ -915,6 +916,11 @@ audio {
   height: auto;
   float: left;
   margin: 0 20px 10px 0;
+}
+.news-list__paginator {
+  clear: both;
+  width: 100%;
+  margin: 0 auto;
 }
 .news-item h1,
 .news-item h3 {
@@ -951,6 +957,9 @@ audio {
 }
 .home__subtitle {
   color: #888888;
+}
+.reviews h4 {
+  font-weight: bold;
 }
 .review-page {
     position: absolute;
@@ -1017,9 +1026,28 @@ audio {
 .playlist-list__latest {
   float: left;
   width: 50%;
+  margin-bottom: 40px;
+}
+.playlist-list__list h4,
+.playlist-list__latest h4 {
+  font-weight: bold;
+}
+.playlist-list__list h5,
+.playlist-list__latest h5,
+.playlist-list__date {
+  font-size: 12px;
+  line-height: 17px;
+  font-family: 'din-2014';
+  text-transform: uppercase;
 }
 .playlist-list__list {
   padding: 0 0 0 25px;
+}
+.playlist-list__showname {
+  font-size: 17px;
+}
+.playlist-list__date {
+  padding-top: 5px;
 }
 .playlist-list__header {
   margin-top: 0;
@@ -1027,8 +1055,11 @@ audio {
 .playlist-list__table {
   border-color: transparent;
 }
+.playlist-list__table tr {
+    margin: 0 0 10px 0;
+}
 .playlist-list__table tr td {
-  padding: 5px;
+  padding: 5px 10px 5px 0;
   border-color: transparent;
 }
 .playlist-list__table tr td img {
@@ -1079,7 +1110,7 @@ audio {
 }
 @media (max-width: 992px) {
   .info-box__link {
-    margin: 15px 10px 0 16px;
+    margin: 15px 10px 0 15px;
     font-size: 20px;
   }
   .navbar-nav {
@@ -1275,10 +1306,14 @@ audio {
     float: none;
   }
   .profile__header-separator { display: none; }
-  .profile__social { margin-bottom: 15px; }  .footer__links { 
+  .profile__social { margin-bottom: 15px; }  
+  .footer__links { 
     float: none; 
     width: 100%;
     margin-bottom: 20px;
+  }
+  .footer .footer__links:nth-child(2) .footer__subheading {
+    display: none; 
   }
   .profile__social-icons {
     float: none;

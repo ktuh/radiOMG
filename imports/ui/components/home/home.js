@@ -10,7 +10,7 @@ Template.home.onCreated(function () {
   var self = this;
   self.autorun(function () {
     self.subscribe('postsLimited', { limit: 5, sort: { submitted: -1 }});
-    self.subscribe('reviews', { limit: 5, sort: { submitted: -1 }});
+    self.subscribe('reviewsLimited', { limit: 5, sort: { submitted: -1 }});
   });
 });
 

@@ -277,6 +277,148 @@ if (Posts.find().count() === 0) {
     },
     isChart: true
   });
+
+  Posts.insert({
+    _id: 'WmAF8ovhjhh2cwc0m',
+    submitted: Date('2017-05-11T02:47:19Z'),
+    title: 'Hello, World!',
+    body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+    commentCount: 0,
+    slug: 'hello-world',
+    userId: davey._id,
+    author: 'davey',
+    friendlySlugs: {
+      slug: {
+        base: 'hello-world',
+        index: 0 }
+    },
+    photo: {
+      fileId: '7QMJycqBibCXvYzH4',
+      url: 'http://ktuh.org/wp-content/uploads/2017/04/music-sharing.jpg',
+      info: {
+        width: 500,
+        height: 500,
+        backgroundColor: '#0e0e0b',
+        primaryColor: '#fcfcfa',
+        secondaryColor: '#807d78'
+      }
+    },
+    isChart: false
+  });
+
+  Posts.insert({
+    _id: 'WmAF8ovhjhh2cwc36',
+    submitted: Date('2017-03-11T02:47:19Z'),
+    title: 'Mesopotamia... What\'s THAT All About?',
+    body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+    commentCount: 0,
+    slug: 'hello-world',
+    userId: davey._id,
+    author: 'davey',
+    friendlySlugs: {
+      slug: {
+        base: 'hello-world',
+        index: 0 }
+    },
+    photo: {
+      fileId: '7QMJycqBipCXvYzH4',
+      url: 'http://ktuh.org/wp-content/uploads/2017/04/m120b-cover.jpg',
+      info: {
+        width: 500,
+        height: 500,
+        backgroundColor: '#0e0e0b',
+        primaryColor: '#fcfcfa',
+        secondaryColor: '#807d78'
+      }
+    },
+    isChart: false
+  });
+
+  Posts.insert({
+    _id: 'WmAF8ovhjhh2cwcr5',
+    submitted: Date('2017-02-11T02:47:19Z'),
+    title: 'How the Dog Got Its Bark',
+    body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+    commentCount: 0,
+    slug: 'hello-world',
+    userId: davey._id,
+    author: 'davey',
+    friendlySlugs: {
+      slug: {
+        base: 'hello-world',
+        index: 0
+      }
+    },
+    photo: {
+      fileId: '7QMJycqBipCXvYzH4',
+      url: 'http://ktuh.org/wp-content/uploads/2017/04/bjork.jpg',
+      info: {
+        width: 500,
+        height: 500,
+        backgroundColor: '#0e0e0b',
+        primaryColor: '#fcfcfa',
+        secondaryColor: '#807d78'
+      }
+    },
+    isChart: false
+  });
+
+  Posts.insert({
+    _id: 'WmAF8ovhjhh2cwcrb',
+    submitted: Date('2017-01-11T02:47:19Z'),
+    title: 'The All-Time Best 10 Songs About Butts',
+    body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+    commentCount: 0,
+    slug: 'hello-world',
+    userId: davey._id,
+    author: 'davey',
+    friendlySlugs: {
+      slug: {
+        base: 'hello-world',
+        index: 0 }
+    },
+    photo: {
+      fileId: '7QMJycqBipCXvYzH4',
+      url: 'http://ktuh.org/wp-content/uploads/2015/03/IMG_0483_opt-e1489259362248.jpg',
+      info: {
+        width: 500,
+        height: 500,
+        backgroundColor: '#0e0e0b',
+        primaryColor: '#fcfcfa',
+        secondaryColor: '#807d78'
+      }
+    },
+    isChart: false
+  });
+
+  Posts.insert({
+    _id: 'WmAF8ovhjhh2cwcr1',
+    submitted: Date('2017-01-11T02:47:24Z'),
+    title: 'Music Charts 2017/01/11',
+    body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+    commentCount: 0,
+    slug: 'music-charts-2017-01-11',
+    userId: davey._id,
+    author: 'davey',
+    friendlySlugs: {
+      slug: {
+        base: 'music-charts',
+        index: 0
+      }
+    },
+    photo: {
+      fileId: '7QMJycqBipCXvYzH4',
+      url: 'http://ktuh.org/wp-content/uploads/2015/03/IMG_0483_opt-e1489259362248.jpg',
+      info: {
+        width: 500,
+        height: 500,
+        backgroundColor: '#0e0e0b',
+        primaryColor: '#fcfcfa',
+        secondaryColor: '#807d78'
+      }
+    },
+    isChart: true
+  });
 };
 
 if (Reviews.find().count() === 0) {

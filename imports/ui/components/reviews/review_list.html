@@ -1,10 +1,13 @@
 <template name="reviewList">
-  <div>
-    <h1>Reviews</h1>
-  </div>
   <div class="reviews">
-    {{#EasySearch.Each index=reviewsIndex}}
-      {{> reviewItem}}
-    {{/EasySearch.Each}}
+    <h4>Reviews</h4>
+    {{#if isReady}}
+      {{#each reviews}}
+        {{> reviewItem}}
+      {{/each}}
+      {{> defaultBootstrapPaginator pagination=templatePagination limit=8 containerClass="text-center" onClick=clickEvent}}
+    {{else}}
+      {{> spinner}}
+    {{/if}}
   </div>
 </template>

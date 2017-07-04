@@ -1,10 +1,10 @@
 <template name="playlistList">
   <div class='playlist-list__latest'>
-    <h3 class='playlist-list__header'>Latest Playlist</h3>
+    <h4 class='playlist-list__header'>Latest Playlist</h4>
     {{#if Template.subscriptionsReady}}
       {{#if latestShowImage}}<a href="/shows/{{latestShowSlug}}"><img class='playlist__show-image' src='{{latestShowImage}}'></a>{{/if}}
       <h3 class='playlist__show-name'><a class='wavy' href="/shows/{{latestShowSlug}}">{{latestShowName}}</a></h3>
-      <h4>{{latestShowDate}}</h4>
+      <h5>{{{latestShowDate}}}</h5>
       <table class="playlist">
         <tr class="playlist__info-row">
           <td><b>Time</b></td>
@@ -28,7 +28,7 @@
         {{#each docs}}
           <tr>
             <td><a href="/playlists/{{spinPlaylistId}}/"><img src="{{img showId}}" /></a></td>
-            <td><a class='wavy' href="/playlists/{{spinPlaylistId}}/">{{showName showId}}</a><br>{{date showDate}}</td>
+            <td><a class='wavy playlist-list__showname' href="/playlists/{{spinPlaylistId}}/">{{showName showId}}</a><br><div class='playlist-list__date'>{{{date showDate}}}</div></td>
           </tr>
         {{/each}}
       </table>
