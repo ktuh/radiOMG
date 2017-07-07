@@ -1,9 +1,10 @@
 <template name='newsList'>
+  <h4 class='news-list__header'>KTUH Radioblog</h4>
   <div class='news-list'>
     {{#each posts}}
       <div class='news-list__post'>
-        <a class='news-list__title' href={{newsPagePath slug}}><h3>{{title}}</h3></a>
         {{#if photo}}<a href={{newsPagePath slug}}><img class='news-list__photo' src='{{photo.url}}'></a>{{/if}}
+        <a class='news-list__title' href={{newsPagePath slug}}><h3>{{title}}</h3></a>
         <p class='news-list__excerpt'>{{excerpt body}}... <a href='{{newsPagePath slug}}'>Read More</a></p>
       </div>
     {{/each}}

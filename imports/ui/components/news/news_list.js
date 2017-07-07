@@ -11,16 +11,15 @@ Template.newsList.onCreated(function () {
 
 Template.newsList.onRendered(function () {
   Session.set('documentTitle', 'KTUH Honolulu | Radio For The People');
-  $('.news-list').imagesLoaded(function() {
-    $('.news-list').masonry({
-      itemSelector: '.news-list__post',
-      transitionDuration: 0,
-      isResizeBound: true
+    window.setTimeout(function() {
+    $('.news-list').imagesLoaded(function() {
+      $('.news-list').masonry({
+        itemSelector: '.news-list__post',
+        transitionDuration: 0,
+        isResizeBound: true
+      });
     });
-  });
-  window.setTimeout(function() {
-    $('.news-list').masonry('reloadItems').masonry('layout');
-  }, 1500);
+  }, 500);
 });
 
 Template.newsList.helpers({
@@ -28,9 +27,18 @@ Template.newsList.helpers({
   excerpt: (body) => body.replace(/(([^\s]+\s\s*){100})(.*)/,"$1…"),
   posts: () => Template.instance().pagination.getPage(),
   templatePagination: () => Template.instance().pagination,
-  clickEvent: () => {
+});
+
+Template.newsList.events({
+  'click .pagination': () => {
+    window.setTimeout(function() {
+      $('.news-list').masonry('reloadItems').masonry('layout');
+    }, 200);
+    window.setTimeout(function() {
+      $('.news-list').masonry('reloadItems').masonry('layout');
+    }, 500);
     window.setTimeout(function() {
       $('.news-list').masonry('reloadItems').masonry('layout');
     }, 1000);
   }
-});
+})

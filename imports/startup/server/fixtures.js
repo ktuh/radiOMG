@@ -266,7 +266,7 @@ if (Posts.find().count() === 0) {
     },
     photo: {
       fileId: '7QMJycqBipCXvYzH4',
-      url: 'http://ktuh.org/wp-content/uploads/2015/03/IMG_0483_opt-e1489259362248.jpg',
+      url: 'http://ktuh.org/wp-content/uploads/2016/10/Screen-Shot-2016-10-14-at-5.30.08-PM.png',
       info: {
         width: 500,
         height: 500,
@@ -379,7 +379,7 @@ if (Posts.find().count() === 0) {
     },
     photo: {
       fileId: '7QMJycqBipCXvYzH4',
-      url: 'http://ktuh.org/wp-content/uploads/2015/03/IMG_0483_opt-e1489259362248.jpg',
+      url: 'http://ktuh.org/wp-content/uploads/2016/03/IMG_2915-e1458330920860.png',
       info: {
         width: 500,
         height: 500,

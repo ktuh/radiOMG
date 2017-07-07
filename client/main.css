@@ -899,9 +899,13 @@ audio {
 .show__play-btn:hover {
   border-color: #333;
 }
+.news-list__header {
+  margin: 5px 0 20px;
+  font-weight: bold;
+}
 .news-list__post {
   float: left;
-  width: 50%;
+  width: 25%;
   padding: 0 20px 20px 0;
 }
 .news-list__post h3 {
@@ -911,10 +915,6 @@ audio {
   color: #333;
 }
 .news-list__photo {
-  width: 240px;
-  max-width: 100%;
-  height: auto;
-  float: left;
   margin: 0 20px 10px 0;
 }
 .news-list__paginator {
@@ -962,9 +962,44 @@ audio {
   font-weight: bold;
 }
 .review-page {
-    position: absolute;
-    top: 0px;
-    width: 100%;
+}
+.review-item {
+  float: left;
+  width: 25%;
+  padding: 0 20px 20px 0;
+}
+.review-item__release {
+  font-weight: bold;
+  margin-top: 7px;
+}
+.review-item__artist,
+.review-item__release {
+  font-size: 16px;
+}
+.review-page h3 {
+  float: right;
+  width: 50%;
+}
+.review-page__image {
+  float: left;
+  width: 50%;
+  max-width: 450px;
+  padding: 20px 20px 40px 0;
+}
+.review-page__rating {
+  margin-top: 0;
+}
+.review-page__copy {
+  float: left;
+  width: 50%;
+  padding-bottom: 40px;
+}
+.review-page__byline {
+  color: #999;
+  font-style: italic;
+}
+.review-page__byline {
+  margin-bottom: 8px;
 }
 .note-editable.panel-body {
   min-height: 30px;
@@ -1047,7 +1082,7 @@ audio {
   font-size: 17px;
 }
 .playlist-list__date {
-  padding-top: 5px;
+  padding-top: 5xpx;
 }
 .playlist-list__header {
   margin-top: 0;
@@ -1115,6 +1150,9 @@ audio {
   }
   .navbar-nav {
     margin: 4px 0;
+  }
+  .news-list__post {
+    width: 50%;
   }
   .news-list__excerpt {
     clear: both;
@@ -1280,7 +1318,6 @@ audio {
     padding: 0 0 20px 0;
   }
   .news-list__photo {
-    float: none;
     margin: 0 0 10px 0;
   }
   .footer__links { 
@@ -1289,6 +1326,12 @@ audio {
   }
   .footer__links__clear {
     clear: both;
+  }
+  .review-page__image,
+  .review-page h3,
+  .review-page__copy {
+    float: none;
+    width: 100%;
   }
 }
 @media (max-width: 480px) {

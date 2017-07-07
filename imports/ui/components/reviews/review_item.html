@@ -1,6 +1,11 @@
-<template name="reviewItem">
-  <div class="review">
-    <a href='/review/{{slug}}'>{{artist}} - {{releaseName}} ({{year}})</a>
-    <i>posted by {{author}} at {{submitted}}</i>
-  </div>
+<template name='reviewItem'>
+  {{#if image}}
+    <div class='review-item'>
+      <a href='/review/{{slug}}'>
+        <img class='review-item__image' src='{{image.url}}'>
+        <div class='review-item__release'>{{releaseName}}</div>
+        <div class='review-item__artist'>{{artist}}</div>
+      </a>
+    </div>
+  {{/if}}
 </template>

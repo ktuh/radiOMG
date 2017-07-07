@@ -2,11 +2,14 @@
   <div class="review-page">
     {{#if Template.subscriptionsReady}}
       {{#with review}}
-        <h1>{{artist}} - {{releaseName}} ({{year}})</h1>
-        <h4>posted by {{author}} at {{submitted}}</h4>
-        <h4>Label: {{label}}</h4>
-        <h4>Rating: {{rating}} / 5.0</h4>
-        {{body}}
+        <h3><b>{{releaseName}}</b>
+        <br>{{artist}}</h3>
+        <img class='review-page__image' src='{{image.url}}'>
+        <div class='review-page__copy'>
+          <h4 class='review-page__rating'>{{formattedRating rating}} / 5.0</h4>
+          <div class='review-page__byline'>Review by {{author}} • {{submitted}}</div>
+          <div class='review-page__body'>{{body}}</div>
+        </div>
       {{/with}}
     {{/if}}
   </div>

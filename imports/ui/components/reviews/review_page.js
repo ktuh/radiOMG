@@ -13,15 +13,16 @@ Template.reviewPage.onCreated(function() {
       onReady: function() {
         var obj = Reviews.findOne({slug: slug});
         var artist = obj.artist, name = obj.releaseName, year = obj.year;
-        Session.set('documentTitle', artist + " - " + name + " (" + year + ")");
+        Session.set('documentTitle', 'KTUH FM Honolulu | ' + artist + " - " + name + " (" + year + ")");
       }
     });
   });
 });
 
 Template.reviewPage.helpers({
-  review: function() {
+  review: () => {
     var slug = FlowRouter.getParam('slug');
     return Reviews.findOne({ slug: slug });
-  }
+  },
+  formattedRating: (rating) => rating % 1 === .5 ? rating : Number(rating).toString() + '.0'
 });

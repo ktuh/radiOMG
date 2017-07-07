@@ -12,7 +12,6 @@ Template.reviewList.onCreated(function () {
   self.pagination = new Meteor.Pagination(Reviews, { sort: { showDate: -1 }, perPage: 8 });
 });
 
-
 Template.reviewList.helpers({
     isReady: () => Template.instance().pagination.ready(),
     templatePagination: () => Template.instance().pagination,
