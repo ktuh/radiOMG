@@ -15,8 +15,9 @@ Meteor.publish('singlePost', function (slug) {
   return Posts.find({ slug: slug });
 });
 
-Meteor.publish('allPosts', function() {
-  return Posts.find();
+Meteor.publish('singlePostById', function(id) {
+  check(id, String);
+  return Posts.find({_id: id});
 });
 
 Meteor.publish('postsByUser', function(username) {

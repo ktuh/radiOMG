@@ -13,3 +13,7 @@ import '../../api/users/profiles_collection.js';
 
 import '../../api/scorpius_dictionary.js';
 import '../../api/flow-router-seo-config.js';
+
+import '../../ui/components/news/posts_update.js';
+import '../../ui/components/parties/party_update.js';
+import '../../ui/components/reviews/reviews_update.js';

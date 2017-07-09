@@ -1,0 +1,16 @@
+<template name='partiesUpdate'>
+  {{#Layout template=materializeHeader}}
+    {{collection.title}}
+  {{/Layout}}
+  {{#Layout template=materializeContent}}
+    {{#if Template.subscriptionsReady}}
+      {{#autoForm collection=collection id="updatePartyForm" type="update"}}
+        {{> afQuickField name="title"}}
+        {{> afQuickField name="description"}}
+        {{#if isMod}}
+          {{> afQuickField name="approved"}}
+        {{/if}}
+      {{/autoForm}}
+    {{/if}}
+  {{/Layout}}
+</template>

@@ -54,7 +54,7 @@ export const ReviewsSchema = new SimpleSchema({
   year: {
     type: Number,
     min: 0,
-    max: 2016,
+    max: 2017,
     label: 'Year Released',
     optional: false
   },
@@ -80,5 +80,8 @@ export const ReviewsSchema = new SimpleSchema({
     type: String,
     label: 'Body',
     optional: false
-  })
+  }),
+  approved: {
+    type: Boolean
+  }
 });

@@ -133,3 +133,27 @@ DJ.helper('collections.comments.indexFilter', function() {
     createdBy: this.userId
   };
 });
+
+DJ.allow('collections.profiles.index', true);
+DJ.allow('collections.profiles.insert', true);
+DJ.allow('collections.profiles.update', function (userId, doc, fields, modifier) {
+  return doc.userId === userId;
+});
+DJ.allow('collections.profiles.remove', function (userId, doc, fields, modifier) {
+  return doc.userId === userId;
+});
+DJ.allow('collections.profiles.showCreate', true);
+DJ.allow('collections.profiles.showUpdate', function (userId, doc, fields, modifier) {
+  return doc.userId === userId;
+});
+DJ.allow('collections.profiles.showRemove', function (userId, doc, fields, modifier) {
+  return doc.userId === userId;
+});
+
+DJ.helper('collections.profiles.indexFilter', function() {
+  return {
+    userId: this.userId
+  };
+});
+
+export default DJ;

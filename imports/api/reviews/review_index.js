@@ -1,4 +1,4 @@
-import { Reviews } from '../reviews/reviews_collection.js';
+import { Reviews } from './reviews_collection.js';
 import { EasySearch } from 'meteor/easy:search';
 
 export const ReviewsIndex = new EasySearch.Index({

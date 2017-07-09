@@ -1,0 +1,17 @@
+<template name='postsUpdate'>
+  {{#Layout template=materializeHeader}}
+    {{collection.title}}
+  {{/Layout}}
+  {{#Layout template=materializeContent}}
+    {{#if Template.subscriptionsReady}}
+      {{#autoForm collection=collection id="updatePostForm" type="update"}}
+        {{> afQuickField name="title"}}
+        {{> afQuickField name="tags"}}
+        {{> afQuickField name="body"}}
+        {{#if isMod}}
+          {{> afQuickField name="approved"}}
+        {{/if}}
+      {{/autoForm}}
+    {{/if}}
+  {{/Layout}}
+</template>

@@ -19,6 +19,9 @@ export const Profiles = new scorpius.collection('profiles', {
 });
 
 Profiles.allow({
+  insert: (userId, doc, fieldNames, modifier) => {
+    return userId === doc.userId;
+  },
   update: function (userId, doc, fieldNames, modifier) {
     return userId === doc.userId;
   }

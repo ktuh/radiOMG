@@ -35,7 +35,7 @@ Template.profilePage.onCreated(function() {
 
 Template.profilePage.helpers({
   negB1orB2: (b1,b2) => (!b1 || b2),
-  isAdmin: () => Meteor.user() !== null ? Meteor.user().roles.indexOf('admin') > -1 : false,
+  isAdmin: () => Meteor.user() !== null ? Meteor.user().hasRole('admin') : false,
   isBanned: () => {
     var user = Meteor.users.findOne({ username: FlowRouter.getParam("username" )});
     var profile = Profiles.findOne({ userId: user._id });
@@ -83,7 +83,7 @@ Template.profilePage.helpers({
 
 Template.profilePage.events({
   'click #profile__ban-user': (e) => {
-    if (Meteor.user().roles.indexOf('admin') > -1) {
+    if (Meteor.user().hasRole('admin')) {
       var username = FlowRouter.getParam("username");
       var user = Meteor.users.findOne({ username: username});
       var profile = Profiles.findOne({ userId: user._id });
@@ -92,7 +92,7 @@ Template.profilePage.events({
     }
   },
   'click #profile__unban-user': (e) => {
-    if (Meteor.user().roles.indexOf('admin') > -1) {
+    if (Meteor.user().hasRoles('admin')) {
       var username = FlowRouter.getParam("username");
       var user = Meteor.users.findOne({ username: username});
       var profile = Profiles.findOne({ userId: user._id });
