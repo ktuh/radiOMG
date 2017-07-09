@@ -82,6 +82,9 @@ export const ReviewsSchema = new SimpleSchema({
     optional: false
   }),
   approved: {
-    type: Boolean
+    type: Boolean,
+    optional: true,
+    defaultValue: false,
+    label: 'Approved'
   }
 });

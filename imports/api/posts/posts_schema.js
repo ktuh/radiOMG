@@ -67,6 +67,9 @@ export const PostsSchema = new SimpleSchema({
     type: Boolean
   },
   approved: {
-    type: Boolean
+    type: Boolean,
+    optional: true,
+    defaultValue: false,
+    label: 'Approved'
   }
 });

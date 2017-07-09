@@ -80,17 +80,15 @@ export const PartySchema = new SimpleSchema({
     label: 'Tags',
     optional: true
   },
-  isApproved: {
+  approved: {
     type: Boolean,
     label: 'Approved',
-    defaultValue: false
+    defaultValue: false,
+    optional: true
   },
   isFeatured: {
     type: Boolean,
     label: 'Featured',
     defaultValue: false
-  },
-  approved: {
-    type: Boolean
   }
 });
