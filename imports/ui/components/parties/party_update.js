@@ -8,7 +8,19 @@ Template.postsUpdate.onCreated(function (){
   self.subscribe('singleParty', location.href.substring(location.href.lastIndexOf('/') + 1));
 });
 
-Template.postsUpdate.helpers({
+Template.partiesUpdate.helpers({
   collection: () => Parties,
   isMod: () => Meteor.user().hasRole("moderator")
+});
+
+Template.partiesUpdate.events({
+  'click .save-btn': function () {
+    $('#updatePartyForm').submit();
+  }
+});
+
+AutoForm.addHooks('updatePartyForm', {
+  onSuccess: function() {
+    RouterLayer.go(this.collection.indexPath());
+  }
 });

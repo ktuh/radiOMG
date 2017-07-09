@@ -12,3 +12,15 @@ Template.postsUpdate.helpers({
   collection: () => Posts,
   isMod: () => Meteor.user().hasRole("moderator")
 });
+
+Template.postsUpdate.events({
+  'click .save-btn': function () {
+    $('#updatePostForm').submit();
+  }
+});
+
+AutoForm.addHooks('updatePostForm', {
+  onSuccess: function() {
+    RouterLayer.go(this.collection.indexPath());
+  }
+});

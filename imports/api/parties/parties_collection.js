@@ -30,13 +30,13 @@ export const Parties = new scorpius.collection('parties', {
 
 Parties.allow({
   insert: function (userId, doc) {
-    return (userId && doc.userId === userId);
+    return (userId && doc.userId === userId) || Meteor.user().hasRole("moderator");
   },
   update: function (userId, doc, fields, modifier) {
-    return doc.userId === userId;
+    return doc.userId === userId || Meteor.user().hasRole("moderator");
   },
   remove: function (userId, doc) {
-    return doc.userId === userId;
+    return doc.userId === userId || Meteor.user().hasRole("moderator");
   },
   fetch: ['userId']
 });

@@ -6,7 +6,7 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 
 Template.newsList.onCreated(function () {
   var self = this;
-  self.pagination = new Meteor.Pagination(Posts, { sort: { showDate: -1 }, perPage: 8 });
+  self.pagination = new Meteor.Pagination(Posts, { sort: { showDate: -1 }, perPage: 8, filters: {approved: true}});
 });
 
 Template.newsList.onRendered(function () {

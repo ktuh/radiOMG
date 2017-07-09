@@ -7,6 +7,11 @@ export const ReviewsIndex = new EasySearch.Index({
   engine: new EasySearch.MongoDB({
     sort: function() {
       return { submitted: -1 };
+    },
+    selector: function(searchObject, options, aggregation) {
+      let selector = this.defaultConfiguration().selector(searchObject, options, aggregation);
+      selector.approved = true;
+      return selector;
     }
   })
 });
