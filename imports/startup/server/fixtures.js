@@ -105,7 +105,7 @@ if (Profiles.find().count() === 0) {
     Profiles.insert({
       userId: derekseviltwin._id,
       name: 'Derek Chan',
-      bio: ' <p>Don\'t mind one. Mind your own biz.</p>',
+      bio: ' <p>Don\'t mind me. Mind your own biz.</p>',
       website: 'http://808mix.com',
       soundcloud: 'sunquan8094',
       instagram: 'sunquan8094',

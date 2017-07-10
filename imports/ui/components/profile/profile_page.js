@@ -92,7 +92,7 @@ Template.profilePage.events({
     }
   },
   'click #profile__unban-user': (e) => {
-    if (Meteor.user().hasRoles('admin')) {
+    if (Meteor.user().hasRole('admin')) {
       var username = FlowRouter.getParam("username");
       var user = Meteor.users.findOne({ username: username});
       var profile = Profiles.findOne({ userId: user._id });
