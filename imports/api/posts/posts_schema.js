@@ -8,7 +8,8 @@ export const PostsSchema = new SimpleSchema({
       label: false
     },
     autoValue: function() {
-      if (!this.isSet) return this.userId;
+      if (this.isSet || this.isUpdate) return this.value;
+      return Meteor.userId();
     }
   },
   author: {
@@ -18,7 +19,8 @@ export const PostsSchema = new SimpleSchema({
       label: false
     },
     autoValue: function() {
-      if (!this.isSet) return Meteor.user().username;
+      if (this.isSet || this.isUpdate) return this.value;
+      return Meteor.user().username;
     }
   },
   photo: scorpius.attribute('image', {

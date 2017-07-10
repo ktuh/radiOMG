@@ -6,7 +6,7 @@ Meteor.publish('reviewsLimited', function(options) {
     sort: Object,
     limit: Number
   });
-  return Reviews.find({}, options);
+  return Reviews.find({approved: true}, options);
 });
 
 Meteor.publish('singleReview', function(selector) {

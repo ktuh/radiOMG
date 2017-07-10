@@ -56,8 +56,8 @@ export const PartySchema = new SimpleSchema({
     type: String,
     label: 'User ID',
     autoValue: function () {
-      if (!this.isSet)
-        return this.userId;
+      if (this.isSet || this.isUpdate) return this.value;
+      return this.userId;
     }
   },
   commentCount: {

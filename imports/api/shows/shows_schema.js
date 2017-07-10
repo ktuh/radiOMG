@@ -19,7 +19,7 @@ export const ShowsSchema = new SimpleSchema({
       label: false
     },
     autoValue: function() {
-      if (!this.isSet) return this.userId;
+      if (!this.isUpdate) return this.userId;
     }
   },
   author: {
@@ -29,7 +29,8 @@ export const ShowsSchema = new SimpleSchema({
       label: false
     },
     autoValue: function() {
-      if (!this.isSet) return Meteor.user().username;
+      if (this.isSet || this.isUpdate) return this.value;
+      return Meteor.user().username;
     }
   },
   host: {

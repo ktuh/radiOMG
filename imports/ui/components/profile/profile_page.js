@@ -63,7 +63,7 @@ Template.profilePage.helpers({
   posts: function() {
     var username = FlowRouter.getParam('username');
     var user = Meteor.users.findOne({ username: username});
-    var posts = Posts.find({userId: user._id}, {sort: {submitted: -1}})
+    var posts = Posts.find({author: username, approved: true}, {sort: {submitted: -1}})
 
     return posts.count() > 0 && posts;
   },

@@ -7,7 +7,7 @@ Meteor.publish('postsLimited', function (options) {
     sort: Object,
     limit: Number
   });
-  return Posts.find({}, options);
+  return Posts.find({approved: true}, options);
 });
 
 Meteor.publish('singlePost', function (slug) {
