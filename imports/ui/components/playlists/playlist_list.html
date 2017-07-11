@@ -27,8 +27,8 @@
       <table class="playlist-list__table" border="1">
         {{#each docs}}
           <tr>
-            <td><a href="/playlists/{{spinPlaylistId}}/"><img src="{{img showId}}" /></a></td>
-            <td><a class='wavy playlist-list__showname' href="/playlists/{{spinPlaylistId}}/">{{showName showId}}</a><br><div class='playlist-list__date'>{{{date showDate}}}</div></td>
+            <td><a href="/playlist/{{spinPlaylistId}}/"><img src="{{img showId}}" /></a></td>
+            <td><a class='wavy playlist-list__showname' href="/playlist/{{spinPlaylistId}}/">{{showName showId}}</a><br><div class='playlist-list__date'>{{{date showDate}}}</div></td>
           </tr>
         {{/each}}
       </table>
