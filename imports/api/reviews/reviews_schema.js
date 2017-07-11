@@ -10,8 +10,8 @@ export const ReviewsSchema = new SimpleSchema({
       label: false
     },
     autoValue: function () {
-      if (!this.isSet)
-        return this.userId;
+      if (this.isSet || this.isUpdate) return this.value;
+      return Meteor.userId();
     }
   },
   author: {
@@ -21,8 +21,8 @@ export const ReviewsSchema = new SimpleSchema({
       label: false
     },
     autoValue: function() {
-      if (!this.isSet)
-        return Meteor.user().username;
+      if (this.isSet || this.isUpdate) return this.value;
+      return Meteor.users.findOne({_id: this.userId}).username;
     }
   },
   slug: {
@@ -54,7 +54,7 @@ export const ReviewsSchema = new SimpleSchema({
   year: {
     type: Number,
     min: 0,
-    max: 2016,
+    max: 2017,
     label: 'Year Released',
     optional: false
   },
@@ -80,5 +80,11 @@ export const ReviewsSchema = new SimpleSchema({
     type: String,
     label: 'Body',
     optional: false
-  })
+  }),
+  approved: {
+    type: Boolean,
+    optional: true,
+    defaultValue: false,
+    label: 'Approved'
+  }
 });

@@ -56,8 +56,8 @@ export const PartySchema = new SimpleSchema({
     type: String,
     label: 'User ID',
     autoValue: function () {
-      if (!this.isSet)
-        return this.userId;
+      if (this.isSet || this.isUpdate) return this.value;
+      return this.userId;
     }
   },
   commentCount: {
@@ -80,14 +80,15 @@ export const PartySchema = new SimpleSchema({
     label: 'Tags',
     optional: true
   },
-  isApproved: {
+  approved: {
     type: Boolean,
     label: 'Approved',
-    defaultValue: false
+    defaultValue: false,
+    optional: true
   },
   isFeatured: {
     type: Boolean,
     label: 'Featured',
     defaultValue: false
-  },
+  }
 });

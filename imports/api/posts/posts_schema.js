@@ -8,7 +8,10 @@ export const PostsSchema = new SimpleSchema({
       label: false
     },
     autoValue: function() {
-      if (!this.isSet) return this.userId;
+      if (this.isSet || this.isUpdate)
+        return this.value;
+      else
+        return Meteor.userId();
     }
   },
   author: {
@@ -18,7 +21,10 @@ export const PostsSchema = new SimpleSchema({
       label: false
     },
     autoValue: function() {
-      if (!this.isSet) return Meteor.user().username;
+      if (this.isSet || this.isUpdate)
+        return this.value;
+      else
+        return Meteor.user().username;
     }
   },
   photo: scorpius.attribute('image', {
@@ -65,5 +71,11 @@ export const PostsSchema = new SimpleSchema({
   },
   isChart: {
     type: Boolean
+  },
+  approved: {
+    type: Boolean,
+    optional: true,
+    defaultValue: false,
+    label: 'Approved'
   }
 });

@@ -18,7 +18,7 @@ Template.playlistPage.onCreated(function(){
         var playlist = Playlists.findOne({ spinPlaylistId: id });
 
         Meteor.call("getPlaylist", parseInt(playlist.spinPlaylistId), function(error, result) {
-          if (!error && result) 
+          if (!error && result)
             Session.set("currentPlaylist", result);
         });
         self.subscribe('showBySpinitronId', playlist.showId, {

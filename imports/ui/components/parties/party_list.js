@@ -28,5 +28,5 @@ Template.partyList.onRendered(function () {
 
 Template.partyList.helpers({
   newPartyUrl: () => FlowRouter.path('partyCreate'),
-  parties: () => Parties.find()
+  parties: () => Parties.find({approved: true})
 });

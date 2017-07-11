@@ -102,7 +102,7 @@ FlowRouter.route('/playlists', {
   }
 });
 
-FlowRouter.route('/playlists/:id', {
+FlowRouter.route('/playlist/:id', {
   name: 'playlistPage',
   action: function() {
     BlazeLayout.render('layout', {content: 'playlistPage'});

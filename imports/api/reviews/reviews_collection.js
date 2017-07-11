@@ -43,6 +43,19 @@ export const Reviews = new scorpius.collection('reviews', {
   }
 });
 
+Reviews.allow({
+  insert: function (userId, doc) {
+    return (userId && doc.userId === userId) || Meteor.user().hasRole("moderator");
+  },
+  update: function (userId, doc, fields, modifier) {
+    return doc.userId === userId || Meteor.user().hasRole("moderator");
+  },
+  remove: function (userId, doc) {
+    return doc.userId === userId || Meteor.user().hasRole("moderator");
+  },
+  fetch: ['userId']
+});
+
 Reviews.friendlySlugs({
   slugFrom: 'releaseName',
   slugField: 'slug',
