@@ -9,10 +9,10 @@ import { HTTP } from 'meteor/http';
 import bodyParser from 'body-parser';
 
 Picker.middleware(bodyParser.json());
-Picker.middleware(bodyParser.urlencoded({extended: false}));
+Picker.middleware(bodyParser.urlencoded({ extended: false }));
 
 Picker.route('/spinitron/latest', function(params, req, res, next) {
-  check(params.query, {playlistId: Match.Where(function(str) {
+  check(params.query, { playlistId: Match.Where(function(str) {
                                                 check(str, String);
                                                  return /[0-9]+/.test(str);
                                               }), show: Match.Where(function(str) {
@@ -21,18 +21,15 @@ Picker.route('/spinitron/latest', function(params, req, res, next) {
                                             }), artist: String, song: String});
 
   var showId = Number.parseInt(params.query.show);
-  var showItself = Shows.find({showId: showId});
-  if (showItself) {
-    if (!Playlists.findOne({showId: showId, spinPlaylistId: Number.parseInt(params.query.playlistId)}))
-      Playlists.insert({showId: showId, spinPlaylistId: Number.parseInt(params.query.playlistId), showDate: new Date()});
-  }
-
+  var showItself = Shows.find({ showId: showId });
+  var playlistId = Number.parseInt(params.query.playlistId);
   var html = params.query.artist + " - " + params.query.song;
 
-  if (NowPlaying.find({}).count() < 1) {
+  if (showItself && !Playlists.findOne({ showId: showId, spinPlaylistId: playlistId }))
+      Playlists.insert({ showId: showId, spinPlaylistId: playlistId, showDate: new Date() });
+
+  if (NowPlaying.find({}).count() < 1)
      NowPlaying.insert({current: html, timestamp: new Date()});
-  }
-  else {
-    NowPlaying.update(NowPlaying.findOne()._id, {$set: {current: html, timestamp: new Date()}});
-  }
+  else
+    NowPlaying.update(NowPlaying.findOne()._id, { $set: { current: html, timestamp: new Date() }});
 });

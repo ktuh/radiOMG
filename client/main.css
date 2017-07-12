@@ -757,7 +757,6 @@ audio {
 .profile__header,
 .profile__info h4 {
   margin: 0 0 15px 0;
-  font-stretch: bold;
 }
 .profile__info a {
   text-decoration: underline;
@@ -1378,6 +1377,28 @@ audio {
     float: none;
     width: 100%;
   }
+  .profile__pic {
+    float: none;
+  }
+  .profile__header-separator { display: none; }
+  .profile__social { margin-bottom: 15px; }  
+  .profile__social-icons {
+    float: none;
+  }
+  .profile__first-header {
+    display: block;
+  }
+  .profile__info .profile__header {
+    display: none
+  }
+  .profile__left { 
+    width: 100%; 
+    margin: 0;
+    padding: 0;
+  }
+  .profile__info {
+    width: 100%;
+  }
 }
 @media (max-width: 480px) {
   #main, .footer {
@@ -1390,11 +1411,6 @@ audio {
   .navbar-toggle {
     margin-right: 5px;
   }
-  .profile__pic {
-    float: none;
-  }
-  .profile__header-separator { display: none; }
-  .profile__social { margin-bottom: 15px; }  
   .footer__links { 
     float: none; 
     width: 100%;
@@ -1403,25 +1419,8 @@ audio {
   .footer .footer__links:nth-child(2) .footer__subheading {
     display: none; 
   }
-  .profile__social-icons {
-    float: none;
-  }
-  .profile__first-header {
-    display: block;
-  }
-  .profile__info .profile__header {
-    display: none
-  }
   .home__reviews-item,
   .home__news-item {
     width: 50%;
-  }
-  .profile__left { 
-    width: 100%; 
-    margin: 0;
-    padding: 0;
-  }
-  .profile__info {
-    width: 100%;
   }
 }

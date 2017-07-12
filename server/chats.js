@@ -5,8 +5,8 @@ import { Chats } from '../imports/api/chats/chats_collection.js';
 Meteor.methods({
   enterChat: function(chatText,chatDoc,chatUser) {
     check(chatText, String);
-    check(chatDoc, Match.Any);
-    check(chatUser, Match.Any);
+    check(chatDoc, Match.Maybe(String));
+    check(chatUser, Match.Maybe(String));
 
     if (!chatDoc)
       chatDoc = ChatOptions.defaultDocId;
