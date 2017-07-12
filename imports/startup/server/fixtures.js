@@ -186,7 +186,8 @@ if (Posts.find().count() === 0) {
         secondaryColor: '#807d78'
       }
     },
-    isChart: false
+    isChart: false,
+    approved: true
   });
 
   Posts.insert({
@@ -214,7 +215,8 @@ if (Posts.find().count() === 0) {
         secondaryColor: '#807d78'
       }
     },
-    isChart: false
+    isChart: false,
+    approved: true
   });
 
   Posts.insert({
@@ -243,7 +245,8 @@ if (Posts.find().count() === 0) {
         secondaryColor: '#807d78'
       }
     },
-    isChart: false
+    isChart: false,
+    approved: true
   });
 
   Posts.insert({
@@ -271,7 +274,8 @@ if (Posts.find().count() === 0) {
         secondaryColor: '#807d78'
       }
     },
-    isChart: false
+    isChart: false,
+    approved: true
   });
 
   Posts.insert({
@@ -328,7 +332,8 @@ if (Posts.find().count() === 0) {
         secondaryColor: '#807d78'
       }
     },
-    isChart: false
+    isChart: false,
+    approved: true
   });
 
   Posts.insert({
@@ -356,7 +361,8 @@ if (Posts.find().count() === 0) {
         secondaryColor: '#807d78'
       }
     },
-    isChart: false
+    isChart: false,
+    approved: true
   });
 
   Posts.insert({
@@ -385,7 +391,8 @@ if (Posts.find().count() === 0) {
         secondaryColor: '#807d78'
       }
     },
-    isChart: false
+    isChart: false,
+    approved: true
   });
 
   Posts.insert({
@@ -413,7 +420,8 @@ if (Posts.find().count() === 0) {
         secondaryColor: '#807d78'
       }
     },
-    isChart: false
+    isChart: false,
+    approved: true
   });
 
   Posts.insert({
@@ -442,7 +450,8 @@ if (Posts.find().count() === 0) {
         secondaryColor: '#807d78'
       }
     },
-    isChart: true
+    isChart: true,
+    approved: true
   });
 };
 
@@ -475,7 +484,8 @@ if (Reviews.find().count() === 0) {
         base: '808-mixtapes-v107',
         index: 0
       }
-    }
+    },
+    approved: true
   });
 
   Reviews.insert({
@@ -506,7 +516,8 @@ if (Reviews.find().count() === 0) {
         base: '808-mixtapes-v107',
         index: 0
       }
-    }
+    },
+    approved: true
   });
 
   Reviews.insert({
@@ -537,7 +548,8 @@ if (Reviews.find().count() === 0) {
         base: '808-mixtapes-v107',
         index: 0
       }
-    }
+    },
+    approved: true
   });
 
   Reviews.insert({
@@ -568,6 +580,7 @@ if (Reviews.find().count() === 0) {
         base: '808-mixtapes-v107',
         index: 0
       }
-    }
+    },
+    approved: true
   });
 };

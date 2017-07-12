@@ -80,16 +80,8 @@ Template.home.onDestroyed(function() {
 });
 
 Template.home.helpers({
-  hasPosts: () => {
-    return Posts.find({}, { sort: { submitted: -1 }}).count() > 0;
-  },
-  posts: () => {
-    return Posts.find({}, { sort: { submitted: -1 }});
-  },
-  hasReviews: () => {
-    return Reviews.find({}, { sort: { submitted: -1 }}).count() > 0;
-  },
-  reviews: () => {
-    return Reviews.find({}, { sort: { submitted: -1 }});
-  }
+  hasPosts: () => Posts.find({}, { sort: { submitted: -1 }}).count() > 0,
+  posts: () => Posts.find({}, { sort: { submitted: -1 }}),
+  hasReviews: () => Reviews.find({}, { sort: { submitted: -1 }}).count() > 0,
+  reviews: () => Reviews.find({}, { sort: { submitted: -1 }})
 });

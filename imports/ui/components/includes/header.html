@@ -13,23 +13,26 @@
     </div>
     <div class='collapse navbar-collapse' id='navigation'>
       <ul class='nav navbar-nav navbar-left'>
-        <li class="dropdown {{activePage 'page'}}">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About Us <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="/about-us">KTUH History</a></li>
-            <li><a href="/join-ktuh">Donate</a></li>
-            <li><a href="/donate">Join KTUH</a></li>
-            <li><a href="/contact-us">Contact Us</a></li>
-            <li><a href="/faq">FAQ</a></li>
+        <li class='dropdown {{activePage 'page'}}'>
+          <a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>About Us <span class='caret'></span></a>
+          <ul class='dropdown-menu'>
+            <li class='header__submenu-support'>
+              <a href='/donate'><button class='btn btn-md'>Donate Now</button></a>
+            </li>
+            <li><a href='/about-us'>KTUH History</a></li>
+            <li><a href='/join-ktuh'>Donate</a></li>
+            <li><a href='/donate'>Join KTUH</a></li>
+            <li><a href='/contact-us'>Contact Us</a></li>
+            <li><a href='/faq'>FAQ</a></li>
           </ul>
         </li>
-        <li class="dropdown {{activePage 'show' 'showPage' 'showCreate' 'showEdit' 'playlistPage' 'playlistList' 'reviewsPage'}}">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Music <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="/shows">Show Schedule</a></li>
-            <li><a href="/playlists">Playlist</a></li>
-            <li><a href="/reviews">Reviews</a></li>
-            <li><a href="/charts">Charts</a></li>
+        <li class='dropdown {{activePage 'show' 'showPage' 'showCreate' 'showEdit' 'playlistPage' 'playlistList' 'reviewsPage'}}'>
+          <a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>Music <span class='caret'></span></a>
+          <ul class='dropdown-menu'>
+            <li><a href='/shows'>Show Schedule</a></li>
+            <li><a href='/playlists'>Playlist</a></li>
+            <li><a href='/reviews'>Reviews</a></li>
+            <li><a href='/charts'>Charts</a></li>
           </ul>
         </li>
         <li class='{{activePage 'party' 'partyPage' 'partyCreate' 'partyEdit'}} nav-item nav-item__parties'><a href={{partyPage}}>Events</a></li>
@@ -40,19 +43,22 @@
       </ul>
       <ul class='nav navbar-nav navbar-right'>
         <li class='nav-item'>
+          <button type='button' class='btn btn-md header__support-btn'><a href='/donate'>Donate Now</a></button>
+        </li>
+        <li class='nav-item'>
           <div class='audio-player'>
-            <audio id="audio-player" preload="none" controls>
-              <source src="http://stream.ktuh.org:8000/stream-mp3" type="audio/mp3">
+            <audio id='audio-player' preload='none' controls>
+              <source src='http://stream.ktuh.org:8000/stream-mp3' type='audio/mp3'>
             </audio>
           </div>
         </li>
         {{#if aloha}}<li class='header__aloha'>{{aloha}}</li>{{/if}}
-      {{> loginButtons}}
+        {{> loginButtons}}
       </ul>
     </div>
-    <div class="now-playing-bar">
+    <div class='now-playing-bar'>
       {{{latestSong}}}
     </div>
   </nav>
-  <script src="/mejs/mediaelement-and-player.min.js"></script>
+  <script src='/mejs/mediaelement-and-player.min.js'></script>
 </template>

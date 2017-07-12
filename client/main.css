@@ -296,6 +296,33 @@ a, a:hover, a:focus {
   top: unset;
   margin-top: 50px; 
 }
+.header__submenu-support {
+  display: none;
+  background: #333; 
+}
+.header__submenu-support button {
+  margin: 8px 15px 8px;
+  padding: 6px 10px 8px 10px;
+  border: 1px solid #fff;
+  background-color: transparent;
+}
+.header__submenu-support a {
+  color: #fff;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+.header__submenu-support button:hover {
+  color: #fff;
+}
+.header__support-btn {
+  margin: 8px;
+  padding: 6px 12px 8px 12px;
+  border: 1px solid #fff;
+  background-color: transparent;
+}
+.header__support-btn a {
+  color: #fff;
+}
 .header__aloha {
   margin-right: -15px;
   padding: 15px 0 15px 15px; 
@@ -428,15 +455,11 @@ a, a:hover, a:focus {
   position: relative;
   width: 100%;
 }
-.icon-sync {
-  position: absolute;
-  height: 12px);
-  font-size: 1.5em;
-}
 .icon-sync. .title-notification {
   padding-left: 40px;
 }
 .title-notification {
+  display: inline-block !important;
   font-size: 1em;
   font-weight: bold;
   color: #fff;
@@ -444,6 +467,15 @@ a, a:hover, a:focus {
   line-height: 1rem;
   padding: 1rem .75rem;
 }
+.glyphicon-refresh {
+  margin: 0px 5px 0px 0px;
+  -webkit-animation: spin 2s linear infinite;
+  -moz-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
 /** audio player styles **/
 audio {
     display: none;
@@ -732,7 +764,6 @@ audio {
   text-decoration-style: wavy;
 }
 .profile__social-icons {
-  float: right;
   height: 28px;
   margin: 0 0 9px;
 }
@@ -1158,6 +1189,14 @@ audio {
     clear: both;
   }
 }
+@media (max-width: 979px) {
+  .header__support-btn {
+    display: none;
+  }
+  .header__submenu-support {
+    display: block;
+  }
+}
 @media (max-width: 807px) {
   .nav > li > a {
       margin: 0 10px;
@@ -1268,6 +1307,12 @@ audio {
   }
   .party-info {
     margin-top: 20px;
+  }
+  .header__support-btn {
+    display: block;
+  }
+  .header__submenu-support {
+    display: none;
   }
   .landing__play-btn { 
     left: 1.75em;

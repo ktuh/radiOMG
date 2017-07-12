@@ -8,7 +8,7 @@ import { Notifications } from '../../../api/notifications/notifications_collecti
 var IGNORE_CONNECTION_ISSUE_KEY = 'ignoreConnectionIssue';
 
 Template.errors.helpers({
-  errors: function() {
+  errors: () => {
     return Errors.find();
   }
 });
@@ -21,12 +21,8 @@ Template.error.onRendered(function() {
 });
 
 Template.errors.helpers({
-  notifications: function () {
-    return Notifications.find({userId: Meteor.userId(),
-                               read: false});
-  },
-  connected: function() {
-    return Session.get(IGNORE_CONNECTION_ISSUE_KEY) ||
-      Meteor.status().connected;
-  }
+  notifications: () => Notifications.find({ userId: Meteor.userId(),
+                                            read: false }),
+  connected: () => Session.get(IGNORE_CONNECTION_ISSUE_KEY)
+                   || Meteor.status().connected
 });

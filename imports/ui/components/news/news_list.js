@@ -41,4 +41,4 @@ Template.newsList.events({
       $('.news-list').masonry('reloadItems').masonry('layout');
     }, 1000);
   }
-})
+});

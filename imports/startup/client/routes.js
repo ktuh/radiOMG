@@ -9,6 +9,7 @@ import '../../ui/components/home/landing.js';
 import '../../ui/components/includes/errors.js';
 import '../../ui/components/includes/footer.js';
 import '../../ui/components/includes/header.js';
+import '../../ui/components/includes/loginButtons.js';
 import '../../ui/components/news/news_item.js';
 import '../../ui/components/news/news_list.js';
 import '../../ui/components/pages/pages_item.js'

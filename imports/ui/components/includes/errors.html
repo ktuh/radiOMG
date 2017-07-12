@@ -1,27 +1,26 @@
-<template name="errors">
-  <div class="notifications">
+<template name='errors'>
+  <div class='notifications'>
     {{#unless connected}}
-      <div class="notification">
-        <span class="icon-sync"></span>
-        <div class="title-notification">Trying to connect</div>
+      <div class='notification'>
+        <span class='title-notification'>Trying to connect</span><span class='glyphicon glyphicon-refresh'></span>
       </div>
     {{/unless}}
     {{#each notifications}}
-      <div class="notification">
-        <a class="btn-primary js-notification-action">{{action}}</a>
-        <div class="title-notification">{{title}}</div>
+      <div class='notification'>
+        <a class='btn-primary js-notification-action'>{{action}}</a>
+        <div class='title-notification'>{{title}}</div>
       </div>
     {{/each}}
   </div>
-  <div class="errors">
+  <div class='errors'>
     {{#each errors}}
       {{> error}}
     {{/each}}
   </div>
 </template>
-<template name="error">
-  <div class="alert alert-danger" role="alert">
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
+<template name='error'>
+  <div class='alert alert-danger' role='alert'>
+    <button type='button' class='close' data-dismiss='alert'>&times;</button>
     {{message}}
   </div>
 </template>
