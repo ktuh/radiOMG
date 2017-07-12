@@ -53,4 +53,6 @@ Moderator.helper('collections.posts.indexFilter', function() {
   return { };
 });
 
+Moderator.allow('filesystem.upload', true);
+
 export default Moderator;

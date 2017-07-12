@@ -40,6 +40,10 @@ DJ.allow('collections.reviews.showRemove', function (userId, doc, fields, modifi
   return doc.userId === userId;
 });
 
+DJ.deny('collections.reviews.update', function(userId, doc, fields, modifier) {
+  return !_.contains(fields, 'approved');
+});
+
 DJ.helper('collections.reviews.indexFilter', function() {
   return {
     createdBy: this.userId
@@ -62,6 +66,10 @@ DJ.allow('collections.parties.showRemove', function (userId, doc, fields, modifi
   return doc.userId === userId;
 });
 
+DJ.deny('collections.parties.update', function(userId, doc, fields, modifier) {
+  return !_.contains(fields, 'approved');
+});
+
 DJ.helper('collections.parties.indexFilter', function() {
   return {
     createdBy: this.userId
@@ -82,6 +90,10 @@ DJ.allow('collections.posts.showUpdate', function (userId, doc, fields, modifier
 });
 DJ.allow('collections.posts.showRemove', function (userId, doc, fields, modifier) {
   return doc.userId === userId;
+});
+
+DJ.deny('collections.posts.update', function(userId, doc, fields, modifier) {
+  return !_.contains(fields, 'approved');
 });
 
 DJ.helper('collections.posts.indexFilter', function() {
@@ -155,5 +167,7 @@ DJ.helper('collections.profiles.indexFilter', function() {
     userId: this.userId
   };
 });
+
+DJ.allow('filesystem.upload', true);
 
 export default DJ;

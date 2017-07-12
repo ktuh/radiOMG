@@ -86,11 +86,13 @@ Meteor.startup(function () {
 
       user.username = username;
       user.emails = [{ address: email, verified: true }];
+
+      Roles.addUserToRoles(user._id, ['member']);
     }
     return user;
   });
 
-  Accounts.validateNewUser((user) => 
+  Accounts.validateNewUser((user) =>
      (user.services && user.services.facebook) || (user.services && user.services.google) ||
      (user.username !== '' && user.emails !== undefined));
 
