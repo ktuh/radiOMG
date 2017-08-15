@@ -11,7 +11,7 @@ Template.registerHelper('RouterLayerIsActiveRoutePartial', function(routeName) {
 });
 
 if (RouterLayer.router == 'flow-router') {
-  Template.registerHelper('yield', function() {
+  Template.registerHelper('aYield', function() {
     if (this.templateContent) {
       return this.templateContent;
     } else {
