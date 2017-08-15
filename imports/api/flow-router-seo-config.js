@@ -1,4 +1,4 @@
-import { FlowRouterSEO } from 'meteor/tomwasd:flow-router-seo';
+/* import { FlowRouterSEO } from 'meteor/tomwasd:flow-router-seo';
 
 export const SEO = new FlowRouterSEO({ database: true });
 
@@ -18,4 +18,4 @@ SEO.setDefaults({
     'name="twitter:url"': 'http://808mix.com',
     'name="twitter:card"': 'The only station that loves you.'
   }
-});
+});*/

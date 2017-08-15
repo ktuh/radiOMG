@@ -1,8 +1,7 @@
 import './header.html';
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
-import { EasySearch } from 'meteor/easy:search';
-import { FlowRouter } from 'meteor/kadira:flow-router';
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import { NowPlaying } from '../../../api/playlists/now_playing.js';
 import 'mediaelement/player';
 
@@ -99,7 +98,7 @@ Template.header.helpers({
   showPage: () => FlowRouter.path('show'),
   reviewsPage: () => FlowRouter.path('reviewsPage'),
   nowPlaying: () => Session.get('nowPlaying'),
-  latestSong: () =>  (NowPlaying.findOne() !== undefined && !Session.get('timeout')) ? 
+  latestSong: () =>  (NowPlaying.findOne() !== undefined && !Session.get('timeout')) ?
                      '<div>Last Played Song: ' + NowPlaying.findOne().current + '</div>' : '',
   aloha: () => (Meteor.user() === null || window.innerWidth < 768) ? '' : 'Aloha, '
 });

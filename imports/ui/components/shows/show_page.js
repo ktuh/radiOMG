@@ -3,7 +3,7 @@ import { Shows } from '../../../api/shows/shows_collection.js';
 import { Playlists } from '../../../api/playlists/playlists_collection.js';
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
-import { FlowRouter } from 'meteor/kadira:flow-router';
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 
 
 Template.showPage.onCreated(function() {

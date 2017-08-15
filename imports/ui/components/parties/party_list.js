@@ -1,7 +1,7 @@
 import './party_list.html';
 import './party_item.js';
 import { Template } from 'meteor/templating';
-import { FlowRouter } from 'meteor/kadira:flow-router';
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import { Meteor } from 'meteor/meteor';
 import { Parties } from '../../../api/parties/parties_collection.js';
 import { $ } from 'meteor/jquery';

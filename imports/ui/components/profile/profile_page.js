@@ -1,7 +1,6 @@
 import './profile_page.html';
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
-import { BlazeLayout } from 'meteor/kadira:blaze-layout';
 import { Posts } from '../../../api/posts/posts_collection.js';
 import { Profiles } from '../../../api/users/profiles_collection.js';
 import { Shows } from '../../../api/shows/shows_collection.js';
@@ -21,7 +20,7 @@ Template.profilePage.onCreated(function() {
         // Dirty solution, should be handled in the router but we don't have a
         // data control layer/controller there, so we redirect in the template.
         if (user === undefined) {
-          BlazeLayout.render('layout', {content: 'notFound'});
+          this.render('layout', {content: 'notFound'});
         }
         else {
           self.subscribe('profileData', user._id);
@@ -76,7 +75,6 @@ Template.profilePage.helpers({
   },
   show: function() {
     var user = Meteor.users.findOne({ username: FlowRouter.getParam("username") });
-    console.log(user._id);
     return Shows.findOne({ userId: user._id });
   }
 });

@@ -2,7 +2,7 @@ import './comment_submit.html';
 import '../../../api/comments/comments_methods.js';
 import { Template } from 'meteor/templating';
 import { Meteor } from 'meteor/meteor';
-import { FlowRouter } from 'meteor/kadira:flow-router';
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import { $ } from 'meteor/jquery';
 import { throwError } from '../../../../client/helpers/errors.js';
 

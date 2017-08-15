@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Playlists } from '../playlists_collection.js';
 import { NowPlaying } from '../now_playing.js';
-import { pagination } from 'meteor/kurounin:pagination';
+import { publishPagination } from 'meteor/kurounin:pagination';
 
 Meteor.publish('playlist', function (id) {
   check(id, Number);
@@ -25,4 +25,4 @@ Meteor.publish('showPlaylists', function(id) {
   return Playlists.find({ showId: id });
 });
 
-new Meteor.Pagination(Playlists);
+publishPagination(Playlists);

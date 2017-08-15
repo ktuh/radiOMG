@@ -1,7 +1,10 @@
 <template name="home">
-<div class='home'>
-  {{#if posts}}<h4 class='home__headline'>Latest News</h4>{{/if}}
-  <div class='home__news'>
+<div class='home__news black'>
+  {{#if posts}}
+    <h5 class="home__section">RADIOBLOG</h5>
+    <h3 class='home__headline'>Latest News</h3>
+  {{/if}}
+  <div class='home__news__content'>
     {{#each posts}}
       <div class='home__news-item'>
         <a href='/news/{{slug}}'>
@@ -11,8 +14,13 @@
       </div>
     {{/each}}
   </div>
-  {{#if reviews}}<h4 class='home__headline'>Latest Reviews</h4>{{/if}}
-  <div class='home__reviews'>
+</div>
+<div class='home__reviews white'>
+  {{#if reviews}}
+    <h5 class="home__section">MUSIC</h5>
+    <h3 class='home__headline'>Latest Reviews</h3>
+  {{/if}}
+  <div class='home__reviews__content'>
     {{#each reviews}}
       <div class='home__reviews-item'>
         <a href='/review/{{slug}}'>
