@@ -931,14 +931,19 @@ audio {
 .show__play-btn:hover {
   border-color: #333;
 }
+.news-list {
+  text-align: center;
+}
 .news-list__header {
   margin: 5px 0 20px;
   font-weight: bold;
 }
+.news-list__info {
+  text-align: left;
+}
 .news-list__post {
-  float: left;
-  width: 25%;
-  padding: 0 20px 20px 0;
+  display: inline-flex;
+  width: 70%;
 }
 .news-list__post h3 {
   margin-top: 0;
