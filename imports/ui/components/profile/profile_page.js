@@ -5,6 +5,7 @@ import { Posts } from '../../../api/posts/posts_collection.js';
 import { Profiles } from '../../../api/users/profiles_collection.js';
 import { Shows } from '../../../api/shows/shows_collection.js';
 import { Bert } from 'meteor/themeteorchef:bert';
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import '../application/layout.js';
 
 Template.profilePage.onCreated(function() {
@@ -34,6 +35,7 @@ Template.profilePage.onCreated(function() {
 
 Template.profilePage.helpers({
   negB1orB2: (b1,b2) => (!b1 || b2),
+  negB1andB2: (b1,b2) => (!b1 && b2),
   isAdmin: () => Meteor.user() !== null ? Meteor.user().hasRole('admin') : false,
   isBanned: () => {
     var user = Meteor.users.findOne({ username: FlowRouter.getParam("username" )});
