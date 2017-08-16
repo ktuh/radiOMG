@@ -1,6 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Posts } from '../posts_collection.js'
-import { pagination } from 'meteor/kurounin:pagination';
+import { publishPagination } from 'meteor/kurounin:pagination';
 
 Meteor.publish('postsLimited', (options) => {
   check(options, {
@@ -22,11 +22,11 @@ Meteor.publish('singlePostById', (id) => {
 
 Meteor.publish('postsByUser', (username) => {
   check(username, String);
-  return Posts.find({ author: username }, { fields: { submitted: 1, title: 1, 
+  return Posts.find({ author: username }, { fields: { submitted: 1, title: 1,
                                                       author: 1, userId: 1 }});
 });
 
-Meteor.publish('chartsPosts', () => Posts.find({ isChart: true }, { sort: { submitted: -1 }, 
+Meteor.publish('chartsPosts', () => Posts.find({ isChart: true }, { sort: { submitted: -1 },
                                                  fields: { slug: 1, submitted: 1, title: 1 }}));
 
-new Meteor.Pagination(Posts);
+publishPagination(Posts);

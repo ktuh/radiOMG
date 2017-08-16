@@ -1,7 +1,7 @@
 import './home.html';
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
-import { FlowRouter } from 'meteor/kadira:flow-router';
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import { Posts } from '../../../api/posts/posts_collection.js';
 import { Reviews } from '../../../api/reviews/reviews_collection.js';
 import { $ } from 'meteor/jquery';
@@ -9,8 +9,8 @@ import { $ } from 'meteor/jquery';
 Template.home.onCreated(function () {
   var self = this;
   self.autorun(function () {
-    self.subscribe('postsLimited', { limit: 5, sort: { submitted: -1 }});
-    self.subscribe('reviewsLimited', { limit: 5, sort: { submitted: -1 }});
+    self.subscribe('postsLimited', { limit: 4, sort: { submitted: -1 }});
+    self.subscribe('reviewsLimited', { limit: 6, sort: { submitted: -1 }});
   });
 });
 

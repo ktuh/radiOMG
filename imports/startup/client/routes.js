@@ -1,4 +1,4 @@
-import { FlowRouter } from 'meteor/kadira:flow-router';
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import { BlazeLayout } from 'meteor/kadira:blaze-layout';
 
 import '../../ui/components/application/layout.js';
@@ -172,8 +172,8 @@ FlowRouter.route('/:slug', {
   }
 });
 
-FlowRouter.notFound = {
+FlowRouter.route('*', {
   action: function () {
     BlazeLayout.render('layout', {content: 'notFound'});
   }
-}
+});

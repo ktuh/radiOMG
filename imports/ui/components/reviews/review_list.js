@@ -2,9 +2,8 @@ import './review_list.html';
 import { Template } from 'meteor/templating';
 import { Meteor } from 'meteor/meteor';
 import { Reviews } from '../../../api/reviews/reviews_collection.js';
-import { EasySearch } from 'meteor/easy:search';
 import './review_item.js';
-import { FlowRouter } from 'meteor/kadira:flow-router';
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 
 Template.reviewList.onCreated(function () {
   var self = this;

@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Reviews } from '../reviews_collection.js';
+import { publishPagination } from 'meteor/kurounin:pagination';
 
 Meteor.publish('reviewsLimited', (options) => {
   check(options, {
@@ -15,4 +16,4 @@ Meteor.publish('singleReview', (selector) => {
   return reviews ? reviews : Reviews.find({ _id: selector });
 });
 
-new Meteor.Pagination(Reviews);
+publishPagination(Reviews);

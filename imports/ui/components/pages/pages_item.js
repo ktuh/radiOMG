@@ -1,7 +1,7 @@
 import './pages_item.html';
 import { Template } from 'meteor/templating';
 import { Meteor } from 'meteor/meteor';
-import { FlowRouter } from 'meteor/kadira:flow-router';
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import { Pages } from '../../../api/pages/pages_collection.js';
 
 Template.pagesItem.onCreated(function() {

@@ -6,36 +6,40 @@
       <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit</button></a>
     {{/if}}
   </div>
-  {{#if Template.subscriptionsReady}}
-    {{#with show}}
-      {{#if featuredImage}}
-      <div class='show__image-div'>
-        <img class='show__image' src='{{featuredImage.url}}'>
-      </div>
+  <div class="show__wrapper">
+    <div class="show__content">
+      {{#if Template.subscriptionsReady}}
+        {{#with show}}
+          {{#if featuredImage}}
+          <div class='show__image-div'>
+            <img class='show__image' src='{{featuredImage.url}}'>
+            {{#if playlists}}
+              <div class='show__playlists'>
+              <h4>Playlists</h4>
+              <ul>
+              {{#each playlists}}
+                <li><span class='show__playlist-time'><a href='/playlists/{{spinPlaylistId}}'>{{time showDate}}</a></span></li>
+              {{/each}}
+              </ul>
+              </div>
+            {{/if}}
+          </div>
+          {{/if}}
+          <div class='show__info'>
+            <h3 class='show__name'><b>{{showName}}</b></h3>
+            <h4 class='show__host'>Hosted by <a href="{{profileUrl userId}}">{{host}}</a></h4>
+            <h5 class='show__time'>{{day startDay}}s from {{timeBeautify startHour endHour}}</h5>
+            {{#if latestEpisodeUrl}}<p class='show__tag'>
+              <button type="button" data-path='{{latestEpisodeUrl}}' class="btn btn-default show__play-btn" aria-label="Left Align">
+                <span class="glyphicon {{#if isPlaying latestEpisodeUrl}}glyphicon-pause{{else}}glyphicon-play{{/if}}" aria-hidden="true"></span> &nbsp;Play latest episode
+              </button>
+            </p>{{/if}}
+            <p>{{body}}</p>
+          </div>
+        {{/with}}
+      {{else}}
+        {{> spinner}}
       {{/if}}
-      <div class='show__info'>
-        <h3 class='show__name'><b>{{showName}}</b></h3>
-        <h4 class='show__host'>Hosted by <a href="{{profileUrl userId}}">{{host}}</a></h4>
-        <h5>{{day startDay}}s from {{startHour}}:{{#if lessThanTen startMinute}}0{{/if}}{{startMinute}} to {{endHour}}:{{#if lessThanTen endMinute}}0{{/if}}{{endMinute}}</h5>
-        {{#if latestEpisodeUrl}}<p class='show__tag'>
-          <button type="button" data-path='{{latestEpisodeUrl}}' class="btn btn-default show__play-btn" aria-label="Left Align">
-            <span class="glyphicon {{#if isPlaying latestEpisodeUrl}}glyphicon-pause{{else}}glyphicon-play{{/if}}" aria-hidden="true"></span> &nbsp;Play latest episode
-          </button>
-        </p>{{/if}}
-        <p>{{body}}</p>
-      </div>
-    {{/with}}
-    {{#if playlists}}
-      <div class='show__playlists'>
-      <h4>Playlists</h4>
-      <ul>
-      {{#each playlists}}
-        <li><span class='show__playlist-time'><a href='/playlists/{{spinPlaylistId}}'>{{time showDate}}</a></span></li>
-      {{/each}}
-      </ul>
-      </div>
-    {{/if}}
-  {{else}}
-    {{> spinner}}
-  {{/if}}
+    </div>
+  </div>
 </template>

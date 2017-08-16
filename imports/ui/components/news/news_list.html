@@ -4,8 +4,10 @@
     {{#each posts}}
       <div class='news-list__post'>
         {{#if photo}}<a href={{newsPagePath slug}}><img class='news-list__photo' src='{{photo.url}}'></a>{{/if}}
-        <a class='news-list__title' href={{newsPagePath slug}}><h3>{{title}}</h3></a>
-        <p class='news-list__excerpt'>{{excerpt body}}... <a href='{{newsPagePath slug}}'>Read More</a></p>
+        <div class='news-list__info'>
+          <a class='news-list__title' href={{newsPagePath slug}}><h3>{{title}}</h3></a>
+          <p class='news-list__excerpt'>{{excerpt body}}... <a href='{{newsPagePath slug}}'>Read More</a></p>
+        </div>
       </div>
     {{/each}}
   </div>

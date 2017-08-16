@@ -1,7 +1,7 @@
 import './news_item.html';
 import { Template } from 'meteor/templating';
 import { Meteor } from 'meteor/meteor';
-import { FlowRouter } from 'meteor/kadira:flow-router';
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import { Posts } from '../../../api/posts/posts_collection.js';
 import { Comments } from '../../../api/comments/comments_collection.js';
 import { Profiles } from '../../../api/users/profiles_collection.js';
@@ -32,11 +32,10 @@ Template.newsItem.helpers({
     return post;
   },
   comments: () => { Comments.find(); },
-  displayName: () => { 
+  displayName: () => {
     var slug = FlowRouter.getParam('slug');
     var post = Posts.findOne({ slug: slug });
     var profile = Profiles.findOne({ userId: post.userId });
-    console.log(post && post.userId);
     return profile && profile.name;
   }
 });

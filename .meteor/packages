@@ -20,9 +20,7 @@ sacha:spin
 fortawesome:fontawesome
 ian:accounts-ui-bootstrap-3
 check@1.2.5
-easy:search
 iamkevingreen:imagesloaded
-tomwasd:flow-router-seo
 todda00:friendly-slugs
 email@1.2.1
 meteorhacks:picker
@@ -38,7 +36,6 @@ tsega:bootstrap3-datetimepicker
 qubitdev:autoform-bs-datetimepicker-updated
 mpowaga:autoform-summernote
 lepozepo:s3
-matteodem:easy-search
 accounts-base@1.3.0
 accounts-oauth@1.1.15
 scorpiusjs:base
@@ -47,13 +44,9 @@ scorpiusjs:collections
 scorpiusjs:core
 scorpiusjs:s3
 scorpiusjs:image-attribute
-kadira:blaze-layout
 nicolaslopezj:reactive-templates
 scorpiusjs:accounts
-nicolaslopezj:tabular-materialize
-kadira:flow-router
 scorpiusjs:config
-scorpiusjs:materialize-admin-only
 useraccounts:bootstrap
 kurounin:pagination
 kurounin:pagination-blaze
@@ -62,3 +55,10 @@ accounts-facebook
 service-configuration
 accounts-google
 reactive-var
+ostrio:flow-router-extra
+nicolaslopezj:router-layer
+scorpiusjs:materialize
+blaze
+templating
+templating-runtime
+kadira:blaze-layout

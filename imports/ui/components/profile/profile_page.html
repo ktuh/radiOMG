@@ -14,12 +14,12 @@
       {{#if show}}<h4><i>Host of <a href='/shows/{{show.showName}}'>{{show.showName}}</a></i></h4>{{/if}}
       {{#if social}}
         <div class='profile__social-icons'>
-          {{#if website}}<a href='{{website}}'><img class='profile__social-icon' src='/img/website.png'></a>{{/if}} 
-          {{#if soundcloud}}<a href='http://soundcloud.com/{{soundcloud}}'><img class='profile__social-icon' src='/img/soundcloud.png'></a>{{/if}} 
-          {{#if instagram}}<a href='http://instagram.com/{{instagram}}'><img class='profile__social-icon' src='/img/instagram.png'></a>{{/if}} 
-          {{#if facebook}}<a href='http://facebook.com/{{facebook}}'><img class='profile__social-icon' src='/img/facebook.png'></a>{{/if}} 
-          {{#if twitter}}<a href='http://twitter.com/{{twitter}}'><img class='profile__social-icon' src='/img/twitter.png'></a>{{/if}} 
-          {{#if snapchat}}<a href='{{snapchat}}'><img class='profile__social-icon' src='/img/snapchat.png'></a>{{/if}} 
+          {{#if website}}<a href='{{website}}'><img class='profile__social-icon' src='/img/website.png'></a>{{/if}}
+          {{#if soundcloud}}<a href='http://soundcloud.com/{{soundcloud}}'><img class='profile__social-icon' src='/img/soundcloud.png'></a>{{/if}}
+          {{#if instagram}}<a href='http://instagram.com/{{instagram}}'><img class='profile__social-icon' src='/img/instagram.png'></a>{{/if}}
+          {{#if facebook}}<a href='http://facebook.com/{{facebook}}'><img class='profile__social-icon' src='/img/facebook.png'></a>{{/if}}
+          {{#if twitter}}<a href='http://twitter.com/{{twitter}}'><img class='profile__social-icon' src='/img/twitter.png'></a>{{/if}}
+          {{#if snapchat}}<a href='{{snapchat}}'><img class='profile__social-icon' src='/img/snapchat.png'></a>{{/if}}
         </div>
       {{/if}}
       <div class='profile__bio'>
@@ -27,16 +27,16 @@
       </div>
       {{#if Template.subscriptionsReady}} {{#if posts}}
         <div class='profile__posts'>
-          <h4>Posts</h4> 
+          <h4>Posts</h4>
           {{#each posts}}
             <p class='profile__posts'><a href='/news/{{slug}}'>{{title}}</a></p>
           {{/each}}
         </div>
       {{/if}} {{/if}}
-      {{#if isAdmin}} {{#unless isBanned}}
-        <input id='profile__ban-user' type="button" value="Ban User"> 
+      {{#if negB1andB2 ownProfile isAdmin}} {{#unless isBanned}}
+        <input id='profile__ban-user' type="button" value="Ban User">
       {{else}}
-        <input id='profile__unban-user' type="button" value="Lift User Ban"> 
+        <input id='profile__unban-user' type="button" value="Lift User Ban">
       {{/unless}} {{/if}}
     </div>
   </div>

@@ -3,8 +3,7 @@ import { Shows } from '../../../api/shows/shows_collection.js';
 import { Playlists } from '../../../api/playlists/playlists_collection.js';
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
-import { FlowRouter } from 'meteor/kadira:flow-router';
-
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 
 Template.showPage.onCreated(function() {
   var self = this;
@@ -34,7 +33,7 @@ Template.showPage.helpers({
            Shows.findOne().userId == Meteor.userId();
   },
   time: function (t) {
-    var fmt = 'dddd, MMMM Do YYYY, h:mm a'
+    var fmt = 'dddd, MMMM Do YYYY'
     return moment(t).format(fmt);
   },
   playlists: function() {
@@ -54,6 +53,20 @@ Template.showPage.helpers({
   day: function(num) {
     var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     return days[num];
+  },
+  timeBeautify: function (startHour, endHour) {
+    if (startHour >= 0 && endHour <= 11) {
+      return ((startHour === 0) ? 12 : startHour) + "-" + endHour + " AM";
+    }
+    if (startHour >= 12 && endHour <= 23) {
+      return ((startHour >= 13) ? (startHour - 12) : startHour) + "-" + ((endHour >= 13) ? (endHour - 12) : endHour) + " PM";
+    }
+    if (startHour >= 12 && endHour >= 0) {
+      return ((startHour >= 13) ? (startHour - 12) : startHour) + " PM-" + ((endHour === 0) ? 12 : endHour) + " AM";
+    }
+    if (startHour >= 0 && endHour >= 12) {
+      return ((startHour === 0) ? 12 : startHour) + "-" + ((endHour >= 13) ? (endHour - 12) : endHour) + " PM";
+    }
   }
 });
 
