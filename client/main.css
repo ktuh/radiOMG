@@ -867,6 +867,13 @@ audio {
 .shows__day.active a {
   color: white;
 }
+.show__content {
+  text-align: center;
+  display: inline-flex;
+}
+.show__wrapper {
+  text-align: center;
+}
 .show-item {
   display: inline-flex;
 }
@@ -904,6 +911,7 @@ audio {
   float: left;
   max-width: 50%;
   margin-bottom: 30px;
+  text-align: left;
 }
 .show__link {
   margin: 20px 0;
@@ -924,6 +932,7 @@ audio {
 }
 .show__name, .show__host {
   margin: 0 0 5px 0;
+  font-family: 'din-2014', sans-serif;
 }
 .show__host a {
   text-decoration: underline;
@@ -942,9 +951,18 @@ audio {
 .show__playlists {
   clear: both;
   margin-top: 30px;
+  text-align: left;
+}
+.show__playlists h4 {
+  font-family: 'din-2014', sans-serif;
+  text-transform: uppercase;
+}
+.show__time {
+  font-family: 'din-2014', sans-serif;
 }
 .show__playlists ul {
-  padding: 0 0 0 16px;
+  padding: 0;
+  list-style: none;
 }
 .show__play-btn,
 .show__play-btn:hover {
