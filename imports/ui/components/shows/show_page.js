@@ -67,7 +67,8 @@ Template.showPage.helpers({
     if (startHour >= 0 && endHour >= 12) {
       return ((startHour === 0) ? 12 : startHour) + "-" + ((endHour >= 13) ? (endHour - 12) : endHour) + " PM";
     }
-  }
+  },
+  genreString: (genres) => genres.join(', ')
 });
 
 Template.showPage.events({

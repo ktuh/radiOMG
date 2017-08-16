@@ -818,10 +818,6 @@ audio {
   padding-bottom: 40px;
   text-align: center;
 }
-.shows__header {
-  margin: 20px 0 40px;
-  font-weight: bold;
-}
 .shows__days {
   margin: 10px 0 20px;
   font-family: 'din-2014', sans-serif;
@@ -948,6 +944,10 @@ audio {
   float: right;
   margin-bottom: 10px;
 }
+.show__link-back {
+  text-transform: uppercase;
+  font-family: 'din-2014', sans-serif;
+}
 .show__playlists {
   clear: both;
   margin-top: 30px;
@@ -971,12 +971,24 @@ audio {
 .news-list {
   text-align: center;
 }
-.news-list__header {
-  margin: 5px 0 20px;
-  font-weight: bold;
+.news-list__header, .shows__header {
+  margin-top: 5px;
+  padding: 100px 0 5px 40px;
+  background-color: #262626;
+  color: white;
+  font-family: 'din-2014', sans-serif;
+  text-transform: uppercase;
 }
 .news-list__info {
   text-align: left;
+}
+.news-list__photo-link {
+  width: 80%;
+  padding-right: 10px;
+}
+.news-list__photo-link img {
+  width: 100%;
+  height: auto;
 }
 .news-list__post {
   display: inline-flex;

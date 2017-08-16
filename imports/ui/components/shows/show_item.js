@@ -16,7 +16,7 @@ Template.showItem.helpers({
     var hour = startHour < 10 ? '0' + startHour : startHour;
     var minute = startMinute < 10 ? '0' + startMinute : startMinute;
     var period = startHour < 12 ? 'am' : 'pm';
-    return hour + ':' + minute + period;
+    return (hour <= 12 ? hour : hour - 12) + ':' + minute + period;
   },
   profileLink: (id) => {
     var user = Meteor.users.findOne({ _id: id });
@@ -27,7 +27,7 @@ Template.showItem.helpers({
     var str = '';
     for (var i = 0; i < genres.length; i++) {
       str = str + genres[i];
-      if (i !== genres.length - 1) 
+      if (i !== genres.length - 1)
         str = str + ', ';
     }
     return str;
