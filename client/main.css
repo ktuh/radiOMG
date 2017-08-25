@@ -972,7 +972,7 @@ audio {
   text-align: center;
 }
 .news-list__header, .shows__header {
-  margin-top: 5px;
+  margin-top: 0;
   padding: 100px 0 5px 40px;
   background-color: #262626;
   color: white;
@@ -1050,6 +1050,7 @@ audio {
   width: 100%;
   background-color: #4616DB;
   text-align: center;
+  float: left;
 }
 
 .home__news__content,
@@ -1159,12 +1160,11 @@ audio {
   font-weight: bold;
 }
 .footer__links {
-  display: inline-grid;
-  margin-bottom: 10px;
-  padding: 0 88px;
+  width: 25%;
+  margin: 0;
 }
-.footer__social {
-  display: inline-flex;
+.footer__links:first-child {
+  text-align: center;
 }
 .footer__links p {
   margin: 0 0 6px;
@@ -1173,15 +1173,11 @@ audio {
 .footer__links p a {
   color: #fff;
 }
-.footer__copyright-social-wrapper {
-  width: 25%;
-  display: inline-block;
-  text-align: center;
-}
 .footer__links-wrapper {
   text-align: center;
 }
 .footer__social {
+  display: inline-flex;
   margin: 0 auto;
 }
 .footer__social img {
@@ -1312,7 +1308,18 @@ audio {
 }
 @media (max-width: 768px) {
   #main {
-    padding: 25px 40px;
+    float: left;
+  }
+  .shows__day {
+    width: initial;
+  }
+  .shows__days span:first-child {
+    margin-left: 0;
+    border-radius: 0px;
+  }
+  .shows__days span:last-child {
+    margin-left: 0;
+    border-radius: 0;
   }
   .spacer-sm {
     height: 50px;
@@ -1323,6 +1330,7 @@ audio {
   }
   .footer {
     padding: 30px 40px 25px;
+    font-size: 12px;
   }
   .info-box__link {
     margin-top: 10px;
@@ -1388,9 +1396,13 @@ audio {
   li.header__aloha {
     display: none;
   }
-  .home__reviews-item,
+  .home__reviews-item {
+    width: 50%;
+    float: left;
+  }
   .home__news-item {
-    width: 33.3%;
+    width: 50%;
+    float: left;
   }
   .profile {
     width: inherit;
@@ -1510,7 +1522,7 @@ audio {
   }
 }
 @media (max-width: 480px) {
-  #main, .footer {
+  .footer {
     padding-left: 20px;
     padding-right: 20px;
   }
