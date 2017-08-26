@@ -91,7 +91,9 @@ a, a:hover, a:focus {
   background-position: center;
 }
 .landing__box {
-  margin: 90px auto;
+  position: relative;
+  top: 33%;
+  margin: auto;
   max-width: 32em;
 }
 .landing__info {
@@ -982,9 +984,10 @@ audio {
 }
 .news-list__info {
   text-align: left;
+  width: 75%;
 }
 .news-list__photo-link {
-  width: 80%;
+  width: 25%;
   padding-right: 10px;
 }
 .news-list__photo-link img {
@@ -1269,11 +1272,6 @@ audio {
   .landing {
     background-size: auto;
     background-attachment: initial;
-  }
-  .landing__box {
-    position: relative;
-    top: 33%;
-    margin: auto;
   }
   .party {
     width: 33.3333333%;
