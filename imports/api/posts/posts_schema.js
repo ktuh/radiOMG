@@ -72,6 +72,9 @@ export const PostsSchema = new SimpleSchema({
   isChart: {
     type: Boolean
   },
+  featured: {
+    type: Boolean
+  },
   approved: {
     type: Boolean,
     optional: true,

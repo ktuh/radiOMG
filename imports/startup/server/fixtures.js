@@ -187,7 +187,8 @@ if (Posts.find().count() === 0) {
       }
     },
     isChart: false,
-    approved: true
+    approved: true,
+    featured: true
   });
 
   Posts.insert({
@@ -216,7 +217,8 @@ if (Posts.find().count() === 0) {
       }
     },
     isChart: false,
-    approved: true
+    approved: true,
+    featured: false
   });
 
   Posts.insert({
@@ -246,7 +248,8 @@ if (Posts.find().count() === 0) {
       }
     },
     isChart: false,
-    approved: true
+    approved: true,
+    featured: false
   });
 
   Posts.insert({
@@ -275,7 +278,8 @@ if (Posts.find().count() === 0) {
       }
     },
     isChart: false,
-    approved: true
+    approved: true,
+    featured: false
   });
 
   Posts.insert({
@@ -304,7 +308,8 @@ if (Posts.find().count() === 0) {
         secondaryColor: '#807d78'
       }
     },
-    isChart: true
+    isChart: true,
+    featured: false
   });
 
   Posts.insert({
@@ -333,7 +338,8 @@ if (Posts.find().count() === 0) {
       }
     },
     isChart: false,
-    approved: true
+    approved: true,
+    featured: false
   });
 
   Posts.insert({
@@ -362,7 +368,8 @@ if (Posts.find().count() === 0) {
       }
     },
     isChart: false,
-    approved: true
+    approved: true,
+    featured: false
   });
 
   Posts.insert({
@@ -392,7 +399,8 @@ if (Posts.find().count() === 0) {
       }
     },
     isChart: false,
-    approved: true
+    approved: true,
+    featured: false
   });
 
   Posts.insert({
@@ -421,7 +429,8 @@ if (Posts.find().count() === 0) {
       }
     },
     isChart: false,
-    approved: true
+    approved: true,
+    featured: false
   });
 
   Posts.insert({
@@ -451,7 +460,8 @@ if (Posts.find().count() === 0) {
       }
     },
     isChart: true,
-    approved: true
+    approved: true,
+    featured: false
   });
 };
 

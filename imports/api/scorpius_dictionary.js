@@ -20,4 +20,3 @@ scorpius.dictionary.addDefinition('audioUrl', 'mainPage', {
     label: 'URL of the station\'s streaming audio feed',
     optional: true
 });
-

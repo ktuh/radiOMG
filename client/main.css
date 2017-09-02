@@ -117,7 +117,7 @@ a, a:hover, a:focus {
 }
 .landing__show-name,
 .landing__song-title {
-  font-family: 'din-2014', sans-serif;
+  font-family: 'nimbus-sans-extended', sans-serif;
   text-transform: uppercase;
 }
 .landing__host-name {
@@ -801,7 +801,7 @@ audio {
   padding: 8px 0 0;
 }
 .playlist__info-row{
-  font-family: 'din-2014', sans-serif;
+  font-family: 'nimbus-sans-extended', sans-serif;
   text-transform: uppercase;
 }
 .playlist td {
@@ -931,7 +931,7 @@ audio {
 }
 .show__name, .show__host {
   margin: 0 0 5px 0;
-  font-family: 'din-2014', sans-serif;
+  font-family: 'nimbus-sans-extended', sans-serif;
 }
 .show__host a {
   text-decoration: underline;
@@ -949,7 +949,7 @@ audio {
 }
 .show__link-back {
   text-transform: uppercase;
-  font-family: 'din-2014', sans-serif;
+  font-family: 'nimbus-sans-extended', sans-serif;
 }
 .show__playlists {
   clear: both;
@@ -957,11 +957,11 @@ audio {
   text-align: left;
 }
 .show__playlists h4 {
-  font-family: 'din-2014', sans-serif;
+  font-family: 'nimbus-sans-extended', sans-serif;
   text-transform: uppercase;
 }
 .show__time {
-  font-family: 'din-2014', sans-serif;
+  font-family: 'nimbus-sans-extended', sans-serif;
 }
 .show__playlists ul {
   padding: 0;
@@ -979,7 +979,7 @@ audio {
   padding: 100px 0 5px 40px;
   background-color: #262626;
   color: white;
-  font-family: 'din-2014', sans-serif;
+  font-family: 'nimbus-sans-extended', sans-serif;
   text-transform: uppercase;
 }
 .news-list__info {
@@ -1040,9 +1040,20 @@ audio {
 }
 
 .home__section {
-  font-family: 'din-2014', sans-serif;
+  font-family: 'nimbus-sans-extended', sans-serif;
   padding: 15px 0 5px 0;
-  margin: 2px;
+  margin: 2px 50px;
+  border-bottom: thin black solid;
+  text-align: left;
+  font-size: 1.25em;
+  font-weight: bold;
+}
+
+.home__featured {
+  width: 100%;
+  text-align: center;
+  background-color: #222222;
+  color: white;
 }
 
 .home__news {
@@ -1052,12 +1063,10 @@ audio {
 
 .home__reviews {
   width: 100%;
-  background-color: #4616DB;
   text-align: center;
-  float: left;
-  color: white;
 }
 
+.home__featured__content,
 .home__news__content,
 .home__reviews__content {
   width: 100%;
@@ -1065,11 +1074,20 @@ audio {
   text-align: center;
 }
 
+.home__featured-item {
+  display: inline-block;
+  width: 100%;
+  padding: 20px 5px;
+  color: inherit;
+  clear: both;
+}
+
 .home__news-item {
   display: inline-block;
-  width: 24%;
-  padding: 20px 15px;
+  width: 25%;
+  padding: 20px 5px;
   color: inherit;
+  float: left;
 }
 
 .home__reviews-item {
@@ -1078,17 +1096,40 @@ audio {
   padding: 20px 15px;
   color: inherit;
 }
-.home__reviews-img,
-.home__news-img {
+
+.home__reviews-img
+{
   clear: both;
   height: 125px;
   width: 125px;
+}
+
+.home__news-img {
+  clear: both;
+  height: 150px;
+  width: 200px;
   margin: 0 12px 6px 0;
 }
-.home__reviews .home__title,
-.home__reviews .home__subtitle {
+
+.home__title {
+  font-size: 1.375em;
+  font-weight: bold;
+}
+
+.home__featured .home__title {
+  font-size: 1.375em;
+  font-weight: bold;
   color: white;
 }
+
+.home__news .home__title {
+  height: 50px;
+}
+
+.home__reviews .home__title {
+  height: 25px;
+}
+
 .reviews h4 {
   font-weight: bold;
 }
@@ -1160,7 +1201,7 @@ audio {
 .footer__subheading {
   text-transform: uppercase;
   letter-spacing: 2px;
-  font-family: 'din-2014', sans-serif;
+  font-family: 'nimbus-sans-extended', sans-serif;
   font-weight: bold;
 }
 .footer__links {
@@ -1194,7 +1235,7 @@ audio {
   margin: 15px auto 0;
   padding: 15px;
   text-align: center;
-  font-family: 'din-2014', sans-serif;
+  font-family: 'nimbus-sans-extended', sans-serif;
 }
 .playlist-list__list,
 .playlist-list__latest {
@@ -1211,7 +1252,7 @@ audio {
 .playlist-list__date {
   font-size: 12px;
   line-height: 17px;
-  font-family: 'din-2014';
+  font-family: 'nimbus-sans-extended';
   text-transform: uppercase;
 }
 .playlist-list__list {

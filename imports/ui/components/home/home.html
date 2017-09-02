@@ -1,8 +1,23 @@
-<template name="home">
-<div class='home__news black'>
+<template name='home'>
+<div class='home__featured'>
+  {{#if featuredPost}}
+    <h5 class='home__section'>FEATURED POST</h5>
+    <div class='home__featured__content'>
+    {{#with featuredPost}}
+      <div class='home__featured-item'>
+        <a href='/news/{{slug}}'>
+          <img class='home__news-img' src='{{photo.url}}'>
+          <p class='home__title'>{{title}}</p>
+        </a>
+        <p class='home__synopsis'>{{synopsis body}}</p>
+      </div>
+    {{/with}}
+    </div>
+  {{/if}}
+</div>
+<div class='home__news'>
   {{#if posts}}
     <h5 class="home__section">RADIOBLOG</h5>
-    <h3 class='home__headline'>Latest News</h3>
   {{/if}}
   <div class='home__news__content'>
     {{#each posts}}
@@ -11,14 +26,14 @@
           <img class='home__news-img' src='{{photo.url}}'>
           <p class='home__title'>{{title}}</p>
         </a>
+        <p class='home__synopsis'>{{synopsis body}}</p>
       </div>
     {{/each}}
   </div>
 </div>
-<div class='home__reviews white'>
+<div class='home__reviews'>
   {{#if reviews}}
-    <h5 class="home__section">MUSIC</h5>
-    <h3 class='home__headline'>Latest Reviews</h3>
+    <h5 class="home__section">MUSIC REVIEWS</h5>
   {{/if}}
   <div class='home__reviews__content'>
     {{#each reviews}}
