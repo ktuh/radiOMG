@@ -3,14 +3,17 @@ import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import { Posts } from '../../../api/posts/posts_collection.js';
+import { Profiles } from '../../../api/users/profiles_collection.js';
 import { Reviews } from '../../../api/reviews/reviews_collection.js';
 import { $ } from 'meteor/jquery';
 
 Template.home.onCreated(function () {
   var self = this;
   self.autorun(function () {
-    self.subscribe('postsLimited', { limit: 4, sort: { submitted: -1 }});
+    self.subscribe('postsLimited', { limit: 6, sort: { submitted: -1 }});
     self.subscribe('reviewsLimited', { limit: 6, sort: { submitted: -1 }});
+    self.subscribe('latestSevenWriters');
+    self.subscribe('latestSevenWritersUsernames');
     self.subscribe('latestFeaturedPost');
   });
 });
@@ -87,5 +90,22 @@ Template.home.helpers({
   reviews: () => Reviews.find({}, { sort: { submitted: -1 }}),
   synopsis: (body) => body.replace(/(([^\s]+\s\s*){12})(.*)/,"$1…"),
   featuredPost: () => Posts.findOne({ approved: true, featured: true },
-                                 { sort: { submitted: -1 }, limit: 1 })
+                                 { sort: { submitted: -1 }, limit: 1 }),
+  firstTag: () => {
+    var featured = Posts.findOne({ approved: true, featured: true },
+                  { sort: { submitted: -1 }, limit: 1 });
+    return featured && featured.tags &&
+           featured.tags.length > 0 && featured.tags[0];
+  },
+  renderSummary: (summary, body, numWords) => {
+    if (summary && summary !== '') {
+      return summary;
+    }
+    else {
+      var regex = new RegExp("(([^\\s]+\\s\\s*){" + numWords + "})(.*)");
+      return body.replace(regex," $1…");
+    }
+  },
+  getDisplayNameById: (id) => Profiles.findOne({userId: id}).name,
+  getUsernameById: (id) => Meteor.users.findOne({_id: id}).username
 });

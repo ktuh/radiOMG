@@ -1,50 +1,61 @@
 <template name='home'>
+{{#if Template.subscriptionsReady}}
 <div class='home__featured'>
   {{#if featuredPost}}
-    <h5 class='home__section'>FEATURED POST</h5>
-    <div class='home__featured__content'>
+    <div class='home__featured-content'>
     {{#with featuredPost}}
+      <div class='home__featured-photo'>
+        <img class='home__featured-img' src='{{photo.url}}'>
+      </div>
       <div class='home__featured-item'>
+        <p class='home__featured-tag'>{{category}}</p>
         <a href='/news/{{slug}}'>
-          <img class='home__news-img' src='{{photo.url}}'>
           <p class='home__title'>{{title}}</p>
         </a>
-        <p class='home__synopsis'>{{synopsis body}}</p>
+        <p class='home__synopsis'>
+          {{renderSummary summary body 100}}
+        </p>
       </div>
     {{/with}}
     </div>
   {{/if}}
 </div>
-<div class='home__news'>
-  {{#if posts}}
-    <h5 class="home__section">RADIOBLOG</h5>
-  {{/if}}
-  <div class='home__news__content'>
-    {{#each posts}}
-      <div class='home__news-item'>
-        <a href='/news/{{slug}}'>
-          <img class='home__news-img' src='{{photo.url}}'>
-          <p class='home__title'>{{title}}</p>
-        </a>
-        <p class='home__synopsis'>{{synopsis body}}</p>
-      </div>
-    {{/each}}
+<div class='home__main'>
+  <div class='home__news'>
+    {{#if posts}}
+      <h5 class="home__section">RADIOBLOG</h5>
+    {{/if}}
+    <div class='home__news-content'>
+      {{#each posts}}
+        <div class='home__news-item'>
+          <a href='/news/{{slug}}'>
+            <img class='home__news-img' src='{{photo.url}}'>
+            <p class='home__title'>{{title}}</p>
+          </a>
+          <p class='home__synopsis'>{{renderSummary summary body 40}}</p>
+          <p>by <a href='/profile/{{getUsernameById userId}}'>{{getDisplayNameById userId}}</a> / posted at {{submitted}}</p>
+        </div>
+      {{/each}}
+    </div>
+  </div>
+  <div class='home__reviews'>
+    {{#if reviews}}
+      <h5 class="home__section">MUSIC REVIEWS</h5>
+    {{/if}}
+    <div class='home__reviews-content'>
+      {{#each reviews}}
+        <div class='home__reviews-item'>
+          <a href='/review/{{slug}}'>
+            <img class='home__reviews-img' src='{{image.url}}'>
+            <p class='home__title'>{{artist}}</p>
+            <p class='home__subtitle'>{{releaseName}}</p>
+          </a>
+        </div>
+      {{/each}}
+    </div>
   </div>
 </div>
-<div class='home__reviews'>
-  {{#if reviews}}
-    <h5 class="home__section">MUSIC REVIEWS</h5>
-  {{/if}}
-  <div class='home__reviews__content'>
-    {{#each reviews}}
-      <div class='home__reviews-item'>
-        <a href='/review/{{slug}}'>
-          <img class='home__reviews-img' src='{{image.url}}'>
-          <p class='home__title'>{{artist}}</p>
-          <p class='home__subtitle'>{{releaseName}}</p>
-        </a>
-      </div>
-    {{/each}}
-  </div>
+<div class='home__sidebar'>
 </div>
+{{/if}}
 </template>

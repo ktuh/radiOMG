@@ -20,6 +20,9 @@ export const Posts = new scorpius.collection('posts', {
         data: 'body',
         title: 'Body',
         tmpl: Meteor.isClient && Template.commentsIndexBlurbCell
+      }, {
+        data: 'approved',
+        title: 'Locked'
       },
       scorpius.attributeColumn('createdAt', 'submitted', 'Timestamp')
     ]

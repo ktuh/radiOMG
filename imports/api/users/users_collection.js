@@ -6,7 +6,7 @@ Meteor.users.allow({
       var adm = Meteor.user().hasRole("admin");
       var mod = Meteor.user().hasRole('moderator');
       var own = doc._id === userId;
-      return adm || mod || own;
+      return adm || mod;
     },
     fetch: ['userId']
 });

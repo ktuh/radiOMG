@@ -42,11 +42,26 @@ export const PostsSchema = new SimpleSchema({
   title: {
     type: String,
     label: 'Title',
-    optional: false
+    optional: false,
+    max: 80
   },
   tags: {
     type: [String],
     optional: true
+  },
+  category: {
+    type: String,
+    optional: false,
+    defaultValue: 'Radioblog'
+  },
+  summary: {
+    type: String,
+    label: 'Summary',
+    optional: true,
+    autoform: {
+      type: 'textarea',
+      rows: 3
+    }
   },
   body: scorpius.attribute('summernote', {
     type: String,

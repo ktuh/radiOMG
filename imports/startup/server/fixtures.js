@@ -216,6 +216,8 @@ if (Posts.find().count() === 0) {
         secondaryColor: '#807d78'
       }
     },
+    tags: ['Radioblog'],
+    category: 'Radioblog',
     isChart: false,
     approved: true,
     featured: false
@@ -247,6 +249,8 @@ if (Posts.find().count() === 0) {
         secondaryColor: '#807d78'
       }
     },
+    tags: ['Radioblog'],
+    category: 'Radioblog',
     isChart: false,
     approved: true,
     featured: false
@@ -258,7 +262,7 @@ if (Posts.find().count() === 0) {
     title: 'The All-Time Best 10 Songs About Butts',
     body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
     commentCount: 0,
-    slug: 'hello-world',
+    slug: 'the-all-time-best-10-songs-about-butts',
     userId: davey._id,
     author: 'davey',
     friendlySlugs: {
@@ -277,6 +281,8 @@ if (Posts.find().count() === 0) {
         secondaryColor: '#807d78'
       }
     },
+    tags: ['Radioblog', 'Rock'],
+    category: 'Radioblog',
     isChart: false,
     approved: true,
     featured: false
@@ -308,6 +314,8 @@ if (Posts.find().count() === 0) {
         secondaryColor: '#807d78'
       }
     },
+    tags: ['Charts'],
+    category: 'Charts',
     isChart: true,
     featured: false
   });
@@ -315,16 +323,17 @@ if (Posts.find().count() === 0) {
   Posts.insert({
     _id: 'WmAF8ovhjhh2cwc0m',
     submitted: Date('2017-05-11T02:47:19Z'),
-    title: 'Hello, World!',
+    title: 'Whatever',
     body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
     commentCount: 0,
-    slug: 'hello-world',
+    slug: 'whatever',
     userId: davey._id,
     author: 'davey',
     friendlySlugs: {
       slug: {
-        base: 'hello-world',
-        index: 0 }
+        base: 'whatever',
+        index: 0
+      }
     },
     photo: {
       fileId: '7QMJycqBibCXvYzH4',
@@ -337,6 +346,8 @@ if (Posts.find().count() === 0) {
         secondaryColor: '#807d78'
       }
     },
+    tags: ['Radioblog'],
+    category: 'Radioblog',
     isChart: false,
     approved: true,
     featured: false
@@ -348,13 +359,14 @@ if (Posts.find().count() === 0) {
     title: 'Mesopotamia... What\'s THAT All About?',
     body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
     commentCount: 0,
-    slug: 'hello-world',
+    slug: 'mesopotamia',
     userId: davey._id,
     author: 'davey',
     friendlySlugs: {
       slug: {
-        base: 'hello-world',
-        index: 0 }
+        base: 'mesopotamia',
+        index: 0
+      }
     },
     photo: {
       fileId: '7QMJycqBipCXvYzH4',
@@ -367,6 +379,8 @@ if (Posts.find().count() === 0) {
         secondaryColor: '#807d78'
       }
     },
+    tags: ['Radioblog'],
+    category: 'Radioblog',
     isChart: false,
     approved: true,
     featured: false
@@ -378,12 +392,12 @@ if (Posts.find().count() === 0) {
     title: 'How the Dog Got Its Bark',
     body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
     commentCount: 0,
-    slug: 'hello-world',
+    slug: 'how-the-dog-got-its-bark',
     userId: davey._id,
     author: 'davey',
     friendlySlugs: {
       slug: {
-        base: 'hello-world',
+        base: 'how-the-dog-got-its-bark',
         index: 0
       }
     },
@@ -398,6 +412,8 @@ if (Posts.find().count() === 0) {
         secondaryColor: '#807d78'
       }
     },
+    tags: ['Radioblog'],
+    category: 'Radioblog',
     isChart: false,
     approved: true,
     featured: false
@@ -406,15 +422,15 @@ if (Posts.find().count() === 0) {
   Posts.insert({
     _id: 'WmAF8ovhjhh2cwcrb',
     submitted: Date('2017-01-11T02:47:19Z'),
-    title: 'The All-Time Best 10 Songs About Butts',
+    title: 'Kodekrakkerz\' Introduction to Hardstyle',
     body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
     commentCount: 0,
-    slug: 'hello-world',
-    userId: davey._id,
+    slug: 'kodekrakkerz-intro-to-hardstyle',
+    userId: derek._id,
     author: 'davey',
     friendlySlugs: {
       slug: {
-        base: 'hello-world',
+        base: 'kodekrakkerz-intro-to-hardstyle',
         index: 0 }
     },
     photo: {
@@ -428,6 +444,8 @@ if (Posts.find().count() === 0) {
         secondaryColor: '#807d78'
       }
     },
+    tags: ['Radioblog'],
+    category: 'Radioblog',
     isChart: false,
     approved: true,
     featured: false
@@ -459,6 +477,8 @@ if (Posts.find().count() === 0) {
         secondaryColor: '#807d78'
       }
     },
+    tags: ['Charts'],
+    category: 'Charts',
     isChart: true,
     approved: true,
     featured: false

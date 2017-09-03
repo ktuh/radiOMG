@@ -20,6 +20,7 @@ body {
   background: #fff;
   color: #333;
   font-family: 'Sweden Sans', 'alda', sans-serif;
+  margin: 0;
 }
 img {
   max-width: 100%;
@@ -1041,8 +1042,6 @@ audio {
 
 .home__section {
   font-family: 'nimbus-sans-extended', sans-serif;
-  padding: 15px 0 5px 0;
-  margin: 2px 50px;
   border-bottom: thin black solid;
   text-align: left;
   font-size: 1.25em;
@@ -1051,50 +1050,68 @@ audio {
 
 .home__featured {
   width: 100%;
-  text-align: center;
   background-color: #222222;
   color: white;
+  padding: 50px 0;
 }
 
 .home__news {
-  width: 100%;
-  text-align: center;
+
 }
 
 .home__reviews {
-  width: 100%;
-  text-align: center;
+  clear: both;
 }
 
-.home__featured__content,
-.home__news__content,
-.home__reviews__content {
+.home__featured-content {
   width: 100%;
   margin: auto;
-  text-align: center;
+  padding: 0 56px;
+}
+
+.home__news-content,
+.home__reviews-content {
+  width: 100%;
+  margin: auto;
 }
 
 .home__featured-item {
   display: inline-block;
-  width: 100%;
+  width: 49%;
   padding: 20px 5px;
   color: inherit;
   clear: both;
+  vertical-align: top;
+}
+
+.home__featured-photo {
+  width: 50%;
+  display: inline-block;
 }
 
 .home__news-item {
   display: inline-block;
-  width: 25%;
-  padding: 20px 5px;
+  width: 33.33%;
+  padding: 20px 15px 20px 0px;
   color: inherit;
   float: left;
 }
 
+.home__news-item:nth-child(4) {
+  clear: both;
+}
+
+.home__main {
+  width: 75%;
+  padding: 0 0 0 60px;
+}
+
 .home__reviews-item {
   display: inline-block;
-  width: 16.67%;
-  padding: 20px 15px;
+  width: 16.66%;
+  padding: 20px 15px 20px 0;
   color: inherit;
+  vertical-align: top;
 }
 
 .home__reviews-img
@@ -1104,30 +1121,31 @@ audio {
   width: 125px;
 }
 
+.home__synopsis {
+  text-align: left;
+  margin: 0;
+}
+
 .home__news-img {
   clear: both;
-  height: 150px;
-  width: 200px;
+  height: 200px;
+  width: auto;
   margin: 0 12px 6px 0;
 }
 
 .home__title {
   font-size: 1.375em;
+  line-height: 1.375em;
   font-weight: bold;
+  font-family: 'alda', sans-serif;
 }
 
-.home__featured .home__title {
-  font-size: 1.375em;
-  font-weight: bold;
+.home__featured-item .home__title {
   color: white;
 }
 
-.home__news .home__title {
-  height: 50px;
-}
-
-.home__reviews .home__title {
-  height: 25px;
+.home__review-item .home__title {
+  text-align: center;
 }
 
 .reviews h4 {
