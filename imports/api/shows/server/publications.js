@@ -37,11 +37,11 @@ Meteor.publish('showNowPlaying', () => {
   // We are making a big assumption here! The assumption is that shows
   // do not air over midnight into the next day. Shows are to be cut off
   // at 11:59 and air entirely on a single day.
-  var shows = Shows.find({ active: true, 
-                           startDay: { $gte: day }, 
+  var shows = Shows.find({ active: true,
+                           startDay: { $gte: day },
                            startHour: { $gte: hour},
                            startMinute: { $gte: minute },
-                           endDay: { $lte: day }, 
+                           endDay: { $lte: day },
                            endHour: { $lte: hour},
                            endMinute: { $lte: minute }},
                          { sort: { startDay: 1, startHour: 1, startMinute: 1,

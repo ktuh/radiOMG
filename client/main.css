@@ -1075,10 +1075,15 @@ audio {
   margin: auto;
 }
 
+.home__featured-category {
+  text-transform: uppercase;
+  font-family: 'din-2014', sans-serif;
+}
+
 .home__featured-item {
   display: inline-block;
   width: 49%;
-  padding: 20px 5px;
+  padding: 20px 30px;
   color: inherit;
   clear: both;
   vertical-align: top;
@@ -1092,7 +1097,7 @@ audio {
 .home__news-item {
   display: inline-block;
   width: 33.33%;
-  padding: 20px 15px 20px 0px;
+  padding: 0 15px 20px 0px;
   color: inherit;
   float: left;
 }
@@ -1101,15 +1106,67 @@ audio {
   clear: both;
 }
 
+.home__wrapper {
+  background-color: white;
+}
+
 .home__main {
   width: 75%;
-  padding: 0 0 0 60px;
+  padding: 20px 0 0 60px;
+  background-color: inherit;
+  display: inline-block;
+  clear: both;
+}
+
+.home__sidebar {
+  width: 24%;
+  display: inline-block;
+  vertical-align: top;
+  background-color: inherit;
+}
+
+.home__next-show {
+  margin: 20px;
+  background-color: #333333;
+  color: white;
+  padding: 15px;
+  text-align: center;
+}
+
+.home__next-on-air {
+  margin-bottom: 5px;
+  font-family: 'nimbus-sans-extended', sans-serif;
+  text-transform: uppercase;
+  text-align: left;
+}
+
+.home__next-show-info {
+  font-family: 'din-2014', sans-serif;
+  text-transform: uppercase;
+}
+
+.home__next-show-info p {
+  margin-bottom: 0;
+  text-align: left;
+}
+
+.home__next-show a, .support__donate {
+  font-family: 'din-2014', sans-serif;
+  color: white;
+  padding: 5px 10px;
+  border: thin white solid;
+  text-transform: uppercase;
+}
+
+.home__next-show a:hover, .support__donate:hover {
+  background-color: white;
+  color: black;
 }
 
 .home__reviews-item {
   display: inline-block;
   width: 16.66%;
-  padding: 20px 15px 20px 0;
+  padding: 0 15px 20px 0;
   color: inherit;
   vertical-align: top;
 }
@@ -1141,11 +1198,51 @@ audio {
 }
 
 .home__featured-item .home__title {
+  font-size: 1.375em;
+  line-height: 1.375em;
+  font-weight: bold;
   color: white;
+  font-family: 'nimbus-sans-extended', sans-serif;
+  text-transform: uppercase;
+}
+
+.home__more {
+  position: relative;
+  bottom: 33px;
+  left: 62.96875vw;
+  background-color: black;
+  color: white;
+  padding: 1px 20px;
+  border: thin black solid;
+  font-family: 'din-2014', sans-serif;
+}
+
+.home__more:hover {
+  background-color: white;
+  color: black;
 }
 
 .home__review-item .home__title {
   text-align: center;
+}
+
+.support {
+  background-color: #5940de;
+  color: white;
+  text-align: center;
+  padding: 30px 0;
+  width: 100%;
+}
+
+.support__about {
+  padding: 20px 31.25vw;
+}
+
+.support__heading {
+  padding: 24px 0;
+  margin: 0;
+  font-family: 'nimbus-sans-extended', sans-serif;
+  text-transform: uppercase;
 }
 
 .reviews h4 {

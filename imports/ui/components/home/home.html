@@ -8,7 +8,7 @@
         <img class='home__featured-img' src='{{photo.url}}'>
       </div>
       <div class='home__featured-item'>
-        <p class='home__featured-tag'>{{category}}</p>
+        <p class='home__featured-category'>{{category}}</p>
         <a href='/news/{{slug}}'>
           <p class='home__title'>{{title}}</p>
         </a>
@@ -20,27 +20,30 @@
     </div>
   {{/if}}
 </div>
-<div class='home__main'>
-  <div class='home__news'>
+<div class='home__wrapper'>
+  <div class='home__main'>
+    <div class='home__news'>
     {{#if posts}}
-      <h5 class="home__section">RADIOBLOG</h5>
+      <h5 class='home__section'>RADIOBLOG</h5>
+      <a href='/news' class='home__more'>MORE <span class='glyphicon glyphicon-arrow-right'></span></a>
     {{/if}}
     <div class='home__news-content'>
       {{#each posts}}
-        <div class='home__news-item'>
-          <a href='/news/{{slug}}'>
-            <img class='home__news-img' src='{{photo.url}}'>
-            <p class='home__title'>{{title}}</p>
-          </a>
-          <p class='home__synopsis'>{{renderSummary summary body 40}}</p>
-          <p>by <a href='/profile/{{getUsernameById userId}}'>{{getDisplayNameById userId}}</a> / posted at {{submitted}}</p>
-        </div>
+      <div class='home__news-item'>
+        <a href='/news/{{slug}}'>
+          <img class='home__news-img' src='{{photo.url}}'>
+          <p class='home__title'>{{title}}</p>
+        </a>
+        <p class='home__synopsis'>{{renderSummary summary body 40}}</p>
+        <p>by <a href='/profile/{{getUsernameById userId}}'>{{getDisplayNameById userId}}</a> / posted at {{submitted}}</p>
+      </div>
       {{/each}}
     </div>
   </div>
   <div class='home__reviews'>
     {{#if reviews}}
       <h5 class="home__section">MUSIC REVIEWS</h5>
+      <a href='/reviews' class='home__more'>MORE <span class='glyphicon glyphicon-arrow-right'></span></a>
     {{/if}}
     <div class='home__reviews-content'>
       {{#each reviews}}
@@ -56,6 +59,20 @@
   </div>
 </div>
 <div class='home__sidebar'>
+  <div class='home__next-show'>
+    <p class="home__next-on-air">Next On Air</p>
+    {{#with getNextShow}}
+      <div class='home__next-show-info'>
+        <p class='home__next-show-time'>{{startHour}}-{{endHour}}</p>
+        <p class='home__next-show-name'>{{showName}}</p>
+        <p class='home__next-show-host'>{{host}}</p>
+      </div>
+    {{/with}}
+    <br>
+    <a href="/shows">Show Schedule</a>
+  </div>
+</div>
 </div>
 {{/if}}
+{{ > support }}
 </template>
