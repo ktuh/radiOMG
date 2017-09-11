@@ -1004,9 +1004,10 @@ audio {
   text-align: center;
   margin: 0 60px;
 }
-.news-list__header, .shows__header {
+.news-list__header, .shows__header, .about__header  {
   margin-top: 0;
-  padding: 100px 0 5px 60px;
+  margin-bottom: 0;
+  padding: 100px 0 10px 60px;
   background-color: #262626;
   color: white;
   font-family: 'nimbus-sans-extended', sans-serif;
@@ -1059,14 +1060,6 @@ audio {
   padding: 5px;
   margin: 2px;
   background-color: inherit;
-}
-
-.black {
-  color: black;
-}
-
-.white {
-  color: white;
 }
 
 .home__section {
@@ -1470,6 +1463,17 @@ audio {
 .playlist-list__table tr td img {
   width: 75px !important;
 }
+.about__desc {
+  color: white;
+  padding: 30px;
+  background-color: #1e1e1e;
+}
+.about__content {
+  padding: 30px;
+}
+.about__desc p, .about__content p {
+  padding: 5px 192px;
+}
 @-webkit-keyframes fadeOut {
   0% {
     opacity: 0;
@@ -1540,6 +1544,15 @@ audio {
   }
 }
 @media (max-width: 768px) {
+  .news-list__header, .shows__header, .about__header {
+    padding-left: 40px;
+  }
+  .about__desc, .about__content {
+    padding: 40px;
+  }
+  .about__desc p, .about__content p {
+    padding: 0;
+  }
   .nav.navbar-nav:nth-child(2) {
     margin: 12px;
   }
@@ -1601,7 +1614,7 @@ audio {
     width: 50%;
   }
   .info-box__link {
-    margin-top: 18px;
+    margin: 12px 0;
   }
   .dropdown-menu.fixed-theme > li > a,
   .dropdown-menu.fixed-theme > li > a:hover,
@@ -1629,7 +1642,13 @@ audio {
     margin: 0 0 20px 0;
   }
   .navbar {
-    padding: 0 25px;
+    padding: 0 40px;
+  }
+  .news-list {
+    margin: 0 40px;
+  }
+  .navbar-default .navbar-toggle {
+    margin-right: 0;
   }
   .nav__search {
     margin: 5px 0 10px 10px;
@@ -1841,6 +1860,9 @@ audio {
 }
 
 @media (max-width: 480px) {
+  .news-list {
+    margin: 0 40px;
+  }
   .footer {
     padding-left: 20px;
     padding-right: 20px;
@@ -1858,7 +1880,7 @@ audio {
     padding: 0 20px 0 5px;
   }
   .navbar-toggle {
-    margin-right: 5px;
+    margin-right: 20px;
   }
   .footer__links {
     float: none;
@@ -1867,6 +1889,9 @@ audio {
   }
   .footer .footer__links:nth-child(2) .footer__subheading {
     display: none;
+  }
+  .info-box__link {
+    margin: 12px 5px 12px 34px;
   }
 }
 @media (min-width: 980px) and (max-width: 1019px) {

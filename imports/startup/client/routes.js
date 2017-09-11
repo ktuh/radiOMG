@@ -30,6 +30,7 @@ import '../../ui/components/shows/show_page.js';
 import '../../ui/components/music/charts.js';
 import '../../ui/components/music/playlists.js';
 import '../../ui/components/music/music.js';
+import '../../ui/components/about/about.js';
 
 FlowRouter.triggers.enter(
   [function() {
@@ -162,6 +163,13 @@ FlowRouter.route('/profile', {
   name: 'profileEdit',
   action: function () {
     BlazeLayout.render('layout', {content: 'profileEdit'});
+  }
+});
+
+FlowRouter.route('/about-us', {
+  name: 'about',
+  action: function() {
+    BlazeLayout.render('layout', {content: 'about'});
   }
 });
 
