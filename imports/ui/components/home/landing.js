@@ -14,9 +14,9 @@ Template.landing.onCreated(function() {
 Template.landing.helpers({
   nowPlaying: () =>  (NowPlaying.findOne() !== undefined && !Session.get('timeout')) ?
                      NowPlaying.findOne().current : false,
-  formatNP: (str) => '<p>' + str.split(" - ")[1] + '</p>' +
-                     '<p class="landing__show-host"> by </p>' +
-                     '<p>' +  str.split(" - ")[0] + '</p>',
+  formatNP: (str) => '<p class"caps">' + str.split(" - ")[1] + '</p>' +
+                     '<p class="landing__show-host caps"> by </p>' +
+                     '<p class="caps">' +  str.split(" - ")[0] + '</p>',
   showName: () => {
     var d = new Date();
     var day = d.getDay();

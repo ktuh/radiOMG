@@ -613,4 +613,66 @@ if (Reviews.find().count() === 0) {
     },
     approved: true
   });
+
+  Reviews.insert({
+    submitted: Date('2017-05-11T20:27:25Z'),
+    artist: 'Davey Shindig',
+    releaseName: '808 Mixtapes v.105',
+    year: 2015,
+    label: 'SickTyte',
+    rating: 5,
+    image: {
+       fileId: 'jrNdsRHas6X86tfNd',
+       url: 'https://808mix.com/img/coverart/808-mixtapes-v105.jpg',
+       info: {
+         width: 480,
+         height: 480,
+         backgroundColor: '#fefefe',
+         primaryColor: '#938e53',
+         secondaryColor: '#010101'
+       }
+     },
+    body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod \ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim \nveniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea \ncommodo consequat. Duis aute irure dolor in reprehenderit in voluptate \nvelit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint \noccaecat cupidatat non proident, sunt in culpa qui officia deserunt \nmollit anim id est laborum.',
+    slug: '808-mixtapes-v107-1',
+    userId: 'gNETY8gvh4MYroX9H',
+    author: 'davey',
+    friendlySlugs: {
+      slug: {
+        base: '808-mixtapes-v107-1',
+        index: 0
+      }
+    },
+    approved: true
+  });
+
+  Reviews.insert({
+    submitted: Date('2017-05-11T20:27:25Z'),
+    artist: 'Davey Shindig',
+    releaseName: '808 Mixtapes v.105',
+    year: 2015,
+    label: 'SickTyte',
+    rating: 5,
+    image: {
+       fileId: 'jrNdsRHas6X86tfNd',
+       url: 'https://808mix.com/img/coverart/808-mixtapes-v105.jpg',
+       info: {
+         width: 480,
+         height: 480,
+         backgroundColor: '#fefefe',
+         primaryColor: '#938e53',
+         secondaryColor: '#010101'
+       }
+     },
+    body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod \ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim \nveniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea \ncommodo consequat. Duis aute irure dolor in reprehenderit in voluptate \nvelit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint \noccaecat cupidatat non proident, sunt in culpa qui officia deserunt \nmollit anim id est laborum.',
+    slug: '808-mixtapes-v107-2',
+    userId: 'gNETY8gvh4MYroX9H',
+    author: 'davey',
+    friendlySlugs: {
+      slug: {
+        base: '808-mixtapes-v107-2',
+        index: 0
+      }
+    },
+    approved: true
+  });
 };

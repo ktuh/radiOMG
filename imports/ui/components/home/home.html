@@ -63,13 +63,19 @@
     <p class="home__next-on-air">Next On Air</p>
     {{#with getNextShow}}
       <div class='home__next-show-info'>
-        <p class='home__next-show-time'>{{startHour}}-{{endHour}}</p>
-        <p class='home__next-show-name'>{{showName}}</p>
-        <p class='home__next-show-host'>{{host}}</p>
+        <div class='home__next-show-deets'>
+          <p class='home__next-show-time'>{{startHour}}-{{endHour}}</p>
+          <p class='home__next-show-name'>{{showName}}</p>
+          <p class='home__next-show-host'>{{host}}</p>
+        </div>
+        <div class='home__next-show-image'>
+          <img src='{{featuredImage.url}}' />
+        </div>
       </div>
+
     {{/with}}
     <br>
-    <a href="/shows">Show Schedule</a>
+    <a href="/shows"><button>Show Schedule</button></a>
   </div>
 </div>
 </div>

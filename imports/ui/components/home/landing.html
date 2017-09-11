@@ -4,11 +4,11 @@
       {{#if Template.subscriptionsReady}}
         <div class='landing__info'>
         {{#if showName}}
-          <p class='landing__now-playing'>On Air Now:</p>
-          <p class='landing__show-name'>{{showName}}</p>
-          <p class='landing__show-host'>with <span class='landing__host-name'>{{showHost}}</span></p>
+          <p class='landing__now-playing caps'>On Air Now:</p>
+          <p class='landing__show-name caps'>{{showName}}</p>
+          <p class='landing__show-host caps'>with <span class='landing__host-name'>{{showHost}}</span></p>
           {{#if nowPlaying}}
-            <p class='landing__song-title'>Now Playing:</p>
+            <p class='landing__song-title caps'>Now Playing:</p>
             {{{formatNP nowPlaying}}}
           {{/if}}
         {{else}}
