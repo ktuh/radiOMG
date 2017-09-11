@@ -187,7 +187,8 @@ if (Posts.find().count() === 0) {
       }
     },
     isChart: false,
-    approved: true
+    approved: true,
+    featured: true
   });
 
   Posts.insert({
@@ -215,8 +216,11 @@ if (Posts.find().count() === 0) {
         secondaryColor: '#807d78'
       }
     },
+    tags: ['Radioblog'],
+    category: 'Radioblog',
     isChart: false,
-    approved: true
+    approved: true,
+    featured: false
   });
 
   Posts.insert({
@@ -245,8 +249,11 @@ if (Posts.find().count() === 0) {
         secondaryColor: '#807d78'
       }
     },
+    tags: ['Radioblog'],
+    category: 'Radioblog',
     isChart: false,
-    approved: true
+    approved: true,
+    featured: false
   });
 
   Posts.insert({
@@ -255,7 +262,7 @@ if (Posts.find().count() === 0) {
     title: 'The All-Time Best 10 Songs About Butts',
     body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
     commentCount: 0,
-    slug: 'hello-world',
+    slug: 'the-all-time-best-10-songs-about-butts',
     userId: davey._id,
     author: 'davey',
     friendlySlugs: {
@@ -274,8 +281,11 @@ if (Posts.find().count() === 0) {
         secondaryColor: '#807d78'
       }
     },
+    tags: ['Radioblog', 'Rock'],
+    category: 'Radioblog',
     isChart: false,
-    approved: true
+    approved: true,
+    featured: false
   });
 
   Posts.insert({
@@ -304,22 +314,26 @@ if (Posts.find().count() === 0) {
         secondaryColor: '#807d78'
       }
     },
-    isChart: true
+    tags: ['Charts'],
+    category: 'Charts',
+    isChart: true,
+    featured: false
   });
 
   Posts.insert({
     _id: 'WmAF8ovhjhh2cwc0m',
     submitted: Date('2017-05-11T02:47:19Z'),
-    title: 'Hello, World!',
+    title: 'Whatever',
     body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
     commentCount: 0,
-    slug: 'hello-world',
+    slug: 'whatever',
     userId: davey._id,
     author: 'davey',
     friendlySlugs: {
       slug: {
-        base: 'hello-world',
-        index: 0 }
+        base: 'whatever',
+        index: 0
+      }
     },
     photo: {
       fileId: '7QMJycqBibCXvYzH4',
@@ -332,8 +346,11 @@ if (Posts.find().count() === 0) {
         secondaryColor: '#807d78'
       }
     },
+    tags: ['Radioblog'],
+    category: 'Radioblog',
     isChart: false,
-    approved: true
+    approved: true,
+    featured: false
   });
 
   Posts.insert({
@@ -342,13 +359,14 @@ if (Posts.find().count() === 0) {
     title: 'Mesopotamia... What\'s THAT All About?',
     body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
     commentCount: 0,
-    slug: 'hello-world',
+    slug: 'mesopotamia',
     userId: davey._id,
     author: 'davey',
     friendlySlugs: {
       slug: {
-        base: 'hello-world',
-        index: 0 }
+        base: 'mesopotamia',
+        index: 0
+      }
     },
     photo: {
       fileId: '7QMJycqBipCXvYzH4',
@@ -361,8 +379,11 @@ if (Posts.find().count() === 0) {
         secondaryColor: '#807d78'
       }
     },
+    tags: ['Radioblog'],
+    category: 'Radioblog',
     isChart: false,
-    approved: true
+    approved: true,
+    featured: false
   });
 
   Posts.insert({
@@ -371,12 +392,12 @@ if (Posts.find().count() === 0) {
     title: 'How the Dog Got Its Bark',
     body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
     commentCount: 0,
-    slug: 'hello-world',
+    slug: 'how-the-dog-got-its-bark',
     userId: davey._id,
     author: 'davey',
     friendlySlugs: {
       slug: {
-        base: 'hello-world',
+        base: 'how-the-dog-got-its-bark',
         index: 0
       }
     },
@@ -391,22 +412,25 @@ if (Posts.find().count() === 0) {
         secondaryColor: '#807d78'
       }
     },
+    tags: ['Radioblog'],
+    category: 'Radioblog',
     isChart: false,
-    approved: true
+    approved: true,
+    featured: false
   });
 
   Posts.insert({
     _id: 'WmAF8ovhjhh2cwcrb',
     submitted: Date('2017-01-11T02:47:19Z'),
-    title: 'The All-Time Best 10 Songs About Butts',
+    title: 'Kodekrakkerz\' Introduction to Hardstyle',
     body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
     commentCount: 0,
-    slug: 'hello-world',
-    userId: davey._id,
+    slug: 'kodekrakkerz-intro-to-hardstyle',
+    userId: derek._id,
     author: 'davey',
     friendlySlugs: {
       slug: {
-        base: 'hello-world',
+        base: 'kodekrakkerz-intro-to-hardstyle',
         index: 0 }
     },
     photo: {
@@ -420,8 +444,11 @@ if (Posts.find().count() === 0) {
         secondaryColor: '#807d78'
       }
     },
+    tags: ['Radioblog'],
+    category: 'Radioblog',
     isChart: false,
-    approved: true
+    approved: true,
+    featured: false
   });
 
   Posts.insert({
@@ -450,8 +477,11 @@ if (Posts.find().count() === 0) {
         secondaryColor: '#807d78'
       }
     },
+    tags: ['Charts'],
+    category: 'Charts',
     isChart: true,
-    approved: true
+    approved: true,
+    featured: false
   });
 };
 
@@ -578,6 +608,68 @@ if (Reviews.find().count() === 0) {
     friendlySlugs: {
       slug: {
         base: '808-mixtapes-v107',
+        index: 0
+      }
+    },
+    approved: true
+  });
+
+  Reviews.insert({
+    submitted: Date('2017-05-11T20:27:25Z'),
+    artist: 'Davey Shindig',
+    releaseName: '808 Mixtapes v.105',
+    year: 2015,
+    label: 'SickTyte',
+    rating: 5,
+    image: {
+       fileId: 'jrNdsRHas6X86tfNd',
+       url: 'https://808mix.com/img/coverart/808-mixtapes-v105.jpg',
+       info: {
+         width: 480,
+         height: 480,
+         backgroundColor: '#fefefe',
+         primaryColor: '#938e53',
+         secondaryColor: '#010101'
+       }
+     },
+    body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod \ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim \nveniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea \ncommodo consequat. Duis aute irure dolor in reprehenderit in voluptate \nvelit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint \noccaecat cupidatat non proident, sunt in culpa qui officia deserunt \nmollit anim id est laborum.',
+    slug: '808-mixtapes-v107-1',
+    userId: 'gNETY8gvh4MYroX9H',
+    author: 'davey',
+    friendlySlugs: {
+      slug: {
+        base: '808-mixtapes-v107-1',
+        index: 0
+      }
+    },
+    approved: true
+  });
+
+  Reviews.insert({
+    submitted: Date('2017-05-11T20:27:25Z'),
+    artist: 'Davey Shindig',
+    releaseName: '808 Mixtapes v.105',
+    year: 2015,
+    label: 'SickTyte',
+    rating: 5,
+    image: {
+       fileId: 'jrNdsRHas6X86tfNd',
+       url: 'https://808mix.com/img/coverart/808-mixtapes-v105.jpg',
+       info: {
+         width: 480,
+         height: 480,
+         backgroundColor: '#fefefe',
+         primaryColor: '#938e53',
+         secondaryColor: '#010101'
+       }
+     },
+    body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod \ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim \nveniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea \ncommodo consequat. Duis aute irure dolor in reprehenderit in voluptate \nvelit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint \noccaecat cupidatat non proident, sunt in culpa qui officia deserunt \nmollit anim id est laborum.',
+    slug: '808-mixtapes-v107-2',
+    userId: 'gNETY8gvh4MYroX9H',
+    author: 'davey',
+    friendlySlugs: {
+      slug: {
+        base: '808-mixtapes-v107-2',
         index: 0
       }
     },

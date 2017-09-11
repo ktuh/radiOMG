@@ -3,7 +3,7 @@
   <div class='news-list'>
     {{#each posts}}
       <div class='news-list__post'>
-        {{#if photo}}<a href={{newsPagePath slug}}><img class='news-list__photo' src='{{photo.url}}'></a>{{/if}}
+        {{#if photo}}<a class="news-list__photo-link" href={{newsPagePath slug}}><img class='news-list__photo' src='{{photo.url}}'></a>{{/if}}
         <div class='news-list__info'>
           <a class='news-list__title' href={{newsPagePath slug}}><h3>{{title}}</h3></a>
           <p class='news-list__excerpt'>{{excerpt body}}... <a href='{{newsPagePath slug}}'>Read More</a></p>

@@ -79,10 +79,10 @@ DJ.helper('collections.parties.indexFilter', function() {
 DJ.allow('collections.posts.index', true);
 DJ.allow('collections.posts.insert', true);
 DJ.allow('collections.posts.update', function (userId, doc, fields, modifier) {
-  return doc.userId === userId;
+  return doc.userId === userId && !doc.approved;
 });
 DJ.allow('collections.posts.remove', function (userId, doc, fields, modifier) {
-  return doc.userId === userId;
+  return doc.userId === userId && !doc.approved;
 });
 DJ.allow('collections.posts.showCreate', true);
 DJ.allow('collections.posts.showUpdate', function (userId, doc, fields, modifier) {

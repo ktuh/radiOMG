@@ -7,8 +7,13 @@ Meteor.publish('postsLimited', (options) => {
     sort: Object,
     limit: Number
   });
-  return Posts.find({ approved: true }, options);
+  return Posts.find({ featured: false, approved: true }, options);
 });
+
+Meteor.publish('latestFeaturedPost', () =>
+  Posts.find({ approved: true, featured: true },
+             { sort: { submitted: -1 }, limit: 1 })
+);
 
 Meteor.publish('singlePost', (slug) => {
   check(slug, String);

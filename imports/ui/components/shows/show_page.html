@@ -1,6 +1,6 @@
 <template name='showPage'>
   <div class='show__link'>
-    <a href='/shows'>← all shows</a>
+    <a href='/shows' class='show__link-back'>← Back to Show Schedule</a>
     {{#if ownShow}}
       <a href='/shows/edit/{{slug}}'><button type="button" class="btn btn-default btn-md show__header-button">
       <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit</button></a>
@@ -13,12 +13,19 @@
           {{#if featuredImage}}
           <div class='show__image-div'>
             <img class='show__image' src='{{featuredImage.url}}'>
+            {{#if latestEpisodeUrl}}
+              <p class='show__tag'>
+                <button type="button" data-path='{{latestEpisodeUrl}}' class="btn btn-default show__play-btn" aria-label="Left Align">
+                  <span class="glyphicon {{#if isPlaying latestEpisodeUrl}}glyphicon-pause{{else}}glyphicon-play{{/if}}" aria-hidden="true"></span> &nbsp;Play latest episode
+                </button>
+              </p>
+            {{/if}}
             {{#if playlists}}
               <div class='show__playlists'>
               <h4>Playlists</h4>
               <ul>
               {{#each playlists}}
-                <li><span class='show__playlist-time'><a href='/playlists/{{spinPlaylistId}}'>{{time showDate}}</a></span></li>
+                <li><span class='show__playlist-time'><a href='/playlist/{{spinPlaylistId}}'>{{time showDate}}</a></span></li>
               {{/each}}
               </ul>
               </div>
@@ -29,11 +36,7 @@
             <h3 class='show__name'><b>{{showName}}</b></h3>
             <h4 class='show__host'>Hosted by <a href="{{profileUrl userId}}">{{host}}</a></h4>
             <h5 class='show__time'>{{day startDay}}s from {{timeBeautify startHour endHour}}</h5>
-            {{#if latestEpisodeUrl}}<p class='show__tag'>
-              <button type="button" data-path='{{latestEpisodeUrl}}' class="btn btn-default show__play-btn" aria-label="Left Align">
-                <span class="glyphicon {{#if isPlaying latestEpisodeUrl}}glyphicon-pause{{else}}glyphicon-play{{/if}}" aria-hidden="true"></span> &nbsp;Play latest episode
-              </button>
-            </p>{{/if}}
+            {{#if genres}}<div class='show-item__genres'><span class='glyphicon glyphicon-music'></span>&nbsp;{{genreString genres}}</div>{{/if}}
             <p>{{body}}</p>
           </div>
         {{/with}}

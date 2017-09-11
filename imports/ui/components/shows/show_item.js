@@ -6,8 +6,8 @@ import { Shows } from '../../../api/shows/shows_collection.js';
 Template.showItem.onCreated(function() {
   var self = this;
   self.autorun(function() {
-        var show = Shows.findOne();
-        self.subscribe('showHostUserName', show.userId);
+    var show = Shows.findOne();
+    self.subscribe('showHostUserName', show.userId);
   });
 });
 
@@ -16,20 +16,12 @@ Template.showItem.helpers({
     var hour = startHour < 10 ? '0' + startHour : startHour;
     var minute = startMinute < 10 ? '0' + startMinute : startMinute;
     var period = startHour < 12 ? 'am' : 'pm';
-    return hour + ':' + minute + period;
+    return (hour <= 12 ? hour : hour - 12) + ':' + minute + period;
   },
   profileLink: (id) => {
     var user = Meteor.users.findOne({ _id: id });
     if (user !== undefined)
       return "/profile/" + user.username;
   },
-  genreString: (genres) => {
-    var str = '';
-    for (var i = 0; i < genres.length; i++) {
-      str = str + genres[i];
-      if (i !== genres.length - 1) 
-        str = str + ', ';
-    }
-    return str;
-  }
+  genreString: (genres) => genres.join(', ')
 });

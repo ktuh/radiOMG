@@ -7,9 +7,11 @@
       {{#autoForm collection=collection doc=item id="updatePostForm" type="update"}}
         {{> afQuickField name="title"}}
         {{> afQuickField name="tags"}}
+        {{> afQuickField name="summary"}}
         {{> afQuickField name="body"}}
         {{#if isMod}}
           {{> afQuickField name="approved"}}
+          {{> afQuickField name="featured"}}
         {{/if}}
       {{/autoForm}}
     {{/if}}

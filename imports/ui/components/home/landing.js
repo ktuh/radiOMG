@@ -14,15 +14,41 @@ Template.landing.onCreated(function() {
 Template.landing.helpers({
   nowPlaying: () =>  (NowPlaying.findOne() !== undefined && !Session.get('timeout')) ?
                      NowPlaying.findOne().current : false,
-  formatNP: (str) => '<p>' + str.split(" - ")[1] + '</p>' +
-                     '<p class="lading__show-host"> by </p>' +
-                     '<p>' +  str.split(" - ")[0] + '</p>',
+  formatNP: (str) => '<p class"caps">' + str.split(" - ")[1] + '</p>' +
+                     '<p class="landing__show-host caps"> by </p>' +
+                     '<p class="caps">' +  str.split(" - ")[0] + '</p>',
   showName: () => {
-    var show = Shows.findOne();
+    var d = new Date();
+    var day = d.getDay();
+    var hour = d.getHours();
+    var minute = d.getMinutes();
+    var shows = Shows.find({ active: true,
+                             startDay: { $gte: day },
+                             startHour: { $gte: hour },
+                             startMinute: { $gte: minute },
+                             endDay: { $lte: day },
+                             endHour: { $lte: hour},
+                             endMinute: { $lte: minute }},
+                           { sort: { startDay: 1, startHour: 1, startMinute: 1,
+                                     endDay: -1, endHour: -1, endMinute: -1 },
+                             limit: 1});
     return show && show.showName;
   },
   showHost: () => {
-    var show = Shows.findOne();
+    var d = new Date();
+    var day = d.getDay();
+    var hour = d.getHours();
+    var minute = d.getMinutes();
+    var shows = Shows.find({ active: true,
+                             startDay: { $gte: day },
+                             startHour: { $gte: hour},
+                             startMinute: { $gte: minute },
+                             endDay: { $lte: day },
+                             endHour: { $lte: hour},
+                             endMinute: { $lte: minute }},
+                           { sort: { startDay: 1, startHour: 1, startMinute: 1,
+                                     endDay: -1, endHour: -1, endMinute: -1 },
+                             limit: 1});
     return show && show.host;
   },
   isPlaying: () => {

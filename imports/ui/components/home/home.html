@@ -1,35 +1,84 @@
-<template name="home">
-<div class='home__news black'>
-  {{#if posts}}
-    <h5 class="home__section">RADIOBLOG</h5>
-    <h3 class='home__headline'>Latest News</h3>
+<template name='home'>
+{{#if Template.subscriptionsReady}}
+<div class='home__featured'>
+  {{#if featuredPost}}
+    <div class='home__featured-content'>
+    {{#with featuredPost}}
+      <div class='home__featured-photo'>
+        <img class='home__featured-img' src='{{photo.url}}'>
+      </div>
+      <div class='home__featured-item'>
+        <p class='home__featured-category'>{{category}}</p>
+        <a href='/news/{{slug}}'>
+          <p class='home__title'>{{title}}</p>
+        </a>
+        <p class='home__synopsis'>
+          {{renderSummary summary body 100}}
+        </p>
+      </div>
+    {{/with}}
+    </div>
   {{/if}}
-  <div class='home__news__content'>
-    {{#each posts}}
+</div>
+<div class='home__wrapper'>
+  <div class='home__main'>
+    <div class='home__news'>
+    {{#if posts}}
+      <h5 class='home__section'>RADIOBLOG</h5>
+      <a href='/news' class='home__more'>MORE <span class='glyphicon glyphicon-arrow-right'></span></a>
+    {{/if}}
+    <div class='home__news-content'>
+      {{#each posts}}
       <div class='home__news-item'>
         <a href='/news/{{slug}}'>
           <img class='home__news-img' src='{{photo.url}}'>
           <p class='home__title'>{{title}}</p>
         </a>
+        <p class='home__synopsis'>{{renderSummary summary body 40}}</p>
+        <p>by <a href='/profile/{{getUsernameById userId}}'>{{getDisplayNameById userId}}</a> / posted at {{submitted}}</p>
       </div>
-    {{/each}}
+      {{/each}}
+    </div>
+  </div>
+  <div class='home__reviews'>
+    {{#if reviews}}
+      <h5 class="home__section">MUSIC REVIEWS</h5>
+      <a href='/reviews' class='home__more'>MORE <span class='glyphicon glyphicon-arrow-right'></span></a>
+    {{/if}}
+    <div class='home__reviews-content'>
+      {{#each reviews}}
+        <div class='home__reviews-item'>
+          <a href='/review/{{slug}}'>
+            <img class='home__reviews-img' src='{{image.url}}'>
+            <p class='home__title'>{{artist}}</p>
+            <p class='home__subtitle'>{{releaseName}}</p>
+          </a>
+        </div>
+      {{/each}}
+    </div>
   </div>
 </div>
-<div class='home__reviews white'>
-  {{#if reviews}}
-    <h5 class="home__section">MUSIC</h5>
-    <h3 class='home__headline'>Latest Reviews</h3>
-  {{/if}}
-  <div class='home__reviews__content'>
-    {{#each reviews}}
-      <div class='home__reviews-item'>
-        <a href='/review/{{slug}}'>
-          <img class='home__reviews-img' src='{{image.url}}'>
-          <p class='home__title'>{{artist}}</p>
-          <p class='home__subtitle'>{{releaseName}}</p>
-        </a>
+<div class='home__sidebar'>
+  <div class='home__next-show'>
+    <p class="home__next-on-air">Next On Air</p>
+    {{#with getNextShow}}
+      <div class='home__next-show-info'>
+        <div class='home__next-show-deets'>
+          <p class='home__next-show-time'>{{startHour}}-{{endHour}}</p>
+          <p class='home__next-show-name'>{{showName}}</p>
+          <p class='home__next-show-host'>{{host}}</p>
+        </div>
+        <div class='home__next-show-image'>
+          <img src='{{featuredImage.url}}' />
+        </div>
       </div>
-    {{/each}}
+
+    {{/with}}
+    <br>
+    <a href="/shows"><button>Show Schedule</button></a>
   </div>
 </div>
+</div>
+{{/if}}
+{{ > support }}
 </template>
