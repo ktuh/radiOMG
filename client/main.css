@@ -328,12 +328,28 @@ a, a:hover, a:focus {
 .header__submenu-support button:hover {
   color: #fff;
 }
-.header__support-btn {
+.nav.navbar-nav:nth-child(2) {
+  margin: 12px 0 12px 18vw;
+}
+.nav.navbar-nav.navbar-right {
+  margin: 0;
   font-family: 'din-2014', sans-serif;
-  margin: 8px;
-  border: 1px solid #fff;
+}
+.navbar-right .nav-item {
+  height: 74px;
+}
+.navbar-right .nav-item button {
+  height: 100%;
+}
+.navbar-default.fixed-theme .navbar-right {
   background-color: transparent;
-  border-radius: 50px;
+}
+.navbar-default:not(.fixed-theme) .navbar-right {
+  background-color: #5940de;
+}
+.header__support-btn {
+  background-color: transparent;
+  border: none;
 }
 .header__support-btn a {
   padding: 0 15px;
@@ -988,9 +1004,14 @@ audio {
   text-align: center;
   margin: 0 60px;
 }
-.news-list__header, .shows__header {
+.news-list__header,
+.shows__header,
+.about__header,
+.join__header,
+.faq__header {
   margin-top: 0;
-  padding: 100px 0 5px 60px;
+  margin-bottom: 0;
+  padding: 100px 0 10px 60px;
   background-color: #262626;
   color: white;
   font-family: 'nimbus-sans-extended', sans-serif;
@@ -1043,14 +1064,6 @@ audio {
   padding: 5px;
   margin: 2px;
   background-color: inherit;
-}
-
-.black {
-  color: black;
-}
-
-.white {
-  color: white;
 }
 
 .home__section {
@@ -1454,6 +1467,32 @@ audio {
 .playlist-list__table tr td img {
   width: 75px !important;
 }
+.about__desc,
+.join__desc{
+  color: white;
+  padding: 30px;
+  background-color: #1e1e1e;
+}
+.about__content,
+.join__content,
+.faq__content {
+  padding: 30px;
+}
+.about__desc p, .about__content p,
+.join__desc p, .join__content p, .faq__content p {
+  padding: 5px 192px;
+}
+.about__caps {
+  font-family: 'nimbus-sans-extended', sans-serif;
+  text-transform: uppercase;
+}
+.faq__question {
+  margin-bottom: 0;
+  text-decoration: underline;
+}
+.faq__answer {
+  margin-top: 0;
+}
 @-webkit-keyframes fadeOut {
   0% {
     opacity: 0;
@@ -1494,11 +1533,7 @@ audio {
 }
 @media (max-width: 992px) {
   .info-box__link {
-    margin: 15px 10px 0 15px;
     font-size: 20px;
-  }
-  .navbar-nav {
-    margin: 4px 0;
   }
   .news-list__post {
     width: 100%;
@@ -1518,6 +1553,9 @@ audio {
   .header__submenu-support {
     display: block;
   }
+  .nav.navbar-nav:nth-child(2) {
+    margin: 12px 0;
+  }
 }
 @media (max-width: 807px) {
   .nav > li > a {
@@ -1525,6 +1563,26 @@ audio {
   }
 }
 @media (max-width: 768px) {
+  .news-list,
+  .shows__header,
+  .about__header,
+  .join__header,
+  .faq__header {
+    padding-left: 40px;
+  }
+  .about__desc, .about__content,
+  .join__desc, .join__content,
+  .faq__content {
+    padding: 40px;
+  }
+  .about__desc p, .about__content p,
+  .join__desc p, .join__content p,
+  .faq__content p {
+    padding: 0;
+  }
+  .nav.navbar-nav:nth-child(2) {
+    margin: 12px;
+  }
   .home__featured-content {
     padding: 0 40px;
   }
@@ -1583,7 +1641,7 @@ audio {
     width: 50%;
   }
   .info-box__link {
-    margin-top: 10px;
+    margin: 12px 0;
   }
   .dropdown-menu.fixed-theme > li > a,
   .dropdown-menu.fixed-theme > li > a:hover,
@@ -1611,7 +1669,13 @@ audio {
     margin: 0 0 20px 0;
   }
   .navbar {
-    padding: 0 25px;
+    padding: 0 40px;
+  }
+  .news-list {
+    margin: 0 40px;
+  }
+  .navbar-default .navbar-toggle {
+    margin-right: 0;
   }
   .nav__search {
     margin: 5px 0 10px 10px;
@@ -1683,6 +1747,9 @@ audio {
   }
   .home__section {
     font-size: 1.125em;
+  }
+  .navbar-right {
+    display: none;
   }
 }
 @media (max-width: 666px) {
@@ -1820,6 +1887,9 @@ audio {
 }
 
 @media (max-width: 480px) {
+  .news-list {
+    margin: 0 40px;
+  }
   .footer {
     padding-left: 20px;
     padding-right: 20px;
@@ -1837,7 +1907,7 @@ audio {
     padding: 0 20px 0 5px;
   }
   .navbar-toggle {
-    margin-right: 5px;
+    margin-right: 20px;
   }
   .footer__links {
     float: none;
@@ -1846,5 +1916,21 @@ audio {
   }
   .footer .footer__links:nth-child(2) .footer__subheading {
     display: none;
+  }
+  .info-box__link {
+    margin: 12px 5px 12px 34px;
+  }
+}
+@media (min-width: 980px) and (max-width: 1019px) {
+  .nav.navbar-nav:nth-child(2) {
+    margin: 12px 0;
+  }
+  .header__support-btn {
+    display: none;
+  }
+}
+@media (min-width: 1020px) {
+  .nav.navbar-nav:nth-child(2) {
+    margin: 12px 0 12px calc(3.5 * (28vw - 285.531px));
   }
 }

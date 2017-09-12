@@ -20,8 +20,8 @@
               <a href='/donate'><button class='btn btn-md'>Donate Now</button></a>
             </li>
             <li><a href='/about-us'>KTUH History</a></li>
-            <li><a href='/join-ktuh'>Donate</a></li>
-            <li><a href='/donate'>Join KTUH</a></li>
+            <li><a href='/donate'>Donate</a></li>
+            <li><a href='/join-ktuh'>Join KTUH</a></li>
             <li><a href='/contact-us'>Contact Us</a></li>
             <li><a href='/faq'>FAQ</a></li>
           </ul>
@@ -41,10 +41,7 @@
           <a href={{reviewsPage}}>Reviews</a>
         </li> -->
       </ul>
-      <ul class='nav navbar-nav navbar-right'>
-        <li class='nav-item'>
-          <button type='button' class='btn btn-md header__support-btn'><a href='/donate'>DONATE</a></button>
-        </li>
+      <ul class='nav navbar-nav'>
         <li class='nav-item'>
           <div class='audio-player'>
             <audio id='audio-player' preload='none' controls>
@@ -54,6 +51,11 @@
         </li>
         {{#if aloha}}<li class='header__aloha'>{{aloha}}</li>{{/if}}
         {{> loginButtons}}
+      </ul>
+      <ul class='nav navbar-nav navbar-right'>
+        <li class='nav-item'>
+          <button type='button' class='btn btn-md header__support-btn'><a href='/donate'>DONATE</a></button>
+        </li>
       </ul>
     </div>
     <div class='now-playing-bar'>
