@@ -31,6 +31,7 @@ import '../../ui/components/music/charts.js';
 import '../../ui/components/music/playlists.js';
 import '../../ui/components/music/music.js';
 import '../../ui/components/about/about.js';
+import '../../ui/components/join/join.js';
 
 FlowRouter.triggers.enter(
   [function() {
@@ -170,6 +171,13 @@ FlowRouter.route('/about-us', {
   name: 'about',
   action: function() {
     BlazeLayout.render('layout', {content: 'about'});
+  }
+});
+
+FlowRouter.route('/join-ktuh', {
+  name: 'join',
+  action: function() {
+    BlazeLayout.render('layout', {content: 'join'});
   }
 });
 
