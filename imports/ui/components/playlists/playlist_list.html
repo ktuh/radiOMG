@@ -21,4 +21,20 @@
       </table>
     {{/if}}
     </div>
+    <div class='playlist-list__list'>
+    <h6>More Playlists</h6>
+    {{#if Template.subscriptionsReady}}
+      <table class="playlist-list__table" border="1">
+        {{#each docs}}
+          <tr>
+            <td><a href="/playlist/{{spinPlaylistId}}/"><img src="{{img showId}}" /></a></td>
+            <td><a class='wavy playlist-list__showname' href="/playlist/{{spinPlaylistId}}/">{{showName showId}}</a><br><div class='playlist-list__date'>{{{date showDate}}}</div></td>
+          </tr>
+        {{/each}}
+      </table>
+      {{> defaultBootstrapPaginator pagination=tempPag limit=8}}
+    {{else}}
+      {{> spinner}}
+    {{/if}}
+  </div>
 </template>
