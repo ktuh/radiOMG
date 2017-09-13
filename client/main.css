@@ -828,9 +828,6 @@ audio {
   max-width: 160px;
   margin: 10px 15px 15px 0;
 }
-.playlist__show-name {
-  padding: 8px 0 0;
-}
 .playlist__info-row{
   font-family: 'nimbus-sans-extended', sans-serif;
   text-transform: uppercase;
@@ -1013,7 +1010,9 @@ audio {
 .faq__header,
 .contact__header,
 .party-create__header,
-.show-create__header {
+.show-create__header,
+.playlist-list__header,
+.playlist__header {
   margin-top: 0;
   margin-bottom: 0;
   padding: 100px 0 10px 60px;
@@ -1021,6 +1020,9 @@ audio {
   color: white;
   font-family: 'nimbus-sans-extended', sans-serif;
   text-transform: uppercase;
+}
+.playlist__header a {
+  color: white;
 }
 .news-list__info {
   text-align: left;
@@ -1429,18 +1431,15 @@ audio {
   text-align: center;
   font-family: sans-serif;
 }
-.playlist-list__list,
-.playlist-list__latest {
-  float: left;
+.playlist__show-name a {
+  color: white;
+}
+.playlist-list__list {
+  float: right;
   width: 50%;
-  margin-bottom: 40px;
+  vertical-align: top;
+  display: inline-block;
 }
-.playlist-list__list h4,
-.playlist-list__latest h4 {
-  font-weight: bold;
-}
-.playlist-list__list h5,
-.playlist-list__latest h5,
 .playlist-list__date {
   font-size: 12px;
   line-height: 17px;
@@ -1483,6 +1482,16 @@ audio {
 .faq__content,
 .contact__content {
   padding: 30px;
+}
+.playlist-list__latest {
+  width: 45%;
+  float: left;
+  clear: both;
+  display: inline-block;
+  padding: 10px 60px;
+}
+.playlist__content {
+  padding: 10px 60px;
 }
 .about__desc p, .about__content p,
 .join__desc p, .join__content p, .faq__content p,
@@ -1588,12 +1597,14 @@ audio {
   .faq__header,
   .contact__header,
   .party-create__header,
-  .show-create__header {
+  .show-create__header,
+  .playlist-list__header,
+  .playlist__header {
     padding-left: 40px;
   }
   .about__desc, .about__content,
   .join__desc, .join__content,
-  .faq__content, .contact__content,
+  .faq__content, .contact__content, .playlist__content, .playlist-list__latest,
   #partyForm, #showForm {
     padding: 40px;
   }
@@ -1721,12 +1732,9 @@ audio {
   #login-dropdown-list .dropdown-menu {
     margin-bottom: 10px;
   }
-  .playlist-list__list,
-  .playlist-list__latest {
+  .playlist-list__list {
     float: none;
     width: 100%;
-  }
-  .playlist-list__list {
     padding: 30px 0 20px 0;
   }
   li.header__aloha {

@@ -1,8 +1,8 @@
 <template name="playlistPage">
   {{#if Template.subscriptionsReady}}
+  <h4 class='playlist__header'><a href="/shows/{{showSlug}}">{{showName}}</a> playlist - {{showDate}}</h4>
+  <div class='playlist__content'>
     {{#if showImage}}<a href="/shows/{{showSlug}}"><img class='playlist__show-image' src='{{showImage}}'></a>{{/if}}
-    <h3 class='playlist__show-name'><a class='wavy' href="/shows/{{showSlug}}">{{showName}}</a> playlist</h3>
-    <h4>{{showDate}}</h4>
     <table class="playlist">
       <tr class="playlist__info-row">
         <td><b>Time</b></td>
@@ -30,5 +30,6 @@
         <p class='comments__text'>Please log in to leave a comment.</p>
       {{/if}}
     </div>
+  </div>
   {{/if}}
 </template>
