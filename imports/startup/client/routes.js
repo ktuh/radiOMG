@@ -33,6 +33,7 @@ import '../../ui/components/music/music.js';
 import '../../ui/components/about/about.js';
 import '../../ui/components/join/join.js';
 import '../../ui/components/faq/faq.js';
+import '../../ui/components/contact/contact.js';
 
 FlowRouter.triggers.enter(
   [function() {
@@ -92,7 +93,7 @@ FlowRouter.route('/events/:slug', {
   }
 });
 
-FlowRouter.route('/events/edit/:slug', {
+FlowRouter.route('/event/edit/:slug', {
   name: 'partyEdit',
   action: function () {
     BlazeLayout.render('layout', {content: 'partyEdit'});
@@ -140,7 +141,7 @@ FlowRouter.route('/shows/new', {
   }
 });
 
-FlowRouter.route('/shows/:slug', {
+FlowRouter.route('/show/:slug', {
   name: 'showPage',
   action: function () {
     BlazeLayout.render('layout', {content: 'showPage'});
@@ -186,6 +187,13 @@ FlowRouter.route('/faq', {
   name: 'faq',
   action: function() {
     BlazeLayout.render('layout', {content: 'faq'});
+  }
+});
+
+FlowRouter.route('/contact-us', {
+  name: 'contact-us',
+  action: function() {
+    BlazeLayout.render('layout', {content: 'contact'});
   }
 });
 

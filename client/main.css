@@ -356,11 +356,13 @@ a, a:hover, a:focus {
   color: #fff;
 }
 .header__aloha {
+  font-family: 'nimbus-sans-extended', sans-serif;
   display: block;
   margin-right: -15px;
   padding: 15px 0 15px 15px;
   font-style: italic;
   color: #fff;
+  text-transform: uppercase;
 }
 .info-box {
   float: left;
@@ -1008,7 +1010,10 @@ audio {
 .shows__header,
 .about__header,
 .join__header,
-.faq__header {
+.faq__header,
+.contact__header,
+.party-create__header,
+.show-create__header {
   margin-top: 0;
   margin-bottom: 0;
   padding: 100px 0 10px 60px;
@@ -1468,18 +1473,20 @@ audio {
   width: 75px !important;
 }
 .about__desc,
-.join__desc{
+.join__desc {
   color: white;
   padding: 30px;
   background-color: #1e1e1e;
 }
 .about__content,
 .join__content,
-.faq__content {
+.faq__content,
+.contact__content {
   padding: 30px;
 }
 .about__desc p, .about__content p,
-.join__desc p, .join__content p, .faq__content p {
+.join__desc p, .join__content p, .faq__content p,
+.contact__content p, .contact__content h4, .contact__content form {
   padding: 5px 192px;
 }
 .about__caps {
@@ -1492,6 +1499,17 @@ audio {
 }
 .faq__answer {
   margin-top: 0;
+}
+.contact__comment-form textarea {
+  width: 45%;
+  margin: auto;
+}
+.input-field label {
+  float: left;
+  margin-right: 5px;
+}
+#partyForm, #showForm {
+  padding: 60px;
 }
 @-webkit-keyframes fadeOut {
   0% {
@@ -1567,17 +1585,21 @@ audio {
   .shows__header,
   .about__header,
   .join__header,
-  .faq__header {
+  .faq__header,
+  .contact__header,
+  .party-create__header,
+  .show-create__header {
     padding-left: 40px;
   }
   .about__desc, .about__content,
   .join__desc, .join__content,
-  .faq__content {
+  .faq__content, .contact__content,
+  #partyForm, #showForm {
     padding: 40px;
   }
   .about__desc p, .about__content p,
   .join__desc p, .join__content p,
-  .faq__content p {
+  .faq__content p, .contact__content p, .contact__content h4 {
     padding: 0;
   }
   .nav.navbar-nav:nth-child(2) {
