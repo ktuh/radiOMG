@@ -1054,6 +1054,9 @@ audio {
   width: 100%;
   margin: 0 auto;
 }
+.news-item {
+  padding: 10px 60px;
+}
 .news-item h1,
 .news-item h3 {
   margin: 0 0 5px 0;
@@ -1616,7 +1619,7 @@ audio {
   .nav.navbar-nav:nth-child(2) {
     margin: 12px;
   }
-  .home__featured-content {
+  .home__featured-content, .news-item {
     padding: 0 40px;
   }
   .home__main {
