@@ -93,7 +93,7 @@ FlowRouter.route('/events/:slug', {
   }
 });
 
-FlowRouter.route('/event/edit/:slug', {
+FlowRouter.route('/events/edit/:slug', {
   name: 'partyEdit',
   action: function () {
     BlazeLayout.render('layout', {content: 'partyEdit'});
@@ -107,7 +107,7 @@ FlowRouter.route('/playlists', {
   }
 });
 
-FlowRouter.route('/playlist/:id', {
+FlowRouter.route('/playlists/:id', {
   name: 'playlistPage',
   action: function() {
     BlazeLayout.render('layout', {content: 'playlistPage'});
@@ -121,7 +121,7 @@ FlowRouter.route('/reviews/', {
   }
 });
 
-FlowRouter.route('/review/:slug', {
+FlowRouter.route('/reviews/:slug', {
   name: 'review',
   action: function() {
     BlazeLayout.render('layout', {content: 'reviewPage'});
@@ -141,7 +141,7 @@ FlowRouter.route('/shows/new', {
   }
 });
 
-FlowRouter.route('/show/:slug', {
+FlowRouter.route('/shows/:slug', {
   name: 'showPage',
   action: function () {
     BlazeLayout.render('layout', {content: 'showPage'});

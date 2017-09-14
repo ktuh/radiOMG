@@ -78,7 +78,7 @@ Meteor.methods({
         break;
       case 'newsPage':
         var post = Posts.findOne(commentAttributes);
-        var url = url + 'event/' + post.slug;
+        var url = url + 'events/' + post.slug;
         var recipient = Meteor.users.findOne({ _id: post.userId });
 
         to = recipient.emails && recipient.emails[0].address;
