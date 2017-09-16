@@ -13,8 +13,6 @@ import '../../ui/components/includes/loginButtons.js';
 import '../../ui/components/news/news_item.js';
 import '../../ui/components/news/news_list.js';
 import '../../ui/components/pages/pages_item.js'
-import '../../ui/components/parties/party_edit.js';
-import '../../ui/components/parties/party_create.js';
 import '../../ui/components/parties/party_list.js';
 import '../../ui/components/parties/party_page.js';
 import '../../ui/components/playlists/playlist_list.js';
@@ -79,24 +77,10 @@ FlowRouter.route('/events', {
   }
 });
 
-FlowRouter.route('/events/new', {
-  name: 'partyCreate',
-  action: function () {
-    BlazeLayout.render('layout', {content: 'partyCreate'});
-  }
-});
-
 FlowRouter.route('/events/:slug', {
   name: 'partyPage',
   action: function () {
     BlazeLayout.render('layout', {content: 'partyPage'});
-  }
-});
-
-FlowRouter.route('/events/edit/:slug', {
-  name: 'partyEdit',
-  action: function () {
-    BlazeLayout.render('layout', {content: 'partyEdit'});
   }
 });
 
