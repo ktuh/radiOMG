@@ -13,8 +13,6 @@ import '../../ui/components/includes/loginButtons.js';
 import '../../ui/components/news/news_item.js';
 import '../../ui/components/news/news_list.js';
 import '../../ui/components/pages/pages_item.js'
-import '../../ui/components/parties/party_edit.js';
-import '../../ui/components/parties/party_create.js';
 import '../../ui/components/parties/party_list.js';
 import '../../ui/components/parties/party_page.js';
 import '../../ui/components/playlists/playlist_list.js';
@@ -33,6 +31,7 @@ import '../../ui/components/music/music.js';
 import '../../ui/components/about/about.js';
 import '../../ui/components/join/join.js';
 import '../../ui/components/faq/faq.js';
+import '../../ui/components/contact/contact.js';
 
 FlowRouter.triggers.enter(
   [function() {
@@ -78,24 +77,10 @@ FlowRouter.route('/events', {
   }
 });
 
-FlowRouter.route('/events/new', {
-  name: 'partyCreate',
-  action: function () {
-    BlazeLayout.render('layout', {content: 'partyCreate'});
-  }
-});
-
 FlowRouter.route('/events/:slug', {
   name: 'partyPage',
   action: function () {
     BlazeLayout.render('layout', {content: 'partyPage'});
-  }
-});
-
-FlowRouter.route('/events/edit/:slug', {
-  name: 'partyEdit',
-  action: function () {
-    BlazeLayout.render('layout', {content: 'partyEdit'});
   }
 });
 
@@ -106,7 +91,7 @@ FlowRouter.route('/playlists', {
   }
 });
 
-FlowRouter.route('/playlist/:id', {
+FlowRouter.route('/playlists/:id', {
   name: 'playlistPage',
   action: function() {
     BlazeLayout.render('layout', {content: 'playlistPage'});
@@ -120,7 +105,7 @@ FlowRouter.route('/reviews/', {
   }
 });
 
-FlowRouter.route('/review/:slug', {
+FlowRouter.route('/reviews/:slug', {
   name: 'review',
   action: function() {
     BlazeLayout.render('layout', {content: 'reviewPage'});
@@ -186,6 +171,13 @@ FlowRouter.route('/faq', {
   name: 'faq',
   action: function() {
     BlazeLayout.render('layout', {content: 'faq'});
+  }
+});
+
+FlowRouter.route('/contact-us', {
+  name: 'contact-us',
+  action: function() {
+    BlazeLayout.render('layout', {content: 'contact'});
   }
 });
 

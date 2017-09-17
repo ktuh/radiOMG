@@ -356,11 +356,13 @@ a, a:hover, a:focus {
   color: #fff;
 }
 .header__aloha {
+  font-family: 'nimbus-sans-extended', sans-serif;
   display: block;
   margin-right: -15px;
   padding: 15px 0 15px 15px;
   font-style: italic;
   color: #fff;
+  text-transform: uppercase;
 }
 .info-box {
   float: left;
@@ -826,9 +828,6 @@ audio {
   max-width: 160px;
   margin: 10px 15px 15px 0;
 }
-.playlist__show-name {
-  padding: 8px 0 0;
-}
 .playlist__info-row{
   font-family: 'nimbus-sans-extended', sans-serif;
   text-transform: uppercase;
@@ -936,35 +935,42 @@ audio {
   text-transform: uppercase;
 }
 .show__info {
-  float: left;
-  max-width: 50%;
-  margin-bottom: 30px;
   text-align: left;
+  vertical-align: top;
+  display: inline-block;
 }
 .show__link {
-  margin: 20px 0;
+  position: relative;
+  top: -60px;
+  left: 60px;
+  margin: 0;
+  background-color: #262626;
+  color: white;
 }
 .show__link a:hover,
 .show__link a {
-  color: gray;
+  color: white;
   font-size: 12px;
 }
+.show__name {
+  font-family: 'din-2014', sans-serif;
+  text-transform: uppercase;
+  margin-top: 0;
+}
 .show__image-div {
-  max-width: 50%;
-  padding-right: 20px;
+  display: inline-block;
 }
 .show__image {
   position: relative;
   float: left;
   margin: 0 20px 20px 0;
 }
-.show__name, .show__host {
+.show__host {
   margin: 0 0 5px 0;
-  font-family: 'nimbus-sans-extended', sans-serif;
+  font-family: 'din-2014', sans-serif;
 }
-.show__host a {
+.show__host a:hover {
   text-decoration: underline;
-  text-decoration-style: wavy;
 }
 .show__title
 .show__tag {
@@ -986,11 +992,12 @@ audio {
   text-align: left;
 }
 .show__playlists h4 {
-  font-family: 'nimbus-sans-extended', sans-serif;
+  font-family: 'din-2014', sans-serif;
   text-transform: uppercase;
 }
 .show__time {
-  font-family: 'nimbus-sans-extended', sans-serif;
+  font-family: 'din-2014', sans-serif;
+  text-transform: uppercase;
 }
 .show__playlists ul {
   padding: 0;
@@ -1002,13 +1009,20 @@ audio {
 }
 .news-list {
   text-align: center;
-  margin: 0 60px;
+  margin: 10px 60px;
 }
 .news-list__header,
 .shows__header,
 .about__header,
 .join__header,
-.faq__header {
+.faq__header,
+.contact__header,
+.party-create__header,
+.show-create__header,
+.playlist-list__header,
+.playlist__header,
+.show__header,
+.news__title {
   margin-top: 0;
   margin-bottom: 0;
   padding: 100px 0 10px 60px;
@@ -1016,6 +1030,9 @@ audio {
   color: white;
   font-family: 'nimbus-sans-extended', sans-serif;
   text-transform: uppercase;
+}
+.playlist__header a {
+  color: white;
 }
 .news-list__info {
   text-align: left;
@@ -1047,6 +1064,9 @@ audio {
   width: 100%;
   margin: 0 auto;
 }
+.news-item {
+  padding: 10px 60px;
+}
 .news-item h1,
 .news-item h3 {
   margin: 0 0 5px 0;
@@ -1057,7 +1077,11 @@ audio {
 .news-item__body {
   margin: 0 0 30px 0;
 }
-
+.news-item__author {
+  font-family: 'din-2014', sans-serif;
+  text-transform: uppercase;
+  color: #5940de;
+}
 .home__headline {
   font-size: 1.75em;
   font-weight: bold;
@@ -1424,18 +1448,15 @@ audio {
   text-align: center;
   font-family: sans-serif;
 }
-.playlist-list__list,
-.playlist-list__latest {
-  float: left;
+.playlist__show-name a {
+  color: white;
+}
+.playlist-list__list {
+  float: right;
   width: 50%;
-  margin-bottom: 40px;
+  vertical-align: top;
+  display: inline-block;
 }
-.playlist-list__list h4,
-.playlist-list__latest h4 {
-  font-weight: bold;
-}
-.playlist-list__list h5,
-.playlist-list__latest h5,
 .playlist-list__date {
   font-size: 12px;
   line-height: 17px;
@@ -1468,18 +1489,31 @@ audio {
   width: 75px !important;
 }
 .about__desc,
-.join__desc{
+.join__desc {
   color: white;
   padding: 30px;
   background-color: #1e1e1e;
 }
 .about__content,
 .join__content,
-.faq__content {
+.faq__content,
+.contact__content
+{
   padding: 30px;
 }
+.playlist-list__latest {
+  width: 45%;
+  float: left;
+  clear: both;
+  display: inline-block;
+  padding: 10px 60px;
+}
+.playlist__content {
+  padding: 10px 60px;
+}
 .about__desc p, .about__content p,
-.join__desc p, .join__content p, .faq__content p {
+.join__desc p, .join__content p, .faq__content p,
+.contact__content p, .contact__content h4, .contact__content form {
   padding: 5px 192px;
 }
 .about__caps {
@@ -1492,6 +1526,17 @@ audio {
 }
 .faq__answer {
   margin-top: 0;
+}
+.contact__comment-form textarea {
+  width: 45%;
+  margin: auto;
+}
+.input-field label {
+  float: left;
+  margin-right: 5px;
+}
+#partyForm, #showForm {
+  padding: 60px;
 }
 @-webkit-keyframes fadeOut {
   0% {
@@ -1563,27 +1608,37 @@ audio {
   }
 }
 @media (max-width: 768px) {
-  .news-list,
+  .news-list__header,
   .shows__header,
   .about__header,
   .join__header,
-  .faq__header {
+  .faq__header,
+  .contact__header,
+  .party-create__header,
+  .show-create__header,
+  .playlist-list__header,
+  .playlist__header,
+  .show__header {
     padding-left: 40px;
+  }
+  .show__link {
+    left: 40px;
   }
   .about__desc, .about__content,
   .join__desc, .join__content,
-  .faq__content {
+  .faq__content, .contact__content, .playlist__content, .playlist-list__latest,
+  #partyForm, #showForm, .show__wrapper {
     padding: 40px;
   }
   .about__desc p, .about__content p,
   .join__desc p, .join__content p,
-  .faq__content p {
+  .faq__content p, .contact__content p, .contact__content h4 {
     padding: 0;
   }
   .nav.navbar-nav:nth-child(2) {
     margin: 12px;
   }
-  .home__featured-content {
+  .home__featured-content, .news-item {
     padding: 0 40px;
   }
   .home__main {
@@ -1672,7 +1727,7 @@ audio {
     padding: 0 40px;
   }
   .news-list {
-    margin: 0 40px;
+    margin: 10px 40px;
   }
   .navbar-default .navbar-toggle {
     margin-right: 0;
@@ -1686,6 +1741,7 @@ audio {
   }
   .show__image-div {
     float: none;
+    padding-right: 20px;
     max-width: 100%;
   }
   .navbar-nav > li > a,
@@ -1699,12 +1755,9 @@ audio {
   #login-dropdown-list .dropdown-menu {
     margin-bottom: 10px;
   }
-  .playlist-list__list,
-  .playlist-list__latest {
+  .playlist-list__list {
     float: none;
     width: 100%;
-  }
-  .playlist-list__list {
     padding: 30px 0 20px 0;
   }
   li.header__aloha {

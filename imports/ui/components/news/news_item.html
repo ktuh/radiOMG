@@ -1,10 +1,15 @@
 <template name='newsItem'>
-  <div class='news-item'>
   {{#with post}}
-    <h1>{{title}}</h1>
-    {{#if author}}<h3>by <a href="/profile/{{author}}">{{displayName}}</a></h3>{{/if}}
+  <h4 class='news__title'>{{title}}</h4>
+  <div class='show__link'>
+    <a href='/news' class='show__link-back'>← Back to Radioblog</a>
+  </div>
+  <div class='news-item'>
+    {{#if author}}<p class='news-item__author'>Posted by <a href="/profile/{{author}}">{{displayName}}</a></p>{{/if}}
+    <p>{{submitted}}</p>
     {{#if photo}}<img class='news-item__photo' src='{{photo.url}}'>{{/if}}
     <div class='news-item__body'>{{{body}}}</div>
+  </div>
   {{/with}}
   {{#if comments}}
     <div class='comments'>
@@ -21,5 +26,4 @@
       {{/if}}
     </div>
   {{/if}}
-  </div>
 </template>
