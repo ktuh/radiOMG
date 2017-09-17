@@ -196,7 +196,8 @@ a, a:hover, a:focus {
 .dropdown-menu.fixed-theme > li > a:hover,
 .dropdown-menu.fixed-theme > li > a:focus,
 .navbar-default .fixed-theme {
-  font-family: 'nimbus-sans-extended', sans-serif;
+  font-family: 'nimbus-sans', sans-serif;
+  font-weight: 900;
   text-transform: uppercase;
   background-color: transparent;
   color: #fff;
@@ -219,7 +220,8 @@ a, a:hover, a:focus {
 .navbar-default .navbar-brand,
 .navbar-default .navbar-nav > li > a,
 .navbar-default .navbar-nav .open .dropdown-menu > li > a {
-  font-family: 'nimbus-sans-extended', sans-serif;
+  font-family: 'nimbus-sans', sans-serif;
+  font-weight: 900;
   text-transform: uppercase;
   color: #fff;
 }
@@ -258,7 +260,7 @@ a, a:hover, a:focus {
   border: 1px solid #444;
 }
 #login-dropdown-list {
-  margin-left: 5px;
+  margin-left: 25px;
 }
 .nav__play-img {
   max-height: 12px;
@@ -330,6 +332,7 @@ a, a:hover, a:focus {
 }
 .nav.navbar-nav:nth-child(2) {
   margin: 12px 0 12px 18vw;
+  font-weight: normal;
 }
 .nav.navbar-nav.navbar-right {
   margin: 0;
@@ -355,15 +358,6 @@ a, a:hover, a:focus {
   padding: 0 15px;
   color: #fff;
 }
-.header__aloha {
-  font-family: 'nimbus-sans-extended', sans-serif;
-  display: block;
-  margin-right: -15px;
-  padding: 15px 0 15px 15px;
-  font-style: italic;
-  color: #fff;
-  text-transform: uppercase;
-}
 .info-box {
   float: left;
   max-width: 125px;
@@ -373,6 +367,7 @@ a, a:hover, a:focus {
   display: inline-block;
   margin: 22px 5px 0 15px;
   font-family: 'din-2014', sans-serif;
+  font-weight: normal;
   font-size: 21px;
   color: #fff;
 }
@@ -1184,7 +1179,7 @@ audio {
   margin: 20px 0 20px 10px;
   background-color: #333333;
   color: white;
-  padding: 15px;
+  padding: 25px;
   text-align: center;
 }
 
@@ -1752,6 +1747,9 @@ audio {
   .navbar-default .navbar-nav .open .dropdown-menu > li > a {
     padding: 8px 15px 8px 25px;
   }
+  .navbar-left {
+    font-weight: 900;
+  }
   #login-dropdown-list .dropdown-menu {
     margin-bottom: 10px;
   }
@@ -1759,9 +1757,6 @@ audio {
     float: none;
     width: 100%;
     padding: 30px 0 20px 0;
-  }
-  li.header__aloha {
-    display: none;
   }
   .home__reviews-item {
     width: 30%;
@@ -1960,7 +1955,7 @@ audio {
     padding: 0 20px 0 5px;
   }
   .navbar-toggle {
-    margin-right: 20px;
+    margin-right: 20px !important;
   }
   .footer__links {
     float: none;
