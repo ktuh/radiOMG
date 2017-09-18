@@ -204,7 +204,7 @@ a, a:hover, a:focus {
   transition: .3s;
 }
 .nav > li > a {
-  margin: 0 15px;
+  margin: 0 10px;
   padding: 13px 0 15px;
 }
 .navbar-nav {
@@ -260,7 +260,7 @@ a, a:hover, a:focus {
   border: 1px solid #444;
 }
 #login-dropdown-list {
-  margin-left: 25px;
+  margin-left: 5px;
 }
 .nav__play-img {
   max-height: 12px;

@@ -8,5 +8,6 @@ import '../../api/posts/server/publications.js';
 import '../../api/reviews/server/publications.js';
 import '../../api/users/server/publications.js';
 import '../../api/pages/server/publications.js';
+import '../../api/charts/server/publications.js';
 
 import '../../api/scorpius_dictionary.js';

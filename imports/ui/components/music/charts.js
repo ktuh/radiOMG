@@ -1,15 +1,13 @@
 import './charts.html';
 import { Template } from 'meteor/templating';
-import { Posts } from '../../../api/posts/posts_collection.js';
-import { pagination } from 'meteor/kurounin:pagination';
+import { Charts } from '../../../api/charts/charts_collection.js';
 
-Template.charts.onCreated(function() {
+Template.musicCharts.onCreated(function() {
   var self = this;
-  self.pagination = new Meteor.Pagination(Posts, {sort: {submitted: -1}, filter: {isChart: true}});
-  self.subscribe('posts');
+  self.pagination = new Meteor.Pagination(Charts, {sort: {createdAt: -1}, perPage: 7});
 });
 
-Template.charts.helpers({
+Template.musicCharts.helpers({
   ready: () => Template.instance().pagination.ready(),
   tempPag: () => Template.instance().pagination,
   docs: () => Template.instance().pagination.getPage()

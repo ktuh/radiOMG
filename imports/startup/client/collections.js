@@ -9,6 +9,7 @@ import '../../api/shows/shows_collection.js';
 import '../../api/users/users_collection.js';
 import '../../api/pages/pages_collection.js';
 import '../../api/users/profiles_collection.js';
+import '../../api/charts/charts_collection.js';
 
 import '../../api/scorpius_dictionary.js';
 

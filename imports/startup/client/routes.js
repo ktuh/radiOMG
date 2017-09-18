@@ -22,9 +22,9 @@ import '../../ui/components/profile/profile_page.js';
 import '../../ui/components/reviews/review_list.js';
 import '../../ui/components/reviews/review_page.js';
 import '../../ui/components/shows/show_list.js';
-import '../../ui/components/shows/show_create.js';
-import '../../ui/components/shows/show_edit.js';
 import '../../ui/components/shows/show_page.js';
+import '../../ui/components/charts/charts_list.js';
+import '../../ui/components/charts/charts_page.js';
 import '../../ui/components/music/charts.js';
 import '../../ui/components/music/playlists.js';
 import '../../ui/components/music/music.js';
@@ -118,12 +118,6 @@ FlowRouter.route('/shows', {
     BlazeLayout.render('layout', {content: 'showList'});
   }
 });
-FlowRouter.route('/shows/new', {
-  name: 'showCreate',
-  action: function () {
-    BlazeLayout.render('layout', {content: 'showCreate'});
-  }
-});
 
 FlowRouter.route('/shows/:slug', {
   name: 'showPage',
@@ -132,10 +126,17 @@ FlowRouter.route('/shows/:slug', {
   }
 });
 
-FlowRouter.route('/shows/edit/:slug', {
-  name: 'showEdit',
+FlowRouter.route('/charts', {
+  name: 'chartList',
   action: function () {
-    BlazeLayout.render('layout', {content: 'showEdit'});
+    BlazeLayout.render('layout', {content: 'chartList'});
+  }
+});
+
+FlowRouter.route('/charts/:slug', {
+  name: 'chartPage',
+  action: function () {
+    BlazeLayout.render('layout', {content: 'chartPage'});
   }
 });
 
