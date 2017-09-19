@@ -1,0 +1,33 @@
+<template name="chartPage">
+  {{#if Template.subscriptionsReady}}
+    {{#with chart}}
+    <h4 class='playlist-list__header'>{{title}}</h4>
+    <div class='playlist-list__latest'>
+    <img class='playlist__show-image' src='{{featuredImage}}'>
+    {{body}}
+    <table class="playlist">
+      <tr class="playlist__info-row">
+        <td><b>#</b></td>
+        <td><b>Artist</b></td>
+        <td><b>Song</b></td>
+        <td><b>Release</b></td>
+        <td><b>Label</b></td>
+        <td><b>New</b></td>
+        <td><b>Local</b></td>
+      </tr>
+      {{#each tracks}}
+      <tr>
+        <td class='playlist__title'>{{plusOne @index}}</td>
+        <td class='playlist__title'>{{artist}}</td>
+        <td class='playlist__title'>{{song}}</td>
+        <td class='playlist__title'>{{ifHas release}}</td>
+        <td class='playlist__title'>{{label}}</td>
+        <td class='playlist__title'>{{ifIs newRelease}}</td>
+        <td class='playlist__title'>{{ifIs local}}</td>
+      </tr>
+      {{/each}}
+    </table>
+  </div>
+  {{/with}}
+  {{/if}}
+</template>

@@ -1,0 +1,47 @@
+<template name="chartList">
+  {{#if Template.subscriptionsReady}}
+    <h4 class='playlist-list__header'>Latest Chart</h4>
+    <div class='playlist-list__latest'>
+    {{#with latestChart}}
+    <img class='playlist__show-image' src='{{featuredImage}}'>
+    <h3 class='playlist__show-name'><a href='/charts/{{slug}}'>{{title}}</a></h3>
+    {{body}}
+    <table class="playlist">
+      <tr class="playlist__info-row">
+        <td><b>#</b></td>
+        <td><b>Artist</b></td>
+        <td><b>Song</b></td>
+        <td><b>Release</b></td>
+        <td><b>Label</b></td>
+        <td><b>New</b></td>
+        <td><b>Local</b></td>
+      </tr>
+      {{#each tracks}}
+      <tr>
+        <td class='playlist__title'>{{plusOne @index}}</td>
+        <td class='playlist__title'>{{artist}}</td>
+        <td class='playlist__title'>{{song}}</td>
+        <td class='playlist__title'>{{ifHas release}}</td>
+        <td class='playlist__title'>{{label}}</td>
+        <td class='playlist__title'>{{ifIs newRelease}}</td>
+        <td class='playlist__title'>{{ifIs local}}</td>
+      </tr>
+      {{/each}}
+    </table>
+    {{/with}}
+  </div>
+  <div class='playlist-list__list'>
+    <h6>More Playlists</h6>
+    <table class="playlist-list__table" border="1">
+      {{#each otherCharts}}
+        <a href="/charts/{{slug}}/">
+          <img src="{{featuredImage}}" />
+          <p class='home__title'>{{title}}</p>
+        </a>
+      {{/each}}
+    </table>
+  </div>
+  {{else}}
+    {{> spinner}}
+  {{/if}}
+</template>

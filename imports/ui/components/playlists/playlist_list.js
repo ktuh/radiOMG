@@ -32,6 +32,7 @@ Template.playlistList.helpers({
   date: (showDate) => moment(showDate).format('dddd, h:mm a,<br>MMM DD YYYY'),
   ready: () => Template.instance().pagination.ready(),
   docs: () => Template.instance().pagination.getPage(),
+  tempPag: () => Template.instance().pagination,
   latestShowName: () => {
     var list = Playlists.findOne({}, { sort: { showDate: -1 }});
     return Shows.findOne({ showId: list.showId }).showName
@@ -48,7 +49,7 @@ Template.playlistList.helpers({
     var list = Playlists.findOne({}, { sort: { showDate: -1 }});
     var show = Shows.findOne({ showId: list.showId });
 
-    return (show === undefined || show.featuredImage === undefined) 
+    return (show === undefined || show.featuredImage === undefined)
            ? false : show.featuredImage.url;
   },
   truncated: (str) => str.substring(0, str.length - 3)
