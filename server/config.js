@@ -84,6 +84,18 @@ Meteor.startup(function () {
         Profiles.update({ _id: id }, { $set: { name: user.services.facebook.name }});
       }
 
+      Profiles.update({ _id: id }, { $set: { photo: {
+        url: '/img/ktuh-logo-white-alpha.png',
+        fileId: 'd3r3K15suPr3m3d03',
+        info: {
+          width: 150,
+          height: 150,
+          backgroundColor: '#000000',
+          primaryColor: '#000000',
+          secondaryColor: '#000000'
+        }
+      }}});
+
       user.username = username;
       user.emails = [{ address: email, verified: true }];
 

@@ -765,27 +765,22 @@ audio {
   color: #ffd103;
 }
 .profile {
-  width: 675px;
-  margin: auto;
-}
-.profile__first-header {
-  display: none;
+  margin: 10px 60px;
 }
 .profile__left {
-  clear: both;
-  float: left;
-  max-width: 325px;
-  margin-right: 25px
+  width: 24%;
+  margin-right: 10px;
+  display: inline-block;
+  vertical-align: top;
 }
 .profile__info {
-  float: left;
-  max-width: 325px;
+  width: 74%;
+  display: inline-block;
 }
 .profile__pic {
   float: right;
   margin-bottom: 15px;
 }
-.profile__header,
 .profile__info h4 {
   margin: 0 0 15px 0;
 }
@@ -1017,6 +1012,7 @@ audio {
 .playlist-list__header,
 .playlist__header,
 .show__header,
+.profile__header,
 .news__title {
   margin-top: 0;
   margin-bottom: 0;
@@ -1613,7 +1609,9 @@ audio {
   .show-create__header,
   .playlist-list__header,
   .playlist__header,
-  .show__header {
+  .show__header,
+  .profile__header,
+  .news__title {
     padding-left: 40px;
   }
   .show__link {
@@ -1767,20 +1765,15 @@ audio {
     float: left;
   }
   .profile {
-    width: inherit;
+    margin: 10px 40px;
   }
   .profile__left {
-    width: 50%;
-    max-width: none;
+    width: 100%;
     margin: 0;
-    padding-right: 25px;
   }
   .profile__info {
     width: 50%;
     max-width: none;
-  }
-  .profile__header {
-    font-size: 26px;
   }
   .home__featured-photo {
     width: 100%;
@@ -1880,12 +1873,6 @@ audio {
   .profile__social-icons {
     float: none;
   }
-  .profile__first-header {
-    display: block;
-  }
-  .profile__info .profile__header {
-    display: none
-  }
   .profile__left {
     width: 100%;
     margin: 0;
@@ -1898,6 +1885,10 @@ audio {
 @media (min-width: 769px) and (max-width: 786px) {
   .footer__subheading {
     font-size: .75em;
+  }
+  .profile__left, .profile__info {
+    margin: 0;
+    width: 100%;
   }
 }
 @media (min-width: 769px) {
