@@ -38,3 +38,11 @@ Meteor.publish('latestSevenWritersUsernames', () => { /*
   return Meteor.users.find({ _id: { $in: ids } }, { fields: 'username' });  */
   return Meteor.users.find({});
 });
+
+Meteor.publish('djProfiles', () => {
+  var djs = Meteor.users.find({ roles: 'dj' }).fetch();
+  var userIds = _.map(djs, (p, i) => p._id);
+  return Profiles.find({ userId: { $in: userIds} });
+});
+
+Meteor.publish('djs', () => Meteor.users.find({ roles: 'dj' }));

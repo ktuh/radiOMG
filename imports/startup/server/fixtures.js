@@ -5,6 +5,7 @@ import { Posts } from '/imports/api/posts/posts_collection.js';
 import { Reviews } from '/imports/api/reviews/reviews_collection.js';
 import { Shows } from '/imports/api/shows/shows_collection.js';
 import { Profiles } from '/imports/api/users/profiles_collection.js';
+import { Charts } from '/imports/api/charts/charts_collection.js';
 
 if (!Accounts.findUserByUsername('davey')) {
   var now = new Date().getTime();
@@ -97,7 +98,18 @@ if (Profiles.find().count() === 0) {
     facebook: 'davey.shindig',
     twitter: 'daveyshindig',
     snapchat: '123',
-    banned: false
+    banned: false,
+    photo: {
+      url: '/img/ktuh-logo-white-alpha.png',
+      fileId: 'd3r3K15suPr3m3d03',
+      info: {
+        width: 150,
+        height: 150,
+        backgroundColor: '#000000',
+        primaryColor: '#000000',
+        secondaryColor: '#000000'
+      }
+    }
   });
 
   Profiles.insert({
@@ -110,21 +122,43 @@ if (Profiles.find().count() === 0) {
     facebook: 'kodekrakkerz',
     twitter: 'kodekrakkerz',
     snapchat: '',
-    banned: false
+    banned: false,
+    photo: {
+      url: '/img/ktuh-logo-white-alpha.png',
+      fileId: 'd3r3K15suPr3m3d03',
+      info: {
+        width: 150,
+        height: 150,
+        backgroundColor: '#000000',
+        primaryColor: '#000000',
+        secondaryColor: '#000000'
+      }
+    }
   });
 
-    Profiles.insert({
-      userId: derekseviltwin._id,
-      name: 'Derek Chan',
-      bio: '<p>Don\'t mind me. Mind your own biz.</p>',
-      website: 'http://808mix.com',
-      soundcloud: 'sunquan8094',
-      instagram: 'sunquan8094',
-      facebook: 'sunquan8094.official',
-      twitter: 'sunquan8094',
-      snapchat: 'sunquan8094',
-      banned: false
-    });
+  Profiles.insert({
+    userId: derekseviltwin._id,
+    name: 'Derek Chan',
+    bio: '<p>Don\'t mind me. Mind your own biz.</p>',
+    website: 'http://808mix.com',
+    soundcloud: 'sunquan8094',
+    instagram: 'sunquan8094',
+    facebook: 'sunquan8094.official',
+    twitter: 'sunquan8094',
+    snapchat: 'sunquan8094',
+    banned: false,
+    photo: {
+      url: '/img/ktuh-logo-white-alpha.png',
+      fileId: 'd3r3K15suPr3m3d03',
+      info: {
+        width: 150,
+        height: 150,
+        backgroundColor: '#000000',
+        primaryColor: '#000000',
+        secondaryColor: '#000000'
+      }
+    }
+  });
 };
 
 if (Shows.find().count() === 0) {
@@ -147,6 +181,38 @@ if (Shows.find().count() === 0) {
     slug: '808-mix',
     active: true,
     latestEpdeUrl: 'http://stream.ktuh.org/archives/5.friday/6-9pm.mp3',
+    featuredImage: {
+      fileId: '7QMJycqBipCXvYzH4',
+      url: 'http://ktuh.org/wp-content/uploads/2015/01/808-mixtapes-square-300x300.jpg',
+      info: {
+        width: 500,
+        height: 500,
+        backgroundColor: '#0e0e0b',
+        primaryColor: '#fcfcfa',
+        secondaryColor: '#807d78'
+      }
+    }
+  });
+
+  var derek = Accounts.findUserByUsername('kodekrakkerz');
+
+  Shows.insert({
+    showName: 'Hard Hour',
+    userId: derek._id,
+    author: 'DJ Kodekrakkerz',
+    host: 'DJ Kodekrakkerz',
+    showId: 520,
+    startDay: 1,
+    startHour: '15',
+    startMinute: '00',
+    endDay: 0,
+    endHour: '18',
+    endMinute: '00',
+    genres: ['Hardstyle', 'Hard Dance'],
+    body: 'This show goes harder than your quantum physics class. Lemme prove it for you.',
+    slug: 'hard-hour',
+    active: true,
+    latestEpdeUrl: 'http://stream.ktuh.org/archives/7.sunday/12-3am.mp3',
     featuredImage: {
       fileId: '7QMJycqBipCXvYzH4',
       url: 'http://ktuh.org/wp-content/uploads/2015/01/808-mixtapes-square-300x300.jpg',
@@ -613,4 +679,31 @@ if (Reviews.find().count() === 0) {
     },
     approved: true
   });
-};
+}
+
+if (Charts.find().count() === 0) {
+  Charts.insert({
+    title: "Music Charts 2017-09-25",
+    createdBy: "gNETY8gvh4MYroX9H",
+    createdAt: Date('2017-09-25T10:53:02Z'),
+    editedBy: "gNETY8gvh4MYroX9H",
+    tracks: [{
+      artist: "D-Block & S-te-Fan", song: "Antidote (Original Mix)",
+      release: "Antidote", label: "Scantraxx Evolutionz", newRelease: true,
+      local: false
+    }],
+    featuredImage: {
+      url: '/img/ktuh-logo-white-alpha.png',
+      fileId: 'd3r3K15suPr3m3d03',
+      info: {
+        width: 150,
+        height: 150,
+        backgroundColor: '#000000',
+        primaryColor: '#000000',
+        secondaryColor: '#000000'
+      }
+    },
+    body: "<p>This is the littest album I've come across!</p>",
+    slug: "music-charts-2017-09-25"
+  });
+}
