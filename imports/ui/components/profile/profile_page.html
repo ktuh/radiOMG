@@ -1,17 +1,16 @@
 <template name='profilePage'>
-  {{#if Template.subscriptionsReady}} {{#with profile}} {{#if negB1orB2 isBanned isAdmin}} {{#if ownProfile}}
+  {{#if Template.subscriptionsReady}}
+  {{#with profile}}
+  {{#if negB1orB2 isBanned isAdmin}}
+  {{#if ownProfile}}
   <a href='/profile'>
     <button type='button' class='btn btn-default btn-md party-header__button'><span class='glyphicon glyphicon-edit' aria-hidden='true'></span>Edit</button>
   </a>
   {{/if}}
+  <h4 class='profile__header'>{{name}}</h4>
   <div class='profile'>
     <div class='profile__left'>
-      {{#if name}}<h1 class='profile__header profile__first-header'><b>{{name}}</b></h1>{{/if}}
       {{#if photo.url}}<img class='profile__pic' src='{{photo.url}}'>{{/if}}
-    </div>
-    <div class='profile__info'>
-      {{#if name}}<h1 class='profile__header'><b>{{name}}</b></h1>{{/if}}
-      {{#if show}}<h4><i>Host of <a href='/shows/{{show.showName}}'>{{show.showName}}</a></i></h4>{{/if}}
       {{#if social}}
         <div class='profile__social-icons'>
           {{#if website}}<a href='{{website}}'><img class='profile__social-icon' src='/img/website.png'></a>{{/if}}
@@ -22,6 +21,10 @@
           {{#if snapchat}}<a href='{{snapchat}}'><img class='profile__social-icon' src='/img/snapchat.png'></a>{{/if}}
         </div>
       {{/if}}
+    </div>
+    <div class='profile__info'>
+      {{#if name}}{{/if}}
+      {{#if show}}<h4><i>Host of <a href='/shows/{{show.showName}}'>{{show.showName}}</a></i></h4>{{/if}}
       <div class='profile__bio'>
         {{#if bio}}{{{bio}}}{{else}}<i>({{name}} hasn't filled out a bio yet.)</i>{{/if}}
       </div>

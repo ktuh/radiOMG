@@ -32,6 +32,7 @@ import '../../ui/components/about/about.js';
 import '../../ui/components/join/join.js';
 import '../../ui/components/faq/faq.js';
 import '../../ui/components/contact/contact.js';
+import '../../ui/components/staff/staff.js';
 
 FlowRouter.triggers.enter(
   [function() {
@@ -179,6 +180,13 @@ FlowRouter.route('/contact-us', {
   name: 'contact-us',
   action: function() {
     BlazeLayout.render('layout', {content: 'contact'});
+  }
+});
+
+FlowRouter.route('/staff', {
+  name: 'staff',
+  action: function() {
+    BlazeLayout.render('layout', {content: 'staff'});
   }
 });
 

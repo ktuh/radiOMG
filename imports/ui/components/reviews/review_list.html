@@ -1,6 +1,7 @@
 <template name="reviewList">
   <div class="reviews">
-    <h4>Reviews</h4>
+    <h4 class="staff__header">Reviews</h4>
+    <div class="staff__content">
     {{#if isReady}}
       {{#each reviews}}
         {{> reviewItem}}
@@ -9,5 +10,6 @@
     {{else}}
       {{> spinner}}
     {{/if}}
+    </div>
   </div>
 </template>

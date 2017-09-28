@@ -5,6 +5,7 @@ import { Posts } from '/imports/api/posts/posts_collection.js';
 import { Reviews } from '/imports/api/reviews/reviews_collection.js';
 import { Shows } from '/imports/api/shows/shows_collection.js';
 import { Profiles } from '/imports/api/users/profiles_collection.js';
+import { Charts } from '/imports/api/charts/charts_collection.js';
 
 if (!Accounts.findUserByUsername('davey')) {
   var now = new Date().getTime();
@@ -66,54 +67,98 @@ if (Profiles.find().count() === 0) {
   Profiles.insert({
     userId: davey._id,
     name: 'Davey Shindig',
-    bio: ' <p>After his youth in the frozen exurbs of the Twin Cities, David Wilkie, a.k.a. <b>Davey Shindig</b>, moved to Honolulu, Hawaii, where he has become a regular fixture in the nightlife. With current residencies at local hotspots like the Downbeat Lounge and Bevy, as well as opening sets for everyone from Diplo, A-Trak, and Steve Aoki to Andy Stott, Tokimonsta, and John Maus, Shindig has been gathering enthusiastic audience response and critical praise for his uniquely-styled indie electro-pop.</p><p>Classically trained in music and theater, and informed by degrees in computer science and audio production, Shindig brings his appreciation and deep understanding of the performing arts to bear in the kinetic, surprise-filled late night sets he\'s built his reputation upon. Quite simply, Shindig takes listeners on a cathartic journey through melodic electronic and acoustical sounds.</p><p>Seeing Honolulu in a musical rut, Shindig launched a weekly FM radio show called <b>808 Mixtapes</b>, to feature the talents of local DJs as well as talent passing through town. Along the way, he has played host to some big stars, with Tim Sweeney, Louisahhh!!!, Tamara Sky, Classixx, and Com Truise to name a few contributing to the show.</p><p>Shindig has stayed in Honolulu to help keep the local music scene from being completely overrun by cash-grabbing industry hacks. Simultaneously, with his multicultural perspective and budding multidisciplinary success, it is easy to see why Davey Shindig\'s renown is quickly growing beyond Hawaii\'s shores.</p><p><br><small>Photo c/o: <a href="https://www.google.com/search?q=vincent+ricafort">Vincent Ricafort</a></small></p>',
+    bio: '<p>After his youth in the frozen exurbs of the Twin Cities, David Wilkie, a.k.a. <b>Davey Shindig</b>, moved to Honolulu, Hawaii, where he has become a regular fixture in the nightlife. With current residencies at local hotspots like the Downbeat Lounge and Bevy, as well as opening sets for everyone from Diplo, A-Trak, and Steve Aoki to Andy Stott, Tokimonsta, and John Maus, Shindig has been gathering enthusiastic audience response and critical praise for his uniquely-styled indie electro-pop.</p><p>Classically trained in music and theater, and informed by degrees in computer science and audio production, Shindig brings his appreciation and deep understanding of the performing arts to bear in the kinetic, surprise-filled late night sets he\'s built his reputation upon. Quite simply, Shindig takes listeners on a cathartic journey through melodic electronic and acoustical sounds.</p><p>Seeing Honolulu in a musical rut, Shindig launched a weekly FM radio show called <b>808 Mixtapes</b>, to feature the talents of local DJs as well as talent passing through town. Along the way, he has played host to some big stars, with Tim Sweeney, Louisahhh!!!, Tamara Sky, Classixx, and Com Truise to name a few contributing to the show.</p><p>Shindig has stayed in Honolulu to help keep the local music scene from being completely overrun by cash-grabbing industry hacks. Simultaneously, with his multicultural perspective and budding multidisciplinary success, it is easy to see why Davey Shindig\'s renown is quickly growing beyond Hawaii\'s shores.</p><p><br><small>Photo c/o: <a href="https://www.google.com/search?q=vincent+ricafort">Vincent Ricafort</a></small></p>',
     website: 'http://808mix.com',
     soundcloud: '808mix',
     instagram: 'daveyshindig',
     facebook: 'davey.shindig',
     twitter: 'daveyshindig',
     snapchat: '123',
-    banned: false
+    banned: false,
+    photo: {
+      fileId: 'C0m1c54nz4r34ld03',
+      url: '/img/davey.jpg',
+      info: {
+        width: 500,
+        height: 500,
+        backgroundColor: '#0e0e0b',
+        primaryColor: '#fcfcfa',
+        secondaryColor: '#807d78'
+      }
+    }
   });
 
   Profiles.insert({
     userId: nicki._id,
     name: 'Davey Shindig',
-    bio: ' <p>After his youth in the frozen exurbs of the Twin Cities, David Wilkie, a.k.a. <b>Davey Shindig</b>, moved to Honolulu, Hawaii, where he has become a regular fixture in the nightlife. With current residencies at local hotspots like the Downbeat Lounge and Bevy, as well as opening sets for everyone from Diplo, A-Trak, and Steve Aoki to Andy Stott, Tokimonsta, and John Maus, Shindig has been gathering enthusiastic audience response and critical praise for his uniquely-styled indie electro-pop.</p><p>Classically trained in music and theater, and informed by degrees in computer science and audio production, Shindig brings his appreciation and deep understanding of the performing arts to bear in the kinetic, surprise-filled late night sets he\'s built his reputation upon. Quite simply, Shindig takes listeners on a cathartic journey through melodic electronic and acoustical sounds.</p><p>Seeing Honolulu in a musical rut, Shindig launched a weekly FM radio show called <b>808 Mixtapes</b>, to feature the talents of local DJs as well as talent passing through town. Along the way, he has played host to some big stars, with Tim Sweeney, Louisahhh!!!, Tamara Sky, Classixx, and Com Truise to name a few contributing to the show.</p><p>Shindig has stayed in Honolulu to help keep the local music scene from being completely overrun by cash-grabbing industry hacks. Simultaneously, with his multicultural perspective and budding multidisciplinary success, it is easy to see why Davey Shindig\'s renown is quickly growing beyond Hawaii\'s shores.</p><p><br><small>Photo c/o: <a href="https://www.google.com/search?q=vincent+ricafort">Vincent Ricafort</a></small></p>',
+    bio: '<p>After his youth in the frozen exurbs of the Twin Cities, David Wilkie, a.k.a. <b>Davey Shindig</b>, moved to Honolulu, Hawaii, where he has become a regular fixture in the nightlife. With current residencies at local hotspots like the Downbeat Lounge and Bevy, as well as opening sets for everyone from Diplo, A-Trak, and Steve Aoki to Andy Stott, Tokimonsta, and John Maus, Shindig has been gathering enthusiastic audience response and critical praise for his uniquely-styled indie electro-pop.</p><p>Classically trained in music and theater, and informed by degrees in computer science and audio production, Shindig brings his appreciation and deep understanding of the performing arts to bear in the kinetic, surprise-filled late night sets he\'s built his reputation upon. Quite simply, Shindig takes listeners on a cathartic journey through melodic electronic and acoustical sounds.</p><p>Seeing Honolulu in a musical rut, Shindig launched a weekly FM radio show called <b>808 Mixtapes</b>, to feature the talents of local DJs as well as talent passing through town. Along the way, he has played host to some big stars, with Tim Sweeney, Louisahhh!!!, Tamara Sky, Classixx, and Com Truise to name a few contributing to the show.</p><p>Shindig has stayed in Honolulu to help keep the local music scene from being completely overrun by cash-grabbing industry hacks. Simultaneously, with his multicultural perspective and budding multidisciplinary success, it is easy to see why Davey Shindig\'s renown is quickly growing beyond Hawaii\'s shores.</p><p><br><small>Photo c/o: <a href="https://www.google.com/search?q=vincent+ricafort">Vincent Ricafort</a></small></p>',
     website: 'http://808mix.com',
     soundcloud: '808mix',
     instagram: 'daveyshindig',
     facebook: 'davey.shindig',
     twitter: 'daveyshindig',
     snapchat: '123',
-    banned: false
+    banned: false,
+    photo: {
+      url: '/img/ktuh-logo-white-alpha.png',
+      fileId: 'd3r3K15suPr3m3d03',
+      info: {
+        width: 150,
+        height: 150,
+        backgroundColor: '#000000',
+        primaryColor: '#000000',
+        secondaryColor: '#000000'
+      }
+    }
   });
 
   Profiles.insert({
     userId: derek._id,
     name: 'DJ Kodekrakkerz',
-    bio: ' <p>Just some guy who likes hardstyle</p><p>This kid aspires to revive the Honolulu hard dance scene one gig at at a time.</p>',
+    bio: '<p>Just some guy who likes hardstyle</p><p>This kid aspires to revive the Honolulu hard dance scene one gig at at a time.</p>',
     website: 'http://808mix.com',
     soundcloud: 'kodekrakkerz',
     instagram: 'kodekrakkerz',
     facebook: 'kodekrakkerz',
     twitter: 'kodekrakkerz',
     snapchat: '',
-    banned: false
+    banned: false,
+    photo: {
+      url: '/img/ktuh-logo-white-alpha.png',
+      fileId: 'd3r3K15suPr3m3d03',
+      info: {
+        width: 150,
+        height: 150,
+        backgroundColor: '#000000',
+        primaryColor: '#000000',
+        secondaryColor: '#000000'
+      }
+    }
   });
 
-    Profiles.insert({
-      userId: derekseviltwin._id,
-      name: 'Derek Chan',
-      bio: ' <p>Don\'t mind me. Mind your own biz.</p>',
-      website: 'http://808mix.com',
-      soundcloud: 'sunquan8094',
-      instagram: 'sunquan8094',
-      facebook: 'sunquan8094.official',
-      twitter: 'sunquan8094',
-      snapchat: 'sunquan8094',
-      banned: false
-    });
+  Profiles.insert({
+    userId: derekseviltwin._id,
+    name: 'Derek Chan',
+    bio: '<p>Don\'t mind me. Mind your own biz.</p>',
+    website: 'http://808mix.com',
+    soundcloud: 'sunquan8094',
+    instagram: 'sunquan8094',
+    facebook: 'sunquan8094.official',
+    twitter: 'sunquan8094',
+    snapchat: 'sunquan8094',
+    banned: false,
+    photo: {
+      url: '/img/ktuh-logo-white-alpha.png',
+      fileId: 'd3r3K15suPr3m3d03',
+      info: {
+        width: 150,
+        height: 150,
+        backgroundColor: '#000000',
+        primaryColor: '#000000',
+        secondaryColor: '#000000'
+      }
+    }
+  });
 };
 
 if (Shows.find().count() === 0) {
@@ -136,6 +181,38 @@ if (Shows.find().count() === 0) {
     slug: '808-mix',
     active: true,
     latestEpdeUrl: 'http://stream.ktuh.org/archives/5.friday/6-9pm.mp3',
+    featuredImage: {
+      fileId: '7QMJycqBipCXvYzH4',
+      url: 'http://ktuh.org/wp-content/uploads/2015/01/808-mixtapes-square-300x300.jpg',
+      info: {
+        width: 500,
+        height: 500,
+        backgroundColor: '#0e0e0b',
+        primaryColor: '#fcfcfa',
+        secondaryColor: '#807d78'
+      }
+    }
+  });
+
+  var derek = Accounts.findUserByUsername('kodekrakkerz');
+
+  Shows.insert({
+    showName: 'Hard Hour',
+    userId: derek._id,
+    author: 'DJ Kodekrakkerz',
+    host: 'DJ Kodekrakkerz',
+    showId: 520,
+    startDay: 1,
+    startHour: '15',
+    startMinute: '00',
+    endDay: 0,
+    endHour: '18',
+    endMinute: '00',
+    genres: ['Hardstyle', 'Hard Dance'],
+    body: 'This show goes harder than your quantum physics class. Lemme prove it for you.',
+    slug: 'hard-hour',
+    active: true,
+    latestEpdeUrl: 'http://stream.ktuh.org/archives/7.sunday/12-3am.mp3',
     featuredImage: {
       fileId: '7QMJycqBipCXvYzH4',
       url: 'http://ktuh.org/wp-content/uploads/2015/01/808-mixtapes-square-300x300.jpg',
@@ -186,7 +263,6 @@ if (Posts.find().count() === 0) {
         secondaryColor: '#807d78'
       }
     },
-    isChart: false,
     approved: true,
     featured: true
   });
@@ -218,7 +294,6 @@ if (Posts.find().count() === 0) {
     },
     tags: ['Radioblog'],
     category: 'Radioblog',
-    isChart: false,
     approved: true,
     featured: false
   });
@@ -251,7 +326,6 @@ if (Posts.find().count() === 0) {
     },
     tags: ['Radioblog'],
     category: 'Radioblog',
-    isChart: false,
     approved: true,
     featured: false
   });
@@ -283,40 +357,7 @@ if (Posts.find().count() === 0) {
     },
     tags: ['Radioblog', 'Rock'],
     category: 'Radioblog',
-    isChart: false,
     approved: true,
-    featured: false
-  });
-
-  Posts.insert({
-    _id: 'WmAF8ovhjhh2cwcrr',
-    submitted: Date('2017-01-11T02:47:24Z'),
-    title: 'Music Charts 2017/01/11',
-    body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-    commentCount: 0,
-    slug: 'music-charts-2017-01-11',
-    userId: davey._id,
-    author: 'davey',
-    friendlySlugs: {
-      slug: {
-        base: 'music-charts',
-        index: 0
-      }
-    },
-    photo: {
-      fileId: '7QMJycqBipCXvYzH4',
-      url: 'http://ktuh.org/wp-content/uploads/2016/10/Screen-Shot-2016-10-14-at-5.30.08-PM.png',
-      info: {
-        width: 500,
-        height: 500,
-        backgroundColor: '#0e0e0b',
-        primaryColor: '#fcfcfa',
-        secondaryColor: '#807d78'
-      }
-    },
-    tags: ['Charts'],
-    category: 'Charts',
-    isChart: true,
     featured: false
   });
 
@@ -348,7 +389,6 @@ if (Posts.find().count() === 0) {
     },
     tags: ['Radioblog'],
     category: 'Radioblog',
-    isChart: false,
     approved: true,
     featured: false
   });
@@ -381,7 +421,6 @@ if (Posts.find().count() === 0) {
     },
     tags: ['Radioblog'],
     category: 'Radioblog',
-    isChart: false,
     approved: true,
     featured: false
   });
@@ -414,7 +453,6 @@ if (Posts.find().count() === 0) {
     },
     tags: ['Radioblog'],
     category: 'Radioblog',
-    isChart: false,
     approved: true,
     featured: false
   });
@@ -446,40 +484,6 @@ if (Posts.find().count() === 0) {
     },
     tags: ['Radioblog'],
     category: 'Radioblog',
-    isChart: false,
-    approved: true,
-    featured: false
-  });
-
-  Posts.insert({
-    _id: 'WmAF8ovhjhh2cwcr1',
-    submitted: Date('2017-01-11T02:47:24Z'),
-    title: 'Music Charts 2017/01/11',
-    body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-    commentCount: 0,
-    slug: 'music-charts-2017-01-11',
-    userId: davey._id,
-    author: 'davey',
-    friendlySlugs: {
-      slug: {
-        base: 'music-charts',
-        index: 0
-      }
-    },
-    photo: {
-      fileId: '7QMJycqBipCXvYzH4',
-      url: 'http://ktuh.org/wp-content/uploads/2015/03/IMG_0483_opt-e1489259362248.jpg',
-      info: {
-        width: 500,
-        height: 500,
-        backgroundColor: '#0e0e0b',
-        primaryColor: '#fcfcfa',
-        secondaryColor: '#807d78'
-      }
-    },
-    tags: ['Charts'],
-    category: 'Charts',
-    isChart: true,
     approved: true,
     featured: false
   });
@@ -675,4 +679,31 @@ if (Reviews.find().count() === 0) {
     },
     approved: true
   });
-};
+}
+
+if (Charts.find().count() === 0) {
+  Charts.insert({
+    title: "Music Charts 2017-09-25",
+    createdBy: "gNETY8gvh4MYroX9H",
+    createdAt: Date('2017-09-25T10:53:02Z'),
+    editedBy: "gNETY8gvh4MYroX9H",
+    tracks: [{
+      artist: "D-Block & S-te-Fan", song: "Antidote (Original Mix)",
+      release: "Antidote", label: "Scantraxx Evolutionz", newRelease: true,
+      local: false
+    }],
+    featuredImage: {
+      url: '/img/ktuh-logo-white-alpha.png',
+      fileId: 'd3r3K15suPr3m3d03',
+      info: {
+        width: 150,
+        height: 150,
+        backgroundColor: '#000000',
+        primaryColor: '#000000',
+        secondaryColor: '#000000'
+      }
+    },
+    body: "<p>This is the littest album I've come across!</p>",
+    slug: "music-charts-2017-09-25"
+  });
+}

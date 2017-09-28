@@ -765,27 +765,22 @@ audio {
   color: #ffd103;
 }
 .profile {
-  width: 675px;
-  margin: auto;
-}
-.profile__first-header {
-  display: none;
+  margin: 10px 60px;
 }
 .profile__left {
-  clear: both;
-  float: left;
-  max-width: 325px;
-  margin-right: 25px
+  width: 24%;
+  margin-right: 10px;
+  display: inline-block;
+  vertical-align: top;
 }
 .profile__info {
-  float: left;
-  max-width: 325px;
+  width: 74%;
+  display: inline-block;
 }
 .profile__pic {
   float: right;
   margin-bottom: 15px;
 }
-.profile__header,
 .profile__info h4 {
   margin: 0 0 15px 0;
 }
@@ -1002,7 +997,7 @@ audio {
 .show__play-btn:hover {
   border-color: #333;
 }
-.news-list {
+.news-list, .staff__content {
   text-align: center;
   margin: 10px 60px;
 }
@@ -1017,7 +1012,9 @@ audio {
 .playlist-list__header,
 .playlist__header,
 .show__header,
-.news__title {
+.profile__header,
+.news__title,
+.staff__header {
   margin-top: 0;
   margin-bottom: 0;
   padding: 100px 0 10px 60px;
@@ -1533,6 +1530,13 @@ audio {
 #partyForm, #showForm {
   padding: 60px;
 }
+.staff__item {
+  display: inline-block;
+  width: 24%;
+}
+.staff__item > p {
+  margin-bottom: 5px;
+}
 @-webkit-keyframes fadeOut {
   0% {
     opacity: 0;
@@ -1613,7 +1617,10 @@ audio {
   .show-create__header,
   .playlist-list__header,
   .playlist__header,
-  .show__header {
+  .show__header,
+  .profile__header,
+  .news__title,
+  .staff__header {
     padding-left: 40px;
   }
   .show__link {
@@ -1621,8 +1628,8 @@ audio {
   }
   .about__desc, .about__content,
   .join__desc, .join__content,
-  .faq__content, .contact__content, .playlist__content, .playlist-list__latest,
-  #partyForm, #showForm, .show__wrapper {
+  .faq__content, .contact__content, .playlist__content,
+  .playlist-list__latest, #partyForm, #showForm, .show__wrapper {
     padding: 40px;
   }
   .about__desc p, .about__content p,
@@ -1767,20 +1774,15 @@ audio {
     float: left;
   }
   .profile {
-    width: inherit;
+    margin: 10px 40px;
   }
   .profile__left {
-    width: 50%;
-    max-width: none;
+    width: 100%;
     margin: 0;
-    padding-right: 25px;
   }
   .profile__info {
     width: 50%;
     max-width: none;
-  }
-  .profile__header {
-    font-size: 26px;
   }
   .home__featured-photo {
     width: 100%;
@@ -1798,6 +1800,9 @@ audio {
   }
   .navbar-right {
     display: none;
+  },
+  .staff__content {
+    margin: 10px 40px;
   }
 }
 @media (max-width: 666px) {
@@ -1880,12 +1885,6 @@ audio {
   .profile__social-icons {
     float: none;
   }
-  .profile__first-header {
-    display: block;
-  }
-  .profile__info .profile__header {
-    display: none
-  }
   .profile__left {
     width: 100%;
     margin: 0;
@@ -1894,10 +1893,19 @@ audio {
   .profile__info {
     width: 100%;
   }
+  .staff__item {
+    width: 100%;
+    margin: 5px 0;
+    padding: 0;
+  }
 }
 @media (min-width: 769px) and (max-width: 786px) {
   .footer__subheading {
     font-size: .75em;
+  }
+  .profile__left, .profile__info {
+    margin: 0;
+    width: 100%;
   }
 }
 @media (min-width: 769px) {

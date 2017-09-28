@@ -1,0 +1,18 @@
+<template name='staff'>
+  {{#if Template.subscriptionsReady}}
+  <h4 class='staff__header'>KTUH Staff</h4>
+  <div class='staff__content'>
+    {{ #each djs }}
+      <div class='staff__item'>
+      <img src='{{photo.url}}' />
+      <p><a href='/profile/{{usernameOf userId}}'>{{name}}</a></p>
+      {{ #if show userId }}
+        {{ #with show userId }}
+          <p>Host of <i><a href='/shows/{{slug}}'>{{showName}}</a></i></p>
+        {{ /with }}
+      {{/if}}
+      </div>
+    {{/each}}
+  </div>
+  {{/if}}
+</template>

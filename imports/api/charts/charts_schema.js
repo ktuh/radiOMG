@@ -32,7 +32,7 @@ export const ChartsSchema = new SimpleSchema({
       if (this.isSet || this.isUpdate)
         return this.value;
       else
-        return Meteor.user().username;
+        return (this.userId && Meteor.users.findOne({_id: this.userId}).username) || "n/a"
     }
   },
   editedBy: {
@@ -42,7 +42,7 @@ export const ChartsSchema = new SimpleSchema({
       type: 'hidden',
       label: false
     },
-    autoValue: () => Meteor.user().username
+    autoValue: () => (this.userId && Meteor.users.findOne({_id: this.userId}).username) || "n/a"
   },
   editedAt: {
     type: Date,
