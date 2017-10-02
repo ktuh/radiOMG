@@ -5,6 +5,7 @@ import { Posts } from '/imports/api/posts/posts_collection.js';
 import { Reviews } from '/imports/api/reviews/reviews_collection.js';
 import { Shows } from '/imports/api/shows/shows_collection.js';
 import { Profiles } from '/imports/api/users/profiles_collection.js';
+import { Parties } from '/imports/api/parties/parties_collection.js';
 import { Charts } from '/imports/api/charts/charts_collection.js';
 
 if (!Accounts.findUserByUsername('davey')) {
@@ -706,4 +707,8 @@ if (Charts.find().count() === 0) {
     body: "<p>This is the littest album I've come across!</p>",
     slug: "music-charts-2017-09-25"
   });
+}
+
+if (Parties.find().count() === 0) {
+  
 }

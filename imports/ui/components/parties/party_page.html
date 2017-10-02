@@ -1,32 +1,34 @@
 <template name='partyPage'>
-  <div class='party-link'>
-    <a href='/party'>← all parties</a>
-    {{#if ownParty}}
-      <a href='/events/edit/{{slug}}'><button type="button" class="btn btn-default btn-md party-header__button">
-      <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit</button></a>
-    {{/if}}
-  </div>
   {{#if Template.subscriptionsReady}}
     {{#with party}}
-      <div class='flyer-div'>
-        <img class='flyer-div__front' src='{{flyerFront.url}}'>
-        {{#if flyerBack.url}}
-          <img class='flyer-div__back' src='{{flyerBack.url}}'>
-        {{/if}}
+      <h4 class='news__title'>{{title}}</h4>
+      <div class='show__link'>
+        <a href='/events' class='show__link-back'>← all events</a>
+        <!-- {{#if ownParty}}
+          <a href='/events/edit/{{slug}}'><button type="button" class="btn btn-default btn-md party-header__button">
+          <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit</button></a>
+        {{/if}} -->
       </div>
-      <div class='party-info'>
-        <h3><b>{{title}}</b></h3>
-        <h4>{{location}}</h4>
-        <h5>{{time startTime}}</h5>
-        <p>{{description}}</p>
-        <p class='party__tag'>{{#each tag in tags}}#{{tag}}&nbsp;{{/each}}</p>
-        <div class='party-info__details'>
-          <span class='party-info__star glyphicon glyphicon-star {{upvoted upvoters}}'></span><span class='party-info__upvotes-count'>{{upvoteCount}}</span>
+      <div class='news-item'>
+        <div class='flyer-div'>
+          <img class='flyer-div__front' src='{{flyerFront.url}}'>
+          {{#if flyerBack.url}}
+            <img class='flyer-div__back' src='{{flyerBack.url}}'>
+          {{/if}}
+        </div>
+        <div class='party-info'>
+          <h4>{{location}}</h4>
+          <h5>{{time startTime}}</h5>
+          <p>{{description}}</p>
+          <p class='party__tag'>{{#each tag in tags}}#{{tag}}&nbsp;{{/each}}</p>
+          <div class='party-info__details'>
+            <span class='party-info__star glyphicon glyphicon-star {{upvoted upvoters}}'></span><span class='party-info__upvotes-count'>{{upvoteCount}}</span>
+          </div>
         </div>
       </div>
     {{/with}}
     {{#if comments}}
-      <div class='comments'>
+      <div class='comments news-item'>
         <h3 class='comments__header'>Comments</h3>
         <ul class='comments__list'>
           {{#each comments}}
