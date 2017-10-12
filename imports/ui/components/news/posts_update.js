@@ -8,10 +8,7 @@ Template.postsUpdate.onCreated(function (){
 });
 
 Template.postsUpdate.helpers({
-  collection: async function () {
-    const Posts = await import('../../../api/posts/posts_collection.js');
-    return Posts;
-  },
+  collection: () => Posts,
   isMod: () => Meteor.user().hasRole("moderator")
 });
 

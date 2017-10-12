@@ -4,6 +4,7 @@ import Playlists from '../../../api/playlists/playlists_collection.js';
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { FlowRouter } from 'meteor/kadira:flow-router';
+import { moment } from 'moment';
 
 Template.showPage.onCreated(function() {
   var self = this;
@@ -32,9 +33,8 @@ Template.showPage.helpers({
     return Meteor.userId() && Shows.findOne() &&
            Shows.findOne().userId == Meteor.userId();
   },
-  time: async function (t) {
+  time: function (t) {
     var fmt = 'dddd, MMMM Do YYYY';
-    const moment = await import('moment');
     return moment(t).format(fmt);
   },
   playlists: function() {

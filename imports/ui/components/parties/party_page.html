@@ -1,15 +1,11 @@
 <template name='partyPage'>
   {{#if Template.subscriptionsReady}}
     {{#with party}}
-      <h4 class='news__title'>{{title}}</h4>
-      <div class='show__link'>
-        <a href='/events' class='show__link-back'>← all events</a>
-        <!-- {{#if ownParty}}
-          <a href='/events/edit/{{slug}}'><button type="button" class="btn btn-default btn-md party-header__button">
-          <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit</button></a>
-        {{/if}} -->
+      <h4 class='events__header'>{{title}}</h4>
+      <div class='event__link'>
+        <a href='/events' class='.events__link-back'>← all events</a>
       </div>
-      <div class='news-item'>
+      <div class='event-item'>
         <div class='flyer-div'>
           <img class='flyer-div__front' src='{{flyerFront.url}}'>
           {{#if flyerBack.url}}

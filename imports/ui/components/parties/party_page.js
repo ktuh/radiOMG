@@ -39,7 +39,7 @@ Template.partyPage.helpers({
   comments: function () {
     return Comments.find();
   },
-  time: async function (t) {
+  time: function (t) {
     var fmt = "dddd, MMMM Do YYYY, h:mm a";
     return moment(t).format(fmt);
   },
