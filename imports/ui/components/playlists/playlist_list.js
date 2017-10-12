@@ -1,7 +1,7 @@
 import './playlist_list.html';
 import { Template } from 'meteor/templating';
-import { Playlists } from '../../../api/playlists/playlists_collection.js';
-import { Shows } from '../../../api/shows/shows_collection.js';
+import Playlists from '../../../api/playlists/playlists_collection.js';
+import Shows from '../../../api/shows/shows_collection.js';
 import { pagination } from 'meteor/kurounin:pagination';
 import { moment } from 'meteor/momentjs:moment';
 
@@ -37,7 +37,7 @@ Template.playlistList.helpers({
     var list = Playlists.findOne({}, { sort: { showDate: -1 }});
     return Shows.findOne({ showId: list.showId }).showName
   },
-  latestShowDate: () => {
+  latestShowDate: function () {
     var list = Playlists.findOne({}, { sort: { showDate: -1 }});
     return moment(list.showDate).format('dddd, h:mm a,<br>MMM DD YYYY');
   },

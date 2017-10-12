@@ -3,7 +3,7 @@ import '../notifications/notifications.js';
 import { Template } from 'meteor/templating';
 import { Meteor } from 'meteor/meteor';
 import Errors from '../../../../client/helpers/errors.js';
-import { Notifications } from '../../../api/notifications/notifications_collection.js';
+import Notifications from '../../../api/notifications/notifications_collection.js';
 
 var IGNORE_CONNECTION_ISSUE_KEY = 'ignoreConnectionIssue';
 

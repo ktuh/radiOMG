@@ -1,12 +1,12 @@
 import { Accounts } from 'meteor/accounts-base';
 import { Roles } from 'meteor/nicolaslopezj:roles';
-import { Playlists } from '/imports/api/playlists/playlists_collection.js';
-import { Posts } from '/imports/api/posts/posts_collection.js';
-import { Reviews } from '/imports/api/reviews/reviews_collection.js';
-import { Shows } from '/imports/api/shows/shows_collection.js';
-import { Profiles } from '/imports/api/users/profiles_collection.js';
-import { Parties } from '/imports/api/parties/parties_collection.js';
-import { Charts } from '/imports/api/charts/charts_collection.js';
+import Playlists from '/imports/api/playlists/playlists_collection.js';
+import Posts from '/imports/api/posts/posts_collection.js';
+import Reviews from '/imports/api/reviews/reviews_collection.js';
+import Shows from '/imports/api/shows/shows_collection.js';
+import Profiles from '/imports/api/users/profiles_collection.js';
+import Parties from '/imports/api/parties/parties_collection.js';
+import Charts from '/imports/api/charts/charts_collection.js';
 
 if (!Accounts.findUserByUsername('davey')) {
   var now = new Date().getTime();
@@ -710,5 +710,29 @@ if (Charts.find().count() === 0) {
 }
 
 if (Parties.find().count() === 0) {
-  
+  Parties.insert({
+  	title: "KTUH Music Sale",
+  	startTime: Date("2017-10-06T20:00:00Z"),
+  	endTime: Date("2017-10-07T00:00:00Z"),
+  	location: "UH Manoa Campus Center Courtyard",
+  	flyerFront: {
+  		fileId: "TsaoR6xHbeCNJqHdf",
+  		url: "https://s3-us-west-2.amazonaws.com/radiomg/scorpiusjs/9737c0b1-d24e-4968-ac02-205ac55d2091.png",
+  		info: {
+  			width: 400,
+  			height: 400,
+  			backgroundColor: "#25211d",
+  			primaryColor: "#7d917a",
+  			secondaryColor: "#eefef9"
+  		}
+  	},
+  	submitted: Date("2017-10-02T00:00:00Z"),
+  	commentCount: 0,
+  	upvoteCount: 0,
+  	approved: true,
+  	isFeatured: true,
+  	userId: "chhNQ3gzsPc2QpQK9",
+  	upvoters: [ ],
+  	slug: "ktuh-music-sale"
+  });
 }

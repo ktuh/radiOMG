@@ -2,7 +2,7 @@ import './party_item.html';
 import { Template } from 'meteor/templating';
 import { Meteor } from 'meteor/meteor';
 import { Bert } from 'meteor/themeteorchef:bert';
-import { _ } from 'meteor/underscore';
+import { _ } from 'underscore';
 
 Template.partyItem.helpers({
   upvoted: upvoters => {
@@ -22,13 +22,6 @@ Template.partyItem.helpers({
 
     return str;
   }
-});
-
-Template.partyItem.onRendered(function() {
-  $('.party').imagesLoaded(function() {
-    $('.parties').masonry('reloadItems')
-                  .masonry('layout');
-  });
 });
 
 Template.partyItem.events({

@@ -6,7 +6,7 @@ import { AutoForm } from 'meteor/aldeed:autoform';
 import '../../../api/users/users_collection.js';
 import { check } from 'meteor/check';
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
-import { Profiles } from '../../../api/users/profiles_collection.js';
+import Profiles from '../../../api/users/profiles_collection.js';
 
 Template.profileEdit.onCreated(function() {
   var self = this;

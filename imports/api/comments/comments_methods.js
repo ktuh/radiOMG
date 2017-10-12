@@ -1,9 +1,9 @@
 import { Meteor } from 'meteor/meteor';
-import { Parties } from '../parties/parties_collection.js';
-import { Playlists } from '../playlists/playlists_collection.js';
-import { Posts } from '../posts/posts_collection.js';
-import { Comments } from '../comments/comments_collection.js';
-import { Shows } from '../shows/shows_collection.js';
+import Parties from '../parties/parties_collection.js';
+import Playlists from '../playlists/playlists_collection.js';
+import Posts from '../posts/posts_collection.js';
+import Comments from '../comments/comments_collection.js';
+import Shows from '../shows/shows_collection.js';
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 
 Meteor.methods({

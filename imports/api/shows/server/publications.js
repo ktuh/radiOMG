@@ -1,5 +1,5 @@
 import { Meteor } from 'meteor/meteor';
-import { Shows } from '../shows_collection.js'
+import Shows from '../shows_collection.js'
 
 Meteor.publish('shows', () => {
   return Shows.find({});

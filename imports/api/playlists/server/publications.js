@@ -1,6 +1,6 @@
 import { Meteor } from 'meteor/meteor';
-import { Playlists } from '../playlists_collection.js';
-import { NowPlaying } from '../now_playing.js';
+import Playlists from '../playlists_collection.js';
+import NowPlaying from '../now_playing.js';
 import { publishPagination } from 'meteor/kurounin:pagination';
 
 Meteor.publish('playlist', function (id) {

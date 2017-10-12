@@ -1,7 +1,7 @@
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { scorpius } from 'meteor/scorpiusjs:core';
 
-export const PartySchema = new SimpleSchema({
+export default PartySchema = new SimpleSchema({
   title: {
     type: String,
     label: 'Title'
@@ -90,5 +90,12 @@ export const PartySchema = new SimpleSchema({
     type: Boolean,
     label: 'Featured',
     defaultValue: false
+  },
+  slug: {
+    type: String,
+    autoform: {
+      type: 'hidden',
+      label: false
+    }
   }
 });

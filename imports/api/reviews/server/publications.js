@@ -1,5 +1,5 @@
 import { Meteor } from 'meteor/meteor';
-import { Reviews } from '../reviews_collection.js';
+import Reviews from '../reviews_collection.js';
 import { publishPagination } from 'meteor/kurounin:pagination';
 
 Meteor.publish('reviewsLimited', (options) => {

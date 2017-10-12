@@ -61,7 +61,6 @@ kadira:blaze-layout@2.3.0
 kurounin:pagination@1.0.24
 kurounin:pagination-blaze@1.0.5
 launch-screen@1.1.1
-lepozepo:s3@5.2.5
 less@2.7.9
 livedata@1.0.18
 localstorage@1.1.1
@@ -120,7 +119,6 @@ scorpiusjs:filesystem@0.3.1
 scorpiusjs:image-attribute@0.3.1
 scorpiusjs:lang-en@0.3.1
 scorpiusjs:materialize@0.3.2_1
-scorpiusjs:s3@0.3.1
 scorpiusjs:summernote@0.3.0
 service-configuration@1.0.11
 session@1.1.7

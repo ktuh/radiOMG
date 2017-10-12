@@ -1,5 +1,5 @@
 import { Meteor } from 'meteor/meteor';
-import { Posts } from '../posts_collection.js'
+import Posts from '../posts_collection.js'
 import { publishPagination } from 'meteor/kurounin:pagination';
 
 Meteor.publish('postsLimited', (options) => {

@@ -1,7 +1,7 @@
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { scorpius } from 'meteor/scorpiusjs:core';
 
-export const ProfilesSchema = new SimpleSchema({
+export default ProfilesSchema = new SimpleSchema({
   userId: {
     type: String,
     label: 'User ID',

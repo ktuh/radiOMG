@@ -1,5 +1,5 @@
 import { Meteor } from 'meteor/meteor';
-import { Charts } from '../charts_collection.js'
+import Charts from '../charts_collection.js'
 
 Meteor.publish('chartsLimited', (options) => {
   check(options, {

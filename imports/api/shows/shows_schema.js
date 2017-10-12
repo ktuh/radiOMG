@@ -2,7 +2,7 @@ import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { scorpius } from 'meteor/scorpiusjs:core';
 import { Meteor } from 'meteor/meteor';
 
-export const ShowsSchema = new SimpleSchema({
+export default ShowsSchema = new SimpleSchema({
   showName: {
     type: String,
     label: 'Show Name',

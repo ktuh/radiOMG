@@ -1,6 +1,6 @@
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
-export const PostsSchema = new SimpleSchema({
+export default PostsSchema = new SimpleSchema({
   userId: {
     type: String,
     autoform: {

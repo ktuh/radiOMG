@@ -1,7 +1,7 @@
 import './show_item.html';
 import { Template } from 'meteor/templating';
 import { Meteor } from 'meteor/meteor';
-import { Shows } from '../../../api/shows/shows_collection.js';
+import Shows from '../../../api/shows/shows_collection.js';
 
 Template.showItem.onCreated(function() {
   var self = this;

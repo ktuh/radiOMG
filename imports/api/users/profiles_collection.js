@@ -1,8 +1,8 @@
 import { Mongo } from 'meteor/mongo';
 import { scorpius } from 'meteor/scorpiusjs:core';
-import { ProfilesSchema } from './profiles_schema';
+import ProfilesSchema from './profiles_schema';
 
-export const Profiles = new scorpius.collection('profiles', {
+export default Profiles = new scorpius.collection('profiles', {
   singularName: 'profile',
   pluralName: 'profiles',
   link: {

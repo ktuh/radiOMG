@@ -2,7 +2,7 @@ import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { Meteor } from 'meteor/meteor';
 import { scorpius } from 'meteor/scorpiusjs:core';
 
-export const ReviewsSchema = new SimpleSchema({
+export default ReviewsSchema = new SimpleSchema({
   userId: {
     type: String,
     autoform: {

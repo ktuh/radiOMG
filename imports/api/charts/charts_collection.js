@@ -1,8 +1,8 @@
 import { Mongo } from 'meteor/mongo';
-import { ChartsSchema } from './charts_schema.js';
+import ChartsSchema from './charts_schema.js';
 import { scorpius } from 'meteor/scorpiusjs:core';
 
-export const Charts = new scorpius.collection('charts', {
+export default Charts = new scorpius.collection('charts', {
   singularName: 'chart',
   pluralName: 'charts',
   link: {

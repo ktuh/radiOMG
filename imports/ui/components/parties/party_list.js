@@ -1,10 +1,9 @@
 import './party_list.html';
 import './party_item.js';
 import { Template } from 'meteor/templating';
-import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import { Meteor } from 'meteor/meteor';
-import { Parties } from '../../../api/parties/parties_collection.js';
 import { $ } from 'meteor/jquery';
+import Parties from '../../../api/parties/parties_collection.js';
 
 Template.partyList.onCreated(function() {
   var self = this;
@@ -14,19 +13,9 @@ Template.partyList.onCreated(function() {
 });
 
 Template.partyList.onRendered(function () {
-  var $parties = $('.parties');
-
-  $parties.imagesLoaded(function() {
-    $parties.masonry({
-      itemSelector: '.party',
-      transitionDuration: 0,
-      isResizeBound: true
-    });
-  });
   Session.set('documentTitle', 'KTUH Honolulu | Radio For The People');
 });
 
 Template.partyList.helpers({
-  newPartyUrl: () => FlowRouter.path('partyCreate'),
   parties: () => Parties.find({approved: true})
 });

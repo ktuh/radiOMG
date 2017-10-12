@@ -1,7 +1,7 @@
 import { Mongo } from 'meteor/mongo';
 import { scorpius } from 'meteor/scorpiusjs:core';
 
-export const Notifications = new Mongo.Collection('notifications');
+export default Notifications = new Mongo.Collection('notifications');
 
 Notifications.allow({
   update: (userId, doc, fieldNames) => {

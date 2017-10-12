@@ -2,9 +2,9 @@ import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import { scorpius } from 'meteor/scorpiusjs:core';
 import { Template } from 'meteor/templating';
-import { CommentsSchema } from './comments_schema.js';
+import CommentsSchema from './comments_schema.js';
 
-export const Comments = new scorpius.collection('comments', {
+export default Comments = new scorpius.collection('comments', {
   singularName: 'comment',
   pluralName: 'comments',
   link: {

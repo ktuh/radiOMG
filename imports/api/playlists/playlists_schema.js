@@ -1,7 +1,7 @@
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
-import { Shows } from '../shows/shows_collection.js';
+import Shows from '../shows/shows_collection.js';
 
-export const PlaylistsSchema = new SimpleSchema({
+export default PlaylistsSchema = new SimpleSchema({
   showId: {
     type: Number,
     label: "Show ID"

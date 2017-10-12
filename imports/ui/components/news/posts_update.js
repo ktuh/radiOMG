@@ -1,5 +1,4 @@
 import './posts_update.html';
-import { Posts } from '../../../api/posts/posts_collection.js';
 
 ReactiveTemplates.set('collections.posts.update', 'postsUpdate');
 
@@ -9,7 +8,10 @@ Template.postsUpdate.onCreated(function (){
 });
 
 Template.postsUpdate.helpers({
-  collection: () => Posts,
+  collection: async function () {
+    const Posts = await import('../../../api/posts/posts_collection.js');
+    return Posts;
+  },
   isMod: () => Meteor.user().hasRole("moderator")
 });
 

@@ -1,6 +1,6 @@
 import './charts_page.html';
 import { Template } from 'meteor/templating';
-import { Charts } from '../../../api/charts/charts_collection.js';
+import Charts from '../../../api/charts/charts_collection.js';
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 
 Template.chartPage.onCreated(function() {

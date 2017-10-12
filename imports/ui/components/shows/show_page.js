@@ -1,6 +1,6 @@
 import './show_page.html';
-import { Shows } from '../../../api/shows/shows_collection.js';
-import { Playlists } from '../../../api/playlists/playlists_collection.js';
+import Shows from '../../../api/shows/shows_collection.js';
+import Playlists from '../../../api/playlists/playlists_collection.js';
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
@@ -32,8 +32,9 @@ Template.showPage.helpers({
     return Meteor.userId() && Shows.findOne() &&
            Shows.findOne().userId == Meteor.userId();
   },
-  time: function (t) {
-    var fmt = 'dddd, MMMM Do YYYY'
+  time: async function (t) {
+    var fmt = 'dddd, MMMM Do YYYY';
+    const moment = await import('moment');
     return moment(t).format(fmt);
   },
   playlists: function() {
