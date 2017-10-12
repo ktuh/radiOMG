@@ -1,7 +1,7 @@
 import './header.html';
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
-import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
+import { FlowRouter } from 'meteor/kadira:flow-router';
 import NowPlaying from '../../../api/playlists/now_playing.js';
 import 'mediaelement/player';
 

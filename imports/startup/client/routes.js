@@ -1,4 +1,4 @@
-import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
+import { FlowRouter } from 'meteor/kadira:flow-router';
 import { BlazeLayout } from 'meteor/kadira:blaze-layout';
 
 import '../../ui/components/application/layout.js';
@@ -40,7 +40,6 @@ FlowRouter.triggers.enter(
   }],
   { except: ['home'] }
 );
-
 
 FlowRouter.route('/', {
   name: 'home',

@@ -1,7 +1,7 @@
 import './news_item.html';
 import { Template } from 'meteor/templating';
 import { Meteor } from 'meteor/meteor';
-import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
+import { FlowRouter } from 'meteor/kadira:flow-router';
 import Posts from '../../../api/posts/posts_collection.js';
 import Comments from '../../../api/comments/comments_collection.js';
 import Profiles from '../../../api/users/profiles_collection.js';

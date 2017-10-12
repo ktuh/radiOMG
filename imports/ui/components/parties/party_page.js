@@ -5,7 +5,7 @@ import Comments from '../../../api/comments/comments_collection.js';
 import '../comments/comment_submit.js';
 import '../comments/comment_item.js';
 import { Template } from 'meteor/templating';
-import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
+import { FlowRouter } from 'meteor/kadira:flow-router';
 import { moment } from 'moment';
 
 Template.partyPage.onCreated(function () {

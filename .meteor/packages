@@ -52,10 +52,10 @@ accounts-facebook@1.2.1
 service-configuration@1.0.11
 accounts-google@1.2.0
 reactive-var@1.0.11
-ostrio:flow-router-extra
 nicolaslopezj:router-layer
 scorpiusjs:materialize
 blaze
 templating
 templating-runtime
 kadira:blaze-layout
+kadira:flow-router

@@ -3,7 +3,7 @@ import { Template } from 'meteor/templating';
 import { Meteor } from 'meteor/meteor';
 import Reviews from '../../../api/reviews/reviews_collection.js';
 import './review_item.js';
-import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
+import { FlowRouter } from 'meteor/kadira:flow-router';
 
 Template.reviewList.onCreated(function () {
   var self = this;

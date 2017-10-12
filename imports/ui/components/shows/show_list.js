@@ -1,7 +1,7 @@
 import './show_list.html';
 import './show_item.js';
 import { Template } from 'meteor/templating';
-import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
+import { FlowRouter } from 'meteor/kadira:flow-router';
 import { Meteor } from 'meteor/meteor';
 import Shows from '../../../api/shows/shows_collection.js';
 import { $ } from 'meteor/jquery';
