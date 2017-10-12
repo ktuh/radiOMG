@@ -2,8 +2,8 @@ import '../imports/startup/client';
 import { Meteor } from 'meteor/meteor';
 import { Bert } from 'meteor/themeteorchef:bert';
 import { AutoForm } from 'meteor/aldeed:autoform';
-import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
-import { Profiles } from '../imports/api/users/profiles_collection.js';
+import { FlowRouter } from 'meteor/kadira:flow-router';
+import Profiles from '../imports/api/users/profiles_collection.js';
 import { throwError } from './helpers/errors.js';
 
 var IGNORE_CONNECTION_ISSUE_KEY = 'ignoreConnectionIssue';

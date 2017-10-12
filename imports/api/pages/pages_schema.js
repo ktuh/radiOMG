@@ -1,7 +1,8 @@
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { scorpius } from 'meteor/scorpiusjs:core';
+import { FlowRouter } from 'meteor/kadira:flow-router';
 
-export const PagesSchema = new SimpleSchema({
+export default PagesSchema = new SimpleSchema({
   userId: {
     type: String,
     autoform: {

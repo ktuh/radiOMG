@@ -1,6 +1,6 @@
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
-export const CommentsSchema = new SimpleSchema({
+export default CommentsSchema = new SimpleSchema({
   postId: {
     type: String,
     label: 'Post ID',

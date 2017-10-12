@@ -1,8 +1,8 @@
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
-import { TracksSchema } from './tracks_schema.js';
+import TracksSchema from './tracks_schema.js';
 import { Meteor } from 'meteor/meteor';
 
-export const ChartsSchema = new SimpleSchema({
+export default ChartsSchema = new SimpleSchema({
   title: {
     type: String,
     optional: false

@@ -1,5 +1,5 @@
 import './reviews_update.html';
-import { Reviews } from '../../../api/reviews/reviews_collection.js';
+import Reviews from '../../../api/reviews/reviews_collection.js';
 
 ReactiveTemplates.set('collections.reviews.update', 'reviewsUpdate');
 

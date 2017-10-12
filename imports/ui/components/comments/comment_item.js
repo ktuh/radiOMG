@@ -1,6 +1,6 @@
 import './comment_item.html';
 import { Template } from 'meteor/templating';
-import { moment } from 'meteor/momentjs:moment';
+import { moment } from 'moment';
 
 Template.commentItem.helpers({
   timeDiff: function() {

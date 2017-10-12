@@ -1,5 +1,6 @@
-import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
+import { FlowRouter } from 'meteor/kadira:flow-router';
 import { BlazeLayout } from 'meteor/kadira:blaze-layout';
+import Pages from '../../api/pages/pages_collection.js';
 
 import '../../ui/components/application/layout.js';
 import '../../ui/components/application/not_found.js';
@@ -34,13 +35,18 @@ import '../../ui/components/faq/faq.js';
 import '../../ui/components/contact/contact.js';
 import '../../ui/components/staff/staff.js';
 
+FlowRouter.notFound = {
+  action: function () {
+    BlazeLayout.render('layout', {content: 'notFound'});
+  }
+};
+
 FlowRouter.triggers.enter(
   [function() {
       $('head meta[data-flow-router-seo="true"]').removeAttr("data-flow-router-seo");
   }],
   { except: ['home'] }
 );
-
 
 FlowRouter.route('/', {
   name: 'home',
@@ -192,13 +198,7 @@ FlowRouter.route('/staff', {
 
 FlowRouter.route('/:slug', {
   name: 'page',
-  action: function() {
-    BlazeLayout.render('layout', {content: 'pagesItem'});
-  }
-});
-
-FlowRouter.route('*', {
-  action: function () {
-    BlazeLayout.render('layout', {content: 'notFound'});
+  action: function(params) {
+    BlazeLayout.render('layout', {content: (Pages.findOne({slug: params.slug})) ?'pagesItem' : "notFound"});
   }
 });

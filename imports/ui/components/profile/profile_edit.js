@@ -5,8 +5,8 @@ import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { AutoForm } from 'meteor/aldeed:autoform';
 import '../../../api/users/users_collection.js';
 import { check } from 'meteor/check';
-import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
-import { Profiles } from '../../../api/users/profiles_collection.js';
+import { FlowRouter } from 'meteor/kadira:flow-router';
+import Profiles from '../../../api/users/profiles_collection.js';
 
 Template.profileEdit.onCreated(function() {
   var self = this;

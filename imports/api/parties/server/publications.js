@@ -1,5 +1,5 @@
 import { Meteor } from 'meteor/meteor';
-import { Parties } from '../parties_collection.js';
+import Parties from '../parties_collection.js';
 
 Meteor.publish('parties', function () {
   return Parties.find();

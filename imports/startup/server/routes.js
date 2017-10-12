@@ -1,10 +1,10 @@
 import { Meteor } from 'meteor/meteor';
 import { Picker } from 'meteor/meteorhacks:picker';
 import { check } from 'meteor/check';
-import { Shows } from '../../api/shows/shows_collection.js';
-import { Playlists } from '../../api/playlists/playlists_collection.js';
+import Shows from '../../api/shows/shows_collection.js';
+import Playlists from '../../api/playlists/playlists_collection.js';
 import { Session } from 'meteor/session';
-import { NowPlaying } from '../../api/playlists/now_playing.js';
+import NowPlaying from '../../api/playlists/now_playing.js';
 import { HTTP } from 'meteor/http';
 import bodyParser from 'body-parser';
 

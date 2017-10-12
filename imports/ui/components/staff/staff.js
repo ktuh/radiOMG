@@ -1,8 +1,8 @@
 import './staff.html';
-import { Profiles } from '../../../api/users/profiles_collection.js';
+import Profiles from '../../../api/users/profiles_collection.js';
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
-import { Shows } from '../../../api/shows/shows_collection.js';
+import Shows from '../../../api/shows/shows_collection.js';
 
 Template.staff.onCreated(function() {
   var self = this;

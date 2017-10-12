@@ -1,7 +1,7 @@
 import './playlists.html';
 import { Template } from 'meteor/templating';
-import { Playlists } from '../../../api/playlists/playlists_collection.js';
-import { Shows } from '../../../api/shows/shows_collection.js';
+import Playlists from '../../../api/playlists/playlists_collection.js';
+import Shows from '../../../api/shows/shows_collection.js';
 import { pagination } from 'meteor/kurounin:pagination';
 
 Template.musicPlaylists.onCreated(function() {

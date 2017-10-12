@@ -1,5 +1,5 @@
 import { Meteor } from 'meteor/meteor';
-import { Parties } from '../imports/api/parties/parties_collection.js';
+import Parties from '../imports/api/parties/parties_collection.js';
 import { check } from 'meteor/check';
 
 Meteor.methods({

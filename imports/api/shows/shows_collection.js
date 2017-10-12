@@ -1,8 +1,8 @@
 import { Mongo } from 'meteor/mongo';
-import { ShowsSchema } from './shows_schema.js';
+import ShowsSchema from './shows_schema.js';
 import { scorpius } from 'meteor/scorpiusjs:core';
 
-export const Shows = new scorpius.collection('shows', {
+export default Shows = new scorpius.collection('shows', {
   singularName: 'show',
   pluralName: 'shows',
   link: {

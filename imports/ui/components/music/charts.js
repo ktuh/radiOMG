@@ -1,6 +1,6 @@
 import './charts.html';
 import { Template } from 'meteor/templating';
-import { Charts } from '../../../api/charts/charts_collection.js';
+import Charts from '../../../api/charts/charts_collection.js';
 
 Template.musicCharts.onCreated(function() {
   var self = this;

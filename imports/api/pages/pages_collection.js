@@ -1,8 +1,8 @@
 import { Mongo } from 'meteor/mongo';
 import { scorpius } from 'meteor/scorpiusjs:core';
-import { PagesSchema } from './pages_schema.js';
+import PagesSchema from './pages_schema.js';
 
-export const Pages = new scorpius.collection('pages', {
+export default Pages = new scorpius.collection('pages', {
   singularName: 'page',
   pluralName: 'pages',
   link: {

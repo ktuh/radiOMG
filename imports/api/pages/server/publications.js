@@ -1,5 +1,5 @@
 import { Meteor } from 'meteor/meteor';
-import { Pages } from '../pages_collection.js'
+import Pages from '../pages_collection.js'
 
 Meteor.publish('pages', function (options) {
   check(options, {

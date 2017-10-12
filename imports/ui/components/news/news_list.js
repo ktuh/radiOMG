@@ -1,8 +1,8 @@
 import './news_list.html';
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
-import { Posts } from '../../../api/posts/posts_collection.js';
-import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
+import Posts from '../../../api/posts/posts_collection.js';
+import { FlowRouter } from 'meteor/kadira:flow-router';
 
 Template.newsList.onCreated(function () {
   var self = this;

@@ -1,12 +1,12 @@
 import './party_page.html'
 import { Meteor } from 'meteor/meteor';
-import { moment } from 'meteor/momentjs:moment';
-import { Parties } from '../../../api/parties/parties_collection.js';
-import { Comments } from '../../../api/comments/comments_collection.js';
+import Parties from '../../../api/parties/parties_collection.js';
+import Comments from '../../../api/comments/comments_collection.js';
 import '../comments/comment_submit.js';
 import '../comments/comment_item.js';
 import { Template } from 'meteor/templating';
-import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
+import { FlowRouter } from 'meteor/kadira:flow-router';
+import { moment } from 'moment';
 
 Template.partyPage.onCreated(function () {
   var self = this;
@@ -40,7 +40,7 @@ Template.partyPage.helpers({
     return Comments.find();
   },
   time: function (t) {
-    var fmt = "dddd, MMMM Do YYYY, h:mm a"
+    var fmt = "dddd, MMMM Do YYYY, h:mm a";
     return moment(t).format(fmt);
   },
   slug: function () {

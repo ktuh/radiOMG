@@ -1,8 +1,8 @@
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
-import { Profiles } from '../profiles_collection.js';
-import { Posts } from '../../posts/posts_collection.js';
-import { _ } from 'meteor/underscore';
+import Profiles from '../profiles_collection.js';
+import Posts from '../../posts/posts_collection.js';
+import { _ } from 'underscore';
 
 Meteor.publish('userData', function(username) {
   check(username, String);

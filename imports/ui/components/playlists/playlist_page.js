@@ -1,10 +1,10 @@
 import './playlist_page.html';
 import { Meteor } from 'meteor/meteor';
-import { Comments } from '../../../api/comments/comments_collection.js';
-import { Playlists } from '../../../api/playlists/playlists_collection.js';
-import { Shows } from '../../../api/shows/shows_collection.js';
+import Comments from '../../../api/comments/comments_collection.js';
+import Playlists from '../../../api/playlists/playlists_collection.js';
+import Shows from '../../../api/shows/shows_collection.js';
 import { Template } from 'meteor/templating';
-import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
+import { FlowRouter } from 'meteor/kadira:flow-router';
 import moment from "moment-timezone";
 
 Template.playlistPage.onCreated(function(){

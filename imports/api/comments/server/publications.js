@@ -1,5 +1,5 @@
 import { Meteor } from 'meteor/meteor';
-import { Comments } from '../comments_collection.js';
+import Comments from '../comments_collection.js';
 
 Meteor.publish('comments', function(postId) {
   check(postId, String);

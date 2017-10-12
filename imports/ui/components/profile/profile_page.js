@@ -1,11 +1,11 @@
 import './profile_page.html';
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
-import { Posts } from '../../../api/posts/posts_collection.js';
-import { Profiles } from '../../../api/users/profiles_collection.js';
-import { Shows } from '../../../api/shows/shows_collection.js';
+import Posts from '../../../api/posts/posts_collection.js';
+import Profiles from '../../../api/users/profiles_collection.js';
+import Shows from '../../../api/shows/shows_collection.js';
 import { Bert } from 'meteor/themeteorchef:bert';
-import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
+import { FlowRouter } from 'meteor/kadira:flow-router';
 import '../application/layout.js';
 
 Template.profilePage.onCreated(function() {

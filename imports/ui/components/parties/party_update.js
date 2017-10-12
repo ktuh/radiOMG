@@ -1,5 +1,5 @@
 import './party_update.html';
-import { Parties } from '../../../api/parties/parties_collection.js';
+import Parties from '../../../api/parties/parties_collection.js';
 
 ReactiveTemplates.set('collections.parties.update', 'partiesUpdate');
 

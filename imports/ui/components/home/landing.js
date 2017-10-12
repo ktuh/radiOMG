@@ -1,7 +1,7 @@
 import './landing.html';
 import { Meteor } from 'meteor/meteor';
-import { NowPlaying } from '../../../api/playlists/now_playing.js';
-import { Shows } from '../../../api/shows/shows_collection.js';
+import NowPlaying from '../../../api/playlists/now_playing.js';
+import Shows from '../../../api/shows/shows_collection.js';
 import { Template } from 'meteor/templating';
 
 Template.landing.onCreated(function() {
