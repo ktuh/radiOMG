@@ -44,9 +44,8 @@ Template.playlistPage.helpers({
   showDate: () => moment(Playlists.findOne().showDate).tz("US/Hawaii").format("LL"),
   showSlug: () => Shows.findOne({ showId: Playlists.findOne().showId }).slug,
   showImage: () => {
-    var show = Shows.findOne({ showId: Playlists.findOne().showId })
-
+    var show = Shows.findOne({ showId: Playlists.findOne().showId });
     return (show === undefined) ? false : show.featuredImage.url;
   },
-  truncated: (str) => str.substring(0, str.length - 3)
+  timeBeautify: (time) => moment(time.substring(0, time.length - 3), 'HH:mm').format('hh:mm a')
 });

@@ -8,6 +8,7 @@ import Profiles from '../../../api/users/profiles_collection.js';
 import Reviews from '../../../api/reviews/reviews_collection.js';
 import Shows from '../../../api/shows/shows_collection.js';
 import { $ } from 'meteor/jquery';
+import { moment } from 'meteor/momentjs:moment';
 
 Template.home.onCreated(function () {
   var self = this;
@@ -120,5 +121,8 @@ Template.home.helpers({
     var nextNextDayShow = Shows.findOne({ startDay: nextDow }, { sort: { startDay: 1, startHour: 1 } });
     var nextShowRegardless = Shows.findOne({startDay: { $gt: nextDow + 1 % 7 } }, { sort: { startDay: 1, startHour: 1 } }) || Shows.findOne({}, { sort: { startDay: 1, startHour: 1 } });
     return nextSameDayShow || nextNextDayShow || nextShowRegardless;
-  }
+  },
+  getTime: (startHour, startMinute, endHour, endMinute) =>
+    moment(startHour + ":" + startMinute, "HH:mm").format("h:mm") + "-" +
+    moment(endHour + ":" + endMinute, "HH:mm").format("h:mm A")
 });

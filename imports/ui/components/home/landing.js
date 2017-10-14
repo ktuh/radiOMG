@@ -22,7 +22,7 @@ Template.landing.helpers({
     var day = d.getDay();
     var hour = d.getHours();
     var minute = d.getMinutes();
-    var shows = Shows.find({ active: true,
+    var show = Shows.find({ active: true,
                              startDay: { $gte: day },
                              startHour: { $gte: hour },
                              startMinute: { $gte: minute },
@@ -39,7 +39,7 @@ Template.landing.helpers({
     var day = d.getDay();
     var hour = d.getHours();
     var minute = d.getMinutes();
-    var shows = Shows.find({ active: true,
+    var show = Shows.find({ active: true,
                              startDay: { $gte: day },
                              startHour: { $gte: hour},
                              startMinute: { $gte: minute },

@@ -6,7 +6,7 @@ import '../comments/comment_submit.js';
 import '../comments/comment_item.js';
 import { Template } from 'meteor/templating';
 import { FlowRouter } from 'meteor/kadira:flow-router';
-import { moment } from 'moment';
+import { moment } from 'meteor/momentjs:moment';
 
 Template.partyPage.onCreated(function () {
   var self = this;

@@ -64,9 +64,11 @@
     {{#with getNextShow}}
       <div class='home__next-show-info'>
         <div class='home__next-show-deets'>
-          <p class='home__next-show-time'>{{startHour}}-{{endHour}}</p>
           <p class='home__next-show-name'>{{showName}}</p>
-          <p class='home__next-show-host'>{{host}}</p>
+          <p class='home__next-show-host'>hosted by {{host}}</p>
+          <p class='home__next-show-time'>
+            {{getTime startHour startMinute endHour endMinute}}
+          </p>
         </div>
         <div class='home__next-show-image'>
           <img src='{{featuredImage.url}}' />
