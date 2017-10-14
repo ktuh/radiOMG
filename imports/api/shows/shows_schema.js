@@ -1,6 +1,7 @@
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { scorpius } from 'meteor/scorpiusjs:core';
 import { Meteor } from 'meteor/meteor';
+import Profiles from '../users/profiles_collection.js';
 
 export default ShowsSchema = new SimpleSchema({
   showName: {
@@ -40,7 +41,13 @@ export default ShowsSchema = new SimpleSchema({
   },
   host: {
     type: String,
-    optional: false
+    optional: false,
+    autoValue: function() {
+      if (this.isSet || this.isUpdate)
+        return this.value;
+      else
+        return Profiles.find({userId: Meteor.userId}).name;
+    }
   },
   startDay: {
     type: Number,

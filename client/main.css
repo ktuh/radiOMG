@@ -209,6 +209,7 @@ a, a:hover, a:focus {
 }
 .navbar-nav {
   margin: 12px 0 12px 10px;
+  float: right;
 }
 .navbar-collapse {
   padding: 0;
@@ -330,7 +331,7 @@ a, a:hover, a:focus {
 .header__submenu-support button:hover {
   color: #fff;
 }
-.nav.navbar-nav:nth-child(2) {
+.nav.navbar-nav:nth-child(3) {
   margin: 12px 0 12px 18vw;
   font-weight: normal;
 }
@@ -349,6 +350,7 @@ a, a:hover, a:focus {
 }
 .navbar-default:not(.fixed-theme) .navbar-right {
   background-color: #5940de;
+  float: right;
 }
 .header__support-btn {
   background-color: transparent;
@@ -1206,6 +1208,10 @@ audio {
   text-transform: uppercase;
 }
 
+.home__next-show-deets {
+  padding-bottom: 10px;
+}
+
 .support__donate {
   font-family: 'din-2014', sans-serif;
   color: white;
@@ -1600,13 +1606,25 @@ audio {
   .header__submenu-support {
     display: block;
   }
-  .nav.navbar-nav:nth-child(2) {
-    margin: 12px 0;
-  }
 }
 @media (max-width: 807px) {
   .nav > li > a {
       margin: 0 10px;
+  }
+}
+@media (min-width: 481px) and (max-width: 768px) {
+  .navbar-nav.nav.navbar-left {
+    margin-left: -15px;
+  }
+}
+@media (max-width: 480px) and (min-width: 400px) {
+  .nav.navbar-nav:nth-child(3) {
+    margin: 12px 0 12px 20px;
+    clear: both;
+    float: left;
+  }
+  .navbar-nav.nav.navbar-left {
+    margin-left: 20px;
   }
 }
 @media (max-width: 768px) {
@@ -1639,9 +1657,6 @@ audio {
   .join__desc p, .join__content p,
   .faq__content p, .contact__content p, .contact__content h4 {
     padding: 0;
-  }
-  .nav.navbar-nav:nth-child(2) {
-    margin: 12px;
   }
   .home__featured-content, .news-item {
     padding: 0 40px;
@@ -1759,6 +1774,7 @@ audio {
   }
   .navbar-left {
     font-weight: 900;
+    float: left;
   }
   #login-dropdown-list .dropdown-menu {
     margin-bottom: 10px;
@@ -1965,6 +1981,9 @@ audio {
   .navbar {
     padding: 0 20px 0 5px;
   }
+  .navbar-left, .navbar-nav.nav {
+    margin-left: 20px;
+  }
   .navbar-toggle {
     margin-right: 20px !important;
   }
@@ -1981,15 +2000,10 @@ audio {
   }
 }
 @media (min-width: 980px) and (max-width: 1019px) {
-  .nav.navbar-nav:nth-child(2) {
+  .nav.navbar-nav:nth-child(3) {
     margin: 12px 0;
   }
   .header__support-btn {
     display: none;
-  }
-}
-@media (min-width: 1020px) {
-  .nav.navbar-nav:nth-child(2) {
-    margin: 12px 0 12px calc(3.5 * (28vw - 285.531px));
   }
 }
