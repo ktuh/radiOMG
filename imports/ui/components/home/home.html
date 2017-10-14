@@ -5,12 +5,13 @@
     <div class='home__featured-content'>
     {{#with featuredPost}}
       <div class='home__featured-photo'>
+        <span class='purple-tag'>Featured</span>
         <img class='home__featured-img' src='{{photo.url}}'>
       </div>
       <div class='home__featured-item'>
         <p class='home__featured-category'>{{category}}</p>
         <a href='/news/{{slug}}'>
-          <p class='home__title'>{{title}}</p>
+          <h3 class='home__title'>{{title}}</h3>
         </a>
         <p class='home__synopsis'>
           {{renderSummary summary body 100}}
@@ -32,7 +33,7 @@
       <div class='home__news-item'>
         <a href='/news/{{slug}}'>
           <img class='home__news-img' src='{{photo.url}}'>
-          <p class='home__title'>{{title}}</p>
+          <h4 class='home__title'>{{title}}</h4>
         </a>
         <p class='home__synopsis'>{{renderSummary summary body 40}}</p>
         <p>by <a href='/profile/{{getUsernameById userId}}'>{{getDisplayNameById userId}}</a> / posted at {{submitted}}</p>
@@ -76,8 +77,9 @@
       </div>
 
     {{/with}}
-    <br>
-    <a href="/shows"><button>Show Schedule</button></a>
+    <br><br>
+    <a class="white-button home__next-show-btn" href="/shows">Show Schedule</a>
+    <br><br>
   </div>
 </div>
 </div>
