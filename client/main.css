@@ -29,6 +29,11 @@ img {
 a, a:hover, a:focus {
   color: #333;
 }
+h1 { font-size: 3em; }
+h2 { font-size: 2.25em; }
+h3 { font-size: 1.75em; }
+h4 { font-size: 1.125em; }
+h5 { font-size: .875em; }
 .caps {
   text-transform: uppercase;
 }
@@ -1087,7 +1092,6 @@ audio {
   font-family: 'nimbus-sans-extended', sans-serif;
   border-bottom: thin black solid;
   text-align: left;
-  font-size: 1.25em;
   font-weight: bold;
 }
 .home__featured {
@@ -1202,9 +1206,11 @@ audio {
   margin: 10px 0;
 }
 .white-button {
+  font-size: .875em;
   font-family: 'nimbus-sans', sans-serif;
   color: white;
-  padding: 10px 15px;
+  padding: 10px 25px;
+  font-weight: bold;
 
   text-transform: uppercase;
   border: thin white solid;
@@ -1232,6 +1238,12 @@ audio {
   margin: 0;
   line-height: 1.5em;
 }
+.home__byline {
+  margin: 20px 0;
+}
+.home__byline a {
+  color:    #5940de;;
+}
 .home__news-img {
   clear: both;
   height: auto;
@@ -1251,11 +1263,13 @@ audio {
 }
 .home__more {
   position: relative;
-  bottom: 39px;
+  bottom: 36px;
   float: right;
+  padding: 3px 18px;
+  font-size: .875em;
+  font-weight: bold;
   background-color: #222222;
   color: white;
-  padding: 3px 18px;
   border: thin #222222 solid;
   font-family: 'nimbus-sans', sans-serif;
 }
@@ -1263,8 +1277,11 @@ audio {
   background-color: white;
   color: black;
 }
-.home__review-item .home__title {
-  text-align: center;
+.home__reviews-item .home__title {
+    margin-top: 15px;
+}
+.home__reviews-item .home__subtitle {
+    font-style: italic;
 }
 .support {
   background-color: #5940de;
@@ -1806,9 +1823,6 @@ audio {
   .home__reviews-item img {
     width: 100%;
     height: auto;
-  }
-  .home__section {
-    font-size: 1.125em;
   }
   .navbar-right {
     display: none;

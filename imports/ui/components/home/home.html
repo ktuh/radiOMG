@@ -25,8 +25,8 @@
   <div class='home__main'>
     <div class='home__news'>
     {{#if posts}}
-      <h5 class='home__section'>RADIOBLOG</h5>
-      <a href='/news' class='home__more'>MORE <span class='glyphicon glyphicon-arrow-right'></span></a>
+      <h3 class='home__section'>RADIOBLOG</h3>
+      <a href='/news' class='home__more'>MORE NEWS&nbsp;&nbsp;<span class='glyphicon glyphicon-arrow-right'></span></a>
     {{/if}}
     <div class='home__news-content'>
       {{#each posts}}
@@ -36,15 +36,17 @@
           <h4 class='home__title'>{{title}}</h4>
         </a>
         <p class='home__synopsis'>{{renderSummary summary body 40}}</p>
-        <p>by <a href='/profile/{{getUsernameById userId}}'>{{getDisplayNameById userId}}</a> / posted at {{submitted}}</p>
+        <p class='home__byline'>
+          by <a href='/profile/{{getUsernameById userId}}'>{{getDisplayNameById userId}}</a> / {{getTime submitted}}
+        </p>
       </div>
       {{/each}}
     </div>
   </div>
   <div class='home__reviews'>
     {{#if reviews}}
-      <h5 class="home__section">MUSIC REVIEWS</h5>
-      <a href='/reviews' class='home__more'>MORE <span class='glyphicon glyphicon-arrow-right'></span></a>
+      <h3 class="home__section">MUSIC REVIEWS</h3>
+      <a href='/reviews' class='home__more'>MORE REVIEWS&nbsp;&nbsp; <span class='glyphicon glyphicon-arrow-right'></span></a>
     {{/if}}
     <div class='home__reviews-content'>
       {{#each reviews}}
@@ -68,7 +70,7 @@
           <p class='home__next-show-name'>{{showName}}</p>
           <p class='home__next-show-host'>hosted by {{host}}</p>
           <p class='home__next-show-time'>
-            {{getTime startHour startMinute endHour endMinute}}
+            {{getStartEndTime startHour startMinute endHour endMinute}}
           </p>
         </div>
         <div class='home__next-show-image'>

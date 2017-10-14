@@ -122,7 +122,8 @@ Template.home.helpers({
     var nextShowRegardless = Shows.findOne({startDay: { $gt: nextDow + 1 % 7 } }, { sort: { startDay: 1, startHour: 1 } }) || Shows.findOne({}, { sort: { startDay: 1, startHour: 1 } });
     return nextSameDayShow || nextNextDayShow || nextShowRegardless;
   },
-  getTime: (startHour, startMinute, endHour, endMinute) =>
+  getTime: (str) => moment(str).fromNow(),
+  getStartEndTime: (startHour, startMinute, endHour, endMinute) =>
     moment(startHour + ":" + startMinute, "HH:mm").format("h:mm") + "-" +
     moment(endHour + ":" + endMinute, "HH:mm").format("h:mm A")
 });
