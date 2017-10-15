@@ -3,16 +3,16 @@
     <h1>Playlists</h1>
     <div>
       {{#if ready}}
-      <table class="playlist-list" border="1">
-      {{#each docs}}
-        <tr>
-          <td><img height="150px" src="{{img showId}}" /></td>
-          <td>{{showName showId}}</td>
-          <td><a href="/playlists/{{spinPlaylistId}}/">{{showDate}}</a></td>
-        </tr>
-      {{/each}}
-      </table>
-      {{> defaultBootstrapPaginator pagination=tempPag limit=8}}
+        <table class="playlist-list" border="1">
+        {{#each docs}}
+          <tr>
+            <td><img height="150px" src="{{img showId}}" /></td>
+            <td>{{showName showId}}</td>
+            <td><a href="/playlists/{{spinPlaylistId}}/">{{showDate}}</a></td>
+          </tr>
+        {{/each}}
+        </table>
+        {{> defaultBootstrapPaginator pagination=tempPag limit=8}}
       {{/if}}
     </div>
   </div>

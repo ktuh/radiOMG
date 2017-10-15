@@ -37,9 +37,13 @@ Template.playlistList.helpers({
     var list = Playlists.findOne({}, { sort: { showDate: -1 }});
     return Shows.findOne({ showId: list.showId }).showName
   },
-  latestShowDate: function () {
+  latestShowDay: function () {
     var list = Playlists.findOne({}, { sort: { showDate: -1 }});
-    return moment(list.showDate).format('dddd, h:mm a,<br>MMM DD YYYY');
+    return moment(list.showDate).format('dddd');
+  },
+  latestShowStartTime: function () {
+    var list = Playlists.findOne({}, { sort: { showDate: -1 }});
+    return moment(list.showDate).format('h A');
   },
   latestShowSlug: () => {
     var list = Playlists.findOne({}, { sort: { showDate: -1 }});
@@ -51,6 +55,13 @@ Template.playlistList.helpers({
 
     return (show === undefined || show.featuredImage === undefined)
            ? false : show.featuredImage.url;
+  },
+  latestShowHost: () => {
+    var list = Playlists.findOne({}, { sort: { showDate: -1 }});
+    var show = Shows.findOne({ showId: list.showId });
+
+    return (show === undefined || show.featuredImage === undefined)
+           ? false : show.host;
   },
   truncated: (str) => str.substring(0, str.length - 3)
 });

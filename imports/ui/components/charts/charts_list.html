@@ -1,9 +1,8 @@
 <template name="chartList">
   {{#if Template.subscriptionsReady}}
-    <h1 class='playlist-list__header'>Latest Chart</h1>
+    <h2 class='playlist-list__header'>Latest Chart</h2>
     <div class='playlist-list__latest'>
     {{#with latestChart}}
-    <img class='playlist__show-image' src='{{featuredImage}}'>
     <h3 class='playlist__show-name'><a href='/charts/{{slug}}'>{{title}}</a></h3>
     {{{body}}}
     <table class="playlist">
@@ -31,7 +30,7 @@
     {{/with}}
   </div>
   <div class='playlist-list__list'>
-    <h6>More Playlists</h6>
+    <h6>More Charts</h6>
     <table class="playlist-list__table" border="1">
       {{#each otherCharts}}
         <a href="/charts/{{slug}}/">

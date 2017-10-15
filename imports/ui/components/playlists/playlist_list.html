@@ -1,12 +1,13 @@
-<template name="playlistList">
-    <h1 class='playlist-list__header'>Latest Playlist</h1>
-    <div class='playlist-list__latest'>
+<template name='playlistList'>
+  <h2 class='playlist-list__header'>Playlists</h2>
+  <div class='playlist-list__latest'>
     {{#if Template.subscriptionsReady}}
-      {{#if latestShowImage}}<a href="/shows/{{latestShowSlug}}"><img class='playlist__show-image' src='{{latestShowImage}}'></a>{{/if}}
-      <h3 class='playlist__show-name'><a class='wavy' href="/shows/{{latestShowSlug}}">{{latestShowName}}</a></h3>
-      <h5>{{{latestShowDate}}}</h5>
-      <table class="playlist">
-        <tr class="playlist__info-row">
+      {{#if latestShowImage}}<a href='/shows/{{latestShowSlug}}'><img class='playlist__show-image' src='{{latestShowImage}}'></a>{{/if}}
+      <h5 class='playlist-list__current'>CURRENT PLAYLIST</h5>
+      <h3 class='playlist-list__show-name'><a href='/shows/{{latestShowSlug}}'>{{latestShowName}}</a></h3>
+      <h5 class='playlist-list__show-host'>{{latestShowDay}}s at {{latestShowStartTime}} • Hosted by {{latestShowHost}}</h5>
+      <table class='playlist'>
+        <tr class='playlist__info-row'>
           <td><b>Time</b></td>
           <td><b>Artist</b></td>
           <td><b>Song</b></td>
@@ -20,15 +21,15 @@
         {{/each}}
       </table>
     {{/if}}
-    </div>
-    <div class='playlist-list__list'>
+  </div>
+  <div class='playlist-list__list'>
     <h6>More Playlists</h6>
     {{#if Template.subscriptionsReady}}
-      <table class="playlist-list__table" border="1">
+      <table class='playlist-list__table' border='1'>
         {{#each docs}}
           <tr>
-            <td><a href="/playlists/{{spinPlaylistId}}/"><img src="{{img showId}}" /></a></td>
-            <td><a class='wavy playlist-list__showname' href="/playlists/{{spinPlaylistId}}/">{{showName showId}}</a><br><div class='playlist-list__date'>{{{date showDate}}}</div></td>
+            <td><a href='/playlists/{{spinPlaylistId}}/'><img src='{{img showId}}' /></a></td>
+            <td><a class='playlist-list__show-name' href='/playlists/{{spinPlaylistId}}/'>{{showName showId}}</a><br><div class='playlist-list__date'>{{{date showDate}}}</div></td>
           </tr>
         {{/each}}
       </table>
