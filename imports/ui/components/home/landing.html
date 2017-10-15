@@ -6,7 +6,9 @@
         {{#if showName}}
           <p class='landing__now-playing caps'>On Air Now:</p>
           <p class='landing__show-name caps'>{{showName}}</p>
-          <p class='landing__show-host caps'>with <span class='landing__host-name'>{{showHost}}</span></p>
+          <p class='landing__show-host caps'>
+            with <span class='landing__host-name'>{{showHost}}</span>
+          </p>
           {{#if nowPlaying}}
             <p class='landing__song-title caps'>Now Playing:</p>
             {{{formatNP nowPlaying}}}
@@ -22,5 +24,8 @@
         </div>
       {{/if}}
     </div>
+    <h4 class='landing__freq landing__hnl-freq'>90.1 FM Honolulu</h4>
+    <h4 class='landing__freq landing__ns-freq'>91.1 FM Waialua </h4>
+    <h5 class='landing__current-playlist'>View Current Playlist</h5>
   </div>
 </template>

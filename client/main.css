@@ -100,7 +100,7 @@ h1, h2, h3, h4, h5 {
   background-size: auto;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: center;
+  background-position: top;
 }
 .landing__box {
   position: relative;
@@ -115,12 +115,8 @@ h1, h2, h3, h4, h5 {
   margin: 24px 0 0 3em;
   font-family: 'nimbus-sans-extended', 'alda', sans-serif;
 }
-.landing__info p {
-  margin: 0;
-}
-.landing__info .landing__now-playing {
-  margin-bottom: 8px;
-}
+.landing__info p { margin: 0; }
+.landing__info .landing__now-playing { margin-bottom: 8px }
 .landing__show-name,
 .landing__show-host,
 .landing__song-title {
@@ -185,6 +181,26 @@ h1, h2, h3, h4, h5 {
   height: 5.5em;
   border: solid 2px #fff;
   float: left;
+}
+.landing__freq {
+  position: absolute;
+  top: 47%;
+  margin: 0;
+  transform: rotate(-90deg);
+  text-transform: uppercase;
+}
+.landing__hnl-freq { left: -30px; }
+.landing__ns-freq { right: -20px; }
+.landing__current-playlist {
+  position: absolute;
+  bottom: 0; right: 0;
+  margin: 0;
+  padding: 10px 30px;
+  background: #333333;
+  text-transform: uppercase;  
+}
+.landing__current-playlist: {
+
 }
 .navbar {
   position: fixed;
@@ -1674,8 +1690,6 @@ audio {
     font-weight: 900;
     float: left;
   }
-}
-@media (max-width: 768px) {
   .news-list__header,
   .shows__header,
   .about__header,
@@ -1692,6 +1706,8 @@ audio {
   .staff__header {
     padding-left: 40px;
   }
+  .landing__hnl-freq { left: -55px; }
+  .landing__ns-freq { right: -45px; }
   .show__link, .event__link, .review__link, .chart__link {
     left: 40px;
   }
