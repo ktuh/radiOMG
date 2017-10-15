@@ -1,6 +1,9 @@
 <template name="playlistPage">
   {{#if Template.subscriptionsReady}}
-  <h4 class='playlist__header'><a href="/shows/{{showSlug}}">{{showName}}</a> playlist - {{showDate}}</h4>
+  <h1 class='playlist__header'><a href="/shows/{{showSlug}}">{{showName}}</a> playlist - {{showDate}}</h1>
+  <div class='chart__link'>
+    <a href='/playlists' class='chart__link-back'>← Back to Playlists</a>
+  </div>
   <div class='playlist__content'>
     {{#if showImage}}<a href="/shows/{{showSlug}}"><img class='playlist__show-image' src='{{showImage}}'></a>{{/if}}
     <table class="playlist">
