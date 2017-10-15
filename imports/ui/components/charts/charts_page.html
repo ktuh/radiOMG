@@ -1,7 +1,10 @@
 <template name="chartPage">
   {{#if Template.subscriptionsReady}}
     {{#with chart}}
-    <h4 class='playlist-list__header'>{{title}}</h4>
+    <h1 class='playlist-list__header'>{{title}}</h1>
+    <div class='chart__link'>
+      <a href='/charts' class='chart__link-back'>← Back to Charts</a>
+    </div>
     <div class='playlist-list__latest'>
     <img class='playlist__show-image' src='{{featuredImage}}'>
     {{{body}}}

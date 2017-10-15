@@ -934,16 +934,24 @@ audio {
   vertical-align: top;
   display: inline-block;
 }
-.show__link {
+.show__link, .event__link, .chart__link {
   position: relative;
-  top: -60px;
+  top: -120px;
   left: 60px;
   margin: 0;
   background-color: #262626;
   color: white;
 }
-.show__link a:hover,
-.show__link a {
+.review__link {
+  position: relative;
+  top: -160px;
+  left: 60px;
+  margin: 0;
+  background-color: #262626;
+  color: white;
+}
+.show__link a:hover, .event__link a:hover, .review__link a:hover, .chart__link a:hover,
+.show__link a, .event__link a, .review__link a, .chart__link a {
   color: white;
   font-size: 12px;
 }
@@ -977,7 +985,7 @@ audio {
   float: right;
   margin-bottom: 10px;
 }
-.show__link-back, .event__link-back {
+.show__link-back, .event__link-back, .review__link-back, .chart__link-back {
   text-transform: uppercase;
   font-family: 'nimbus-sans-extended', sans-serif;
 }
@@ -1391,6 +1399,7 @@ audio {
   width: 47%;
   display: inline-block;
   vertical-align: top;
+  margin-left: 15px;
 }
 .footer__address, .footer__phone, .footer__links {
   display: inline-block;
@@ -1668,7 +1677,7 @@ audio {
   .staff__header {
     padding-left: 40px;
   }
-  .show__link, .event__link {
+  .show__link, .event__link, .review__link, .chart__link {
     left: 40px;
   }
   .about__desc, .about__content,
