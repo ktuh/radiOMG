@@ -73,7 +73,7 @@ Template.landing.helpers({
 
 Template.landing.events({
   'click .landing__play-btn-outer': function(event) {
-    var url = 'http://stream.ktuh.org:8000/stream-mp3';
+    var url = scorpius.dictionary.get('mainPage.audioUrl', '');
 
     if (Session.get('paused') === false)
       player.pause();
