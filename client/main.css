@@ -792,21 +792,19 @@ audio {
   margin: 10px 60px;
 }
 .profile__left {
-  width: 225px;
-  margin: 25px 20px 0px 10%;
+  width: 255px;
+  margin: 25px 20px 30px 10%;
   display: inline-block;
   vertical-align: top;
 }
 .profile__show-link {
-  clear: both;
+  width: 173px;
+  margin: 0 auto;
 }
 .profile__info {
   max-width: 400px;
-  margin-right: 10%;
+  margin: 20px 10% 0 0;
   display: inline-block;
-}
-.profile__pic {
-  margin-bottom: 15px;
 }
 .profile__info h4 {
   margin: 0 0 15px 0;
@@ -815,14 +813,17 @@ audio {
   text-decoration: underline;
   text-decoration-style: wavy;
 }
+.profile__pic {
+  margin-bottom: 15px;
+}
 .profile__social-icons {
-  height: 28px;
-  margin: 0 0 19px;
+  height: 26px;
+  margin: 0 auto 19px;
+  width: 197px;
 }
 .profile__social-icon {
   max-height: 100%;
-  width: auto;
-  padding: 0 8px 0 0;
+  padding: 0 4px 0 0;
 }
 .profile__bio {
   clear: both;
@@ -1668,6 +1669,14 @@ audio {
   }
 }
 @media (max-width: 979px) {
+  .profile__left {
+    margin-left: 5%;
+    width: 200px;
+  }
+  .profile__info {
+    margin-right: 5%;
+    max-width: 325px;
+  }
   .header__support-btn {
     display: none;
   }
@@ -1694,10 +1703,6 @@ audio {
 @media (min-width: 769px) and (max-width: 786px) {
   .footer__subheading {
     font-size: .75em;
-  }
-  .profile__left, .profile__info {
-    margin: 0;
-    width: 100%;
   }
 }
 @media (min-width: 769px) {
@@ -1874,10 +1879,9 @@ audio {
   }
   .profile__left {
     width: 100%;
-    margin: 0;
+    margin: 0 0 30px 0;
   }
   .profile__info {
-    width: 50%;
     max-width: none;
   }
   .home__featured-photo {
@@ -1981,6 +1985,7 @@ audio {
   }
   .profile__left {
     width: 100%;
+    margin: 0 0 30px 0;
     margin: 0;
     padding: 0;
   }
