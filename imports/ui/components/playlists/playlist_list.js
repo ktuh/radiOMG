@@ -10,14 +10,19 @@ Template.playlistList.onCreated(function() {
 
   self.pagination = new Meteor.Pagination(Playlists, { sort: { showDate: -1 }, perPage: 7 });
   self.autorun(function() {
-    self.subscribe('activeShows');
-    self.subscribe('playlistsLimited', { limit: 1, sort: { showDate: -1 }}, {
+    self.subscribe('activeShows', {
       onReady: function() {
-        var playlist = Playlists.findOne({}, { limit: 1, sort: { showDate: -1 }});
+        self.subscribe('playlistsLimited', { limit: 1, sort: { showDate: -1 }}, {
+          onReady: function() {
+            var playlist = Playlists.findOne({}, { limit: 1, sort: { showDate: -1 }});
+            var id = Shows.findOne({ showId: playlist.showId }).userId;
 
-        Meteor.call("getPlaylist", parseInt(playlist.spinPlaylistId), function(error, result) {
-          if (!error && result) {
-            Session.set("currentPlaylist", result);
+            self.subscribe('showHostUserName', id);
+            Meteor.call("getPlaylist", parseInt(playlist.spinPlaylistId), function(error, result) {
+              if (!error && result) {
+                Session.set("currentPlaylist", result);
+              }
+            });
           }
         });
       }
@@ -65,8 +70,8 @@ Template.playlistList.helpers({
   },
   latestShowLink: function() {
     var list = Playlists.findOne({}, { sort: { showDate: -1 }});
-    var id = Shows.findOne({ showId: list.showId }).userId
-    var user = Meteor.users.findOne({ _id: id });
+    var userId = Shows.findOne({ showId: list.showId }).userId
+    var user = Meteor.users.findOne({ _id: userId });
     return '/profile/' + user.username;
   },
   truncated: (str) => str.substring(0, str.length - 3),
