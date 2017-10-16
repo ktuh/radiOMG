@@ -1,7 +1,7 @@
 <template name="playlistPage">
   {{#if Template.subscriptionsReady}}
-  <h1 class='playlist__header'><a href="/shows/{{showSlug}}">{{showName}}</a> playlist - {{showDate}}</h1>
-  <div class='chart__link'>
+  <h2 class='playlist__header'><a href="/shows/{{showSlug}}">{{showName}}</a> playlist - {{showDateOfCurrent}}</h2>
+  <div class='playlist__link'>
     <a href='/playlists' class='chart__link-back'>← Back to Playlists</a>
   </div>
   <div class='playlist__content'>
@@ -33,6 +33,18 @@
         <p class='comments__text'>Please log in to leave a comment.</p>
       {{/if}}
     </div>
+  </div>
+  <div class='playlist__sidebar corner'>
+    <h4 class='playlist__sidebar-header'>Browse Latest</h4>
+    {{#each getSidebarData}}
+      <hr />
+      <h4 class='playlist__sidebar-date'>{{dateFormat date}}</h4>
+      {{#each shows}}
+        <div>
+          <p class='playlist__sidebar-link'><a href="/playlists/{{spinPlaylistId}}">{{timeFromHours (showTimeFromId showId) (showEndFromId showId)}} {{showNameFromId showId}}</a></p>
+        </div>
+      {{/each}}
+    {{/each}}
   </div>
   {{/if}}
 </template>

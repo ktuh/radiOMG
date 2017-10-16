@@ -199,7 +199,7 @@ h1, h2, h3, h4, h5 {
   background: #333333;
   font-family: 'nimbus-sans';
   color: #fff;
-  text-transform: uppercase;  
+  text-transform: uppercase;
 }
 .navbar {
   position: fixed;
@@ -846,7 +846,7 @@ audio {
 .playlist__show-image {
   float: left;
   max-width: 160px;
-  margin: 10px 15px 15px 0;
+  margin: 0px 15px 15px 0;
 }
 .playlist__info-row{
   border-left: 0px;
@@ -957,13 +957,14 @@ audio {
   vertical-align: top;
   display: inline-block;
 }
-.show__link, .event__link, .chart__link {
+.show__link, .event__link, .chart__link, .playlist__link {
   position: relative;
   top: -120px;
   left: 60px;
   margin: 0;
   background-color: #262626;
   color: white;
+  width: calc(100% - 60px);
 }
 .review__link {
   position: relative;
@@ -972,9 +973,12 @@ audio {
   margin: 0;
   background-color: #262626;
   color: white;
+  width: calc(100% - 60px);
 }
-.show__link a:hover, .event__link a:hover, .review__link a:hover, .chart__link a:hover,
-.show__link a, .event__link a, .review__link a, .chart__link a {
+.show__link a:hover, .event__link a:hover, .review__link a:hover,
+.chart__link a:hover, .playlist__link a:hover,
+.show__link a, .event__link a, .review__link a, .chart__link a,
+.playlist__link a {
   color: white;
   font-size: 12px;
 }
@@ -1216,6 +1220,26 @@ audio {
   vertical-align: top;
   padding-right: 60px;
   background-color: inherit;
+}
+.playlist__sidebar {
+  position: relative;
+  width: 23.75%;
+  display: inline-block;
+  vertical-align: top;
+  padding: 10px 20px;
+  padding-right: 40px;
+  background-color: #F6F6F6;
+}
+.playlist__sidebar:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-width: 0 20px 20px 0;
+  border-style: solid;
+  border-color: #FFF #FFF #A58BFF #A58BFF;
+  display: block;
+  width: 0;
 }
 .home__next-show {
   margin: 20px 0 20px 10px;
@@ -1564,7 +1588,25 @@ audio {
   padding: 10px 60px;
 }
 .playlist__content {
+  width: 72%;
   padding: 10px 60px;
+  background-color: inherit;
+  display: inline-block;
+  clear: both;;
+}
+.playlist__sidebar-header {
+  text-transform: uppercase;
+  font-family: 'nimbus-sans', sans-serif;
+  font-weight: bold;
+}
+.playlist__sidebar-date {
+  text-transform: uppercase;
+  font-family: 'nimbus-sans-extended', sans-serif;
+  font-weight: bold;
+}
+.playlist__sidebar-link {
+  text-transform: uppercase;
+  font-family: 'nimbus-sans-extended', sans-serif;
 }
 .about__desc p, .about__content p,
 .join__desc p, .join__content p, .faq__content p,
@@ -1736,11 +1778,13 @@ audio {
   .news__title,
   .staff__header {
     padding-left: 40px;
+    padding-right: 40px;
   }
   .landing__hnl-freq { left: -55px; }
   .landing__ns-freq { right: -45px; }
-  .show__link, .event__link, .review__link, .chart__link {
+  .show__link, .event__link, .review__link, .chart__link, .playlist__link {
     left: 40px;
+    width: calc(100% - 40px);
   }
   .about__desc, .about__content,
   .join__desc, .join__content,
@@ -1756,7 +1800,7 @@ audio {
   .home__featured-content, .news-item {
     padding: 0 40px;
   }
-  .home__main {
+  .home__main, .playlist__content {
     width: 100%;
     padding-left: 40px;
     padding-right: 40px;
@@ -1764,6 +1808,10 @@ audio {
   .home__sidebar {
     width: 100%;
     padding-right: 0;
+  }
+ .playlist__sidebar  {
+   width: calc(100% - 80px);
+   margin: 0 40px 10px;
   }
   .home__next-show {
     margin: 15px 40px;
@@ -1999,7 +2047,7 @@ audio {
   }
 }
 @media (max-width: 600px) {
-  .home__main{
+  .home__main, .playlist__content {
     width: 100%;
   }
 }
