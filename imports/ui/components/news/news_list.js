@@ -11,7 +11,7 @@ Template.newsList.onCreated(function () {
     perPage: 4, 
     filters: { approved: true }
   });
-  self.subscribe('latestFeaturedPosts', { limit: 1 });
+  self.subscribe('latestFeaturedPosts', 3);
 });
 
 Template.newsList.onRendered(function () {

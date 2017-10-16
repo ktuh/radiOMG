@@ -1157,6 +1157,7 @@ audio {
   background-color: inherit;
 }
 .home__section {
+  margin-top: 0;
   font-family: 'nimbus-sans-extended', sans-serif;
   border-bottom: thin black solid;
   text-align: left;
@@ -1195,7 +1196,7 @@ audio {
 .home__featured-item {
   display: inline-block;
   width: 49%;
-  padding: 90px 60px;
+  padding: 40px 0px 0 60px;
   color: inherit;
   clear: both;
   vertical-align: top;
@@ -1233,14 +1234,14 @@ audio {
   background-color: white;
 }
 .home__main {
-  width: 75%;
+  width: 70%;
   padding: 20px 0 0 60px;
   background-color: inherit;
   display: inline-block;
   clear: both;
 }
 .home__sidebar {
-  width: 24%;
+  width: 29%;
   display: inline-block;
   vertical-align: top;
   padding-right: 60px;
@@ -1272,12 +1273,15 @@ audio {
 }
 .home__next-show-btn {
   margin: 10px 0;
+  color: white;
+  font-weight: normal;
 }
 .white-button {
+  max-width: 250px;
   font-size: .875em;
   font-family: 'nimbus-sans', sans-serif;
   color: white;
-  padding: 10px 25px;
+  padding: 10px 0;
   letter-spacing: 1.5px;
   font-weight: bold;
 
