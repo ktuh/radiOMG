@@ -10,9 +10,11 @@ Meteor.publish('postsLimited', (options) => {
   return Posts.find({ featured: false, approved: true }, options);
 });
 
-Meteor.publish('latestFeaturedPost', () =>
+Meteor.publish('latestFeaturedPost', (count) => {
+  check(count, Number);
   Posts.find({ approved: true, featured: true },
-             { sort: { submitted: -1 }, limit: 1 })
+             { sort: { submitted: -1 }, limit: count })
+  }
 );
 
 Meteor.publish('singlePost', (slug) => {

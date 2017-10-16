@@ -17,7 +17,7 @@ Template.home.onCreated(function () {
     self.subscribe('reviewsLimited', { limit: 6, sort: { submitted: -1 }});
     self.subscribe('latestSevenWriters');
     self.subscribe('latestSevenWritersUsernames');
-    self.subscribe('latestFeaturedPost');
+    self.subscribe('latestFeaturedPosts', { limit: 1 });
     self.subscribe('activeShows');
   });
 });

@@ -6,7 +6,12 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 
 Template.newsList.onCreated(function () {
   var self = this;
-  self.pagination = new Meteor.Pagination(Posts, { sort: { showDate: -1 }, perPage: 4, filters: {approved: true}});
+  self.pagination = new Meteor.Pagination(Posts, { 
+    sort: { showDate: -1 }, 
+    perPage: 4, 
+    filters: { approved: true }
+  });
+  self.subscribe('latestFeaturedPosts', { limit: 1 });
 });
 
 Template.newsList.onRendered(function () {
@@ -17,5 +22,7 @@ Template.newsList.helpers({
   newsPagePath: (slug) => FlowRouter.path('news/:slug', { slug: slug }),
   excerpt: (body) => body.replace(/(([^\s]+\s\s*){100})(.*)/,"$1…"),
   posts: () => Template.instance().pagination.getPage(),
-  templatePagination: () => Template.instance().pagination
+  templatePagination: () => Template.instance().pagination,
+  featuredPosts: () => Posts.find({ approved: true, featured: true },
+                                  { sort: { submitted: -1 }, limit: 3 })
 });
