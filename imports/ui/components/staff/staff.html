@@ -4,14 +4,7 @@
   <div class='staff__content'>
     {{ #each djs }}
       <div class='staff__item'>
-        <p>
-          <a href='/profile/{{usernameOf userId}}'>{{name}}</a>
-        </p>
-        <!-- {{ #if show userId }}
-          {{ #with show userId }}
-            <p>Host of <i><a href='/shows/{{slug}}'>{{showName}}</a></i></p>
-          {{ /with }}
-        {{/if}} -->
+        <h4><a href='/profile/{{usernameOf userId}}'>{{name}}</a></h4>
       </div>
     {{/each}}
   </div>

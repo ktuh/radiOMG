@@ -792,17 +792,20 @@ audio {
   margin: 10px 60px;
 }
 .profile__left {
-  width: 24%;
-  margin-right: 10px;
+  width: 225px;
+  margin: 25px 20px 0px 10%;
   display: inline-block;
   vertical-align: top;
 }
+.profile__show-link {
+  clear: both;
+}
 .profile__info {
-  width: 74%;
+  max-width: 400px;
+  margin-right: 10%;
   display: inline-block;
 }
 .profile__pic {
-  float: right;
   margin-bottom: 15px;
 }
 .profile__info h4 {
@@ -814,13 +817,12 @@ audio {
 }
 .profile__social-icons {
   height: 28px;
-  margin: 0 0 9px;
+  margin: 0 0 19px;
 }
 .profile__social-icon {
-  float: left;
   max-height: 100%;
   width: auto;
-  padding: 0 6px 0 0;
+  padding: 0 8px 0 0;
 }
 .profile__bio {
   clear: both;
@@ -1258,6 +1260,22 @@ audio {
   color: #222222;
   text-decoration: none;
 }
+.purple-button {
+  font-size: .875em;
+  font-family: 'nimbus-sans', sans-serif;
+  background-color: #5940de;
+  color: white;
+  padding: 10px 25px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.purple-button:hover,
+.purple-button:hover a {
+  background-color: white;
+  color: #5940de;
+  text-decoration: none;
+}
 .home__reviews-item {
   display: inline-block;
   width: 16.66%;
@@ -1555,6 +1573,7 @@ audio {
 }
 .about__caps {
   font-family: 'nimbus-sans-extended', sans-serif;
+  font-weight: bold;
   text-transform: uppercase;
 }
 .faq__question {
@@ -1576,6 +1595,7 @@ audio {
   padding: 60px;
 }
 .staff__item a {
+  padding: 8px 0;
   display: inline-block;
   width: 24%;
   font-family: 'nimbus-sans';

@@ -7,7 +7,7 @@
     <button type='button' class='btn btn-default btn-md party-header__button'><span class='glyphicon glyphicon-edit' aria-hidden='true'></span>Edit</button>
   </a>
   {{/if}}
-  <h4 class='profile__header'>{{name}}</h4>
+  <h2 class='profile__header'>{{name}}</h2>
   <div class='profile'>
     <div class='profile__left'>
       {{#if photo.url}}<img class='profile__pic' src='{{photo.url}}'>{{/if}}
@@ -21,10 +21,13 @@
           {{#if snapchat}}<a href='{{snapchat}}'><img class='profile__social-icon' src='/img/snapchat.png'></a>{{/if}}
         </div>
       {{/if}}
+      {{#if show}}
+        <div class='profile__show-link'>
+          <a class='purple-button' href='/shows/{{show.showName}}'>View Show Page</a>
+        </div>
+      {{/if}}
     </div>
     <div class='profile__info'>
-      {{#if name}}{{/if}}
-      {{#if show}}<h4><i>Host of <a href='/shows/{{show.showName}}'>{{show.showName}}</a></i></h4>{{/if}}
       <div class='profile__bio'>
         {{#if bio}}{{{bio}}}{{else}}<i>({{name}} hasn't filled out a bio yet.)</i>{{/if}}
       </div>
