@@ -14,5 +14,4 @@ Template.staff.onCreated(function() {
 Template.staff.helpers({
   djs: () => Profiles.find({}),
   usernameOf: (id) => Meteor.users.findOne({_id: id}).username,
-  show: (id) => Shows.findOne({userId: id})
 });

@@ -112,6 +112,13 @@ export default ShowsSchema = new SimpleSchema({
     optional: false,
     maxCount: 3
   },
+  synopsis: {
+    type: String,
+    label: 'Body',
+    optional: false,
+    min: 50,
+    max: 240,    
+  },
   body: scorpius.attribute('summernote', {
     type: String,
     label: 'Body',

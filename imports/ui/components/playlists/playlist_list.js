@@ -63,5 +63,12 @@ Template.playlistList.helpers({
     return (show === undefined || show.featuredImage === undefined)
            ? false : show.host;
   },
-  truncated: (str) => str.substring(0, str.length - 3)
+  latestShowLink: function() {
+    var list = Playlists.findOne({}, { sort: { showDate: -1 }});
+    var id = Shows.findOne({ showId: list.showId }).userId
+    var user = Meteor.users.findOne({ _id: id });
+    return '/profile/' + user.username;
+  },
+  truncated: (str) => str.substring(0, str.length - 3),
+
 });

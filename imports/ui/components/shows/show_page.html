@@ -33,8 +33,12 @@
       <h3 class='show__name'><b>{{showName}}</b></h3>
       <h4 class='show__host'>Hosted by <a href="{{profileUrl userId}}">{{host}}</a></h4>
       <h5 class='show__time'>{{day startDay}}s from {{timeBeautify startHour startMinute endHour endMinute}}</h5>
-      {{#if genres}}<div class='show-item__genres'><span class='glyphicon glyphicon-music'></span>&nbsp;{{genreString genres}}</div>{{/if}}
-        <p>{{body}}</p>
+      {{#if genres}}
+      <div class='show-item__genres'>
+        <span class='glyphicon glyphicon-music'></span>&nbsp;{{genreString genres}}
+      </div>
+      {{/if}}
+      <p>{{body}}</p>
     </div>
   </div>
   </div>

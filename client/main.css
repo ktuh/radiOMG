@@ -197,10 +197,9 @@ h1, h2, h3, h4, h5 {
   margin: 0;
   padding: 10px 30px;
   background: #333333;
+  font-family: 'nimbus-sans';
+  color: #fff;
   text-transform: uppercase;  
-}
-.landing__current-playlist: {
-
 }
 .navbar {
   position: fixed;
@@ -522,7 +521,7 @@ h1, h2, h3, h4, h5 {
   color: #fff;
   display: block;
   line-height: 1rem;
-  padding: 1rem .75rem;
+  padding: 2rem .75rem;
 }
 .glyphicon-refresh {
   margin: 0px 5px 0px 0px;
@@ -1032,9 +1031,16 @@ audio {
 .show__play-btn:hover {
   border-color: #333;
 }
-.news-list, .staff__content {
+.news-list {
   text-align: center;
   margin: 10px 60px;
+}
+.staff__content {
+  width: 100%;
+  padding-top: 20px;
+  text-align: center;
+  min-height: 50vh;
+  background: #000;
 }
 .news-list__header,
 .shows__header,
@@ -1051,7 +1057,7 @@ audio {
 .news__title,
 .staff__header,
 .events__header {
-  margin: 0 0 25px 0;
+  margin: 0;
   padding: 120px 0 20px 60px;
   font-weight: bold;
   background-color: #262626;
@@ -1241,6 +1247,7 @@ audio {
   font-family: 'nimbus-sans', sans-serif;
   color: white;
   padding: 10px 25px;
+  letter-spacing: 1.5px;
   font-weight: bold;
 
   text-transform: uppercase;
@@ -1474,6 +1481,7 @@ audio {
   text-transform: uppercase;
   font-weight: bold;
 }
+.playlist-list__show-host a { color: #5940de; }
 .playlist-list__list {
   float: right;
   width: 33%;
@@ -1567,9 +1575,12 @@ audio {
 #partyForm, #showForm {
   padding: 60px;
 }
-.staff__item {
+.staff__item a {
   display: inline-block;
   width: 24%;
+  font-family: 'nimbus-sans';
+  font-weight: lighter;
+  color: #fff;
 }
 .staff__item > p {
   margin-bottom: 5px;
