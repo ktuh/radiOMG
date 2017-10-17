@@ -1034,7 +1034,8 @@ audio {
 }
 .news-list {
   text-align: center;
-  margin: 10px 60px;
+  margin: 10px 0px;
+  width: 95%;
 }
 .staff__content {
   width: 100%;
@@ -1202,16 +1203,44 @@ audio {
   padding-right: 60px;
   background-color: inherit;
 }
+.news__sidebar {
+  width: 23.75%;
+  display: inline-block;
+  vertical-align: top;
+}
+.blog__content {
+  width: 74%;
+  display: inline-block;
+}
+.blog__wrapper {
+  margin: 10px 60px;
+}
 .playlist__sidebar {
   position: relative;
   width: 23.75%;
   display: inline-block;
   vertical-align: top;
-  padding: 10px 20px;
-  padding-right: 40px;
+  padding: 10px 40px 10px 20px;
   background-color: #F6F6F6;
 }
-.playlist__sidebar:before {
+.news__next {
+  position: relative;
+  padding: 10px 40px 10px 20px;
+  vertical-align: top;
+  width: 100%;
+  margin: 10px 0;
+  background-color: #F6F6F6;
+}
+.news__support {
+  position: relative;
+  padding: 10px 40px 10px 20px;
+  vertical-align: top;
+  width: 100%;
+  margin: 10px 0;
+  background-color: #5940DE;
+  color: white;
+}
+.playlist__sidebar:before, .news__next:before, .news__support:before {
   content: "";
   position: absolute;
   top: 0;
@@ -1253,7 +1282,7 @@ audio {
   font-size: .875em;
   font-family: 'nimbus-sans', sans-serif;
   color: white;
-  padding: 10px 25px;
+  padding: 10px;
   letter-spacing: 1.5px;
   font-weight: bold;
 
@@ -1628,6 +1657,21 @@ audio {
 .staff__item > p {
   margin-bottom: 5px;
 }
+.news__schedule-button {
+  width: 100%;
+  color: black;
+  border: thin black solid;
+  margin: 10px 0;
+  text-align: center;
+  padding: 8px 22.5%;
+}
+.button__wrapper {
+  width: 100%;
+  text-align: center;
+}
+.purple-text {
+  color: #5940DE;
+}
 @-webkit-keyframes fadeOut {
   0% {
     opacity: 0;
@@ -1744,20 +1788,7 @@ audio {
     font-weight: 900;
     float: left;
   }
-  .news-list__header,
-  .shows__header,
-  .about__header,
-  .join__header,
-  .faq__header,
-  .contact__header,
-  .party-create__header,
-  .show-create__header,
-  .playlist-list__header,
-  .playlist__header,
-  .show__header,
-  .profile__header,
-  .news__title,
-  .staff__header {
+  .general__header {
     padding-left: 40px;
     padding-right: 40px;
   }
@@ -1770,7 +1801,7 @@ audio {
   .about__desc, .about__content,
   .join__desc, .join__content,
   .faq__content, .contact__content, .playlist__content,
-  .playlist-list__latest, #partyForm, #showForm, .show__wrapper {
+  .playlist-list__latest, #partyForm, #showForm, .show__wrapper, .news__content {
     padding: 40px;
   }
   .about__desc p, .about__content p,
@@ -1786,7 +1817,7 @@ audio {
     padding-left: 40px;
     padding-right: 40px;
   }
-  .home__sidebar {
+  .home__sidebar, .news__sidebar {
     width: 100%;
     padding-right: 0;
   }
@@ -1862,7 +1893,7 @@ audio {
     padding: 0 40px;
   }
   .news-list {
-    margin: 10px 40px;
+    margin: 10px 0px;
   }
   .navbar-default .navbar-toggle {
     margin-right: 0;
