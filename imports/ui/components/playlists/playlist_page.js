@@ -58,17 +58,13 @@ Template.playlistPage.helpers({
   timeBeautify: (time) => moment(time.substring(0, time.length - 3), 'HH:mm').format('hh:mm a'),
   dateFormat: (date) => moment(date).format("ddd. MMMM DD, YYYY"),
   getSidebarData: () => {
-    var d = Playlists.find({}, {sort: {showDate: -1, spinPlaylistId: -1}, limit: 12}).fetch();
-    var pluckDate = (array) => _.pluck(array, "showDate");
-    var dateEq = (d1) => +d1;
-    var uniqDate = (array) => _.uniq(array, true, dateEq);
-    var plucked = pluckDate(d);
-    var dates = uniqDate(plucked);
+    var playlistDates = Playlists.find({}, {sort: {showDate: -1, spinPlaylistId: -1}, limit: 12}).fetch();
+    var uniqDates = _.uniq(_.pluck(playlistDates, "showDate"), true, (date) => +date);
     var a = [];
-    for (var p = 0; p < dates.length; p++) {
+    for (var p = 0; p < uniqDates.length; p++) {
       var r = {};
-      r.date = dates[p];
-      r.shows = _.filter(d, (obj) => +obj.showDate === +dates[p]);
+      r.date = uniqDates[p];
+      r.shows = _.filter(playlistDates, (obj) => +obj.showDate === +uniqDates[p]);
       a.push(r);
     }
     return a;

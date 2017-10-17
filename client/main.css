@@ -975,12 +975,11 @@ audio {
   color: white;
   width: calc(100% - 60px);
 }
-.show__link a:hover, .event__link a:hover, .review__link a:hover,
-.chart__link a:hover, .playlist__link a:hover,
-.show__link a, .event__link a, .review__link a, .chart__link a,
-.playlist__link a {
+.back-to:hover, .back-to {
   color: white;
   font-size: 12px;
+  text-transform: uppercase;
+  font-family: 'nimbus-sans-extended', sans-serif;
 }
 .show__name {
   font-family: 'nimbus-sans', sans-serif;
@@ -1011,10 +1010,6 @@ audio {
 .show__header-button {
   float: right;
   margin-bottom: 10px;
-}
-.show__link-back, .event__link-back, .review__link-back, .chart__link-back {
-  text-transform: uppercase;
-  font-family: 'nimbus-sans-extended', sans-serif;
 }
 .show__playlists {
   clear: both;
@@ -1048,21 +1043,7 @@ audio {
   min-height: 50vh;
   background: #000;
 }
-.news-list__header,
-.shows__header,
-.about__header,
-.join__header,
-.faq__header,
-.contact__header,
-.party-create__header,
-.show-create__header,
-.playlist-list__header,
-.playlist__header,
-.show__header,
-.profile__header,
-.news__title,
-.staff__header,
-.events__header {
+.general__header {
   margin: 0;
   padding: 120px 0 20px 60px;
   font-weight: bold;
@@ -1071,7 +1052,7 @@ audio {
   font-family: 'nimbus-sans-extended', sans-serif;
   text-transform: uppercase;
 }
-.playlist__header a {
+.general__header a {
   color: white;
 }
 .news-list__info {

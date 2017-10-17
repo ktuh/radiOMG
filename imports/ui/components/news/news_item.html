@@ -1,8 +1,8 @@
 <template name='newsItem'>
   {{#with post}}
-  <h1 class='news__title'>{{title}}</h1>
+  <h1 class='general__header'>{{title}}</h1>
   <div class='show__link'>
-    <a href='/news' class='show__link-back'>← Back to Radioblog</a>
+    <a href='/news' class='back-to'>← Back to Radioblog</a>
   </div>
   <div class='news-item'>
     {{#if author}}<p class='news-item__author'>Posted by <a href="/profile/{{author}}">{{displayName}}</a></p>{{/if}}

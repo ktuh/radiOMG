@@ -1,8 +1,8 @@
 <template name="playlistPage">
   {{#if Template.subscriptionsReady}}
-  <h2 class='playlist__header'><a href="/shows/{{showSlug}}">{{showName}}</a> playlist - {{showDateOfCurrent}}</h2>
+  <h2 class='general__header'><a href="/shows/{{showSlug}}">{{showName}}</a> playlist - {{showDateOfCurrent}}</h2>
   <div class='playlist__link'>
-    <a href='/playlists' class='chart__link-back'>← Back to Playlists</a>
+    <a href='/playlists' class='back-to'>← Back to Playlists</a>
   </div>
   <div class='playlist__content'>
     {{#if showImage}}<a href="/shows/{{showSlug}}"><img class='playlist__show-image' src='{{showImage}}'></a>{{/if}}

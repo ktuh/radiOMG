@@ -1,10 +1,10 @@
 <template name='reviewPage'>
   {{#if Template.subscriptionsReady}}
     {{#with review}}
-      <h1 class="staff__header"><b>{{releaseName}}</b>
+      <h1 class="general__header"><b>{{releaseName}}</b>
       <br>{{artist}}</h1>
       <div class='review__link'>
-        <a href='/reviews' class='review__link-back'>← all reviews</a>
+        <a href='/reviews' class='back-to'>← all reviews</a>
       </div>
       <div class="staff__content">
         <img class='review-page__image' src='{{image.url}}'>
