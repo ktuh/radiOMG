@@ -1,7 +1,7 @@
 <template name='home'>
 {{#if Template.subscriptionsReady}}
-<div class='home__featured'>
   {{#if featuredPost}}
+  <div class='home__featured'>
     <div class='home__featured-content'>
     {{#with featuredPost}}
       <div class='home__featured-photo'>
@@ -19,8 +19,8 @@
       </div>
     {{/with}}
     </div>
+  </div>
   {{/if}}
-</div>
 <div class='home__wrapper'>
   <div class='home__main'>
     <div class='home__news'>
@@ -79,7 +79,7 @@
       </div>
     {{/with}}
     <br><br>
-    <a class="white-button home__next-show-btn" href="/shows">Program Schedule</a>
+    <p class="white-button"><a class="home__next-show-btn" href="/shows">Program Schedule</a></p>
     <br><br>
   </div>
 </div>

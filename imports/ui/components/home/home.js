@@ -17,7 +17,7 @@ Template.home.onCreated(function () {
     self.subscribe('reviewsLimited', { limit: 6, sort: { submitted: -1 }});
     self.subscribe('latestSevenWriters');
     self.subscribe('latestSevenWritersUsernames');
-    self.subscribe('latestFeaturedPost');
+    self.subscribe('latestFeaturedPosts', 1);
     self.subscribe('activeShows');
   });
 });
@@ -94,7 +94,7 @@ Template.home.helpers({
   reviews: () => Reviews.find({}, { sort: { submitted: -1 }}),
   synopsis: (body) => body.replace(/(([^\s]+\s\s*){12})(.*)/,"$1…"),
   featuredPost: () => Posts.findOne({ approved: true, featured: true },
-                                 { sort: { submitted: -1 }, limit: 1 }),
+                                    { sort: { submitted: -1 }, limit: 1 }),
   firstTag: () => {
     var featured = Posts.findOne({ approved: true, featured: true },
                   { sort: { submitted: -1 }, limit: 1 });
@@ -102,7 +102,7 @@ Template.home.helpers({
            featured.tags.length > 0 && featured.tags[0];
   },
   renderSummary: (summary, body, numWords) => {
-    if (summary && summary !== '') {
+      if (summary && summary !== '') {
       return summary;
     }
     else {

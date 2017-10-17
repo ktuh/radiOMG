@@ -7,8 +7,13 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 
 Template.newsList.onCreated(function () {
   var self = this;
-  self.pagination = new Meteor.Pagination(Posts, { sort: { showDate: -1 }, perPage: 4, filters: {approved: true}});
   self.subscribe('nextOnAir');
+  self.pagination = new Meteor.Pagination(Posts, { 
+    sort: { showDate: -1 }, 
+    perPage: 4, 
+    filters: { approved: true }
+  });
+  self.subscribe('latestFeaturedPosts', 3);
 });
 
 Template.newsList.onRendered(function () {
@@ -24,4 +29,6 @@ Template.newsList.helpers({
   getStartEndTime: (startHour, startMinute, endHour, endMinute) =>
     moment(startHour + ":" + startMinute, "HH:mm").format("h:mm") + "-" +
     moment(endHour + ":" + endMinute, "HH:mm").format("h:mm A")
+  featuredPosts: () => Posts.find({ approved: true, featured: true },
+                                  { sort: { submitted: -1 }, limit: 3 })
 });

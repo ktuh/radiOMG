@@ -57,4 +57,37 @@
       </div>
     </div>
   </div>
+  <h2 class='news-list__header'>KTUH Radioblog</h2>
+  {{#if Template.subscriptionsReady}}
+    <div class='news-list'>
+      {{#each posts}}
+        <div class='news-list__post'>
+          {{#if photo}}<a class="news-list__photo-link" href={{newsPagePath slug}}><img class='news-list__photo' src='{{photo.url}}'></a>{{/if}}
+          <div class='news-list__info'>
+            <a class='news-list__title' href={{newsPagePath slug}}><h3>{{title}}</h3></a>
+            <p class='news-list__excerpt'>{{excerpt body}}... <a href='{{newsPagePath slug}}'>Read More</a></p>
+          </div>
+        </div>
+      {{/each}}
+    </div>
+    <div class='news-list__sidebar'>
+      <h4><b>FEATURED</b></h4>
+      {{#each featuredPosts}}
+        <div>
+          <div class='news-list__featured-photo'>
+            <img class='news-list__featured-img' src='{{photo.url}}'>
+          </div>
+          <div class='news-list__featured-item'>
+            <p class='news-list__featured-category'>{{category}}</p>
+            <a href='/news/{{slug}}'>
+              <h4 class='news-list__sidebar-title'>{{title}}</h4>
+            </a>
+          </div>
+        </div>
+      {{/each}}
+    </div>
+    <div class='news-list__paginator'>
+      {{> defaultBootstrapPaginator pagination=templatePagination limit=10 containerClass="text-center" onClick=clickEvent}}
+    </div>
+  {{/if}}
 </template>
