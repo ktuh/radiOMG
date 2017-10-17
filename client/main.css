@@ -1281,10 +1281,9 @@ audio {
   font-size: .875em;
   font-family: 'nimbus-sans', sans-serif;
   color: white;
-  padding: 10px 0;
+  padding: 10px 25px;
   letter-spacing: 1.5px;
   font-weight: bold;
-
   text-transform: uppercase;
   border: thin white solid;
 }
@@ -1380,7 +1379,7 @@ audio {
   width: 100%;
 }
 .support__about {
-  padding: 20px 30vw;
+  padding: 20px 20%;
 }
 .support__heading {
   padding: 0 30px;
@@ -1456,6 +1455,7 @@ audio {
   color: #fff;
 }
 .footer p {
+  max-width: 365px;
   font-size: .875em;
 }
 .footer__logo-wrapper {
@@ -1819,6 +1819,9 @@ audio {
     vertical-align: top;
     text-align: left;
   }
+  .support__about {
+    padding: 20px 10%;
+  }
   .shows__day {
     width: initial;
   }
@@ -2061,7 +2064,7 @@ audio {
   }
 }
 @media (max-width: 600px) {
-  .home__main{
+  .home__main {
     width: 100%;
   }
   .footer__mission-wrapper {
