@@ -10,6 +10,8 @@ import moment from "moment-timezone";
 Template.playlistPage.onCreated(function(){
   var self = this;
 
+  self.subscribe('activeShows');
+
   self.autorun(function(){
     var id = parseInt(FlowRouter.getParam('id'));
 
@@ -29,6 +31,8 @@ Template.playlistPage.onCreated(function(){
       }
     });
   });
+
+  self.subscribe("playlistsLimited", {sort: {showDate: -1, spinPlaylistId: -1}, limit: 12});
 });
 
 
@@ -41,11 +45,28 @@ Template.playlistPage.helpers({
   },
   songs: () => Session.get("currentPlaylist"),
   showName: () => Shows.findOne({ showId: Playlists.findOne().showId }).showName,
-  showDate: () => moment(Playlists.findOne().showDate).tz("US/Hawaii").format("LL"),
+  showNameFromId: (id) => Shows.findOne({ showId: id }).showName,
+  showDateOfCurrent: () => moment(Playlists.findOne().showDate).tz("US/Hawaii").format("LL"),
   showSlug: () => Shows.findOne({ showId: Playlists.findOne().showId }).slug,
+  showTimeFromId: (id) => Shows.findOne({showId: id}).startHour,
+  showEndFromId: (id) => Shows.findOne({showId: id}).endHour,
   showImage: () => {
     var show = Shows.findOne({ showId: Playlists.findOne().showId });
     return (show === undefined) ? false : show.featuredImage.url;
   },
-  timeBeautify: (time) => moment(time.substring(0, time.length - 3), 'HH:mm').format('hh:mm a')
+  timeFromHours: (h1, h2) => moment(h1, "HH").format('h') + "-" + moment(h2, "HH").format('hA'),
+  timeBeautify: (time) => moment(time.substring(0, time.length - 3), 'HH:mm').format('hh:mm a'),
+  dateFormat: (date) => moment(date).format("ddd. MMMM DD, YYYY"),
+  getSidebarData: () => {
+    var playlistDates = Playlists.find({}, {sort: {showDate: -1, spinPlaylistId: -1}, limit: 12}).fetch();
+    var uniqDates = _.uniq(_.pluck(playlistDates, "showDate"), true, (date) => +date);
+    var a = [];
+    for (var p = 0; p < uniqDates.length; p++) {
+      var r = {};
+      r.date = uniqDates[p];
+      r.shows = _.filter(playlistDates, (obj) => +obj.showDate === +uniqDates[p]);
+      a.push(r);
+    }
+    return a;
+  }
 });

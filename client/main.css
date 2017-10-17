@@ -202,7 +202,7 @@ h1, h2, h3, h4, h5 {
   background: #333333;
   font-family: 'nimbus-sans';
   color: #fff;
-  text-transform: uppercase;  
+  text-transform: uppercase;
 }
 .navbar {
   position: fixed;
@@ -852,7 +852,7 @@ audio {
 .playlist__show-image {
   float: left;
   max-width: 160px;
-  margin: 10px 15px 15px 0;
+  margin: 0px 15px 15px 0;
 }
 .playlist__info-row{
   border-left: 0px;
@@ -963,13 +963,14 @@ audio {
   vertical-align: top;
   display: inline-block;
 }
-.show__link, .event__link, .chart__link {
+.show__link, .event__link, .chart__link, .playlist__link {
   position: relative;
   top: -120px;
   left: 60px;
   margin: 0;
   background-color: #262626;
   color: white;
+  width: calc(100% - 60px);
 }
 .review__link {
   position: relative;
@@ -978,11 +979,13 @@ audio {
   margin: 0;
   background-color: #262626;
   color: white;
+  width: calc(100% - 60px);
 }
-.show__link a:hover, .event__link a:hover, .review__link a:hover, .chart__link a:hover,
-.show__link a, .event__link a, .review__link a, .chart__link a {
+.back-to:hover, .back-to {
   color: white;
   font-size: 12px;
+  text-transform: uppercase;
+  font-family: 'nimbus-sans-extended', sans-serif;
 }
 .show__name {
   font-family: 'nimbus-sans', sans-serif;
@@ -1013,10 +1016,6 @@ audio {
 .show__header-button {
   float: right;
   margin-bottom: 10px;
-}
-.show__link-back, .event__link-back, .review__link-back, .chart__link-back {
-  text-transform: uppercase;
-  font-family: 'nimbus-sans-extended', sans-serif;
 }
 .show__playlists {
   clear: both;
@@ -1072,21 +1071,7 @@ audio {
   min-height: 50vh;
   background: #000;
 }
-.news-list__header,
-.shows__header,
-.about__header,
-.join__header,
-.faq__header,
-.contact__header,
-.party-create__header,
-.show-create__header,
-.playlist-list__header,
-.playlist__header,
-.show__header,
-.profile__header,
-.news__title,
-.staff__header,
-.events__header {
+.general__header {
   margin: 0;
   padding: 120px 0 20px 60px;
   font-weight: bold;
@@ -1095,7 +1080,7 @@ audio {
   font-family: 'nimbus-sans-extended', sans-serif;
   text-transform: uppercase;
 }
-.playlist__header a {
+.general__header a {
   color: white;
 }
 .news-list__info {
@@ -1246,6 +1231,54 @@ audio {
   vertical-align: top;
   padding-right: 60px;
   background-color: inherit;
+}
+.news__sidebar {
+  width: 23.75%;
+  display: inline-block;
+  vertical-align: top;
+}
+.blog__content {
+  width: 74%;
+  display: inline-block;
+}
+.blog__wrapper {
+  margin: 10px 60px;
+}
+.playlist__sidebar {
+  position: relative;
+  width: 23.75%;
+  display: inline-block;
+  vertical-align: top;
+  padding: 10px 40px 10px 20px;
+  background-color: #F6F6F6;
+}
+.news__next {
+  position: relative;
+  padding: 10px 40px 10px 20px;
+  vertical-align: top;
+  width: 100%;
+  margin: 10px 0;
+  background-color: #F6F6F6;
+}
+.news__support {
+  position: relative;
+  padding: 10px 40px 10px 20px;
+  vertical-align: top;
+  width: 100%;
+  margin: 10px 0;
+  background-color: #5940DE;
+  color: white;
+}
+.playlist__sidebar:before, .news__next:before, .news__support:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-width: 0 20px 20px 0;
+  border-style: solid;
+  border-color: #FFF #FFF #A58BFF #A58BFF;
+  display: block;
+  width: 0;
 }
 .home__next-show {
   margin: 20px 0 20px 10px;
@@ -1603,7 +1636,25 @@ audio {
   padding: 10px 60px;
 }
 .playlist__content {
+  width: 72%;
   padding: 10px 60px;
+  background-color: inherit;
+  display: inline-block;
+  clear: both;;
+}
+.playlist__sidebar-header {
+  text-transform: uppercase;
+  font-family: 'nimbus-sans', sans-serif;
+  font-weight: bold;
+}
+.playlist__sidebar-date {
+  text-transform: uppercase;
+  font-family: 'nimbus-sans-extended', sans-serif;
+  font-weight: bold;
+}
+.playlist__sidebar-link {
+  text-transform: uppercase;
+  font-family: 'nimbus-sans-extended', sans-serif;
 }
 .about__desc p, .about__content p,
 .join__desc p, .join__content p, .faq__content p,
@@ -1643,6 +1694,21 @@ audio {
 }
 .staff__item > p {
   margin-bottom: 5px;
+}
+.news__schedule-button {
+  width: 100%;
+  color: black;
+  border: thin black solid;
+  margin: 10px 0;
+  text-align: center;
+  padding: 8px 22.5%;
+}
+.button__wrapper {
+  width: 100%;
+  text-align: center;
+}
+.purple-text {
+  color: #5940DE;
 }
 @-webkit-keyframes fadeOut {
   0% {
@@ -1759,31 +1825,20 @@ audio {
     font-weight: 900;
     float: left;
   }
-  .news-list__header,
-  .shows__header,
-  .about__header,
-  .join__header,
-  .faq__header,
-  .contact__header,
-  .party-create__header,
-  .show-create__header,
-  .playlist-list__header,
-  .playlist__header,
-  .show__header,
-  .profile__header,
-  .news__title,
-  .staff__header {
+  .general__header {
     padding-left: 40px;
+    padding-right: 40px;
   }
   .landing__hnl-freq { left: -55px; }
   .landing__ns-freq { right: -45px; }
-  .show__link, .event__link, .review__link, .chart__link {
+  .show__link, .event__link, .review__link, .chart__link, .playlist__link {
     left: 40px;
+    width: calc(100% - 40px);
   }
   .about__desc, .about__content,
   .join__desc, .join__content,
   .faq__content, .contact__content, .playlist__content,
-  .playlist-list__latest, #partyForm, #showForm, .show__wrapper {
+  .playlist-list__latest, #partyForm, #showForm, .show__wrapper, .news__content {
     padding: 40px;
   }
   .about__desc p, .about__content p,
@@ -1794,14 +1849,18 @@ audio {
   .home__featured-content, .news-item {
     padding: 0 40px;
   }
-  .home__main {
+  .home__main, .playlist__content {
     width: 100%;
     padding-left: 40px;
     padding-right: 40px;
   }
-  .home__sidebar {
+  .home__sidebar, .news__sidebar {
     width: 100%;
     padding-right: 0;
+  }
+ .playlist__sidebar  {
+   width: calc(100% - 80px);
+   margin: 0 40px 10px;
   }
   .home__next-show {
     margin: 15px 40px;
@@ -2047,6 +2106,9 @@ audio {
     margin: 15px -18px;
   }
 }
+@media (max-width: 600px) {
+  .home__main, .playlist__content {
+    width: 100%;
 @media (min-width: 769px) and (max-width: 788px)
 {
   .nav.navbar-nav:nth-child(3) {

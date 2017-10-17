@@ -15,9 +15,7 @@ Meteor.publish('showBySpinitronId', (showId) => {
   return Shows.find({ showId: showId });
 });
 
-Meteor.publish('activeShows', () => {
-  return Shows.find({ active: true });
-});
+Meteor.publish('activeShows', () => Shows.find({ active: true }));
 
 Meteor.publish('showHostUserName', (id) => {
   check(id, String);
@@ -50,4 +48,27 @@ Meteor.publish('showNowPlaying', () => {
   return shows;
   // For testing purposes:
   // return Shows.find({}, {limit: 1});
+});
+
+Meteor.publish('nextOnAir', () => {
+  var d = new Date();
+  var day = d.getDay();
+  var hour = d.getHours();
+  var minute = d.getMinutes();
+  var sameDay = Shows.find({ active: true,
+                           startDay: { $gte: day },
+                           startHour: { $gte: hour },
+                           startMinute: { $gte: minute },
+                           endDay: { $lte: day },
+                           endHour: { $lte: hour},
+                           endMinute: { $lte: minute }},
+                         { sort: { startDay: 1, startHour: 1, startMinute: 1,
+                                   endDay: -1, endHour: -1, endMinute: -1 },
+                           limit: 3, skip: 1});
+  var tmr =  Shows.find({ active: true,
+                          startDay: { $gte: day + 1 % 7}},
+                        { sort: { startDay: 1, startHour: 1, startMinute: 1,
+                                endDay: -1, endHour: -1, endMinute: -1 },
+                        limit: 3});
+   return sameDay.count() === 0 ? tmr : sameDay;
 });
