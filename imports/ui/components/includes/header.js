@@ -68,7 +68,10 @@ Template.header.onRendered(function () {
                 scorpius.dictionary.get('mainPage.title', 'station\'s') + ' live stream';
             Session.set('defaultLoaded', false);
             Session.set('nowLoaded', scorpius.dictionary.get('mainPage.audioUrl', ''));
-            Bert.alert(message, 'default', 'growl-top-right', 'fa-music');
+            if (!Session.get('playedStream')) {
+              Bert.alert(message, 'default', 'growl-top-right', 'fa-music');
+              Session.set('playedStream', true);
+            }
           }
         });
         player = mediaElement; // make it available for other functions

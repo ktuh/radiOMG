@@ -21,6 +21,7 @@ Session.set('numTags', 10);
 Session.set('documentTitle', 'KTUH FM Honolulu | Radio For The People');
 Session.set('defaultLoaded', true);
 Session.set('mouseIsOverTag', false);
+Session.set('playedStream', false);
 
 Bert.defaults.hideDelay = 6000;
 Bert.icons['now-playing'] = 'fa-music';
