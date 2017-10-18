@@ -2100,12 +2100,6 @@ audio {
     padding: 0;
   }
 }
-@media (min-width: 768px) and (max-width: 768px)
-{
-  .nav.navbar-nav:nth-child(3) {
-    margin: 15px -18px;
-  }
-}
 @media (max-width: 600px) {
   .home__main, .playlist__content {
     width: 100%;
