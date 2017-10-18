@@ -358,7 +358,6 @@ h1, h2, h3, h4, h5 {
   color: #fff;
 }
 .nav.navbar-nav:nth-child(3) {
-  margin: 12px 0;
   font-weight: normal;
 }
 .nav.navbar-nav.navbar-right {
@@ -1809,6 +1808,13 @@ audio {
     font-size: .75em;
   }
 }
+@media (min-width: 768px) and (max-width: 808px) {
+  .navbar-default .navbar-nav > li > a {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+
+}
 @media (max-width: 767px) {
   .info-box__link {
     margin: 12px 0;
@@ -1987,7 +1993,7 @@ audio {
   }
   .profile__social-icons,
   .profile__show-link {
-    margin-left: 0; 
+    margin-left: 0;
   }
   .home__featured-photo {
     width: 97%;
@@ -2136,7 +2142,7 @@ audio {
   .news-list__sidebar {
     float: none;
     width: calc(100% - 80px);
-    padding: 0 25px 0 25px;    
+    padding: 0 25px 0 25px;
     margin: 0 auto;
   }
 }
