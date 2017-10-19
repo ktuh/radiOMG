@@ -96,7 +96,7 @@ Template.header.onRendered(function () {
 
 Template.header.helpers({
   musicPage: () => FlowRouter.path('music'),
-  newsPage: () => FlowRouter.path('news'),
+  newsPage: () => FlowRouter.path('radioblog'),
   partyPage: () => FlowRouter.path('party'),
   showPage: () => FlowRouter.path('show'),
   reviewsPage: () => FlowRouter.path('reviewsPage'),
