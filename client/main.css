@@ -36,7 +36,7 @@ h1 { font-size: 3em; }
 h2 { font-size: 2.25em; }
 h3 { font-size: 1.75em; }
 h4 { font-size: 1.125em; }
-h5 { font-size: .875em; }
+h5, .sm { font-size: .875em; }
 h1, h2, h3, h4, h5 {
   font-family: 'nimbus-sans-extended';
 }
@@ -1053,10 +1053,12 @@ audio {
   float: right;
   width: 31%;
   margin: 0 0 30px;
-  padding: 5px 0px 5px 0px;
 }
 .news-list__featured {
   margin: 0 0 50px 0;
+}
+.news-list__featured-img {
+  position: relative;
 }
 .news-list__featured img {
   width: 100%;
@@ -1074,8 +1076,9 @@ audio {
   text-transform: uppercase;
 }
 .news-list__info {
+  width: 66%;
   text-align: left;
-  width: 75%;
+  margin-top: 12px;
 }
 .news-list__photo-link {
   width: 45%;
@@ -1117,17 +1120,9 @@ audio {
   padding: 10px 20px 10px 20px;
   vertical-align: top;
   width: 100%;
-  margin: 10px 0;
+  margin: 0 0 25px;
   background-color: #5940DE;
   color: white;
-}
-.news-list__schedule-button {
-  width: 100%;
-  color: black;
-  border: thin black solid;
-  margin: 10px 0;
-  text-align: center;
-  padding: 8px 22.5%;
 }
 .news-list__latest-reviews h4 {
   font-family: 'nimbus-sans-extended';
@@ -1239,6 +1234,7 @@ audio {
   vertical-align: top;
 }
 .home__featured-photo {
+  position: relative;
   width: 49%;
   display: inline-block;
 }
@@ -1273,9 +1269,9 @@ audio {
   background-color: inherit;
 }
 .purple-tag {
-    position: relative;
-    left: 16px;
-    top: 55px;
+    position: absolute;
+    right: -16px;
+    top: 35px;
     float: right;
     padding: 6px 14px;
     font-family: 'nimbus-sans';
@@ -1335,15 +1331,15 @@ audio {
 }
 .white-button {
   max-width: 250px;
-  font-size: .875em;
   padding: 10px 25px;
   margin: 15px 0;
   border: 1px #5940DE solid;
   background: #fff;
   font-family: 'nimbus-sans', sans-serif;
+  font-size: .875em;
+  font-weight: bold;
   color: #5940DE;
   letter-spacing: 1.5px;
-  font-weight: bold;
   text-transform: uppercase;
 }
 .white-button:hover {
@@ -1353,14 +1349,17 @@ audio {
   border: 1px #fff solid;
 }
 .purple-button {
-  font-size: .875em;
-  font-family: 'nimbus-sans', sans-serif;
-  background-color: #5940de;
-  color: #fff;
+  max-width: 250px;
   padding: 10px 25px;
+  margin: 15px 0;
+  border: 1px #fff solid;
+  background: #5940de;
+  font-family: 'nimbus-sans', sans-serif;
+  font-size: .875em;
+  font-weight: bold;
+  color: #fff;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  text-decoration: none;
 }
 .purple-button:hover,
 .purple-button:hover a {
@@ -1724,7 +1723,7 @@ audio {
 }
 .button__wrapper {
   width: 100%;
-  margin: 25px 0 30px;
+  margin: 25px 0;
   text-align: center;
 }
 .purple-text {

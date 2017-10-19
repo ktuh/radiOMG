@@ -5,24 +5,28 @@
     <div class='news-list'>
       {{#with featuredPost}}
         <div class='news-list__featured'>
-          <div>
+          <div class='news-list__featured-img'>
+            <img src='{{photo.url}}'>
             <span class='purple-tag'>Featured</span>
-            <img class='news-list__featured-img' src='{{photo.url}}'>
           </div>
           <div class='news-list__featured-item'>
             <p class='news-list__featured-category'>{{category}}</p>
             <a href='/radioblog/{{slug}}'><h2 class='news-list__featured-title'>{{title}}</h2></a>
-            <p>{{excerpt body}}...&nbsp;&nbsp;</p>
-            <p><span class='purple-text'>by <a href='/profile/{{userId}}'>{{author}}</a></span> / {{getTime submitted}}</p>
+            <p>{{excerpt body}}&nbsp;&nbsp;<a class='purple-text' href='{{newsPagePath slug}}'><i>Read On</i></a></p>
+            <br>
+            <p>by {{author}} / {{getTime submitted}}</p>
           </div>
         </div>
       {{/with}}
       {{#each posts}}
         <div class='news-list__post'>
+          <span class='purple-tag'>{{category}}</span>
           {{#if photo}}<a class="news-list__photo-link" href={{newsPagePath slug}}><img class='news-list__photo' src='{{photo.url}}'></a>{{/if}}
           <div class='news-list__info'>
             <a class='news-list__title' href={{newsPagePath slug}}><h3>{{title}}</h3></a>
-            <p class='news-list__excerpt'>{{excerpt body}}...&nbsp;&nbsp;<a href='{{newsPagePath slug}}'>Read More</a></p>
+            <p class='news-list__excerpt'>{{excerpt body}}&nbsp;&nbsp;<a class='purple-text' href='{{newsPagePath slug}}'><i>Read On</i></a></p>
+            <br>
+            <p>by {{author}} / {{getTime submitted}}</p>
           </div>
         </div>
       {{/each}}
@@ -42,12 +46,9 @@
         from UHM student fees, KTUH also
         looks to donations from the community.
       </p>
-    </div>
-    <div class='button__wrapper'>
-      <a class="white-button news__schedule-button purple-text"
-      href="https://www.uhfoundation.org/give/giving-gift.aspx?school_code=ktuh">
-        Donate Today
-      </a>
+      <div class='button__wrapper'>
+        <a class='purple-button' href='https://www.uhfoundation.org/give/giving-gift.aspx?school_code=ktuh'>Donate Today</a>
+      </div>
     </div>
     <div class='news-list__latest-reviews'>
       <h4>LATEST REVIEWS</h4>
