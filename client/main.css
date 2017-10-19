@@ -863,7 +863,7 @@ audio {
   border-style: solid;
 }
 .playlist td {
-  padding: 2px 15px 2px 0;
+  padding: 10px;
 }
 .playlist__artist,
 .playlist__title,
@@ -1043,10 +1043,21 @@ audio {
   background-color: #1C1C1C;
   color: white;
 }
+.show__latest-header{
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #AF96FF;
+}
+.show__latest-date {
+  text-transform: uppercase;
+  font-weight: bold;
+}
 .show__latest select {
   color: black;
   font-family: 'nimbus-sans-extended', sans-serif;
-  padding: 10px;
+  text-transform: uppercase;
+  padding: 10px 40px !important;
+  margin: 5px 0;
   text-align: center;
   border: none;
   box-shadow: none;
@@ -1054,9 +1065,13 @@ audio {
   padding: 10px;
   background-image: none;
   -webkit-appearance: none;
+  border-radius: 0;
 }
 .show__latest select:focus {
   outline: none;
+}
+.alternating:nth-child(2n+1) {
+  background-color: #373737;
 }
 .news-list {
   float: left;

@@ -37,25 +37,28 @@
   </div>
   {{#if latestPlaylist}}
     <div class='show__latest'>
-      <h4 class='show__latest-header'>Latest Episode</h4>
-      <h2>{{dateBeautify (latestPlaylist.showDate)}}</h2>
+      <h5 class='show__latest-header'>Latest Episode</h5>
+      <h2 class='show__latest-date'>{{time (latestPlaylist.showDate)}}</h2>
       {{#if pastPlaylists}}
         <select>
           <option value="" disabled selected>Past Playlists &#x25BC;</option>
-          {{#each pastPlaylists}}
-            <option value="{{showDate}}">{{dateBeautify showDate}}</option>
+          {{#each playlistsByYear}}
+            <option value="" disabled>{{year}}</option>
+            {{#each shows}}
+              <option value="{{spinPlaylistId}}">{{time showDate}}</option>
+            {{/each}}
           {{/each}}
         </select>
       {{/if}}
       <div class='show__latest-playlist'>
         <table class="playlist">
           <tr class="playlist__info-row">
-            <td><b>Time</b></td>
+            <td><b><i class="fa fa-clock-o" aria-hidden="true"></i></b></td>
             <td><b>Artist</b></td>
             <td><b>Song</b></td>
           </tr>
           {{#each actualPlaylist}}
-          <tr>
+          <tr class='alternating'>
             <td class='playlist__timestamp'>{{timeBeautify2 Timestamp}}</td>
             <td class='playlist__artist'>{{ArtistName}}</td>
             <td class='playlist__title'>{{SongName}}</td>

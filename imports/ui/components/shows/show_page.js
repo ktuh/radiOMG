@@ -14,17 +14,19 @@ Template.showPage.onCreated(function() {
       onReady: function() {
         var show = Shows.findOne({ slug: slug });
         Session.set('documentTitle', show.showName);
-        self.subscribe('showPlaylists', show.showId);
         self.subscribe('comments', show._id);
         self.subscribe('showHostUserName', show.userId);
-
-        var latest = Playlists.findOne({}, {sort: {showDate: -1}});
-        if (latest !== undefined) {
-          Meteor.call("getPlaylist", parseInt(latest.spinPlaylistId), function(error, result) {
-            if (!error && result)
-              Session.set("currentPlaylist", result);
-          });
-        }
+        self.subscribe('showPlaylists', show.showId, {
+          onReady: function() {
+            var latest = Playlists.findOne({}, {sort: {showDate: -1}});
+            if (latest !== undefined) {
+              Meteor.call("getPlaylist", parseInt(latest.spinPlaylistId), function(error, result) {
+                if (!error && result)
+                  Session.set("currentPlaylist", result);
+                });
+              }
+            }
+        });
       }
     });
   });
@@ -35,10 +37,22 @@ Template.showPage.helpers({
   lessThanTen: (n) => Math.abs(n) < 10,
   ownShow: () => Meteor.userId() && Shows.findOne() &&
                  Shows.findOne().userId == Meteor.userId(),
-  time: (t) => moment(t).format('dddd, MMMM Do YYYY'),
-  playlists: () => Playlists.find({}, {sort: {showDate: -1}}),
-  latestPlaylist: () => Playlists.findOne({}, {sort: {showDate: -1}}),
-  pastPlaylists: () => Playlists.find({}, {sort: {showDate: -1}, skip: 1}),
+  time: (t) => moment(t).format('ddd. MMM. D, YYYY'),
+  playlists: () => Playlists.find({}, { sort: { showDate: -1 } }),
+  latestPlaylist: () => Playlists.findOne({}, { sort: { showDate: -1 } }),
+  pastPlaylists: () => Playlists.find({}, { sort: { showDate: -1 }, skip: 1}),
+  playlistsByYear: () => {
+    var playlistDates = Playlists.find({}, {sort: {showDate: -1}, skip: 1}).fetch();
+    var uniqDates = _.uniq(_.map(_.pluck(playlistDates, "showDate"), (obj) => obj.getFullYear()), true, (date) => +date);
+    var a = [];
+    for (var p = 0; p < uniqDates.length; p++) {
+      var r = {};
+      r.year = uniqDates[p];
+      r.shows = _.filter(playlistDates, (obj) => obj.showDate.getFullYear() === uniqDates[p]);
+      a.push(r);
+    }
+    return a;
+  },
   slug: () => FlowRouter.getParam('slug'),
   profileUrl: function(id) {
     var user = Meteor.users.findOne({ _id: id });
@@ -55,7 +69,6 @@ Template.showPage.helpers({
     moment(endHour + ":" + endMinute, "HH:mm").format("h:mmA"),
   timeBeautify2: (h, m) => moment(h + ":" + m, "HH:mm").format("h:mma"),
   genreString: (genres) => genres.join(', '),
-  dateBeautify: (date) => moment(date).format('ddd. MMM DD YYYY'),
   actualPlaylist: () => Session.get("currentPlaylist")
 });
 
@@ -83,5 +96,8 @@ Template.showPage.events({
     else if (!player.paused) {
       player.pause();
     }
+  },
+  'change select': function(evt) {
+    FlowRouter.go("/playlists/" + $(evt.target).val());
   }
 });
