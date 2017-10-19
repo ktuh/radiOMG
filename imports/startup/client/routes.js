@@ -63,15 +63,15 @@ FlowRouter.route('/music', {
   }
 });
 
-FlowRouter.route('/news', {
-  name: 'news',
+FlowRouter.route('/radioblog', {
+  name: 'radioblog',
   action: function () {
     BlazeLayout.render('layout', {content: 'newsList'});
   }
 });
 
-FlowRouter.route('/news/:slug', {
-  name: 'newsPage',
+FlowRouter.route('/radioblog/:slug', {
+  name: 'blogPage',
   action: function () {
     BlazeLayout.render('layout', {content: 'newsItem'});
   }

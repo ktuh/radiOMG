@@ -3,6 +3,7 @@ import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import Posts from '../../../api/posts/posts_collection.js';
 import Shows from '../../../api/shows/shows_collection.js';
+import Reviews from '../../../api/reviews/reviews_collection.js';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 
 Template.newsList.onCreated(function () {
@@ -13,7 +14,8 @@ Template.newsList.onCreated(function () {
     perPage: 4, 
     filters: { approved: true }
   });
-  self.subscribe('latestFeaturedPosts', 3);
+  self.subscribe('latestFeaturedPosts', 1);
+  self.subscribe('reviewsLimited', { limit: 6, sort: { submitted: -1 }});
 });
 
 Template.newsList.onRendered(function () {
@@ -29,6 +31,8 @@ Template.newsList.helpers({
   getStartEndTime: (startHour, startMinute, endHour, endMinute) =>
     moment(startHour + ":" + startMinute, "HH:mm").format("h:mm") + "-" +
     moment(endHour + ":" + endMinute, "HH:mm").format("h:mm A"),
-  featuredPosts: () => Posts.find({ approved: true, featured: true },
-                                  { sort: { submitted: -1 }, limit: 3 })
+  featuredPost: () => Posts.findOne({ approved: true, featured: true },
+                                    { sort: { submitted: -1 }, limit: 1 }),
+  reviews: () => Reviews.find({}, {sort: {submitted: -1}}),
+  getTime: (str) => moment(str).fromNow(),
 });

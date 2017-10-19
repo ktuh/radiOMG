@@ -3,12 +3,26 @@
 <div class='news-list__wrapper'>
   <div class='news-list__content'>
     <div class='news-list'>
+      {{#with featuredPost}}
+        <div class='news-list__featured'>
+          <div>
+            <span class='purple-tag'>Featured</span>
+            <img class='news-list__featured-img' src='{{photo.url}}'>
+          </div>
+          <div class='news-list__featured-item'>
+            <p class='news-list__featured-category'>{{category}}</p>
+            <a href='/radioblog/{{slug}}'><h2 class='news-list__featured-title'>{{title}}</h2></a>
+            <p>{{excerpt body}}...&nbsp;&nbsp;</p>
+            <p><span class='purple-text'>by <a href='/profile/{{userId}}'>{{author}}</a></span> / {{getTime submitted}}</p>
+          </div>
+        </div>
+      {{/with}}
       {{#each posts}}
         <div class='news-list__post'>
           {{#if photo}}<a class="news-list__photo-link" href={{newsPagePath slug}}><img class='news-list__photo' src='{{photo.url}}'></a>{{/if}}
           <div class='news-list__info'>
             <a class='news-list__title' href={{newsPagePath slug}}><h3>{{title}}</h3></a>
-            <p class='news-list__excerpt'>{{excerpt body}}... <a href='{{newsPagePath slug}}'>Read More</a></p>
+            <p class='news-list__excerpt'>{{excerpt body}}...&nbsp;&nbsp;<a href='{{newsPagePath slug}}'>Read More</a></p>
           </div>
         </div>
       {{/each}}
@@ -19,27 +33,6 @@
   </div>
 
   <div class='news-list__sidebar'>
-    {{#if nextOnAir}}
-    <div class='news-list__next'>
-      <p class="playlist__sidebar-header">Next On Air</p>
-      {{#each nextOnAir}}
-        <div class='home__next-show-info'>
-          <div class='home__next-show-deets'>
-            <p class='home__next-show-time'>
-              {{getStartEndTime startHour startMinute endHour endMinute}}
-            </p>
-            <p class='home__next-show-name'>{{showName}}</p>
-            <p class='home__next-show-host'>{{host}}</p>
-          </div>
-        </div>
-      {{/each}}
-    </div>
-    <div class='button__wrapper'>
-      <a class="white-button news-list__schedule-button" href="/shows">
-        Program Schedule
-      </a>
-    </div>
-    {{/if}}
     <div class='news-list__support'>
       <p class="playlist__sidebar-header">SUPPORT COLLEGE RADIO</p>
       <p>
@@ -56,20 +49,16 @@
         Donate Today
       </a>
     </div>
-    <h4><b>FEATURED</b></h4>
-    {{#each featuredPosts}}
-      <div>
-        <div class='news-list__featured-photo'>
-          <img class='news-list__featured-img' src='{{photo.url}}'>
+    <div class='news-list__latest-reviews'>
+      <h4>LATEST REVIEWS</h4>
+      {{#each reviews}}
+        <div class='news-list__latest-review'>
+          <img src='{{image.url}}' />
+          <p><b>{{artist}}</b></p>
+          <p>{{releaseName}}</p>
         </div>
-        <div class='news-list__featured-item'>
-          <p class='news-list__featured-category'>{{category}}</p>
-          <a href='/news/{{slug}}'>
-            <h4 class='news-list__sidebar-title'>{{title}}</h4>
-          </a>
-        </div>
-      </div>
-    {{/each}}
+      {{/each}}
+    </div>
   </div>
 </div>
 </template>

@@ -10,7 +10,7 @@
       </div>
       <div class='home__featured-item'>
         <p class='home__featured-category'>{{category}}</p>
-        <a href='/news/{{slug}}'>
+        <a href='/radioblog/{{slug}}'>
           <h3 class='home__title'>{{title}}</h3>
         </a>
         <p class='home__synopsis'>
@@ -26,12 +26,12 @@
     <div class='home__news'>
     {{#if posts}}
       <h3 class='home__section'>RADIOBLOG</h3>
-      <a href='/news' class='home__more'>MORE NEWS&nbsp;&nbsp;<span class='glyphicon glyphicon-arrow-right'></span></a>
+      <a href='/radioblog' class='home__more'>MORE NEWS&nbsp;&nbsp;<span class='glyphicon glyphicon-arrow-right'></span></a>
     {{/if}}
     <div class='home__news-content'>
       {{#each posts}}
       <div class='home__news-item'>
-        <a href='/news/{{slug}}'>
+        <a href='/radioblog/{{slug}}'>
           <img class='home__news-img' src='{{photo.url}}'>
           <h4 class='home__title'>{{title}}</h4>
         </a>

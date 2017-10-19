@@ -15,7 +15,7 @@ Template.newsItem.onCreated(function () {
       onReady: function() {
         var post = Posts.findOne({slug: slug});
         if (post === undefined) {
-          FlowRouter.go('/news');
+          FlowRouter.go('/radioblog');
         }
 
         self.subscribe('comments', post._id);

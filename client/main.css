@@ -1047,16 +1047,23 @@ audio {
 }
 .news-list {
   float: left;
-  margin: 10px 0 0;
   padding: 0 40px 0 60px;
-  text-align: center;
 }
 .news-list__sidebar {
   float: right;
   width: 31%;
-  margin: 10px 0 30px;
-  padding: 5px 20px;
-  border: 1px solid;
+  margin: 0 0 30px;
+  padding: 5px 0px 5px 0px;
+}
+.news-list__featured {
+  margin: 0 0 50px 0;
+}
+.news-list__featured img {
+  width: 100%;
+}
+.news-list__featured-title {
+  font-family: 'alda';
+  font-weight: bold;
 }
 .news-list__featured-category {
   padding: 3px 15px;
@@ -1066,17 +1073,13 @@ audio {
   background-color: #333;
   text-transform: uppercase;
 }
-.news-list__sidebar-title {
-  margin: 0 10px 18px;
-  font-family: 'alda';
-}
 .news-list__info {
   text-align: left;
   width: 75%;
 }
 .news-list__photo-link {
   width: 45%;
-  padding: 0 20px 20px 0;
+  padding: 0 20px 0 0;
 }
 .news-list__post {
   display: inline-flex;
@@ -1100,6 +1103,52 @@ audio {
 }
 .news-item, .event-item {
   padding: 10px 60px;
+}
+.news-list__next {
+  position: relative;
+  padding: 10px 40px 10px 20px;
+  vertical-align: top;
+  width: 100%;
+  margin: 10px 0;
+  background-color: #F6F6F6;
+}
+.news-list__support {
+  position: relative;
+  padding: 10px 20px 10px 20px;
+  vertical-align: top;
+  width: 100%;
+  margin: 10px 0;
+  background-color: #5940DE;
+  color: white;
+}
+.news-list__schedule-button {
+  width: 100%;
+  color: black;
+  border: thin black solid;
+  margin: 10px 0;
+  text-align: center;
+  padding: 8px 22.5%;
+}
+.news-list__latest-reviews h4 {
+  font-family: 'nimbus-sans-extended';
+  font-weight: bold;
+}
+.news-list__latest-review {
+  height: 120px;
+  margin: 0 0 20px 0;
+}
+.news-list__latest-review p {
+  margin-bottom: 4px;
+  font-family: 'nimbus-sans';
+  text-transform: uppercase;
+}
+.news-list__latest-review p:first-of-type {
+  padding-top: 20px;
+}
+.news-list__latest-review img {
+  width: 120px;
+  float: left;
+  margin-right: 15px;
 }
 .news-item h1,
 .news-item h3,
@@ -1225,11 +1274,12 @@ audio {
 }
 .purple-tag {
     position: relative;
-    left: calc(100% - 80px);
+    left: 16px;
     top: 55px;
-    max-width: 60px;
+    float: right;
     padding: 6px 14px;
     font-family: 'nimbus-sans';
+    color: white;
     letter-spacing: 1px;
     font-weight: bold;
     background: #5940de;
@@ -1242,23 +1292,6 @@ audio {
   vertical-align: top;
   padding: 10px 40px 10px 20px;
   background-color: #F6F6F6;
-}
-.news-list__next {
-  position: relative;
-  padding: 10px 40px 10px 20px;
-  vertical-align: top;
-  width: 100%;
-  margin: 10px 0;
-  background-color: #F6F6F6;
-}
-.news-list__support {
-  position: relative;
-  padding: 10px 20px 10px 20px;
-  vertical-align: top;
-  width: 100%;
-  margin: 10px 0;
-  background-color: #5940DE;
-  color: white;
 }
 .playlist__sidebar:before, .news-list__next:before, .news-list__support:before {
   content: "";
@@ -1303,25 +1336,27 @@ audio {
 .white-button {
   max-width: 250px;
   font-size: .875em;
-  font-family: 'nimbus-sans', sans-serif;
-  color: white;
   padding: 10px 25px;
   margin: 15px 0;
+  border: 1px #5940DE solid;
+  background: #fff;
+  font-family: 'nimbus-sans', sans-serif;
+  color: #5940DE;
   letter-spacing: 1.5px;
   font-weight: bold;
   text-transform: uppercase;
-  border: 1px #5940DE solid;
 }
 .white-button:hover {
-  background-color: white;
-  color: #222222;
+  background-color: #5940DE;
+  color: #fff;
   text-decoration: none;
+  border: 1px #fff solid;
 }
 .purple-button {
   font-size: .875em;
   font-family: 'nimbus-sans', sans-serif;
   background-color: #5940de;
-  color: white;
+  color: #fff;
   padding: 10px 25px;
   letter-spacing: 1.5px;
   text-transform: uppercase;
@@ -1329,7 +1364,7 @@ audio {
 }
 .purple-button:hover,
 .purple-button:hover a {
-  background-color: white;
+  background-color: #fff;
   color: #5940de;
   text-decoration: none;
 }
@@ -1687,17 +1722,9 @@ audio {
 .staff__item > p {
   margin-bottom: 5px;
 }
-.news-list__schedule-button {
-  width: 100%;
-  color: black;
-  border: thin black solid;
-  margin: 10px 0;
-  text-align: center;
-  padding: 8px 22.5%;
-}
 .button__wrapper {
   width: 100%;
-  margin: 25px 0;
+  margin: 25px 0 30px;
   text-align: center;
 }
 .purple-text {
