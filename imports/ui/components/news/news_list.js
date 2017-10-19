@@ -24,7 +24,7 @@ Template.newsList.onRendered(function () {
 
 Template.newsList.helpers({
   newsPagePath: (slug) => FlowRouter.path('news/:slug', { slug: slug }),
-  excerpt: (body) => body.replace(/(([^\s]+\s\s*){100})(.*)/,"$1…"),
+  excerpt: (body) => body.replace(/(([^\s]+\s\s*){60})(.*)/,"$1…"),
   posts: () => Template.instance().pagination.getPage(),
   templatePagination: () => Template.instance().pagination,
   nextOnAir: () => Shows.find({}).fetch(),
@@ -34,5 +34,5 @@ Template.newsList.helpers({
   featuredPost: () => Posts.findOne({ approved: true, featured: true },
                                     { sort: { submitted: -1 }, limit: 1 }),
   reviews: () => Reviews.find({}, {sort: {submitted: -1}}),
-  getTime: (str) => moment(str).fromNow(),
+  getTime: (str) => moment(str).fromNow()
 });
