@@ -797,7 +797,7 @@ audio {
 }
 .profile__left {
   width: 255px;
-  margin: 25px 20px 30px 10%;
+  margin: 25px 0;
   display: inline-block;
   vertical-align: top;
 }
@@ -807,7 +807,7 @@ audio {
 }
 .profile__info {
   max-width: 400px;
-  margin: 20px 10% 0 0;
+  margin: 20px 0 0 20px;
   display: inline-block;
 }
 .profile__info h4 {
@@ -1406,6 +1406,9 @@ audio {
   color: #5940de;
   text-decoration: none;
 }
+.profile__show-button {
+  padding: 10px;
+}
 .home__reviews-item {
   display: inline-block;
   width: 16.66%;
@@ -1718,6 +1721,7 @@ audio {
   font-family: 'nimbus-sans-extended', sans-serif;
   font-weight: bold;
   text-transform: uppercase;
+  margin-top: 0px;
 }
 .faq__answer {
   display: none;
@@ -1751,7 +1755,7 @@ audio {
   font-family: 'nimbus-sans-extended', sans-serif;
 }
 .about__desc p, .about__content p,
-.join__desc p, .join__content p, .faq__content p,
+.join__desc p, .join__content p,
 .contact__content p, .contact__content h4, .contact__content form {
   padding: 5px 192px;
 }
@@ -1761,11 +1765,22 @@ audio {
   text-transform: uppercase;
 }
 .faq__question {
-  margin-bottom: 0;
+  margin-bottom: 10px;
   text-decoration: underline;
 }
 .faq__answer {
   margin-top: 0;
+}
+.faq__section-qna-pair .toggle {
+  margin-left: 5px;
+  display: inline-block;
+  font-weight: bold;
+  vertical-align: top;
+}
+.faq__section-qna-content {
+  display: inline-block;
+  width: 98%;
+  margin-left: 4px;
 }
 .contact__comment-form textarea {
   width: 45%;
