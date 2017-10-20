@@ -1688,10 +1688,39 @@ audio {
 }
 .about__content,
 .join__content,
-.faq__content,
 .contact__content
 {
   padding: 30px;
+}
+.faq__content {
+  padding: 60px;
+  background-color: #222222;
+  color: white;
+}
+.faq__section {
+  display: inline-block;
+  width: 100%;
+}
+.faq__section-qna {
+  float: right;
+  display: inline-block;
+  width: 85%;
+}
+.faq__section-qna a {
+  color: white;
+}
+.faq__section-header {
+  display: inline-block;
+  width: 140px;
+  vertical-align: top;
+}
+.faq__section-header h4 {
+  font-family: 'nimbus-sans-extended', sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.faq__answer {
+  display: none;
 }
 .playlist-list__latest {
   width: 66%;
