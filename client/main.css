@@ -797,7 +797,7 @@ audio {
 }
 .profile__left {
   width: 255px;
-  margin: 25px 20px 30px 10%;
+  margin: 25px 0;
   display: inline-block;
   vertical-align: top;
 }
@@ -807,7 +807,7 @@ audio {
 }
 .profile__info {
   max-width: 400px;
-  margin: 20px 10% 0 0;
+  margin: 20px 0 0 20px;
   display: inline-block;
 }
 .profile__info h4 {
@@ -1405,6 +1405,9 @@ audio {
   background-color: #fff;
   color: #5940de;
   text-decoration: none;
+}
+.profile__show-button {
+  padding: 10px;
 }
 .home__reviews-item {
   display: inline-block;
