@@ -13,15 +13,16 @@
             <p class='news-list__featured-category'>{{category}}</p>
             <a href='/radioblog/{{slug}}'><h2 class='news-list__featured-title'>{{title}}</h2></a>
             <p>{{excerpt body}}&nbsp;&nbsp;<a class='purple-text' href='{{newsPagePath slug}}'><i>Read On</i></a></p>
-            <br>
-            <p>by {{author}} / {{getTime submitted}}</p>
+            <p class='news-list__byline'>by {{author}} / {{getTime submitted}}</p>
           </div>
         </div>
       {{/with}}
       {{#each posts}}
         <div class='news-list__post'>
-          <span class='purple-tag'>{{category}}</span>
-          {{#if photo}}<a class="news-list__photo-link" href={{newsPagePath slug}}><img class='news-list__photo' src='{{photo.url}}'></a>{{/if}}
+          <div class='news-list__post-image'>
+            <span class='purple-tag'>{{category}}</span>
+            {{#if photo}}<a class="news-list__photo-link" href={{newsPagePath slug}}><img class='news-list__photo' src='{{photo.url}}'></a>{{/if}}
+          </div>
           <div class='news-list__info'>
             <a class='news-list__title' href={{newsPagePath slug}}><h3>{{title}}</h3></a>
             <p class='news-list__excerpt'>{{excerpt body}}&nbsp;&nbsp;<a class='purple-text' href='{{newsPagePath slug}}'><i>Read On</i></a></p>

@@ -23,7 +23,7 @@ Template.newsList.onRendered(function () {
 });
 
 Template.newsList.helpers({
-  newsPagePath: (slug) => FlowRouter.path('news/:slug', { slug: slug }),
+  newsPagePath: (slug) => FlowRouter.path('radioblog/:slug', { slug: slug }),
   excerpt: (body) => body.replace(/(([^\s]+\s\s*){60})(.*)/,"$1…"),
   posts: () => Template.instance().pagination.getPage(),
   templatePagination: () => Template.instance().pagination,

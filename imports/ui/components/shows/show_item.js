@@ -13,9 +13,11 @@ Template.showItem.onCreated(function() {
 });
 
 Template.showItem.helpers({
-  formattedTime: (startHour, startMinute, endHour, endMinute) =>
-    moment(startHour + ":" + startMinute, "HH:mm").format("h:mm") + "-" +
-    moment(endHour + ":" + endMinute, "HH:mm").format("h:mm A"),
+  formattedTime: (startHour, startMinute, endHour, endMinute) => {
+    let time = moment(startHour + ":" + startMinute, "HH:mm").format("h") + "-" +
+               moment(endHour + ":" + endMinute, "HH:mm").format("hA");
+    return time.substr(0, time.length-1)
+  },
   profileLink: (id) => {
     var user = Meteor.users.findOne({ _id: id });
     if (user !== undefined)
