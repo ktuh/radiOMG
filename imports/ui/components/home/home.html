@@ -21,11 +21,11 @@
     </div>
   </div>
   {{/if}}
-<div class='home__wrapper'>
+<div class='content'>
   <div class='home__main'>
     <div class='home__news'>
     {{#if posts}}
-      <h3 class='home__section'>RADIOBLOG</h3>
+      <a href='/radioblog'><h3 class='home__section'>RADIOBLOG</h3></a>
       <a href='/radioblog' class='home__more'>MORE NEWS&nbsp;&nbsp;<span class='glyphicon glyphicon-arrow-right'></span></a>
     {{/if}}
     <div class='home__news-content'>
@@ -45,7 +45,7 @@
   </div>
   <div class='home__reviews'>
     {{#if reviews}}
-      <h3 class="home__section">MUSIC REVIEWS</h3>
+      <a href='/radioblog'><h3 class="home__section">MUSIC REVIEWS</h3></a>
       <a href='/reviews' class='home__more'>MORE REVIEWS&nbsp;&nbsp; <span class='glyphicon glyphicon-arrow-right'></span></a>
     {{/if}}
     <div class='home__reviews-content'>
@@ -63,10 +63,10 @@
 </div>
 <div class='home__sidebar'>
   <div class='home__next-show'>
-    <p class="home__next-on-air">Next On Air</p>
     {{#with getNextShow}}
       <div class='home__next-show-info'>
         <div class='home__next-show-deets'>
+          <p class="home__next-on-air">Next On Air</p>
           <p class='home__next-show-name'>{{showName}}</p>
           <p class='home__next-show-host'>hosted by {{host}}</p>
           <p class='home__next-show-time'>
@@ -78,9 +78,7 @@
         </div>
       </div>
     {{/with}}
-    <br><br>
     <p class="white-button"><a class="home__next-show-btn" href="/shows">Program Schedule</a></p>
-    <br><br>
   </div>
 </div>
 </div>

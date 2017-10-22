@@ -43,16 +43,18 @@ FlowRouter.notFound = {
 };
 
 FlowRouter.triggers.enter(
-  [function() {
+  [
+    function() {
       $('head meta[data-flow-router-seo="true"]').removeAttr("data-flow-router-seo");
-  }],
-  { except: ['home'] }
+      $('#navigation').removeClass('in');
+      window.scrollTo(0, 0);
+    }
+  ]
 );
 
 FlowRouter.route('/', {
   name: 'home',
   action: function () {
-    $('head meta[data-flow-router-seo="true"]').removeAttr("data-flow-router-seo");
     BlazeLayout.render('layout', {content: 'home'});
   }
 });

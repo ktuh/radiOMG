@@ -6,6 +6,7 @@
     </div>
     <div class='show-item__info-container'>
       <div class='show-item__info'>
+        <h5 class='show-item__info-time'>{{formattedTime startHour startMinute endHour endMinute}}</h5>
         <h4><a href='/shows/{{slug}}'>{{showName}}</a></h4>
         <h5>Hosted by <a class='show-item__host purple-text' href='{{profileLink userId}}'>{{host}}</a></h5>
         <p>{{synopsis}}</p>

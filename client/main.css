@@ -40,6 +40,10 @@ h5, .sm { font-size: .875em; }
 h1, h2, h3, h4, h5 {
   font-family: 'nimbus-sans-extended';
 }
+.flex {
+  display: flex;
+  justify-content: space-between;
+}
 .caps {
   text-transform: uppercase;
 }
@@ -92,6 +96,9 @@ h1, h2, h3, h4, h5 {
   clear: both;
   margin-bottom: 5px;
   pointer-events: auto;
+}
+.content {
+  padding: 20px 60px 30px;
 }
 .landing {
   position: fixed;
@@ -341,12 +348,14 @@ h1, h2, h3, h4, h5 {
 }
 .header__submenu-support {
   display: none;
-  background: #333;
 }
 .header__submenu-support button {
   margin: 8px 15px 8px;
   padding: 6px 10px 8px 10px;
   border: 1px solid #fff;
+  border-radius: 0;
+  font-weight: bold;
+  text-transform: uppercase;
   background-color: transparent;
 }
 .header__submenu-support a {
@@ -862,6 +871,9 @@ audio {
 .playlist tr:nth-child(2n) {
   background: rgba(247,247,247);
 }
+.playlist__show-name {
+  margin-top: 0;
+}
 .playlist__show-image {
   float: left;
   max-width: 160px;
@@ -899,7 +911,6 @@ audio {
   display: inline-block;
   border: thin solid #333;
   width: 14.285%;
-  min-width: 95px;
   padding: 8px 0;
   font-size: 14px;
 }
@@ -907,6 +918,9 @@ audio {
   margin: 10px 0 10px;
   font-family: 'nimbus-sans', sans-serif;
   text-transform: uppercase;
+}
+.shows__days__narrow {
+  display: none;
 }
 .shows__previous-day {
   float: left;
@@ -942,9 +956,9 @@ audio {
 }
 .show-item {
   display: inline-flex;
+  align-items: center;
   width: 100%;
   padding: 20px 0;
-  align-items: center;
   border-bottom: 1px solid #ddd;
 }
 .show-item:last-of-type {
@@ -957,15 +971,16 @@ audio {
   font-weight: bold;
   text-transform: uppercase;
 }
-.show-item__image {
+.show-item__info-time {
+  display: none;
+}
+.show-item__image-div {
   float: left;
-  width: 150px;
-  margin-right: 20px;
+  width: 180px;
+  margin-right: 5px;
 }
 .show-item__info-container {
   display: flex;
-  align-items: center;
-  height: 150px;
   text-align: left;
 }
 .show-item__info {
@@ -983,8 +998,7 @@ audio {
   font-size: .875em;
 }
 .show-item__genres {
-  margin-top: 10px;
-  margin-bottom: 30px;
+  margin-top: 20px;
   font-size: 10px;
   font-family: 'nimbus-sans-extended', sans-serif;
   font-weight: bold;
@@ -1102,6 +1116,9 @@ audio {
   font-weight: bold;
   color: #AF96FF;
 }
+.news-list__wrapper {
+  padding: 20px 60px;
+}
 .news-list__content {
   float: left;
   width: 67%;
@@ -1139,7 +1156,7 @@ audio {
 }
 .news-list__sidebar {
   float: left;
-  width: 29%;
+  width: 33%;
   max-width: 400px;
   margin: 0 0 30px;
 }
@@ -1173,6 +1190,7 @@ audio {
   margin-top: 6px;
 }
 .news-list__post-image {
+  position: relative;
   width: 45%;
   margin: 0 40px 15px 0;
 }
@@ -1184,9 +1202,6 @@ audio {
 .news-list__post h3 {
   font-family: 'alda';
   margin-top: 0;
-}
-.news-list__post-image {
-  position: relative;
 }
 .news-list__title {
   color: #333;
@@ -1335,18 +1350,6 @@ audio {
 .home__featured-img {
   width: 100%;
 }
-.purple-tag {
-  position: relative;
-  left: calc(100% - 80px);
-  top: 55px;
-  max-width: 60px;
-  padding: 6px 14px;
-  font-family: 'nimbus-sans';
-  letter-spacing: 1px;
-  font-weight: bold;
-  background: #5940de;
-  text-transform: uppercase;
-}
 .home__news-item {
   display: inline-block;
   width: 30%;
@@ -1357,12 +1360,9 @@ audio {
 .home__news-item:nth-child(4) {
   clear: both;
 }
-.home__wrapper {
-  background-color: white;
-}
 .home__main {
   width: 70%;
-  padding: 20px 0 0 60px;
+  padding-right: 30px;
   background-color: inherit;
   display: inline-block;
   clear: both;
@@ -1371,7 +1371,6 @@ audio {
   width: 29%;
   display: inline-block;
   vertical-align: top;
-  padding-right: 60px;
   background-color: inherit;
 }
 .purple-tag {
@@ -1407,17 +1406,16 @@ audio {
   width: 0;
 }
 .home__next-show {
-  margin: 20px 0 20px 10px;
   background-color: #333333;
   color: white;
-  padding: 25px;
-  text-align: center;
+  padding: 15px 12px;
 }
 .home__next-on-air {
   margin-bottom: 5px;
   font-family: 'nimbus-sans-extended', sans-serif;
-  text-transform: uppercase;
   text-align: left;
+  font-weight: bold;
+  text-transform: uppercase;
 }
 .home__next-show-info {
   font-family: 'nimbus-sans', sans-serif;
@@ -1478,16 +1476,10 @@ audio {
 }
 .home__reviews-item {
   display: inline-block;
-  width: 16.66%;
-  padding: 0 0px 20px 0;
+  width: 31%;
+  padding: 0 0 20px 0;
   color: inherit;
   vertical-align: top;
-}
-.home__reviews-img
-{
-  clear: both;
-  height: 125px;
-  width: 125px;
 }
 .home__synopsis {
   text-align: left;
@@ -1530,11 +1522,10 @@ audio {
   font-family: 'nimbus-sans', sans-serif;
 }
 .home__more:hover {
-  background-color: white;
-  color: black;
+  color: white;
 }
 .home__reviews-item .home__title {
-    margin-top: 15px;
+    margin: 15px 0 3px;
 }
 .home__reviews-item .home__subtitle {
     font-style: italic;
@@ -1564,6 +1555,9 @@ audio {
   float: left;
   width: 25%;
   padding: 0 20px 20px 0;
+}
+.review-item:nth-child(4n + 1) {
+  clear: both;
 }
 .review-item__release {
   font-weight: bold;
@@ -1631,7 +1625,6 @@ audio {
 }
 .footer__subheading {
   text-transform: uppercase;
-  letter-spacing: 2px;
   font-family: 'nimbus-sans-extended', sans-serif;
   font-weight: bold;
 }
@@ -1701,19 +1694,23 @@ audio {
   text-align: center;
   font-family: sans-serif;
 }
+.playlist-list__latest {
+  width: 66%;
+  float: left;
+  padding-right: 25px;
+  margin-bottom: 30px;
+  display: inline-block;
+}
+.playlist-list__list {
+  display: inline-block;
+  width: 33%;
+}
 .playlist-list__show-host,
 .playlist-list__show-name a {
   text-transform: uppercase;
   font-weight: bold;
 }
 .playlist-list__show-host a { color: #5940de; }
-.playlist-list__list {
-  float: right;
-  width: 33%;
-  padding: 30px 0 20px 0;
-  vertical-align: top;
-  display: inline-block;
-}
 .playlist-list__current {
   margin-bottom: 0;
   font-size: .875em;
@@ -1724,9 +1721,6 @@ audio {
   line-height: 17px;
   font-family: 'nimbus-sans-extended';
   text-transform: uppercase;
-}
-.playlist-list__list {
-  padding: 0 0 0 25px;
 }
 .playlist-list__show-name {
   margin-top: 10px;
@@ -1750,17 +1744,40 @@ audio {
 .playlist-list__table tr td img {
   width: 75px !important;
 }
-.about__desc,
+.about__desc {
+  padding: 70px 0;
+  background-image: url("/img/radio-for-the-people.jpg");
+  background-position: center;
+  background-color: #1e1e1e;
+  color: white;
+}
 .join__desc {
   color: white;
-  padding: 30px;
+  padding: 30px 0;
   background-color: #1e1e1e;
 }
-.about__content,
+.about__content {
+  padding: 30px 0;
+}
 .join__content,
-.contact__content
-{
+.contact__content {
   padding: 30px;
+}
+.about__help {
+  overflow: auto;
+  background-color: #5940DE;
+  color: white;
+  padding-bottom: 30px !important;
+}
+.about__help a {
+  color: white;
+}
+.about__help div {
+  float: left;
+  padding-right: 25px;
+}
+.about__help h3 {
+  font-family: 'alda';
 }
 .faq__content {
   padding: 60px;
@@ -1824,12 +1841,12 @@ audio {
   text-transform: uppercase;
   font-family: 'nimbus-sans-extended', sans-serif;
 }
-.about__desc p, .about__content p,
+.about__desc p, .about__content p, .about__help,
 .join__desc p, .join__content p,
-.contact__content p, .contact__content h4, .contact__content form {
+.contact__content p, .contact__content h4 {
   padding: 5px 192px;
 }
-.about__caps {
+.copy__caps {
   font-family: 'nimbus-sans-extended', sans-serif;
   font-weight: bold;
   text-transform: uppercase;
@@ -1919,6 +1936,9 @@ audio {
   .party {
     width: 33.3333333%;
   }
+  .home__reviews-item {
+    width: 15%;
+  }
 }
 @media (max-width: 992px) {
   .info-box__link {
@@ -1932,6 +1952,10 @@ audio {
   }
   .news-list__sidebar{
     width: 37%;
+  }
+  .news-list__post-image,
+  .news-list__post-image img {
+    width: 100%;
   }
   .news-list__post {
     width: 100%;
@@ -1979,6 +2003,9 @@ audio {
   .footer__mission {
     display: none;
   }
+  .home__news-item {
+    width: 47%;
+  }
 }
 @media (max-width: 807px) {
   .nav > li > a {
@@ -2023,11 +2050,10 @@ audio {
     left: 40px;
     width: calc(100% - 40px);
   }
-  .about__desc, .about__content, .join__desc, .join__content,
-  .faq__content, .contact__content, .playlist__content,
-  .playlist-list__latest, #partyForm, #showForm, .show__wrapper,
-  .news-list__wrapper {
-    padding: 40px;
+  .about__desc, .about__content, .about__help, .join__desc, .join__content,
+  .faq__content, .contact__content, .playlist__content, .content, 
+  #partyForm, #showForm, .show__wrapper, .news-list__wrapper {
+    padding: 20px 40px;
   }
   .about__desc p, .about__content p,
   .join__desc p, .join__content p,
@@ -2039,6 +2065,7 @@ audio {
   }
   .home__main, .playlist__content {
     width: 100%;
+    padding-right: 0;
   }
   .home__sidebar {
     width: 100%;
@@ -2047,6 +2074,10 @@ audio {
   .playlist__sidebar  {
    width: calc(100% - 80px);
    margin: 0 40px 10px;
+  }
+  .playlist-list__list,
+  .playlist-list__latest {
+    width: 100%;
   }
   .home__next-show {
     margin: 15px 40px;
@@ -2064,8 +2095,14 @@ audio {
     vertical-align: top;
     text-align: left;
   }
+  .about__desc {
+    background-image: none;
+  }
   .support__about {
     padding: 20px 10%;
+  }
+  .header__submenu-support button {
+    margin-left: 25px;
   }
   .footer__mission-wrapper {
     width: 30%;
@@ -2137,6 +2174,9 @@ audio {
   .show-item__time {
     padding-right: 30px;
   }
+  .shows__day {
+    font-size: .875em;
+  }
   .navbar-nav > li > a,
   .dropdown-toggle {
     margin: 0 10px 0 16px;
@@ -2191,6 +2231,12 @@ audio {
   },
   .staff__content {
     margin: 10px 40px;
+  }
+  .review-item {
+    width: 50%;
+  }
+  .review-item:nth-child(2n + 1) {
+    clear: both;
   }
 }
 @media (max-width: 666px) {
@@ -2288,6 +2334,45 @@ audio {
     padding: 0;
   }
 }
+@media (max-width: 600px) {
+  .home__main { width: 100%; }
+  .home__main, .playlist__content { width: 100%; }
+  .home__more { display: none; }
+  .footer__mission-wrapper {
+    width: 30%;
+    margin-right: 15px;
+  }
+  .footer__contact {
+    width: calc(70% - 15px);
+  }
+  .general__header {
+    padding-top: 60px;
+  }
+  .news-list {
+    padding: 0;
+  }
+  .shows__days__narrow {
+    display: inherit;
+  }
+  .shows__days__wide {
+    display: none;
+  }
+  .news-list__post:last-of-type { padding-bottom: 0; }
+  .shows__day {
+    font-size: .875em;
+  }
+  .show-item__image-div {
+    width: 130px;
+    margin-right: 5px;
+  }
+  .show-item__time,
+  .show-item__info p {
+    display: none;
+  }
+  .show-item__info-time {
+    display: initial;
+  }
+}
 @media (min-width: 769px) and (max-width: 788px) {
   .nav.navbar-nav:nth-child(3) {
     margin: 12px -18px;
@@ -2380,5 +2465,9 @@ audio {
   }
   .info-box__link {
     margin: 12px 5px 12px 34px;
+  }
+  .home__reviews-item,
+  .review-item {
+    width: 100%;
   }
 }

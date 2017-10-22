@@ -13,6 +13,5 @@ Template.chartList.helpers({
   latestChart: () => Charts.findOne({}, { sort: { createdAt: -1}}),
   otherCharts: () => Charts.find({}, { skip: 1 }),
   ifHas: (str) => str !== undefined ? str : 'N/A',
-  ifIs: (boo) => boo ? 'Yes' : 'No',
   plusOne: (i) => i + 1
 });

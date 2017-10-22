@@ -1,8 +1,11 @@
 <template name='showList'>
   <h2 class='general__header'>Show Schedule</h2>
   <div class='shows'>
-    <div class='shows__days'>
+    <div class='shows__days shows__days__wide'>
       <a href='/shows?day=Sunday'><span class='shows__day {{active 'Sunday'}}'>Sunday</span></a><a href='/shows?day=Monday'><span class='shows__day {{active 'Monday'}}'>Monday</span></a><a href='/shows?day=Tuesday'><span class='shows__day {{active 'Tuesday'}}'>Tuesday</span></a><a href='/shows?day=Wednesday'><span class='shows__day {{active 'Wednesday'}}'>Wednesday</span></a><a href='/shows?day=Thursday'><span class='shows__day {{active 'Thursday'}}'>Thursday</span></a><a href='/shows?day=Friday'><span class='shows__day {{active 'Friday'}}'>Friday</span></a><a href='/shows?day=Saturday'><span class='shows__day {{active 'Saturday'}}'>Saturday</span></a>
+    </div>
+    <div class='shows__days shows__days__narrow'>
+      <a href='/shows?day=Sunday'><span class='shows__day {{active 'Sunday'}}'>Sun</span></a><a href='/shows?day=Monday'><span class='shows__day {{active 'Monday'}}'>Mon</span></a><a href='/shows?day=Tuesday'><span class='shows__day {{active 'Tuesday'}}'>Tue</span></a><a href='/shows?day=Wednesday'><span class='shows__day {{active 'Wednesday'}}'>Wed</span></a><a href='/shows?day=Thursday'><span class='shows__day {{active 'Thursday'}}'>Thu</span></a><a href='/shows?day=Friday'><span class='shows__day {{active 'Friday'}}'>Fri</span></a><a href='/shows?day=Saturday'><span class='shows__day {{active 'Saturday'}}'>Sat</span></a>
     </div>
     {{#if Template.subscriptionsReady}}
       {{#each daysShows}}
