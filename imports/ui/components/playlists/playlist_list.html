@@ -1,44 +1,27 @@
 <template name='playlistList'>
   <h2 class='general__header'>Playlists</h2>
-  {{#if Template.subscriptionsReady}}
-    <div class='content'>
-      <div class='playlist-list__latest'>
-          {{#if latestShowImage}}<a href='/shows/{{latestShowSlug}}'><img class='playlist__show-image' src='{{latestShowImage}}'></a>{{/if}}
-          <h5 class='playlist-list__current'>CURRENT PLAYLIST</h5>
-          <h3 class='playlist-list__show-name'><a href='/shows/{{latestShowSlug}}'>{{latestShowName}}</a></h3>
-          <p>{{synopsis}}</p>
-          <h5 class='playlist-list__show-host'>{{latestShowDay}}s at {{latestShowStartTime}} • Hosted by <a href='{{latestShowLink}}'>{{latestShowHost}}</a></h5>
-          <table class='playlist'>
-            <tr class='playlist__info-row'>
-              <td><span class='glyphicon glyphicon-time'></span></td>
-              <td><b>Artist</b></td>
-              <td><b>Song</b></td>
-            </tr>
-            {{#each latestSongs}}
-            <tr>
-              <td class='playlist__timestamp'>{{truncated Timestamp}}</td>
-              <td class='playlist__artist'>{{ArtistName}}</td>
-              <td class='playlist__title'>{{SongName}}</td>
-            </tr>
-            {{/each}}
-          </table>
-      </div>
-      <div class='playlist-list__list'>
-        <h6>More Playlists</h6>
-        {{#if Template.subscriptionsReady}}
-          <table class='playlist-list__table' border='1'>
-            {{#each docs}}
-              <tr>
-                <td><a href='/playlists/{{spinPlaylistId}}/'><img src='{{img showId}}' /></a></td>
-                <td><a class='playlist-list__show-name' href='/playlists/{{spinPlaylistId}}/'>{{showName showId}}</a><br><div class='playlist-list__date'>{{{date showDate}}}</div></td>
-              </tr>
-            {{/each}}
-          </table>
-          {{> defaultBootstrapPaginator pagination=tempPag limit=8}}
-        {{else}}
-          {{> spinner}}
-        {{/if}}
-      </div>
-    </div>
-  {{/if}}
+  <div class='playlist-list__latest'>
+    {{#if Template.subscriptionsReady}}
+      {{#if latestShowImage}}<a href='/shows/{{latestShowSlug}}'><img class='playlist__show-image' src='{{latestShowImage}}'></a>{{/if}}
+      <h5 class='playlist-list__current'>CURRENT PLAYLIST</h5>
+      <h3 class='playlist-list__show-name'><a href='/shows/{{latestShowSlug}}'>{{latestShowName}}</a></h3>
+      <p>{{synopsis}}</p>
+      <h5 class='playlist-list__show-host'>{{latestShowDay}}s at {{latestShowStartTime}} • Hosted by <a href='{{latestShowLink}}'>{{latestShowHost}}</a></h5>
+      <table class='playlist'>
+        <tr class='playlist__info-row'>
+          <td><span class='glyphicon glyphicon-time'></span></td>
+          <td><b>Artist</b></td>
+          <td><b>Song</b></td>
+        </tr>
+        {{#each latestSongs}}
+        <tr>
+          <td class='playlist__timestamp'>{{truncated Timestamp}}</td>
+          <td class='playlist__artist'>{{ArtistName}}</td>
+          <td class='playlist__title'>{{SongName}}</td>
+        </tr>
+        {{/each}}
+      </table>
+    {{/if}}
+  </div>
+  {{> playlistSidebar}}
 </template>

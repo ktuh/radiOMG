@@ -1,0 +1,14 @@
+<template name='playlistSidebar'>
+  <div class='playlist__sidebar corner'>
+    <h4 class='playlist__sidebar-header'>Browse Latest</h4>
+    {{#each getSidebarData}}
+      <hr />
+      <h4 class='playlist__sidebar-date'>{{dateFormat date}}</h4>
+      {{#each shows}}
+        <div>
+          <p class='playlist__sidebar-link'><a href="/playlists/{{spinPlaylistId}}">{{timeFromHours (showTimeFromId showId) (showEndFromId showId)}} {{showNameFromId showId}}</a></p>
+        </div>
+      {{/each}}
+    {{/each}}
+  </div>
+</template>

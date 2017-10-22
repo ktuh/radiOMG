@@ -1,12 +1,12 @@
 <template name='partyList'>
   <h2 class='general__header'>Events</h2>
-  <div class='content flex'>
-    {{#if Template.subscriptionsReady}}
-      {{#each parties}}
-        {{> partyItem}}
-      {{/each}}
-    {{else}}
-      {{> spinner}}
-    {{/if}}
+  <div class='events-list'>
+  {{#if Template.subscriptionsReady}}
+    {{#each parties}}
+      {{> partyItem}}
+    {{/each}}
+  {{else}}
+    {{> spinner}}
+  {{/if}}
   </div>
 </template>

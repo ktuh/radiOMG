@@ -540,6 +540,20 @@ h1, h2, h3, h4, h5 {
   -moz-animation: spin 2s linear infinite;
   animation: spin 2s linear infinite;
 }
+.events-list {
+  float: left;
+  padding: 0 60px;
+  width: 100%;
+  display: inline;
+}
+.events-item {
+  display: inline-block;
+  width: 18%;
+  margin: 0 20px 0 0;
+  color: inherit;
+  vertical-align: top;
+
+}
 @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
 @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
 @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
@@ -877,6 +891,9 @@ audio {
 .playlist td {
   padding: 10px;
 }
+.playlist td:nth-child(1) {
+  padding: 10px 0 10px 15px;
+}
 .playlist__artist,
 .playlist__title,
 .playlist__timestamp {
@@ -932,7 +949,7 @@ audio {
 }
 .show__content {
   text-align: center;
-  display: inline-flex;
+  display: inline;
 }
 .show__wrapper {
   padding: 10px 60px;
@@ -983,15 +1000,29 @@ audio {
 .show-item__genres {
   margin-top: 20px;
   font-size: 10px;
-  font-family: 'nimbus-sans', sans-serif;
+  font-family: 'nimbus-sans-extended', sans-serif;
   font-weight: bold;
   text-transform: uppercase;
   font-weight: bold;
+  color: #5C5C5C;
 }
 .show__info {
   text-align: left;
   vertical-align: top;
   display: inline-block;
+  margin-bottom: 0;
+}
+.show__buttons {
+  display: inline;
+}
+.show__info > .show__buttons .button__wrapper {
+  width: auto;
+  display: inline-block;
+  margin: 0;
+  min-height: 48px;
+}
+.show__body {
+  margin: 10px 0;
 }
 .show__link, .event__link, .chart__link, .playlist__link {
   position: relative;
@@ -1001,6 +1032,9 @@ audio {
   background-color: #262626;
   color: white;
   width: calc(100% - 60px);
+}
+.fa-pause {
+  display: none;
 }
 .review__link {
   position: relative;
@@ -1038,9 +1072,14 @@ audio {
 }
 .show__title,
 .show__tag {
-  font-size: 13px;
   color: #666;
   cursor: pointer;
+}
+.show__info .purple-button {
+  background-color: white;
+  border: 1px #5940de solid;
+  color: #5940de;
+  padding: 10px 15px;
 }
 .show__header-button {
   float: right;
@@ -1056,7 +1095,7 @@ audio {
   text-transform: uppercase;
 }
 .show__time {
-  font-family: 'nimbus-sans', sans-serif;
+  font-family: 'nimbus-sans-extended', sans-serif;
   text-transform: uppercase;
 }
 .show__playlists ul {
@@ -1088,13 +1127,14 @@ audio {
 .show__latest-date {
   text-transform: uppercase;
   font-weight: bold;
+  margin-top: 10px;
 }
 .show__latest select {
   color: black;
   font-family: 'nimbus-sans-extended', sans-serif;
   text-transform: uppercase;
   padding: 10px 40px !important;
-  margin: 5px 0;
+  margin: 15px 0;
   text-align: center;
   border: none;
   box-shadow: none;
@@ -1770,12 +1810,22 @@ audio {
 .faq__answer {
   display: none;
 }
+.playlist-list__latest {
+  width: 72%;
+  float: left;
+  clear: both;
+  display: inline-block;
+  padding: 20px 60px;
+}
 .playlist__content {
   width: 72%;
   padding: 10px 60px;
   background-color: inherit;
   display: inline-block;
   clear: both;;
+}
+.playlist-list__latest + .playlist__sidebar {
+  margin-top: 20px;
 }
 .playlist__sidebar-header {
   text-transform: uppercase;
@@ -2338,7 +2388,40 @@ audio {
     width: 48%;
   }
 }
-@media (max-width: 480px) and (min-width: 400px) {
+@media (max-width: 600px) {
+  .shows__day {
+    font-size: .875em;
+  }
+  .home__main, .playlist__content {
+    width: 100%;
+  }
+  .show__content {
+    width: 100%;
+    display: block;
+    text-align: left;
+  }
+  .show__image-div {
+    padding-right: 0;
+    width: 100%;
+  }
+  .show__image {
+    width: 100%;
+    height: auto;
+    margin: 0;
+  }
+  .footer__mission-wrapper {
+    width: 30%;
+    margin-right: 15px;
+  }
+  .footer__contact {
+    width: calc(70% - 15px);
+  }
+  .news-list {
+    padding: 0;
+  }
+  .news-list__post:last-of-type { padding-bottom: 0; }
+}
+@media (max-width: 480px) {
   .nav.navbar-nav:nth-child(3) {
     margin: 12px 0 12px 20px;
     clear: both;

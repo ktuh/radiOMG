@@ -69,7 +69,8 @@ Template.showPage.helpers({
     moment(endHour + ":" + endMinute, "HH:mm").format("h:mmA"),
   timeBeautify2: (h, m) => moment(h + ":" + m, "HH:mm").format("h:mma"),
   genreString: (genres) => genres.join(', '),
-  actualPlaylist: () => Session.get("currentPlaylist")
+  actualPlaylist: () => Session.get("currentPlaylist"),
+  latestEpisodeUrl: () => Shows.findOne().latestEpisodeUrl
 });
 
 Template.showPage.events({
@@ -87,6 +88,7 @@ Template.showPage.events({
       var message = 'Now playing the latest episode of ' + show.showName;
       Session.set('defaultLoaded', false);
       Session.set('nowLoaded', mp3Url);
+      if (!Session.get('playedStream')) Session.set('playedStream', true);
       Bert.alert(message, 'default', 'growl-top-right', 'fa-music');
     }
 
@@ -98,6 +100,11 @@ Template.showPage.events({
     }
   },
   'change select': function(evt) {
-    FlowRouter.go("/playlists/" + $(evt.target).val());
+    FlowRouter.go('/playlists/' + $(evt.target).val());
+  },
+  'click .goto-dj-profile': function(evt) {
+    var id = Shows.findOne({ slug: FlowRouter.getParam('slug') }).userId;
+    var user = Meteor.users.findOne({ _id: id });
+    FlowRouter.go('/profile/' + user.username);
   }
 });

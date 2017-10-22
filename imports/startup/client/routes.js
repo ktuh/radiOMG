@@ -18,6 +18,7 @@ import '../../ui/components/parties/party_list.js';
 import '../../ui/components/parties/party_page.js';
 import '../../ui/components/playlists/playlist_list.js';
 import '../../ui/components/playlists/playlist_page.js';
+import '../../ui/components/playlists/playlist_sidebar.js';
 import '../../ui/components/profile/profile_edit.js';
 import '../../ui/components/profile/profile_page.js';
 import '../../ui/components/reviews/review_list.js';

@@ -7,18 +7,11 @@
     </div>
     <div class="show__wrapper">
       <div class="show__content">
-        {{#if featuredImage}}
-          <div class='show__image-div'>
+      {{#if featuredImage}}
+        <div class='show__image-div'>
           <img class='show__image' src='{{featuredImage.url}}'>
-          {{#if latestEpisodeUrl}}
-          <p class='show__tag'>
-            <button type="button" data-path='{{latestEpisodeUrl}}' class="btn btn-default show__play-btn" aria-label="Left Align">
-              <span class="glyphicon {{#if isPlaying latestEpisodeUrl}}glyphicon-pause{{else}}glyphicon-play{{/if}}" aria-hidden="true"></span> &nbsp;Play latest episode
-            </button>
-          </p>
-          {{/if}}
-      </div>
-    {{/if}}
+        </div>
+      {{/if}}
     <div class='show__info'>
       <h5 class='show__time'>{{day startDay}}s from {{timeBeautify startHour startMinute endHour endMinute}}</h5>
       {{#if genres}}
@@ -26,12 +19,25 @@
         <span class='glyphicon glyphicon-music'></span>&nbsp;{{genreString genres}}
       </div>
       {{/if}}
-      <h4 class='show__host'>
-        <a href="{{profileUrl userId}}" class="purple-button">
-          DJ Profile
-        </a>
-      </h4>
-      <p>{{body}}</p>
+      <div class='show__buttons'>
+        {{#if latestEpisodeUrl}}
+        <div class='button__wrapper'>
+          <p class='show__tag'>
+            <button type="button" data-path='{{latestEpisodeUrl}}' class="btn btn-default show__play-btn purple-button" aria-label="Left Align">
+              <span class="glyphicon {{#if isPlaying latestEpisodeUrl}}glyphicon-pause{{else}}glyphicon-play{{/if}}" aria-hidden="true"></span> &nbsp;Play latest episode
+            </button>
+          </p>
+        </div>
+        {{/if}}
+        <div class='button__wrapper'>
+          <p class='show__host'>
+            <button type="button" class="btn btn-default goto-dj-profile purple-button" aria-label="Left Align">
+              DJ Profile
+            </button>
+          </p>
+        </div>
+      </div>
+      <p class='show__body'>{{body}}</p>
     </div>
   </div>
   </div>
