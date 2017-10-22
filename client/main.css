@@ -1057,10 +1057,11 @@ audio {
   background-color: #1C1C1C;
   color: white;
 }
-.show__latest-header{
+.show__latest-header {
   text-transform: uppercase;
   font-weight: bold;
   color: #AF96FF;
+}
 .news-list__content {
   float: left;
   width: 67%;
@@ -1144,7 +1145,7 @@ audio {
   margin-top: 0;
 }
 .news-list__post-image {
-  position: relative;  
+  position: relative;
 }
 .news-list__title {
   color: #333;
@@ -2077,7 +2078,7 @@ audio {
   .nav__search {
     margin: 5px 0 10px 10px;
   }
-  .shows { 
+  .shows {
     padding: 20px 40px 40px;
    }
   .show__info {
