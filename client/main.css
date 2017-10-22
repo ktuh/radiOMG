@@ -358,7 +358,6 @@ h1, h2, h3, h4, h5 {
   color: #fff;
 }
 .nav.navbar-nav:nth-child(3) {
-  margin: 12px 0;
   font-weight: normal;
 }
 .nav.navbar-nav.navbar-right {
@@ -798,7 +797,7 @@ audio {
 }
 .profile__left {
   width: 255px;
-  margin: 25px 20px 30px 10%;
+  margin: 25px 0;
   display: inline-block;
   vertical-align: top;
 }
@@ -808,7 +807,7 @@ audio {
 }
 .profile__info {
   max-width: 400px;
-  margin: 20px 10% 0 0;
+  margin: 20px 0 0 20px;
   display: inline-block;
 }
 .profile__info h4 {
@@ -864,14 +863,14 @@ audio {
   border-style: solid;
 }
 .playlist td {
-  padding: 2px 15px 2px 0;
+  padding: 10px;
 }
 .playlist__artist,
 .playlist__title,
 .playlist__timestamp {
   font-size: .875em;
 }
-.playlist__timestamp {
+.playlist__content .playlist__timestamp {
   color: #666;
   font-size: 11px;
 }
@@ -922,7 +921,7 @@ audio {
   display: inline-flex;
 }
 .show__wrapper {
-  text-align: center;
+  padding: 10px 60px;
 }
 .show-item {
   display: inline-flex;
@@ -972,6 +971,7 @@ audio {
   font-family: 'nimbus-sans', sans-serif;
   font-weight: bold;
   text-transform: uppercase;
+  font-weight: bold;
 }
 .show__info {
   text-align: left;
@@ -1016,13 +1016,12 @@ audio {
   margin: 0 20px 20px 0;
 }
 .show__host {
-  margin: 0 0 5px 0;
   font-family: 'nimbus-sans', sans-serif;
 }
 .show__host a:hover {
   text-decoration: underline;
 }
-.show__title
+.show__title,
 .show__tag {
   font-size: 13px;
   color: #666;
@@ -1053,13 +1052,45 @@ audio {
 .show__play-btn:hover {
   border-color: #333;
 }
-.news-list__wrapper {
-  padding: 40px 60px;
+.show__latest {
+  padding: 10px 60px;
+  background-color: #1C1C1C;
+  color: white;
+}
+.show__latest-header {
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #AF96FF;
 }
 .news-list__content {
   float: left;
   width: 67%;
   display: inline-block;
+}
+.show__latest-date {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.show__latest select {
+  color: black;
+  font-family: 'nimbus-sans-extended', sans-serif;
+  text-transform: uppercase;
+  padding: 10px 40px !important;
+  margin: 5px 0;
+  text-align: center;
+  border: none;
+  box-shadow: none;
+  background-color: white;
+  padding: 10px;
+  background-image: none;
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+.show__latest select:focus {
+  outline: none;
+}
+.alternating:nth-child(2n+1) {
+  background-color: #373737;
 }
 .news-list {
   float: left;
@@ -1114,7 +1145,7 @@ audio {
   margin-top: 0;
 }
 .news-list__post-image {
-  position: relative;  
+  position: relative;
 }
 .news-list__title {
   color: #333;
@@ -1263,6 +1294,18 @@ audio {
 .home__featured-img {
   width: 100%;
 }
+.purple-tag {
+  position: relative;
+  left: calc(100% - 80px);
+  top: 55px;
+  max-width: 60px;
+  padding: 6px 14px;
+  font-family: 'nimbus-sans';
+  letter-spacing: 1px;
+  font-weight: bold;
+  background: #5940de;
+  text-transform: uppercase;
+}
 .home__news-item {
   display: inline-block;
   width: 30%;
@@ -1388,6 +1431,9 @@ audio {
   background-color: #fff;
   color: #5940de;
   text-decoration: none;
+}
+.profile__show-button {
+  padding: 10px;
 }
 .home__reviews-item {
   display: inline-block;
@@ -1671,10 +1717,40 @@ audio {
 }
 .about__content,
 .join__content,
-.faq__content,
 .contact__content
 {
   padding: 30px;
+}
+.faq__content {
+  padding: 60px;
+  background-color: #222222;
+  color: white;
+}
+.faq__section {
+  display: inline-block;
+  width: 100%;
+}
+.faq__section-qna {
+  float: right;
+  display: inline-block;
+  width: 85%;
+}
+.faq__section-qna a {
+  color: white;
+}
+.faq__section-header {
+  display: inline-block;
+  width: 140px;
+  vertical-align: top;
+}
+.faq__section-header h4 {
+  font-family: 'nimbus-sans-extended', sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-top: 0px;
+}
+.faq__answer {
+  display: none;
 }
 .playlist-list__latest {
   width: 66%;
@@ -1705,7 +1781,7 @@ audio {
   font-family: 'nimbus-sans-extended', sans-serif;
 }
 .about__desc p, .about__content p,
-.join__desc p, .join__content p, .faq__content p,
+.join__desc p, .join__content p,
 .contact__content p, .contact__content h4, .contact__content form {
   padding: 5px 192px;
 }
@@ -1715,11 +1791,22 @@ audio {
   text-transform: uppercase;
 }
 .faq__question {
-  margin-bottom: 0;
+  margin-bottom: 10px;
   text-decoration: underline;
 }
 .faq__answer {
   margin-top: 0;
+}
+.faq__section-qna-pair .toggle {
+  margin-left: 5px;
+  display: inline-block;
+  font-weight: bold;
+  vertical-align: top;
+}
+.faq__section-qna-content {
+  display: inline-block;
+  width: 98%;
+  margin-left: 4px;
 }
 .contact__comment-form textarea {
   width: 45%;
@@ -1859,6 +1946,13 @@ audio {
     font-size: .75em;
   }
 }
+@media (min-width: 768px) and (max-width: 808px) {
+  .navbar-default .navbar-nav > li > a {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+
+}
 @media (max-width: 767px) {
   .info-box__link {
     margin: 12px 0;
@@ -1984,7 +2078,7 @@ audio {
   .nav__search {
     margin: 5px 0 10px 10px;
   }
-  .shows { 
+  .shows {
     padding: 20px 40px 40px;
    }
   .show__info {
@@ -2034,7 +2128,7 @@ audio {
   }
   .profile__social-icons,
   .profile__show-link {
-    margin-left: 0; 
+    margin-left: 0;
   }
   .home__featured-photo {
     width: 97%;
@@ -2148,11 +2242,6 @@ audio {
     width: 100%;
     margin: 5px 0;
     padding: 0;
-  }
-}
-@media (min-width: 768px) and (max-width: 768px) {
-  .nav.navbar-nav:nth-child(3) {
-    margin: 15px -18px;
   }
 }
 @media (max-width: 600px) {
