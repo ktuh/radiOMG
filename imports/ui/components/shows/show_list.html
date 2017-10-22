@@ -2,7 +2,7 @@
   <h2 class='general__header'>Show Schedule</h2>
   <div class='shows'>
     <div class='shows__days'>
-      <span class='shows__day {{active 'Sunday'}}'><a href='/shows?day=Sunday'>Sunday</a></span><span class='shows__day {{active 'Monday'}}'><a href='/shows?day=Monday'>Monday</a></span><span class='shows__day {{active 'Tuesday'}}'><a href='/shows?day=Tuesday'>Tuesday</a></span><span class='shows__day {{active 'Wednesday'}}'><a href='/shows?day=Wednesday'>Wednesday</a></span><span class='shows__day {{active 'Thursday'}}'><a href='/shows?day=Thursday'>Thursday</a></span><span class='shows__day {{active 'Friday'}}'><a href='/shows?day=Friday'>Friday</a></span><span class='shows__day {{active 'Saturday'}}'><a href='/shows?day=Saturday'>Saturday</a></span>
+      <a href='/shows?day=Sunday'><span class='shows__day {{active 'Sunday'}}'>Sunday</span></a><a href='/shows?day=Monday'><span class='shows__day {{active 'Monday'}}'>Monday</span></a><a href='/shows?day=Tuesday'><span class='shows__day {{active 'Tuesday'}}'>Tuesday</span></a><a href='/shows?day=Wednesday'><span class='shows__day {{active 'Wednesday'}}'>Wednesday</span></a><a href='/shows?day=Thursday'><span class='shows__day {{active 'Thursday'}}'>Thursday</span></a><a href='/shows?day=Friday'><span class='shows__day {{active 'Friday'}}'>Friday</span></a><a href='/shows?day=Saturday'><span class='shows__day {{active 'Saturday'}}'>Saturday</span></a>
     </div>
     {{#if Template.subscriptionsReady}}
       {{#each daysShows}}
