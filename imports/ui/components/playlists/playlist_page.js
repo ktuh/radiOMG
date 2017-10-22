@@ -47,8 +47,6 @@ Template.playlistPage.helpers({
   showName: () => Shows.findOne({ showId: Playlists.findOne().showId }).showName,
   showDateOfCurrent: () => moment(Playlists.findOne().showDate).tz("US/Hawaii").format("LL"),
   showSlug: () => Shows.findOne({ showId: Playlists.findOne().showId }).slug,
-  showTimeFromId: (id) => Shows.findOne({showId: id}).startHour,
-  showEndFromId: (id) => Shows.findOne({showId: id}).endHour,
   showImage: () => {
     var show = Shows.findOne({ showId: Playlists.findOne().showId });
     return (show === undefined) ? false : show.featuredImage.url;
