@@ -1,9 +1,9 @@
 <template name='showPage'>
   {{#if Template.subscriptionsReady}}
     {{#with show}}
-    <h1 class='general__header'><b>{{showName}}</b></h1>
+    <h2 class='general__header'><b>{{showName}} / {{host}}</b></h2>
     <div class='show__link'>
-      <a href='/shows' class='back-to'>← Back to Show Schedule</a>
+      <a href='/shows' class='back-to'>← Show Schedule</a>
     </div>
     <div class="show__wrapper">
       <div class="show__content">
@@ -17,31 +17,57 @@
             </button>
           </p>
           {{/if}}
-          {{#if playlists}}
-          <div class='show__playlists'>
-          <h4>Playlists</h4>
-          <ul>
-            {{#each playlists}}
-            <li><span class='show__playlist-time'><a href='/playlists/{{spinPlaylistId}}'>{{time showDate}}</a></span></li>
-            {{/each}}
-          </ul>
-        </div>
-        {{/if}}
       </div>
     {{/if}}
     <div class='show__info'>
-      <h3 class='show__name'><b>{{showName}}</b></h3>
-      <h4 class='show__host'>Hosted by <a href="{{profileUrl userId}}">{{host}}</a></h4>
       <h5 class='show__time'>{{day startDay}}s from {{timeBeautify startHour startMinute endHour endMinute}}</h5>
       {{#if genres}}
       <div class='show-item__genres'>
         <span class='glyphicon glyphicon-music'></span>&nbsp;{{genreString genres}}
       </div>
       {{/if}}
+      <h4 class='show__host'>
+        <a href="{{profileUrl userId}}" class="purple-button">
+          DJ Profile
+        </a>
+      </h4>
       <p>{{body}}</p>
     </div>
   </div>
   </div>
+  {{#if latestPlaylist}}
+    <div class='show__latest'>
+      <h5 class='show__latest-header'>Latest Episode</h5>
+      <h2 class='show__latest-date'>{{time (latestPlaylist.showDate)}}</h2>
+      {{#if pastPlaylists}}
+        <select>
+          <option value="" disabled selected>Past Playlists &#x25BC;</option>
+          {{#each playlistsByYear}}
+            <option value="" disabled>{{year}}</option>
+            {{#each shows}}
+              <option value="{{spinPlaylistId}}">{{time showDate}}</option>
+            {{/each}}
+          {{/each}}
+        </select>
+      {{/if}}
+      <div class='show__latest-playlist'>
+        <table class="playlist">
+          <tr class="playlist__info-row">
+            <td><b><i class="fa fa-clock-o" aria-hidden="true"></i></b></td>
+            <td><b>Artist</b></td>
+            <td><b>Song</b></td>
+          </tr>
+          {{#each actualPlaylist}}
+          <tr class='alternating'>
+            <td class='playlist__timestamp'>{{timeBeautify2 Timestamp}}</td>
+            <td class='playlist__artist'>{{ArtistName}}</td>
+            <td class='playlist__title'>{{SongName}}</td>
+          </tr>
+          {{/each}}
+        </table>
+      </div>
+    </div>
+  {{/if}}
   {{/with}}
   {{else}}
     {{> spinner}}
