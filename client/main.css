@@ -93,6 +93,9 @@ h1, h2, h3, h4, h5 {
   margin-bottom: 5px;
   pointer-events: auto;
 }
+.content {
+  padding: 20px 60px 30px;
+}
 .landing {
   position: fixed;
   top: 0; left: 0;
@@ -347,6 +350,9 @@ h1, h2, h3, h4, h5 {
   margin: 8px 15px 8px;
   padding: 6px 10px 8px 10px;
   border: 1px solid #fff;
+  border-radius: 0;
+  font-weight: bold;
+  text-transform: uppercase;
   background-color: transparent;
 }
 .header__submenu-support a {
@@ -848,6 +854,9 @@ audio {
 .playlist tr:nth-child(2n) {
   background: rgba(247,247,247);
 }
+.playlist__show-name {
+  margin-top: 0;
+}
 .playlist__show-image {
   float: left;
   max-width: 160px;
@@ -1065,6 +1074,9 @@ audio {
   font-weight: bold;
   color: #AF96FF;
 }
+.news-list__wrapper {
+  padding: 20px 60px;
+}
 .news-list__content {
   float: left;
   width: 67%;
@@ -1101,7 +1113,7 @@ audio {
 }
 .news-list__sidebar {
   float: left;
-  width: 29%;
+  width: 33%;
   max-width: 400px;
   margin: 0 0 30px;
 }
@@ -1135,6 +1147,7 @@ audio {
   margin-top: 6px;
 }
 .news-list__post-image {
+  position: relative;
   width: 45%;
   margin: 0 40px 15px 0;
 }
@@ -1146,9 +1159,6 @@ audio {
 .news-list__post h3 {
   font-family: 'alda';
   margin-top: 0;
-}
-.news-list__post-image {
-  position: relative;
 }
 .news-list__title {
   color: #333;
@@ -1296,18 +1306,6 @@ audio {
 }
 .home__featured-img {
   width: 100%;
-}
-.purple-tag {
-  position: relative;
-  left: calc(100% - 80px);
-  top: 55px;
-  max-width: 60px;
-  padding: 6px 14px;
-  font-family: 'nimbus-sans';
-  letter-spacing: 1px;
-  font-weight: bold;
-  background: #5940de;
-  text-transform: uppercase;
 }
 .home__news-item {
   display: inline-block;
@@ -1527,6 +1525,9 @@ audio {
   width: 25%;
   padding: 0 20px 20px 0;
 }
+.review-item:nth-child(4n + 1) {
+  clear: both;
+}
 .review-item__release {
   font-weight: bold;
   margin-top: 7px;
@@ -1663,19 +1664,23 @@ audio {
   text-align: center;
   font-family: sans-serif;
 }
+.playlist-list__latest {
+  width: 66%;
+  float: left;
+  padding-right: 25px;
+  margin-bottom: 30px;
+  display: inline-block;
+}
+.playlist-list__list {
+  display: inline-block;
+  width: 33%;
+}
 .playlist-list__show-host,
 .playlist-list__show-name a {
   text-transform: uppercase;
   font-weight: bold;
 }
 .playlist-list__show-host a { color: #5940de; }
-.playlist-list__list {
-  float: right;
-  width: 33%;
-  padding: 30px 0 20px 0;
-  vertical-align: top;
-  display: inline-block;
-}
 .playlist-list__current {
   margin-bottom: 0;
   font-size: .875em;
@@ -1686,9 +1691,6 @@ audio {
   line-height: 17px;
   font-family: 'nimbus-sans-extended';
   text-transform: uppercase;
-}
-.playlist-list__list {
-  padding: 0 0 0 25px;
 }
 .playlist-list__show-name {
   margin-top: 10px;
@@ -1755,13 +1757,6 @@ audio {
 .faq__answer {
   display: none;
 }
-.playlist-list__latest {
-  width: 66%;
-  float: left;
-  clear: both;
-  display: inline-block;
-  padding: 20px 60px;
-}
 .playlist__content {
   width: 72%;
   padding: 10px 60px;
@@ -1788,7 +1783,7 @@ audio {
 .contact__content p, .contact__content h4, .contact__content form {
   padding: 5px 192px;
 }
-.about__caps {
+.copy__caps {
   font-family: 'nimbus-sans-extended', sans-serif;
   font-weight: bold;
   text-transform: uppercase;
@@ -1892,6 +1887,10 @@ audio {
   .news-list__sidebar{
     width: 37%;
   }
+  .news-list__post-image,
+  .news-list__post-image img {
+    width: 100%;
+  }
   .news-list__post {
     width: 100%;
     display: inherit;
@@ -1984,9 +1983,9 @@ audio {
   }
   .about__desc, .about__content, .join__desc, .join__content,
   .faq__content, .contact__content, .playlist__content,
-  .playlist-list__latest, #partyForm, #showForm, .show__wrapper,
+  .content, #partyForm, #showForm, .show__wrapper,
   .news-list__wrapper {
-    padding: 40px;
+    padding: 20px 40px;
   }
   .about__desc p, .about__content p,
   .join__desc p, .join__content p,
@@ -2007,6 +2006,10 @@ audio {
    width: calc(100% - 80px);
    margin: 0 40px 10px;
   }
+  .playlist-list__list,
+  .playlist-list__latest {
+    width: 100%;
+  }
   .home__next-show {
     margin: 15px 40px;
     padding: 15px;
@@ -2025,6 +2028,9 @@ audio {
   }
   .support__about {
     padding: 20px 10%;
+  }
+  .header__submenu-support button {
+    margin-left: 25px;
   }
   .footer__mission-wrapper {
     width: 30%;
@@ -2153,6 +2159,12 @@ audio {
   },
   .staff__content {
     margin: 10px 40px;
+  }
+  .review-item {
+    width: 50%;
+  }
+  .review-item:nth-child(2n + 1) {
+    clear: both;
   }
 }
 @media (max-width: 666px) {
@@ -2348,5 +2360,8 @@ audio {
   }
   .info-box__link {
     margin: 12px 5px 12px 34px;
+  }
+  .review-item {
+    width: 100%;
   }
 }
