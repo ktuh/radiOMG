@@ -883,7 +883,6 @@ audio {
   display: inline-block;
   border: thin solid #333;
   width: 14.285%;
-  min-width: 95px;
   padding: 8px 0;
   font-size: 14px;
 }
@@ -891,6 +890,9 @@ audio {
   margin: 10px 0 10px;
   font-family: 'nimbus-sans', sans-serif;
   text-transform: uppercase;
+}
+.shows__days__narrow {
+  display: none;
 }
 .shows__previous-day {
   float: left;
@@ -926,9 +928,9 @@ audio {
 }
 .show-item {
   display: inline-flex;
+  align-items: center;
   width: 100%;
   padding: 20px 0;
-  align-items: center;
   border-bottom: 1px solid #ddd;
 }
 .show-item:last-of-type {
@@ -941,15 +943,16 @@ audio {
   font-weight: bold;
   text-transform: uppercase;
 }
-.show-item__image {
+.show-item__info-time {
+  display: none;
+}
+.show-item__image-div {
   float: left;
-  width: 150px;
-  margin-right: 20px;
+  width: 180px;
+  margin-right: 5px;
 }
 .show-item__info-container {
   display: flex;
-  align-items: center;
-  height: 150px;
   text-align: left;
 }
 .show-item__info {
@@ -967,7 +970,7 @@ audio {
   font-size: .875em;
 }
 .show-item__genres {
-  margin-top: 28px;
+  margin-top: 20px;
   font-size: 10px;
   font-family: 'nimbus-sans', sans-serif;
   font-weight: bold;
@@ -1999,6 +2002,9 @@ audio {
   .show-item__time {
     padding-right: 30px;
   }
+  .shows__day {
+    font-size: .875em;
+  }
   .navbar-nav > li > a,
   .dropdown-toggle {
     margin: 0 10px 0 16px;
@@ -2156,8 +2162,39 @@ audio {
   }
 }
 @media (max-width: 600px) {
+  .home__main {
+    width: 100%;
+  }
+  .footer__mission-wrapper {
+    width: 30%;
+    margin-right: 15px;
+  }
+  .footer__contact {
+    width: calc(70% - 15px);
+  }
+  .news-list {
+    padding: 0;
+  }
+  .shows__days__narrow {
+    display: inherit;
+  }
+  .shows__days__wide {
+    display: none;
+  }
+  .news-list__post:last-of-type { padding-bottom: 0; }
   .shows__day {
     font-size: .875em;
+  }
+  .show-item__image-div {
+    width: 130px;
+    margin-right: 5px;
+  }
+  .show-item__time,
+  .show-item__info p {
+    display: none;
+  }
+  .show-item__info-time {
+    display: initial;
   }
   .home__main, .playlist__content {
     width: 100%;
@@ -2177,22 +2214,6 @@ audio {
   .home__reviews-item {
     width: 48%;
   }
-}
-@media (max-width: 600px) {
-  .home__main {
-    width: 100%;
-  }
-  .footer__mission-wrapper {
-    width: 30%;
-    margin-right: 15px;
-  }
-  .footer__contact {
-    width: calc(70% - 15px);
-  }
-  .news-list {
-    padding: 0;
-  }
-  .news-list__post:last-of-type { padding-bottom: 0; }
 }
 @media (max-width: 480px) and (min-width: 400px) {
   .nav.navbar-nav:nth-child(3) {
