@@ -531,6 +531,20 @@ h1, h2, h3, h4, h5 {
   -moz-animation: spin 2s linear infinite;
   animation: spin 2s linear infinite;
 }
+.events-list {
+  float: left;
+  padding: 0 60px;
+  width: 100%;
+  display: inline;
+}
+.events-item {
+  display: inline-block;
+  width: 18%;
+  margin: 0 20px 0 0;
+  color: inherit;
+  vertical-align: top;
+
+}
 @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
 @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
 @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
