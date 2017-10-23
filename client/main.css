@@ -826,7 +826,7 @@ audio {
   vertical-align: top;
 }
 .profile__show-link {
-  width: 173px;
+  width: 155px;
   margin: 0 auto;
 }
 .profile__info {
@@ -869,8 +869,11 @@ audio {
   width: 100%;
   text-align: left;
 }
+.playlist tr:nth-child(2n+1) {
+  background-color: #1c1c1c;
+}
 .playlist tr:nth-child(2n) {
-  background: rgba(247,247,247);
+  background: #3d3d3d;
 }
 .playlist__show-name {
   margin-top: 0;
@@ -885,6 +888,7 @@ audio {
   border-right: 0px;
   border-top: 1px;
   border-bottom: 1px;
+  border-color: #3d3d3d;
   font-family: 'nimbus-sans-extended', sans-serif;
   text-transform: uppercase;
   border-style: solid;
@@ -1109,7 +1113,7 @@ audio {
 }
 .show__latest {
   padding: 10px 60px;
-  background-color: #1C1C1C;
+  background-color: #1c1c1c;
   color: white;
 }
 .show__latest-header {
@@ -1147,9 +1151,6 @@ audio {
 }
 .show__latest select:focus {
   outline: none;
-}
-.alternating:nth-child(2n+1) {
-  background-color: #373737;
 }
 .news-list {
   float: left;
@@ -1442,6 +1443,7 @@ audio {
   max-width: 250px;
   padding: 10px 25px;
   margin: 15px 0;
+  border-radius: 0;
   font-family: 'nimbus-sans', sans-serif;
   font-size: .875em;
   font-weight: bold;
@@ -1467,6 +1469,7 @@ audio {
   color: #fff;
 }
 .color-button.purple-button:hover {
+  border: 1px #5940de solid;
   background-color: #fff;
   color: #5940de;
 }

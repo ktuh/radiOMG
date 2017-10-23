@@ -23,7 +23,7 @@
         {{#if latestEpisodeUrl}}
         <div class='button__wrapper'>
           <p class='show__tag'>
-            <button type="button" data-path='{{latestEpisodeUrl}}' class="btn btn-default show__play-btn purple-button" aria-label="Left Align">
+            <button type="button" data-path='{{latestEpisodeUrl}}' class="btn btn-default show__play-btn color-button purple-button" aria-label="Left Align">
               <span class="glyphicon {{#if isPlaying latestEpisodeUrl}}glyphicon-pause{{else}}glyphicon-play{{/if}}" aria-hidden="true"></span> &nbsp;Play latest episode
             </button>
           </p>
@@ -31,7 +31,7 @@
         {{/if}}
         <div class='button__wrapper'>
           <p class='show__host'>
-            <button type="button" class="btn btn-default goto-dj-profile purple-button" aria-label="Left Align">
+            <button type="button" class="btn btn-default goto-dj-profile color-button purple-button" aria-label="Left Align">
               DJ Profile
             </button>
           </p>
@@ -61,13 +61,13 @@
           <tr class="playlist__info-row">
             <td><b><i class="fa fa-clock-o" aria-hidden="true"></i></b></td>
             <td><b>Artist</b></td>
-            <td><b>Song</b></td>
+            <td><b>Title</b></td>
           </tr>
           {{#each actualPlaylist}}
           <tr class='alternating'>
             <td class='playlist__timestamp'>{{timeBeautify2 Timestamp}}</td>
             <td class='playlist__artist'>{{ArtistName}}</td>
-            <td class='playlist__title'>{{SongName}}</td>
+            <td class='playlist__title'><i>{{SongName}}</i></td>
           </tr>
           {{/each}}
         </table>
