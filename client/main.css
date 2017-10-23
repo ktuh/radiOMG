@@ -242,7 +242,7 @@ h1, h2, h3, h4, h5 {
   padding: 13px 0 15px;
 }
 .navbar-nav {
-  margin: 12px 0 12px 10px;
+  margin: 12px 0;
   float: right;
 }
 .navbar-collapse {
@@ -274,6 +274,8 @@ h1, h2, h3, h4, h5 {
   font-family: 'nimbus-sans', sans-serif;
   text-transform: uppercase;
   border-top: 2px solid transparent;
+  margin-right: 5px;
+  margin-left: 5px;
 }
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:focus,
@@ -296,6 +298,7 @@ h1, h2, h3, h4, h5 {
 }
 #login-dropdown-list {
   margin-left: 5px;
+  margin-right: 5px;
 }
 .nav__play-img {
   max-height: 12px;
@@ -2036,8 +2039,8 @@ audio {
 }
 @media (min-width: 768px) and (max-width: 808px) {
   .navbar-default .navbar-nav > li > a {
-    margin-left: 5px;
-    margin-right: 5px;
+    margin-left: 2px;
+    margin-right: 2px;
   }
 
 }
@@ -2045,10 +2048,18 @@ audio {
   .info-box__link {
     margin: 12px 0;
   }
+  .navbar-nav {
+    margin-top: 17px;
+  }
   .nav.navbar-nav:nth-child(3) {
     float: left;
     clear: both;
-    margin-left: -15px;
+    margin-left: 0px;
+  }
+  .nav.navbar-nav:nth-child(3) .nav-item {
+    float: left;
+    clear: both;
+    margin-left: -7px;
   }
 }
 @media (max-width: 768px) {
@@ -2391,7 +2402,7 @@ audio {
 }
 @media (min-width: 481px) and (max-width: 767px) {
   .navbar-nav.nav.navbar-left {
-    margin-left: -15px;
+    margin-left: 0px;
   }
 }
 @media (max-width: 633px) {
