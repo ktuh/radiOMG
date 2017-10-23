@@ -957,7 +957,7 @@ audio {
   display: inline;
 }
 .show__wrapper {
-  padding: 10px 60px;
+  padding: 25px 60px;
 }
 .show-item {
   display: inline-flex;
@@ -1003,7 +1003,7 @@ audio {
   font-size: .875em;
 }
 .show-item__genres {
-  margin-top: 20px;
+  margin-top: 10px;
   font-size: 10px;
   font-family: 'nimbus-sans-extended', sans-serif;
   font-weight: bold;
@@ -1015,7 +1015,8 @@ audio {
   text-align: left;
   vertical-align: top;
   display: inline-block;
-  margin-bottom: 0;
+  margin: 0 0 0 20px;
+  width: 50%;
 }
 .show__buttons {
   display: inline;
@@ -1063,22 +1064,25 @@ audio {
 }
 .show__image-div {
   display: inline-block;
+  width: 25%;
 }
 .show__image {
   position: relative;
   float: left;
-  margin: 0 20px 20px 0;
+  width: 100%;
+  margin: 0;
 }
 .show__host {
   font-family: 'nimbus-sans', sans-serif;
+  margin-bottom: 0;
 }
 .show__host a:hover {
   text-decoration: underline;
 }
-.show__title,
 .show__tag {
   color: #666;
   cursor: pointer;
+  margin-bottom: 0;
 }
 .show__info .purple-button {
   background-color: white;
@@ -2064,7 +2068,7 @@ audio {
     width: calc(100% - 40px);
   }
   .about__desc, .about__content, .about__help, .join__desc, .join__content,
-  .faq__content, .contact__content, .playlist__content, .content, 
+  .faq__content, .contact__content, .playlist__content, .content,
   #partyForm, #showForm, .show__wrapper, .news-list__wrapper {
     padding: 20px 40px;
   }
