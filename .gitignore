@@ -3,3 +3,4 @@ settings.json
 build
 *~
 .meteor/dev_bundle
+*.tar.gz
