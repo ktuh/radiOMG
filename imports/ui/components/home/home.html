@@ -64,21 +64,19 @@
 <div class='home__sidebar'>
   <div class='home__next-show'>
     {{#with getNextShow}}
-      <div class='home__next-show-info'>
-        <div class='home__next-show-deets'>
-          <p class="home__next-on-air">Next On Air</p>
-          <p class='home__next-show-name'>{{showName}}</p>
-          <p class='home__next-show-host'>hosted by {{host}}</p>
-          <p class='home__next-show-time'>
-            {{getStartEndTime startHour startMinute endHour endMinute}}
-          </p>
-        </div>
-        <div class='home__next-show-image'>
-          <img src='{{featuredImage.url}}' />
-        </div>
+      <div class='home__next-show-deets'>
+        <p class="home__next-on-air">Next On Air</p>
+        <p class='home__next-show-name'>{{showName}}</p>
+        <p class='home__next-show-host'>hosted by {{host}}</p>
+        <p class='home__next-show-time'>
+          {{getStartEndTime startHour startMinute endHour endMinute}}
+        </p>
+      </div>
+      <div class='home__next-show-image'>
+        <img src='{{featuredImage.url}}' />
       </div>
     {{/with}}
-    <p class="white-button"><a class="home__next-show-btn" href="/shows">Program Schedule</a></p>
+    <p class='home__next-show-link'><a class="color-button transparent-button" href="/shows">Program Schedule</a></p>
   </div>
 </div>
 </div>

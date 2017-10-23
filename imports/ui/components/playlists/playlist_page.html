@@ -1,51 +1,39 @@
 <template name="playlistPage">
   {{#if Template.subscriptionsReady}}
-  <h2 class='general__header'><a href="/shows/{{showSlug}}">{{showName}}</a> playlist - {{showDateOfCurrent}}</h2>
-  <div class='playlist__link'>
-    <a href='/playlists' class='back-to'>← Back to Playlists</a>
-  </div>
-  <div class='playlist__content'>
-    {{#if showImage}}<a href="/shows/{{showSlug}}"><img class='playlist__show-image' src='{{showImage}}'></a>{{/if}}
-    <table class="playlist">
-      <tr class="playlist__info-row">
-        <td><b>Time</b></td>
-        <td><b>Artist</b></td>
-        <td><b>Song</b></td>
-      </tr>
-      {{#each songs}}
-      <tr>
-        <td class='playlist__timestamp'>{{timeBeautify Timestamp}}</td>
-        <td class='playlist__artist'>{{ArtistName}}</td>
-        <td class='playlist__title'>{{SongName}}</td>
-      </tr>
-      {{/each}}
-    </table>
-    <div class='comments'>
-      <h3 class='comments__header'>Comments</h3>
-      <ul class='comments__list'>
-        {{#each comments}}
-          {{> commentItem}}
-        {{/each}}
-      </ul>
-        {{#if currentUser}}
-          {{> commentSubmit}}
-        {{else}}
-        <p class='comments__text'>Please log in to leave a comment.</p>
-      {{/if}}
+    <h2 class='general__header'><a href="/shows/{{showSlug}}">{{showName}}</a> playlist - {{showDateOfCurrent}}</h2>
+    <div class='playlist__link'>
+      <a href='/playlists' class='back-to'>← Back to Playlists</a>
     </div>
-  </div>
-  {{> playlistSidebar}}
-  <!-- <div class='playlist__sidebar corner'>
-    <h4 class='playlist__sidebar-header'>Browse Latest</h4>
-    {{#each getSidebarData}}
-      <hr />
-      <h4 class='playlist__sidebar-date'>{{dateFormat date}}</h4>
-      {{#each shows}}
-        <div>
-          <p class='playlist__sidebar-link'><a href="/playlists/{{spinPlaylistId}}">{{timeFromHours (showTimeFromId showId) (showEndFromId showId)}} {{showNameFromId showId}}</a></p>
-        </div>
-      {{/each}}
-    {{/each}}
-  </div> -->
+    <div class='playlist__content'>
+      {{#if showImage}}<a href="/shows/{{showSlug}}"><img class='playlist__show-image' src='{{showImage}}'></a>{{/if}}
+      <table class="playlist">
+        <tr class="playlist__info-row">
+          <td><b>Time</b></td>
+          <td><b>Artist</b></td>
+          <td><b>Song</b></td>
+        </tr>
+        {{#each songs}}
+        <tr>
+          <td class='playlist__timestamp'>{{timeBeautify Timestamp}}</td>
+          <td class='playlist__artist'>{{ArtistName}}</td>
+          <td class='playlist__title'>{{SongName}}</td>
+        </tr>
+        {{/each}}
+      </table>
+      <div class='comments'>
+        <h3 class='comments__header'>Comments</h3>
+        <ul class='comments__list'>
+          {{#each comments}}
+            {{> commentItem}}
+          {{/each}}
+        </ul>
+          {{#if currentUser}}
+            {{> commentSubmit}}
+          {{else}}
+          <p class='comments__text'>Please log in to leave a comment.</p>
+        {{/if}}
+      </div>
+    </div>
+    {{> playlistSidebar}}
   {{/if}}
 </template>

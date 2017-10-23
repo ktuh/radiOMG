@@ -39,6 +39,7 @@ h4 { font-size: 1.125em; }
 h5, .sm { font-size: .875em; }
 h1, h2, h3, h4, h5 {
   font-family: 'nimbus-sans-extended';
+  font-weight: bold;
 }
 .flex {
   display: flex;
@@ -1406,9 +1407,24 @@ audio {
   width: 0;
 }
 .home__next-show {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   background-color: #333333;
   color: white;
-  padding: 15px 12px;
+  padding: 15px 12px 30px;
+  font-family: 'nimbus-sans', sans-serif;
+  text-transform: uppercase;
+}
+.home__next-show p {
+  margin-bottom: 0;
+  text-align: left;
+}
+.home__next-show-link {
+  margin: 25px 0;
+}
+.home__next-show-deets {
+  padding-bottom: 10px;
 }
 .home__next-on-air {
   margin-bottom: 5px;
@@ -1417,59 +1433,54 @@ audio {
   font-weight: bold;
   text-transform: uppercase;
 }
-.home__next-show-info {
-  font-family: 'nimbus-sans', sans-serif;
-  text-transform: uppercase;
+.button__wrapper {
+  width: 100%;
+  margin: 25px 0;
+  text-align: center;
 }
-.home__next-show-info p {
-  margin-bottom: 0;
-  text-align: left;
-}
-.home__next-show-deets {
-  padding-bottom: 10px;
-}
-.home__next-show-btn {
-  margin: 10px 0;
-  color: white;
-  font-weight: normal;
-}
-.white-button {
+.color-button {
   max-width: 250px;
   padding: 10px 25px;
   margin: 15px 0;
-  border: 1px #5940DE solid;
-  background: #fff;
   font-family: 'nimbus-sans', sans-serif;
   font-size: .875em;
   font-weight: bold;
-  color: #5940DE;
   letter-spacing: 1.5px;
+  text-align: center;
   text-transform: uppercase;
+  text-decoration: none;
 }
-.white-button:hover {
-  background-color: #5940DE;
+.color-button.white-button {
+  border: 1px #5940de solid;
+  background: #fff;
+  color: #5940de;
+}
+.color-button.white-button:hover {
+  background-color: #5940de;
   color: #fff;
   text-decoration: none;
   border: 1px #fff solid;
 }
-.purple-button {
-  max-width: 250px;
-  padding: 10px 25px;
-  margin: 15px 0;
+.color-button.purple-button {
   border: 1px #fff solid;
   background: #5940de;
-  font-family: 'nimbus-sans', sans-serif;
-  font-size: .875em;
-  font-weight: bold;
   color: #fff;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
 }
-.purple-button:hover,
-.purple-button:hover a {
+.color-button.purple-button:hover {
   background-color: #fff;
   color: #5940de;
-  text-decoration: none;
+}
+.color-button.transparent-button {
+  border: 1px #fff solid;
+  color: #fff;
+}
+.color-button.transparent-button a {
+  color: #fff;
+  text-align: center;
+}
+.color-button.transparent-button:hover {
+  background-color: #fff;
+  color: #333;
 }
 .profile__show-button {
   padding: 10px;
@@ -1748,6 +1759,7 @@ audio {
   padding: 70px 0;
   background-image: url("/img/radio-for-the-people.jpg");
   background-position: center;
+  background-size: cover;
   background-color: #1e1e1e;
   color: white;
 }
@@ -1756,10 +1768,10 @@ audio {
   padding: 30px 0;
   background-color: #1e1e1e;
 }
+.join__content,
 .about__content {
   padding: 30px 0;
 }
-.join__content,
 .contact__content {
   padding: 30px;
 }
@@ -1778,6 +1790,9 @@ audio {
 }
 .about__help h3 {
   font-family: 'alda';
+}
+.about__help__lighter {
+  font-weight: normal;
 }
 .faq__content {
   padding: 60px;
@@ -1843,7 +1858,7 @@ audio {
 }
 .about__desc p, .about__content p, .about__help,
 .join__desc p, .join__content p,
-.contact__content p, .contact__content h4 {
+.contact__content p, .contact__content h4, contact__content form {
   padding: 5px 192px;
 }
 .copy__caps {
@@ -1890,11 +1905,6 @@ audio {
 }
 .staff__item > p {
   margin-bottom: 5px;
-}
-.button__wrapper {
-  width: 100%;
-  margin: 25px 0;
-  text-align: center;
 }
 .purple-text {
   color: #5940DE;
@@ -2080,18 +2090,12 @@ audio {
     width: 100%;
   }
   .home__next-show {
-    margin: 15px 40px;
-    padding: 15px;
-  }
-  .home__next-show-info {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    margin: 15px 0;
   }
   .home__next-show-deets, .home__next-show-image {
     width: 44%;
     display: inline-block;
-    font-size: 2.25em;
+    font-size: 1.125em;
     vertical-align: top;
     text-align: left;
   }
