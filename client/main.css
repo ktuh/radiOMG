@@ -111,7 +111,7 @@ h1, h2, h3, h4, h5 {
   background-size: auto;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: top;
+  background-position: center;
 }
 .landing__box {
   position: relative;
@@ -758,7 +758,7 @@ audio {
   position: absolute;
   right: 50px;
   float: none;
-  margin: 20px 0 10px;
+  margin: 10px 0 10px;
 }
 .party__flyer {
   padding: 1px;
@@ -869,10 +869,13 @@ audio {
   width: 100%;
   text-align: left;
 }
-.playlist tr:nth-child(2n+1) {
+.playlist tr:nth-child(2n) {
+  background-color: #f6f6f6;
+}
+.show__latest-playlist tr:nth-child(2n+1) {
   background-color: #1c1c1c;
 }
-.playlist tr:nth-child(2n) {
+.show__latest-playlist tr:nth-child(2n) {
   background: #3d3d3d;
 }
 .playlist__show-name {
@@ -1715,10 +1718,6 @@ audio {
   margin-bottom: 30px;
   display: inline-block;
 }
-.playlist-list__list {
-  display: inline-block;
-  width: 33%;
-}
 .playlist-list__show-host,
 .playlist-list__show-name a {
   text-transform: uppercase;
@@ -2088,7 +2087,6 @@ audio {
    width: calc(100% - 80px);
    margin: 0 40px 10px;
   }
-  .playlist-list__list,
   .playlist-list__latest {
     width: 100%;
   }
@@ -2212,7 +2210,7 @@ audio {
   }
   .profile__info {
     max-width: none;
-    margin-top: 0;
+    margin: 25px 0 0 0;
   }
   .party-header__button {
     position: unset;
