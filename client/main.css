@@ -242,7 +242,7 @@ h1, h2, h3, h4, h5 {
   padding: 13px 0 15px;
 }
 .navbar-nav {
-  margin: 12px 0 12px 10px;
+  margin: 12px 0;
   float: right;
 }
 .navbar-collapse {
@@ -274,6 +274,8 @@ h1, h2, h3, h4, h5 {
   font-family: 'nimbus-sans', sans-serif;
   text-transform: uppercase;
   border-top: 2px solid transparent;
+  margin-right: 5px;
+  margin-left: 5px;
 }
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:focus,
@@ -296,6 +298,7 @@ h1, h2, h3, h4, h5 {
 }
 #login-dropdown-list {
   margin-left: 5px;
+  margin-right: 5px;
 }
 .nav__play-img {
   max-height: 12px;
@@ -960,7 +963,7 @@ audio {
   display: inline;
 }
 .show__wrapper {
-  padding: 10px 60px;
+  padding: 25px 60px;
 }
 .show-item {
   display: inline-flex;
@@ -1006,7 +1009,7 @@ audio {
   font-size: .875em;
 }
 .show-item__genres {
-  margin-top: 20px;
+  margin-top: 10px;
   font-size: 10px;
   font-family: 'nimbus-sans-extended', sans-serif;
   font-weight: bold;
@@ -1018,7 +1021,8 @@ audio {
   text-align: left;
   vertical-align: top;
   display: inline-block;
-  margin-bottom: 0;
+  margin: 0 0 0 20px;
+  width: 50%;
 }
 .show__buttons {
   display: inline;
@@ -1066,22 +1070,25 @@ audio {
 }
 .show__image-div {
   display: inline-block;
+  width: 25%;
 }
 .show__image {
   position: relative;
   float: left;
-  margin: 0 20px 20px 0;
+  width: 100%;
+  margin: 0;
 }
 .show__host {
   font-family: 'nimbus-sans', sans-serif;
+  margin-bottom: 0;
 }
 .show__host a:hover {
   text-decoration: underline;
 }
-.show__title,
 .show__tag {
   color: #666;
   cursor: pointer;
+  margin-bottom: 0;
 }
 .show__info .purple-button {
   background-color: white;
@@ -2031,8 +2038,8 @@ audio {
 }
 @media (min-width: 768px) and (max-width: 808px) {
   .navbar-default .navbar-nav > li > a {
-    margin-left: 5px;
-    margin-right: 5px;
+    margin-left: 2px;
+    margin-right: 2px;
   }
 
 }
@@ -2040,10 +2047,18 @@ audio {
   .info-box__link {
     margin: 12px 0;
   }
+  .navbar-nav {
+    margin-top: 17px;
+  }
   .nav.navbar-nav:nth-child(3) {
     float: left;
     clear: both;
-    margin-left: -15px;
+    margin-left: 0px;
+  }
+  .nav.navbar-nav:nth-child(3) .nav-item {
+    float: left;
+    clear: both;
+    margin-left: -7px;
   }
 }
 @media (max-width: 768px) {
@@ -2063,7 +2078,7 @@ audio {
     width: calc(100% - 40px);
   }
   .about__desc, .about__content, .about__help, .join__desc, .join__content,
-  .faq__content, .contact__content, .playlist__content, .content, 
+  .faq__content, .contact__content, .playlist__content, .content,
   #partyForm, #showForm, .show__wrapper, .news-list__wrapper {
     padding: 20px 40px;
   }
@@ -2385,7 +2400,7 @@ audio {
 }
 @media (min-width: 481px) and (max-width: 767px) {
   .navbar-nav.nav.navbar-left {
-    margin-left: -15px;
+    margin-left: 0px;
   }
 }
 @media (max-width: 633px) {
