@@ -110,9 +110,9 @@ Template.home.helpers({
       return body.replace(regex," $1…");
     }
   },
-  getDisplayNameById: (id) => Profiles.findOne({userId: id}).name,
-  getUsernameById: (id) => Meteor.users.findOne({_id: id}).username,
-  getNextShow: () => {
+  displayNameById: (id) => Profiles.findOne({userId: id}).name,
+  usernameById: (id) => Meteor.users.findOne({_id: id}).username,
+  nextShow: () => {
     var dows = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     var currentDate = new Date(), nextDate = new Date(currentDate.getDate() + 1);
     var currentDow = currentDate.getDay(), nextDow = nextDate.getDay();
@@ -122,8 +122,13 @@ Template.home.helpers({
     var nextShowRegardless = Shows.findOne({startDay: { $gt: nextDow + 1 % 7 } }, { sort: { startDay: 1, startHour: 1 } }) || Shows.findOne({}, { sort: { startDay: 1, startHour: 1 } });
     return nextSameDayShow || nextNextDayShow || nextShowRegardless;
   },
-  getTime: (str) => moment(str).fromNow(),
-  getStartEndTime: (startHour, startMinute, endHour, endMinute) =>
+  time: (str) => moment(str).fromNow(),
+  startEndTime: (startHour, startMinute, endHour, endMinute) =>
     moment(startHour + ":" + startMinute, "HH:mm").format("h:mm") + "-" +
-    moment(endHour + ":" + endMinute, "HH:mm").format("h:mm A")
+    moment(endHour + ":" + endMinute, "HH:mm").format("h:mm A"),
+  hasDjotm: () => scorpius.dictionary.get('mainPage.monthlyDJName') !== undefined,
+  djName: () => scorpius.dictionary.get('mainPage.monthlyDJName', ''),
+  djImg: () => scorpius.dictionary.get('mainPage.monthlyDJImgUrl', ''),
+  djBlurb: () => scorpius.dictionary.get('mainPage.monthlyDJBlurb', ''),
+  djLink: () => scorpius.dictionary.get('mainPage.monthlyDJLink', '')
 });
