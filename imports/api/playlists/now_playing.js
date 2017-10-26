@@ -1,4 +1,5 @@
 import { Mongo } from 'meteor/mongo';
+import { Session } from 'meteor/session';
 
 export default NowPlaying = new Mongo.Collection('nowPlaying');
 
