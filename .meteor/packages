@@ -59,3 +59,4 @@ templating-runtime
 kadira:blaze-layout
 kadira:flow-router
 scorpiusjs:s3
+useraccounts:flow-routing
