@@ -8,6 +8,7 @@ Template.landing.onCreated(function() {
   var self = this;
   self.autorun(function() {
     self.subscribe('showNowPlaying');
+    self.subscribe('nowPlaying');
   });
 });
 
