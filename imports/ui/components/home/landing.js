@@ -3,6 +3,7 @@ import { Meteor } from 'meteor/meteor';
 import NowPlaying from '../../../api/playlists/now_playing.js';
 import Shows from '../../../api/shows/shows_collection.js';
 import { Template } from 'meteor/templating';
+import { Session } from 'meteor/session';
 
 Template.landing.onCreated(function() {
   var self = this;
@@ -19,37 +20,11 @@ Template.landing.helpers({
                      '<p class="landing__show-host caps"> by </p>' +
                      '<p class="caps">' +  str.split(" - ")[0] + '</p>',
   showName: () => {
-    var d = new Date();
-    var day = d.getDay();
-    var hour = d.getHours();
-    var minute = d.getMinutes();
-    var show = Shows.find({ active: true,
-                             startDay: { $gte: day },
-                             startHour: { $gte: hour },
-                             startMinute: { $gte: minute },
-                             endDay: { $lte: day },
-                             endHour: { $lte: hour},
-                             endMinute: { $lte: minute }},
-                           { sort: { startDay: 1, startHour: 1, startMinute: 1,
-                                     endDay: -1, endHour: -1, endMinute: -1 },
-                             limit: 1});
+    var show = Shows.findOne({});
     return show && show.showName;
   },
   showHost: () => {
-    var d = new Date();
-    var day = d.getDay();
-    var hour = d.getHours();
-    var minute = d.getMinutes();
-    var show = Shows.find({ active: true,
-                             startDay: { $gte: day },
-                             startHour: { $gte: hour},
-                             startMinute: { $gte: minute },
-                             endDay: { $lte: day },
-                             endHour: { $lte: hour},
-                             endMinute: { $lte: minute }},
-                           { sort: { startDay: 1, startHour: 1, startMinute: 1,
-                                     endDay: -1, endHour: -1, endMinute: -1 },
-                             limit: 1});
+    var show = Shows.findOne({});
     return show && show.host;
   },
   isPlaying: () => {

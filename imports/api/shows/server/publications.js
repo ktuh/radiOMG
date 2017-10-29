@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
-import Shows from '../shows_collection.js'
+import Shows from '../shows_collection.js';
+import moment from 'moment-timezone';
 
 Meteor.publish('shows', () => {
   return Shows.find({});
@@ -28,47 +29,34 @@ Meteor.publish('showByUserId', (id) => {
 });
 
 Meteor.publish('showNowPlaying', () => {
-  var d = new Date();
-  var day = d.getDay();
-  var hour = d.getHours();
-  var minute = d.getMinutes();
   // We are making a big assumption here! The assumption is that shows
   // do not air over midnight into the next day. Shows are to be cut off
   // at 11:59 and air entirely on a single day.
-  var shows = Shows.find({ active: true,
-                           startDay: { $gte: day },
-                           startHour: { $gte: hour},
-                           startMinute: { $gte: minute },
-                           endDay: { $lte: day },
-                           endHour: { $lte: hour},
-                           endMinute: { $lte: minute }},
-                         { sort: { startDay: 1, startHour: 1, startMinute: 1,
-                                   endDay: -1, endHour: -1, endMinute: -1 },
-                           limit: 1});
-  return shows;
-  // For testing purposes:
-  // return Shows.find({}, {limit: 1});
+  var now = moment(new Date()).tz(Meteor.settings.timezone);
+  var show = Shows.find({active: true, startDay: {$lte: now.day()},
+                            startHour: { $lte: now.hour() }, endDay: { $gte: now.day() },
+                            endHour: { $gte: now.hour() } },
+                            { sort: { startDay: 1, startHour: 1, startMinute: 1,
+                                      endDay: -1, endHour: -1, endMinute: -1 },
+                              limit: 1});
+  return show;
 });
 
 Meteor.publish('nextOnAir', () => {
-  var d = new Date();
-  var day = d.getDay();
-  var hour = d.getHours();
-  var minute = d.getMinutes();
-  var sameDay = Shows.find({ active: true,
-                           startDay: { $gte: day },
-                           startHour: { $gte: hour },
-                           startMinute: { $gte: minute },
-                           endDay: { $lte: day },
-                           endHour: { $lte: hour},
-                           endMinute: { $lte: minute }},
+  var now = moment(new Date()).tz(Meteor.settings.timezone);
+  var sameDay = Shows.find({active: true, startDay: {$lte: now.day()},
+                            startHour: { $gte: now.hour() }, endDay: { $gte: now.day() }},
                          { sort: { startDay: 1, startHour: 1, startMinute: 1,
                                    endDay: -1, endHour: -1, endMinute: -1 },
-                           limit: 3, skip: 1});
-  var tmr =  Shows.find({ active: true,
-                          startDay: { $gte: day + 1 % 7}},
+                           limit: 3});
+  var tmr = Shows.find({ active: true,
+                          startDay: { $gte: now.day() + 1 } },
                         { sort: { startDay: 1, startHour: 1, startMinute: 1,
                                 endDay: -1, endHour: -1, endMinute: -1 },
-                        limit: 3});
-   return sameDay.count() === 0 ? tmr : sameDay;
+                        limit: 3}) || Shows.find({ active: true,
+                                                startDay: { $gte: 0 } },
+                                              { sort: { startDay: 1, startHour: 1, startMinute: 1,
+                                                      endDay: -1, endHour: -1, endMinute: -1 },
+                                              limit: 3});
+  return sameDay.count() === 0 ? tmr : sameDay.skip(1);
 });

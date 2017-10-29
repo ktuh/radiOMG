@@ -3,6 +3,7 @@ import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import NowPlaying from '../../../api/playlists/now_playing.js';
+import { moment } from 'meteor/momentjs:moment';
 import 'mediaelement/player';
 
 Template.header.onCreated(function () {
@@ -84,10 +85,10 @@ Template.header.onRendered(function () {
 
   setInterval(function() {
     if (NowPlaying.findOne()) {
-      if (new Date() - NowPlaying.findOne().timestamp > 360000) {
+      if (moment().diff(moment(NowPlaying.findOne().timestamp)) > 360000 && !Session.get('timeout')) {
         Session.set('timeout', true);
       }
-      else if (new Date() - NowPlaying.findOne().timestamp <= 360000 && Session.set('timeout')) {
+      else if ((moment().diff(NowPlaying.findOne().timestamp) <= 360000) && Session.get('timeout')) {
         Session.set('timeout', false);
       }
     }

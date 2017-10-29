@@ -18,7 +18,7 @@ Template.home.onCreated(function () {
     self.subscribe('latestSevenWriters');
     self.subscribe('latestSevenWritersUsernames');
     self.subscribe('latestFeaturedPosts', 1);
-    self.subscribe('activeShows');
+    self.subscribe('nextOnAir');
   });
 });
 
@@ -112,16 +112,7 @@ Template.home.helpers({
   },
   displayNameById: (id) => Profiles.findOne({userId: id}).name,
   usernameById: (id) => Meteor.users.findOne({_id: id}).username,
-  nextShow: () => {
-    var dows = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    var currentDate = new Date(), nextDate = new Date(currentDate.getDate() + 1);
-    var currentDow = currentDate.getDay(), nextDow = nextDate.getDay();
-    var currentHour = currentDate.getHours(), nextHour = currentHour + (3 - currentHour % 3);
-    var nextSameDayShow = Shows.findOne({ startDay: currentDow, startHour: { $gte: nextHour } }, { sort: { startDay: 1, startHour: 1 } });
-    var nextNextDayShow = Shows.findOne({ startDay: nextDow }, { sort: { startDay: 1, startHour: 1 } });
-    var nextShowRegardless = Shows.findOne({startDay: { $gt: nextDow + 1 % 7 } }, { sort: { startDay: 1, startHour: 1 } }) || Shows.findOne({}, { sort: { startDay: 1, startHour: 1 } });
-    return nextSameDayShow || nextNextDayShow || nextShowRegardless;
-  },
+  nextShow: () => Shows.findOne({}),
   time: (str) => moment(str).fromNow(),
   startEndTime: (startHour, startMinute, endHour, endMinute) =>
     moment(startHour + ":" + startMinute, "HH:mm").format("h:mm") + "-" +
