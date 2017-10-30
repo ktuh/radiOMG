@@ -2115,9 +2115,24 @@ margin-bottom: 0 !important;
     left: 40px;
     width: calc(100% - 40px);
   }
-  .landing__box {
-    max-width: 37em;
+  .landing__box { 
+    max-width: 37em; 
     justify-content: center;
+  }
+  .landing__down-arrow {
+    position: absolute;
+    right: calc(50% + -0.5em);
+    top: 85%;
+    height: 30px;
+    width: 30px;
+    font-size: 3em;
+    border-right: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
   }
   .landing__info {
     margin-left: 2em;
