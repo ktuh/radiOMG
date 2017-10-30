@@ -375,6 +375,7 @@ h1, h2, h3, h4, h5 {
 }
 .nav.navbar-nav:nth-child(3) {
   font-weight: normal;
+  margin: 12px 0;
 }
 .nav.navbar-nav.navbar-right {
   margin: 0;
@@ -2008,9 +2009,6 @@ margin-bottom: 0 !important;
   }
 }
 @media (min-width: 980px) and (max-width: 1019px) {
-  .nav.navbar-nav:nth-child(3) {
-    margin: 12px 0;
-  }
   .dropdown-menu {
     left: -72px;
   }
@@ -2103,6 +2101,9 @@ margin-bottom: 0 !important;
     margin: 17px 0 12px 0;
     font-weight: bold;
     float: left;
+  }
+  .nav.navbar-nav:nth-child(3) {
+    margin-top: 17px;
   }
   .general__header {
     padding-left: 40px;
