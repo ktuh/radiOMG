@@ -276,7 +276,7 @@ h1, h2, h3, h4, h5 {
   text-transform: uppercase;
   border-top: 2px solid transparent;
   margin-right: 20px;
-  margin-left: 20px;
+  margin-left: 18px;
 }
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:focus,
@@ -300,10 +300,6 @@ h1, h2, h3, h4, h5 {
 #login-dropdown-list {
   padding: 0;
   margin: 0;
-}
-#login-dropdown-list {
-  margin-left: 5px;
-  margin-right: 5px;
 }
 .nav__play-img {
   max-height: 12px;
@@ -2096,11 +2092,11 @@ margin-bottom: 0 !important;
     left: 40px;
     width: calc(100% - 40px);
   }
-  .landing__box { 
-    max-width: 37em; 
+  .landing__box {
+    max-width: 37em;
     justify-content: center;
   }
-  .landing__info { 
+  .landing__info {
     margin-left: 2em;
   }
   .about__desc, .about__content, .about__help, .join__desc, .join__content,
