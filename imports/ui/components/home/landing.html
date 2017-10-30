@@ -2,6 +2,10 @@
   <div class='landing' style='background-image:{{background}};'>
     <div class='landing__box'>
       {{#if Template.subscriptionsReady}}
+        <div class='landing__play-btn-outer'>
+          {{#if isPlaying}}<div class='landing__pause-btn-l'></div><div class='landing__pause-btn-r'></div>
+          {{else}}<div class='landing__play-btn'><div class='landing__play-btn-triangle'></div></div>{{/if}}
+        </div>
         <div class='landing__info'>
         {{#if showName}}
           <p class='landing__now-playing caps'>On Air Now:</p>
@@ -17,10 +21,6 @@
           <p class='landing__show-host'>Welcome to KTUH FM Honolulu</p>
           <p class='landing__host-name'>Radio for the People</p>
         {{/if}}
-        </div>
-        <div class='landing__play-btn-outer'>
-          {{#if isPlaying}}<div class='landing__pause-btn-l'></div><div class='landing__pause-btn-r'></div>
-          {{else}}<div class='landing__play-btn'><div class='landing__play-btn-triangle'></div></div>{{/if}}
         </div>
       {{/if}}
     </div>

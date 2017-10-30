@@ -63,7 +63,7 @@ Template.landing.helpers({
       return 'url(\'/img/tantalus-morning.jpg\')';
     }
     else if (h >= 11 && h < 18) {
-      return 'url(\'/img/tantalus-day.jpg\')';
+      return 'url(\'/img/tantalus-morning.jpg\')';
     }
     else if ((h >= 19 && h <= 23) || (h >= 0 && h < 6)) {
       return 'url(\'/img/tantalus-evening.jpg\')';

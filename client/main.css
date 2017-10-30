@@ -114,16 +114,16 @@ h1, h2, h3, h4, h5 {
   background-position: center;
 }
 .landing__box {
+  display: flex;
+  justify-content: space-around;
   position: relative;
-  top: 33%;
+  top: 39%;
   margin: auto;
   max-width: 42em;
 }
 .landing__info {
-  float: right;
   width: 24em;
   height: 15em;
-  margin: 24px 0 0 3em;
   font-family: 'nimbus-sans-extended', 'alda', sans-serif;
 }
 .landing__info p { margin: 0; }
@@ -144,29 +144,29 @@ h1, h2, h3, h4, h5 {
 }
 .landing__play-btn-outer {
   float: left;
-  width: 15em;
-  height: 15em;
+  width: 10em;
+  height: 10em;
   border: 2px solid;
   border-radius: 50%;
   cursor: pointer;
 }
 .landing__play-btn {
   position: relative;
-  top: 3.75em;
-  left: 1em;
+  top: 2.67em;
+  left: 1.3em;
   margin: auto;
-  width: 5em;
-  height: 7em;
+  width: 4em;
+  height: 4.5em;
   border-left: 2px solid #fff;
 }
 .landing__play-btn-triangle {
   border-right: 2px solid #fff;
   border-bottom: 2px solid #fff;
-  height: 5em;
-  width: 5em;
+  height: 3.45em;
+  width: 3.45em;
   position: relative;
-  left: -2.5em;
-  top: 1em;
+  left: -1.8em;
+  top: 0.5em;
   transform: rotate(-45deg);
   -webkit-transform: rotate(-45deg);
   -moz-transform: rotate(-45deg);
@@ -174,20 +174,20 @@ h1, h2, h3, h4, h5 {
   -ms-transform: rotate(-45deg);
 }
 .landing__pause-btn-r {
-  margin: 0 11px;
-  top: 31%;
+  margin: 0 8px;
+  top: 30%;
   position: relative;
-  width: 2.5em;
-  height: 5.5em;
+  width: 1.5em;
+  height: 4em;
   border: solid 2px #fff;
   float: left;
 }
 .landing__pause-btn-l {
-  margin: 0 8px 0 4em;
-  top: 31%;
+  margin: 0 8px 0 2.75em;
+  top: 30%;
   position: relative;
-  width: 2.5em;
-  height: 5.5em;
+  width: 1.5em;
+  height: 4em;
   border: solid 2px #fff;
   float: left;
 }
@@ -1314,9 +1314,6 @@ audio {
   color: white;
   padding: 50px 0;
 }
-.home__news {
-
-}
 .home__reviews {
   clear: both;
 }
@@ -1363,6 +1360,9 @@ audio {
 }
 .home__news-item:nth-child(4) {
   clear: both;
+}
+.home__next-show-link {
+margin-bottom: 0 !important;
 }
 .home__main {
   width: 75%;
@@ -2089,6 +2089,13 @@ audio {
     left: 40px;
     width: calc(100% - 40px);
   }
+  .landing__box { 
+    max-width: 37em; 
+    justify-content: center;
+  }
+  .landing__info { 
+    margin-left: 2em;
+  }
   .about__desc, .about__content, .about__help, .join__desc, .join__content,
   .faq__content, .contact__content, .playlist__content, .content,
   #partyForm, #showForm, .show__wrapper, .news-list__wrapper {
@@ -2277,47 +2284,22 @@ audio {
   .header__submenu-support {
     display: none;
   }
-  .landing__play-btn {
-    left: 1.75em;
-    top: 2.25em;
-    width: 5em;
-    height: 5em;
-  }
-  .landing__play-btn-triangle {
-    height: 3.5em;
-    width: 3.5em;
-    left: -1.7em;
-    top: .8em;
-  }
   .landing__box {
-    text-align: center;
-    max-width: 17em;
+    top: 30%;
+    flex-direction: column;
   }
-  .landing__info {
-    float: none;
-    width: 17em;
-    height: auto;
-    margin: 0 0 20px 0;
-  }
+  .landing__info,
   .landing__play-btn-outer {
-    float: none;
-    width: 10em;
-    height: 10em;
-    margin: 0 auto;
+    margin: 0 auto 15px;
   }
+  .landing__info { max-width: 20em; }
   .landing__show-name,
   .landing__show-host,
   .landing__song-title,
   .landing__host-name {
-    font-size: 26px;
+    text-align: center;
+    font-size: 1.75em;
     line-height: 32px;
-  }
-  .landing__pause-btn {
-    top: 30%;
-    width: 4.5em;
-    height: 4em;
-    border-left: solid 1.6em #fff;
-    border-right: solid 1.6em #fff;
   }
   .news-list__post {
     float: none;
@@ -2495,4 +2477,10 @@ audio {
   .review-item {
     width: 100%;
   }
+  .landing__hnl-freq { left: -60px; }
+  .landing__ns-freq { right: -50px; }
+}
+@media (max-width: 480px) {
+  .landing__hnl-freq { left: -70px; }
+  .landing__ns-freq { right: -60px; }
 }
