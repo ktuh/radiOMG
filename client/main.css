@@ -298,6 +298,10 @@ h1, h2, h3, h4, h5 {
   border: 1px solid #444;
 }
 #login-dropdown-list {
+  padding: 0;
+  margin: 0;
+}
+#login-dropdown-list {
   margin-left: 5px;
   margin-right: 5px;
 }
@@ -574,14 +578,13 @@ audio {
   height: 40px;
 }
 .mejs__controls {
-    position: static !important;
-}
-.mejs__container {
-    margin-top: 4px;
+  position: static !important;
+  margin-left: 14px !important;
+  padding: 6px 0 0 0 !important;
 }
 .mejs__container,
 .mejs__controls {
-    background: none !important;
+  background: none !important;
 }
 .mejs__offscreen { display: none !important; }
 .mejs__broadcast {
@@ -592,7 +595,7 @@ audio {
 }
 /* play/pause control */
 .mejs__button {
-  margin: 3px 0 0 0 !important;
+  margin: 0 !important;
   cursor: pointer;
 }
 .mejs__button > button {
@@ -610,13 +613,13 @@ audio {
   width: 140px !important;
   top: 7px;
   right: 10px;
-  margin: 2px 7px 0 0 !important;
+  margin: 0 7px 0 0 !important;
 }
 .mejs__time-rail a,
 .mejs__time-rail span {
   position: absolute;
   display: block;
-  width: 75px;
+  width: 78px;
   height: 5px;
   top: 7px;
   left: 20px;
@@ -1963,8 +1966,7 @@ audio {
   .navbar-default .navbar-nav > li > a:focus,
   .navbar-default .navbar-nav > li > a:hover,
   .navbar-default .navbar-nav > li > a:active {
-    margin-left: 12px;
-    margin-right: 12px;
+    margin-right: 0;
   }
   .navbar-left {
     margin-left: 10px;
@@ -2048,13 +2050,6 @@ audio {
     font-size: .75em;
   }
 }
-@media (min-width: 768px) and (max-width: 808px) {
-  .navbar-default .navbar-nav > li > a {
-    margin-left: 7px;
-    margin-right: 7px;
-  }
-
-}
 @media (max-width: 767px) {
   .info-box__link {
     margin: 12px 0;
@@ -2065,15 +2060,27 @@ audio {
   .nav.navbar-nav:nth-child(3) {
     float: left;
     clear: both;
-    margin-left: 0px;
+    margin-top: 0;
+    font-weight: bold;
   }
   .nav.navbar-nav:nth-child(3) .nav-item {
     float: left;
     clear: both;
     margin-left: -7px;
   }
+  .mejs__button {
+    margin-bottom: 8px !important;
+  }
 }
 @media (max-width: 768px) {
+  .mejs__controls {
+    margin-left: 20px !important;
+    padding-top: 0 !important;
+  }
+  #login-dropdown-list {
+    margin-left: 0;
+    margin-right: 0;
+  }
   .navbar-nav.nav.navbar-left {
     margin: 17px 0 12px 0;
     font-weight: bold;
@@ -2127,7 +2134,7 @@ audio {
     padding: 20px 10%;
   }
   .header__submenu-support button {
-    margin-left: 25px;
+    margin-left: 20px;
   }
   .footer__mission-wrapper {
     width: 30%;
@@ -2138,9 +2145,6 @@ audio {
   .spacer-sm {
     height: 50px;
     width: 0;
-  }
-  .mejs__container {
-    margin-top: 0;
   }
   .footer {
     padding: 30px 40px 25px;
@@ -2202,13 +2206,16 @@ audio {
   .shows__day {
     font-size: .875em;
   }
-  .navbar-nav > li > a,
-  .dropdown-toggle {
+  .navbar-nav > li > a {
     margin: 0 10px 0 16px;
     padding: 8px 0 8px 0;
   }
+  .dropdown-toggle {
+    margin: 0 10px 0 16px;
+    padding: 13px 0 8px 0;
+  }
   .navbar-default .navbar-nav .open .dropdown-menu > li > a {
-    padding: 8px 15px 8px 25px;
+    padding: 8px 15px 8px 20px;
   }
   #login-dropdown-list .dropdown-menu {
     margin-bottom: 10px;
@@ -2396,11 +2403,6 @@ audio {
   }
   .show-item__info-time {
     display: initial;
-  }
-}
-@media (min-width: 769px) and (max-width: 788px) {
-  .nav.navbar-nav:nth-child(3) {
-    margin: 12px -18px;
   }
 }
 @media (min-width: 481px) and (max-width: 767px) {

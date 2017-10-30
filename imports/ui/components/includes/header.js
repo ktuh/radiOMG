@@ -88,7 +88,7 @@ Template.header.onRendered(function () {
       if (moment().diff(moment(NowPlaying.findOne().timestamp)) > 360000 && !Session.get('timeout')) {
         Session.set('timeout', true);
       }
-      else if ((moment().diff(NowPlaying.findOne().timestamp) <= 360000) && Session.get('timeout')) {
+      else if (moment().diff(moment(NowPlaying.findOne().timestamp)) <= 360000 && Session.get('timeout')) {
         Session.set('timeout', false);
       }
     }
