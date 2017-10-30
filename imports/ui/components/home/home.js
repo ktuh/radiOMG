@@ -112,7 +112,7 @@ Template.home.helpers({
   },
   displayNameById: (id) => Profiles.findOne({userId: id}).name,
   usernameById: (id) => Meteor.users.findOne({_id: id}).username,
-  nextShow: () => Shows.findOne({}),
+  nextShow: () => Shows.findOne({}, {skip: 1}),
   time: (str) => moment(str).fromNow(),
   startEndTime: (startHour, startMinute, endHour, endMinute) =>
     moment(startHour + ":" + startMinute, "HH:mm").format("h:mm") + "-" +

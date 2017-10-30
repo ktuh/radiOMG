@@ -44,7 +44,7 @@ Meteor.publish('showNowPlaying', () => {
 
 Meteor.publish('nextOnAir', () => {
   var now = moment(new Date()).tz(Meteor.settings.timezone);
-  var sameDay = Shows.find({active: true, startDay: {$lte: now.day()},
+  var sameDay = Shows.find({active: true, startDay: {$gte: now.day()},
                             startHour: { $gte: now.hour() }, endDay: { $gte: now.day() }},
                          { sort: { startDay: 1, startHour: 1, startMinute: 1,
                                    endDay: -1, endHour: -1, endMinute: -1 },
@@ -58,5 +58,6 @@ Meteor.publish('nextOnAir', () => {
                                               { sort: { startDay: 1, startHour: 1, startMinute: 1,
                                                       endDay: -1, endHour: -1, endMinute: -1 },
                                               limit: 3});
-  return sameDay.count() === 0 ? tmr : sameDay.skip(1);
+
+  return sameDay.fetch().length === 0 ? tmr : sameDay;
 });
