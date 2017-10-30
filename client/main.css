@@ -2065,12 +2065,18 @@ margin-bottom: 0 !important;
     margin-left: -7px;
   }
   .mejs__button {
-    margin-bottom: 8px !important;
+    margin-bottom: 15px !important;
   }
 }
 @media (max-width: 768px) {
+  .navbar-default .navbar-nav > li > a,
+  .navbar-default .navbar-nav > li > a:focus,
+  .navbar-default .navbar-nav > li > a:hover,
+  .navbar-default .navbar-nav > li > a:active {
+    margin-left: 0;
+  }
   .mejs__controls {
-    margin-left: 20px !important;
+    margin-left: 0 !important;
     padding-top: 0 !important;
   }
   #login-dropdown-list {
