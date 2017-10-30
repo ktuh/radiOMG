@@ -276,7 +276,6 @@ h1, h2, h3, h4, h5 {
   text-transform: uppercase;
   border-top: 2px solid transparent;
   margin-right: 20px;
-  margin-left: 20px;
 }
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:focus,
@@ -298,8 +297,11 @@ h1, h2, h3, h4, h5 {
   border: 1px solid #444;
 }
 #login-dropdown-list {
-  margin-left: 5px;
-  margin-right: 5px;
+  padding: 0;
+  margin: 0;
+}
+#login-dropdown-list .dropdown-menu {
+  min-width: 150px !important;
 }
 .nav__play-img {
   max-height: 12px;
@@ -373,6 +375,7 @@ h1, h2, h3, h4, h5 {
 }
 .nav.navbar-nav:nth-child(3) {
   font-weight: normal;
+  margin: 12px 0;
 }
 .nav.navbar-nav.navbar-right {
   margin: 0;
@@ -574,14 +577,13 @@ audio {
   height: 40px;
 }
 .mejs__controls {
-    position: static !important;
-}
-.mejs__container {
-    margin-top: 4px;
+  position: static !important;
+  margin-left: 14px !important;
+  padding: 6px 0 0 0 !important;
 }
 .mejs__container,
 .mejs__controls {
-    background: none !important;
+  background: none !important;
 }
 .mejs__offscreen { display: none !important; }
 .mejs__broadcast {
@@ -592,7 +594,7 @@ audio {
 }
 /* play/pause control */
 .mejs__button {
-  margin: 3px 0 0 0 !important;
+  margin: 0 !important;
   cursor: pointer;
 }
 .mejs__button > button {
@@ -610,13 +612,13 @@ audio {
   width: 140px !important;
   top: 7px;
   right: 10px;
-  margin: 2px 7px 0 0 !important;
+  margin: 0 7px 0 0 !important;
 }
 .mejs__time-rail a,
 .mejs__time-rail span {
   position: absolute;
   display: block;
-  width: 75px;
+  width: 78px;
   height: 5px;
   top: 7px;
   left: 20px;
@@ -1958,13 +1960,22 @@ margin-bottom: 0 !important;
     width: 15%;
   }
 }
-@media (max-width: 992px) {
+@media (max-width: 992px) and (min-width: 768px) {
   .navbar-default .navbar-nav > li > a,
   .navbar-default .navbar-nav > li > a:focus,
   .navbar-default .navbar-nav > li > a:hover,
   .navbar-default .navbar-nav > li > a:active {
-    margin-left: 12px;
-    margin-right: 12px;
+    margin-right: 0;
+    margin-left: 18px;
+  }
+  #login-dropdown-list .dropdown-menu {
+    left: -72px;
+  }
+}
+@media (max-width: 992px) {
+  #login-dropdown-list .dropdown-menu {
+    min-width: 150px !important;
+    padding: 0 !important;
   }
   .navbar-left {
     margin-left: 10px;
@@ -1998,8 +2009,8 @@ margin-bottom: 0 !important;
   }
 }
 @media (min-width: 980px) and (max-width: 1019px) {
-  .nav.navbar-nav:nth-child(3) {
-    margin: 12px 0;
+  .dropdown-menu {
+    left: -72px;
   }
   .header__support-btn {
     display: none;
@@ -2048,13 +2059,6 @@ margin-bottom: 0 !important;
     font-size: .75em;
   }
 }
-@media (min-width: 768px) and (max-width: 808px) {
-  .navbar-default .navbar-nav > li > a {
-    margin-left: 7px;
-    margin-right: 7px;
-  }
-
-}
 @media (max-width: 767px) {
   .info-box__link {
     margin: 12px 0;
@@ -2065,19 +2069,41 @@ margin-bottom: 0 !important;
   .nav.navbar-nav:nth-child(3) {
     float: left;
     clear: both;
-    margin-left: 0px;
+    margin-top: 0;
+    font-weight: bold;
   }
   .nav.navbar-nav:nth-child(3) .nav-item {
     float: left;
     clear: both;
     margin-left: -7px;
   }
+  .mejs__button {
+    margin-bottom: 15px !important;
+  }
 }
 @media (max-width: 768px) {
+  .navbar-default .navbar-nav > li > a,
+  .navbar-default .navbar-nav > li > a:focus,
+  .navbar-default .navbar-nav > li > a:hover,
+  .navbar-default .navbar-nav > li > a:active,
+  {
+    margin-left: 0;
+  }
+  .mejs__controls {
+    margin-left: 0 !important;
+    padding-top: 0 !important;
+  }
+  #login-dropdown-list {
+    margin-left: 0;
+    margin-right: 0;
+  }
   .navbar-nav.nav.navbar-left {
     margin: 17px 0 12px 0;
     font-weight: bold;
     float: left;
+  }
+  .nav.navbar-nav:nth-child(3) {
+    margin-top: 17px;
   }
   .general__header {
     padding-left: 40px;
@@ -2089,11 +2115,11 @@ margin-bottom: 0 !important;
     left: 40px;
     width: calc(100% - 40px);
   }
-  .landing__box { 
-    max-width: 37em; 
+  .landing__box {
+    max-width: 37em;
     justify-content: center;
   }
-  .landing__info { 
+  .landing__info {
     margin-left: 2em;
   }
   .about__desc, .about__content, .about__help, .join__desc, .join__content,
@@ -2134,7 +2160,7 @@ margin-bottom: 0 !important;
     padding: 20px 10%;
   }
   .header__submenu-support button {
-    margin-left: 25px;
+    margin-left: 20px;
   }
   .footer__mission-wrapper {
     width: 30%;
@@ -2145,9 +2171,6 @@ margin-bottom: 0 !important;
   .spacer-sm {
     height: 50px;
     width: 0;
-  }
-  .mejs__container {
-    margin-top: 0;
   }
   .footer {
     padding: 30px 40px 25px;
@@ -2209,13 +2232,16 @@ margin-bottom: 0 !important;
   .shows__day {
     font-size: .875em;
   }
-  .navbar-nav > li > a,
-  .dropdown-toggle {
-    margin: 0 10px 0 16px;
+  .navbar-nav > li > a {
+    margin: 0 10px 0 0;
     padding: 8px 0 8px 0;
   }
+  .dropdown-toggle {
+    margin: 0 10px 0 16px;
+    padding: 13px 0 8px 0;
+  }
   .navbar-default .navbar-nav .open .dropdown-menu > li > a {
-    padding: 8px 15px 8px 25px;
+    padding: 8px 15px 8px 20px;
   }
   #login-dropdown-list .dropdown-menu {
     margin-bottom: 10px;
@@ -2378,11 +2404,6 @@ margin-bottom: 0 !important;
   }
   .show-item__info-time {
     display: initial;
-  }
-}
-@media (min-width: 769px) and (max-width: 788px) {
-  .nav.navbar-nav:nth-child(3) {
-    margin: 12px -18px;
   }
 }
 @media (min-width: 481px) and (max-width: 767px) {
