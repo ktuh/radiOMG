@@ -116,6 +116,7 @@ h1, h2, h3, h4, h5 {
 .landing__box {
   display: flex;
   justify-content: space-around;
+  align-items: center;
   position: relative;
   top: 39%;
   margin: auto;
@@ -123,7 +124,6 @@ h1, h2, h3, h4, h5 {
 }
 .landing__info {
   width: 24em;
-  height: 15em;
   font-family: 'nimbus-sans-extended', 'alda', sans-serif;
 }
 .landing__info p { margin: 0; }
