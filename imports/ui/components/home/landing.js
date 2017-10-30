@@ -20,11 +20,17 @@ Template.landing.helpers({
                      '<p class="landing__show-host caps"> by </p>' +
                      '<p class="caps">' +  str.split(" - ")[0] + '</p>',
   showName: () => {
-    var show = Shows.findOne({});
+    var now =  new Date();
+    var show = Shows.findOne({active: true, startDay: now.getDay(),
+                              startHour: { $lte: now.getHours() }, endDay: now.getDay(),
+                              endHour: { $gte: now.getHours() } });
     return show && show.showName;
   },
   showHost: () => {
-    var show = Shows.findOne({});
+    var now =  new Date();
+    var show = Shows.findOne({active: true, startDay: now.getDay(),
+                              startHour: { $lte: now.getHours() }, endDay: now.getDay(),
+                              endHour: { $gte: now.getHours() } });
     return show && show.host;
   },
   isPlaying: () => {
