@@ -2083,29 +2083,33 @@ margin-bottom: 0 !important;
   .mejs__button {
     margin-bottom: 15px !important;
   }
-}
-@media (max-width: 768px) {
+  .nav > li > a {
+    margin-left: 0;
+  }
   .navbar-default .navbar-nav > li > a,
   .navbar-default .navbar-nav > li > a:focus,
   .navbar-default .navbar-nav > li > a:hover,
   .navbar-default .navbar-nav > li > a:active,
   {
     margin-left: 0;
+    padding: 8px 0;
+  }
+  .navbar-nav.nav.navbar-left {
+    margin: 17px 0 12px 0;
+    font-weight: bold;
+    float: left;
   }
   .mejs__controls {
     padding-top: 0 !important;
   }
+}
+@media (max-width: 768px) {
   #login-dropdown-list {
     margin-left: 0;
     margin-right: 0;
   }
   #login-other-options {
     display: inline-grid;
-  }
-  .navbar-nav.nav.navbar-left {
-    margin: 17px 0 12px 0;
-    font-weight: bold;
-    float: left;
   }
   .general__header {
     padding-left: 40px;
@@ -2233,10 +2237,6 @@ margin-bottom: 0 !important;
   }
   .shows__day {
     font-size: .875em;
-  }
-  .navbar-nav > li > a {
-    margin-left: 0;
-    padding: 8px 0 8px 0;
   }
   .dropdown-toggle {
     width: 112px;
