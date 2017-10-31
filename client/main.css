@@ -563,7 +563,7 @@ h1, h2, h3, h4, h5 {
 }
 .events-item {
   display: inline-block;
-  width: 18%;
+  width: 25%;
   margin: 0 20px 0 0;
   color: inherit;
   vertical-align: top;
@@ -2299,6 +2299,9 @@ margin-bottom: 0 !important;
   .review-item:nth-child(2n + 1) {
     clear: both;
   }
+  .events-item {
+    width: 100%;
+  }
 }
 @media (max-width: 666px) {
   .party {
@@ -2453,6 +2456,12 @@ margin-bottom: 0 !important;
   .news-list__post:last-of-type { padding-bottom: 0; }
 }
 @media (max-width: 480px) {
+  .general__header {
+    padding-left: 25px;
+  }
+  .events-list {
+    padding: 0 25px;
+  }
   .mejs__controls {
     margin-left: 2px;
   }
