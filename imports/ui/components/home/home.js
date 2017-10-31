@@ -112,7 +112,20 @@ Template.home.helpers({
   },
   displayNameById: (id) => Profiles.findOne({userId: id}).name,
   usernameById: (id) => Meteor.users.findOne({_id: id}).username,
-  nextShow: () => Shows.findOne({}, {skip: 1}),
+  nextShow: () => {
+      var now = new Date();
+      var sameDay = Shows.findOne({active: true, startDay: now.getDay(),
+                                startHour: { $gte: now.getHours() }, endDay: now.getDay() },
+                             { sort: { startDay: 1, startHour: 1, startMinute: 1,
+                                       endDay: -1, endHour: -1, endMinute: -1 }});
+      var tmr1 = Shows.findOne({ active: true, startDay: { $gte: now.getDay() + 1 } },
+                            { sort: { startDay: 1, startHour: 1, startMinute: 1,
+                                    endDay: -1, endHour: -1, endMinute: -1 }});
+      var tmr2 =  Shows.findOne({ active: true, startDay: { $gte: 0 } },
+                             { sort: { startDay: 1, startHour: 1, startMinute: 1,
+                              endDay: -1, endHour: -1, endMinute: -1 }});
+      return sameDay ? sameDay : (tmr1 ? tmr1 : tmr2);
+  },
   time: (str) => moment(str).fromNow(),
   startEndTime: (startHour, startMinute, endHour, endMinute) =>
     moment(startHour + ":" + startMinute, "HH:mm").format("h:mm") + "-" +

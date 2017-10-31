@@ -44,20 +44,20 @@ Meteor.publish('showNowPlaying', () => {
 
 Meteor.publish('nextOnAir', () => {
   var now = moment(new Date()).tz(Meteor.settings.timezone);
-  var sameDay = Shows.find({active: true, startDay: {$gte: now.day()},
-                            startHour: { $gte: now.hour() }, endDay: { $gte: now.day() }},
+  var sameDay = Shows.find({active: true, startDay: now.day(),
+                            startHour: { $gte: now.hour() }, endDay: now.day() },
                          { sort: { startDay: 1, startHour: 1, startMinute: 1,
                                    endDay: -1, endHour: -1, endMinute: -1 },
                            limit: 3});
-  var tmr = Shows.find({ active: true,
+  var tmr1 = Shows.find({ active: true,
                           startDay: { $gte: now.day() + 1 } },
                         { sort: { startDay: 1, startHour: 1, startMinute: 1,
                                 endDay: -1, endHour: -1, endMinute: -1 },
-                        limit: 3}) || Shows.find({ active: true,
-                                                startDay: { $gte: 0 } },
-                                              { sort: { startDay: 1, startHour: 1, startMinute: 1,
-                                                      endDay: -1, endHour: -1, endMinute: -1 },
+                        limit: 3});
+  var tmr2 =  Shows.find({ active: true, startDay: { $gte: 0 } },
+                         { sort: { startDay: 1, startHour: 1, startMinute: 1,
+                          endDay: -1, endHour: -1, endMinute: -1 },
                                               limit: 3});
 
-  return sameDay.fetch().length === 0 ? tmr : sameDay;
+  return sameDay.fetch().length === 0 ? (tmr1.fetch().length === 0 ? tmr2 : tmr1) : sameDay;
 });
