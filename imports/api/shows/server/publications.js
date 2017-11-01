@@ -59,5 +59,7 @@ Meteor.publish('nextOnAir', () => {
                           endDay: -1, endHour: -1, endMinute: -1 },
                                               limit: 3});
 
-  return sameDay.fetch().length === 0 ? (tmr1.fetch().length === 0 ? tmr2 : tmr1) : sameDay;
+  if (sameDay.fetch().length > 0) return sameDay;
+  else if (tmr1.fetch().length > 0) return tmr1;
+  else return tmr2;
 });
