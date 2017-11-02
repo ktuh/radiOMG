@@ -237,10 +237,10 @@ h1, h2, h3, h4, h5 {
 }
 .nav > li > a {
   margin: 0 10px;
-  padding: 13px 0 15px;
+  padding: 8px 0;
 }
 .navbar-nav {
-  margin: 12px 0;
+  margin: 17px 0;
   float: right;
 }
 .navbar-left {
@@ -382,7 +382,7 @@ h1, h2, h3, h4, h5 {
 }
 .nav.navbar-nav:nth-child(3) {
   font-weight: normal;
-  margin: 12px 0;
+  margin: 17px 0;
 }
 .nav.navbar-nav.navbar-right {
   margin: 0;
@@ -563,7 +563,7 @@ h1, h2, h3, h4, h5 {
 }
 .events-item {
   display: inline-block;
-  width: 18%;
+  width: 25%;
   margin: 0 20px 0 0;
   color: inherit;
   vertical-align: top;
@@ -585,7 +585,7 @@ audio {
 }
 .mejs__controls {
   position: static !important;
-  padding: 6px 0 0 0 !important;
+  padding: 0 !important;
 }
 .mejs__container,
 .mejs__controls {
@@ -2083,29 +2083,33 @@ margin-bottom: 0 !important;
   .mejs__button {
     margin-bottom: 15px !important;
   }
-}
-@media (max-width: 768px) {
+  .nav > li > a {
+    margin-left: 0;
+  }
   .navbar-default .navbar-nav > li > a,
   .navbar-default .navbar-nav > li > a:focus,
   .navbar-default .navbar-nav > li > a:hover,
   .navbar-default .navbar-nav > li > a:active,
   {
     margin-left: 0;
+    padding: 8px 0;
+  }
+  .navbar-nav.nav.navbar-left {
+    margin: 17px 0 12px 0;
+    font-weight: bold;
+    float: left;
   }
   .mejs__controls {
     padding-top: 0 !important;
   }
+}
+@media (max-width: 768px) {
   #login-dropdown-list {
     margin-left: 0;
     margin-right: 0;
   }
   #login-other-options {
     display: inline-grid;
-  }
-  .navbar-nav.nav.navbar-left {
-    margin: 17px 0 12px 0;
-    font-weight: bold;
-    float: left;
   }
   .general__header {
     padding-left: 40px;
@@ -2234,10 +2238,6 @@ margin-bottom: 0 !important;
   .shows__day {
     font-size: .875em;
   }
-  .navbar-nav > li > a {
-    margin-left: 0;
-    padding: 8px 0 8px 0;
-  }
   .dropdown-toggle {
     width: 112px;
     margin: 0 10px 0 16px;
@@ -2298,6 +2298,9 @@ margin-bottom: 0 !important;
   }
   .review-item:nth-child(2n + 1) {
     clear: both;
+  }
+  .events-item {
+    width: 100%;
   }
 }
 @media (max-width: 666px) {
@@ -2453,6 +2456,12 @@ margin-bottom: 0 !important;
   .news-list__post:last-of-type { padding-bottom: 0; }
 }
 @media (max-width: 480px) {
+  .general__header {
+    padding-left: 25px;
+  }
+  .events-list {
+    padding: 0 25px;
+  }
   .mejs__controls {
     margin-left: 2px;
   }
