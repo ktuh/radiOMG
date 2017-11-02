@@ -66,5 +66,10 @@ Template.landing.events({
       Session.set('nowLoaded', url);
       player.play();
     }
+  },
+  'click .landing__down-arrow': function(event) {
+    var position = $("#main").offset().top;
+    var navHeight = $('#navigation').height();
+    $("HTML, BODY").animate({ scrollTop: position - navHeight + 2 }, 600);
   }
 });
