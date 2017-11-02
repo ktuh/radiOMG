@@ -124,7 +124,8 @@ Template.home.helpers({
       var tmr2 =  Shows.findOne({ active: true, startDay: { $gte: 0 } },
                              { sort: { startDay: 1, startHour: 1, startMinute: 1,
                               endDay: -1, endHour: -1, endMinute: -1 }});
-      return sameDay ? sameDay : (tmr1 ? tmr1 : tmr2);
+      if (sameDay) return sameDay;
+      else return tmr1 || tmr2;
   },
   time: (str) => moment(str).fromNow(),
   startEndTime: (startHour, startMinute, endHour, endMinute) =>
