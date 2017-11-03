@@ -7,6 +7,7 @@ Template.playlistSidebar.onCreated(function(){
 });
 
 Template.playlistSidebar.helpers({
+  validDate: (date) => { console.log(date, date !== undefined); return date !== undefined; } ,
   showNameFromId: (id) => Shows.findOne({ showId: id }).showName,
   timeFromHours: (h1, h2) => moment(h1, "HH").format('h') + "-" + moment(h2, "HH").format('hA'),
   dateFormat: (date) => moment(date).format("ddd. MMMM DD, YYYY"),
@@ -14,7 +15,16 @@ Template.playlistSidebar.helpers({
   showEndFromId: (id) => Shows.findOne({showId: id}).endHour,
   getSidebarData: () => {
     var playlistDates = Playlists.find({}, {sort: {showDate: -1, spinPlaylistId: -1}, limit: 12}).fetch();
-    var uniqDates = _.uniq(_.pluck(playlistDates, "showDate"), true, (date) => +date);
+    var uniqDates =
+      _.uniq(_.map(_.pluck(playlistDates, "showDate"),
+        (dt) => {
+          dt.setSeconds(0);
+          dt.setMilliseconds(0);
+          dt.setHours(0);
+          dt.setMinutes(0);
+          return dt;
+        }), true, (date) => +date);
+
     var a = [];
     for (var p = 0; p < uniqDates.length; p++) {
       var r = {};
