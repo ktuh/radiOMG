@@ -35,6 +35,7 @@ import '../../ui/components/join/join.js';
 import '../../ui/components/faq/faq.js';
 import '../../ui/components/contact/contact.js';
 import '../../ui/components/staff/staff.js';
+import '../../ui/components/timeline/timeline.js';
 
 FlowRouter.notFound = {
   action: function () {
@@ -196,6 +197,13 @@ FlowRouter.route('/staff', {
   name: 'staff',
   action: function() {
     BlazeLayout.render('layout', {content: 'staff'});
+  }
+});
+
+FlowRouter.route('/timeline', {
+  name: 'timeline',
+  action: function() {
+    BlazeLayout.render('layout', {content: 'timeline'});
   }
 });
 
