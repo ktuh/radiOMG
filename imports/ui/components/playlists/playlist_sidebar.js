@@ -7,7 +7,7 @@ Template.playlistSidebar.onCreated(function(){
 });
 
 Template.playlistSidebar.helpers({
-  validDate: (date) => { console.log(date, date !== undefined); return date !== undefined; } ,
+  validDate: (date) => date !== undefined,
   showNameFromId: (id) => Shows.findOne({ showId: id }).showName,
   timeFromHours: (h1, h2) => moment(h1, "HH").format('h') + "-" + moment(h2, "HH").format('hA'),
   dateFormat: (date) => moment(date).format("ddd. MMMM DD, YYYY"),
