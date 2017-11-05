@@ -2487,6 +2487,46 @@ margin-bottom: 0 !important;
     width: 4px;
     background-color: #000;
   }
+  .timeline__node {
+    width: 66%;
+    margin-left: 20%;
+  }
+  .timeline__node:nth-child(even) .timeline__node-body,
+  .timeline__node:nth-child(odd) .timeline__node-title,
+  .timeline__node:nth-child(odd) .timeline__node-body,
+  .timeline__node:nth-child(even) .timeline__node-title {
+    padding-left: 8px;
+    padding-right: 0;
+    padding-bottom: 0;
+    display: block;
+    width: 51%;
+    text-align: left;
+    float: right;
+  }
+  .timeline__node:nth-child(even) .timeline__node-title:before
+  {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border: 4px solid #5947db;
+    background-color: #5947db;
+    border-radius: 100%;
+    left: calc(50% - 8px);
+    margin-top: 4px;
+  }
+  .timeline__node:nth-child(even) .timeline__node-body:before
+  {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: 0;
+    background-color: #5947db;
+    border-radius: 100%;
+    left: calc(50% - 8px);
+    margin-top: 4px;
+  }
   .shows__day {
     font-size: .875em;
   }
@@ -2503,18 +2543,6 @@ margin-bottom: 0 !important;
     width: 100%;
     height: auto;
     margin: 0;
-  }
-  .timeline__node:nth-child(even) .timeline__node-body {
-    float: unset;
-    text-align: left;
-    padding-left: 8px;
-  }
-  .timeline__node:nth-child(even) .timeline__node-title {
-    float: unset;
-    text-align: right;
-  }
-  .timeline__node-title {
-    vertical-align: top;
   }
 }
 @media (min-width: 481px) and (max-width: 767px) {
