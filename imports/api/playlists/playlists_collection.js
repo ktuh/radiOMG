@@ -26,6 +26,4 @@ export default Playlists = new scorpius.collection('playlists', {
   }
 });
 
-Playlists.allow({'insert': function() { return true; }, 'update': function() { return true; }});
-
 Playlists.attachSchema(PlaylistsSchema);
