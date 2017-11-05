@@ -15,7 +15,7 @@ Meteor.methods({
     check(id, Number);
     var date = new Date();
 
-    var ts = moment(date).tz("Etc/UTC");
+    var ts = moment(date).tz('Etc/UTC');
 
     var params = {}
 

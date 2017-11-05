@@ -18,10 +18,10 @@ Template.playlistList.onCreated(function() {
             var id = Shows.findOne({ showId: playlist.showId }).userId;
 
             self.subscribe('showHostUserName', id);
-            Meteor.call("getPlaylistOrInfo", parseInt(playlist.spinPlaylistId),
+            Meteor.call('getPlaylistOrInfo', parseInt(playlist.spinPlaylistId),
               true, function(error, result) {
               if (!error && result) {
-                Session.set("currentPlaylist", result);
+                Session.set('currentPlaylist', result);
               }
             });
           }

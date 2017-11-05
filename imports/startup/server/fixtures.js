@@ -235,9 +235,9 @@ if (Playlists.find().count() === 0) {
     showId: Shows.findOne().showId,
     spinPlaylistId: 52,
     showDate: '11/04/2016',
-    startTime: "00:00:00",
-    endTime: "03:00:00",
-    djName: "Davey Shindig"
+    startTime: '00:00:00',
+    endTime: '03:00:00',
+    djName: 'Davey Shindig'
   });
 };
 
