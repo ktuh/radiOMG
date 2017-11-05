@@ -15,13 +15,13 @@ Template.playlistPage.onCreated(function(){
   self.autorun(function(){
     var id = parseInt(FlowRouter.getParam('id'));
 
-    self.subscribe("playlist", id, {
+    self.subscribe('playlist', id, {
       onReady: function() {
         var playlist = Playlists.findOne({ spinPlaylistId: id });
 
-        Meteor.call("getPlaylist", parseInt(playlist.spinPlaylistId), function(error, result) {
+        Meteor.call('getPlaylistOrInfo', parseInt(playlist.spinPlaylistId), true, function(error, result) {
           if (!error && result)
-            Session.set("currentPlaylist", result);
+            Session.set('currentPlaylist', result);
         });
         self.subscribe('showBySpinitronId', playlist.showId, {
           onReady: function() {

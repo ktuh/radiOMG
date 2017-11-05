@@ -5,9 +5,21 @@
       <hr />
       <h4 class='playlist__sidebar-date'>{{dateFormat date}}</h4>
       {{#each shows}}
+        {{#if (showNameFromId showId)}}
         <div>
-          <p class='playlist__sidebar-link'><a href="/playlists/{{spinPlaylistId}}">{{timeFromHours (showTimeFromId showId) (showEndFromId showId)}} {{showNameFromId showId}}</a></p>
+          <p class='playlist__sidebar-link'>
+            <a href='/playlists/{{spinPlaylistId}}'>
+            {{#unless showIsSub showId}}
+              {{timeFromHours (showTimeFromId showId) (showEndFromId showId)}}
+              {{showNameFromId showId}}
+            {{else}}
+              {{timeFromHMS startTime endTime}}
+              {{showNameFromId showId}}
+            {{/unless}}
+            </a>
+          </p>
         </div>
+        {{/if}}
       {{/each}}
     {{/each}}
   </div>
