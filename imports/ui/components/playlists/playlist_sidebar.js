@@ -2,13 +2,18 @@ import './playlist_sidebar.html';
 
 Template.playlistSidebar.onCreated(function(){
   var self = this;
-  self.subscribe('activeShows');
+  self.subscribe('shows');
   self.subscribe("playlistsLimited", {sort: {showDate: -1, spinPlaylistId: -1}, limit: 12});
 });
 
 Template.playlistSidebar.helpers({
   validDate: (date) => date !== undefined,
-  showNameFromId: (id) => Shows.findOne({ showId: id }).showName,
+  showNameFromId: (id) => {
+    if (id > -1) return Shows.findOne({ showId: id }).showName;
+    else return "Sub Show";
+  },
+  showIsSub: (id) => id === -1,
+  timeFromHMS: (str1, str2) => moment(str1, 'HH:mm:ss').format('h') + '-' + moment(str2, 'HH:mm:ss').format('hA'),
   timeFromHours: (h1, h2) => moment(h1, "HH").format('h') + "-" + moment(h2, "HH").format('hA'),
   dateFormat: (date) => moment(date).format("ddd. MMMM DD, YYYY"),
   showTimeFromId: (id) => Shows.findOne({showId: id}).startHour,
@@ -17,12 +22,12 @@ Template.playlistSidebar.helpers({
     var playlistDates = Playlists.find({}, {sort: {showDate: -1, spinPlaylistId: -1}, limit: 12}).fetch();
     var uniqDates =
       _.uniq(_.map(_.pluck(playlistDates, "showDate"),
-        (dt) => {
-          dt.setSeconds(0);
-          dt.setMilliseconds(0);
-          dt.setHours(0);
-          dt.setMinutes(0);
-          return dt;
+        (date) => {
+          date.setSeconds(0);
+          date.setMilliseconds(0);
+          date.setHours(0);
+          date.setMinutes(0);
+          return date;
         }), true, (date) => +date);
 
     var a = [];

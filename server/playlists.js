@@ -11,20 +11,34 @@ import { check } from 'meteor/check';
  * Returns an array of objects containing track information.
  */
 Meteor.methods({
-  getPlaylist: function(id) {
+  getPlaylistOrInfo: function(id, playlistOrInfo) {
     check(id, Number);
     var date = new Date();
 
     var ts = moment(date).tz("Etc/UTC");
 
-    var params = {
-      method: 'getSongs',
-      station: Meteor.settings.spinitronStation,
-      papiversion: Meteor.settings.spinitronPapiVersion,
-      papiuser: Meteor.settings.spinitronUserId,
-      timestamp: ts.format(),
-      PlaylistID: id
-    };
+    var params = {}
+
+    if (playlistOrInfo) {
+      params = {
+        method: 'getSongs',
+        station: Meteor.settings.spinitronStation,
+        papiversion: Meteor.settings.spinitronPapiVersion,
+        papiuser: Meteor.settings.spinitronUserId,
+        timestamp: ts.format(),
+        PlaylistID: id
+      };
+    }
+    else {
+      params = {
+        method: 'getPlaylistInfo',
+        station: Meteor.settings.spinitronStation,
+        papiversion: Meteor.settings.spinitronPapiVersion,
+        papiuser: Meteor.settings.spinitronUserId,
+        timestamp: ts.format(),
+        PlaylistID: id
+      };
+    }
 
     // Sort list of pairs by key
     var keys = Object.keys(params);

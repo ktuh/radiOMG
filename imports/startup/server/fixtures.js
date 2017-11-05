@@ -49,14 +49,14 @@ if (!Accounts.findUserByUsername('davey')) {
 
   modOne = Accounts.createUser({
     username: 'derekthemod',
-    emails: 'derek@ktuh.org',
+    emails: 'webmaster@ktuh.org',
     password: '135246'
   });
 
   Roles.addUserToRoles(modOne, ['moderator']);
 
   Meteor.users.update({ _id: modOne }, { $set: { emails: [{ address:
-                      'derek@ktuh.org', verified: true }]}});
+                      'webmaster@ktuh.org', verified: true }]}});
 };
 
 if (Profiles.find().count() === 0) {
@@ -234,7 +234,10 @@ if (Playlists.find().count() === 0) {
   Playlists.insert({
     showId: Shows.findOne().showId,
     spinPlaylistId: 52,
-    showDate: '11/04/2016'
+    showDate: '11/04/2016',
+    startTime: "00:00:00",
+    endTime: "03:00:00",
+    djName: "Davey Shindig"
   });
 };
 

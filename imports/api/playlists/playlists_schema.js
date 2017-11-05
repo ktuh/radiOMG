@@ -13,5 +13,17 @@ export default PlaylistsSchema = new SimpleSchema({
   showDate: {
     type: Date,
     label: "Date of Show"
+  },
+  startTime: {
+    type: String,
+    label: 'Start Time'
+  },
+  endTime: {
+    type: String,
+    label: 'End Time'
+  },
+  djName: {
+    type: String,
+    label: 'DJ Name'
   }
 });

@@ -18,7 +18,8 @@ Template.playlistList.onCreated(function() {
             var id = Shows.findOne({ showId: playlist.showId }).userId;
 
             self.subscribe('showHostUserName', id);
-            Meteor.call("getPlaylist", parseInt(playlist.spinPlaylistId), function(error, result) {
+            Meteor.call("getPlaylistOrInfo", parseInt(playlist.spinPlaylistId),
+              true, function(error, result) {
               if (!error && result) {
                 Session.set("currentPlaylist", result);
               }

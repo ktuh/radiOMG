@@ -20,7 +20,8 @@ Template.showPage.onCreated(function() {
           onReady: function() {
             var latest = Playlists.findOne({}, {sort: {showDate: -1}});
             if (latest !== undefined) {
-              Meteor.call("getPlaylist", parseInt(latest.spinPlaylistId), function(error, result) {
+              Meteor.call("getPlaylistOrInfo", parseInt(latest.spinPlaylistId),
+                true, function(error, result) {
                 if (!error && result)
                   Session.set("currentPlaylist", result);
                 });

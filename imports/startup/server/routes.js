@@ -20,16 +20,28 @@ Picker.route('/spinitron/latest', function(params, req, res, next) {
                                                 return /[0-9]+/.test(str);
                                             }), artist: String, song: String});
 
-  var showId = Number.parseInt(params.query.show);
-  var showItself = Shows.find({ showId: showId });
-  var playlistId = Number.parseInt(params.query.playlistId);
+  var showId = parseInt(params.query.show);
+  var showItself = Shows.findOne({ showId: showId });
+  if (!showItself) showId = -1;
+  var playlistId = parseInt(params.query.playlistId);
   var html = params.query.artist + " - " + params.query.song;
 
-  if (showItself && !Playlists.findOne({ showId: showId, spinPlaylistId: playlistId }))
-      Playlists.insert({ showId: showId, spinPlaylistId: playlistId, showDate: new Date() });
+  if (!Playlists.findOne({ showId: showId, spinPlaylistId: playlistId })) {
+    Meteor.call("getPlaylistOrInfo", parseInt(params.query.playlistId), false,
+    function(error, result) {
+      if (!error && result) {
+        Playlists.insert({
+          showId: showId, spinPlaylistId: playlistId, showDate: new Date(),
+          startTime: result.OnairTime,
+          endTime: result.OffairTime,
+          djName: result.DJName
+        });
+      }
+    });
+  }
 
   if (NowPlaying.find({}).count() < 1)
-     NowPlaying.insert({current: html, timestamp: new Date()});
+    NowPlaying.insert({current: html, timestamp: new Date()});
   else
     NowPlaying.update(NowPlaying.findOne()._id, { $set: { current: html, timestamp: new Date() }});
 });

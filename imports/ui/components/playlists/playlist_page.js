@@ -19,7 +19,7 @@ Template.playlistPage.onCreated(function(){
       onReady: function() {
         var playlist = Playlists.findOne({ spinPlaylistId: id });
 
-        Meteor.call("getPlaylist", parseInt(playlist.spinPlaylistId), function(error, result) {
+        Meteor.call("getPlaylistOrInfo", parseInt(playlist.spinPlaylistId), true, function(error, result) {
           if (!error && result)
             Session.set("currentPlaylist", result);
         });
