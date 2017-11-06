@@ -1952,7 +1952,7 @@ margin-bottom: 0 !important;
   content: '';
   position: absolute;
   top: 228px;
-  bottom: 60px;
+  height: 95.9%;
   left: 50%;
   transform: translateX(-50%);
   -webkit-transform: translateX(-50%);
@@ -1994,6 +1994,14 @@ margin-bottom: 0 !important;
   border-radius: 100%;
   left: calc(50% - 8px);
   margin-top: 4px;
+}
+.timeline__node:last-of-type .timeline__node-body:before {
+  content: '';
+  position: absolute;
+  width: 12px;
+  transform: translateX(-24px) translateY(20px);
+  height: 100px;
+  background-color: #fff;
 }
 @-webkit-keyframes fadeOut {
   0% {
@@ -2480,11 +2488,10 @@ margin-bottom: 0 !important;
     content: '';
     position: absolute;
     top: 168px;
-    bottom: 250px;
     left: 50%;
+    height: 95.75%;
     transform: translateX(-50%);
     -webkit-transform: translateX(-50%);
-    width: 4px;
     background-color: #000;
   }
   .timeline__node {
