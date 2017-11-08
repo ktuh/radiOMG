@@ -15,9 +15,10 @@ Template.playlistList.onCreated(function() {
         self.subscribe('playlistsLimited', { limit: 1, sort: { showDate: -1 }}, {
           onReady: function() {
             var playlist = Playlists.findOne({}, { limit: 1, sort: { showDate: -1 }});
-            var id = Shows.findOne({ showId: playlist.showId }).userId;
+            var show = Shows.findOne({ showId: playlist.showId });
+            var showId = show && show.showId || -1;
 
-            self.subscribe('showHostUserName', id);
+            if (showId > -1) self.subscribe('showHostUserName', id);
             Meteor.call('getPlaylistOrInfo', parseInt(playlist.spinPlaylistId),
               true, function(error, result) {
               if (!error && result) {
@@ -41,7 +42,8 @@ Template.playlistList.helpers({
   tempPag: () => Template.instance().pagination,
   latestShowName: () => {
     var list = Playlists.findOne({}, { sort: { showDate: -1 }});
-    return Shows.findOne({ showId: list.showId }).showName
+    var show = Shows.findOne({ showId: list.showId })
+    return (show && show.showName)|| "Sub Show";
   },
   latestShowDay: function () {
     var list = Playlists.findOne({}, { sort: { showDate: -1 }});
@@ -53,7 +55,8 @@ Template.playlistList.helpers({
   },
   latestShowSlug: () => {
     var list = Playlists.findOne({}, { sort: { showDate: -1 }});
-    return Shows.findOne({ showId: list.showId }).slug
+    var show =  Shows.findOne({ showId: list.showId });
+    return show && show.slug;
   },
   latestShowImage: () => {
     var list = Playlists.findOne({}, { sort: { showDate: -1 }});
@@ -66,8 +69,11 @@ Template.playlistList.helpers({
     var list = Playlists.findOne({}, { sort: { showDate: -1 }});
     var show = Shows.findOne({ showId: list.showId });
 
-    return (show === undefined || show.featuredImage === undefined)
-           ? false : show.host;
+    if (show === undefined || show.featuredImage === undefined) {
+      if (list.djName) return list.djName;
+      else return false;
+    }
+    else return show.host;
   },
   latestShowLink: function() {
     var list = Playlists.findOne({}, { sort: { showDate: -1 }});
@@ -76,5 +82,12 @@ Template.playlistList.helpers({
     return '/profile/' + user.username;
   },
   truncated: (str) => str.substring(0, str.length - 3),
-
+  isSub: () =>  Playlists.findOne({}).showId === -1,
+  timeHMS: (date, startTime, endTime) => {
+    console.log(date);
+    return moment(date).format("ddd. MMM DD, YYYY") + " " +
+    moment(startTime, "HH:mm:ss").format("hh:mm") +  "-" +
+    moment(endTime, "HH:mm:ss").format("hh:mm A"); } ,
+  latestPlaylistStartTime: () => Playlists.findOne({}, { sort: { showDate: -1 } }).startTime,
+  latestPlaylistEndTime: () => Playlists.findOne({}, { sort: { showDate: -1 } }).endTime
 });
