@@ -7,6 +7,7 @@ import { Session } from 'meteor/session';
 import NowPlaying from '../../api/playlists/now_playing.js';
 import { HTTP } from 'meteor/http';
 import bodyParser from 'body-parser';
+import moment from 'moment-timezone';
 
 Picker.middleware(bodyParser.json());
 Picker.middleware(bodyParser.urlencoded({ extended: false }));
@@ -31,7 +32,9 @@ Picker.route('/spinitron/latest', function(params, req, res, next) {
     function(error, result) {
       if (!error && result) {
         Playlists.insert({
-          showId: showId, spinPlaylistId: playlistId, showDate: new Date(),
+          showId: showId,
+          spinPlaylistId: playlistId,
+          showDate: moment(new Date()).tz(Meteor.settings.timezone).toDate(),
           startTime: result.OnairTime,
           endTime: result.OffairTime,
           djName: result.DJName
