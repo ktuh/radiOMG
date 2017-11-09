@@ -32,7 +32,8 @@ Picker.route('/spinitron/latest', function(params, req, res, next) {
     function(error, result) {
       if (!error && result) {
         Playlists.insert({
-          showId: showId, spinPlaylistId: playlistId,
+          showId: showId,
+          spinPlaylistId: playlistId,
           showDate: moment(new Date()).tz(Meteor.settings.timezone).toDate(),
           startTime: result.OnairTime,
           endTime: result.OffairTime,

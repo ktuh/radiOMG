@@ -18,7 +18,10 @@ Template.playlistList.onCreated(function() {
             var show = Shows.findOne({ showId: playlist.showId });
             var showId = show && show.showId || -1;
 
-            if (showId > -1) self.subscribe('showHostUserName', id);
+            if (showId > -1) {
+              self.subscribe('showHostUserName', id);
+            }
+
             Meteor.call('getPlaylistOrInfo', parseInt(playlist.spinPlaylistId),
               true, function(error, result) {
               if (!error && result) {
@@ -70,8 +73,7 @@ Template.playlistList.helpers({
     var show = Shows.findOne({ showId: list.showId });
 
     if (show === undefined || show.featuredImage === undefined) {
-      if (list.djName) return list.djName;
-      else return false;
+      return list && list.djName;
     }
     else return show.host;
   },
