@@ -1074,7 +1074,7 @@ audio {
 }
 .review__link {
   position: relative;
-  top: -160px;
+  top: -175px;
   left: 60px;
   margin: 0;
   background-color: #262626;
@@ -1305,6 +1305,14 @@ audio {
   text-align: center;
   min-height: 50vh;
   background: #000;
+}
+.review__content {
+  width: auto;
+  padding-top: 0px;
+  margin: 0 60px;
+  text-align: center;
+  min-height: 50vh;
+  background: #fff;
 }
 .general__header {
   margin: 0;
@@ -2003,6 +2011,13 @@ margin-bottom: 0 !important;
   height: 100px;
   background-color: #fff;
 }
+.profile-edit {
+  margin: 20px 60px;
+}
+.image-attribute {
+  padding-left: 0;
+  padding-right: 0;
+}
 @-webkit-keyframes fadeOut {
   0% {
     opacity: 0;
@@ -2366,6 +2381,9 @@ margin-bottom: 0 !important;
   .staff__content {
     margin: 10px 40px;
   }
+  .review__content {
+    margin: 0px 40px;
+  }
   .review-item {
     width: 50%;
   }
@@ -2551,6 +2569,10 @@ margin-bottom: 0 !important;
     height: auto;
     margin: 0;
   }
+}
+.news-list__latest-review a:hover p,
+.home__reviews-item a:hover p {
+  text-decoration: underline;
 }
 @media (min-width: 481px) and (max-width: 767px) {
   .navbar-nav.nav.navbar-left {
