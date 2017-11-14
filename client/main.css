@@ -1060,9 +1060,9 @@ audio {
 .show__body {
   margin: 10px 0;
 }
-.show__link, .event__link, .chart__link, .playlist__link {
-  position: relative;
-  top: -120px;
+.show__link, .event__link, .chart__link, .playlist__link, .review__link {
+  position: absolute;
+  top: 100px;
   left: 60px;
   margin: 0;
   background-color: #262626;
@@ -1071,15 +1071,6 @@ audio {
 }
 .fa-pause {
   display: none;
-}
-.review__link {
-  position: relative;
-  top: -175px;
-  left: 60px;
-  margin: 0;
-  background-color: #262626;
-  color: white;
-  width: calc(100% - 60px);
 }
 .back-to:hover, .back-to {
   color: white;
@@ -1634,7 +1625,7 @@ margin-bottom: 0 !important;
   float: left;
   width: 50%;
   max-width: 450px;
-  padding: 20px 20px 40px 0;
+  padding: 20px 0;
 }
 .review-page__rating {
   margin-top: 0;
@@ -1642,7 +1633,10 @@ margin-bottom: 0 !important;
 .review-page__copy {
   float: left;
   width: 50%;
-  padding-bottom: 40px;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  text-align: left;
+  margin-left: 25px;
 }
 .review-page__byline {
   color: #999;
@@ -2206,8 +2200,9 @@ margin-bottom: 0 !important;
   .landing__hnl-freq { left: -55px; }
   .landing__ns-freq { right: -45px; }
   .show__link, .event__link, .review__link, .chart__link, .playlist__link {
-    left: 40px;
+    left: 25px;
     width: calc(100% - 40px);
+    top: 45px;
   }
   .landing__box {
     max-width: 37em;
@@ -2217,7 +2212,7 @@ margin-bottom: 0 !important;
     margin-left: 2em;
   }
   .about__desc, .about__content, .about__help, .join__desc, .join__content,
-  .faq__content, .contact__content, .playlist__content, .content,
+  .faq__content, .contact__content, .playlist__content, .content
   #partyForm, #showForm, .show__wrapper, .news-list__wrapper {
     padding: 20px 40px;
   }
@@ -2382,7 +2377,7 @@ margin-bottom: 0 !important;
     margin: 10px 40px;
   }
   .review__content {
-    margin: 0px 40px;
+    margin: 0px 25px;
   }
   .review-item {
     width: 50%;
@@ -2436,10 +2431,14 @@ margin-bottom: 0 !important;
     clear: both;
   }
   .review-page__image,
-  .review-page h3,
+  .review-page h3 {
+    float: none;
+    width: 100%;
+  }
   .review-page__copy {
     float: none;
     width: 100%;
+    margin-left: 0;
   }
   .profile__pic {
     float: none;
