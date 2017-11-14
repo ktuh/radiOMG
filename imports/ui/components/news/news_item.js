@@ -5,6 +5,7 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 import Posts from '../../../api/posts/posts_collection.js';
 import Comments from '../../../api/comments/comments_collection.js';
 import Profiles from '../../../api/users/profiles_collection.js';
+import moment from 'moment-timezone';
 
 Template.newsItem.onCreated(function () {
   var self = this;
@@ -26,6 +27,7 @@ Template.newsItem.onCreated(function () {
 });
 
 Template.newsItem.helpers({
+  dateFormat: (date) => moment(date).format("ddd. MMMM DD YYYY"),
   post: () => {
     var slug = FlowRouter.getParam('slug');
     var post = Posts.findOne({ slug: slug });
