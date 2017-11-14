@@ -10,11 +10,11 @@ Template.newsList.onCreated(function () {
   var self = this;
   self.subscribe('nextOnAir');
   self.pagination = new Meteor.Pagination(Posts, {
-    sort: { showDate: -1 },
+    sort: { submitted: -1 },
     perPage: 4,
-    filters: { approved: true }
+    skip: 1
   });
-  self.subscribe('latestFeaturedPosts', 1);
+  self.subscribe('latestFeaturedPost');
   self.subscribe('reviewsLimited', { limit: 6, sort: { submitted: -1 }});
 });
 

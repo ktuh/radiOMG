@@ -6,7 +6,7 @@
   </div>
   <div class='news-item'>
     {{#if author}}<p class='news-item__author'>Posted by <a href="/profile/{{author}}">{{displayName}}</a></p>{{/if}}
-    <p>{{submitted}}</p>
+    <p>{{dateFormat submitted}}</p>
     {{#if photo}}<img class='news-item__photo' src='{{photo.url}}'>{{/if}}
     <div class='news-item__body'>{{{body}}}</div>
   </div>

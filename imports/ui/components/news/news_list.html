@@ -1,65 +1,68 @@
 <template name='newsList'>
-<h2 class='general__header'>KTUH Radioblog</h2>
-<div class='news-list__wrapper'>
-  <div class='news-list__content'>
-    <div class='news-list'>
-      {{#with featuredPost}}
-        <div class='news-list__featured'>
-          <div class='news-list__featured-img'>
-            <img src='{{photo.url}}'>
-            <span class='purple-tag'>Featured</span>
+  <h2 class='general__header'>KTUH Radioblog</h2>
+  <div class='news-list__wrapper'>
+    <div class='news-list__content'>
+      {{#if Template.subscriptionsReady}}
+      <div class='news-list'>
+        {{#with featuredPost}}
+          <div class='news-list__featured'>
+            <div class='news-list__featured-img'>
+              <img src='{{photo.url}}'>
+              <span class='purple-tag'>Featured</span>
+            </div>
+            <div class='news-list__featured-item'>
+              <a href='/radioblog/{{slug}}'><h2 class='news-list__featured-title'>{{title}}</h2></a>
+              <p>{{excerpt body}}&nbsp;&nbsp;<a class='purple-text' href='{{newsPagePath slug}}'><i>Read On</i></a></p>
+              <p class='news-list__byline'>by {{author}} / {{getTime submitted}}</p>
+            </div>
           </div>
-          <div class='news-list__featured-item'>
-            <a href='/radioblog/{{slug}}'><h2 class='news-list__featured-title'>{{title}}</h2></a>
-            <p>{{excerpt body}}&nbsp;&nbsp;<a class='purple-text' href='{{newsPagePath slug}}'><i>Read On</i></a></p>
-            <p class='news-list__byline'>by {{author}} / {{getTime submitted}}</p>
+        {{/with}}
+        {{#each posts}}
+          <div class='news-list__post'>
+            <div class='news-list__post-image'>
+              <span class='purple-tag'>{{category}}</span>
+              {{#if photo}}<a class="news-list__photo-link" href={{newsPagePath slug}}><img class='news-list__photo' src='{{photo.url}}'></a>{{/if}}
+            </div>
+            <div class='news-list__info'>
+              <a class='news-list__title' href={{newsPagePath slug}}><h3>{{title}}</h3></a>
+              <p class='news-list__excerpt'>{{excerpt body}}&nbsp;&nbsp;<a class='purple-text' href='{{newsPagePath slug}}'><i>Read On</i></a></p>
+              <br>
+              <p>by {{author}} / {{getTime submitted}}</p>
+            </div>
           </div>
-        </div>
-      {{/with}}
-      {{#each posts}}
-        <div class='news-list__post'>
-          <div class='news-list__post-image'>
-            <span class='purple-tag'>{{category}}</span>
-            {{#if photo}}<a class="news-list__photo-link" href={{newsPagePath slug}}><img class='news-list__photo' src='{{photo.url}}'></a>{{/if}}
-          </div>
-          <div class='news-list__info'>
-            <a class='news-list__title' href={{newsPagePath slug}}><h3>{{title}}</h3></a>
-            <p class='news-list__excerpt'>{{excerpt body}}&nbsp;&nbsp;<a class='purple-text' href='{{newsPagePath slug}}'><i>Read On</i></a></p>
-            <br>
-            <p>by {{author}} / {{getTime submitted}}</p>
-          </div>
-        </div>
-      {{/each}}
+        {{/each}}
+      </div>
+      <div class='news-list__paginator'>
+        {{> defaultBootstrapPaginator pagination=templatePagination limit=10 containerClass="text-center" onClick=clickEvent}}
+      </div>
+      {{/if}}
     </div>
-    <div class='news-list__paginator'>
-      {{> defaultBootstrapPaginator pagination=templatePagination limit=10 containerClass="text-center" onClick=clickEvent}}
-    </div>
-  </div>
-
-  <div class='news-list__sidebar'>
-    <div class='news-list__support'>
-      <p class="playlist__sidebar-header">SUPPORT COLLEGE RADIO</p>
-      <p>
-        KTUH is a non-commercial radio station,
-        broadcasting out of the University of
-        Hawai‘i at Mānoa. In addition to funding
-        from UHM student fees, KTUH also
-        looks to donations from the community.
-      </p>
-      <div class='button__wrapper'>
-        <a class='color-button purple-button' href='https://www.uhfoundation.org/give/giving-gift.aspx?school_code=ktuh'>Donate Today</a>
+    <div class='news-list__sidebar'>
+      <div class='news-list__support'>
+        <p class="playlist__sidebar-header">SUPPORT COLLEGE RADIO</p>
+        <p>
+          KTUH is a non-commercial radio station,
+          broadcasting out of the University of
+          Hawai‘i at Mānoa. In addition to funding
+          from UHM student fees, KTUH also
+          looks to donations from the community.
+        </p>
+        <div class='button__wrapper'>
+          <a class='color-button purple-button' href='https://www.uhfoundation.org/give/giving-gift.aspx?school_code=ktuh'>Donate Today</a>
+        </div>
+      </div>
+      <div class='news-list__latest-reviews'>
+        <h4>LATEST REVIEWS</h4>
+        {{#each reviews}}
+          <div class='news-list__latest-review'>
+            <a href='/reviews/{{slug}}'>
+              <img src='{{image.url}}' />
+              <p><b>{{artist}}</b></p>
+              <p>{{releaseName}}</p>
+            </a>
+          </div>
+        {{/each}}
       </div>
     </div>
-    <div class='news-list__latest-reviews'>
-      <h4>LATEST REVIEWS</h4>
-      {{#each reviews}}
-        <div class='news-list__latest-review'>
-          <img src='{{image.url}}' />
-          <p><b>{{artist}}</b></p>
-          <p>{{releaseName}}</p>
-        </div>
-      {{/each}}
-    </div>
   </div>
-</div>
 </template>
