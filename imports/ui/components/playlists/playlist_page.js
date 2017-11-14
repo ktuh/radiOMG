@@ -5,7 +5,7 @@ import Playlists from '../../../api/playlists/playlists_collection.js';
 import Shows from '../../../api/shows/shows_collection.js';
 import { Template } from 'meteor/templating';
 import { FlowRouter } from 'meteor/kadira:flow-router';
-import moment from "moment-timezone";
+import moment from 'moment-timezone';
 
 Template.playlistPage.onCreated(function(){
   var self = this;
