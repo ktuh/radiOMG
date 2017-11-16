@@ -5,8 +5,13 @@
     <a href='/radioblog' class='back-to'>← Back to Radioblog</a>
   </div>
   <div class='news-item'>
-    {{#if author}}<p class='news-item__author'>Posted by <a href="/profile/{{author}}">{{displayName}}</a></p>{{/if}}
-    <p>{{dateFormat submitted}}</p>
+    <p class='news-item__author'>
+      {{#if author}}
+        Posted by <a href="/profile/{{author}}">{{displayName}}</a>
+      {{/if}}
+      <br />
+      {{dateFormat submitted}}
+    </p>
     {{#if photo}}<img class='news-item__photo' src='{{photo.url}}'>{{/if}}
     <div class='news-item__body'>{{{body}}}</div>
   </div>

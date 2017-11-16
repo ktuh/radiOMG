@@ -27,7 +27,7 @@ Template.newsItem.onCreated(function () {
 });
 
 Template.newsItem.helpers({
-  dateFormat: (date) => moment(date).format("ddd. MMMM DD YYYY"),
+  dateFormat: (date) => moment(date).format("dddd, MMMM DD, YYYY"),
   post: () => {
     var slug = FlowRouter.getParam('slug');
     var post = Posts.findOne({ slug: slug });

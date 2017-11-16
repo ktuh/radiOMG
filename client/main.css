@@ -1233,7 +1233,7 @@ audio {
   margin: 0 auto;
 }
 .news-item, .event-item {
-  padding: 10px 60px;
+  padding: 0 60px;
 }
 .news-list__next {
   position: relative;
@@ -1289,6 +1289,8 @@ audio {
   font-family: 'nimbus-sans', sans-serif;
   text-transform: uppercase;
   color: #5940de;
+  margin-top: 20px;
+  margin-bottom: 0;
 }
 .staff__content {
   width: 100%;
@@ -1562,7 +1564,7 @@ margin-bottom: 0 !important;
 }
 .home__more {
   position: relative;
-  bottom: 36px;
+  bottom: 35px;
   float: right;
   padding: 3px 18px;
   font-size: .875em;
@@ -2006,7 +2008,7 @@ margin-bottom: 0 !important;
   background-color: #fff;
 }
 .profile-edit {
-  margin: 20px 60px;
+  margin: 20px 40px;
 }
 .image-attribute {
   padding-left: 0;
@@ -2572,6 +2574,11 @@ margin-bottom: 0 !important;
 .news-list__latest-review a:hover p,
 .home__reviews-item a:hover p {
   text-decoration: underline;
+}
+@media (max-width: 480px) {
+  .profile-edit {
+    margin: 20px 25px;
+  }
 }
 @media (min-width: 481px) and (max-width: 767px) {
   .navbar-nav.nav.navbar-left {
