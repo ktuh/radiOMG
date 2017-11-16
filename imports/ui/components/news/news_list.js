@@ -9,12 +9,14 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 Template.newsList.onCreated(function () {
   var self = this;
   self.subscribe('nextOnAir');
-  self.pagination = new Meteor.Pagination(Posts, {
-    sort: { submitted: -1 },
-    perPage: 4,
-    skip: 1
+  self.subscribe('latestFeaturedPost', function() {
+    var latestFeaturedPost = Posts.findOne();
+    self.pagination = new Meteor.Pagination(Posts, {
+      filters: { _id: {$ne: latestFeaturedPost._id} },
+      sort: { submitted: -1 },
+      perPage: 4
+    });
   });
-  self.subscribe('latestFeaturedPost');
   self.subscribe('reviewsLimited', { limit: 6, sort: { submitted: -1 }});
 });
 
