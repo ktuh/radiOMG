@@ -1288,9 +1288,15 @@ audio {
 .news-item__author {
   font-family: 'nimbus-sans', sans-serif;
   text-transform: uppercase;
-  color: #5940de;
+  color: #000;
   margin-top: 20px;
   margin-bottom: 0;
+}
+.news-item__author a {
+  color: #5940de;
+}
+.news-item__author a:hover {
+  text-decoration: underline;
 }
 .staff__content {
   width: 100%;
