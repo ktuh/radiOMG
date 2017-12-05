@@ -1821,6 +1821,9 @@ margin-bottom: 0 !important;
 .contact__content {
   padding: 30px;
 }
+.at-form {
+  margin: 0 60px;
+}
 .about__help {
   overflow: auto;
   background-color: #5940DE;
@@ -1904,7 +1907,7 @@ margin-bottom: 0 !important;
 }
 .about__desc p, .about__content p, .about__help,
 .join__desc p, .join__content p,
-.contact__content p, .contact__content h4, contact__content form {
+.contact__content p, .contact__content h4, .contact__content form {
   padding: 5px 192px;
 }
 .copy__caps {
@@ -2231,6 +2234,9 @@ margin-bottom: 0 !important;
   }
   .home__featured-content, .news-item {
     padding: 0 40px;
+  }
+  .at-form {
+    margin: 0 40px;
   }
   .home__main, .playlist__content {
     width: 100%;
