@@ -16,9 +16,8 @@ Template.landing.onCreated(function() {
 Template.landing.helpers({
   nowPlaying: () =>  (NowPlaying.findOne() !== undefined && !Session.get('timeout')) ?
                      NowPlaying.findOne().current : false,
-  formatNP: (str) => '<p class"caps">' + str.split(" - ")[1] + '</p>' +
-                     '<p class="landing__show-host caps"> by </p>' +
-                     '<p class="caps">' +  str.split(" - ")[0] + '</p>',
+  formatNP: (str) => '<p class="landing__song-title caps">' + str.split(" - ")[1] + '</p>' +
+                     '<p class="landing__song-artist caps"> by ' +  str.split(" - ")[0] + '</p>',
   showName: () => {
     var now =  new Date();
     var show = Shows.findOne({active: true, startDay: now.getDay(),
@@ -47,7 +46,7 @@ Template.landing.helpers({
     else if (h >= 11 && h < 18) {
       return 'url(\'/img/tantalus-morning.jpg\')';
     }
-    else if ((h >= 19 && h <= 23) || (h >= 0 && h < 6)) {
+    else if ((h >= 18 && h <= 23) || (h >= 0 && h < 6)) {
       return 'url(\'/img/tantalus-evening.jpg\')';
     }
   }

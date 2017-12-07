@@ -34,10 +34,10 @@ Posts.allow({
     return (userId && doc.userId === userId) || Meteor.user().hasRole("moderator");
   },
   update: function (userId, doc, fields, modifier) {
-    return doc.userId === userId || Meteor.user().hasRole("moderator");
+    return (userId && doc.userId === userId) || Meteor.user().hasRole("moderator");
   },
   remove: function (userId, doc) {
-    return doc.userId === userId || Meteor.user().hasRole("moderator");
+    return (userId && doc.userId === userId) || Meteor.user().hasRole("moderator");
   },
   fetch: ['userId']
 });

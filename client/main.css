@@ -131,15 +131,18 @@ h1, h2, h3, h4, h5 {
 .landing__show-name,
 .landing__show-host,
 .landing__host-name,
-.landing__song-title {
+.landing__song-title,
+.landing__song-artist {
   font-size: 2.25em;
 }
 .landing__show-name,
-.landing__song-title {
+.landing__song-title,
+.landing__song-artist {
   font-family: 'nimbus-sans-extended', sans-serif;
   text-transform: uppercase;
 }
-.landing__show-host {
+.landing__show-name,
+.landing__song-title {
   font-weight: bold;
 }
 .landing__play-btn-outer {
@@ -1288,9 +1291,15 @@ audio {
 .news-item__author {
   font-family: 'nimbus-sans', sans-serif;
   text-transform: uppercase;
-  color: #5940de;
+  color: #000;
   margin-top: 20px;
   margin-bottom: 0;
+}
+.news-item__author a {
+  color: #5940de;
+}
+.news-item__author a:hover {
+  text-decoration: underline;
 }
 .staff__content {
   width: 100%;
@@ -1815,6 +1824,9 @@ margin-bottom: 0 !important;
 .contact__content {
   padding: 30px;
 }
+.at-form {
+  margin: 0 60px;
+}
 .about__help {
   overflow: auto;
   background-color: #5940DE;
@@ -1898,7 +1910,7 @@ margin-bottom: 0 !important;
 }
 .about__desc p, .about__content p, .about__help,
 .join__desc p, .join__content p,
-.contact__content p, .contact__content h4, contact__content form {
+.contact__content p, .contact__content h4, .contact__content form {
   padding: 5px 192px;
 }
 .copy__caps {
@@ -2225,6 +2237,9 @@ margin-bottom: 0 !important;
   }
   .home__featured-content, .news-item {
     padding: 0 40px;
+  }
+  .at-form {
+    margin: 0 40px;
   }
   .home__main, .playlist__content {
     width: 100%;

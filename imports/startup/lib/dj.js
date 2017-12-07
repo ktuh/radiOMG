@@ -20,7 +20,7 @@ DJ.allow('collections.shows.showRemove', function (userId, doc, fields, modifier
 
 DJ.helper('collections.shows.indexFilter', function() {
   return {
-    createdBy: this.userId
+    userId: this.userId
   };
 });
 
@@ -46,7 +46,7 @@ DJ.deny('collections.reviews.update', function(userId, doc, fields, modifier) {
 
 DJ.helper('collections.reviews.indexFilter', function() {
   return {
-    createdBy: this.userId
+    userId: this.userId
   };
 });
 
@@ -72,7 +72,7 @@ DJ.deny('collections.parties.update', function(userId, doc, fields, modifier) {
 
 DJ.helper('collections.parties.indexFilter', function() {
   return {
-    createdBy: this.userId
+    userId: this.userId
   };
 });
 
@@ -98,30 +98,20 @@ DJ.deny('collections.posts.update', function(userId, doc, fields, modifier) {
 
 DJ.helper('collections.posts.indexFilter', function() {
   return {
-    createdBy: this.userId
+    userId: this.userId
   };
 });
 
 DJ.allow('collections.playlists.index', true);
-DJ.allow('collections.playlists.insert', true);
-DJ.allow('collections.playlists.update', function (userId, doc, fields, modifier) {
-  return doc.userId === userId;
-});
-DJ.allow('collections.playlists.remove', function (userId, doc, fields, modifier) {
-  return doc.userId === userId;
-});
-DJ.allow('collections.playlists.showCreate', true);
-DJ.allow('collections.playlists.showUpdate', function (userId, doc, fields, modifier) {
-  return doc.userId === userId;
-});
-DJ.allow('collections.playlists.showRemove', function (userId, doc, fields, modifier) {
-  return doc.userId === userId;
-});
+DJ.allow('collections.playlists.insert', false);
+DJ.allow('collections.playlists.update', false);
+DJ.allow('collections.playlists.remove', false);
+DJ.allow('collections.playlists.showCreate', false);
+DJ.allow('collections.playlists.showUpdate', false);
+DJ.allow('collections.playlists.showRemove', false);
 
 DJ.helper('collections.playlists.indexFilter', function() {
-  return {
-    createdBy: this.userId
-  };
+  return {};
 });
 
 DJ.allow('collections.comments.index', true);
@@ -142,7 +132,7 @@ DJ.allow('collections.comments.showRemove', function (userId, doc, fields, modif
 
 DJ.helper('collections.comments.indexFilter', function() {
   return {
-    createdBy: this.userId
+    userId: this.userId
   };
 });
 

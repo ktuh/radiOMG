@@ -14,15 +14,15 @@
             with {{showHost}}
           </p>
           {{#if nowPlaying}}
-            <p class='landing__song-title caps'>Now Playing:</p>
             {{{formatNP nowPlaying}}}
           {{/if}}
         {{else}}
-          <p class='landing__show-host'>Welcome to KTUH FM Honolulu</p>
-          <p class='landing__host-name'>Radio for the People</p>
           {{#if nowPlaying}}
             <p class='landing__song-title caps'>Now Playing:</p>
             {{{formatNP nowPlaying}}}
+          {{else}}
+            <p class='landing__show-host'>Welcome to KTUH FM Honolulu</p>
+            <p class='landing__host-name'>Radio for the People</p>
           {{/if}}
         {{/if}}
         </div>
