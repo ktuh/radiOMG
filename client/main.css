@@ -131,15 +131,18 @@ h1, h2, h3, h4, h5 {
 .landing__show-name,
 .landing__show-host,
 .landing__host-name,
-.landing__song-title {
+.landing__song-title,
+.landing__song-artist {
   font-size: 2.25em;
 }
 .landing__show-name,
-.landing__song-title {
+.landing__song-title,
+.landing__song-artist {
   font-family: 'nimbus-sans-extended', sans-serif;
   text-transform: uppercase;
 }
-.landing__show-host {
+.landing__show-name,
+.landing__song-title {
   font-weight: bold;
 }
 .landing__play-btn-outer {

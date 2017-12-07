@@ -17,8 +17,7 @@ Template.landing.helpers({
   nowPlaying: () =>  (NowPlaying.findOne() !== undefined && !Session.get('timeout')) ?
                      NowPlaying.findOne().current : false,
   formatNP: (str) => '<p class="landing__song-title caps">' + str.split(" - ")[1] + '</p>' +
-                     '<p class="landing__show-host caps"> by </p>' +
-                     '<p class="landing__song-title caps">' +  str.split(" - ")[0] + '</p>',
+                     '<p class="landing__song-artist caps"> by ' +  str.split(" - ")[0] + '</p>',
   showName: () => {
     var now =  new Date();
     var show = Shows.findOne({active: true, startDay: now.getDay(),
