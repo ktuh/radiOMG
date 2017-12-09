@@ -19,7 +19,7 @@ Template.playlistList.onCreated(function() {
             var showId = show && show.showId || -1;
 
             if (showId > -1) {
-              self.subscribe('showHostUserName', id);
+              self.subscribe('showHostUserName', showId);
             }
 
             Meteor.call('getPlaylistOrInfo', parseInt(playlist.spinPlaylistId),
@@ -84,6 +84,7 @@ Template.playlistList.helpers({
     return '/profile/' + user.username;
   },
   truncated: (str) => str.substring(0, str.length - 3),
+  timeBeautify: (time) => moment(time, "HH:mm").format("hh:mma"),
   isSub: () =>  Playlists.findOne({}).showId === -1,
   timeHMS: (date, startTime, endTime) => {
     console.log(date);

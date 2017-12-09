@@ -3,9 +3,11 @@
   <h2 class='general__header'>KTUH Staff</h2>
   <div class='staff__content'>
     {{ #each djs }}
-      <div class='staff__item'>
-        <h4><a href='/profile/{{usernameOf userId}}'>{{name}}</a></h4>
-      </div>
+      {{#if name}}
+        <div class='staff__item'>
+          <h4><a href='/profile/{{usernameOf userId}}'>{{name}}</a></h4>
+        </div>
+      {{/if}}
     {{/each}}
   </div>
   {{/if}}

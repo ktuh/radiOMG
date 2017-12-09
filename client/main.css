@@ -536,6 +536,7 @@ h1, h2, h3, h4, h5 {
 }
 .jumbotron {
   text-align: center;
+  margin-bottom: 0;
 }
 .jumbotron h2 {
   font-size: 60px;
@@ -1236,7 +1237,7 @@ audio {
   margin: 0 auto;
 }
 .news-item, .event-item {
-  padding: 0 60px;
+  padding: 10px 60px;
 }
 .news-list__next {
   position: relative;
