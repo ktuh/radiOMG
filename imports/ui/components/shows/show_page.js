@@ -1,5 +1,4 @@
 import './show_page.html';
-import Shows from '../../../api/shows/shows_collection.js';
 import Playlists from '../../../api/playlists/playlists_collection.js';
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
@@ -11,22 +10,24 @@ Template.showPage.onCreated(function() {
   self.autorun(function() {
     var slug = FlowRouter.getParam('slug');
     self.subscribe('singleShow', slug, {
-      onReady: function() {
-        var show = Shows.findOne({ slug: slug });
-        Session.set('documentTitle', show.showName);
-        self.subscribe('comments', show._id);
-        self.subscribe('showHostUserName', show.userId);
-        self.subscribe('showPlaylists', show.showId, {
-          onReady: function() {
-            var latest = Playlists.findOne({}, {sort: {showDate: -1}});
-            if (latest !== undefined) {
-              Meteor.call('getPlaylistOrInfo', parseInt(latest.spinPlaylistId),
-                true, function(error, result) {
-                if (!error && result)
-                  Session.set('currentPlaylist', result);
+      onReady: async function() {
+        const Shows = await import('../../../api/shows/shows_collection.js').then(function() {
+          var show = Shows.findOne({ slug: slug });
+          Session.set('documentTitle', show.showName);
+          self.subscribe('comments', show._id);
+          self.subscribe('showHostUserName', show.userId);
+          self.subscribe('showPlaylists', show.showId, {
+            onReady: function() {
+              var latest = Playlists.findOne({}, {sort: {showDate: -1}});
+              if (latest !== undefined) {
+                Meteor.call('getPlaylistOrInfo', parseInt(latest.spinPlaylistId),
+                  true, function(error, result) {
+                  if (!error && result)
+                    Session.set('currentPlaylist', result);
                 });
               }
             }
+          });
         });
       }
     });
@@ -34,10 +35,8 @@ Template.showPage.onCreated(function() {
 });
 
 Template.showPage.helpers({
-  show: ()=>  Shows.findOne({ slug: FlowRouter.getParam('slug') }),
+  show: () =>  Shows.findOne({}),
   lessThanTen: (n) => Math.abs(n) < 10,
-  ownShow: () => Meteor.userId() && Shows.findOne() &&
-                 Shows.findOne().userId == Meteor.userId(),
   time: (t) => moment(t).format('ddd. MMM. D, YYYY'),
   playlists: () => Playlists.find({}, { sort: { showDate: -1 } }),
   latestPlaylist: () => Playlists.findOne({}, { sort: { showDate: -1 } }),
@@ -70,8 +69,7 @@ Template.showPage.helpers({
     moment(endHour + ":" + endMinute, "HH:mm").format("h:mmA"),
   timeBeautify2: (h, m) => moment(h + ":" + m, "HH:mm").format("h:mma"),
   genreString: (genres) => genres.join(', '),
-  actualPlaylist: () => Session.get("currentPlaylist"),
-  latestEpisodeUrl: () => Shows.findOne().latestEpisodeUrl
+  actualPlaylist: () => Session.get("currentPlaylist")
 });
 
 Template.showPage.events({

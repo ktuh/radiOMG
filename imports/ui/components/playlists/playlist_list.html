@@ -2,37 +2,54 @@
   <h2 class='general__header'>Playlists</h2>
   <div class='playlist-list__latest'>
     {{#if Template.subscriptionsReady}}
-      {{#if latestShowImage}}
-        <a href='/shows/{{latestShowSlug}}'>
-          <img class='playlist__show-image' src='{{latestShowImage}}'>
-        </a>
+      {{#if latestShow}}
+        {{#with latestShow}}
+          {{#if featuredImage.url}}
+            <a href='/shows/{{slug}}'>
+              <img class='playlist__show-image' src='{{featuredImage.url}}'>
+            </a>
+          {{/if}}
+        {{/with}}
       {{/if}}
       <h5 class='playlist-list__current'>CURRENT PLAYLIST</h5>
       <h3 class='playlist-list__show-name'>
-        {{#if latestShowSlug}}
-          <a href='/shows/{{latestShowSlug}}'>
-            {{latestShowName}}
-          </a>
+        {{#if latestShow}}
+          {{#with latestShow}}
+            {{#if slug}}
+              <a href='/shows/{{slug}}'>
+                {{showName}}
+              </a>
+            {{else}}
+              {{showName}}
+            {{/if}}
+          {{/with}}
         {{else}}
-          {{latestShowName}}
+          Sub Show
         {{/if}}
       </h3>
       {{#if synopsis}}<p>{{synopsis}}</p>{{/if}}
       <h5 class='playlist-list__show-host'>
-        {{#unless isSub}}
-          {{latestShowDay}}s at {{latestShowStartTime}}
+        {{#if latestShow}}
+          {{#let sDate=(moment latestShow.showDate)}}
+            {{sDate.format 'dddd'}}s at {{sDate.format 'h A'}}
+          {{/let}}
+          •
+          {{#with latestShow}}
+            {{#if latestShowLink}}
+             Hosted by
+              <a href='{{latestShowLink}}'>
+                {{host}}
+              </a>
+            {{else}}
+              Hosted by {{host}}
+            {{/if}}
+          {{/with}}
         {{else}}
-          {{timeHMS showDate latestPlaylistStartTime latestPlaylistEndTime}}
-        {{/unless}}
-        •
-        {{#if latestShowSlug}}
-         Hosted by
-          <a href='{{latestShowLink}}'>
-            {{latestShowHost}}
-          </a>
-        {{else}}
-          Hosted by
-          {{latestShowHost}}
+          {{#with latestPlaylist}}
+            {{timeHMS showDate startTime endTime}}
+            •
+            Hosted by {{djName}}
+          {{/with}}
         {{/if}}
       </h5>
       <table class='playlist'>

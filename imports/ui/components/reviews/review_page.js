@@ -21,8 +21,7 @@ Template.reviewPage.onCreated(function() {
 
 Template.reviewPage.helpers({
   review: () => {
-    var slug = FlowRouter.getParam('slug');
-    return Reviews.findOne({ slug: slug });
+    return Reviews.findOne({});
   },
   formattedRating: (rating) => rating % 1 === .5 ? rating : Number(rating).toString() + '.0'
 });

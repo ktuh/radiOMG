@@ -88,9 +88,7 @@ Template.home.onDestroyed(function() {
 });
 
 Template.home.helpers({
-  hasPosts: () => Posts.find({}, { sort: { submitted: -1 }}).count() > 0,
-  posts: () => Posts.find({featured: false}, { sort: { submitted: -1 }}),
-  hasReviews: () => Reviews.find({}, { sort: { submitted: -1 }}).count() > 0,
+  posts: () => Posts.find({ featured: false }, { sort: { submitted: -1 }}),
   reviews: () => Reviews.find({}, { sort: { submitted: -1 }}),
   synopsis: (body) => body.replace(/(([^\s]+\s\s*){12})(.*)/,"$1…"),
   featuredPost: () => Posts.findOne({ approved: true, featured: true },

@@ -58,3 +58,4 @@ kadira:flow-router
 scorpiusjs:s3
 useraccounts:flow-routing
 useraccounts:materialize
+dynamic-import

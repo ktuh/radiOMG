@@ -1,4 +1,6 @@
 import './playlist_page.html';
+import './playlist_sidebar.js';
+import '../../../ui/components/comments/comment_submit.js';
 import { Meteor } from 'meteor/meteor';
 import Comments from '../../../api/comments/comments_collection.js';
 import Playlists from '../../../api/playlists/playlists_collection.js';
@@ -44,12 +46,7 @@ Template.playlistPage.helpers({
     return Comments.find({ postId: playlist._id });
   },
   songs: () => Session.get("currentPlaylist"),
-  showName: () => Shows.findOne({ showId: Playlists.findOne().showId }).showName,
+  show: () => Shows.findOne({}),
   showDateOfCurrent: () => moment(Playlists.findOne().showDate).tz("US/Hawaii").format("LL"),
-  showSlug: () => Shows.findOne({ showId: Playlists.findOne().showId }).slug,
-  showImage: () => {
-    var show = Shows.findOne({ showId: Playlists.findOne().showId });
-    return (show === undefined) ? false : show.featuredImage.url;
-  },
   timeBeautify: (time) => moment(time.substring(0, time.length - 3), 'HH:mm').format('hh:mm a')
 });

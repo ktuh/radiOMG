@@ -11,7 +11,7 @@ Template.reviewList.onCreated(function () {
 });
 
 Template.reviewList.helpers({
-    isReady: () => Template.instance().pagination.ready(),
-    templatePagination: () => Template.instance().pagination,
-    reviews: () => Template.instance().pagination.getPage()
+  isReady: () => Template.instance().pagination.ready(),
+  templatePagination: () => Template.instance().pagination,
+  reviews: () => Template.instance().pagination.getPage()
 });
