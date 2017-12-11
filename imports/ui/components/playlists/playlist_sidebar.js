@@ -1,4 +1,5 @@
 import './playlist_sidebar.html';
+import Playlists from '../../../api/playlists/playlists_collection.js';
 
 Template.playlistSidebar.onCreated(function(){
   var self = this;
@@ -8,6 +9,7 @@ Template.playlistSidebar.onCreated(function(){
 
 Template.playlistSidebar.helpers({
   validDate: (date) => date !== undefined,
+  showFromId: (id) => Shows.findOne({showId: id}),
   showIsSub: (id) => id === -1,
   timeFromHMS: (str1, str2) => moment(str1, 'HH:mm:ss').format('h') + '-' + moment(str2, 'HH:mm:ss').format('hA'),
   timeFromHours: (h1, h2) => moment(h1, 'HH').format('h') + '-' + moment(h2, 'HH').format('hA'),

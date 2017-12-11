@@ -14,8 +14,6 @@
     </p>
     {{#if photo}}<img class='news-item__photo' src='{{photo.url}}'>{{/if}}
     <div class='news-item__body'>{{{body}}}</div>
-  </div>
-  {{/with}}
   {{#if comments}}
     <div class='comments'>
       <h3 class='comments__header'>Comments</h3>
@@ -31,4 +29,6 @@
       {{/if}}
     </div>
   {{/if}}
+    </div>
+    {{/with}}
 </template>

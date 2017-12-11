@@ -1,4 +1,5 @@
 import './news_item.html';
+import '../../../ui/components/comments/comment_submit.js';
 import { Template } from 'meteor/templating';
 import { Meteor } from 'meteor/meteor';
 import { FlowRouter } from 'meteor/kadira:flow-router';

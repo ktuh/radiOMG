@@ -11,23 +11,21 @@ Template.showPage.onCreated(function() {
     var slug = FlowRouter.getParam('slug');
     self.subscribe('singleShow', slug, {
       onReady: async function() {
-        const Shows = await import('../../../api/shows/shows_collection.js').then(function() {
-          var show = Shows.findOne({ slug: slug });
-          Session.set('documentTitle', show.showName);
-          self.subscribe('comments', show._id);
-          self.subscribe('showHostUserName', show.userId);
-          self.subscribe('showPlaylists', show.showId, {
-            onReady: function() {
-              var latest = Playlists.findOne({}, {sort: {showDate: -1}});
-              if (latest !== undefined) {
-                Meteor.call('getPlaylistOrInfo', parseInt(latest.spinPlaylistId),
-                  true, function(error, result) {
-                  if (!error && result)
-                    Session.set('currentPlaylist', result);
-                });
-              }
+        var show = Shows.findOne({ slug: slug });
+        Session.set('documentTitle', show.showName);
+        self.subscribe('comments', show._id);
+        self.subscribe('showHostUserName', show.userId);
+        self.subscribe('showPlaylists', show.showId, {
+          onReady: function() {
+            var latest = Playlists.findOne({}, {sort: {showDate: -1}});
+            if (latest !== undefined) {
+              Meteor.call('getPlaylistOrInfo', parseInt(latest.spinPlaylistId),
+                true, function(error, result) {
+                if (!error && result)
+                  Session.set('currentPlaylist', result);
+              });
             }
-          });
+          }
         });
       }
     });

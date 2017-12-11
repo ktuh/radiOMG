@@ -9,8 +9,10 @@
         <p class='playlist__sidebar-link'>
           <a href='/playlists/{{spinPlaylistId}}'>
           {{#unless showIsSub showId}}
-            {{timeFromHours startHour endHour}}
-            {{showName}}
+            {{#with showFromId showId}}
+              {{timeFromHours startHour endHour}}
+              {{showName}}
+            {{/with}}
           {{else}}
             {{timeFromHMS startTime endTime}}
             Sub Show
