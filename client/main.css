@@ -2432,7 +2432,8 @@ margin-bottom: 0 !important;
   .landing__show-name,
   .landing__show-host,
   .landing__song-title,
-  .landing__host-name {
+  .landing__host-name,
+  .landing__song-artist {
     text-align: center;
     font-size: 1.75em;
     line-height: 32px;
