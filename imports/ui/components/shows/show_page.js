@@ -1,4 +1,5 @@
 import './show_page.html';
+import Shows from '../../../api/shows/shows_collection.js';
 import Playlists from '../../../api/playlists/playlists_collection.js';
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
@@ -10,7 +11,7 @@ Template.showPage.onCreated(function() {
   self.autorun(function() {
     var slug = FlowRouter.getParam('slug');
     self.subscribe('singleShow', slug, {
-      onReady: async function() {
+      onReady: function() {
         var show = Shows.findOne({ slug: slug });
         Session.set('documentTitle', show.showName);
         self.subscribe('comments', show._id);
