@@ -9,7 +9,7 @@ import { $ } from 'meteor/jquery';
 Template.showList.onCreated(function() {
   var self = this;
   self.autorun(function() {
-    self.subscribe('shows');
+    self.subscribe('activeShows');
   });
 });
 

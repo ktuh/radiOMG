@@ -36,15 +36,6 @@ FlowRouter.route('/', {
   }
 });
 
-FlowRouter.route('/radioblog', {
-  name: 'radioblog',
-  action: async function () {
-    await import('../../ui/components/news/news_list.js').then(function() {
-      BlazeLayout.render('layout', {content: 'newsList'});
-    });
-  }
-});
-
 FlowRouter.route('/radioblog/:slug', {
   name: 'blogPage',
   action: async function () {
@@ -54,11 +45,11 @@ FlowRouter.route('/radioblog/:slug', {
   }
 });
 
-FlowRouter.route('/events', {
-  name: 'party',
+FlowRouter.route('/radioblog', {
+  name: 'radioblog',
   action: async function () {
-    await import('../../ui/components/parties/party_list.js').then(function() {
-      BlazeLayout.render('layout', {content: 'partyList'});
+    await import('../../ui/components/news/news_list.js').then(function() {
+      BlazeLayout.render('layout', {content: 'newsList'});
     });
   }
 });
@@ -68,6 +59,15 @@ FlowRouter.route('/events/:slug', {
   action: async function () {
     await import('../../ui/components/parties/party_page.js').then(function() {
       BlazeLayout.render('layout', {content: 'partyPage'});
+    });
+  }
+});
+
+FlowRouter.route('/events', {
+  name: 'party',
+  action: async function () {
+    await import('../../ui/components/parties/party_list.js').then(function() {
+      BlazeLayout.render('layout', {content: 'partyList'});
     });
   }
 });
@@ -216,6 +216,15 @@ FlowRouter.route('/timeline', {
   action: async function() {
     await import('../../ui/components/timeline/timeline.js').then(function() {
       BlazeLayout.render('layout', {content: 'timeline'});
+    });
+  }
+});
+
+FlowRouter.route('/underwriting', {
+  name: 'underwriting',
+  action: async function() {
+    await import('../../ui/components/underwriting/underwriting.js').then(function() {
+      BlazeLayout.render('layout', {content: 'underwriting'});
     });
   }
 });

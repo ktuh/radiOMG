@@ -1911,7 +1911,8 @@ margin-bottom: 0 !important;
 }
 .about__desc p, .about__content p, .about__help,
 .join__desc p, .join__content p,
-.contact__content p, .contact__content h4, .contact__content form {
+.contact__content p, .contact__content h4, .contact__content form,
+.contact__content ul {
   padding: 5px 192px;
 }
 .copy__caps {
@@ -2233,7 +2234,8 @@ margin-bottom: 0 !important;
   }
   .about__desc p, .about__content p,
   .join__desc p, .join__content p,
-  .faq__content p, .contact__content p, .contact__content h4 {
+  .faq__content p, .contact__content p, .contact__content h4,
+  .contact__content ul {
     padding: 0;
   }
   .home__featured-content, .news-item {
