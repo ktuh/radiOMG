@@ -1,0 +1,19 @@
+<template name="musicCharts">
+  <div class='music__playlists'>
+    <h2>Charts</h2>
+    <div>
+      {{#if ready}}
+      <table class="playlist-list" border="1">
+      {{#each docs}}
+        <tr>
+          <td><img height="150px" src="{{featuredImage}}" /></td>
+          <td>{{title}}</td>
+          <td><a href="/playlists/{{spinPlaylistId}}/">{{createdAt}}</a></td>
+        </tr>
+      {{/each}}
+      </table>
+      {{> defaultBootstrapPaginator pagination=tempPag limit=8}}
+      {{/if}}
+    </div>
+  </div>
+</template>

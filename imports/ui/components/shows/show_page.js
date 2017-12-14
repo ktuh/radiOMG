@@ -34,7 +34,7 @@ Template.showPage.onCreated(function() {
 });
 
 Template.showPage.helpers({
-  show: () =>  Shows.findOne({}),
+  show: () =>  Shows.findOne({ slug: FlowRouter.getParam('slug')}),
   lessThanTen: (n) => Math.abs(n) < 10,
   time: (t) => moment(t).format('ddd. MMM. D, YYYY'),
   playlists: () => Playlists.find({}, { sort: { showDate: -1 } }),

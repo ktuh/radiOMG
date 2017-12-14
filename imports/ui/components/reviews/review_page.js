@@ -21,7 +21,7 @@ Template.reviewPage.onCreated(function() {
 
 Template.reviewPage.helpers({
   review: () => {
-    return Reviews.findOne({});
+    return Reviews.findOne({ slug: slug });
   },
   formattedRating: (rating) => rating % 1 === .5 ? rating : Number(rating).toString() + '.0'
 });
