@@ -9,12 +9,11 @@ import { $ } from 'meteor/jquery';
 Template.showList.onCreated(function() {
   var self = this;
   self.autorun(function() {
-    self.subscribe('shows');
+    self.subscribe('activeShows');
   });
 });
 
 Template.showList.helpers({
-  newPartyUrl: () => FlowRouter.path('showCreate'),
   active: (d) => {
     var day = FlowRouter.getQueryParam('day');
     var daze = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -32,10 +31,10 @@ Template.showList.helpers({
     var dayNum = 0;
     if (day === undefined || $.inArray(day, daze) < 0) {
       dayNum = date.getDay();
-    } else { 
+    } else {
       dayNum = $.inArray(day, daze);
     }
-    return Shows.find({startDay: dayNum}, 
+    return Shows.find({startDay: dayNum},
                       {sort: {startHour: 1, startMinute: 1}});
   }
 });

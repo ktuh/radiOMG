@@ -1,8 +1,8 @@
 import { Meteor } from 'meteor/meteor';
 import Parties from '../parties_collection.js';
 
-Meteor.publish('parties', function () {
-  return Parties.find();
+Meteor.publish('approvedParties', function () {
+  return Parties.find({approved: true});
 });
 
 Meteor.publish('singleParty', function (selector) {

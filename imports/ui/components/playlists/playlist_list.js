@@ -1,4 +1,5 @@
 import './playlist_list.html';
+import './playlist_sidebar.js';
 import { Template } from 'meteor/templating';
 import Playlists from '../../../api/playlists/playlists_collection.js';
 import Shows from '../../../api/shows/shows_collection.js';
@@ -19,7 +20,7 @@ Template.playlistList.onCreated(function() {
             var showId = show && show.showId || -1;
 
             if (showId > -1) {
-              self.subscribe('showHostUserName', id);
+              self.subscribe('showHostUserName', showId);
             }
 
             Meteor.call('getPlaylistOrInfo', parseInt(playlist.spinPlaylistId),
@@ -43,40 +44,8 @@ Template.playlistList.helpers({
   ready: () => Template.instance().pagination.ready(),
   docs: () => Template.instance().pagination.getPage(),
   tempPag: () => Template.instance().pagination,
-  latestShowName: () => {
-    var list = Playlists.findOne({}, { sort: { showDate: -1 }});
-    var show = Shows.findOne({ showId: list.showId })
-    return (show && show.showName)|| "Sub Show";
-  },
-  latestShowDay: function () {
-    var list = Playlists.findOne({}, { sort: { showDate: -1 }});
-    return moment(list.showDate).format('dddd');
-  },
-  latestShowStartTime: function () {
-    var list = Playlists.findOne({}, { sort: { showDate: -1 }});
-    return moment(list.showDate).format('h A');
-  },
-  latestShowSlug: () => {
-    var list = Playlists.findOne({}, { sort: { showDate: -1 }});
-    var show =  Shows.findOne({ showId: list.showId });
-    return show && show.slug;
-  },
-  latestShowImage: () => {
-    var list = Playlists.findOne({}, { sort: { showDate: -1 }});
-    var show = Shows.findOne({ showId: list.showId });
-
-    return (show === undefined || show.featuredImage === undefined)
-           ? false : show.featuredImage.url;
-  },
-  latestShowHost: () => {
-    var list = Playlists.findOne({}, { sort: { showDate: -1 }});
-    var show = Shows.findOne({ showId: list.showId });
-
-    if (show === undefined || show.featuredImage === undefined) {
-      return list && list.djName;
-    }
-    else return show.host;
-  },
+  latestPlaylist: () => Playlists.findOne({}, { sort: { showDate: -1 }}),
+  latestShow: () => Shows.findOne({ showId: Playlists.findOne({}, { sort: { showDate: -1 }}).showId}),
   latestShowLink: function() {
     var list = Playlists.findOne({}, { sort: { showDate: -1 }});
     var userId = Shows.findOne({ showId: list.showId }).userId
@@ -84,12 +53,10 @@ Template.playlistList.helpers({
     return '/profile/' + user.username;
   },
   truncated: (str) => str.substring(0, str.length - 3),
+  timeBeautify: (time) => moment(time, "HH:mm").format("hh:mma"),
   isSub: () =>  Playlists.findOne({}).showId === -1,
   timeHMS: (date, startTime, endTime) => {
-    console.log(date);
     return moment(date).format("ddd. MMM DD, YYYY") + " " +
     moment(startTime, "HH:mm:ss").format("hh:mm") +  "-" +
-    moment(endTime, "HH:mm:ss").format("hh:mm A"); } ,
-  latestPlaylistStartTime: () => Playlists.findOne({}, { sort: { showDate: -1 } }).startTime,
-  latestPlaylistEndTime: () => Playlists.findOne({}, { sort: { showDate: -1 } }).endTime
+    moment(endTime, "HH:mm:ss").format("hh:mm A"); }
 });

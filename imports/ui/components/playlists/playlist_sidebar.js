@@ -1,4 +1,5 @@
 import './playlist_sidebar.html';
+import Playlists from '../../../api/playlists/playlists_collection.js';
 
 Template.playlistSidebar.onCreated(function(){
   var self = this;
@@ -8,16 +9,11 @@ Template.playlistSidebar.onCreated(function(){
 
 Template.playlistSidebar.helpers({
   validDate: (date) => date !== undefined,
-  showNameFromId: (id) => {
-    if (id > -1) return Shows.findOne({ showId: id }).showName;
-    else return 'Sub Show';
-  },
+  showFromId: (id) => Shows.findOne({showId: id}),
   showIsSub: (id) => id === -1,
   timeFromHMS: (str1, str2) => moment(str1, 'HH:mm:ss').format('h') + '-' + moment(str2, 'HH:mm:ss').format('hA'),
   timeFromHours: (h1, h2) => moment(h1, 'HH').format('h') + '-' + moment(h2, 'HH').format('hA'),
   dateFormat: (date) => moment(date).format('ddd. MMMM DD, YYYY'),
-  showTimeFromId: (id) => Shows.findOne({showId: id}).startHour,
-  showEndFromId: (id) => Shows.findOne({showId: id}).endHour,
   getSidebarData: () => {
     var playlistDates = Playlists.find({}, {sort: {showDate: -1, spinPlaylistId: -1}, limit: 12}).fetch();
     var uniqDates =

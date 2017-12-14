@@ -17,19 +17,13 @@ Template.profilePage.onCreated(function() {
     self.subscribe('userData', username, {
       onReady: function() {
         var user = Meteor.users.findOne({ username: username });
-
-        // Dirty solution, should be handled in the router but we don't have a
-        // data control layer/controller there, so we redirect in the template.
-        if (user === undefined) {
-          this.render('layout', {content: 'notFound'});
-        }
-        else {
+        if (user !== undefined) {
           self.subscribe('profileData', user._id);
           self.subscribe('showByUserId', user._id);
+          self.subscribe('postsByUser', username);
         }
       }
     });
-    self.subscribe('postsByUser', username);
   });
 });
 

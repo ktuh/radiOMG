@@ -536,6 +536,7 @@ h1, h2, h3, h4, h5 {
 }
 .jumbotron {
   text-align: center;
+  margin-bottom: 0;
 }
 .jumbotron h2 {
   font-size: 60px;
@@ -1236,7 +1237,7 @@ audio {
   margin: 0 auto;
 }
 .news-item, .event-item {
-  padding: 0 60px;
+  padding: 10px 60px;
 }
 .news-list__next {
   position: relative;
@@ -1311,6 +1312,14 @@ audio {
 .review__content {
   width: auto;
   padding-top: 0px;
+  margin: 0 60px;
+  text-align: center;
+  min-height: 50vh;
+  background: #fff;
+}
+.music__content {
+  width: auto;
+  padding-top: 10px;
   margin: 0 60px;
   text-align: center;
   min-height: 50vh;
@@ -1910,7 +1919,8 @@ margin-bottom: 0 !important;
 }
 .about__desc p, .about__content p, .about__help,
 .join__desc p, .join__content p,
-.contact__content p, .contact__content h4, .contact__content form {
+.contact__content p, .contact__content h4, .contact__content form,
+.contact__content ul {
   padding: 5px 192px;
 }
 .copy__caps {
@@ -2025,6 +2035,18 @@ margin-bottom: 0 !important;
 .image-attribute {
   padding-left: 0;
   padding-right: 0;
+}
+.music__playlist-image {
+  height: 150px;
+}
+.music__content h2, .music__playlists {
+  width: 49%;
+  text-align: center;
+  display: inline-block;
+  vertical-align: top;
+}
+.music__playlists table {
+  width: 100%;
 }
 @-webkit-keyframes fadeOut {
   0% {
@@ -2232,8 +2254,19 @@ margin-bottom: 0 !important;
   }
   .about__desc p, .about__content p,
   .join__desc p, .join__content p,
-  .faq__content p, .contact__content p, .contact__content h4 {
+  .faq__content p, .contact__content p, .contact__content h4,
+  .contact__content ul {
     padding: 0;
+  }
+  .music__content {
+    display: block;
+    margin: 0px 40px;
+  }
+  .music__content h2 {
+    width: 100%;
+  }
+  .music__playlist {
+    width: 100%;
   }
   .home__featured-content, .news-item {
     padding: 0 40px;
@@ -2431,7 +2464,8 @@ margin-bottom: 0 !important;
   .landing__show-name,
   .landing__show-host,
   .landing__song-title,
-  .landing__host-name {
+  .landing__host-name,
+  .landing__song-artist {
     text-align: center;
     font-size: 1.75em;
     line-height: 32px;

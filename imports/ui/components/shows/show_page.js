@@ -24,9 +24,9 @@ Template.showPage.onCreated(function() {
                 true, function(error, result) {
                 if (!error && result)
                   Session.set('currentPlaylist', result);
-                });
-              }
+              });
             }
+          }
         });
       }
     });
@@ -34,10 +34,8 @@ Template.showPage.onCreated(function() {
 });
 
 Template.showPage.helpers({
-  show: ()=>  Shows.findOne({ slug: FlowRouter.getParam('slug') }),
+  show: () =>  Shows.findOne({ slug: FlowRouter.getParam('slug')}),
   lessThanTen: (n) => Math.abs(n) < 10,
-  ownShow: () => Meteor.userId() && Shows.findOne() &&
-                 Shows.findOne().userId == Meteor.userId(),
   time: (t) => moment(t).format('ddd. MMM. D, YYYY'),
   playlists: () => Playlists.find({}, { sort: { showDate: -1 } }),
   latestPlaylist: () => Playlists.findOne({}, { sort: { showDate: -1 } }),
@@ -70,8 +68,7 @@ Template.showPage.helpers({
     moment(endHour + ":" + endMinute, "HH:mm").format("h:mmA"),
   timeBeautify2: (h, m) => moment(h + ":" + m, "HH:mm").format("h:mma"),
   genreString: (genres) => genres.join(', '),
-  actualPlaylist: () => Session.get("currentPlaylist"),
-  latestEpisodeUrl: () => Shows.findOne().latestEpisodeUrl
+  actualPlaylist: () => Session.get("currentPlaylist")
 });
 
 Template.showPage.events({

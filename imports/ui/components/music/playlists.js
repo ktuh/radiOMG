@@ -13,6 +13,7 @@ Template.musicPlaylists.onCreated(function() {
 Template.musicPlaylists.helpers({
   img: (id) => Shows.findOne({showId: id}).featuredImage.url,
   showName: (id) => Shows.findOne({showId: id}).showName,
+  isSub: (id) => id === -1,
   shows: () => Shows.find(),
   ready: () => Template.instance().pagination.ready(),
   tempPag: () => Template.instance().pagination,

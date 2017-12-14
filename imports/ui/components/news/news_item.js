@@ -1,4 +1,5 @@
 import './news_item.html';
+import '../../../ui/components/comments/comment_submit.js';
 import { Template } from 'meteor/templating';
 import { Meteor } from 'meteor/meteor';
 import { FlowRouter } from 'meteor/kadira:flow-router';
@@ -28,16 +29,7 @@ Template.newsItem.onCreated(function () {
 
 Template.newsItem.helpers({
   dateFormat: (date) => moment(date).format("dddd, MMMM DD, YYYY"),
-  post: () => {
-    var slug = FlowRouter.getParam('slug');
-    var post = Posts.findOne({ slug: slug });
-    return post;
-  },
-  comments: () => { Comments.find(); },
-  displayName: () => {
-    var slug = FlowRouter.getParam('slug');
-    var post = Posts.findOne({ slug: slug });
-    var profile = Profiles.findOne({ userId: post.userId });
-    return profile && profile.name;
-  }
+  post: () => Posts.findOne({ slug: FlowRouter.getParam('slug') }),
+  comments: () => Comments.find(),
+  displayName: () => Profiles.findOne({ userId: Posts.findOne({ slug: FlowRouter.getParam('slug') }).userId }).name
 });
