@@ -1317,6 +1317,14 @@ audio {
   min-height: 50vh;
   background: #fff;
 }
+.music__content {
+  width: auto;
+  padding-top: 10px;
+  margin: 0 60px;
+  text-align: center;
+  min-height: 50vh;
+  background: #fff;
+}
 .general__header {
   margin: 0;
   padding: 120px 0 20px 60px;
@@ -2028,6 +2036,18 @@ margin-bottom: 0 !important;
   padding-left: 0;
   padding-right: 0;
 }
+.music__playlist-image {
+  height: 150px;
+}
+.music__content h2, .music__playlists {
+  width: 49%;
+  text-align: center;
+  display: inline-block;
+  vertical-align: top;
+}
+.music__playlists table {
+  width: 100%;
+}
 @-webkit-keyframes fadeOut {
   0% {
     opacity: 0;
@@ -2237,6 +2257,16 @@ margin-bottom: 0 !important;
   .faq__content p, .contact__content p, .contact__content h4,
   .contact__content ul {
     padding: 0;
+  }
+  .music__content {
+    display: block;
+    margin: 0px 40px;
+  }
+  .music__content h2 {
+    width: 100%;
+  }
+  .music__playlist {
+    width: 100%;
   }
   .home__featured-content, .news-item {
     padding: 0 40px;

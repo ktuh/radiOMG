@@ -7,6 +7,19 @@ export default ChartsSchema = new SimpleSchema({
     type: String,
     optional: false
   },
+  chartDate: {
+    type: Date,
+    optional: true,
+    autoform: {
+      label: 'Chart Date'
+    },
+    autoValue: function() {
+      if (this.isSet || this.isUpdate)
+        return this.value;
+      else
+        return new Date();
+    }
+  },
   createdAt: {
     type: Date,
     optional: false,

@@ -94,15 +94,6 @@ FlowRouter.route('/playlists', {
   }
 });
 
-FlowRouter.route('/reviews/', {
-  name: 'reviewsPage',
-  action: async function() {
-    await import('../../ui/components/reviews/review_list.js').then(function() {
-      BlazeLayout.render('layout', {content: 'reviewList'});
-    });
-  }
-});
-
 FlowRouter.route('/reviews/:slug', {
   name: 'review',
   action: async function() {
@@ -112,11 +103,11 @@ FlowRouter.route('/reviews/:slug', {
   }
 });
 
-FlowRouter.route('/shows', {
-  name: 'show',
+FlowRouter.route('/reviews/', {
+  name: 'reviewsPage',
   action: async function() {
-    await import('../../ui/components/shows/show_list.js').then(function() {
-      BlazeLayout.render('layout', {content: 'showList'});
+    await import('../../ui/components/reviews/review_list.js').then(function() {
+      BlazeLayout.render('layout', {content: 'reviewList'});
     });
   }
 });
@@ -130,11 +121,11 @@ FlowRouter.route('/shows/:slug', {
   }
 });
 
-FlowRouter.route('/charts', {
-  name: 'chartList',
-  action: async function () {
-    await import('../../ui/components/charts/charts_list.js').then(function() {
-      BlazeLayout.render('layout', {content: 'chartList'});
+FlowRouter.route('/shows', {
+  name: 'show',
+  action: async function() {
+    await import('../../ui/components/shows/show_list.js').then(function() {
+      BlazeLayout.render('layout', {content: 'showList'});
     });
   }
 });
@@ -144,6 +135,28 @@ FlowRouter.route('/charts/:slug', {
   action: async function () {
     await import('../../ui/components/charts/charts_page.js').then(function() {
       BlazeLayout.render('layout', {content: 'chartPage'});
+    });
+  }
+});
+
+FlowRouter.route('/charts', {
+  name: 'chartList',
+  action: async function () {
+    await import('../../ui/components/charts/charts_list.js').then(function() {
+      BlazeLayout.render('layout', {content: 'chartList'});
+    });
+  }
+});
+
+FlowRouter.route('/music', {
+  name: 'music',
+  action: async function() {
+    await import('../../ui/components/music/music.js').then(async function() {
+      await import('../../ui/components/music/charts.js').then(async function() {
+        await import('../../ui/components/music/playlists.js').then(function() {
+          BlazeLayout.render('layout', {content: 'music'});
+        });
+      });
     });
   }
 });

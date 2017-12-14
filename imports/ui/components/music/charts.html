@@ -4,11 +4,16 @@
     <div>
       {{#if ready}}
       <table class="playlist-list" border="1">
+        <tr>
+          <td>Chart Title</td>
+          <td>Chart Date</td>
+          <td>Modified At</td>
+        </tr>
       {{#each docs}}
         <tr>
-          <td><img height="150px" src="{{featuredImage}}" /></td>
           <td>{{title}}</td>
-          <td><a href="/playlists/{{spinPlaylistId}}/">{{createdAt}}</a></td>
+          <td>{{chartDate}}</td>
+          <td><a href="/charts/{{slug}}/">{{editedAt}}</a></td>
         </tr>
       {{/each}}
       </table>
