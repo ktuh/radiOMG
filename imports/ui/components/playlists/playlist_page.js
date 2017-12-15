@@ -46,7 +46,12 @@ Template.playlistPage.helpers({
     return Comments.find({ postId: playlist._id });
   },
   songs: () => Session.get("currentPlaylist"),
-  show: () => Shows.findOne({}),
+  show: () => {
+    var id = parseInt(FlowRouter.getParam('id'));
+    var playlist = Playlists.findOne({ spinPlaylistId: id });
+
+    return playlist && Shows.findOne({ showId: playlist.showId });
+  },
   showDateOfCurrent: () => moment(Playlists.findOne().showDate).tz("US/Hawaii").format("LL"),
   timeBeautify: (time) => moment(time.substring(0, time.length - 3), 'HH:mm').format('hh:mm a')
 });
