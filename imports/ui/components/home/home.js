@@ -1,4 +1,5 @@
 import './home.html';
+import './landing.js';
 import '../includes/support.js';
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
