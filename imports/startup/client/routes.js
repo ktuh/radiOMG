@@ -6,6 +6,7 @@ import '../../ui/components/includes/errors.js';
 import '../../ui/components/includes/footer.js';
 import '../../ui/components/includes/header.js';
 import '../../ui/components/includes/loginButtons.js';
+import '../../ui/components/home/landing.js';
 
 FlowRouter.notFound = {
   action: async function() {
@@ -28,10 +29,8 @@ FlowRouter.triggers.enter(
 FlowRouter.route('/', {
   name: 'home',
   action: async function () {
-    await import('../../ui/components/home/home.js').then(async function() {
-      await import('../../ui/components/home/landing.js').then(function() {
-        BlazeLayout.render('layout', {content: 'home'});
-      });
+    await import('../../ui/components/home/home.js').then(function() {
+      BlazeLayout.render('layout', {content: 'home'});
     });
   }
 });

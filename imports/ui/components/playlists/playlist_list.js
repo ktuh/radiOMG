@@ -39,7 +39,8 @@ Template.playlistList.onCreated(function() {
 Template.playlistList.helpers({
   latestSongs: () => Session.get("currentPlaylist"),
   img: (id) => Shows.findOne({ showId: id }).featuredImage.url,
-  showName: (id) => Shows.findOne({ showId: id }).showName,
+  showNameById: (id) => Shows.findOne({ showId: id }).showName,
+  showTime: (date) => moment(date).format('dddd') + "s at " + moment(date).format('h A'),
   date: (showDate) => moment(showDate).format('dddd, h:mm a,<br>MMM DD YYYY'),
   ready: () => Template.instance().pagination.ready(),
   docs: () => Template.instance().pagination.getPage(),

@@ -12,6 +12,6 @@ Template.staff.onCreated(function() {
 });
 
 Template.staff.helpers({
-  djs: () => Profiles.find({}),
-  usernameOf: (id) => Meteor.users.findOne({_id: id}).username,
+  djs: () => Profiles.find({}, { sort: { name: 1 }}),
+  usernameOf: (id) => Meteor.users.findOne({ _id: id }).username,
 });

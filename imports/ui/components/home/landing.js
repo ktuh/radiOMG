@@ -22,14 +22,14 @@ Template.landing.helpers({
     var now =  new Date();
     var show = Shows.findOne({active: true, startDay: now.getDay(),
                               startHour: { $lte: now.getHours() }, endDay: now.getDay(),
-                              endHour: { $gte: now.getHours() } });
+                              endHour: { $gt: now.getHours() } });
     return show && show.showName;
   },
   showHost: () => {
     var now =  new Date();
     var show = Shows.findOne({active: true, startDay: now.getDay(),
                               startHour: { $lte: now.getHours() }, endDay: now.getDay(),
-                              endHour: { $gte: now.getHours() } });
+                              endHour: { $gt: now.getHours() } });
     return show && show.host;
   },
   isPlaying: () => {

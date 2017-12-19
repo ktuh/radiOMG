@@ -1304,7 +1304,7 @@ audio {
 }
 .staff__content {
   width: 100%;
-  padding-top: 20px;
+  padding: 20px 60px 0 60px;
   text-align: center;
   min-height: 50vh;
   background: #000;
@@ -1957,10 +1957,15 @@ margin-bottom: 0 !important;
 #partyForm, #showForm {
   padding: 60px;
 }
-.staff__item a {
+.staff__item {
+  width: 33%;
+  text-align: center;
+  display: inline-block;
+}
+.staff__item a.staff__item-textlink {
   padding: 8px 0;
   display: inline-block;
-  width: 24%;
+  width: 100%;
   font-family: 'nimbus-sans';
   font-weight: lighter;
   color: #fff;
@@ -2047,6 +2052,10 @@ margin-bottom: 0 !important;
 }
 .music__playlists table {
   width: 100%;
+}
+.staff__item-photo {
+  height: 150px;
+  width: auto;
 }
 @-webkit-keyframes fadeOut {
   0% {
@@ -2424,7 +2433,7 @@ margin-bottom: 0 !important;
     display: none;
   },
   .staff__content {
-    margin: 10px 40px;
+    padding: 10px 40px;
   }
   .review__content {
     margin: 0px 25px;

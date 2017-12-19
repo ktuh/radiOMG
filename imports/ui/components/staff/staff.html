@@ -5,7 +5,14 @@
     {{ #each djs }}
       {{#if name}}
         <div class='staff__item'>
-          <h4><a href='/profile/{{usernameOf userId}}'>{{name}}</a></h4>
+          <a href='/profile/{{usernameOf userId}}'>
+          {{#unless photo}}
+            <img class='staff__item-photo' src='/mstile-310x310.png' />
+          {{else}}
+            <img class='staff__item-photo' src={{photo.url}} />
+          {{/unless}}
+          </a>
+          <h4><a class="staff__item-textlink" href='/profile/{{usernameOf userId}}'>{{name}}</a></h4>
         </div>
       {{/if}}
     {{/each}}
