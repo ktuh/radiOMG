@@ -30,11 +30,9 @@
       {{#if synopsis}}<p>{{synopsis}}</p>{{/if}}
       <h5 class='playlist-list__show-host'>
         {{#if latestShow}}
-          {{#let sDate=(moment latestShow.showDate)}}
-            {{sDate.format 'dddd'}}s at {{sDate.format 'h A'}}
-          {{/let}}
-          •
           {{#with latestShow}}
+            {{showTime showDate}}
+            •
             {{#if latestShowLink}}
              Hosted by
               <a href='{{latestShowLink}}'>
