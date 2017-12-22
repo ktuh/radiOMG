@@ -1,6 +1,10 @@
 import './resend.html';
 import { Template } from 'meteor/templating';
 
+Template.resend.helpers({
+  verified: () => Meteor.user() && Meteor.user().emails[0].verified
+});
+
 Template.resend.events({
   'click .submit': () => {
     $(".submit").prop("disabled", true);

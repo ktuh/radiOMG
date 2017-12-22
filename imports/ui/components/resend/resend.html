@@ -1,5 +1,6 @@
 <template name='resend'>
   <h2 class='general__header'>Resend Verification Email</h2>
+  {{#unless verified}}
   <p>
       Lost your verification email? Type in your email address to send the
       verification email again. Be sure to check your spam folders and inbox.
@@ -15,4 +16,9 @@
         </button>
     </form>
   </div>
+  {{else}}
+    <p>
+      Your email has been verified. You're good to go!
+    </p>
+  {{/unless}}
 </template>
