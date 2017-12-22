@@ -53,6 +53,12 @@ Template.playlistPage.helpers({
 
     return playlist && Shows.findOne({ showId: playlist.showId });
   },
+  showTime: () => {
+      var id = parseInt(FlowRouter.getParam('id'));
+      var playlist = Playlists.findOne({ spinPlaylistId: id });
+      return playlist && (moment(playlist.startTime, "HH:mm:ss").format('h:mm') +
+              '-' + moment(playlist.endTime, "HH:mm:ss").format('h:mm a'))
+  },
   showDateOfCurrent: () => moment(Playlists.findOne().showDate).tz("US/Hawaii").format("LL"),
   timeBeautify: (time) => moment(time.substring(0, time.length - 3), 'HH:mm').format('hh:mm a')
 });
