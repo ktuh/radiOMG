@@ -60,3 +60,4 @@ useraccounts:flow-routing
 useraccounts:materialize
 dynamic-import
 meteor
+okgrow:analytics

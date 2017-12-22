@@ -1,5 +1,4 @@
 import { Meteor } from 'meteor/meteor';
-import { Session } from 'meteor/session';
 import { HTTP } from 'meteor/http';
 import CryptoJS from 'crypto-js';
 import '/node_modules/crypto-js/enc-base64.js';
