@@ -241,6 +241,15 @@ FlowRouter.route('/underwriting', {
   }
 });
 
+FlowRouter.route('/resend', {
+  name: 'resend',
+  action: async function() {
+    await import('../../ui/components/resend/resend.js').then(function() {
+      BlazeLayout.render('layout', {content: 'resend'});
+    });
+  }
+});
+
 FlowRouter.route('/:slug', {
   name: 'page',
   action: async function(params) {
