@@ -83,6 +83,10 @@ Template.header.onRendered(function () {
     });
   }, 1000);
 
+  if (NowPlaying.findOne()) {
+      Session.set('timeout', moment().diff(moment(NowPlaying.findOne().timestamp)) > 360000);
+  }
+
   setInterval(function() {
     if (NowPlaying.findOne()) {
       if (moment().diff(moment(NowPlaying.findOne().timestamp)) > 360000 && !Session.get('timeout')) {
