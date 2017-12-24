@@ -93,6 +93,9 @@ Template.header.onRendered(function () {
       }
     }
   }, 60000);
+
+  if ($("#resend-link")[0] === undefined)
+    $("#login-other-options").append("<a href='/resend' id='resend-link' class='pull-right'>Resend Verification Email</a>");
 });
 
 Template.header.helpers({
