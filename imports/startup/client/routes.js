@@ -163,8 +163,10 @@ FlowRouter.route('/music', {
 FlowRouter.route('/profile/:username', {
   name: 'profilePage',
   action: async function () {
-    await import('../../ui/components/profile/profile_page.js').then(function() {
-      BlazeLayout.render('layout', {content: 'profilePage'});
+    await import('../../ui/components/profile/profile_page.js').then(async function() {
+      await import('../../ui/components/application/not_found.js').then(function() {
+        BlazeLayout.render('layout', {content: 'profilePage'});
+      });
     });
   }
 });
