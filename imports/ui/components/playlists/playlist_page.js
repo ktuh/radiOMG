@@ -39,6 +39,7 @@ Template.playlistPage.onCreated(function(){
 
 
 Template.playlistPage.helpers({
+  playlist: () => Playlists.findOne({ spinPlaylistId: parseInt(FlowRouter.getParam('id'))}),
   comments: () => {
     var id = parseInt(FlowRouter.getParam('id'));
     var playlist = Playlists.findOne({ spinPlaylistId: id });

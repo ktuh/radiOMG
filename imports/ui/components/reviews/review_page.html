@@ -1,19 +1,23 @@
 <template name='reviewPage'>
   {{#if Template.subscriptionsReady}}
-    {{#with review}}
-      <h1 class="general__header"><b>{{releaseName}}</b>
-      <br>{{artist}}</h1>
-      <div class='review__link'>
-        <a href='/reviews' class='back-to'>← all reviews</a>
-      </div>
-      <div class="review__content">
-        <img class='review-page__image' src='{{image.url}}'>
-        <div class='review-page__copy'>
-          <h4 class='review-page__rating'>{{formattedRating rating}} / 5.0</h4>
-          <div class='review-page__byline'>Review by <a href="/profile/{{author}}">{{author}}</a> • {{submitted}}</div>
-          <div class='review-page__body'>{{body}}</div>
+    {{#if review}}
+      {{#with review}}
+        <h1 class="general__header"><b>{{releaseName}}</b>
+        <br>{{artist}}</h1>
+        <div class='review__link'>
+          <a href='/reviews' class='back-to'>← all reviews</a>
         </div>
-      </div>
-    {{/with}}
+        <div class="review__content">
+          <img class='review-page__image' src='{{image.url}}'>
+          <div class='review-page__copy'>
+            <h4 class='review-page__rating'>{{formattedRating rating}} / 5.0</h4>
+            <div class='review-page__byline'>Review by <a href="/profile/{{author}}">{{author}}</a> • {{submitted}}</div>
+            <div class='review-page__body'>{{body}}</div>
+          </div>
+        </div>
+      {{/with}}
+    {{else}}
+      {{> notFound}}
+    {{/if}}
   {{/if}}
 </template>

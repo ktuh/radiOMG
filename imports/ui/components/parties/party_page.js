@@ -19,7 +19,8 @@ Template.partyPage.onCreated(function () {
     self.subscribe('singleParty', slug, {
       onReady: function () {
         var post = Parties.findOne({ slug: slug });
-        self.subscribe('comments', post._id);
+        if (post)
+          self.subscribe('comments', post._id);
       }
     });
   });

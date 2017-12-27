@@ -13,21 +13,23 @@ Template.showPage.onCreated(function() {
     self.subscribe('singleShow', slug, {
       onReady: function() {
         var show = Shows.findOne({ slug: slug });
-        Session.set('documentTitle', show.showName);
-        self.subscribe('comments', show._id);
-        self.subscribe('showHostUserName', show.userId);
-        self.subscribe('showPlaylists', show.showId, {
-          onReady: function() {
-            var latest = Playlists.findOne({}, {sort: {showDate: -1}});
-            if (latest !== undefined) {
-              Meteor.call('getPlaylistOrInfo', parseInt(latest.spinPlaylistId),
-                true, function(error, result) {
-                if (!error && result)
-                  Session.set('currentPlaylist', result);
-              });
+        if (show) {
+          Session.set('documentTitle', show.showName);
+          self.subscribe('comments', show._id);
+          self.subscribe('showHostUserName', show.userId);
+          self.subscribe('showPlaylists', show.showId, {
+            onReady: function() {
+              var latest = Playlists.findOne({}, {sort: {showDate: -1}});
+              if (latest !== undefined) {
+                Meteor.call('getPlaylistOrInfo', parseInt(latest.spinPlaylistId),
+                  true, function(error, result) {
+                  if (!error && result)
+                    Session.set('currentPlaylist', result);
+                });
+              }
             }
-          }
-        });
+          });
+        }
       }
     });
   });
