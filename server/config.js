@@ -59,7 +59,20 @@ Meteor.startup(function () {
   });
 
   Accounts.onCreateUser((options, user) => {
+    ResendQueue.insert({userId: user._id, lastSent: new Date()});
     var id = Profiles.insert({userId: user._id});
+    Roles.addUserToRoles(user._id, ['member']);
+    Profiles.update({ _id: id }, { $set: { photo: {
+      url: '/img/ktuh-logo-white-alpha.png',
+      fileId: 'd3r3K15suPr3m3d03',
+      info: {
+        width: 150,
+        height: 150,
+        backgroundColor: '#000000',
+        primaryColor: '#000000',
+        secondaryColor: '#000000'
+      }
+    }}});
     // We want to save email, user name, and first/last names if they used a login svc.
     if (user.services.facebook || user.services.google) {
       var email = user.services.facebook ? user.services.facebook.email
@@ -84,22 +97,8 @@ Meteor.startup(function () {
         Profiles.update({ _id: id }, { $set: { name: user.services.facebook.name }});
       }
 
-      Profiles.update({ _id: id }, { $set: { photo: {
-        url: '/img/ktuh-logo-white-alpha.png',
-        fileId: 'd3r3K15suPr3m3d03',
-        info: {
-          width: 150,
-          height: 150,
-          backgroundColor: '#000000',
-          primaryColor: '#000000',
-          secondaryColor: '#000000'
-        }
-      }}});
-
       user.username = username;
       user.emails = [{ address: email, verified: true }];
-
-      Roles.addUserToRoles(user._id, ['member']);
     }
     return user;
   });

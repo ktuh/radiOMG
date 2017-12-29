@@ -1,5 +1,6 @@
 <template name="playlistPage">
   {{#if Template.subscriptionsReady}}
+    {{#if playlist}}
     {{#if show}}
       {{#with show}}
         <h2 class='general__header'>
@@ -53,5 +54,8 @@
       </div>
     </div>
     {{> playlistSidebar}}
+    {{else}}
+      {{> notFound}}
+    {{/if}}
   {{/if}}
 </template>

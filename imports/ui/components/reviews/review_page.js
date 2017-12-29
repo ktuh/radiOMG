@@ -12,16 +12,16 @@ Template.reviewPage.onCreated(function() {
     self.subscribe('singleReview', slug, {
       onReady: function() {
         var obj = Reviews.findOne({slug: slug});
-        var artist = obj.artist, name = obj.releaseName, year = obj.year;
-        Session.set('documentTitle', 'KTUH FM Honolulu | ' + artist + " - " + name + " (" + year + ")");
+        if (obj) {
+          var artist = obj.artist, name = obj.releaseName, year = obj.year;
+          Session.set('documentTitle', 'KTUH FM Honolulu | ' + artist + " - " + name + " (" + year + ")");
+        }
       }
     });
   });
 });
 
 Template.reviewPage.helpers({
-  review: () => {
-    return Reviews.findOne({ slug: slug });
-  },
+  review: () => Reviews.findOne({ slug: FlowRouter.getParam('slug') }),
   formattedRating: (rating) => rating % 1 === .5 ? rating : Number(rating).toString() + '.0'
 });

@@ -83,6 +83,10 @@ Template.header.onRendered(function () {
     });
   }, 1000);
 
+  if (NowPlaying.findOne()) {
+    Session.set('timeout', moment().diff(moment(NowPlaying.findOne().timestamp)) > 360000);
+  }
+
   setInterval(function() {
     if (NowPlaying.findOne()) {
       if (moment().diff(moment(NowPlaying.findOne().timestamp)) > 360000 && !Session.get('timeout')) {
@@ -93,6 +97,9 @@ Template.header.onRendered(function () {
       }
     }
   }, 60000);
+
+  if ($("#resend-link")[0] === undefined)
+    $("#login-other-options").append("<a href='/resend' id='resend-link' class='pull-right'>Resend Verification Email</a>");
 });
 
 Template.header.helpers({
