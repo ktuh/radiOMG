@@ -12,7 +12,9 @@ DJ.allow('collections.shows.showCreate', true);
 DJ.allow('collections.shows.showUpdate', true);
 DJ.allow('collections.shows.showRemove', true);
 
-DJ.helper('collections.shows.indexFilter', () => ({ userId: this.userId }));
+DJ.helper('collections.shows.indexFilter', function() {
+  return { userId: this.userId };
+});
 
 DJ.allow('collections.reviews.index', true);
 DJ.allow('collections.reviews.insert', true);
@@ -27,7 +29,9 @@ DJ.allow('collections.reviews.showRemove', true);
 DJ.deny('collections.reviews.update', (userId, doc, fields, modifier) =>
   (!_.contains(fields, 'approved')));
 
-DJ.helper('collections.reviews.indexFilter', () => ({ userId: this.userId }));
+DJ.helper('collections.reviews.indexFilter', function() {
+  return { userId: this.userId };
+});
 
 DJ.allow('collections.parties.index', true);
 DJ.allow('collections.parties.insert', true);
@@ -42,7 +46,9 @@ DJ.allow('collections.parties.showRemove', true);
 DJ.deny('collections.parties.update', (userId, doc, fields, modifier) =>
   (!_.contains(fields, 'approved')));
 
-DJ.helper('collections.parties.indexFilter', () => ({ userId: this.userId }));
+DJ.helper('collections.parties.indexFilter', function() {
+  return { userId: this.userId };
+});
 
 DJ.allow('collections.posts.index', true);
 DJ.allow('collections.posts.insert', true);
@@ -57,7 +63,9 @@ DJ.allow('collections.posts.showRemove', true);
 DJ.deny('collections.posts.update', (userId, doc, fields, modifier) =>
   (!_.contains(fields, 'approved')));
 
-DJ.helper('collections.posts.indexFilter', () => ({ userId: this.userId }));
+DJ.helper('collections.posts.indexFilter', function() {
+  return { userId: this.userId };
+});
 
 DJ.allow('collections.playlists.index', true);
 DJ.allow('collections.playlists.insert', false);
@@ -77,7 +85,9 @@ DJ.allow('collections.comments.showCreate', false);
 DJ.allow('collections.comments.showUpdate', false);
 DJ.allow('collections.comments.showRemove', false);
 
-DJ.helper('collections.comments.indexFilter', () => ({ userId: this.userId }));
+DJ.helper('collections.comments.indexFilter', function() {
+  return { userId: this.userId };
+});
 
 DJ.allow('collections.profiles.index', false);
 DJ.allow('collections.profiles.insert', true);
@@ -88,7 +98,9 @@ DJ.allow('collections.profiles.showCreate', false);
 DJ.allow('collections.profiles.showUpdate', true);
 DJ.allow('collections.profiles.showRemove', false);
 
-DJ.helper('collections.profiles.indexFilter', () => ({userId: this.userId}));
+DJ.helper('collections.profiles.indexFilter', function() {
+  return { userId: this.userId };
+});
 
 DJ.allow('filesystem.upload', true);
 
