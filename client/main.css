@@ -1306,7 +1306,7 @@ audio {
   width: 100%;
   padding: 20px 60px 0 60px;
   text-align: center;
-  min-height: 54vh;
+  min-height: calc(100vh - 74px - 105px);
   background: #000;
 }
 .review__content {
@@ -2053,10 +2053,6 @@ margin-bottom: 0 !important;
 .music__playlists table {
   width: 100%;
 }
-.staff__item-photo {
-  height: 150px;
-  width: auto;
-}
 @-webkit-keyframes fadeOut {
   0% {
     opacity: 0;
@@ -2627,9 +2623,6 @@ margin-bottom: 0 !important;
     width: 100%;
     height: auto;
     margin: 0;
-  }
-  .staff__content {
-    min-height: 63vh;
   }
 }
 .news-list__latest-review a:hover p,
