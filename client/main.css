@@ -1312,7 +1312,7 @@ audio {
   width: 100%;
   padding: 20px 60px 0 60px;
   text-align: center;
-  min-height: 50vh;
+  min-height: calc(100vh - 74px - 105px);
   background: #000;
 }
 .review__content {
@@ -1965,7 +1965,7 @@ margin-bottom: 0 !important;
   padding: 60px;
 }
 .staff__item {
-  width: 33%;
+  width: 100%;
   text-align: center;
   display: inline-block;
 }
@@ -2059,10 +2059,6 @@ margin-bottom: 0 !important;
 }
 .music__playlists table {
   width: 100%;
-}
-.staff__item-photo {
-  height: 150px;
-  width: auto;
 }
 @-webkit-keyframes fadeOut {
   0% {
@@ -2451,7 +2447,7 @@ margin-bottom: 0 !important;
   }
   .navbar-right {
     display: none;
-  },
+  }
   .staff__content {
     padding: 10px 40px;
   }

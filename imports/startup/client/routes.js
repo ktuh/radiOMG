@@ -56,8 +56,10 @@ FlowRouter.route('/radioblog', {
 FlowRouter.route('/events/:slug', {
   name: 'partyPage',
   action: async function () {
-    await import('../../ui/components/parties/party_page.js').then(function() {
-      BlazeLayout.render('layout', {content: 'partyPage'});
+    await import('../../ui/components/parties/party_page.js').then(async function() {
+      await import('../../ui/components/application/not_found.js').then(function() {
+        BlazeLayout.render('layout', {content: 'partyPage'});
+      });
     });
   }
 });
@@ -75,8 +77,10 @@ FlowRouter.route('/playlists/:id', {
   name: 'playlistPage',
   action: async function () {
     await import('../../ui/components/playlists/playlist_page.js').then(async function() {
-      await import('../../ui/components/playlists/playlist_sidebar.js').then(function() {
-        BlazeLayout.render('layout', {content: 'playlistPage'});
+      await import('../../ui/components/playlists/playlist_sidebar.js').then(async function() {
+        await import('../../ui/components/application/not_found.js').then(function() {
+          BlazeLayout.render('layout', {content: 'playlistPage'});
+        });
       });
     });
   }
@@ -96,8 +100,10 @@ FlowRouter.route('/playlists', {
 FlowRouter.route('/reviews/:slug', {
   name: 'review',
   action: async function() {
-    await import('../../ui/components/reviews/review_page.js').then(function() {
-      BlazeLayout.render('layout', {content: 'reviewPage'});
+    await import('../../ui/components/reviews/review_page.js').then(async function() {
+      await import('../../ui/components/application/not_found.js').then(function() {
+        BlazeLayout.render('layout', {content: 'reviewPage'});
+      });
     });
   }
 });
@@ -114,8 +120,10 @@ FlowRouter.route('/reviews/', {
 FlowRouter.route('/shows/:slug', {
   name: 'showPage',
   action: async function () {
-    await import('../../ui/components/shows/show_page.js').then(function() {
-      BlazeLayout.render('layout', {content: 'showPage'});
+    await import('../../ui/components/shows/show_page.js').then(async function() {
+      await import('../../ui/components/application/not_found.js').then(function() {
+        BlazeLayout.render('layout', {content: 'showPage'});
+      });
     });
   }
 });
@@ -132,8 +140,10 @@ FlowRouter.route('/shows', {
 FlowRouter.route('/charts/:slug', {
   name: 'chartPage',
   action: async function () {
-    await import('../../ui/components/charts/charts_page.js').then(function() {
-      BlazeLayout.render('layout', {content: 'chartPage'});
+    await import('../../ui/components/charts/charts_page.js').then(async function() {
+      await import('../../ui/components/application/not_found.js').then(function() {
+        BlazeLayout.render('layout', {content: 'chartPage'});
+      });
     });
   }
 });
@@ -163,8 +173,10 @@ FlowRouter.route('/music', {
 FlowRouter.route('/profile/:username', {
   name: 'profilePage',
   action: async function () {
-    await import('../../ui/components/profile/profile_page.js').then(function() {
-      BlazeLayout.render('layout', {content: 'profilePage'});
+    await import('../../ui/components/profile/profile_page.js').then(async function() {
+      await import('../../ui/components/application/not_found.js').then(function() {
+        BlazeLayout.render('layout', {content: 'profilePage'});
+      });
     });
   }
 });
@@ -237,6 +249,15 @@ FlowRouter.route('/underwriting', {
   action: async function() {
     await import('../../ui/components/underwriting/underwriting.js').then(function() {
       BlazeLayout.render('layout', {content: 'underwriting'});
+    });
+  }
+});
+
+FlowRouter.route('/resend', {
+  name: 'resend',
+  action: async function() {
+    await import('../../ui/components/resend/resend.js').then(function() {
+      BlazeLayout.render('layout', {content: 'resend'});
     });
   }
 });

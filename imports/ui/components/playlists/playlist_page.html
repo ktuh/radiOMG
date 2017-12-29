@@ -1,5 +1,6 @@
 <template name="playlistPage">
   {{#if Template.subscriptionsReady}}
+    {{#if playlist}}
     {{#if show}}
       {{#with show}}
         <h2 class='general__header'>
@@ -8,7 +9,7 @@
       {{/with}}
     {{else}}
       <h2 class='general__header'>
-        Sub Show playlist - {{showDateOfCurrent}}
+        {{showTime}} w/ {{djOfShow}} playlist - {{showDateOfCurrent}}
       </h2>
     {{/if}}
     <div class='playlist__link'>
@@ -53,5 +54,8 @@
       </div>
     </div>
     {{> playlistSidebar}}
+    {{else}}
+      {{> notFound}}
+    {{/if}}
   {{/if}}
 </template>

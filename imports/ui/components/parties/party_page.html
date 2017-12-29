@@ -1,5 +1,6 @@
 <template name='partyPage'>
   {{#if Template.subscriptionsReady}}
+    {{#if party}}
     {{#with party}}
       <h1 class='general__header'>{{title}}</h1>
       <div class='event__link'>
@@ -37,6 +38,9 @@
           <p class='comments__text'>Please log in to leave a comment.</p>
         {{/if}}
       </div>
+    {{/if}}
+    {{else}}
+      {{> notFound}}
     {{/if}}
   {{else}}
     {{> spinner}}
