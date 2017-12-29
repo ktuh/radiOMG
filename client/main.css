@@ -39,7 +39,7 @@ h4 { font-size: 1.125em; }
 h5, .sm { font-size: .875em; }
 h1, h2, h3, h4, h5 {
   font-family: 'nimbus-sans-extended', sans-serif;
-  font-weight: bold;
+  font-weight: 900;
 }
 .flex {
   display: flex;
@@ -102,6 +102,7 @@ h1, h2, h3, h4, h5 {
   padding: 20px 60px 30px;
 }
 .landing {
+  display: flex;
   position: fixed;
   top: 0; left: 0;
   height: 100vh;
@@ -110,7 +111,6 @@ h1, h2, h3, h4, h5 {
   color: #fff;
   background-size: cover;
   background-repeat: no-repeat;
-  background-attachment: fixed;
   background-position: center;
 }
 .landing__box {
@@ -118,13 +118,16 @@ h1, h2, h3, h4, h5 {
   justify-content: space-around;
   align-items: center;
   position: relative;
-  top: 39%;
   margin: auto;
   max-width: 42em;
+  max-height: 75vh;
+  text-overflow: ellipsis;
 }
 .landing__info {
   width: 24em;
+  margin-left: 20px;
   font-family: 'nimbus-sans-extended', 'alda', sans-serif;
+  overflow-y: hidden;
 }
 .landing__info p { margin: 0; }
 .landing__info .landing__now-playing { margin-bottom: 8px }
@@ -143,7 +146,7 @@ h1, h2, h3, h4, h5 {
 }
 .landing__show-name,
 .landing__song-title {
-  font-weight: bold;
+  font-weight: 900;
 }
 .landing__play-btn-outer {
   float: left;
@@ -197,7 +200,7 @@ h1, h2, h3, h4, h5 {
 .landing__down-arrow {
   position: absolute;
   right: calc(50% + -0.5em);
-  top: 85%;
+  top: 80%;
   height: 30px;
   width: 30px;
   font-size: 3em;
@@ -216,6 +219,8 @@ h1, h2, h3, h4, h5 {
   margin: 0;
   transform: rotate(-90deg);
   text-transform: uppercase;
+  font-family: 'nimbus-sans', sans-serif;
+  font-weight: normal;
 }
 .landing__hnl-freq { left: -30px; }
 .landing__ns-freq { right: -20px; }
@@ -387,7 +392,7 @@ h1, h2, h3, h4, h5 {
   padding: 6px 10px 8px 10px;
   border: 1px solid #fff;
   border-radius: 0;
-  font-weight: bold;
+  font-weight: 900;
   text-transform: uppercase;
   background-color: transparent;
 }
@@ -426,7 +431,7 @@ h1, h2, h3, h4, h5 {
 }
 .header__support-btn a {
   padding: 0 15px;
-  font-weight: bold;
+  font-weight: 900;
   color: #fff;
 }
 .info-box {
@@ -1033,6 +1038,7 @@ audio {
 }
 .show-item__info h5, .show-item__host {
   font-family: 'nimbus-sans-extended', sans-serif;
+  font-weight: 900;
 }
 .show-item__info p {
   font-size: .875em;
@@ -1041,7 +1047,7 @@ audio {
   margin-top: 10px;
   font-size: 10px;
   font-family: 'nimbus-sans-extended', sans-serif;
-  font-weight: bold;
+  font-weight: 900;
   text-transform: uppercase;
   color: #5C5C5C;
 }
@@ -1258,7 +1264,7 @@ audio {
 }
 .news-list__latest-reviews h4 {
   font-family: 'nimbus-sans-extended';
-  font-weight: bold;
+  font-weight: 900;
 }
 .news-list__latest-review {
   height: 120px;
@@ -1328,7 +1334,7 @@ audio {
 .general__header {
   margin: 0;
   padding: 120px 0 20px 60px;
-  font-weight: bold;
+  font-weight: 900;
   background-color: #262626;
   color: white;
   font-family: 'nimbus-sans-extended', sans-serif;
@@ -1349,7 +1355,7 @@ audio {
   font-family: 'nimbus-sans-extended', sans-serif;
   border-bottom: thin black solid;
   text-align: left;
-  font-weight: bold;
+  font-weight: 900;
 }
 .home__featured {
   width: 100%;
@@ -1476,7 +1482,7 @@ margin-bottom: 0 !important;
   margin-bottom: 5px;
   font-family: 'nimbus-sans-extended', sans-serif;
   text-align: left;
-  font-weight: bold;
+  font-weight: 900;
   text-transform: uppercase;
 }
 .djotm__stroke {
@@ -1699,7 +1705,7 @@ margin-bottom: 0 !important;
 .footer__subheading {
   text-transform: uppercase;
   font-family: 'nimbus-sans-extended', sans-serif;
-  font-weight: bold;
+  font-weight: 900;
 }
 .footer__contact {
   display: flex;
@@ -1777,7 +1783,7 @@ margin-bottom: 0 !important;
 .playlist-list__show-host,
 .playlist-list__show-name a {
   text-transform: uppercase;
-  font-weight: bold;
+  font-weight: 900;
 }
 .playlist-list__show-host a { color: #5940de; }
 .playlist-list__current {
@@ -1879,7 +1885,7 @@ margin-bottom: 0 !important;
 }
 .faq__section-header h4 {
   font-family: 'nimbus-sans-extended', sans-serif;
-  font-weight: bold;
+  font-weight: 900;
   text-transform: uppercase;
   margin-top: 0px;
 }
@@ -1911,11 +1917,12 @@ margin-bottom: 0 !important;
 .playlist__sidebar-date {
   text-transform: uppercase;
   font-family: 'nimbus-sans-extended', sans-serif;
-  font-weight: bold;
+  font-weight: 900;
 }
 .playlist__sidebar-link {
   text-transform: uppercase;
   font-family: 'nimbus-sans-extended', sans-serif;
+  font-weight: 900;
 }
 .about__desc p, .about__content p, .about__help,
 .join__desc p, .join__content p,
@@ -1925,7 +1932,7 @@ margin-bottom: 0 !important;
 }
 .copy__caps {
   font-family: 'nimbus-sans-extended', sans-serif;
-  font-weight: bold;
+  font-weight: 900;
   text-transform: uppercase;
 }
 .faq__question {
@@ -2200,7 +2207,7 @@ margin-bottom: 0 !important;
     float: left;
     clear: both;
     margin-top: 0;
-    font-weight: bold;
+    font-weight: 900;
   }
   .nav.navbar-nav:nth-child(3) .nav-item {
     float: left;
@@ -2223,13 +2230,20 @@ margin-bottom: 0 !important;
   }
   .navbar-nav.nav.navbar-left {
     margin: 17px 0 12px 0;
-    font-weight: bold;
+    font-weight: 900;
     float: left;
   }
   .mejs__controls {
     padding-top: 0 !important;
   }
 }
+@media (min-width: 768px) and (max-width: 784px) {
+  .info-box {
+    max-width: 110px;
+    margin-left: 0;
+  }
+}
+
 @media (max-width: 768px) {
   #login-dropdown-list {
     margin-left: 0;
@@ -2249,12 +2263,18 @@ margin-bottom: 0 !important;
     width: calc(100% - 40px);
     top: 45px;
   }
+  .landing__info { max-width: 20em; }
+  .landing__show-name,
+  .landing__show-host,
+  .landing__song-title,
+  .landing__host-name,
+  .landing__song-artist {
+    font-size: 1.75em;
+    line-height: 32px;
+  }
   .landing__box {
     max-width: 37em;
     justify-content: center;
-  }
-  .landing__info {
-    margin-left: 2em;
   }
   .about__desc, .about__content, .about__help, .join__desc, .join__content,
   .faq__content, .contact__content, .playlist__content, .content
@@ -2462,12 +2482,14 @@ margin-bottom: 0 !important;
     display: none;
   }
   .landing__box {
-    top: 30%;
     flex-direction: column;
   }
   .landing__info,
   .landing__play-btn-outer {
     margin: 0 auto 15px;
+  }
+  .landing__now-playing { 
+    text-align: center;
   }
   .landing__info { max-width: 20em; }
   .landing__show-name,
@@ -2476,8 +2498,8 @@ margin-bottom: 0 !important;
   .landing__host-name,
   .landing__song-artist {
     text-align: center;
-    font-size: 1.75em;
-    line-height: 32px;
+    font-size: 1.125em;
+    line-height: 25px;
   }
   .news-list__post {
     float: none;
@@ -2707,8 +2729,8 @@ margin-bottom: 0 !important;
   .review-item {
     width: 100%;
   }
-  .landing__hnl-freq { left: -70px; }
-  .landing__ns-freq { right: -60px; }
+  /*.landing__hnl-freq { left: -70px; }
+  .landing__ns-freq { right: -60px; }*/
   .dropdown-menu span {
     display: block;
     padding: 3px 5px;

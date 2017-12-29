@@ -68,7 +68,7 @@ Template.landing.events({
   },
   'click .landing__down-arrow': function(event) {
     var position = $("#main").offset().top;
-    var navHeight = $('#navigation').height();
+    var navHeight = $('.navbar-header').height();
     $("HTML, BODY").animate({ scrollTop: position - navHeight + 2 }, 600);
   }
 });

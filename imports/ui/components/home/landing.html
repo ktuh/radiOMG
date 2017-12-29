@@ -3,22 +3,25 @@
     <div class='landing__box'>
       {{#if Template.subscriptionsReady}}
         <div class='landing__play-btn-outer'>
-          {{#if isPlaying}}<div class='landing__pause-btn-l'></div><div class='landing__pause-btn-r'></div>
-          {{else}}<div class='landing__play-btn'><div class='landing__play-btn-triangle'></div></div>{{/if}}
+          {{#if isPlaying}}
+            <div class='landing__pause-btn-l'></div>
+            <div class='landing__pause-btn-r'></div>
+          {{else}}
+          <div class='landing__play-btn'>
+            <div class='landing__play-btn-triangle'></div>
+          </div>
+          {{/if}}
         </div>
         <div class='landing__info'>
         {{#if showName}}
-          <p class='landing__now-playing caps'>On Air Now:</p>
           <p class='landing__show-name caps'>{{showName}}</p>
-          <p class='landing__show-host caps'>
-            with {{showHost}}
-          </p>
+          <p class='landing__show-host caps'>with {{showHost}}</p>
           {{#if nowPlaying}}
             {{{formatNP nowPlaying}}}
           {{/if}}
         {{else}}
           {{#if nowPlaying}}
-            <p class='landing__song-title caps'>Now Playing:</p>
+            <p class='landing__now-playing'>On Air Now:</p>
             {{{formatNP nowPlaying}}}
           {{else}}
             <p class='landing__show-host'>Welcome to KTUH FM Honolulu</p>
