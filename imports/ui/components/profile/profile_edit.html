@@ -2,7 +2,18 @@
   <h2 class='general__header'>Edit Profile</h2>
   <div class='profile-edit'>
     {{#if currentUser}}
-      {{> quickForm id="profileEdit" collection=collection doc=currentProfile type="update" omitFields="userId"}}
+      {{#autoForm id="profileEdit" collection=collection doc=currentProfile type="update"}}
+        {{> afQuickField name='name'}}
+        {{> afFieldInput name='photo'}}
+        {{> afFieldInput name='bio'}}
+        {{> afQuickField name='website'}}
+        {{> afQuickField name='soundcloud'}}
+        {{> afQuickField name='instagram'}}
+        {{> afQuickField name='facebook'}}
+        {{> afQuickField name='twitter'}}
+        {{> afQuickField name='snapchat'}}
+        <button type="submit" class="btn btn-primary">Submit</button>
+      {{/autoForm}}
     {{else}}
       Please login (or signup) to edit your profile.
     {{/if}}
