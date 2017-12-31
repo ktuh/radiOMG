@@ -80,7 +80,7 @@ export default ShowsSchema = new SimpleSchema({
   },
   endDay: {
     type: Number,
-    label: 'Start Day',
+    label: 'End Day',
     allowedValues: [0, 1, 2, 3, 4, 5, 6],
     autoform: {
       options: [
@@ -114,7 +114,7 @@ export default ShowsSchema = new SimpleSchema({
   },
   synopsis: {
     type: String,
-    label: 'Synopsis',
+    label: 'Synopsis (short description of show)',
     optional: false,
     min: 50,
     max: 240,
