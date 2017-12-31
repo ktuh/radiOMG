@@ -16,8 +16,5 @@ Template.postsCreate.events({
 AutoForm.addHooks('createPostForm', {
   onSuccess: function() {
     RouterLayer.go(this.collection.indexPath());
-  },
-  onError: function(formType, error) {
-    console.log(error);
   }
 });
