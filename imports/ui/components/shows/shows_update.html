@@ -1,19 +1,25 @@
-<template name='reviewsUpdate'>
+<template name='showsUpdate'>
   {{#Layout template=materializeHeader}}
     {{collection.title}}
   {{/Layout}}
   {{#Layout template=materializeContent}}
     {{#if Template.subscriptionsReady}}
-      {{#autoForm collection=collection doc=item id="updateReviewForm" type="update"}}
-        {{> afQuickField name="artist"}}
-        {{> afQuickField name="releaseName"}}
-        {{> afQuickField name="year"}}
-        {{> afQuickField name="label"}}
-        {{> afQuickField name="rating"}}
+      {{#autoForm collection=collection doc=item id="updateShowForm" type="update"}}
+        {{> afQuickField name="showName"}}
+        {{> afQuickField name="showId"}}
+        {{> afQuickField name="host"}}
+        {{> afQuickField name="startDay"}}
+        {{> afQuickField name="startHour"}}
+        {{> afQuickField name="startMinute"}}
+        {{> afQuickField name="endDay"}}
+        {{> afQuickField name="endHour"}}
+        {{> afQuickField name="endMinute"}}
+        {{> afQuickField name="genres"}}
+        {{> afQuickField name="synopsis"}}
         {{> afFieldInput name="body"}}
-        {{#if isMod}}
-          {{> afQuickField name="approved"}}
-        {{/if}}
+        {{> afQuickField name="active"}}
+        {{> afFieldInput name="featuredImage"}}
+        {{> afQuickField name="latestEpisodeUrl"}}
       {{/autoForm}}
     {{/if}}
   {{/Layout}}

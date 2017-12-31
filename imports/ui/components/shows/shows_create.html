@@ -1,0 +1,28 @@
+<template name='showsCreate'>
+  {{#Layout template=materializeHeader}}
+    {{collection.title}}
+  {{/Layout}}
+  {{#Layout template=materializeContent}}
+    {{#autoForm collection=collection id="insertShowForm" type="insert"}}
+      {{> afQuickField name="showName"}}
+      {{> afQuickField name="showId"}}
+      {{> afQuickField name="host"}}
+      {{> afQuickField name="startDay"}}
+      {{> afQuickField name="startHour"}}
+      {{> afQuickField name="startMinute"}}
+      {{> afQuickField name="endDay"}}
+      {{> afQuickField name="endHour"}}
+      {{> afQuickField name="endMinute"}}
+      {{> afQuickField name="genres"}}
+      {{> afQuickField name="synopsis"}}
+      {{> afFieldInput name="body"}}
+      {{> afQuickField name="active"}}
+      {{> afFieldInput name="featuredImage"}}
+      {{> afQuickField name="latestEpisodeUrl"}}
+    {{/autoForm}}
+  {{/Layout}}
+  {{# Layout template=materializeButtons }}
+      <a class="waves-effect waves-light btn cancel-btn" href="#">{{ i18n 'global.back'}}</a>
+      <a class="waves-effect waves-light btn light-blue accent-4 submit-btn" href="#">{{ i18n 'global.create' }}</a>
+  {{/ Layout }}
+</template>

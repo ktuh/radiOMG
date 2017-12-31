@@ -27,7 +27,7 @@ DJ.allow('collections.reviews.showUpdate', true);
 DJ.allow('collections.reviews.showRemove', true);
 
 DJ.deny('collections.reviews.update', (userId, doc, fields, modifier) =>
-  (!_.contains(fields, 'approved')));
+  (_.contains(fields, 'approved')));
 
 DJ.helper('collections.reviews.indexFilter', function() {
   return { userId: this.userId };
@@ -44,7 +44,7 @@ DJ.allow('collections.parties.showUpdate', true);
 DJ.allow('collections.parties.showRemove', true);
 
 DJ.deny('collections.parties.update', (userId, doc, fields, modifier) =>
-  (!_.contains(fields, 'approved')));
+  (_.contains(fields, 'approved')));
 
 DJ.helper('collections.parties.indexFilter', function() {
   return { userId: this.userId };
@@ -52,8 +52,9 @@ DJ.helper('collections.parties.indexFilter', function() {
 
 DJ.allow('collections.posts.index', true);
 DJ.allow('collections.posts.insert', true);
-DJ.allow('collections.posts.update', (userId, doc, fields, modifier) =>
-  doc.userId === userId && !doc.approved);
+DJ.allow('collections.posts.update', (userId, doc, fields, modifier) => {
+  return doc.userId === userId && !doc.approved;
+});
 DJ.allow('collections.posts.remove', (userId, doc, fields, modifier) =>
   doc.userId === userId && !doc.approved);
 DJ.allow('collections.posts.showCreate', true);
@@ -61,7 +62,7 @@ DJ.allow('collections.posts.showUpdate', true);
 DJ.allow('collections.posts.showRemove', true);
 
 DJ.deny('collections.posts.update', (userId, doc, fields, modifier) =>
-  (!_.contains(fields, 'approved')));
+  (_.contains(fields, 'approved')));
 
 DJ.helper('collections.posts.indexFilter', function() {
   return { userId: this.userId };

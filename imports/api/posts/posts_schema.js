@@ -85,7 +85,10 @@ export default PostsSchema = new SimpleSchema({
     }
   },
   featured: {
-    type: Boolean
+    type: Boolean,
+    optional: true,
+    defaultValue: false,
+    label: 'Featured'
   },
   approved: {
     type: Boolean,

@@ -1,4 +1,5 @@
 import './posts_update.html';
+import Posts from '../../../api/posts/posts_collection.js';
 
 ReactiveTemplates.set('collections.posts.update', 'postsUpdate');
 
@@ -21,5 +22,8 @@ Template.postsUpdate.events({
 AutoForm.addHooks('updatePostForm', {
   onSuccess: function() {
     RouterLayer.go(this.collection.indexPath());
+  },
+  onError: function(formType, error) {
+    console.log(error);
   }
 });

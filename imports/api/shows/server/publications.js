@@ -11,6 +11,11 @@ Meteor.publish('singleShow', (slug) => {
   return Shows.find({ slug: slug });
 });
 
+Meteor.publish('showById', (id) => {
+  check(id, String);
+  return Shows.find({ _id: id });
+});
+
 Meteor.publish('showBySpinitronId', (showId) => {
   check(showId, Number);
   return Shows.find({ showId: showId });
