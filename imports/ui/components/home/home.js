@@ -114,7 +114,7 @@ Template.home.helpers({
   nextShow: () => {
       var now = new Date();
       var sameDay = Shows.findOne({active: true, startDay: now.getDay(),
-                                startHour: { $gte: now.getHours() }, endDay: now.getDay() },
+                                startHour: { $gt: now.getHours() }, endDay: now.getDay() },
                              { sort: { startDay: 1, startHour: 1, startMinute: 1,
                                        endDay: -1, endHour: -1, endMinute: -1 }});
       var tmr1 = Shows.findOne({ active: true, startDay: { $gte: now.getDay() + 1 } },
