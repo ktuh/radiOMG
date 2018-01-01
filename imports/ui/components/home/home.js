@@ -127,9 +127,16 @@ Template.home.helpers({
       else return tmr1 || tmr2;
   },
   time: (str) => moment(str).fromNow(),
-  startEndTime: (startHour, startMinute, endHour, endMinute) =>
-    moment(startHour + ":" + startMinute, "HH:mm").format("h:mm") + "-" +
-    moment(endHour + ":" + endMinute, "HH:mm").format("h:mm A"),
+  startEndTime: (startHour, startMinute, endHour, endMinute) => {
+    if (startMinute === 1) {
+      startMinute--;
+    }
+    if (endMinute === 59) {
+      endHour = (endHour + 1) % 24;
+      endMinute = 0;
+    }
+    return moment(startHour + ":" + startMinute, "HH:mm").format(startHour > endHour ? "h:mm A" : "h:mm") + "-" +
+    moment(endHour + ":" + endMinute, "HH:mm").format("h:mm A"); },
   hasDjotm: () => scorpius.dictionary.get('mainPage.monthlyDJName') !== undefined,
   djName: () => scorpius.dictionary.get('mainPage.monthlyDJName', ''),
   djImg: () => scorpius.dictionary.get('mainPage.monthlyDJImgUrl', ''),
