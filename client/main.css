@@ -592,7 +592,6 @@ h1, h2, h3, h4, h5 {
   margin: 0 20px 0 0;
   color: inherit;
   vertical-align: top;
-
 }
 @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
 @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
@@ -2484,7 +2483,7 @@ margin-bottom: 0 !important;
   .landing__play-btn-outer {
     margin: 0 auto 15px;
   }
-  .landing__now-playing { 
+  .landing__now-playing {
     text-align: center;
   }
   .landing__info { max-width: 20em; }

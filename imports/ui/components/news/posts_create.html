@@ -1,0 +1,23 @@
+<template name='postsCreate'>
+  {{#Layout template=materializeHeader}}
+    {{collection.title}}
+  {{/Layout}}
+  {{#Layout template=materializeContent}}
+    {{#autoForm collection=collection id="createPostForm" type="insert"}}
+      {{> afFieldInput name="userId"}}
+      {{> afFieldInput name="author"}}
+      {{> afFieldInput name="submitted"}}
+      {{> afFieldInput name="slug"}}
+      {{> afQuickField name="title"}}
+      {{> afQuickField name="category"}}
+      {{> afQuickField name="tags"}}
+      {{> afQuickField name="summary"}}
+      {{> afFieldInput name="body"}}
+      {{> afFieldInput name="photo"}}
+    {{/autoForm}}
+  {{/Layout}}
+  {{# Layout template=materializeButtons }}
+    <a class="waves-effect waves-light btn cancel-btn" href="#">{{ i18n 'global.back'}}</a>
+    <a class="waves-effect waves-light btn light-blue accent-4 submit-btn" href="#">{{ i18n 'global.create' }}</a>
+  {{/ Layout }}
+</template>

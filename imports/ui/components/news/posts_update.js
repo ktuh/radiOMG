@@ -1,4 +1,5 @@
 import './posts_update.html';
+import Posts from '../../../api/posts/posts_collection.js';
 
 ReactiveTemplates.set('collections.posts.update', 'postsUpdate');
 

@@ -1,0 +1,20 @@
+<template name='reviewsCreate'>
+  {{#Layout template=materializeHeader}}
+    {{collection.title}}
+  {{/Layout}}
+  {{#Layout template=materializeContent}}
+    {{#autoForm collection=collection id="insertReviewForm" type="insert"}}
+      {{> afQuickField name="artist"}}
+      {{> afQuickField name="releaseName"}}
+      {{> afQuickField name="year"}}
+      {{> afQuickField name="label"}}
+      {{> afQuickField name="rating"}}
+      {{> afFieldInput name="body"}}
+      {{> afFieldInput name="image"}}
+    {{/autoForm}}
+  {{/Layout}}
+  {{# Layout template=materializeButtons }}
+      <a class="waves-effect waves-light btn cancel-btn" href="#">{{ i18n 'global.back'}}</a>
+      <a class="waves-effect waves-light btn light-blue accent-4 submit-btn" href="#">{{ i18n 'global.create' }}</a>
+  {{/ Layout }}
+</template>

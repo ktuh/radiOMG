@@ -4,6 +4,7 @@ import { Template } from 'meteor/templating';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import NowPlaying from '../../../api/playlists/now_playing.js';
 import { moment } from 'meteor/momentjs:moment';
+import { Session } from 'meteor/session';
 import 'mediaelement/player';
 
 Template.header.onCreated(function () {

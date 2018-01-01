@@ -65,9 +65,17 @@ Template.showPage.helpers({
     var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     return days[num];
   },
-  timeBeautify: (startHour, startMinute, endHour, endMinute) =>
-    moment(startHour + ":" + startMinute, "HH:mm").format("h:mm") + "-" +
-    moment(endHour + ":" + endMinute, "HH:mm").format("h:mmA"),
+  timeBeautify: (startHour, startMinute, endHour, endMinute) => {
+    if (startMinute === 1) {
+      startMinute--;
+    }
+    if (endMinute === 59) {
+      endHour = (endHour + 1) % 24;
+      endMinute = 0;
+    }
+    return moment(startHour + ":" + startMinute, "HH:mm").format(startHour > endHour ? "h:mmA" : "h:mm") + "-" +
+    moment(endHour + ":" + endMinute, "HH:mm").format("h:mmA");
+  },
   timeBeautify2: (h, m) => moment(h + ":" + m, "HH:mm").format("h:mma"),
   genreString: (genres) => genres.join(', '),
   actualPlaylist: () => Session.get("currentPlaylist")

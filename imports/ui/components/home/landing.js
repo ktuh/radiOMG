@@ -4,12 +4,16 @@ import NowPlaying from '../../../api/playlists/now_playing.js';
 import Shows from '../../../api/shows/shows_collection.js';
 import { Template } from 'meteor/templating';
 import { Session } from 'meteor/session';
+import { moment } from 'meteor/momentjs:moment';
 
 Template.landing.onCreated(function() {
   var self = this;
   self.autorun(function() {
     self.subscribe('showNowPlaying');
     self.subscribe('nowPlaying');
+    if (NowPlaying.findOne()) {
+      Session.set('timeout', moment().diff(moment(NowPlaying.findOne().timestamp)) > 360000);
+    }
   });
 });
 

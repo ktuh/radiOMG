@@ -14,7 +14,14 @@ Template.showItem.onCreated(function() {
 
 Template.showItem.helpers({
   formattedTime: (startHour, startMinute, endHour, endMinute) => {
-    let time = moment(startHour + ":" + startMinute, "HH:mm").format("h") + "-" +
+    if (startMinute === 1) {
+      startMinute--;
+    }
+    if (endMinute === 59) {
+      endHour = (endHour + 1) % 24;
+      endMinute = 0;
+    }
+    let time = moment(startHour + ":" + startMinute, "HH:mm").format(startHour > endHour ? "hA" : "h").replace("PM", "P") + "-" +
                moment(endHour + ":" + endMinute, "HH:mm").format("hA");
     return time.substr(0, time.length-1)
   },
