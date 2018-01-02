@@ -5,6 +5,7 @@ import Posts from '../../../api/posts/posts_collection.js';
 import Shows from '../../../api/shows/shows_collection.js';
 import Reviews from '../../../api/reviews/reviews_collection.js';
 import { FlowRouter } from 'meteor/kadira:flow-router';
+import { $, jQuery } from 'meteor/jquery';
 
 Template.newsList.onCreated(function () {
   var self = this;
@@ -12,7 +13,7 @@ Template.newsList.onCreated(function () {
   self.subscribe('latestFeaturedPost', function() {
     var latestFeaturedPost = Posts.findOne();
     self.pagination = new Meteor.Pagination(Posts, {
-      filters: { _id: {$ne: latestFeaturedPost._id} },
+      filters: { _id: {$ne: latestFeaturedPost._id}, approved: true },
       sort: { submitted: -1 },
       perPage: 4
     });
@@ -26,7 +27,7 @@ Template.newsList.onRendered(function () {
 
 Template.newsList.helpers({
   newsPagePath: (slug) => FlowRouter.path('radioblog/:slug', { slug: slug }),
-  excerpt: (body) => body.replace(/(([^\s]+\s\s*){60})(.*)/,"$1…"),
+  excerpt: (body) => $(jQuery.parseHTML(body)).text().replace(/(([^\s]+\s\s*){60})(.*)/,"$1…"),
   posts: () => Template.instance().pagination.getPage(),
   templatePagination: () => Template.instance().pagination,
   nextOnAir: () => Shows.find({}).fetch(),

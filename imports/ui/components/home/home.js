@@ -14,11 +14,11 @@ import { moment } from 'meteor/momentjs:moment';
 Template.home.onCreated(function () {
   var self = this;
   self.autorun(function () {
+    self.subscribe('latestFeaturedPost');
     self.subscribe('postsLimited', { limit: 6, sort: { submitted: -1 }});
     self.subscribe('reviewsLimited', { limit: 6, sort: { submitted: -1 }});
     self.subscribe('latestSevenWriters');
     self.subscribe('latestSevenWritersUsernames');
-    self.subscribe('latestFeaturedPosts', 1);
     self.subscribe('nextOnAir');
   });
 });
