@@ -1,0 +1,25 @@
+<template name='partiesCreate'>
+  {{#Layout template=materializeHeader}}
+    {{collection.title}}
+  {{/Layout}}
+  {{#Layout template=materializeContent}}
+    {{#autoForm collection=collection id="createPartyForm" type="insert"}}
+      {{> afQuickField name="title"}}
+      {{> afQuickField name="startTime"}}
+      {{> afQuickField name="endTime"}}
+      {{> afQuickField name="location"}}
+      {{> afQuickField name="address"}}
+      {{> afFieldInput name="flyerFront"}}
+      {{> afFieldInput name="flyerBack"}}
+      {{> afQuickField name="description"}}
+      {{> afFieldInput name="submitted"}}
+      {{> afFieldInput name="userId"}}
+      {{> afFieldInput name="slug"}}
+      {{> afQuickField name="tags"}}
+    {{/autoForm}}
+  {{/Layout}}
+  {{# Layout template=materializeButtons }}
+    <a class="waves-effect waves-light btn cancel-btn" href="#">{{ i18n 'global.back'}}</a>
+    <a class="waves-effect waves-light btn light-blue accent-4 submit-btn" href="#">{{ i18n 'global.create' }}</a>
+  {{/ Layout }}
+</template>

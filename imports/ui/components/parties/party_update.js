@@ -10,7 +10,8 @@ Template.postsUpdate.onCreated(function (){
 
 Template.partiesUpdate.helpers({
   collection: () => Parties,
-  isMod: () => Meteor.user().hasRole("moderator")
+  isMod: () => Meteor.user().hasRole("moderator"),
+  item: () => Parties.findOne()
 });
 
 Template.partiesUpdate.events({

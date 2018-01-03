@@ -14,11 +14,11 @@ import { moment } from 'meteor/momentjs:moment';
 Template.home.onCreated(function () {
   var self = this;
   self.autorun(function () {
+    self.subscribe('latestFeaturedPost');
     self.subscribe('postsLimited', { limit: 6, sort: { submitted: -1 }});
     self.subscribe('reviewsLimited', { limit: 6, sort: { submitted: -1 }});
     self.subscribe('latestSevenWriters');
     self.subscribe('latestSevenWritersUsernames');
-    self.subscribe('latestFeaturedPosts', 1);
     self.subscribe('nextOnAir');
   });
 });
@@ -127,9 +127,16 @@ Template.home.helpers({
       else return tmr1 || tmr2;
   },
   time: (str) => moment(str).fromNow(),
-  startEndTime: (startHour, startMinute, endHour, endMinute) =>
-    moment(startHour + ":" + startMinute, "HH:mm").format("h:mm") + "-" +
-    moment(endHour + ":" + endMinute, "HH:mm").format("h:mm A"),
+  startEndTime: (startHour, startMinute, endHour, endMinute) => {
+    if (startMinute === 1) {
+      startMinute--;
+    }
+    if (endMinute === 59) {
+      endHour = (endHour + 1) % 24;
+      endMinute = 0;
+    }
+    return moment(startHour + ":" + startMinute, "HH:mm").format(startHour > endHour ? "h:mm A" : "h:mm") + "-" +
+    moment(endHour + ":" + endMinute, "HH:mm").format("h:mm A"); },
   hasDjotm: () => scorpius.dictionary.get('mainPage.monthlyDJName') !== undefined,
   djName: () => scorpius.dictionary.get('mainPage.monthlyDJName', ''),
   djImg: () => scorpius.dictionary.get('mainPage.monthlyDJImgUrl', ''),

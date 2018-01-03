@@ -21,7 +21,7 @@ Template.showItem.helpers({
       endHour = (endHour + 1) % 24;
       endMinute = 0;
     }
-    let time = moment(startHour + ":" + startMinute, "HH:mm").format(startHour > endHour ? "hA" : "h").replace("PM", "P") + "-" +
+    let time = moment(startHour + ":" + startMinute, "HH:mm").format(startHour > endHour ? "hA" : "h").replace("M", "") + "-" +
                moment(endHour + ":" + endMinute, "HH:mm").format("hA");
     return time.substr(0, time.length-1)
   },

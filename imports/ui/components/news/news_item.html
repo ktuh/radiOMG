@@ -1,4 +1,6 @@
 <template name='newsItem'>
+  {{#if Template.subscriptionsReady}}
+  {{#if post}}
   {{#with post}}
   <h1 class='general__header'>{{title}}</h1>
   <div class='show__link'>
@@ -31,4 +33,6 @@
   {{/if}}
     </div>
     {{/with}}
+    {{/if}}
+    {{/if}}
 </template>

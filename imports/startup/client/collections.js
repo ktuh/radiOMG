@@ -17,6 +17,7 @@ import '../../ui/components/news/posts_update.js';
 import '../../ui/components/news/posts_create.js';
 
 import '../../ui/components/parties/party_update.js';
+import '../../ui/components/parties/party_create.js';
 
 import '../../ui/components/reviews/reviews_update.js';
 import '../../ui/components/reviews/reviews_create.js';

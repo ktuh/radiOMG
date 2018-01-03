@@ -10,7 +10,8 @@ Template.reviewsUpdate.onCreated(function (){
 
 Template.reviewsUpdate.helpers({
   collection: () => Reviews,
-  isMod: () => Meteor.user().hasRole("moderator")
+  isMod: () => Meteor.user().hasRole("moderator"),
+  item: () => Reviews.findOne()
 });
 
 Template.reviewsUpdate.events({
