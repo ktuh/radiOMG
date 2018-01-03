@@ -9,7 +9,8 @@ Template.showsUpdate.onCreated(function (){
 });
 
 Template.showsUpdate.helpers({
-  collection: () => Shows
+  collection: () => Shows,
+  item: () => Shows.findOne()
 });
 
 Template.showsUpdate.events({

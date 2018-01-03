@@ -6,9 +6,17 @@
     {{#if Template.subscriptionsReady}}
       {{#autoForm collection=collection doc=item id="updatePartyForm" type="update"}}
         {{> afQuickField name="title"}}
+        {{> afQuickField name="startTime"}}
+        {{> afQuickField name="endTime"}}
+        {{> afQuickField name="location"}}
+        {{> afQuickField name="address"}}
+        {{> afQuickField name="tags"}}
         {{> afQuickField name="description"}}
+        {{> afFieldInput name="flyerFront"}}
+        {{> afFieldInput name="flyerBack"}}
         {{#if isMod}}
           {{> afQuickField name="approved"}}
+          {{> afQuickField name="isFeatured"}}
         {{/if}}
       {{/autoForm}}
     {{/if}}

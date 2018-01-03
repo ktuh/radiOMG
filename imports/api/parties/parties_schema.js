@@ -49,12 +49,18 @@ export default PartySchema = new SimpleSchema({
   },
   submitted: {
     type: Date,
-    label: 'Submitted',
+    autoform: {
+      label: false,
+      type: 'hidden'
+    },
     defaultValue: new Date()
   },
   userId: {
     type: String,
-    label: 'User ID',
+    autoform: {
+      label: false,
+      type: 'hidden'
+    },
     autoValue: function () {
       if (this.isSet || this.isUpdate) return this.value;
       return this.userId;
