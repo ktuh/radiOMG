@@ -27,7 +27,7 @@ Template.newsList.onRendered(function () {
 
 Template.newsList.helpers({
   newsPagePath: (slug) => FlowRouter.path('radioblog/:slug', { slug: slug }),
-  excerpt: (body) => $(jQuery.parseHTML(body)).text().replace(/(([^\s]+\s\s*){60})(.*)/,"$1…"),
+  excerpt: (body) => $(jQuery.parseHTML(body.replace(/></g, '> <'))).text().replace(/(([^\s]+\s\s*){60})(.*)/,"$1…"),
   posts: () => Template.instance().pagination.getPage(),
   templatePagination: () => Template.instance().pagination,
   nextOnAir: () => Shows.find({}).fetch(),
