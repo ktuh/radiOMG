@@ -12,7 +12,12 @@ Template.playlistSidebar.helpers({
   showFromId: (id) => Shows.findOne({showId: id}),
   showIsSub: (id) => id === -1,
   timeFromHMS: (str1, str2) => moment(str1, 'HH:mm:ss').format('h') + '-' + moment(str2, 'HH:mm:ss').format('hA'),
-  timeFromHours: (h1, h2) => moment(h1, 'HH').format('h') + '-' + moment(h2, 'HH').format('hA'),
+  timeFromHours: (h1, m1, h2, m2) => {
+    if (m2 === 59) {
+      h2 = (h2 + 1) % 24;
+    }
+    return moment(h1, 'HH').format(startHour > endHour ? "hA" : "h") + '-' + moment(h2, 'HH').format('hA');
+  },
   dateFormat: (date) => moment(date).format('ddd. MMMM DD, YYYY'),
   getSidebarData: () => {
     var playlistDates = Playlists.find({}, {sort: {showDate: -1, spinPlaylistId: -1}, limit: 12}).fetch();

@@ -33,7 +33,7 @@ Template.landing.helpers({
     var now =  new Date();
     var show = Shows.findOne({active: true, startDay: now.getDay(),
                               startHour: { $lte: now.getHours() }, endDay: now.getDay(),
-                              endHour: { $gt: now.getHours() } });
+                              endHour: { $gte: now.getHours() } });
     return show && show.host;
   },
   isPlaying: () => {
