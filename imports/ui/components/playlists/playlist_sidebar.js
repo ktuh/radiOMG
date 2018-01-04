@@ -16,7 +16,7 @@ Template.playlistSidebar.helpers({
     if (m2 === 59) {
       h2 = (h2 + 1) % 24;
     }
-    return moment(h1, 'HH').format(startHour > endHour ? "hA" : "h") + '-' + moment(h2, 'HH').format('hA');
+    return moment(h1, 'HH').format(h1 > h2 ? "hA" : "h") + '-' + moment(h2, 'HH').format('hA');
   },
   dateFormat: (date) => moment(date).format('ddd. MMMM DD, YYYY'),
   getSidebarData: () => {

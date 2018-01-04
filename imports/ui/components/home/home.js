@@ -8,7 +8,7 @@ import Posts from '../../../api/posts/posts_collection.js';
 import Profiles from '../../../api/users/profiles_collection.js';
 import Reviews from '../../../api/reviews/reviews_collection.js';
 import Shows from '../../../api/shows/shows_collection.js';
-import { $ } from 'meteor/jquery';
+import { $, jQuery } from 'meteor/jquery';
 import { moment } from 'meteor/momentjs:moment';
 
 Template.home.onCreated(function () {
@@ -101,30 +101,25 @@ Template.home.helpers({
            featured.tags.length > 0 && featured.tags[0];
   },
   renderSummary: (summary, body, numWords) => {
-      if (summary && summary !== '') {
+    if (summary && summary !== '') {
       return summary;
     }
     else {
       var regex = new RegExp("(([^\\s]+\\s\\s*){" + numWords + "})(.*)");
-      return body.replace(regex," $1…");
+      return $(jQuery.parseHTML(body.replace(/></g, '> <'))).text().replace(regex," $1…");
     }
   },
   displayNameById: (id) => Profiles.findOne({userId: id}).name,
   usernameById: (id) => Meteor.users.findOne({_id: id}).username,
   nextShow: () => {
-      var now = new Date();
-      var sameDay = Shows.findOne({active: true, startDay: now.getDay(),
-                                startHour: { $gt: now.getHours() }, endDay: now.getDay() },
-                             { sort: { startDay: 1, startHour: 1, startMinute: 1,
-                                       endDay: -1, endHour: -1, endMinute: -1 }});
-      var tmr1 = Shows.findOne({ active: true, startDay: { $gte: now.getDay() + 1 } },
-                            { sort: { startDay: 1, startHour: 1, startMinute: 1,
-                                    endDay: -1, endHour: -1, endMinute: -1 }});
-      var tmr2 =  Shows.findOne({ active: true, startDay: { $gte: 0 } },
-                             { sort: { startDay: 1, startHour: 1, startMinute: 1,
-                              endDay: -1, endHour: -1, endMinute: -1 }});
-      if (sameDay) return sameDay;
-      else return tmr1 || tmr2;
+    var now = new Date();
+    var sameDay = Shows.findOne({active: true, startDay: now.getDay(),
+                              startHour: { $gt: now.getHours() }, endDay: now.getDay() });
+    var tmr1 = Shows.findOne({ active: true, startDay: { $gte: (now.getDay() + 1) % 7 }});
+    var tmr2 = Shows.findOne({ active: true, startDay: { $gte: 0 } },
+                          { sort: { startDay: 1, startHour: 1, startMinute: 1 }});
+
+    return sameDay || tmr1 || tmr2;
   },
   time: (str) => moment(str).fromNow(),
   startEndTime: (startHour, startMinute, endHour, endMinute) => {

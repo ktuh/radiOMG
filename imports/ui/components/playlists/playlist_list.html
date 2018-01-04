@@ -31,7 +31,7 @@
       <h5 class='playlist-list__show-host'>
         {{#if latestShow}}
           {{#with latestShow}}
-            {{showTime showDate}}
+            {{showTime _id}}
             •
             {{#if latestShowLink}}
              Hosted by
@@ -39,7 +39,7 @@
                 {{host}}
               </a>
             {{else}}
-              Hosted by {{host}}
+              Hosted by {{actualShowHost _id}}
             {{/if}}
           {{/with}}
         {{else}}

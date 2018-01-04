@@ -40,11 +40,22 @@ Template.playlistList.helpers({
   latestSongs: () => Session.get("currentPlaylist"),
   img: (id) => Shows.findOne({ showId: id }).featuredImage.url,
   showNameById: (id) => Shows.findOne({ showId: id }).showName,
-  showTime: (date) => moment(date).format('dddd') + "s at " + moment(date).format('h A'),
+  showTime: (id) => {
+    var show = Shows.findOne({ showId: id });
+    var startDay = show.startDay, startHour = show.startHour;
+    var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    return day[startDay] + "s at " + moment(date).hour(startHour).format('h A');
+  },
   date: (showDate) => moment(showDate).format('dddd, h:mm a,<br>MMM DD YYYY'),
   ready: () => Template.instance().pagination.ready(),
   docs: () => Template.instance().pagination.getPage(),
   tempPag: () => Template.instance().pagination,
+  actualShowHost: (showId) => {
+    var showName = Shows.findOne({ showId: id }).showName;
+    var playlistName = Playlists.findOne({}, { sort: { showDate: -1 }}).djName;
+    if (showName !== playlistName) return playlistName;
+    else return showName;
+  },
   latestPlaylist: () => Playlists.findOne({}, { sort: { showDate: -1 }}),
   latestShow: () => Shows.findOne({ showId: Playlists.findOne({}, { sort: { showDate: -1 }}).showId}),
   latestShowLink: function() {
