@@ -26,8 +26,7 @@ DJ.allow('collections.reviews.showCreate', true);
 DJ.allow('collections.reviews.showUpdate', true);
 DJ.allow('collections.reviews.showRemove', true);
 
-DJ.deny('collections.reviews.update', (userId, doc, fields, modifier) =>
-  (_.contains(fields, 'approved')));
+DJ.deny('collections.reviews.update', (userId, doc, fields, modifier) => (_.contains(fields, 'approved') && !Meteor.user().hasRole("moderator") && !Meteor.user().hasRole("admin")));
 
 DJ.helper('collections.reviews.indexFilter', function() {
   return { userId: this.userId };
@@ -43,8 +42,7 @@ DJ.allow('collections.parties.showCreate', true);
 DJ.allow('collections.parties.showUpdate', true);
 DJ.allow('collections.parties.showRemove', true);
 
-DJ.deny('collections.parties.update', (userId, doc, fields, modifier) =>
-  (_.contains(fields, 'approved')));
+DJ.deny('collections.parties.update', (userId, doc, fields, modifier) => (_.contains(fields, 'approved') && !Meteor.user().hasRole("moderator") && !Meteor.user().hasRole("admin")));
 
 DJ.helper('collections.parties.indexFilter', function() {
   return { userId: this.userId };
@@ -61,8 +59,7 @@ DJ.allow('collections.posts.showCreate', true);
 DJ.allow('collections.posts.showUpdate', true);
 DJ.allow('collections.posts.showRemove', true);
 
-DJ.deny('collections.posts.update', (userId, doc, fields, modifier) =>
-  (_.contains(fields, 'approved')));
+DJ.deny('collections.posts.update', (userId, doc, fields, modifier) => (_.contains(fields, 'approved') && !Meteor.user().hasRole("moderator") && !Meteor.user().hasRole("admin")));
 
 DJ.helper('collections.posts.indexFilter', function() {
   return { userId: this.userId };
