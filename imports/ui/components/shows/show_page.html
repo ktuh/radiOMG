@@ -46,7 +46,7 @@
       <div class='show__latest'>
         <h5 class='show__latest-header'>Latest Episode</h5>
         <h2 class='show__latest-date'>{{time (latestPlaylist.showDate)}}</h2>
-        {{#if pastPlaylists}}
+        {{#if pastPlaylists.fetch}}
           <select>
             <option value="" disabled selected>Past Playlists &#x25BC;</option>
             {{#each playlistsByYear}}

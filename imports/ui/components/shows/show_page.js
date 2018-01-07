@@ -19,7 +19,8 @@ Template.showPage.onCreated(function() {
           self.subscribe('showHostUserName', show.userId);
           self.subscribe('showPlaylists', show.showId, {
             onReady: function() {
-              var latest = Playlists.findOne({}, {sort: {showDate: -1}});
+              var latest = Playlists.findOne({ showId: show.showId }, {sort: {showDate: -1}});
+
               if (latest !== undefined) {
                 Meteor.call('getPlaylistOrInfo', parseInt(latest.spinPlaylistId),
                   true, function(error, result) {
@@ -39,11 +40,12 @@ Template.showPage.helpers({
   show: () =>  Shows.findOne({ slug: FlowRouter.getParam('slug')}),
   lessThanTen: (n) => Math.abs(n) < 10,
   time: (t) => moment(t).format('ddd. MMM. D, YYYY'),
-  playlists: () => Playlists.find({}, { sort: { showDate: -1 } }),
-  latestPlaylist: () => Playlists.findOne({}, { sort: { showDate: -1 } }),
+  playlists: () => Playlists.find({ showId: Shows.findOne({ slug: FlowRouter.getParam('slug') }).showId },
+                   { sort: { showDate: -1 } }),
+  latestPlaylist: () => Playlists.findOne({ showId: Shows.findOne({ slug: FlowRouter.getParam('slug') }).showId }, { sort: { showDate: -1 } }),
   pastPlaylists: () => Playlists.find({}, { sort: { showDate: -1 }, skip: 1}),
   playlistsByYear: () => {
-    var playlistDates = Playlists.find({}, {sort: {showDate: -1}, skip: 1}).fetch();
+    var playlistDates = Playlists.find({ showId: Shows.findOne({ slug: FlowRouter.getParam('slug') }).showId }, { sort: { showDate: -1 }, skip: 1 }).fetch();
     var uniqDates = _.uniq(_.map(_.pluck(playlistDates, "showDate"), (obj) => obj.getFullYear()), true, (date) => +date);
     var a = [];
     for (var p = 0; p < uniqDates.length; p++) {
