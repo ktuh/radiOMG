@@ -2,6 +2,7 @@ import './landing.html';
 import { Meteor } from 'meteor/meteor';
 import NowPlaying from '../../../api/playlists/now_playing.js';
 import Shows from '../../../api/shows/shows_collection.js';
+import Playlists from '../../../api/playlists/playlists_collection.js';
 import { Template } from 'meteor/templating';
 import { Session } from 'meteor/session';
 import { moment } from 'meteor/momentjs:moment';
@@ -14,6 +15,7 @@ Template.landing.onCreated(function() {
     if (NowPlaying.findOne()) {
       Session.set('timeout', moment().diff(moment(NowPlaying.findOne().timestamp)) > 360000);
     }
+    self.subscribe('currentPlaylist');
   });
 });
 
@@ -34,7 +36,29 @@ Template.landing.helpers({
     var show = Shows.findOne({active: true, startDay: now.getDay(),
                               startHour: { $lte: now.getHours() }, endDay: now.getDay(),
                               endHour: { $gt: now.getHours() } });
-    return show && show.host;
+    var playlist = Playlists.findOne({$where: function() {
+      return this.showDate.getYear() === new Date().getYear() &&
+             this.showDate.getMonth() === new Date().getMonth() &&
+             this.showDate.getDate() === new Date().getDate() &&
+             parseInt(this.startTime.split(":")[0]) <= new Date().getHours() &&
+             (parseInt(this.endTime.split(":")[0]) > new Date().getHours() ||
+             this.endTime === "00:00:00"); }
+    });
+    if (show && playlist) {
+      if (show.host === playlist.djName) {
+        return show.host;
+      }
+      else if (show.host !== playlist.djName) {
+        return playlist.djName;
+      }
+    }
+    else if (show && !playlist) {
+      return show.host;
+    }
+    else if (playlist && !show) {
+      return playlist.djName;
+    }
+    else return undefined;
   },
   isPlaying: () => {
     return Session.get('nowLoaded') === scorpius.dictionary.get('mainPage.audioUrl', '')
