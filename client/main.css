@@ -1294,6 +1294,12 @@ audio {
 .news-item__body {
   margin: 0 0 30px 0;
 }
+.news-item__body a {
+  color: #5940de;
+}
+.news-item__body a:hover {
+  text-decoration: underline;
+}
 .news-item__author {
   font-family: 'nimbus-sans', sans-serif;
   text-transform: uppercase;
