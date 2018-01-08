@@ -2,7 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import Parties from '../parties_collection.js';
 
 Meteor.publish('approvedParties', function () {
-  return Parties.find({approved: true});
+  return Parties.find({ approved: true, startTime: { $gt: new Date() } });
 });
 
 Meteor.publish('singleParty', function (selector) {
