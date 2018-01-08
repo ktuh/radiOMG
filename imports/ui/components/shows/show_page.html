@@ -46,16 +46,18 @@
       <div class='show__latest'>
         <h5 class='show__latest-header'>Latest Episode</h5>
         <h2 class='show__latest-date'>{{time (latestPlaylist.showDate)}}</h2>
-        {{#if pastPlaylists.fetch}}
-          <select>
-            <option value="" disabled selected>Past Playlists &#x25BC;</option>
-            {{#each playlistsByYear}}
-              <option value="" disabled>{{year}}</option>
-              {{#each shows}}
-                <option value="{{spinPlaylistId}}">{{time showDate}}</option>
+        {{#if pastPlaylists}}
+          {{#if pastPlaylists.fetch}}
+            <select>
+              <option value="" disabled selected>Past Playlists &#x25BC;</option>
+              {{#each playlistsByYear}}
+                <option value="" disabled>{{year}}</option>
+                {{#each shows}}
+                  <option value="{{spinPlaylistId}}">{{time showDate}}</option>
+                {{/each}}
               {{/each}}
-            {{/each}}
-          </select>
+            </select>
+          {{/if}}
         {{/if}}
         <div class='show__latest-playlist'>
           <table class="playlist">

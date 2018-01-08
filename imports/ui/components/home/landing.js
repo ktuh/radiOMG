@@ -24,6 +24,19 @@ Template.landing.onCreated(function() {
   });
 });
 
+var currentPlaylist = function() {
+   return Playlists.findOne({
+    $where: function() {
+      return this.showDate.getYear() === new Date().getYear() &&
+             this.showDate.getMonth() === new Date().getMonth() &&
+             this.showDate.getDate() === new Date().getDate() &&
+             parseInt(this.startTime.split(":")[0]) <= new Date().getHours() &&
+             (parseInt(this.endTime.split(":")[0]) > new Date().getHours() ||
+             this.endTime === "00:00:00");
+    }
+  }
+)};
+
 Template.landing.helpers({
   nowPlaying: () =>  (NowPlaying.findOne() !== undefined && !Session.get('timeout')) ?
                      NowPlaying.findOne().current : false,
@@ -49,14 +62,7 @@ Template.landing.helpers({
     var show = Shows.findOne({active: true, startDay: now.getDay(),
                               startHour: { $lte: now.getHours() }, endDay: now.getDay(),
                               endHour: { $gt: now.getHours() } });
-    var playlist = Playlists.findOne({$where: function() {
-      return this.showDate.getYear() === new Date().getYear() &&
-             this.showDate.getMonth() === new Date().getMonth() &&
-             this.showDate.getDate() === new Date().getDate() &&
-             parseInt(this.startTime.split(":")[0]) <= new Date().getHours() &&
-             (parseInt(this.endTime.split(":")[0]) > new Date().getHours() ||
-             this.endTime === "00:00:00"); }
-    });
+    var playlist = currentPlaylist();
     if (show && playlist) {
       return show.host === playlist.djName;
     }
@@ -66,14 +72,7 @@ Template.landing.helpers({
     var show = Shows.findOne({active: true, startDay: now.getDay(),
                               startHour: { $lte: now.getHours() }, endDay: now.getDay(),
                               endHour: { $gt: now.getHours() } });
-    var playlist = Playlists.findOne({$where: function() {
-      return this.showDate.getYear() === new Date().getYear() &&
-             this.showDate.getMonth() === new Date().getMonth() &&
-             this.showDate.getDate() === new Date().getDate() &&
-             parseInt(this.startTime.split(":")[0]) <= new Date().getHours() &&
-             (parseInt(this.endTime.split(":")[0]) > new Date().getHours() ||
-             this.endTime === "00:00:00"); }
-    });
+    var playlist = currentPlaylist();
     if (show && playlist) {
       if (show.host === playlist.djName) {
         return show.host;
