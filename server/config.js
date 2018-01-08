@@ -98,6 +98,7 @@ Meteor.startup(function () {
 
       user.username = username;
       user.emails = [{ address: email, verified: true }];
+      user.roles = [ "member" ];
     }
     return user;
   });

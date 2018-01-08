@@ -23,5 +23,23 @@ Template.resend.events({
           $(".submit").text("Email sent.");
       }
     });
+  },
+  'change .validate': () => {
+    switch($('.validate').val().length) {
+      case 0:
+        $(".submit").prop("disabled", true);
+        break;
+      default:
+        if ($('.validate').val().match(/[A-Za-z0-9.]+@([a-z0-9.])+\.[a-z]{2,3}/) !== null) {
+          if ($(".submit").prop("disabled")) {
+            $(".submit").prop("disabled", false);
+          }
+        }
+        else {
+          if (!$(".submit").prop("disabled")) {
+            $(".submit").prop("disabled", true);
+          }
+        }
+    }
   }
 });
