@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import Playlists from '../playlists_collection.js';
 import NowPlaying from '../now_playing.js';
+import { currentPlaylist } from '../../../startup/lib/helpers.js';
 import { publishPagination } from 'meteor/kurounin:pagination';
 
 Meteor.publish('playlist', function (id) {
@@ -16,16 +17,7 @@ Meteor.publish('playlistsLimited', function(options) {
   return Playlists.find({}, options);
 });
 
-Meteor.publish('currentPlaylist', function() {
-  return Playlists.find({$where: function() {
-    return this.showDate.getYear() === new Date().getYear() &&
-           this.showDate.getMonth() === new Date().getMonth() &&
-           this.showDate.getDate() === new Date().getDate() &&
-           parseInt(this.startTime.split(":")[0]) <= new Date().getHours() &&
-           (parseInt(this.endTime.split(":")[0]) > new Date().getHours() ||
-           this.endTime === "00:00:00"); }
-  });
-});
+Meteor.publish('currentPlaylist', currentPlaylist);
 
 Meteor.publish('nowPlaying', function() {
   return NowPlaying.find({});
