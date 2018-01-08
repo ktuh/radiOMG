@@ -148,6 +148,12 @@ h1, h2, h3, h4, h5 {
 .landing__song-title {
   font-weight: 900;
 }
+.landing__show-name a, .landing__show-host a {
+  color: white;
+}
+.landing__show-name a:hover, .landing__show-host a:hover {
+  text-decoration: underline;
+}
 .landing__play-btn-outer {
   float: left;
   width: 10em;

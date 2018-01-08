@@ -10,7 +10,12 @@ import { moment } from 'meteor/momentjs:moment';
 Template.landing.onCreated(function() {
   var self = this;
   self.autorun(function() {
-    self.subscribe('showNowPlaying');
+    self.subscribe('showNowPlaying', {
+      onReady: function() {
+        var show = Shows.findOne({});
+        if (show) self.subscribe('showHostUserName', show.showId);
+      }
+    });
     self.subscribe('nowPlaying');
     if (NowPlaying.findOne()) {
       Session.set('timeout', moment().diff(moment(NowPlaying.findOne().timestamp)) > 360000);
@@ -30,6 +35,31 @@ Template.landing.helpers({
                               startHour: { $lte: now.getHours() }, endDay: now.getDay(),
                               endHour: { $gt: now.getHours() } });
     return show && show.showName;
+  },
+  hostUsername: () => Meteor.users.findOne({}).username,
+  showSlug: () => {
+    var now =  new Date();
+    var show = Shows.findOne({active: true, startDay: now.getDay(),
+                              startHour: { $lte: now.getHours() }, endDay: now.getDay(),
+                              endHour: { $gt: now.getHours() } });
+    return show && show.slug;
+  },
+  isSubShow: () => {
+    var now =  new Date();
+    var show = Shows.findOne({active: true, startDay: now.getDay(),
+                              startHour: { $lte: now.getHours() }, endDay: now.getDay(),
+                              endHour: { $gt: now.getHours() } });
+    var playlist = Playlists.findOne({$where: function() {
+      return this.showDate.getYear() === new Date().getYear() &&
+             this.showDate.getMonth() === new Date().getMonth() &&
+             this.showDate.getDate() === new Date().getDate() &&
+             parseInt(this.startTime.split(":")[0]) <= new Date().getHours() &&
+             (parseInt(this.endTime.split(":")[0]) > new Date().getHours() ||
+             this.endTime === "00:00:00"); }
+    });
+    if (show && playlist) {
+      return show.host === playlist.djName;
+    }
   },
   showHost: () => {
     var now =  new Date();
