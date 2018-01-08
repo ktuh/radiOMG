@@ -2058,6 +2058,13 @@ margin-bottom: 0 !important;
 .profile-edit {
   margin: 20px 60px;
 }
+.bootstrap-datetimepicker-widget {
+  background-color: #fff;
+}
+.day:not(.new), .picker-switch, .month:not(.active), .year:not(.active),
+.decade:not(.active) {
+  color: black;
+}
 .image-attribute {
   padding-left: 0;
   padding-right: 0;
