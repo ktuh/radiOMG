@@ -20,7 +20,7 @@ Template.playlistList.onCreated(function() {
             var showId = show && show.showId || -1;
 
             if (showId > -1) {
-              self.subscribe('showHostUserName', showId);
+              self.subscribe('userById', show.userId);
             }
 
             Meteor.call('getPlaylistOrInfo', parseInt(playlist.spinPlaylistId),
@@ -42,9 +42,9 @@ Template.playlistList.helpers({
   showNameById: (id) => Shows.findOne({ showId: id }).showName,
   showTime: (id) => {
     var show = Shows.findOne({ showId: id });
-    var startDay = show.startDay, startHour = show.startHour;
+    var startDay = show.startDay, startHour = show.startHour, date = show.showDate;
     var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    return day[startDay] + "s at " + moment(date).hour(startHour).format('h A');
+    return days[startDay] + "s at " + moment(date).hour(startHour).format('h A');
   },
   date: (showDate) => moment(showDate).format('dddd, h:mm a,<br>MMM DD YYYY'),
   ready: () => Template.instance().pagination.ready(),

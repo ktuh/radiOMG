@@ -23,11 +23,6 @@ Meteor.publish('showBySpinitronId', (showId) => {
 
 Meteor.publish('activeShows', () => Shows.find({ active: true }));
 
-Meteor.publish('showHostUserName', (id) => {
-  check(id, String);
-  return Meteor.users.find({ _id: id });
-});
-
 Meteor.publish('showByUserId', (id) => {
   check(id, String);
   return Shows.find({ userId: id, active: true });

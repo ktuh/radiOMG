@@ -8,7 +8,7 @@ Template.showItem.onCreated(function() {
   var self = this;
   self.autorun(function() {
     var show = Shows.findOne();
-    self.subscribe('showHostUserName', show.userId);
+    self.subscribe('userById', show.userId);
   });
 });
 

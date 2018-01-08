@@ -16,7 +16,7 @@ Template.showPage.onCreated(function() {
         if (show) {
           Session.set('documentTitle', show.showName);
           self.subscribe('comments', show._id);
-          self.subscribe('showHostUserName', show.userId);
+          self.subscribe('userById', show.userId);
           self.subscribe('showPlaylists', show.showId, {
             onReady: function() {
               var latest = Playlists.findOne({ showId: show.showId }, {sort: {showDate: -1}});

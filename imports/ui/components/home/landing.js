@@ -13,7 +13,7 @@ Template.landing.onCreated(function() {
     self.subscribe('showNowPlaying', {
       onReady: function() {
         var show = Shows.findOne({});
-        if (show) self.subscribe('showHostUserName', show.showId);
+        if (show) self.subscribe('userById', show.userId);
       }
     });
     self.subscribe('nowPlaying');
