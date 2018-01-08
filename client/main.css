@@ -953,6 +953,9 @@ audio {
   color: #666;
   font-size: 11px;
 }
+.resend__content {
+  margin: 10px 60px;
+}
 .shows {
   padding: 20px 60px 40px;
   text-align: center;
@@ -2436,6 +2439,9 @@ margin-bottom: 0 !important;
   .profile__info {
     max-width: none;
     margin: 25px 0 0 0;
+  }
+  .resend__content {
+    margin: 10px 40px;
   }
   .party-header__button {
     position: unset;

@@ -16,6 +16,9 @@ Template.resend.events({
         case 3:
           $(".submit").text("Could not find unverified user with specified email.");
           break;
+        case undefined:
+          $(".submit").text("An unknown error has occurred.");
+          break;
         default:
           $(".submit").text("Email sent.");
       }
