@@ -9,7 +9,7 @@
   <div class='news-item'>
     <p class='news-item__author'>
       {{#if author}}
-        Posted by <a href="/profile/{{author}}">{{displayName}}</a>
+        Posted by <a href="/profile/{{author}}">{{displayNameById userId}}</a>
       {{/if}}
       <br />
       {{dateFormat submitted}}

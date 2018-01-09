@@ -12,12 +12,16 @@ Template.reviewPage.onCreated(function() {
     var slug = FlowRouter.getParam('slug');
     self.subscribe('singleReview', slug, {
       onReady: function() {
-        var obj = Reviews.findOne({slug: slug});
+        var obj = Reviews.findOne({ slug: slug });
         if (obj) {
           var artist = obj.artist, name = obj.releaseName, year = obj.year;
           Session.set('documentTitle', 'KTUH FM Honolulu | ' + artist + " - " + name + " (" + year + ")");
         }
-        self.subscribe('profileDataByUsername', obj.author);
+        self.subscribe('profileDataByUsername', obj.author, {
+          onReady: function() {
+            self.subscribe('userById', Profiles.findOne({}).userId);
+          }
+        });
       }
     });
   });
@@ -25,6 +29,5 @@ Template.reviewPage.onCreated(function() {
 
 Template.reviewPage.helpers({
   review: () => Reviews.findOne({ slug: FlowRouter.getParam('slug') }),
-  formattedRating: (rating) => rating % 1 === .5 ? rating : Number(rating).toString() + '.0',
-  displayName: () => Profiles.findOne({}).name
+  formattedRating: (rating) => rating % 1 === .5 ? rating : Number(rating).toString() + '.0'
 });

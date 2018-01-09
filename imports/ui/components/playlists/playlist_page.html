@@ -1,10 +1,10 @@
 <template name="playlistPage">
   {{#if Template.subscriptionsReady}}
     {{#if playlist}}
-    {{#if show}}
-      {{#with show}}
+    {{#if showByShowId playlist.showId }}
+      {{#with show=(showByShowId playlist.showId)}}
         <h2 class='general__header'>
-          <a href="/shows/{{slug}}">{{showName}}</a> playlist - {{showDateOfCurrent}}
+          <a href="/shows/{{show.slug}}">{{show.showName}}</a> playlist - {{showDateOfCurrent}}
         </h2>
       {{/with}}
     {{else}}
@@ -16,11 +16,11 @@
       <a href='/playlists' class='back-to'>← Back to Playlists</a>
     </div>
     <div class='playlist__content'>
-      {{#if show}}
-        {{#with show}}
-          {{#if featuredImage}}
-            <a href="/shows/{{slug}}">
-              <img class='playlist__show-image' src='{{featuredImage.url}}'>
+      {{#if showByShowId playlist.showId}}
+        {{#with show=(showByShowId playlist.showId)}}
+          {{#if show.featuredImage}}
+            <a href="/shows/{{show.slug}}">
+              <img class='playlist__show-image' src='{{show.featuredImage.url}}'>
             </a>
           {{/if}}
         {{/with}}

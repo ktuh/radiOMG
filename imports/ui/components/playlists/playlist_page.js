@@ -46,7 +46,9 @@ Template.playlistPage.helpers({
 
     return Comments.find({ postId: playlist._id });
   },
-  djOfShow: () => Playlists.findOne({spinPlaylistId: parseInt(FlowRouter.getParam('id'))}).djName,
+  djOfShow: () => Playlists.findOne({
+    spinPlaylistId: parseInt(FlowRouter.getParam('id'))
+  }).djName,
   songs: () => Session.get("currentPlaylist"),
   show: () => {
     var id = parseInt(FlowRouter.getParam('id'));
