@@ -27,7 +27,7 @@
               <a class='news-list__title' href={{newsPagePath slug}}><h3>{{title}}</h3></a>
               <p class='news-list__excerpt'>{{excerpt body}}&nbsp;&nbsp;<a class='purple-text' href='{{newsPagePath slug}}'><i>Read On</i></a></p>
               <br>
-              <p>by <a href='/profile/{{author}}'>{{author}}</a> / {{getTime submitted}}</p>
+              <p class='news-list__byline'>by <a href='/profile/{{author}}'>{{author}}</a> / {{getTime submitted}}</p>
             </div>
           </div>
         {{/each}}

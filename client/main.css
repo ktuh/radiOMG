@@ -1216,6 +1216,10 @@ audio {
 }
 .news-list__byline {
   margin: 20px 0;
+  font-weight: bold;
+}
+.news-list__byline a:hover {
+  text-decoration: underline;
 }
 .news-list__featured-title {
   font-family: 'alda';
