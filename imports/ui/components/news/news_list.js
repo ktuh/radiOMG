@@ -36,6 +36,5 @@ Template.newsList.helpers({
     moment(endHour + ":" + endMinute, "HH:mm").format("h:mm A"),
   featuredPost: () => Posts.findOne({ approved: true, featured: true },
                                     { sort: { submitted: -1 }, limit: 1 }),
-  reviews: () => Reviews.find({}, {sort: {submitted: -1}}),
-  getTime: (str) => moment(str).fromNow()
+  reviews: () => Reviews.find({}, {sort: {submitted: -1}})
 });

@@ -17,17 +17,17 @@
           {{#with currentShow}}
           <p class='landing__show-name caps'><a href="/shows/{{slug}}">{{showName}}</a></p>
             {{#if isSubShow}}
-              {{#if hasProfileWithHostName host}}
-                <p class='landing__show-host caps'>with <a href='/profile/{{usernameFromHostName showActualHost}}'>{{showActualHost}}</a></p>
+              {{#if usernameFromDisplayName host}}
+                <p class='landing__show-host caps'>with <a href='/profile/{{usernameFromDisplayName showActualHost}}'>{{showActualHost}}</a></p>
               {{else}}
                 <p class='landing__show-host caps'>with {{host}}</p>
               {{/if}}
             {{else}}
               <p class='landing__show-host caps'>with
-                {{#if usernameFromHostName host}}
-                  <a href='/profile/{{usernameFromHostName host}}'>{{host}}</a>
+                {{#if usernameFromDisplayName host}}
+                  <a href='/profile/{{usernameFromDisplayName host}}'>{{host}}</a>
                 {{else}}
-                  <a href='/profile/{{hostUsername}}'>{{host}}</a>
+                  <a href='/profile/{{usernameById userId}}'>{{host}}</a>
                 {{/if}}
               </p>
             {{/if}}

@@ -115,8 +115,6 @@ Template.home.helpers({
       return $(jQuery.parseHTML(body.replace(/></g, '> <'))).text().replace(regex," $1…");
     }
   },
-  displayNameById: (id) => Profiles.findOne({userId: id}).name,
-  usernameById: (id) => Meteor.users.findOne({_id: id}).username,
   nextShow: () => {
     var now = new Date();
     var sameDay = Shows.findOne({active: true, startDay: now.getDay(),
@@ -127,7 +125,6 @@ Template.home.helpers({
 
     return sameDay || tmr1 || tmr2;
   },
-  time: (str) => moment(str).fromNow(),
   startEndTime: (startHour, startMinute, endHour, endMinute) => {
     if (startMinute === 1) {
       startMinute--;

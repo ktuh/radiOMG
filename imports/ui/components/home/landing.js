@@ -43,11 +43,6 @@ Template.landing.helpers({
   formatNP: (str) => '<p class="landing__song-title caps">' + str.split(" - ")[1] + '</p>' +
                      '<p class="landing__song-artist caps"> by ' +  str.split(" - ")[0] + '</p>',
   currentShow: () => currentShow(),
-  hostUsername: () => {
-    var show = currentShow();
-    var user = show && Meteor.users.findOne({ _id: show.userId });
-    return user && user.username;
-  },
   isSubShow: () => {
     var show = currentShow();
     var playlist = currentPlaylist().fetch()[0];
@@ -94,12 +89,7 @@ Template.landing.helpers({
     else if ((h >= 18 && h <= 23) || (h >= 0 && h < 6)) {
       return 'url(\'/img/tantalus-evening.jpg\')';
     }
-  },
-  hasProfileWithHostName: (hostName) => Profiles.findOne({ name: hostName }) !== undefined,
-  usernameFromHostName: (hostName) =>
-    Profiles.findOne({ name: hostName }) && Meteor.users.findOne({ _id:
-      Profiles.findOne({ name: hostName }).userId
-    }).username
+  }
 });
 
 Template.landing.events({
