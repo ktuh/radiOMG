@@ -24,22 +24,20 @@ Template.resend.events({
       }
     });
   },
-  'change .validate': () => {
-    switch($('.validate').val().length) {
-      case 0:
+  'keyup .validate': () => {
+    var val = $('.validate').val();
+    if (val.length) {
+      var regex = /[A-Za-z0-9.]+@([a-z0-9.])+\.[a-z]{2,3}/;
+      var match = val.match(regex);
+      if (match !== null && $(".submit").prop("disabled")) {
+        $(".submit").prop("disabled", false);
+      }
+      else if (match === null && !$(".submit").prop("disabled")) {
         $(".submit").prop("disabled", true);
-        break;
-      default:
-        if ($('.validate').val().match(/[A-Za-z0-9.]+@([a-z0-9.])+\.[a-z]{2,3}/) !== null) {
-          if ($(".submit").prop("disabled")) {
-            $(".submit").prop("disabled", false);
-          }
-        }
-        else {
-          if (!$(".submit").prop("disabled")) {
-            $(".submit").prop("disabled", true);
-          }
-        }
+      }
+    }
+    else {
+      $(".submit").prop("disabled", true);
     }
   }
 });
