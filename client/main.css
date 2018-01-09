@@ -1243,7 +1243,9 @@ audio {
 .news-list__title {
   color: #333;
 }
-.news-list__photo {
+.news-list__title:hover h3,
+.news-list__featured-item a:hover h2 {
+  text-decoration: underline;
 }
 .news-list__paginator {
   clear: both;
@@ -1423,6 +1425,9 @@ audio {
 }
 .home__news-item:nth-child(4) {
   clear: both;
+}
+.home__news-item a:hover {
+  text-decoration: underline;
 }
 .home__next-show-link {
 margin-bottom: 0 !important;
