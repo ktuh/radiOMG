@@ -2675,6 +2675,12 @@ margin-bottom: 0 !important;
 .home__reviews-item a:hover p {
   text-decoration: underline;
 }
+.home__next-show-deets a {
+  color: white;
+}
+.home__next-show-deets a:hover {
+  text-decoration: underline;
+}
 @media (max-width: 480px) {
   .profile-edit {
     margin: 20px 25px;
