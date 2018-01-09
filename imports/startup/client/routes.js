@@ -19,7 +19,6 @@ FlowRouter.notFound = {
 FlowRouter.triggers.enter(
   [
     function() {
-      $('head meta[data-flow-router-seo="true"]').removeAttr("data-flow-router-seo");
       $('#navigation').removeClass('in');
       window.scrollTo(0, 0);
     }
