@@ -1947,6 +1947,9 @@ margin-bottom: 0 !important;
   font-family: 'nimbus-sans-extended', sans-serif;
   font-weight: 900;
 }
+.playlist__sidebar-link a:hover {
+  text-decoration: underline;
+}
 .about__desc p, .about__content p, .about__help,
 .join__desc p, .join__content p,
 .contact__content p, .contact__content h4, .contact__content form,
