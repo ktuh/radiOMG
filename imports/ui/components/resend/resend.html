@@ -1,5 +1,6 @@
 <template name='resend'>
   <h2 class='general__header'>Resend Verification Email</h2>
+  <div class='resend__content'>
   {{#unless verified}}
   <p>
       Lost your verification email? Type in your email address to send the
@@ -11,7 +12,7 @@
           Email
         </label>
         <input class="validate" type="email" id="at-field-email" name="at-field-email" autocapitalize="none" autocorrect="off">
-        <button type="submit" class="at-btn submit waves-effect waves-light btn" id="at-btn">
+        <button type="submit" class="at-btn submit waves-effect waves-light btn" id="at-btn" disabled>
           Send email again
         </button>
     </form>
@@ -21,4 +22,5 @@
       Your email has been verified. You're good to go!
     </p>
   {{/unless}}
+  </div>
 </template>

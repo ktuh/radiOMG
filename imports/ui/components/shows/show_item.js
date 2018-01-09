@@ -7,8 +7,7 @@ import { moment } from 'meteor/momentjs:moment';
 Template.showItem.onCreated(function() {
   var self = this;
   self.autorun(function() {
-    var show = Shows.findOne();
-    self.subscribe('showHostUserName', show.userId);
+    self.subscribe('djs');
   });
 });
 

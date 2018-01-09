@@ -10,7 +10,6 @@ export default PartySchema = new SimpleSchema({
     type: Date,
     label: 'Start Time',
     autoform: {
-      type: "bootstrap-datetimepicker",
       afFieldInput: {
         type: 'bootstrap-datetimepicker'
       }
@@ -20,7 +19,6 @@ export default PartySchema = new SimpleSchema({
     type: Date,
     label: 'End Time',
     autoform: {
-      type: "bootstrap-datetimepicker",
       afFieldInput: {
         type: 'bootstrap-datetimepicker'
       }

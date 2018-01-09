@@ -10,7 +10,7 @@
           <a href='/playlists/{{spinPlaylistId}}'>
           {{#unless showIsSub showId}}
             {{#with showFromId showId}}
-              {{timeFromHours startHour endHour}}
+              {{timeFromHours startHour startMinute endHour endMinute}}
               {{showName}}
             {{/with}}
           {{else}}

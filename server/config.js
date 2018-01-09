@@ -15,7 +15,7 @@ Meteor.startup(function () {
   Accounts.emailTemplates.siteName = 'KTUH Honolulu';
 
   Accounts.emailTemplates.verifyEmail.from = function() {
-    return 'KTUH Accounts <davey@ktuh.org>';
+    return 'KTUH Accounts <webmaster@ktuh.org>';
   };
 
   Accounts.emailTemplates.verifyEmail.subject = function(user) {
@@ -30,7 +30,7 @@ Meteor.startup(function () {
   };
 
   Accounts.emailTemplates.resetPassword.from = function() {
-    return 'KTUH Accounts <davey@ktuh.org>';
+    return 'KTUH Accounts <webmaster@ktuh.org>';
   };
 
   Accounts.emailTemplates.resetPassword.subject = function(user) {
@@ -59,7 +59,6 @@ Meteor.startup(function () {
   });
 
   Accounts.onCreateUser((options, user) => {
-    ResendQueue.insert({userId: user._id, lastSent: new Date()});
     var id = Profiles.insert({userId: user._id});
     Roles.addUserToRoles(user._id, ['member']);
     Profiles.update({ _id: id }, { $set: { photo: {
@@ -99,6 +98,7 @@ Meteor.startup(function () {
 
       user.username = username;
       user.emails = [{ address: email, verified: true }];
+      user.roles = [ "member" ];
     }
     return user;
   });
@@ -112,9 +112,9 @@ Meteor.startup(function () {
   });
 
   ServiceConfiguration.configurations.insert({
-      service: 'facebook',
-      appId: Meteor.settings.facebookAppId,
-      secret: Meteor.settings.facebookAppSecret
+    service: 'facebook',
+    appId: Meteor.settings.facebookAppId,
+    secret: Meteor.settings.facebookAppSecret
   });
 
   ServiceConfiguration.configurations.remove({
@@ -122,8 +122,8 @@ Meteor.startup(function () {
   });
 
   ServiceConfiguration.configurations.insert({
-      service: 'google',
-      clientId: Meteor.settings.googleClientId,
-      secret: Meteor.settings.googleClientSecret
+    service: 'google',
+    clientId: Meteor.settings.googleClientId,
+    secret: Meteor.settings.googleClientSecret
   });
 });

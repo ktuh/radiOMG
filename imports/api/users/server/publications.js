@@ -10,6 +10,17 @@ Meteor.publish('userData', function(username) {
                            {fields: {'username': 1, '_id': 1}});
 });
 
+Meteor.publish('userById', function(id) {
+  check(id, String);
+  return Meteor.users.find({_id: id});
+});
+
+Meteor.publish('userByDisplayName', function(name) {
+  check(name, String);
+  return Meteor.users.find({ _id: Profiles.findOne({ name: name }).userId },
+                           { fields: { 'username': 1, '_id': 1 } });
+});
+
 Meteor.publish('bannedProfiles', function() {
   return Profiles.find({banned: true});
 });

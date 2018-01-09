@@ -148,6 +148,12 @@ h1, h2, h3, h4, h5 {
 .landing__song-title {
   font-weight: 900;
 }
+.landing__show-name a, .landing__show-host a {
+  color: white;
+}
+.landing__show-name a:hover, .landing__show-host a:hover {
+  text-decoration: underline;
+}
 .landing__play-btn-outer {
   float: left;
   width: 10em;
@@ -947,6 +953,9 @@ audio {
   color: #666;
   font-size: 11px;
 }
+.resend__content {
+  margin: 10px 60px;
+}
 .shows {
   padding: 20px 60px 40px;
   text-align: center;
@@ -1293,6 +1302,12 @@ audio {
 }
 .news-item__body {
   margin: 0 0 30px 0;
+}
+.news-item__body a {
+  color: #5940de;
+}
+.news-item__body a:hover {
+  text-decoration: underline;
 }
 .news-item__author {
   font-family: 'nimbus-sans', sans-serif;
@@ -2043,6 +2058,13 @@ margin-bottom: 0 !important;
 .profile-edit {
   margin: 20px 60px;
 }
+.bootstrap-datetimepicker-widget {
+  background-color: #fff;
+}
+.day:not(.new), .picker-switch, .month:not(.active), .year:not(.active),
+.decade:not(.active) {
+  color: black;
+}
 .image-attribute {
   padding-left: 0;
   padding-right: 0;
@@ -2424,6 +2446,9 @@ margin-bottom: 0 !important;
   .profile__info {
     max-width: none;
     margin: 25px 0 0 0;
+  }
+  .resend__content {
+    margin: 10px 40px;
   }
   .party-header__button {
     position: unset;

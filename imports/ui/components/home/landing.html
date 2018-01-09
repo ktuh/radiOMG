@@ -14,8 +14,16 @@
         </div>
         <div class='landing__info'>
         {{#if showName}}
-          <p class='landing__show-name caps'>{{showName}}</p>
-          <p class='landing__show-host caps'>with {{showHost}}</p>
+          <p class='landing__show-name caps'><a href="/shows/{{showSlug}}">{{showName}}</a></p>
+          {{#if isSubShow}}
+            {{#if hasProfileWithHostName showHost}}
+              <p class='landing__show-host caps'>with <a href='/profile/{{usernameFromHostName showHost}}'>{{showHost}}</a></p>
+            {{else}}
+              <p class='landing__show-host caps'>with {{showHost}}</p>
+            {{/if}}
+          {{else}}
+            <p class='landing__show-host caps'>with <a href='/profile/{{hostUsername}}'>{{showHost}}</a></p>
+          {{/if}}
           {{#if nowPlaying}}
             {{{formatNP nowPlaying}}}
           {{/if}}

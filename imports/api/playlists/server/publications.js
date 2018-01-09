@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import Playlists from '../playlists_collection.js';
 import NowPlaying from '../now_playing.js';
+import { currentPlaylist } from '../../../startup/lib/helpers.js';
 import { publishPagination } from 'meteor/kurounin:pagination';
 
 Meteor.publish('playlist', function (id) {
@@ -15,6 +16,8 @@ Meteor.publish('playlistsLimited', function(options) {
   });
   return Playlists.find({}, options);
 });
+
+Meteor.publish('currentPlaylist', currentPlaylist);
 
 Meteor.publish('nowPlaying', function() {
   return NowPlaying.find({});

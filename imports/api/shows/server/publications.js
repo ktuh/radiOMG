@@ -23,11 +23,6 @@ Meteor.publish('showBySpinitronId', (showId) => {
 
 Meteor.publish('activeShows', () => Shows.find({ active: true }));
 
-Meteor.publish('showHostUserName', (id) => {
-  check(id, String);
-  return Meteor.users.find({ _id: id });
-});
-
 Meteor.publish('showByUserId', (id) => {
   check(id, String);
   return Shows.find({ userId: id, active: true });
@@ -50,21 +45,18 @@ Meteor.publish('showNowPlaying', () => {
 Meteor.publish('nextOnAir', () => {
   var now = moment(new Date()).tz(Meteor.settings.timezone);
   var sameDay = Shows.find({active: true, startDay: now.day(),
-                            startHour: { $gte: now.hour() }, endDay: now.day() },
-                         { sort: { startDay: 1, startHour: 1, startMinute: 1,
-                                   endDay: -1, endHour: -1, endMinute: -1 },
+                            startHour: { $gt: now.hour() }, endDay: now.day() },
+                         { sort: { startDay: 1, startHour: 1, startMinute: 1 },
                            limit: 3});
-  var tmr1 = Shows.find({ active: true,
-                          startDay: { $gte: now.day() + 1 } },
-                        { sort: { startDay: 1, startHour: 1, startMinute: 1,
-                                endDay: -1, endHour: -1, endMinute: -1 },
+  var tmr1 = Shows.find({ active: true, startDay: { $gte: (now.day() + 1) % 7 } },
+                        { sort: { startDay: 1, startHour: 1, startMinute: 1 },
                         limit: 3});
-  var tmr2 =  Shows.find({ active: true, startDay: { $gte: 0 } },
-                         { sort: { startDay: 1, startHour: 1, startMinute: 1,
-                          endDay: -1, endHour: -1, endMinute: -1 },
-                                              limit: 3});
+
+  var tmr2 = Shows.find({ active: true, startDay: { $gte: 0 } },
+                        { sort: { startDay: 1, startHour: 1, startMinute: 1 },
+                        limit: 3});
 
   if (sameDay.fetch().length > 0) return sameDay;
   else if (tmr1.fetch().length > 0) return tmr1;
-  else return tmr2;
+  return tmr2;
 });
