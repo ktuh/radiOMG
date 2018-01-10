@@ -7,7 +7,7 @@ import Playlists from '../../../api/playlists/playlists_collection.js';
 import { Template } from 'meteor/templating';
 import { Session } from 'meteor/session';
 import { moment } from 'meteor/momentjs:moment';
-import { currentPlaylist } from '../../../startup/lib/helpers.js';
+import { currentPlaylist, currentShow } from '../../../startup/lib/helpers.js';
 
 Template.landing.onCreated(function() {
   var self = this;
@@ -42,26 +42,9 @@ Template.landing.helpers({
                      NowPlaying.findOne().current : false,
   formatNP: (str) => '<p class="landing__song-title caps">' + str.split(" - ")[1] + '</p>' +
                      '<p class="landing__song-artist caps"> by ' +  str.split(" - ")[0] + '</p>',
-  showName: () => {
-    var now =  new Date();
-    var show = Shows.findOne({active: true, startDay: now.getDay(),
-                              startHour: { $lte: now.getHours() }, endDay: now.getDay(),
-                              endHour: { $gt: now.getHours() } });
-    return show && show.showName;
-  },
-  hostUsername: () => Meteor.users.findOne({}) && Meteor.users.findOne({}).username,
-  showSlug: () => {
-    var now =  new Date();
-    var show = Shows.findOne({active: true, startDay: now.getDay(),
-                              startHour: { $lte: now.getHours() }, endDay: now.getDay(),
-                              endHour: { $gt: now.getHours() } });
-    return show && show.slug;
-  },
+  currentShow: () => currentShow(),
   isSubShow: () => {
-    var now =  new Date();
-    var show = Shows.findOne({active: true, startDay: now.getDay(),
-                              startHour: { $lte: now.getHours() }, endDay: now.getDay(),
-                              endHour: { $gt: now.getHours() } });
+    var show = currentShow();
     var playlist = currentPlaylist().fetch()[0];
     if (show && playlist) {
       return show.host !== playlist.djName;
@@ -70,11 +53,8 @@ Template.landing.helpers({
       return false;
     }
   },
-  showHost: () => {
-    var now =  new Date();
-    var show = Shows.findOne({active: true, startDay: now.getDay(),
-                              startHour: { $lte: now.getHours() }, endDay: now.getDay(),
-                              endHour: { $gt: now.getHours() } });
+  showActualHost: () => {
+    var show = currentShow();
     var playlist = currentPlaylist().fetch()[0];
     if (show && playlist) {
       if (show.host === playlist.djName) {
@@ -109,12 +89,7 @@ Template.landing.helpers({
     else if ((h >= 18 && h <= 23) || (h >= 0 && h < 6)) {
       return 'url(\'/img/tantalus-evening.jpg\')';
     }
-  },
-  hasProfileWithHostName: (hostName) => Profiles.findOne({ name: hostName }) !== undefined,
-  usernameFromHostName: (hostName) =>
-    Profiles.findOne({ name: hostName }) && Meteor.users.findOne({ _id:
-      Profiles.findOne({ name: hostName }).userId
-    }).username
+  }
 });
 
 Template.landing.events({

@@ -30,6 +30,5 @@ Template.newsItem.onCreated(function () {
 Template.newsItem.helpers({
   dateFormat: (date) => moment(date).format("dddd, MMMM DD, YYYY"),
   post: () => Posts.findOne({ slug: FlowRouter.getParam('slug') }),
-  comments: () => Comments.find(),
-  displayName: () => Profiles.findOne({ userId: Posts.findOne({ slug: FlowRouter.getParam('slug') }).userId }).name
+  comments: () => Comments.find()
 });

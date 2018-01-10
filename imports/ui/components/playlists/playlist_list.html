@@ -11,7 +11,13 @@
           {{/if}}
         {{/with}}
       {{/if}}
-      <h5 class='playlist-list__current'>CURRENT PLAYLIST</h5>
+      <h5 class='playlist-list__current'>
+        {{#if isPlaylistCurrent}}
+          CURRENT PLAYLIST
+        {{else}}
+          LAST LOGGED PLAYLIST
+        {{/if}}
+      </h5>
       <h3 class='playlist-list__show-name'>
         {{#if latestShow}}
           {{#with latestShow}}
@@ -33,9 +39,9 @@
           {{#with latestShow}}
             {{showTime showId}}
             •
-            {{#if latestShowLink}}
+            {{#if latestShow}}
              Hosted by
-              <a href='{{latestShowLink}}'>
+              <a href='/profile/{{usernameById latestShow.userId}}'>
                 {{host}}
               </a>
             {{else}}
