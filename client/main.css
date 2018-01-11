@@ -1822,6 +1822,7 @@ margin-bottom: 0 !important;
   font-weight: 900;
 }
 .playlist-list__show-host a { color: #5940de; }
+.playlist-list__show-host a:hover { text-decoration: underline; }
 .playlist-list__current {
   margin-bottom: 0;
   font-size: .875em;
