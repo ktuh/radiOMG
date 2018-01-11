@@ -599,6 +599,9 @@ h1, h2, h3, h4, h5 {
   color: inherit;
   vertical-align: top;
 }
+.events-item:hover a {
+  text-decoration: underline;
+}
 @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
 @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
 @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
@@ -1044,6 +1047,9 @@ audio {
   font-weight: bold;
   text-transform: uppercase;
 }
+.show-item__info h4:hover {
+  text-decoration: underline;
+}
 .show-item__info h5, .show-item__host {
   font-family: 'nimbus-sans-extended', sans-serif;
   font-weight: 900;
@@ -1217,6 +1223,9 @@ audio {
 .news-list__byline {
   margin: 20px 0;
   font-weight: bold;
+}
+.news-list__byline a {
+  color: #5940DE;
 }
 .news-list__byline a:hover {
   text-decoration: underline;
@@ -1622,10 +1631,14 @@ margin-bottom: 0 !important;
   font-family: 'nimbus-sans', sans-serif;
 }
 .home__more:hover {
-  color: white;
+  color: #222222;
+  background-color: white;
 }
 .home__reviews-item .home__title {
-    margin: 15px 0 3px;
+  margin: 15px 0 3px;
+}
+.home__title:hover {
+  text-decoration: underline;
 }
 .home__reviews-item .home__subtitle {
     font-style: italic;
@@ -1873,6 +1886,9 @@ margin-bottom: 0 !important;
 }
 .about__help a {
   color: white;
+}
+.about__help a:hover {
+  text-decoration: underline;
 }
 .about__help div {
   float: left;
