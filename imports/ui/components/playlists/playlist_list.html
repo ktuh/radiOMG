@@ -37,7 +37,7 @@
       <h5 class='playlist-list__show-host'>
         {{#if latestShow}}
           {{#with latestShow}}
-            {{showTime showId}}
+            {{showTime startDay startHour}}
             •
             {{#if latestShow}}
              Hosted by
@@ -52,7 +52,11 @@
           {{#with latestPlaylist}}
             {{timeHMS showDate startTime endTime}}
             •
-            Hosted by {{djName}}
+            Hosted by {{#if usernameFromDisplayName djName}}
+            <a href='/profile/{{usernameFromDisplayName djNamew}}'>{{djName}}</a>
+            {{else}}
+              {{djName}}
+            {{/if}}
           {{/with}}
         {{/if}}
       </h5>

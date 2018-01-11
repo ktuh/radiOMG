@@ -25,10 +25,13 @@ Template.playlistList.onCreated(function() {
               self.subscribe('userById', show.userId);
             }
 
-            Meteor.call('getPlaylistOrInfo', parseInt(playlist.spinPlaylistId),
+            var parsedId = parseInt(playlist.spinPlaylistId);
+
+            Meteor.call('getPlaylistOrInfo', parsedId,
               true, function(error, result) {
               if (!error && result) {
                 Session.set('currentPlaylist', result);
+                Session.set('playlistViewing', parsedId)
               }
             });
           }
@@ -40,13 +43,10 @@ Template.playlistList.onCreated(function() {
 
 Template.playlistList.helpers({
   latestSongs: () => Session.get("currentPlaylist"),
-  img: (id) => Shows.findOne({ showId: id }).featuredImage.url,
-  showNameById: (id) => Shows.findOne({ showId: id }).showName,
-  showTime: (id) => {
-    var show = Shows.findOne({ showId: id });
-    var startDay = show.startDay, startHour = show.startHour, date = show.showDate;
+  showById: (id) => Shows.findOne({ showId: id }),
+  showTime: (startDay, startHour) => {
     var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    return days[startDay] + "s at " + moment(date).hour(startHour).format('h A');
+    return days[startDay] + "s at " + moment().hour(startHour).format('h A');
   },
   date: (showDate) => moment(showDate).format('dddd, h:mm a,<br>MMM DD YYYY'),
   ready: () => Template.instance().pagination.ready(),

@@ -19,7 +19,15 @@ Template.playlistSidebar.helpers({
   },
   dateFormat: (date) => moment(date).format('ddd. MMMM DD, YYYY'),
   getSidebarData: () => {
-    var playlistDates = Playlists.find({}, {sort: {showDate: -1, spinPlaylistId: -1}, limit: 12}).fetch();
+    var viewingPlaylistId = Session.get("playlistViewing"), playlistDates;
+    if (viewingPlaylistId) {
+      playlistDates = Playlists.find({ spinPlaylistId: {$ne: viewingPlaylistId } },
+        {sort: {showDate: -1, spinPlaylistId: -1}, limit: 12}).fetch();
+    }
+    else {
+      playlistDates = Playlists.find({}, {sort: {showDate: -1, spinPlaylistId: -1},
+        limit: 12}).fetch();
+    }
     var uniqDates =
       _.uniq(_.map(_.pluck(playlistDates, 'showDate'),
         (date) => {
