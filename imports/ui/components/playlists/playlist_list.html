@@ -39,13 +39,20 @@
           {{#with latestShow}}
             {{showTime startDay startHour}}
             •
-            {{#if latestShow}}
+            {{#if isSub showId}}
+              Hosted by
+              {{#if usernameFromDisplayName (actualShowHost showId)}}
+                <a href='/profile/{{usernameFromDisplayName (actualShowHost showId)}}'>
+                  {{actualShowHost showId}}
+                </a>
+              {{else}}
+                {{actualShowHost showId}}
+              {{/if}}
+            {{else}}
              Hosted by
               <a href='/profile/{{usernameById latestShow.userId}}'>
                 {{host}}
               </a>
-            {{else}}
-              Hosted by {{actualShowHost showId}}
             {{/if}}
           {{/with}}
         {{else}}
@@ -53,7 +60,7 @@
             {{timeHMS showDate startTime endTime}}
             •
             Hosted by {{#if usernameFromDisplayName djName}}
-            <a href='/profile/{{usernameFromDisplayName djNamew}}'>{{djName}}</a>
+              <a href='/profile/{{usernameFromDisplayName djName}}'>{{djName}}</a>
             {{else}}
               {{djName}}
             {{/if}}
