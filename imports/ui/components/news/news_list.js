@@ -11,6 +11,7 @@ import { $, jQuery } from 'meteor/jquery';
 Template.newsList.onCreated(function () {
   var self = this;
   self.subscribe('nextOnAir');
+  self.subscribe('djs'); // Assuming that only DJs can post
   self.subscribe('latestFeaturedPost', function() {
     var latestFeaturedPost = Posts.findOne();
     self.pagination = new Meteor.Pagination(Posts, {
@@ -18,13 +19,16 @@ Template.newsList.onCreated(function () {
       sort: { submitted: -1 },
       perPage: 4
     });
+    self.subscribe('posts', function() {
+      // This subscription is actually an incremental one. See kurounin:pagination
+      // docs for more information.
+      var latestFeaturedPost = Posts.findOne();
+      self.subscribe('profileNamesById', _.uniq(Posts.find({
+        _id: { $ne: latestFeaturedPost._id
+      }, approved: true },{ sort: { submitted: -1 }}).fetch().map((p) => p.userId)));
+    });
+    self.subscribe('reviewsLimited', { limit: 6, sort: { submitted: -1 }});
   });
-  self.subscribe('posts', function() {
-    // This subscription is actually an incremental one. See kurounin:pagination
-    // docs for more information.
-    self.subscribe('profileNamesById', Posts.find({ }).fetch().map((p) => p.userId));
-  });
-  self.subscribe('reviewsLimited', { limit: 6, sort: { submitted: -1 }});
 });
 
 Template.newsList.onRendered(function () {

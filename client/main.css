@@ -1668,6 +1668,9 @@ margin-bottom: 0 !important;
   width: 25%;
   padding: 0 20px 20px 0;
 }
+.review-item:hover a {
+  text-decoration: underline;
+}
 .review-item:nth-child(4n + 1) {
   clear: both;
 }
@@ -1788,6 +1791,9 @@ margin-bottom: 0 !important;
 }
 .footer__links p a {
   color: #fff;
+}
+.footer__links p a:hover {
+  text-decoration: underline;
 }
 .footer__links-wrapper {
   text-align: center;
