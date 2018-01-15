@@ -4,21 +4,31 @@ import { Template } from 'meteor/templating';
 import Posts from '../../../api/posts/posts_collection.js';
 import Shows from '../../../api/shows/shows_collection.js';
 import Reviews from '../../../api/reviews/reviews_collection.js';
+import Profiles from '../../../api/users/profiles_collection.js';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { $, jQuery } from 'meteor/jquery';
 
 Template.newsList.onCreated(function () {
   var self = this;
   self.subscribe('nextOnAir');
+  self.subscribe('djs'); // Assuming that only DJs can post
   self.subscribe('latestFeaturedPost', function() {
     var latestFeaturedPost = Posts.findOne();
     self.pagination = new Meteor.Pagination(Posts, {
-      filters: { _id: {$ne: latestFeaturedPost._id}, approved: true },
+      filters: { _id: { $ne: latestFeaturedPost._id }, approved: true },
       sort: { submitted: -1 },
       perPage: 4
     });
+    self.subscribe('posts', function() {
+      // This subscription is actually an incremental one. See kurounin:pagination
+      // docs for more information.
+      var latestFeaturedPost = Posts.findOne();
+      self.subscribe('profileNamesById', _.uniq(Posts.find({
+        _id: { $ne: latestFeaturedPost._id
+      }, approved: true },{ sort: { submitted: -1 }}).fetch().map((p) => p.userId)));
+    });
+    self.subscribe('reviewsLimited', { limit: 6, sort: { submitted: -1 }});
   });
-  self.subscribe('reviewsLimited', { limit: 6, sort: { submitted: -1 }});
 });
 
 Template.newsList.onRendered(function () {

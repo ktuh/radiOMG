@@ -2,6 +2,7 @@ import './playlist_list.html';
 import './playlist_sidebar.js';
 import { Template } from 'meteor/templating';
 import Playlists from '../../../api/playlists/playlists_collection.js';
+import Profiles from '../../../api/users/profiles_collection.js';
 import Shows from '../../../api/shows/shows_collection.js';
 import { pagination } from 'meteor/kurounin:pagination';
 import { moment } from 'meteor/momentjs:moment';
@@ -21,14 +22,22 @@ Template.playlistList.onCreated(function() {
             var show = Shows.findOne({ showId: playlist.showId });
             var showId = show && show.showId || -1;
 
-            if (showId > -1) {
+            if (showId > -1 && show.host === playlist.djName) {
               self.subscribe('userById', show.userId);
             }
+            else {
+              self.subscribe('userByDisplayName', playlist.djName, function() {
+                self.subscribe('profileData', Meteor.users.findOne({})._id);
+              });
+            }
 
-            Meteor.call('getPlaylistOrInfo', parseInt(playlist.spinPlaylistId),
+            var parsedId = parseInt(playlist.spinPlaylistId);
+
+            Meteor.call('getPlaylistOrInfo', parsedId,
               true, function(error, result) {
               if (!error && result) {
                 Session.set('currentPlaylist', result);
+                Session.set('playlistViewing', parsedId)
               }
             });
           }
@@ -40,29 +49,30 @@ Template.playlistList.onCreated(function() {
 
 Template.playlistList.helpers({
   latestSongs: () => Session.get("currentPlaylist"),
-  img: (id) => Shows.findOne({ showId: id }).featuredImage.url,
-  showNameById: (id) => Shows.findOne({ showId: id }).showName,
-  showTime: (id) => {
-    var show = Shows.findOne({ showId: id });
-    var startDay = show.startDay, startHour = show.startHour, date = show.showDate;
+  showById: (id) => Shows.findOne({ showId: id }),
+  showTime: (startDay, startHour) => {
     var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    return days[startDay] + "s at " + moment(date).hour(startHour).format('h A');
+    return days[startDay] + "s at " + moment().hour(startHour).format('h A');
   },
   date: (showDate) => moment(showDate).format('dddd, h:mm a,<br>MMM DD YYYY'),
   ready: () => Template.instance().pagination.ready(),
   docs: () => Template.instance().pagination.getPage(),
   tempPag: () => Template.instance().pagination,
   actualShowHost: (showId) => {
-    var showName = Shows.findOne({ showId: id }).showName;
+    var showName = Shows.findOne({ showId: showId }).host;
     var playlistName = Playlists.findOne({}, { sort: { showDate: -1 }}).djName;
     if (showName !== playlistName) return playlistName;
     else return showName;
+  },
+  isSub: (showId) => {
+    var showName = Shows.findOne({ showId: showId }).host;
+    var playlistName = Playlists.findOne({}, { sort: { showDate: -1 }}).djName;
+    return showName !== playlistName;
   },
   latestPlaylist: () => Playlists.findOne({}, { sort: { showDate: -1 }}),
   latestShow: () => Shows.findOne({ showId: Playlists.findOne({}, { sort: { showDate: -1 }}).showId}),
   truncated: (str) => str.substring(0, str.length - 3),
   timeBeautify: (time) => moment(time, "HH:mm").format("hh:mma"),
-  isSub: () =>  Playlists.findOne({}).showId === -1,
   timeHMS: (date, startTime, endTime) => {
     return moment(date).format("ddd. MMM DD, YYYY") + " " +
     moment(startTime, "HH:mm:ss").format("hh:mm") +  "-" +

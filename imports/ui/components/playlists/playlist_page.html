@@ -4,12 +4,12 @@
     {{#if showByShowId playlist.showId }}
       {{#with show=(showByShowId playlist.showId)}}
         <h2 class='general__header'>
-          <a href="/shows/{{show.slug}}">{{show.showName}}</a> playlist - {{showDateOfCurrent}}
+          <a href="/shows/{{show.slug}}">{{show.showName}}</a> playlist - {{showDateOfLatestPlaylist playlist.showDate}}
         </h2>
       {{/with}}
     {{else}}
       <h2 class='general__header'>
-        {{showTime}} w/ {{djOfShow}} playlist - {{showDateOfCurrent}}
+        {{showTime playlist}} w/ {{playlist.djName}} playlist - {{showDateOfLatestPlaylist playlist.showDate}}
       </h2>
     {{/if}}
     <div class='playlist__link'>
@@ -42,7 +42,7 @@
       <div class='comments'>
         <h3 class='comments__header'>Comments</h3>
         <ul class='comments__list'>
-          {{#each comments}}
+          {{#each comments playlist.id}}
             {{> commentItem}}
           {{/each}}
         </ul>

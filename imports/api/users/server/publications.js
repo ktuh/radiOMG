@@ -37,17 +37,27 @@ Meteor.publish('profileDataByUsername', function(username) {
 });
 
 Meteor.publish('latestSevenWriters', () => {
-  var posts = Posts.find({}, { sort: { submitted: -1 }, limit: 7 }).fetch();
-  var ids = _.map(posts, (p, i) => p.userId);
+  var featured = Posts.find({ featured: true, approved: true },
+              { sort: { submitted: -1 }, limit: 1 }).fetch();
+  var nonFeatured = Posts.find({ featured: false, approved: true },
+                { sort: { submitted: -1 }, limit: 6 }).fetch();
+  var posts = nonFeatured.concat(featured);
+  var ids = _.uniq(_.map(posts, (p, i) => p.userId));
   return Profiles.find({ userId: { $in: ids } });
 });
 
-Meteor.publish('latestSevenWritersUsernames', () => { /*
-  var posts = Posts.find({}, { sort: { submitted: -1 }, limit: 7 }).fetch();
+Meteor.publish('latestSevenWritersUsernames', () => {
+  var featured = Posts.find({ featured: true, approved: true },
+              { sort: { submitted: -1 }, limit: 1 }).fetch();
+  var nonFeatured = Posts.find({ featured: false, approved: true },
+                { sort: { submitted: -1 }, limit: 6 }).fetch();
+  var posts = nonFeatured.concat(featured);
   var ids = _.map(posts, (p, i) => p.userId);
-  check(ids, [String]);
-  return Meteor.users.find({ _id: { $in: ids } }, { fields: 'username' });  */
-  return Meteor.users.find({});
+  return Meteor.users.find({ _id: { $in: ids } }, { fields: 'username' });
+});
+
+Meteor.publish('profileNamesById', (ids) => {
+  return Profiles.find({ userId: { $in: ids } });
 });
 
 Meteor.publish('djProfiles', () => {

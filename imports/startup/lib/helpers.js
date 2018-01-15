@@ -9,7 +9,7 @@ export const currentPlaylist = function() {
              this.showDate.getMonth() === now.getMonth() &&
              this.showDate.getDate() === now.getDate() &&
              parseInt(this.startTime.split(":")[0]) <= new Date().getHours() &&
-             (parseInt(this.endTime.split(":")[0]) > new Date().getHours() ||
+             (parseInt(this.endTime.split(":")[0]) >= new Date().getHours() ||
              this.endTime === "00:00:00");
     }
   });
@@ -19,5 +19,5 @@ export const currentShow = function() {
   var now = new Date();
   return Shows.findOne({active: true, startDay: now.getDay(),
                         startHour: { $lte: now.getHours() }, endDay: now.getDay(),
-                        endHour: { $gt: now.getHours() } });
+                        endHour: { $gte: now.getHours() } });
 };
