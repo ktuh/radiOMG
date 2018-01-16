@@ -21,6 +21,7 @@ Template.landing.onCreated(function() {
             if (show && playlist) {
               if (show.host === playlist.djName) {
                 self.subscribe('userById', show.userId);
+                self.subscribe('profileData', show.userId);
               }
               else if (show.host !== playlist.djName) {
                 self.subscribe('userByDisplayName', playlist.djName);

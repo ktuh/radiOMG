@@ -52,8 +52,8 @@ Meteor.publish('latestSevenWritersUsernames', () => {
   var nonFeatured = Posts.find({ featured: false, approved: true },
                 { sort: { submitted: -1 }, limit: 6 }).fetch();
   var posts = nonFeatured.concat(featured);
-  var ids = _.map(posts, (p, i) => p.userId);
-  return Meteor.users.find({ _id: { $in: ids } }, { fields: 'username' });
+  var ids = _.uniq(_.map(posts, (p, i) => p.userId));
+  return Meteor.users.find({ _id: { $in: ids } });
 });
 
 Meteor.publish('profileNamesById', (ids) => {
