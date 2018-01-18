@@ -19,7 +19,7 @@ export const currentShow = function() {
   var now = new Date();
   return Shows.findOne({active: true, startDay: now.getDay(),
                         startHour: { $lte: now.getHours() }, endDay: now.getDay(),
-                        endHour: { $gte: now.getHours() } });
+                        endHour: { $gte: now.getHours() } }, { sort: { startHour: -1 }});
 };
 
 export const nextShow = function() {
