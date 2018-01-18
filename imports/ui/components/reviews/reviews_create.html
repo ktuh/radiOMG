@@ -4,6 +4,10 @@
   {{/Layout}}
   {{#Layout template=materializeContent}}
     {{#autoForm collection=collection id="insertReviewForm" type="insert"}}
+      {{> afFieldInput name="userId"}}
+      {{> afFieldInput name="author"}}
+      {{> afFieldInput name="slug"}}
+      {{> afFieldInput name="submitted"}}
       {{> afQuickField name="artist"}}
       {{> afQuickField name="releaseName"}}
       {{> afQuickField name="year"}}
