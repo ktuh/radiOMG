@@ -33,10 +33,9 @@ Meteor.publish('showNowPlaying', () => {
   // do not air over midnight into the next day. Shows are to be cut off
   // at 11:59 and air entirely on a single day.
   var now = moment(new Date()).tz(Meteor.settings.timezone);
-  return Shows.find({active: true, startDay: now.day(),
-                            startHour: { $lte: now.hour() }, endDay: now.day(),
-                            endHour: { $gte: now.hour() } },
-                            { sort: { startHour: -1 }, limit: 1 });
+  return Shows.find({ active: true, startDay: now.day(),
+                      startHour: { $lte: now.hour() }, endDay: now.day() },
+                    { sort: { startHour: -1 }, limit: 1 });
 });
 
 Meteor.publish('nextOnAir', () => {
