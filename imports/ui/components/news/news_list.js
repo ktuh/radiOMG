@@ -23,6 +23,7 @@ Template.newsList.onCreated(function () {
       // This subscription is actually an incremental one. See kurounin:pagination
       // docs for more information.
       var latestFeaturedPost = Posts.findOne();
+      self.subscribe('profileData', latestFeaturedPost.userId);
       self.subscribe('profileNamesById', _.uniq(Posts.find({
         _id: { $ne: latestFeaturedPost._id
       }, approved: true },{ sort: { submitted: -1 }}).fetch().map((p) => p.userId)));

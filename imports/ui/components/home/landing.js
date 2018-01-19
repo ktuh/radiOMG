@@ -17,10 +17,11 @@ Template.landing.onCreated(function() {
         self.subscribe('currentPlaylist', {
           onReady: function() {
             var playlist = currentPlaylist().fetch()[0];
-            var show = Shows.findOne({});
+            var show = currentShow();
             if (show && playlist) {
               if (show.host === playlist.djName) {
                 self.subscribe('userById', show.userId);
+                self.subscribe('profileData', show.userId);
               }
               else if (show.host !== playlist.djName) {
                 self.subscribe('userByDisplayName', playlist.djName);

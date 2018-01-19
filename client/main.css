@@ -1882,6 +1882,9 @@ margin-bottom: 0 !important;
 .contact__content {
   padding: 30px;
 }
+.contact__content a:hover, .join__content a:hover {
+  text-decoration: underline;
+}
 .at-form {
   margin: 0 60px;
 }
@@ -2025,6 +2028,9 @@ margin-bottom: 0 !important;
   font-family: 'nimbus-sans';
   font-weight: lighter;
   color: #fff;
+}
+.staff__item-textlink:hover {
+  text-decoration: underline;
 }
 .staff__item > p {
   margin-bottom: 5px;

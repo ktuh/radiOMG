@@ -10,6 +10,7 @@ import Reviews from '../../../api/reviews/reviews_collection.js';
 import Shows from '../../../api/shows/shows_collection.js';
 import { $, jQuery } from 'meteor/jquery';
 import { moment } from 'meteor/momentjs:moment';
+import { nextShow } from '../../../startup/lib/helpers.js';
 
 Template.home.onCreated(function () {
   var self = this;
@@ -21,8 +22,9 @@ Template.home.onCreated(function () {
     self.subscribe('latestSevenWritersUsernames');
     self.subscribe('nextOnAir', {
       onReady: function() {
-        var show = Shows.findOne({});
+        var show = nextShow();
         var userId = show.userId;
+        self.subscribe('profileData', userId);
         self.subscribe('userById', userId);
       }
     });
@@ -115,16 +117,7 @@ Template.home.helpers({
       return $(jQuery.parseHTML(body.replace(/></g, '> <'))).text().replace(regex," $1…");
     }
   },
-  nextShow: () => {
-    var now = new Date();
-    var sameDay = Shows.findOne({active: true, startDay: now.getDay(),
-                              startHour: { $gt: now.getHours() }, endDay: now.getDay() });
-    var tmr1 = Shows.findOne({ active: true, startDay: { $gte: (now.getDay() + 1) % 7 }});
-    var tmr2 = Shows.findOne({ active: true, startDay: { $gte: 0 } },
-                          { sort: { startDay: 1, startHour: 1, startMinute: 1 }});
-
-    return sameDay || tmr1 || tmr2;
-  },
+  nextShow: () => nextShow(),
   startEndTime: (startHour, startMinute, endHour, endMinute) => {
     if (startMinute === 1) {
       startMinute--;
