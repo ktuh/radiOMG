@@ -8,11 +8,9 @@ export const currentPlaylist = function() {
       return this.showDate.getYear() === now.getYear() &&
              this.showDate.getMonth() === now.getMonth() &&
              this.showDate.getDate() === now.getDate() &&
-             parseInt(this.startTime.split(":")[0]) <= new Date().getHours() &&
-             (parseInt(this.endTime.split(":")[0]) >= new Date().getHours() ||
-             this.endTime === "00:00:00");
+             parseInt(this.startTime.split(":")[0]) <= new Date().getHours();
     }
-  });
+  }, { sort: { startHour: -1 } });
 };
 
 export const currentShow = function() {

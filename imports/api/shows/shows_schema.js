@@ -23,7 +23,7 @@ export default ShowsSchema = new SimpleSchema({
       if (this.isSet || this.isUpdate)
         return this.value;
       else
-        return this.userId;
+        return Meteor.userId();
     }
   },
   author: {
@@ -46,7 +46,7 @@ export default ShowsSchema = new SimpleSchema({
       if (this.isSet || this.isUpdate)
         return this.value;
       else
-        return Profiles.find({userId: Meteor.userId}).name;
+        return Profiles.find({ userId: Meteor.userId() }).name;
     }
   },
   startDay: {
