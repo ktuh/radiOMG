@@ -13,11 +13,32 @@ export const currentPlaylist = function() {
   }, { sort: { startTime: -1 } });
 };
 
+export const currentPlaylistFindOne = function() {
+  var now = new Date();
+  var playlist = Playlists.findOne({
+    $where: function() {
+      return this.showDate.getYear() === now.getYear() &&
+             this.showDate.getMonth() === now.getMonth() &&
+             this.showDate.getDate() === now.getDate() &&
+             parseInt(this.startTime.split(":")[0]) <= new Date().getHours();
+    }
+  }, { sort: { startTime: -1 } });
+
+  if (playlist && now.getHours() >= parseInt(playlist.endTime.split(":")[0])) {
+    return undefined;
+  }
+  else {
+    return playlist;
+  }
+};
+
 export const currentShow = function() {
   var now = new Date();
   var show = Shows.findOne({ active: true, startDay: now.getDay(),
                          startHour: { $lte: now.getHours() },
                          endDay: now.getDay() }, { sort: { startHour: -1 }});
+
+  if (show === undefined) return undefined;
 
   var actualEndMinute = show.endMinute, actualEndHour = show.endHour;
   var actualStartMinute = show.startHour, actualStartMinute = show.startMinute;

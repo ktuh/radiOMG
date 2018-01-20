@@ -6,7 +6,7 @@ import Profiles from '../../../api/users/profiles_collection.js';
 import Shows from '../../../api/shows/shows_collection.js';
 import { pagination } from 'meteor/kurounin:pagination';
 import { moment } from 'meteor/momentjs:moment';
-import { currentPlaylist } from '../../../startup/lib/helpers.js';
+import { currentPlaylistFindOne } from '../../../startup/lib/helpers.js';
 
 Template.playlistList.onCreated(function() {
   var self = this;
@@ -78,7 +78,7 @@ Template.playlistList.helpers({
     moment(startTime, "HH:mm:ss").format("hh:mm") +  "-" +
     moment(endTime, "HH:mm:ss").format("hh:mm A"); },
   isPlaylistCurrent: () => {
-    var current = currentPlaylist();
-    return current && current.fetch()[0] !== undefined;
+    var current = currentPlaylistFindOne();
+    return current !== undefined;
   }
 });
