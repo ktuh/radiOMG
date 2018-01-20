@@ -10,7 +10,7 @@ export const currentPlaylist = function() {
              this.showDate.getDate() === now.getDate() &&
              parseInt(this.startTime.split(":")[0]) <= new Date().getHours();
     }
-  }, { sort: { startHour: -1 } });
+  }, { sort: { startTime: -1 } });
 };
 
 export const currentShow = function() {
