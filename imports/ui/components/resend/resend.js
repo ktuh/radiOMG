@@ -27,7 +27,7 @@ Template.resend.events({
   'keyup .validate': () => {
     var val = $('.validate').val();
     if (val.length) {
-      var regex = /[A-Za-z0-9.]+@([a-z0-9.])+\.[a-z]{2,3}/;
+      var regex = /.+@(.+){2,}\.(.+){2,}/;
       var match = val.match(regex);
       if (match !== null && $(".submit").prop("disabled")) {
         $(".submit").prop("disabled", false);
