@@ -7,7 +7,7 @@ import Playlists from '../../../api/playlists/playlists_collection.js';
 import { Template } from 'meteor/templating';
 import { Session } from 'meteor/session';
 import { moment } from 'meteor/momentjs:moment';
-import { currentPlaylist, currentShow } from '../../../startup/lib/helpers.js';
+import { currentPlaylist, currentPlaylistFindOne, currentShow } from '../../../startup/lib/helpers.js';
 
 Template.landing.onCreated(function() {
   var self = this;
@@ -16,7 +16,7 @@ Template.landing.onCreated(function() {
       onReady: function() {
         self.subscribe('currentPlaylist', {
           onReady: function() {
-            var playlist = currentPlaylist().fetch()[0];
+            var playlist = currentPlaylistFindOne();
             var show = currentShow();
             if (show && playlist) {
               if (show.host === playlist.djName) {
@@ -26,6 +26,10 @@ Template.landing.onCreated(function() {
               else if (show.host !== playlist.djName) {
                 self.subscribe('userByDisplayName', playlist.djName);
               }
+            }
+            else if (show && !playlist) {
+              self.subscribe('userById', show.userId);
+              self.subscribe('profileData', show.userId);
             }
           }
         });
@@ -46,7 +50,7 @@ Template.landing.helpers({
   currentShow: () => currentShow(),
   isSubShow: () => {
     var show = currentShow();
-    var playlist = currentPlaylist().fetch()[0];
+    var playlist = currentPlaylistFindOne();
     if (show && playlist) {
       return show.host !== playlist.djName;
     }
@@ -56,7 +60,7 @@ Template.landing.helpers({
   },
   showActualHost: () => {
     var show = currentShow();
-    var playlist = currentPlaylist().fetch()[0];
+    var playlist = currentPlaylistFindOne();
     if (show && playlist) {
       if (show.host === playlist.djName) {
         return show.host;
