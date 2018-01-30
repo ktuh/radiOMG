@@ -54,7 +54,7 @@ export default ReviewsSchema = new SimpleSchema({
   year: {
     type: Number,
     min: 0,
-    max: 2017,
+    max: new Date().getFullYear(),
     label: 'Year Released',
     optional: false
   },
