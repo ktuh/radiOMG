@@ -2,6 +2,7 @@ import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { scorpius } from 'meteor/scorpiusjs:core';
 import { Meteor } from 'meteor/meteor';
 import Profiles from '../users/profiles_collection.js';
+import moment from 'moment-timezone';
 
 export default ShowsSchema = new SimpleSchema({
   showName: {
@@ -155,6 +156,6 @@ export default ShowsSchema = new SimpleSchema({
       type: 'hidden',
       label: false
     },
-    defaultValue: new Date()
+    defaultValue: moment(new Date()).tz("Pacific/Honolulu").toDate()
   }
 });

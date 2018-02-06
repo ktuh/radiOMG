@@ -1,5 +1,6 @@
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { scorpius } from 'meteor/scorpiusjs:core';
+import moment from 'moment-timezone';
 
 export default PartySchema = new SimpleSchema({
   title: {
@@ -51,7 +52,7 @@ export default PartySchema = new SimpleSchema({
       label: false,
       type: 'hidden'
     },
-    defaultValue: new Date()
+    defaultValue: moment(new Date()).tz("Pacific/Honolulu").toDate()
   },
   userId: {
     type: String,
