@@ -119,12 +119,11 @@ h1, h2, h3, h4, h5 {
   align-items: center;
   position: relative;
   margin: auto;
-  max-width: 42em;
+  max-width: 47em;
   max-height: 75vh;
   text-overflow: ellipsis;
 }
 .landing__info {
-  width: 24em;
   margin-left: 20px;
   font-family: 'nimbus-sans-extended', 'alda', sans-serif;
   overflow-y: hidden;
@@ -2321,7 +2320,7 @@ margin-bottom: 0 !important;
     width: calc(100% - 40px);
     top: 45px;
   }
-  .landing__info { max-width: 20em; }
+  .landing__info { max-width: 30em; }
   .landing__show-name,
   .landing__show-host,
   .landing__song-title,
@@ -2552,7 +2551,6 @@ margin-bottom: 0 !important;
   .landing__now-playing {
     text-align: center;
   }
-  .landing__info { max-width: 20em; }
   .landing__show-name,
   .landing__show-host,
   .landing__song-title,
