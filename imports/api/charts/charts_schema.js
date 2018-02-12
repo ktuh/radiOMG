@@ -1,6 +1,7 @@
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import TracksSchema from './tracks_schema.js';
 import { Meteor } from 'meteor/meteor';
+import moment from 'moment-timezone';
 
 export default ChartsSchema = new SimpleSchema({
   title: {
@@ -17,7 +18,7 @@ export default ChartsSchema = new SimpleSchema({
       if (this.isSet || this.isUpdate)
         return this.value;
       else
-        return new Date();
+        return moment(new Date()).tz("Pacific/Honolulu").toDate();
     }
   },
   createdAt: {
@@ -31,7 +32,7 @@ export default ChartsSchema = new SimpleSchema({
       if (this.isSet || this.isUpdate)
         return this.value;
       else
-        return new Date();
+        return moment(new Date()).tz("Pacific/Honolulu").toDate();
     }
   },
   createdBy: {
@@ -64,7 +65,7 @@ export default ChartsSchema = new SimpleSchema({
       type: 'hidden',
       label: false
     },
-    autoValue: () => new Date()
+    autoValue: () => moment(new Date()).tz("Pacific/Honolulu").toDate()
   },
   tracks: {
     type: [TracksSchema],

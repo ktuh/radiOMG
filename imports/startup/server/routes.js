@@ -34,7 +34,7 @@ Picker.route('/spinitron/latest', function(params, req, res, next) {
         Playlists.insert({
           showId: showId,
           spinPlaylistId: playlistId,
-          showDate: moment(new Date()).tz(Meteor.settings.timezone).toDate(),
+          showDate: moment(new Date()).tz("Pacific/Honolulu").toDate(),
           startTime: result.OnairTime,
           endTime: result.OffairTime,
           djName: result.DJName
@@ -44,7 +44,7 @@ Picker.route('/spinitron/latest', function(params, req, res, next) {
   }
 
   if (NowPlaying.find({}).count() < 1)
-    NowPlaying.insert({current: html, timestamp: new Date()});
+    NowPlaying.insert({current: html, timestamp: moment(new Date()).tz("Pacific/Honolulu").toDate()});
   else
-    NowPlaying.update(NowPlaying.findOne()._id, { $set: { current: html, timestamp: new Date() }});
+    NowPlaying.update(NowPlaying.findOne()._id, { $set: { current: html, timestamp: moment(new Date()).tz("Pacific/Honolulu").toDate() }});
 });

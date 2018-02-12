@@ -1,4 +1,5 @@
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
+import moment from 'moment-timezone';
 
 export default PostsSchema = new SimpleSchema({
   userId: {
@@ -37,7 +38,7 @@ export default PostsSchema = new SimpleSchema({
       type: 'hidden',
       label: false
     },
-    defaultValue: new Date()
+    defaultValue: moment(new Date()).tz("Pacific/Honolulu").toDate()
   },
   title: {
     type: String,

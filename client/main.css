@@ -925,6 +925,9 @@ audio {
 .playlist__show-name {
   margin-top: 0;
 }
+.playlist__show-name a:hover {
+  text-decoration: underline;
+}
 .playlist__show-image {
   float: left;
   max-width: 160px;
@@ -1777,6 +1780,9 @@ margin-bottom: 0 !important;
   width: 100%;
   color: white;
 }
+.footer__phone a:hover {
+  text-decoration: underline;
+}
 .footer__links {
   width: 25%;
   margin: 0;
@@ -1842,8 +1848,11 @@ margin-bottom: 0 !important;
 .playlist-list__show-name {
   margin-top: 10px;
 }
+.playlist-list__show-name a:hover {
+  text-decoration: underline;
+}
 .playlist-list__date {
-  padding-top: 5xpx;
+  padding-top: 5px;
 }
 .playlist-list__header {
   margin-top: 0;
@@ -1998,6 +2007,9 @@ margin-bottom: 0 !important;
   display: inline-block;
   font-weight: bold;
   vertical-align: top;
+}
+.faq__section-qna-pair span:hover {
+  cursor: pointer;
 }
 .faq__section-qna-content {
   display: inline-block;
