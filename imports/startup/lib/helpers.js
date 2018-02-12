@@ -1,10 +1,11 @@
 import Playlists from '../../api/playlists/playlists_collection.js';
 import Shows from '../../api/shows/shows_collection.js';
+import moment from 'moment-timezone';
 
 export const currentPlaylist = function() {
   return Playlists.find({
     $where: function() {
-      var now = new Date();
+      var now = moment(new Date()).tz("Pacific/Honolulu").toDate();
       return this.showDate.getYear() === now.getYear() &&
              this.showDate.getMonth() === now.getMonth() &&
              this.showDate.getDate() === now.getDate() &&
@@ -14,7 +15,7 @@ export const currentPlaylist = function() {
 };
 
 export const currentPlaylistFindOne = function() {
-  var now = new Date();
+  var now = moment(new Date()).tz("Pacific/Honolulu").toDate();
   var playlist = Playlists.findOne({
     $where: function() {
       return this.showDate.getYear() === now.getYear() &&
@@ -33,7 +34,7 @@ export const currentPlaylistFindOne = function() {
 };
 
 export const currentShow = function() {
-  var now = new Date();
+  var now = moment(new Date()).tz("Pacific/Honolulu").toDate();
   var show = Shows.findOne({ active: true, startDay: now.getDay(),
                          startHour: { $lte: now.getHours() },
                          endDay: now.getDay() }, { sort: { startHour: -1 }});
@@ -61,7 +62,7 @@ export const currentShow = function() {
 };
 
 export const nextShow = function() {
-  var now = new Date();
+  var now = moment(new Date()).tz("Pacific/Honolulu").toDate();
   var sameDay = Shows.findOne({active: true, startDay: now.getDay(),
                             startHour: { $gt: now.getHours() }, endDay: now.getDay() });
   var tmr1 = Shows.findOne({ active: true, startDay: { $gte: (now.getDay() + 1) % 7 }},

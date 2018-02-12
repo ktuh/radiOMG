@@ -32,14 +32,14 @@ Meteor.publish('showNowPlaying', () => {
   // We are making a big assumption here! The assumption is that shows
   // do not air over midnight into the next day. Shows are to be cut off
   // at 11:59 and air entirely on a single day.
-  var now = moment(new Date()).tz(Meteor.settings.timezone);
+  var now = moment(new Date()).tz("Pacific/Honolulu");
   return Shows.find({ active: true, startDay: now.day(),
                       startHour: { $lte: now.hour() }, endDay: now.day() },
                     { sort: { startHour: -1 }, limit: 1 });
 });
 
 Meteor.publish('nextOnAir', () => {
-  var now = moment(new Date()).tz(Meteor.settings.timezone);
+  var now = moment(new Date()).tz("Pacific/Honolulu");
   var sameDay = Shows.find({active: true, startDay: now.day(),
                             startHour: { $gt: now.hour() }, endDay: now.day() },
                          { sort: { startDay: 1, startHour: 1, startMinute: 1 },
