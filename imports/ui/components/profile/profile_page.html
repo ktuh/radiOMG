@@ -13,7 +13,13 @@
             </div>
             {{/if}}
             <div class='profile__left'>
-              {{#if photo.url}}<img class='profile__pic' src='{{photo.url}}'>{{/if}}
+              {{#if thumbnail}}
+                <img class='profile__pic' src='{{thumbnail}}'>
+              {{else}}
+                {{#if photo.url}}
+                  <img class='profile__pic' src='{{photo.url}}'>
+                {{/if}}
+              {{/if}}
               {{#if social}}
                 <div class='profile__social-icons'>
                   {{#if website}}<a href='{{website}}'><img class='profile__social-icon' src='/img/website.png'></a>{{/if}}

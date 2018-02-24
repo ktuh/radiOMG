@@ -2,7 +2,7 @@
   <div class='show-item'>
     <h4 class='show-item__time'>{{formattedTime startHour startMinute endHour endMinute}}</h4>
     <div class='show-item__image-div'>
-      <a href='/shows/{{slug}}'><img class='show-item__image' src='{{featuredImage.url}}'></a>
+      <a href='/shows/{{slug}}'><img class='show-item__image' src='{{#if thumbnail}}{{thumbnail}}{{else}}{{featuredImage.url}}{{/if}}'></a>
     </div>
     <div class='show-item__info-container'>
       <div class='show-item__info'>

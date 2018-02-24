@@ -1,6 +1,7 @@
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { scorpius } from 'meteor/scorpiusjs:core';
 import moment from 'moment-timezone';
+import { thumbnailUrl } from '../../startup/lib/helpers.js';
 
 export default PartySchema = new SimpleSchema({
   title: {
@@ -37,10 +38,30 @@ export default PartySchema = new SimpleSchema({
   flyerFront: scorpius.attribute('image', {
     label: 'Flyer Front Image'
   }),
+  thumbnail: {
+    type: String,
+    optional: true,
+    autoValue: function() {
+      var url = this.siblingField('flyerFront.url').value;
+      if (url) {
+        return thumbnailUrl(url, 648);
+      }
+    }
+  },
   flyerBack: scorpius.attribute('image', {
     label: 'Flyer Back Image (Optional)',
     optional: true
   }),
+  thumbnailBack: {
+    type: String,
+    optional: true,
+    autoValue: function() {
+      var url = this.siblingField('flyerBack.url').value;
+      if (url) {
+        return thumbnailUrl(url, 648);
+      }
+    }
+  },
   description: {
     type: String,
     label: 'Description (Optional)',
@@ -61,7 +82,7 @@ export default PartySchema = new SimpleSchema({
       type: 'hidden'
     },
     autoValue: function () {
-      if (this.isSet || this.isUpdate) return this.value;
+      if (this.isSet) return this.value;
       return this.userId;
     }
   },

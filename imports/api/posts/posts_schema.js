@@ -1,5 +1,6 @@
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import moment from 'moment-timezone';
+import { thumbnailUrl } from '../../startup/lib/helpers.js';
 
 export default PostsSchema = new SimpleSchema({
   userId: {
@@ -9,7 +10,7 @@ export default PostsSchema = new SimpleSchema({
       label: false
     },
     autoValue: function() {
-      if (this.isSet || this.isUpdate)
+      if (this.isSet)
         return this.value;
       else
         return Meteor.userId();
@@ -22,7 +23,7 @@ export default PostsSchema = new SimpleSchema({
       label: false
     },
     autoValue: function() {
-      if (this.isSet || this.isUpdate)
+      if (this.isSet)
         return this.value;
       else
         return Meteor.user().username;
@@ -32,6 +33,14 @@ export default PostsSchema = new SimpleSchema({
     label: 'Image',
     optional: true
   }),
+  thumbnail: {
+    type: String,
+    optional: true,
+    autoValue: function() {
+      var url = this.siblingField('photo.url').value;
+      if (url) return thumbnailUrl(url, 667);
+    }
+  },
   submitted: {
     type: Date,
     autoform: {

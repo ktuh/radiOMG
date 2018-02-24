@@ -114,7 +114,8 @@ Template.home.helpers({
     }
     else {
       var regex = new RegExp("(([^\\s]+\\s\\s*){" + numWords + "})(.*)");
-      return $(jQuery.parseHTML(body.replace(/></g, '> <'))).text().replace(regex," $1…");
+      var match = regex.exec($(jQuery.parseHTML(body.replace(/></g, '> <'))).text());
+      return match + "…";
     }
   },
   nextShow: () => nextShow(),

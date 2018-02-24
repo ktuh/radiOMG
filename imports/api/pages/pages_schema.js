@@ -11,7 +11,7 @@ export default PagesSchema = new SimpleSchema({
       label: false
     },
     autoValue: function() {
-      if (this.isSet || this.isUpdate) return this.value;
+      if (this.isSet) return this.value;
       return this.userId;
     }
   },
@@ -22,7 +22,7 @@ export default PagesSchema = new SimpleSchema({
       label: false
     },
     autoValue: function() {
-      if (this.isSet || this.isUpdate) return this.value;
+      if (this.isSet) return this.value;
       return Meteor.user().username;
     }
   },

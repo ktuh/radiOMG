@@ -38,7 +38,16 @@ Template.newsList.onRendered(function () {
 
 Template.newsList.helpers({
   newsPagePath: (slug) => FlowRouter.path('radioblog/:slug', { slug: slug }),
-  excerpt: (body) => $(jQuery.parseHTML(body.replace(/></g, '> <'))).text().replace(/(([^\s]+\s\s*){60})(.*)/,"$1…"),
+  excerpt: (summary, body) => {
+    if (summary && summary !== '') {
+      return summary;
+    }
+    else {
+      var regex = new RegExp("(([^\\s]+\\s\\s*){60})(.*)");
+      var match = regex.exec($(jQuery.parseHTML(body.replace(/></g, '> <'))).text());
+      return match + "…";
+    }
+  },
   posts: () => Template.instance().pagination.getPage(),
   templatePagination: () => Template.instance().pagination,
   nextOnAir: () => Shows.find({}).fetch(),
