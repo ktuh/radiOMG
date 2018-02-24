@@ -15,6 +15,14 @@ export default ProfilesSchema = new SimpleSchema({
     label: 'Image',
     optional: true
   }),
+  thumbnail: {
+    type: String,
+    optional: true,
+    autoValue: function() {
+      var url = this.siblingField('photo.url').value;
+      if (url) return thumbnailUrl(url, 688);
+    }
+  },
   bio: {
     type: String,
     label: 'Bio',

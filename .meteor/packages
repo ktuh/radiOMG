@@ -61,3 +61,4 @@ useraccounts:materialize
 dynamic-import
 meteor
 okgrow:analytics
+aldeed:simple-schema

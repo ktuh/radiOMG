@@ -15,7 +15,7 @@ export default ChartsSchema = new SimpleSchema({
       label: 'Chart Date'
     },
     autoValue: function() {
-      if (this.isSet || this.isUpdate)
+      if (this.isSet)
         return this.value;
       else
         return moment(new Date()).tz("Pacific/Honolulu").toDate();
@@ -29,7 +29,7 @@ export default ChartsSchema = new SimpleSchema({
       label: false
     },
     autoValue: function() {
-      if (this.isSet || this.isUpdate)
+      if (this.isSet)
         return this.value;
       else
         return moment(new Date()).tz("Pacific/Honolulu").toDate();
@@ -43,7 +43,7 @@ export default ChartsSchema = new SimpleSchema({
       label: false
     },
     autoValue: function() {
-      if (this.isSet || this.isUpdate)
+      if (this.isSet)
         return this.value;
       else
         return (this.userId && Meteor.users.findOne({_id: this.userId}).username) || "n/a"

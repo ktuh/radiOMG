@@ -2,6 +2,7 @@ import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { Meteor } from 'meteor/meteor';
 import { scorpius } from 'meteor/scorpiusjs:core';
 import moment from 'moment-timezone';
+import { thumbnailUrl } from '../../startup/lib/helpers.js';
 
 export default ReviewsSchema = new SimpleSchema({
   userId: {
@@ -11,7 +12,7 @@ export default ReviewsSchema = new SimpleSchema({
       label: false
     },
     autoValue: function () {
-      if (this.isSet || this.isUpdate) return this.value;
+      if (this.isSet) return this.value;
       return Meteor.userId();
     }
   },
@@ -22,7 +23,7 @@ export default ReviewsSchema = new SimpleSchema({
       label: false
     },
     autoValue: function() {
-      if (this.isSet || this.isUpdate) return this.value;
+      if (this.isSet) return this.value;
       return Meteor.users.findOne({_id: this.userId}).username;
     }
   },
@@ -77,6 +78,14 @@ export default ReviewsSchema = new SimpleSchema({
     label: 'Featured Image',
     optional: true
   }),
+  thumbnail: {
+    type: String,
+    optional: true,
+    autoValue: function() {
+      var url = this.siblingField('image.url').value;
+      if (url) return thumbnailUrl(url, 450);
+    }
+  },
   body: scorpius.attribute('summernote', {
     type: String,
     label: 'Body',

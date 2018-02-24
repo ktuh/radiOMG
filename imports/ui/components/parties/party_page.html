@@ -8,9 +8,13 @@
       </div>
       <div class='event-item'>
         <div class='flyer-div'>
-          <img class='flyer-div__front' src='{{flyerFront.url}}'>
-          {{#if flyerBack.url}}
-            <img class='flyer-div__back' src='{{flyerBack.url}}'>
+          <img class='flyer-div__front' src='{{#if thumbnail}}{{thumbnail}}{{else}}{{flyerFront.url}}{{/if}}'>
+          {{#if thumbnailBack}}
+              <img class='flyer-div__back' src='{{thumbnailBack}}'>
+          {{else}}
+            {{#if flyerBack.url}}
+              <img class='flyer-div__back' src='{{flyerBack.url}}'>
+            {{/if}}
           {{/if}}
         </div>
         <div class='party-info'>

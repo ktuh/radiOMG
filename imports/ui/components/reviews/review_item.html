@@ -2,7 +2,7 @@
   {{#if image}}
     <div class='review-item'>
       <a href='/reviews/{{slug}}'>
-        <img class='review-item__image' src='{{image.url}}'>
+        <img class='review-item__image' src='{{#if thumbnail}}{{thumbnail}}{{else}}{{image.url}}{{/if}}'>
         <div class='review-item__release'>{{releaseName}}</div>
         <div class='review-item__artist'>{{artist}}</div>
       </a>

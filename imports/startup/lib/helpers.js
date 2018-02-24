@@ -1,6 +1,7 @@
 import Playlists from '../../api/playlists/playlists_collection.js';
 import Shows from '../../api/shows/shows_collection.js';
 import moment from 'moment-timezone';
+import { Meteor } from 'meteor/meteor';
 
 export const currentPlaylist = function() {
   return Playlists.find({
@@ -72,3 +73,12 @@ export const nextShow = function() {
 
   return sameDay || tmr1 || tmr2;
 };
+
+export const thumbnailUrl = function(url, maxW) {
+  Meteor.call("requestFrom", url, maxW, (err, data) => {
+    if (!err) return data;
+  });
+  return "https://s3-" + Meteor.settings.awsRegion +
+    ".amazonaws.com/" + Meteor.settings.bucket + "/" + "thumbs/" +
+    url.split("/").slice(-1)[0] + ".png";
+}

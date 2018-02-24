@@ -3,6 +3,7 @@ import { scorpius } from 'meteor/scorpiusjs:core';
 import { Meteor } from 'meteor/meteor';
 import Profiles from '../users/profiles_collection.js';
 import moment from 'moment-timezone';
+import { thumbnailUrl } from '../../startup/lib/helpers.js';
 
 export default ShowsSchema = new SimpleSchema({
   showName: {
@@ -21,7 +22,7 @@ export default ShowsSchema = new SimpleSchema({
       label: false
     },
     autoValue: function() {
-      if (this.isSet || this.isUpdate)
+      if (this.isSet)
         return this.value;
       else
         return Meteor.userId();
@@ -34,7 +35,7 @@ export default ShowsSchema = new SimpleSchema({
       label: false
     },
     autoValue: function() {
-      if (this.isSet || this.isUpdate)
+      if (this.isSet)
         return this.value;
       else
         return Meteor.user().username;
@@ -44,7 +45,7 @@ export default ShowsSchema = new SimpleSchema({
     type: String,
     optional: false,
     autoValue: function() {
-      if (this.isSet || this.isUpdate)
+      if (this.isSet)
         return this.value;
       else
         return Profiles.find({ userId: Meteor.userId() }).name;
@@ -145,6 +146,14 @@ export default ShowsSchema = new SimpleSchema({
     label: 'Featured Image',
     optional: true
   }),
+  thumbnail: {
+    type: String,
+    optional: true,
+    autoValue: function() {
+      var url = this.siblingField('featuredImage.url').value;
+      if (url) return thumbnailUrl(url, 520);
+    }
+  },
   latestEpisodeUrl: {
     type: String,
     label: 'Link to Latest Episode',

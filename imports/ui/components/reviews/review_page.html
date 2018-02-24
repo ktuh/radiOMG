@@ -8,7 +8,7 @@
           <a href='/reviews' class='back-to'>← all reviews</a>
         </div>
         <div class="review__content">
-          <img class='review-page__image' src='{{image.url}}'>
+          <img class='review-page__image' src='{{#if thumbnail}}{{thumbnail}}{{else}}{{image.url}}{{/if}}'>
           <div class='review-page__copy'>
             <h4 class='review-page__rating'>{{formattedRating rating}} / 5.0</h4>
             <div class='review-page__byline'>Review by <a href="/profile/{{usernameById userId}}">{{displayNameById userId}}</a> • {{submitted}}</div>

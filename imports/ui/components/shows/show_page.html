@@ -10,7 +10,7 @@
         <div class="show__content">
         {{#if featuredImage}}
           <div class='show__image-div'>
-            <img class='show__image' src='{{featuredImage.url}}'>
+            <img class='show__image' src='{{#if thumbnail}}{{thumbnail}}{{else}}{{featuredImage.url}}{{/if}}'>
           </div>
         {{/if}}
       <div class='show__info'>
