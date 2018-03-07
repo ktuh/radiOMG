@@ -6,7 +6,7 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 import Posts from '../../../api/posts/posts_collection.js';
 import Comments from '../../../api/comments/comments_collection.js';
 import Profiles from '../../../api/users/profiles_collection.js';
-import moment from 'moment-timezone';
+import { moment } from 'meteor/momentjs:moment';
 
 Template.newsItem.onCreated(function () {
   var self = this;
@@ -15,7 +15,7 @@ Template.newsItem.onCreated(function () {
     self.subscribe('singlePost', slug, {
 
       onReady: function() {
-        var post = Posts.findOne({slug: slug});
+        var post = Posts.findOne({ slug: slug, approved: true });
         if (post === undefined) {
           FlowRouter.go('/radioblog');
         }

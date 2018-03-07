@@ -2,7 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { HTTP } from 'meteor/http';
 import CryptoJS from 'crypto-js';
 import '/node_modules/crypto-js/enc-base64.js';
-import moment from 'moment-timezone';
+import { moment } from 'meteor/momentjs:moment';
 import { check } from 'meteor/check';
 
 /*
@@ -12,9 +12,7 @@ import { check } from 'meteor/check';
 Meteor.methods({
   getPlaylistOrInfo: function(id, playlistOrInfo) {
     check(id, Number);
-    var date = new Date();
-
-    var ts = moment(date).tz('Etc/UTC');
+    var ts = moment().utc();
 
     var params = {}
 

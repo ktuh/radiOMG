@@ -1,6 +1,6 @@
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { scorpius } from 'meteor/scorpiusjs:core';
-import moment from 'moment-timezone';
+import { moment } from 'meteor/momentjs:moment';
 import { thumbnailUrl } from '../../startup/lib/helpers.js';
 
 export default PartySchema = new SimpleSchema({
@@ -73,7 +73,7 @@ export default PartySchema = new SimpleSchema({
       label: false,
       type: 'hidden'
     },
-    defaultValue: moment(new Date()).tz("Pacific/Honolulu").toDate()
+    defaultValue: moment().utcOffset("-10:00").toDate()
   },
   userId: {
     type: String,
@@ -82,7 +82,7 @@ export default PartySchema = new SimpleSchema({
       type: 'hidden'
     },
     autoValue: function () {
-      if (this.isSet) return this.value;
+      if (this.isUpdate) return this.value;
       return this.userId;
     }
   },

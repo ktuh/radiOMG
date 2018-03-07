@@ -1,7 +1,7 @@
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { scorpius } from 'meteor/scorpiusjs:core';
 import { FlowRouter } from 'meteor/kadira:flow-router';
-import moment from 'moment-timezone';
+import { moment } from 'meteor/momentjs:moment';
 
 export default PagesSchema = new SimpleSchema({
   userId: {
@@ -11,7 +11,7 @@ export default PagesSchema = new SimpleSchema({
       label: false
     },
     autoValue: function() {
-      if (this.isSet) return this.value;
+      if (this.isUpdate) return this.value;
       return this.userId;
     }
   },
@@ -22,7 +22,7 @@ export default PagesSchema = new SimpleSchema({
       label: false
     },
     autoValue: function() {
-      if (this.isSet) return this.value;
+      if (this.isUpdate) return this.value;
       return Meteor.user().username;
     }
   },
@@ -32,7 +32,7 @@ export default PagesSchema = new SimpleSchema({
       type: 'hidden',
       label: false
     },
-    autoValue: () => moment(new Date()).tz("Pacific/Honolulu").toDate()
+    autoValue: () => moment().utcOffset("-10:00").toDate()
   },
   title: {
     type: String,

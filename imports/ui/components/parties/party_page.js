@@ -18,7 +18,7 @@ Template.partyPage.onCreated(function () {
 
     self.subscribe('singleParty', slug, {
       onReady: function () {
-        var post = Parties.findOne({ slug: slug });
+        var post = Parties.findOne({ slug: slug, approved: true });
         if (post)
           self.subscribe('comments', post._id);
       }

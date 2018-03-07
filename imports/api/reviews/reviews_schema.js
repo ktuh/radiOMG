@@ -1,7 +1,7 @@
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { Meteor } from 'meteor/meteor';
 import { scorpius } from 'meteor/scorpiusjs:core';
-import moment from 'moment-timezone';
+import { moment } from 'meteor/momentjs:moment';
 import { thumbnailUrl } from '../../startup/lib/helpers.js';
 
 export default ReviewsSchema = new SimpleSchema({
@@ -12,7 +12,7 @@ export default ReviewsSchema = new SimpleSchema({
       label: false
     },
     autoValue: function () {
-      if (this.isSet) return this.value;
+      if (this.isUpdate) return this.value;
       return Meteor.userId();
     }
   },
@@ -23,7 +23,7 @@ export default ReviewsSchema = new SimpleSchema({
       label: false
     },
     autoValue: function() {
-      if (this.isSet) return this.value;
+      if (this.isUpdate) return this.value;
       return Meteor.users.findOne({_id: this.userId}).username;
     }
   },
@@ -41,7 +41,7 @@ export default ReviewsSchema = new SimpleSchema({
       type: 'hidden',
       label: false
     },
-    defaultValue: moment(new Date()).tz("Pacific/Honolulu").toDate()
+    defaultValue: moment().utcOffset("-10:00").toDate()
   },
   artist: {
     type: String,
@@ -56,7 +56,7 @@ export default ReviewsSchema = new SimpleSchema({
   year: {
     type: Number,
     min: 0,
-    max: moment(new Date()).tz("Pacific/Honolulu").toDate().getFullYear(),
+    max: moment().utcOffset("-10:00").toDate().getFullYear(),
     label: 'Year Released',
     optional: false
   },
