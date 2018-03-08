@@ -7,7 +7,7 @@ import Playlists from '../../../api/playlists/playlists_collection.js';
 import Shows from '../../../api/shows/shows_collection.js';
 import { Template } from 'meteor/templating';
 import { FlowRouter } from 'meteor/kadira:flow-router';
-import moment from 'moment-timezone';
+import { moment } from 'meteor/momentjs:moment';
 
 Template.playlistPage.onCreated(function(){
   var self = this;
@@ -49,6 +49,6 @@ Template.playlistPage.helpers({
      playlist && (moment(playlist.startTime, "HH:mm:ss").format('h:mm') +
         '-' + moment(playlist.endTime, "HH:mm:ss").format('h:mm a')),
   showDateOfLatestPlaylist: (date) =>
-    moment(date).tz("US/Hawaii").format("LL"),
+    moment(date).utcOffset('-10:00').format("LL"),
   timeBeautify: (time) => moment(time.substring(0, time.length - 3), 'HH:mm').format('hh:mm a')
 });

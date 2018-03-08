@@ -6,8 +6,8 @@ import { _ } from 'underscore';
 
 Meteor.publish('userData', function(username) {
   check(username, String);
-  return Meteor.users.find({username: username},
-                           {fields: {'username': 1, '_id': 1}});
+  return Meteor.users.find({ username: username },
+                           { fields: { 'username': 1, '_id': 1 } });
 });
 
 Meteor.publish('userById', function(id) {
@@ -61,9 +61,10 @@ Meteor.publish('profileNamesById', (ids) => {
 });
 
 Meteor.publish('djProfiles', () => {
-  var djs = Meteor.users.find({ roles: 'dj' }).fetch();
+  var djs = Meteor.users.find({ roles: 'dj' },
+    { fields: { 'username': 1, '_id': 1 } }).fetch();
   var userIds = _.map(djs, (p, i) => p._id);
   return Profiles.find({ userId: { $in: userIds} });
 });
 
-Meteor.publish('djs', () => Meteor.users.find({ roles: 'dj' }));
+Meteor.publish('djs', () => Meteor.users.find({ roles: 'dj' }, { fields: { 'username': 1, '_id': 1 } }));

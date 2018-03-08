@@ -2,7 +2,7 @@ import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { scorpius } from 'meteor/scorpiusjs:core';
 import { Meteor } from 'meteor/meteor';
 import Profiles from '../users/profiles_collection.js';
-import moment from 'moment-timezone';
+import { moment } from 'meteor/momentjs:moment';
 import { thumbnailUrl } from '../../startup/lib/helpers.js';
 
 export default ShowsSchema = new SimpleSchema({
@@ -22,7 +22,7 @@ export default ShowsSchema = new SimpleSchema({
       label: false
     },
     autoValue: function() {
-      if (this.isSet)
+      if (this.isUpdate)
         return this.value;
       else
         return Meteor.userId();
@@ -35,7 +35,7 @@ export default ShowsSchema = new SimpleSchema({
       label: false
     },
     autoValue: function() {
-      if (this.isSet)
+      if (this.isUpdate)
         return this.value;
       else
         return Meteor.user().username;
@@ -45,7 +45,7 @@ export default ShowsSchema = new SimpleSchema({
     type: String,
     optional: false,
     autoValue: function() {
-      if (this.isSet)
+      if (this.isUpdate)
         return this.value;
       else
         return Profiles.find({ userId: Meteor.userId() }).name;
@@ -165,6 +165,6 @@ export default ShowsSchema = new SimpleSchema({
       type: 'hidden',
       label: false
     },
-    defaultValue: moment(new Date()).tz("Pacific/Honolulu").toDate()
+    defaultValue: moment().utcOffset("-10:00").toDate()
   }
 });

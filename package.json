@@ -27,8 +27,6 @@
     "gm": "^1.23.1",
     "mediaelement": "^3.2.4",
     "meteor-node-stubs": "^0.2.11",
-    "moment": "^2.20.1",
-    "moment-timezone": "^0.5.14",
     "node-pre-gyp": "^0.6.39",
     "spawn-sync": "^1.0.15",
     "thread-sleep": "^2.0.0",

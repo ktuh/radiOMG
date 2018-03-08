@@ -1,5 +1,5 @@
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
-import moment from 'moment-timezone';
+import { moment } from 'meteor/momentjs:moment';
 import { thumbnailUrl } from '../../startup/lib/helpers.js';
 
 export default PostsSchema = new SimpleSchema({
@@ -10,7 +10,7 @@ export default PostsSchema = new SimpleSchema({
       label: false
     },
     autoValue: function() {
-      if (this.isSet)
+      if (this.isUpdate)
         return this.value;
       else
         return Meteor.userId();
@@ -23,7 +23,7 @@ export default PostsSchema = new SimpleSchema({
       label: false
     },
     autoValue: function() {
-      if (this.isSet)
+      if (this.isUpdate)
         return this.value;
       else
         return Meteor.user().username;
@@ -47,7 +47,7 @@ export default PostsSchema = new SimpleSchema({
       type: 'hidden',
       label: false
     },
-    defaultValue: moment(new Date()).tz("Pacific/Honolulu").toDate()
+    defaultValue: moment().utcOffset("-10:00").toDate()
   },
   title: {
     type: String,

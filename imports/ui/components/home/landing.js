@@ -6,7 +6,7 @@ import Profiles from '../../../api/users/profiles_collection.js';
 import Playlists from '../../../api/playlists/playlists_collection.js';
 import { Template } from 'meteor/templating';
 import { Session } from 'meteor/session';
-import moment from 'moment-timezone';
+import { moment } from 'meteor/momentjs:moment';
 import { currentPlaylist, currentPlaylistFindOne, currentShow } from '../../../startup/lib/helpers.js';
 
 Template.landing.onCreated(function() {
@@ -82,7 +82,7 @@ Template.landing.helpers({
            && Session.get('paused') === false;
   },
   background: () => {
-    var h = moment(new Date()).tz("Pacific/Honolulu").toDate().getHours();
+    var h = moment().utcOffset("-10:00").toDate().getHours();
     var $landing = $('.landing');
 
     if (h >= 6 && h < 11) {

@@ -26,7 +26,7 @@ Meteor.publish('singlePostById', (id) => {
 
 Meteor.publish('postsByUser', (username) => {
   check(username, String);
-  return Posts.find({ author: username }, { fields: { submitted: 1, title: 1,
+  return Posts.find({ author: username, approved: true }, { fields: { submitted: 1, title: 1,
                                                       author: 1, userId: 1 }});
 });
 
