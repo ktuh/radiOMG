@@ -54,11 +54,14 @@ export const currentShow = function() {
     actualEndHour = (actualEndHour + 1) % 24;
   }
 
-  if (now.getHours() >= actualEndHour) {
-    return undefined;
+  if (actualEndHour > 0 && now.getHours() < actualEndHour) {
+    return show;
+  }
+  else if (actualEndHour === 0 && now.getHours() < 24) {
+    return show;
   }
   else {
-    return show;
+    return undefined;
   }
 };
 
