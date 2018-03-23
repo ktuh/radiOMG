@@ -1887,6 +1887,9 @@ margin-bottom: 0 !important;
 .about__content {
   padding: 30px 0;
 }
+.page__content {
+  padding: 30px 60px;
+}
 .contact__content {
   padding: 30px;
 }
@@ -1984,7 +1987,7 @@ margin-bottom: 0 !important;
 .playlist__sidebar-link a:hover {
   text-decoration: underline;
 }
-.about__desc p, .about__content p, .about__help,
+.about__desc p, .about__content p, .page__content p, .about__help,
 .join__desc p, .join__content p,
 .contact__content p, .contact__content h4, .contact__content form,
 .contact__content ul {
@@ -2350,12 +2353,12 @@ margin-bottom: 0 !important;
   }
   .about__desc, .about__content, .about__help, .join__desc, .join__content,
   .faq__content, .contact__content, .playlist__content, .content
-  #partyForm, #showForm, .show__wrapper, .news-list__wrapper {
+  #partyForm, #showForm, .show__wrapper, .news-list__wrapper, .page__content {
     padding: 20px 40px;
   }
   .about__desc p, .about__content p,
   .join__desc p, .join__content p,
-  .faq__content p, .contact__content p, .contact__content h4,
+  .faq__content p, .contact__content p, .page__content p, .contact__content h4,
   .contact__content ul {
     padding: 0;
   }

@@ -7,22 +7,22 @@ import { _ } from 'underscore';
 Meteor.publish('userData', function(username) {
   check(username, String);
   return Meteor.users.find({ username: username },
-                           { fields: { 'username': 1, '_id': 1 } });
+                           { fields: { 'username': 1 } });
 });
 
 Meteor.publish('userById', function(id) {
   check(id, String);
-  return Meteor.users.find({_id: id});
+  return Meteor.users.find({ _id: id }, { fields: { 'username': 1 }});
 });
 
 Meteor.publish('userByDisplayName', function(name) {
   check(name, String);
   return Meteor.users.find({ _id: Profiles.findOne({ name: name }).userId },
-                           { fields: { 'username': 1, '_id': 1 } });
+                           { fields: { 'username': 1 } });
 });
 
 Meteor.publish('bannedProfiles', function() {
-  return Profiles.find({banned: true});
+  return Profiles.find({ banned: true });
 });
 
 Meteor.publish('profileData', function(userId) {
@@ -53,7 +53,7 @@ Meteor.publish('latestSevenWritersUsernames', () => {
                 { sort: { submitted: -1 }, limit: 6 }).fetch();
   var posts = nonFeatured.concat(featured);
   var ids = _.uniq(_.map(posts, (p, i) => p.userId));
-  return Meteor.users.find({ _id: { $in: ids } });
+  return Meteor.users.find({ _id: { $in: ids }}, { fields: { 'username': 1 }});
 });
 
 Meteor.publish('profileNamesById', (ids) => {
@@ -67,4 +67,4 @@ Meteor.publish('djProfiles', () => {
   return Profiles.find({ userId: { $in: userIds} });
 });
 
-Meteor.publish('djs', () => Meteor.users.find({ roles: 'dj' }, { fields: { 'username': 1, '_id': 1 } }));
+Meteor.publish('djs', () => Meteor.users.find({ roles: 'dj' }, { fields: { 'username': 1 } }));

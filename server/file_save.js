@@ -1,6 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import https from 'https';
-import gm from 'gm';
+import yubigen from 'yubigen';
 import AWS from 'aws-sdk';
 
 AWS.config.update({
@@ -10,29 +10,21 @@ AWS.config.update({
 
 Meteor.methods({
   requestFrom: function (url, maxW) {
-    var imgBuf = new Buffer('');
-    https.get(url, (respon) => {
-      respon.on('data', (data) => {
-        imgBuf = Buffer.concat([imgBuf, data]);
-      });
-      respon.on('end', () => {
-        var imageMagick = gm.subClass({ imageMagick: true });
-        return imageMagick(imgBuf).resize(maxW).toBuffer('PNG', (error, buff) => {
-          var params = {
-            Bucket: Meteor.settings.bucket,
-            Key: "thumbs/" + url.split("/").slice(-1)[0] + ".png",
-            Body: buff
-          };
-          var s3 = new AWS.S3();
-          return s3.putObject(params, function(err){
-            if (!err) return "https://s3-" + Meteor.settings.awsRegion + ".amazon.com/" + Meteor.settings.bucket + "/" + "thumbs/" + url.split("/").slice(-1)[0] + ".png";
-          });
+    yubigen.fromUrl(url, { resizeParams: [maxW], imageMagick: true, format: "PNG" },
+    (result, err) => {
+      if (err) console.log(err);
+      if (result) {
+        var params = {
+          Bucket: Meteor.settings.bucket,
+          Key: "thumbs/" + url.split("/").slice(-1)[0] + ".png",
+          Body: result
+        };
+        var s3 = new AWS.S3();
+        s3.putObject(params, function(error) {
+          if (error) console.log(error);
         });
-      });
-    }).on('error', (err) => {
-      if (err) return;
+      }
     });
-    return "https://s3-" + Meteor.settings.awsRegion + ".amazonaws.com/" +
-      Meteor.settings.bucket + "/thumbs/" + url.split("/").slice(-1)[0] + ".png";
+    return "https://s3-" + Meteor.settings.awsRegion + ".amazonaws.com/" + Meteor.settings.bucket + "/thumbs/" + url.split("/").slice(-1)[0] + ".png"
   }
 });
