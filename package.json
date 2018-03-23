@@ -17,22 +17,20 @@
   },
   "homepage": "https://github.com/daveyshindig/radiOMG",
   "dependencies": {
-    "aws-sdk": "^2.192.0",
+    "aws-sdk": "^2.212.1",
     "babel-runtime": "^6.26.0",
     "bcrypt": "^1.0.3",
     "body-parser": "^1.18.2",
-    "buffer": "^5.0.8",
-    "cross-spawn": "^6.0.4",
+    "cross-spawn": "^6.0.5",
     "crypto-js": "^3.1.9-1",
-    "fs": "0.0.1-security",
-    "gm": "^1.23.1",
     "mediaelement": "^3.2.4",
     "meteor-node-stubs": "^0.2.11",
     "node-pre-gyp": "^0.6.39",
     "spawn-sync": "^1.0.15",
     "thread-sleep": "^2.0.0",
     "try-thread-sleep": "^1.0.2",
-    "underscore": "^1.8.3"
+    "underscore": "^1.8.3",
+    "yubigen": "^0.1.0"
   },
   "devDependencies": {
     "url": "^0.11.0"

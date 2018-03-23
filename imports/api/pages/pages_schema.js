@@ -4,6 +4,12 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 import { moment } from 'meteor/momentjs:moment';
 
 export default PagesSchema = new SimpleSchema({
+  isDraft: {
+    type: Boolean,
+    optional: true,
+    defaultValue: true,
+    label: 'Draft'
+  },
   userId: {
     type: String,
     autoform: {

@@ -15,5 +15,5 @@ Meteor.publish('singlePage', function (slug) {
 });
 
 Meteor.publish('allPages', function() {
-  return Pages.find();
+  return Pages.find({});
 });

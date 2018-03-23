@@ -1,12 +1,14 @@
 <template name="pagesItem">
-  {{#if page}}
-    {{#with page}}
-      <h1 class="title">{{ title }}</h1>
-      <div class="body">
-        {{{ body }}}
-      </div>
-    {{/with}}
-  {{else}}
-    {{> notFound}}
+  {{#if Template.subscriptionsReady}}
+    {{#if page}}
+      {{#with page}}
+        <h2 class='general__header'>{{ title }}</h2>
+        <div class="page__content">
+          {{{ body }}}
+        </div>
+      {{/with}}
+    {{else}}
+      {{> notFound}}
+    {{/if}}
   {{/if}}
 </template>
