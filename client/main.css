@@ -154,7 +154,7 @@ h1, h2, h3, h4, h5 {
   text-decoration: underline;
 }
 .landing__play-btn-outer {
-  float: left;
+  flex: none;
   width: 10em;
   height: 10em;
   border: 2px solid;
@@ -2028,7 +2028,7 @@ margin-bottom: 0 !important;
   padding: 60px;
 }
 .staff__item {
-  width: 100%;
+  width: 32%;
   text-align: center;
   display: inline-block;
 }
@@ -2332,7 +2332,10 @@ margin-bottom: 0 !important;
     width: calc(100% - 40px);
     top: 45px;
   }
-  .landing__info { max-width: 30em; }
+  .landing__info { 
+    max-width: calc(100% - 40px); 
+    min-width: 280px;
+  }
   .landing__show-name,
   .landing__show-host,
   .landing__song-title,
@@ -2719,6 +2722,10 @@ margin-bottom: 0 !important;
   .show__image {
     width: 100%;
     height: auto;
+    margin: 0;
+  }
+  .show__info {
+    width: 100%;
     margin: 0;
   }
 }
