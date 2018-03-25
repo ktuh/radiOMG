@@ -433,11 +433,19 @@ h1, h2, h3, h4, h5 {
 .header__support-btn {
   background-color: transparent;
   border: none;
+  padding: 0;
 }
-.header__support-btn a {
+.header__support-btn span {
   padding: 0 15px;
   font-weight: 900;
   color: #fff;
+  padding: 0 27px !important;
+}
+.header__support-link {
+  height: 100%;
+  border-top-width: 0px !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 .info-box {
   float: left;
@@ -2269,8 +2277,12 @@ margin-bottom: 0 !important;
   }
 }
 @media (max-width: 767px) {
+  .mejs__broadcast, .mejs__time-rail span {
+    width: 85px;
+  }
   .info-box__link {
-    margin: 12px 0;
+    margin: 8px 0;
+    padding-top: 0;
   }
   .navbar-nav {
     margin-top: 17px;
@@ -2810,7 +2822,7 @@ margin-bottom: 0 !important;
     margin-left: 20px;
   }
   .info-box__link {
-    margin: 12px 5px 12px 20px;
+    margin: 8px 5px 8px 20px;
   }
   .home__reviews-item,
   .review-item {
