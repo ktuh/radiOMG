@@ -6,7 +6,7 @@
       {{#with featuredPost}}
         <div class='home__featured-photo'>
           <span class='purple-tag'>Featured</span>
-          <img class='home__featured-img' src='{{photo.url}}'>
+          <img class='home__featured-img' src='{{#if thumbnail}}{{thumbnail}}{{else}}{{photo.url}}{{/if}}'>
         </div>
         <div class='home__featured-item'>
           <p class='home__featured-category'>{{category}}</p>
@@ -32,7 +32,7 @@
           {{#each posts}}
           <div class='home__news-item'>
             <a href='/radioblog/{{slug}}'>
-              <img class='home__news-img' src='{{photo.url}}'>
+              <img class='home__news-img' src='{{#if thumbnail}}{{thumbnail}}{{else}}{{photo.url}}{{/if}}'>
               <h4 class='home__title'>{{title}}</h4>
             </a>
             <p class='home__synopsis'>{{renderSummary summary body 40}}</p>
@@ -52,7 +52,7 @@
           {{#each reviews}}
             <div class='home__reviews-item'>
               <a href='/reviews/{{slug}}'>
-                <img class='home__reviews-img' src='{{image.url}}'>
+                <img class='home__reviews-img' src='{{#if thumbnail}}{{thumbnail}}{{else}}{{image.url}}{{/if}}'>
                 <p class='home__title'>{{artist}}</p>
                 <p class='home__subtitle'>{{releaseName}}</p>
               </a>

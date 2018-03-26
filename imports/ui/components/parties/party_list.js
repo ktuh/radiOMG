@@ -3,13 +3,12 @@ import './party_item.js';
 import { Template } from 'meteor/templating';
 import { Meteor } from 'meteor/meteor';
 import { $ } from 'meteor/jquery';
+import Parties from '../../../api/parties/parties_collection.js';
 
 Template.partyList.onCreated(function() {
   var self = this;
-  self.autorun(async function() {
-    const Parties = await import( '../../../api/parties/parties_collection.js').then(function() {
-      self.subscribe('approvedParties');
-    });
+  self.autorun(function() {
+    self.subscribe('approvedParties');
   });
 });
 

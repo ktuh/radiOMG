@@ -18,10 +18,16 @@
     <div class='playlist__content'>
       {{#if showByShowId playlist.showId}}
         {{#with show=(showByShowId playlist.showId)}}
-          {{#if show.featuredImage}}
-            <a href="/shows/{{show.slug}}">
-              <img class='playlist__show-image' src='{{show.featuredImage.url}}'>
+          {{#if thumbnail}}
+            <a href='/shows/{{show.slug}}'>
+              <img class='playlist__show-image' src='{{show.thumbnail}}'>
             </a>
+          {{else}}
+            {{#if show.featuredImage.url}}
+              <a href='/shows/{{show.slug}}'>
+                <img class='playlist__show-image' src='{{show.featuredImage.url}}'>
+              </a>
+            {{/if}}
           {{/if}}
         {{/with}}
       {{/if}}

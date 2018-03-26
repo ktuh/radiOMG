@@ -4,10 +4,16 @@
     {{#if Template.subscriptionsReady}}
       {{#if latestShow}}
         {{#with latestShow}}
-          {{#if featuredImage.url}}
+          {{#if thumbnail}}
             <a href='/shows/{{slug}}'>
-              <img class='playlist__show-image' src='{{featuredImage.url}}'>
+              <img class='playlist__show-image' src='{{thumbnail}}'>
             </a>
+          {{else}}
+            {{#if featuredImage.url}}
+              <a href='/shows/{{slug}}'>
+                <img class='playlist__show-image' src='{{featuredImage.url}}'>
+              </a>
+            {{/if}}
           {{/if}}
         {{/with}}
       {{/if}}
