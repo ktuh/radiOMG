@@ -98,7 +98,7 @@ h1, h2, h3, h4, h5 {
   margin-bottom: 5px;
   pointer-events: auto;
 }
-.content {
+.content, .reviews__content {
   padding: 20px 60px 30px;
 }
 .landing {
@@ -1668,7 +1668,7 @@ margin-bottom: 0 !important;
   margin: 0;
   text-transform: uppercase;
 }
-.reviews h4 {
+.reviews__content h4 {
   font-weight: bold;
 }
 .review-page {
@@ -2347,8 +2347,8 @@ margin-bottom: 0 !important;
     width: calc(100% - 40px);
     top: 45px;
   }
-  .landing__info { 
-    max-width: calc(100% - 40px); 
+  .landing__info {
+    max-width: calc(100% - 40px);
     min-width: 280px;
   }
   .landing__show-name,
@@ -2364,7 +2364,7 @@ margin-bottom: 0 !important;
     justify-content: center;
   }
   .about__desc, .about__content, .about__help, .join__desc, .join__content,
-  .faq__content, .contact__content, .playlist__content, .content
+  .faq__content, .contact__content, .playlist__content, .content, .reviews__content
   #partyForm, #showForm, .show__wrapper, .news-list__wrapper, .page__content {
     padding: 20px 40px;
   }
