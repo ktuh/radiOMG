@@ -82,6 +82,6 @@ export const thumbnailUrl = function(url, maxW) {
     if (!err) return data;
   });
   return "https://s3-" + Meteor.settings.awsRegion +
-    ".amazonaws.com/" + Meteor.settings.bucket + "/" + "thumbs/" +
+    ".amazonaws.com/" + Meteor.settings.bucket + "/thumbs/" +
     url.split("/").slice(-1)[0] + ".png";
 }
