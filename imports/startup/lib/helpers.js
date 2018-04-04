@@ -6,7 +6,7 @@ import { Meteor } from 'meteor/meteor';
 export const currentPlaylist = function() {
   return Playlists.find({
     $where: function() {
-      var now = moment().utcOffset("-10:00").toDate();
+      var now = moment.utc().utcOffset("-10:00").toDate();
       return this.showDate.getYear() === now.getYear() &&
              this.showDate.getMonth() === now.getMonth() &&
              this.showDate.getDate() === now.getDate() &&
@@ -16,7 +16,7 @@ export const currentPlaylist = function() {
 };
 
 export const currentPlaylistFindOne = function() {
-  var now = moment().utcOffset("-10:00").toDate();
+  var now = moment.utc().utcOffset("-10:00").toDate();
   var playlist = Playlists.findOne({
     $where: function() {
       return this.showDate.getYear() === now.getYear() &&
@@ -35,7 +35,7 @@ export const currentPlaylistFindOne = function() {
 };
 
 export const currentShow = function() {
-  var now = moment().utcOffset("-10:00").toDate();
+  var now = moment.utc().utcOffset("-10:00").toDate();
   var show = Shows.findOne({ active: true, startDay: now.getDay(),
                          startHour: { $lte: now.getHours() },
                          endDay: now.getDay() }, { sort: { startHour: -1 }});
@@ -66,7 +66,7 @@ export const currentShow = function() {
 };
 
 export const nextShow = function() {
-  var now = moment().utcOffset("-10:00").toDate();
+  var now = moment.utc().utcOffset("-10:00").toDate();
   var sameDay = Shows.findOne({active: true, startDay: now.getDay(),
                             startHour: { $gt: now.getHours() }, endDay: now.getDay() });
   var tmr1 = Shows.findOne({ active: true, startDay: { $gte: (now.getDay() + 1) % 7 }},

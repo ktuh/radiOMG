@@ -21,7 +21,7 @@ Meteor.methods({
       body: commentAttributes.body,
       userId: user._id,
       author: user.username,
-      submitted: moment().utcOffset("-10:00").toDate()
+      submitted: moment.utc().utcOffset("-10:00").toDate()
     };
     var to = '';
     var subject = '';
