@@ -73,7 +73,7 @@ export default PartySchema = new SimpleSchema({
       label: false,
       type: 'hidden'
     },
-    defaultValue: moment().utcOffset("-10:00").toDate()
+    defaultValue: moment.utc().utcOffset("-10:00").toDate()
   },
   userId: {
     type: String,

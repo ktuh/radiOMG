@@ -38,7 +38,7 @@ export default PagesSchema = new SimpleSchema({
       type: 'hidden',
       label: false
     },
-    autoValue: () => moment().utcOffset("-10:00").toDate()
+    autoValue: () => moment.utc().utcOffset("-10:00").toDate()
   },
   title: {
     type: String,

@@ -34,7 +34,7 @@ Picker.route('/spinitron/latest', function(params, req, res, next) {
         Playlists.insert({
           showId: showId,
           spinPlaylistId: playlistId,
-          showDate: moment().utcOffset("-10:00").toDate(),
+          showDate: moment.utc().utcOffset("-10:00").toDate(),
           startTime: result.OnairTime,
           endTime: result.OffairTime,
           djName: result.DJName
@@ -44,7 +44,7 @@ Picker.route('/spinitron/latest', function(params, req, res, next) {
   }
 
   if (NowPlaying.find({}).count() < 1)
-    NowPlaying.insert({current: html, timestamp: moment().utcOffset("-10:00").toDate()});
+    NowPlaying.insert({current: html, timestamp: moment.utc().utcOffset("-10:00").toDate()});
   else
-    NowPlaying.update(NowPlaying.findOne()._id, { $set: { current: html, timestamp: moment().utcOffset("-10:00").toDate() }});
+    NowPlaying.update(NowPlaying.findOne()._id, { $set: { current: html, timestamp: moment.utc().utcOffset("-10:00").toDate() }});
 });

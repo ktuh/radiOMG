@@ -37,7 +37,7 @@ Template.landing.onCreated(function() {
     });
     self.subscribe('nowPlaying');
     if (NowPlaying.findOne()) {
-      Session.set('timeout', moment().diff(moment(NowPlaying.findOne().timestamp)) > 360000);
+      Session.set('timeout', moment.utc().utcOffset("-10:00").diff(moment(NowPlaying.findOne().timestamp).utcOffset("-10:00")) > 360000);
     }
   });
 });
@@ -82,7 +82,7 @@ Template.landing.helpers({
            && Session.get('paused') === false;
   },
   background: () => {
-    var h = moment().utcOffset("-10:00").toDate().getHours();
+    var h = moment.utc().utcOffset("-10:00").toDate().getHours();
     var $landing = $('.landing');
 
     if (h >= 6 && h < 11) {

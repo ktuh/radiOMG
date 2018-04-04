@@ -18,7 +18,7 @@ Template.showList.helpers({
   active: (d) => {
     var day = FlowRouter.getQueryParam('day');
     var daze = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    var date = moment().utcOffset("-10:00").toDate();
+    var date = moment.utc().utcOffset("-10:00").toDate();
 
     // We're not routed to a particular day of the week
     if (day === undefined || $.inArray(day, daze) === -1)
@@ -28,7 +28,7 @@ Template.showList.helpers({
   daysShows: () => {
     var day = FlowRouter.getQueryParam('day');
     var daze = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    var date = moment().utcOffset("-10:00").toDate();
+    var date = moment.utc().utcOffset("-10:00").toDate();
     var dayNum = 0;
     if (day === undefined || $.inArray(day, daze) < 0) {
       dayNum = date.getDay();
@@ -44,7 +44,7 @@ Template.showList.events({
   'click .shows__previous-day': function (event) {
     var day = FlowRouter.getQueryParam('day');
     var daze = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    var date = moment().utcOffset("-10:00").toDate();
+    var date = moment.utc().utcOffset("-10:00").toDate();
     var prevDayNum = 0;
     if (day === undefined || $.inArray(day, daze) < 0)
       prevDayNum = date.getDay() - 1 < 0 ? 6 : date.getDay() - 1;
@@ -57,7 +57,7 @@ Template.showList.events({
   'click .shows__next-day': function (event) {
     var day = FlowRouter.getQueryParam('day');
     var daze = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    var date = moment().utcOffset("-10:00").toDate();
+    var date = moment.utc().utcOffset("-10:00").toDate();
     var nextDayNum = 0;
     if (day === undefined || $.inArray(day, daze) < 0)
       nextDayNum = date.getDay() + 1 > 6 ? 0 : date.getDay() + 1;
