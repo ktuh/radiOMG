@@ -192,7 +192,7 @@ FlowRouter.route('/profile', {
 FlowRouter.route('/about-us', {
   name: 'about',
   action: async function() {
-    await import('../../ui/components/about/about.js').then(function() {
+    await import('../../ui/components/static_pages/about.js').then(function() {
       BlazeLayout.render('layout', {content: 'about'});
     });
   }
@@ -201,7 +201,7 @@ FlowRouter.route('/about-us', {
 FlowRouter.route('/join-ktuh', {
   name: 'join',
   action: async function() {
-    await import('../../ui/components/join/join.js').then(function() {
+    await import('../../ui/components/static_pages/join.js').then(function() {
       BlazeLayout.render('layout', {content: 'join'});
     });
   }
@@ -210,7 +210,7 @@ FlowRouter.route('/join-ktuh', {
 FlowRouter.route('/faq', {
   name: 'faq',
   action: async function() {
-    await import('../../ui/components/faq/faq.js').then(function() {
+    await import('../../ui/components/static_pages/faq.js').then(function() {
       BlazeLayout.render('layout', {content: 'faq'});
     });
   }
@@ -219,7 +219,7 @@ FlowRouter.route('/faq', {
 FlowRouter.route('/contact-us', {
   name: 'contact-us',
   action: async function() {
-    await import('../../ui/components/contact/contact.js').then(function() {
+    await import('../../ui/components/static_pages/contact.js').then(function() {
       BlazeLayout.render('layout', {content: 'contact'});
     });
   }
@@ -228,7 +228,7 @@ FlowRouter.route('/contact-us', {
 FlowRouter.route('/staff', {
   name: 'staff',
   action: async function() {
-    await import('../../ui/components/staff/staff.js').then(function() {
+    await import('../../ui/components/static_pages/staff.js').then(function() {
       BlazeLayout.render('layout', {content: 'staff'});
     });
   }
@@ -237,7 +237,7 @@ FlowRouter.route('/staff', {
 FlowRouter.route('/timeline', {
   name: 'timeline',
   action: async function() {
-    await import('../../ui/components/timeline/timeline.js').then(function() {
+    await import('../../ui/components/static_pages/timeline.js').then(function() {
       BlazeLayout.render('layout', {content: 'timeline'});
     });
   }
@@ -246,7 +246,7 @@ FlowRouter.route('/timeline', {
 FlowRouter.route('/underwriting', {
   name: 'underwriting',
   action: async function() {
-    await import('../../ui/components/underwriting/underwriting.js').then(function() {
+    await import('../../ui/components/static_pages/underwriting.js').then(function() {
       BlazeLayout.render('layout', {content: 'underwriting'});
     });
   }
@@ -255,7 +255,7 @@ FlowRouter.route('/underwriting', {
 FlowRouter.route('/resend', {
   name: 'resend',
   action: async function() {
-    await import('../../ui/components/resend/resend.js').then(function() {
+    await import('../../ui/components/static_pages/resend.js').then(function() {
       BlazeLayout.render('layout', {content: 'resend'});
     });
   }
