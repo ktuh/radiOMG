@@ -912,6 +912,13 @@ audio {
   margin: 0;
   clear: both;
 }
+.profile__posts a {
+  text-decoration: underline;
+  text-decoration-style: solid;
+}
+.profile__posts a:hover {
+  color: #5940de;
+}
 #profile__ban-user,
 #profile__unban-user {
   margin: 10px 0;

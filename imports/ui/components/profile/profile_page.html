@@ -40,14 +40,14 @@
               <div class='profile__bio'>
                 {{#if bio}}{{{bio}}}{{else}}<i>({{name}} hasn't filled out a bio yet.)</i>{{/if}}
               </div>
-              {{#if Template.subscriptionsReady}} {{#if posts}}
+              {{#if posts}}
                 <div class='profile__posts'>
                   <h4>Posts</h4>
                   {{#each posts}}
                     <p class='profile__posts'><a href='/radioblog/{{slug}}'>{{title}}</a></p>
                   {{/each}}
                 </div>
-              {{/if}} {{/if}}
+              {{/if}}
               {{#if negB1andB2 ownProfile isAdmin}} {{#unless isBanned}}
                 <input id='profile__ban-user' type="button" value="Ban User">
               {{else}}
