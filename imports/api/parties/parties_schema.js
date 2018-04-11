@@ -65,7 +65,10 @@ export default PartySchema = new SimpleSchema({
   description: {
     type: String,
     label: 'Description (Optional)',
-    optional: true
+    optional: true,
+    autoform: {
+      type: 'summernote'
+    }
   },
   submitted: {
     type: Date,
