@@ -108,15 +108,10 @@ Template.home.helpers({
     return featured && featured.tags &&
            featured.tags.length > 0 && featured.tags[0];
   },
-  renderSummary: (summary, body, numWords) => {
-    if (summary && summary !== '') {
-      return summary;
-    }
-    else {
-      var regex = new RegExp("(([^\\s]+\\s\\s*){" + numWords + "})(.*)");
-      var match = regex.exec($(jQuery.parseHTML(body.replace(/></g, '> <'))).text());
-      return match + "…";
-    }
+  renderSummary: (summary, numWords) => {
+    var regex = new RegExp("(([^\\s]+\\s\\s*){" + numWords + "})(.*)");
+    var match = regex.exec(summary);
+    return (match && match[1] || summary) + "…";
   },
   nextShow: () => nextShow(),
   startEndTime: (startHour, startMinute, endHour, endMinute) => {

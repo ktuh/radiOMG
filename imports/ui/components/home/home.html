@@ -14,7 +14,7 @@
             <h3 class='home__title'>{{title}}</h3>
           </a>
           <p class='home__synopsis'>
-            {{renderSummary summary body 100}}
+            {{renderSummary summary 100}}
           </p>
         </div>
       {{/with}}
@@ -35,7 +35,7 @@
               <img class='home__news-img' src='{{#if thumbnail}}{{thumbnail}}{{else}}{{photo.url}}{{/if}}'>
               <h4 class='home__title'>{{title}}</h4>
             </a>
-            <p class='home__synopsis'>{{renderSummary summary body 40}}</p>
+            <p class='home__synopsis'>{{renderSummary summary 40}}</p>
             <p class='home__byline'>
               by <a href='/profile/{{usernameById userId}}'>{{displayNameById userId}}</a> / {{timeDiff submitted}}
             </p>
