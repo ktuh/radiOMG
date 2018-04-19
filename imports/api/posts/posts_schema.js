@@ -67,7 +67,7 @@ export default PostsSchema = new SimpleSchema({
   summary: {
     type: String,
     label: 'Summary',
-    optional: true,
+    optional: false,
     autoform: {
       type: 'textarea',
       rows: 3

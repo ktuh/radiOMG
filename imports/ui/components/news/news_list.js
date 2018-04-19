@@ -37,16 +37,11 @@ Template.newsList.onRendered(function () {
 });
 
 Template.newsList.helpers({
-  newsPagePath: (slug) => FlowRouter.path('radioblog/:slug', { slug: slug }),
-  excerpt: (summary, body) => {
-    if (summary && summary !== '') {
-      return summary;
-    }
-    else {
-      var regex = new RegExp("(([^\\s]+\\s\\s*){60})(.*)");
-      var match = regex.exec($(jQuery.parseHTML(body.replace(/></g, '> <'))).text());
-      return match + "…";
-    }
+  newsPagePath: (slug) => FlowRouter.path('/radioblog/:slug', { slug: slug }),
+  excerpt: (summary) => {
+    var regex = new RegExp("(([^\\s]+\\s\\s*){60})(.*)");
+    var match = regex.exec(summary);
+    return (match && match[1] || summary) + "…";
   },
   posts: () => Template.instance().pagination.getPage(),
   templatePagination: () => Template.instance().pagination,
