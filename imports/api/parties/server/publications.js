@@ -4,7 +4,7 @@ import { moment } from 'meteor/momentjs:moment';
 
 Meteor.publish('approvedParties', function () {
   return Parties.find({ approved: true,
-    startTime: { $gt: moment.utc().utcOffset("-10:00").toDate() } });
+    endTime: { $gt: moment.utc().utcOffset("-10:00").toDate() } });
 });
 
 Meteor.publish('singleParty', function (selector) {

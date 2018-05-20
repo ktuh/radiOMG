@@ -2,9 +2,13 @@
   <h2 class='general__header'>Events</h2>
   <div class='events-list'>
   {{#if Template.subscriptionsReady}}
-    {{#each parties}}
-      {{> partyItem}}
-    {{/each}}
+    {{#if parties.fetch.length}}
+      {{#each parties}}
+        {{> partyItem}}
+      {{/each}}
+    {{else}}
+      <p>No events at this time. Check back later.</p>
+    {{/if}}
   {{else}}
     {{> spinner}}
   {{/if}}

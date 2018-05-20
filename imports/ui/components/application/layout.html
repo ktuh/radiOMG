@@ -1,4 +1,15 @@
 <template name='layout'>
+  {{#if Template.subscriptionsReady}}
+    {{#if home}}
+      {{#if notice}}
+        <div class='banner-container'>
+        {{#with notice}}
+          {{> banner}}
+        {{/with}}
+        </div>
+      {{/if}}
+    {{/if}}
+  {{/if}}
   <div class='container'>
     {{#if home}}
       {{> landing}}
