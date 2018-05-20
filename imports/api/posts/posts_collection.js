@@ -17,10 +17,6 @@ export default Posts = new scorpius.collection('posts', {
         data: 'title',
         title: 'Title',
       }, {
-        data: 'body',
-        title: 'Body',
-        tmpl: Meteor.isClient && Template.commentsIndexBlurbCell
-      }, {
         data: 'approved',
         title: 'Locked'
       },

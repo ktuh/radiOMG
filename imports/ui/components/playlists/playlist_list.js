@@ -22,12 +22,13 @@ Template.playlistList.onCreated(function() {
             var show = Shows.findOne({ showId: playlist.showId });
             var showId = show && show.showId || -1;
 
-            if (showId > -1 && show.host === playlist.djName) {
+            if (showId > -1) {
               self.subscribe('userById', show.userId);
+              self.subscribe('profileData', show.userId);
             }
             else {
-              self.subscribe('userByDisplayName', playlist.djName, function() {
-                self.subscribe('profileData', Meteor.users.findOne({})._id);
+              self.subscribe('profileDataByUsername', playlist.djName, function() {
+                self.subscribe('userByDisplayName', playlist.djName);
               });
             }
 
