@@ -10,5 +10,5 @@ Template.staff.onCreated(function() {
 });
 
 Template.staff.helpers({
-  djs: () => Profiles.find({}, { sort: { name: 1 }})
+  djs: () => Profiles.find({}, { sort: { name: 1 } })
 });

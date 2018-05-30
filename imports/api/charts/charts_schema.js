@@ -18,7 +18,7 @@ export default ChartsSchema = new SimpleSchema({
       if (this.isUpdate)
         return this.value;
       else
-        return moment.utc().utcOffset("-10:00").toDate();
+        return moment.utc().utcOffset('-10:00').toDate();
     }
   },
   createdAt: {
@@ -32,7 +32,7 @@ export default ChartsSchema = new SimpleSchema({
       if (this.isUpdate)
         return this.value;
       else
-        return moment.utc().utcOffset("-10:00").toDate();
+        return moment.utc().utcOffset('-10:00').toDate();
     }
   },
   createdBy: {
@@ -46,7 +46,8 @@ export default ChartsSchema = new SimpleSchema({
       if (this.isUpdate)
         return this.value;
       else
-        return (this.userId && Meteor.users.findOne({_id: this.userId}).username) || "n/a"
+        return (this.userId &&
+          Meteor.users.findOne({ _id: this.userId }).username) || 'n/a'
     }
   },
   editedBy: {
@@ -56,7 +57,9 @@ export default ChartsSchema = new SimpleSchema({
       type: 'hidden',
       label: false
     },
-    autoValue: () => (this.userId && Meteor.users.findOne({_id: this.userId}).username) || "n/a"
+    autoValue: () =>
+      (this.userId &&
+       Meteor.users.findOne({ _id: this.userId }).username) || 'n/a'
   },
   editedAt: {
     type: Date,
@@ -65,7 +68,7 @@ export default ChartsSchema = new SimpleSchema({
       type: 'hidden',
       label: false
     },
-    autoValue: () => moment.utc().utcOffset("-10:00").toDate()
+    autoValue: () => moment.utc().utcOffset('-10:00').toDate()
   },
   tracks: {
     type: [TracksSchema],

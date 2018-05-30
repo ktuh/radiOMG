@@ -5,7 +5,10 @@ Meteor.methods({
     check([to, subject, body], [String]);
     check(form, Boolean);
     var sender =  Meteor.settings.emailUsername;
-    var replyTo = form ? Meteor.users.findOne({_id: this.userId}).emails[0].address : undefined;
+    var replyTo = undefined;
+    if (form) replyTo = Meteor.users.findOne({
+      _id: this.userId
+    }).emails[0].address;
     this.unblock();
     var sendContents = {};
     sendContents.to = to;

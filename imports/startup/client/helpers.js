@@ -14,7 +14,9 @@ Template.registerHelper('usernameFromDisplayName', (name) => {
 });
 
 Template.registerHelper('displayNameFromUsername', (username) =>
-  Profiles.findOne({ userId: Meteor.users.findOne({ username: username })._id }).name);
+  Profiles.findOne({ userId: Meteor.users.findOne({
+    username: username
+  })._id }).name);
 
 Template.registerHelper('showByShowId', (spinId) =>
   Shows.findOne({ showId: spinId }));

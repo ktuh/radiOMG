@@ -25,14 +25,14 @@ Template.partyItem.helpers({
 });
 
 Template.partyItem.events({
-  'click .party-upvotes__heart': (event, template) => {
+  'click .party-upvotes__heart': (event, templateInstance) => {
     let user = Meteor.userId();
 
     if (user === null) {
       Bert.alert('Please log in (or register) to upvote.', 'info');
     }
     else {
-      Meteor.call('upvoteParty', template.data._id);
+      Meteor.call('upvoteParty', templateInstance.data._id);
     }
   }
 });

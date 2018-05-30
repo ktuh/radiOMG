@@ -27,13 +27,16 @@ export default Posts = new scorpius.collection('posts', {
 
 Posts.allow({
   insert: function (userId, doc) {
-    return (userId && doc.userId === userId) || Meteor.user().hasRole("moderator");
+    return (userId && doc.userId === userId) ||
+      Meteor.user().hasRole('moderator');
   },
   update: function (userId, doc, fields, modifier) {
-    return (userId && doc.userId === userId) || Meteor.user().hasRole("moderator");
+    return (userId && doc.userId === userId) ||
+      Meteor.user().hasRole('moderator');
   },
   remove: function (userId, doc) {
-    return (userId && doc.userId === userId) || Meteor.user().hasRole("moderator");
+    return (userId && doc.userId === userId) ||
+      Meteor.user().hasRole('moderator');
   },
   fetch: ['userId']
 });

@@ -1,10 +1,12 @@
 import { Meteor } from 'meteor/meteor';
 import { moment } from 'meteor/momentjs:moment';
+import { check } from 'meteor/check';
 
 Meteor.methods({
   resendVerificationLink: function(email) {
-    var user = Meteor.users.findOne({"emails.0.address": email,
-                "emails.0.verified": false});
+    check(email, String)
+    var user = Meteor.users.findOne({ 'emails.0.address': email,
+      'emails.0.verified': false });
     if (user) {
       var emailService = user.services.email, tokens;
 

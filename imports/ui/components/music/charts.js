@@ -4,7 +4,9 @@ import Charts from '../../../api/charts/charts_collection.js';
 
 Template.musicCharts.onCreated(function() {
   var self = this;
-  self.pagination = new Meteor.Pagination(Charts, {sort: {createdAt: -1}, perPage: 7});
+  self.pagination = new Meteor.Pagination(Charts, {
+    sort: { createdAt: -1 }, perPage: 7
+  });
 });
 
 Template.musicCharts.helpers({

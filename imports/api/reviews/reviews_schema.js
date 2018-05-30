@@ -24,7 +24,7 @@ export default ReviewsSchema = new SimpleSchema({
     },
     autoValue: function() {
       if (this.isUpdate) return this.value;
-      return Meteor.users.findOne({_id: this.userId}).username;
+      return Meteor.users.findOne({ _id: this.userId }).username;
     }
   },
   slug: {
@@ -41,7 +41,7 @@ export default ReviewsSchema = new SimpleSchema({
       type: 'hidden',
       label: false
     },
-    defaultValue: moment.utc().utcOffset("-10:00").toDate()
+    defaultValue: moment.utc().utcOffset('-10:00').toDate()
   },
   artist: {
     type: String,
@@ -56,7 +56,7 @@ export default ReviewsSchema = new SimpleSchema({
   year: {
     type: Number,
     min: 0,
-    max: moment.utc().utcOffset("-10:00").toDate().getFullYear(),
+    max: moment.utc().utcOffset('-10:00').toDate().getFullYear(),
     label: 'Year Released',
     optional: false
   },

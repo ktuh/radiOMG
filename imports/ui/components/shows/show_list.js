@@ -17,54 +17,69 @@ Template.showList.onCreated(function() {
 Template.showList.helpers({
   active: (d) => {
     var day = FlowRouter.getQueryParam('day');
-    var daze = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    var date = moment.utc().utcOffset("-10:00").toDate();
+    var daze = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday',
+      'Friday', 'Saturday'];
+    var date = moment.utc().utcOffset('-10:00').toDate();
 
     // We're not routed to a particular day of the week
-    if (day === undefined || $.inArray(day, daze) === -1)
-      return d === daze[date.getDay()] ? 'active' : '';
-    else return d === daze[$.inArray(day, daze)] ? 'active' : '';
+    if (day === undefined || $.inArray(day, daze) === -1) {
+      if (d === daze[date.getDay()]) return 'active';
+      else return '';
+    }
+    else {
+      if (d === daze[$.inArray(day, daze)]) return 'active';
+      else return '';
+    }
   },
   daysShows: () => {
     var day = FlowRouter.getQueryParam('day');
-    var daze = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    var date = moment.utc().utcOffset("-10:00").toDate();
+    var daze = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday',
+      'Friday', 'Saturday'];
+    var date = moment.utc().utcOffset('-10:00').toDate();
     var dayNum = 0;
     if (day === undefined || $.inArray(day, daze) < 0) {
       dayNum = date.getDay();
     } else {
       dayNum = $.inArray(day, daze);
     }
-    return Shows.find({startDay: dayNum},
-                      {sort: {startHour: 1, startMinute: 1}});
+    return Shows.find({ startDay: dayNum },
+      { sort: { startHour: 1, startMinute: 1 } });
   }
 });
 
 Template.showList.events({
   'click .shows__previous-day': function (event) {
     var day = FlowRouter.getQueryParam('day');
-    var daze = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    var date = moment.utc().utcOffset("-10:00").toDate();
+    var daze = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday',
+      'Friday', 'Saturday'];
+    var date = moment.utc().utcOffset('-10:00').toDate();
     var prevDayNum = 0;
-    if (day === undefined || $.inArray(day, daze) < 0)
-      prevDayNum = date.getDay() - 1 < 0 ? 6 : date.getDay() - 1;
+    if (day === undefined || $.inArray(day, daze) < 0) {
+      if (date.getDay() - 1 < 0) prevDayNum = 0;
+      else prevDayNum = date.getDay() - 1;
+    }
     else {
       var dayNum = $.inArray(day, daze);
-      prevDayNum = dayNum - 1 < 0 ? 6 : dayNum - 1;
+      if (dayNum - 1 < 0) prevDayNum = 0;
+      else prevDayNum = dayNum - 1;
     }
-    FlowRouter.go(FlowRouter.getRouteName(), {}, {day: daze[prevDayNum]})
+    FlowRouter.go(FlowRouter.getRouteName(), {}, { day: daze[prevDayNum] })
   },
   'click .shows__next-day': function (event) {
     var day = FlowRouter.getQueryParam('day');
-    var daze = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    var date = moment.utc().utcOffset("-10:00").toDate();
+    var daze = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday',
+      'Friday', 'Saturday'];
+    var date = moment.utc().utcOffset('-10:00').toDate();
     var nextDayNum = 0;
-    if (day === undefined || $.inArray(day, daze) < 0)
-      nextDayNum = date.getDay() + 1 > 6 ? 0 : date.getDay() + 1;
+    if (day === undefined || $.inArray(day, daze) < 0) {
+      if (date.getDay() + 1 > 6) nextDayNum = 0;
+      else nextDayNum = date.getDay() + 1;
+    }
     else {
       var dayNum = $.inArray(day, daze);
-      nextDayNum = dayNum + 1 > 6 ? 0 : dayNum + 1;
+      if (dayNum + 1 > 6) nextDayNum = 0;
+      else nextDayNum = dayNum + 1;
     }
-    FlowRouter.go(FlowRouter.getRouteName(), {}, {day: daze[nextDayNum]})
+    FlowRouter.go(FlowRouter.getRouteName(), {}, { day: daze[nextDayNum] })
   }
 });

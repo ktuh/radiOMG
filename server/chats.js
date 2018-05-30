@@ -15,7 +15,7 @@ Meteor.methods({
       chatUser = ChatOptions.defaultUserName;
     else if (chatUser != Meteor.user().username)
       throw new Meteor.Error('invalid-chat-username',
-                'Chat username must be the same as login username.');
+        'Chat username must be the same as login username.');
 
     Chats.insert({
       chatText: chatText,

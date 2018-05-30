@@ -13,7 +13,12 @@ Template.chatForm.onCreated(function() {
   var self = this;
   self.autorun(function () {
     var dateNow = Session.get('chat-historysince');
-    self.subscribe('chats', (!Session.equals('chat-docid',undefined))?Session.get('chat-docid'):null, dateNow);
+    var chatid = '';
+    if (!Session.equals('chat-docid', undefined)) {
+      chatid = Session.get('chat-docid');
+    }
+    else chatid = null;
+    self.subscribe('chats', chatid, dateNow);
   });
   Session.set('chat-username', Meteor.user().username);
 });
@@ -37,18 +42,20 @@ Template.chatItem.helpers({
 });
 
 Template.chatForm.events({
- 'submit .chat__form': function(ev) {
-    ev.preventDefault();
-    var id = (!Session.equals('chat-docid',undefined))?Session.get('chat-docid'):null;
-    var uname = (!Session.equals('chat-username',undefined))?Session.get('chat-username'):null;
+  'submit .chat__form': function(event) {
+    event.preventDefault();
+    var id = null, uname = null;
+    if (!Session.equals('chat-docid',undefined)) id = Session.get('chat-docid');
+    if (!Session.equals('chat-username',undefined))
+      uname = Session.get('chat-username')
     var text = document.getElementById('chat__input').value;
 
     if (text != '') {
-       Meteor.call('enterChat', text, id, uname);
-       document.getElementById('chat__input').value = '';
-       document.getElementById('chat__input').focus();
-       var objDiv = document.getElementById('chat__text');
-       objDiv.scrollTop = objDiv.scrollHeight + 270;
+      Meteor.call('enterChat', text, id, uname);
+      document.getElementById('chat__input').value = '';
+      document.getElementById('chat__input').focus();
+      var objDiv = document.getElementById('chat__text');
+      objDiv.scrollTop = objDiv.scrollHeight + 270;
     }
   }
 });

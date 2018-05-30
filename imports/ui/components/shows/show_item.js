@@ -20,14 +20,18 @@ Template.showItem.helpers({
       endHour = (endHour + 1) % 24;
       endMinute = 0;
     }
-    let time = moment(startHour + ":" + startMinute, "HH:mm").format(startHour > endHour ? "hA" : "h").replace("M", "") + "-" +
-               moment(endHour + ":" + endMinute, "HH:mm").format("hA");
+    var amPm = startHour > endHour;
+    if (amPm) amPm = 'hA';
+    else amPm = 'h';
+    let time = moment(startHour + ':' + startMinute, 'HH:m').format(amPm)
+      .replace('M', '') + '-' + moment(endHour + ':' + endMinute,
+      'HH:mm').format('hA');
     return time.substr(0, time.length-1)
   },
   profileLink: (id) => {
     var user = Meteor.users.findOne({ _id: id });
     if (user !== undefined)
-      return "/profile/" + user.username;
+      return '/profile/' + user.username;
   },
   genreString: (genres) => genres.join(', ')
 });

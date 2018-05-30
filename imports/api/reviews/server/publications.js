@@ -13,7 +13,8 @@ Meteor.publish('reviewsLimited', (options) => {
 Meteor.publish('singleReview', (selector) => {
   check(selector, String);
   var reviews = Reviews.find({ slug: selector });
-  return reviews ? reviews : Reviews.find({ _id: selector });
+  if (reviews) return reviews;
+  else Reviews.find({ _id: selector });
 });
 
 publishPagination(Reviews);

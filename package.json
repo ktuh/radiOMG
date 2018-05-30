@@ -29,6 +29,9 @@
     "yubigen": "^1.0.3"
   },
   "devDependencies": {
+    "babel-eslint": "^8.2.3",
+    "eslint": "^3.6.0",
+    "eslint-plugin-meteor": "^5.0.0",
     "url": "^0.11.0"
   }
 }

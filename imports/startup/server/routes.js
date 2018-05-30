@@ -14,37 +14,45 @@ Picker.middleware(bodyParser.urlencoded({ extended: false }));
 
 Picker.route('/spinitron/latest', function(params, req, res, next) {
   check(params.query, { playlistId: Match.Where(function(str) {
-                                                check(str, String);
-                                                 return /[0-9]+/.test(str);
-                                              }), show: Match.Where(function(str) {
-                                                check(str, String);
-                                                return /[0-9]+/.test(str);
-                                            }), artist: String, song: String});
+    check(str, String);
+    return /[0-9]+/.test(str);
+  }), show: Match.Where(function(str) {
+    check(str, String);
+    return /[0-9]+/.test(str);
+  }), artist: String, song: String });
 
   var showId = parseInt(params.query.show);
   var showItself = Shows.findOne({ showId: showId });
   if (!showItself) showId = -1;
   var playlistId = parseInt(params.query.playlistId);
-  var html = params.query.artist + " - " + params.query.song;
+  var html = params.query.artist + ' - ' + params.query.song;
 
   if (!Playlists.findOne({ showId: showId, spinPlaylistId: playlistId })) {
-    Meteor.call("getPlaylistOrInfo", parseInt(params.query.playlistId), false,
-    function(error, result) {
-      if (!error && result) {
-        Playlists.insert({
-          showId: showId,
-          spinPlaylistId: playlistId,
-          showDate: moment.utc().utcOffset("-10:00").toDate(),
-          startTime: result.OnairTime,
-          endTime: result.OffairTime,
-          djName: result.DJName
-        });
+    Meteor.call('getPlaylistOrInfo', parseInt(params.query.playlistId), false,
+      function(error, result) {
+        if (!error && result) {
+          Playlists.insert({
+            showId: showId,
+            spinPlaylistId: playlistId,
+            showDate: moment.utc().utcOffset('-10:00').toDate(),
+            startTime: result.OnairTime,
+            endTime: result.OffairTime,
+            djName: result.DJName
+          });
+        }
       }
-    });
+    );
   }
 
   if (NowPlaying.find({}).count() < 1)
-    NowPlaying.insert({current: html, timestamp: moment.utc().utcOffset("-10:00").toDate()});
+    NowPlaying.insert({
+      current: html, timestamp: moment.utc().utcOffset('-10:00').toDate()
+    });
   else
-    NowPlaying.update(NowPlaying.findOne()._id, { $set: { current: html, timestamp: moment.utc().utcOffset("-10:00").toDate() }});
+    NowPlaying.update(NowPlaying.findOne()._id, {
+      $set: {
+        current: html,
+        timestamp: moment.utc().utcOffset('-10:00').toDate()
+      }
+    });
 });

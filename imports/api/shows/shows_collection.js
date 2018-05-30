@@ -10,7 +10,7 @@ export default Shows = new scorpius.collection('shows', {
   },
   tabular: {
     columns: [
-       {
+      {
         data: 'author',
         title: 'Author'
       },
@@ -18,7 +18,7 @@ export default Shows = new scorpius.collection('shows', {
         data: 'host',
         title: 'Host'
       },
-       {
+      {
         data: 'showName',
         title: 'Show Name',
       },
@@ -28,7 +28,7 @@ export default Shows = new scorpius.collection('shows', {
         render: function (val, type, doc) {
           if (!val)
             return;
-          return "<img src=" + val.url + ">";
+          return '<img src=' + val.url + '>';
         }
       },
       scorpius.attributeColumn('createdAt', 'submitted', 'Timestamp')

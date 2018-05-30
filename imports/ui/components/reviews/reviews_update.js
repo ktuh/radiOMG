@@ -5,12 +5,13 @@ ReactiveTemplates.set('collections.reviews.update', 'reviewsUpdate');
 
 Template.reviewsUpdate.onCreated(function (){
   var self = this;
-  self.subscribe('singleReview', location.href.substring(location.href.lastIndexOf('/') + 1));
+  self.subscribe('singleReview',
+    location.href.substring(location.href.lastIndexOf('/') + 1));
 });
 
 Template.reviewsUpdate.helpers({
   collection: () => Reviews,
-  isMod: () => Meteor.user().hasRole("moderator"),
+  isMod: () => Meteor.user().hasRole('moderator'),
   item: () => Reviews.findOne()
 });
 

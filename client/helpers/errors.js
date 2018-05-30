@@ -1,4 +1,4 @@
- // Local (client-only) collection
+// Local (client-only) collection
 import { Mongo } from 'meteor/mongo';
 import { Bert } from 'meteor/themeteorchef:bert';
 

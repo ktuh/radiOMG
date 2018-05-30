@@ -4,11 +4,11 @@ export default NoticesSchema = new SimpleSchema({
   body: {
     type: String,
     autoform: {
-      type: "summernote"
+      type: 'summernote'
     }
   },
   startDatetime: {
-    label: "Start Date & Time",
+    label: 'Start Date & Time',
     type: Date,
     autoform: {
       afFieldInput: {
@@ -17,7 +17,7 @@ export default NoticesSchema = new SimpleSchema({
     }
   },
   endDatetime: {
-    label: "End Date & Time",
+    label: 'End Date & Time',
     type: Date,
     autoform: {
       afFieldInput: {
@@ -26,7 +26,7 @@ export default NoticesSchema = new SimpleSchema({
     }
   },
   severity: {
-    label: "Severity",
+    label: 'Severity',
     type: Number,
     allowedValues: [0, 1, 2],
     autoform: {

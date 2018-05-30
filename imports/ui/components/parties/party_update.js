@@ -5,12 +5,13 @@ ReactiveTemplates.set('collections.parties.update', 'partiesUpdate');
 
 Template.postsUpdate.onCreated(function (){
   var self = this;
-  self.subscribe('singleParty', location.href.substring(location.href.lastIndexOf('/') + 1));
+  self.subscribe('singleParty',
+    location.href.substring(location.href.lastIndexOf('/') + 1));
 });
 
 Template.partiesUpdate.helpers({
   collection: () => Parties,
-  isMod: () => Meteor.user().hasRole("moderator"),
+  isMod: () => Meteor.user().hasRole('moderator'),
   item: () => Parties.findOne()
 });
 

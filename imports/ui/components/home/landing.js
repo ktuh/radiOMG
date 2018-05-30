@@ -7,7 +7,8 @@ import Playlists from '../../../api/playlists/playlists_collection.js';
 import { Template } from 'meteor/templating';
 import { Session } from 'meteor/session';
 import { moment } from 'meteor/momentjs:moment';
-import { currentPlaylist, currentPlaylistFindOne, currentShow } from '../../../startup/lib/helpers.js';
+import { currentPlaylist, currentPlaylistFindOne, currentShow } from
+  '../../../startup/lib/helpers.js';
 
 Template.landing.onCreated(function() {
   var self = this;
@@ -38,16 +39,22 @@ Template.landing.onCreated(function() {
     });
     self.subscribe('nowPlaying');
     if (NowPlaying.findOne()) {
-      Session.set('timeout', moment.utc().utcOffset("-10:00").diff(moment(NowPlaying.findOne().timestamp).utcOffset("-10:00")) > 360000);
+      Session.set('timeout', moment.utc().utcOffset('-10:00')
+        .diff(moment(NowPlaying.findOne().timestamp)
+          .utcOffset('-10:00')) > 360000);
     }
   });
 });
 
 Template.landing.helpers({
-  nowPlaying: () =>  (NowPlaying.findOne() !== undefined && !Session.get('timeout')) ?
-                     NowPlaying.findOne().current : false,
-  formatNP: (str) => '<p class="landing__song-title caps">' + str.split(" - ")[1] + '</p>' +
-                     '<p class="landing__song-artist caps"> by ' +  str.split(" - ")[0] + '</p>',
+  nowPlaying: () => {
+    if (NowPlaying.findOne() !== undefined && !Session.get('timeout'))
+      return NowPlaying.findOne().current;
+    else return false;
+  },
+  formatNP: (str) => '<p class="landing__song-title caps">' +
+    str.split(' - ')[1] + '</p><p class="landing__song-artist caps"> by ' +
+    str.split(' - ')[0] + '</p>',
   currentShow: () => currentShow(),
   isSubShow: () => {
     var show = currentShow();
@@ -79,18 +86,19 @@ Template.landing.helpers({
     else return undefined;
   },
   isPlaying: () => {
-    return Session.get('nowLoaded') === scorpius.dictionary.get('mainPage.audioUrl', '')
-           && Session.get('paused') === false;
+    return Session.get('nowLoaded') === scorpius.dictionary.get(
+      'mainPage.audioUrl', ''
+    ) && Session.get('paused') === false;
   },
   background: () => {
-    var h = moment.utc().utcOffset("-10:00").toDate().getHours();
+    var h = moment.utc().utcOffset('-10:00').toDate().getHours();
     var $landing = $('.landing');
 
     if (h >= 6 && h < 11) {
       return 'url(\'/img/tantalus-morning.jpg\')';
     }
     else if (h >= 11 && h < 18) {
-      return 'url(\'/img/tantalus-morning.jpg\')';
+      return 'url(\'/img/tantalus-day.jpg\')';
     }
     else if ((h >= 18 && h <= 23) || (h >= 0 && h < 6)) {
       return 'url(\'/img/tantalus-evening.jpg\')';
@@ -113,8 +121,8 @@ Template.landing.events({
     }
   },
   'click .landing__down-arrow': function(event) {
-    var position = $("#main").offset().top;
+    var position = $('#main').offset().top;
     var navHeight = $('.navbar-header').height();
-    $("HTML, BODY").animate({ scrollTop: position - navHeight + 2 }, 600);
+    $('HTML, BODY').animate({ scrollTop: position - navHeight + 2 }, 600);
   }
 });
