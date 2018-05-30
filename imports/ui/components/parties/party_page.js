@@ -29,7 +29,7 @@ Template.partyPage.onCreated(function () {
 Template.partyPage.helpers({
   party: () => Parties.findOne({}),
   comments: () => Comments.find({}),
-  time: (t) => moment(t).format("dddd, MMMM Do YYYY, h:mm a"),
+  time: (t) => moment(t).format('dddd, MMMM Do YYYY, h:mm a'),
   slug: () => FlowRouter.getParam('slug'),
   upvoted: function(upvoters) {
     var username = Meteor.user().username;
@@ -43,11 +43,13 @@ Template.partyPage.helpers({
 
     return r;
   },
-  upvoters: () => Parties.findOne({slug: FlowRouter.getParam('slug')}).upvoters
+  upvoters: () => Parties.findOne({
+    slug: FlowRouter.getParam('slug')
+  }).upvoters
 });
 
 Template.partyPage.events({
-  'click .party-info__star': (event, template) => {
+  'click .party-info__star': () => {
     let user = Meteor.userId();
 
     if (user === null) {

@@ -16,8 +16,8 @@ Template.home.onCreated(function () {
   var self = this;
   self.autorun(function () {
     self.subscribe('latestFeaturedPost');
-    self.subscribe('postsLimited', { limit: 6, sort: { submitted: -1 }});
-    self.subscribe('reviewsLimited', { limit: 6, sort: { submitted: -1 }});
+    self.subscribe('postsLimited', { limit: 6, sort: { submitted: -1 } });
+    self.subscribe('reviewsLimited', { limit: 6, sort: { submitted: -1 } });
     self.subscribe('latestSevenWriters');
     self.subscribe('latestSevenWritersUsernames');
     self.subscribe('nextOnAir', {
@@ -70,10 +70,10 @@ Template.home.onRendered(function() {
     var height = $('.landing').height();
 
     if (height < offset) {
-        myNavBar.remove();
+      myNavBar.remove();
     }
     else if (height >= offset){
-        myNavBar.add();
+      myNavBar.add();
     }
   }
 
@@ -97,21 +97,21 @@ Template.home.onDestroyed(function() {
 });
 
 Template.home.helpers({
-  posts: () => Posts.find({ featured: false }, { sort: { submitted: -1 }}),
-  reviews: () => Reviews.find({}, { sort: { submitted: -1 }}),
-  synopsis: (body) => body.replace(/(([^\s]+\s\s*){12})(.*)/,"$1…"),
-  featuredPost: () => Posts.findOne({ approved: true, featured: true },
-                                    { sort: { submitted: -1 }, limit: 1 }),
+  posts: () => Posts.find({ featured: false }, { sort: { submitted: -1 } }),
+  reviews: () => Reviews.find({}, { sort: { submitted: -1 } }),
+  synopsis: (body) => body.replace(/(([^\s]+\s\s*){12})(.*)/,'$1…'),
+  featuredPost: () => Posts.findOne({
+    approved: true, featured: true }, { sort: { submitted: -1 }, limit: 1 }),
   firstTag: () => {
     var featured = Posts.findOne({ approved: true, featured: true },
-                  { sort: { submitted: -1 }, limit: 1 });
+      { sort: { submitted: -1 }, limit: 1 });
     return featured && featured.tags &&
            featured.tags.length > 0 && featured.tags[0];
   },
   renderSummary: (summary, numWords) => {
-    var regex = new RegExp("(([^\\s]+\\s\\s*){" + numWords + "})(.*)");
+    var regex = new RegExp('(([^\\s]+\\s\\s*){' + numWords + '})(.*)');
     var match = regex.exec(summary);
-    return (match && match[1] || summary) + "…";
+    return (match && match[1] || summary) + '…';
   },
   nextShow: () => nextShow(),
   startEndTime: (startHour, startMinute, endHour, endMinute) => {
@@ -122,9 +122,14 @@ Template.home.helpers({
       endHour = (endHour + 1) % 24;
       endMinute = 0;
     }
-    return moment(startHour + ":" + startMinute, "HH:mm").format(startHour > endHour ? "h:mm A" : "h:mm") + "-" +
-    moment(endHour + ":" + endMinute, "HH:mm").format("h:mm A"); },
-  hasDjotm: () => scorpius.dictionary.get('mainPage.monthlyDJName') !== undefined,
+    var sp = '';
+    if (startHour > endHour) sp = 'h:mm A'
+    else sp = 'h:mm';
+    return moment(startHour + ':' + startMinute, 'HH:mm')
+      .format(sp) + '-' +
+    moment(endHour + ':' + endMinute, 'HH:mm').format('h:mm A'); },
+  hasDjotm: () =>
+    scorpius.dictionary.get('mainPage.monthlyDJName') !== undefined,
   djName: () => scorpius.dictionary.get('mainPage.monthlyDJName', ''),
   djImg: () => scorpius.dictionary.get('mainPage.monthlyDJImgUrl', ''),
   djBlurb: () => scorpius.dictionary.get('mainPage.monthlyDJBlurb', ''),

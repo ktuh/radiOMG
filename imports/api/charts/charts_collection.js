@@ -27,7 +27,8 @@ Charts.friendlySlugs({
   updateSlug: true,
   slugGenerator: (defaultSlug) => {
     var sec = defaultSlug.split('-');
-    var mons = ["jan",'feb','mar', 'apr','may','jun','jul','aug','sep','oct','nov','dec'];
+    var mons = ['jan','feb','mar','apr','may','jun',
+      'jul','aug','sep','oct','nov','dec'];
     return [sec[3], mons.indexOf(sec[1]) + 1, sec[2]].join('-');
   }
 });

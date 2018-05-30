@@ -22,12 +22,13 @@ Template.playlistPage.onCreated(function(){
         var playlist = Playlists.findOne({ spinPlaylistId: id });
         var parsedId = parseInt(playlist.spinPlaylistId);
 
-        Meteor.call('getPlaylistOrInfo', parsedId, true, function(error, result) {
-          if (!error && result) {
-            Session.set('currentPlaylist', result);
-            Session.set('playlistViewing', parsedId);
-          }
-        });
+        Meteor.call('getPlaylistOrInfo', parsedId, true,
+          function(error, result) {
+            if (!error && result) {
+              Session.set('currentPlaylist', result);
+              Session.set('playlistViewing', parsedId);
+            }
+          });
         self.subscribe('showBySpinitronId', playlist.showId, {
           onReady: function() {
             self.subscribe('comments', playlist._id);
@@ -37,18 +38,23 @@ Template.playlistPage.onCreated(function(){
     });
   });
 
-  self.subscribe("playlistsLimited", {sort: {showDate: -1, spinPlaylistId: -1}, limit: 12});
+  self.subscribe('playlistsLimited', {
+    sort: { showDate: -1, spinPlaylistId: -1 }, limit: 12
+  });
 });
 
 
 Template.playlistPage.helpers({
-  playlist: () => Playlists.findOne({ spinPlaylistId: parseInt(FlowRouter.getParam('id'))}),
+  playlist: () => Playlists.findOne({
+    spinPlaylistId: parseInt(FlowRouter.getParam('id'))
+  }),
   comments: (id) => Comments.find({ postId: id }),
-  songs: () => Session.get("currentPlaylist"),
+  songs: () => Session.get('currentPlaylist'),
   showTime: (playlist) =>
-     playlist && (moment(playlist.startTime, "HH:mm:ss").format('h:mm') +
-        '-' + moment(playlist.endTime, "HH:mm:ss").format('h:mm a')),
+    playlist && (moment(playlist.startTime, 'HH:mm:ss').format('h:mm') +
+      '-' + moment(playlist.endTime, 'HH:mm:ss').format('h:mm a')),
   showDateOfLatestPlaylist: (date) =>
-    moment(date).utcOffset('-10:00').format("LL"),
-  timeBeautify: (time) => moment(time.substring(0, time.length - 3), 'HH:mm').format('hh:mm a')
+    moment(date).utcOffset('-10:00').format('LL'),
+  timeBeautify: (time) =>
+    moment(time.substring(0, time.length - 3), 'HH:mm').format('hh:mm a')
 });

@@ -7,5 +7,5 @@ Meteor.publish('comments', function(postId) {
 });
 
 Meteor.publish('commentsIndex', function () {
-  return Comments.find({sort: {submitted: -1, _id: -1}, limit: 0});
+  return Comments.find({ sort: { submitted: -1, _id: -1 }, limit: 0 });
 });

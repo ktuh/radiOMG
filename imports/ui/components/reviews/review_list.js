@@ -7,7 +7,8 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 
 Template.reviewList.onCreated(function () {
   var self = this;
-  self.pagination = new Meteor.Pagination(Reviews, { sort: { showDate: -1 }, perPage: 8, filters: {approved: true}});
+  self.pagination = new Meteor.Pagination(Reviews, { sort: { showDate: -1 },
+    perPage: 8, filters: { approved: true } });
 });
 
 Template.reviewList.helpers({

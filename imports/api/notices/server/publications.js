@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import Notices from '../notices_collection.js'
 
-Meteor.publish("notices", function() {
+Meteor.publish('notices', function() {
   var now = new Date();
   return Notices.find({
     startDatetime: { $lt: now },

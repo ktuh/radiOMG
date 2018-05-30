@@ -2,7 +2,7 @@ import { Mongo } from 'meteor/mongo';
 import { scorpius } from 'meteor/scorpiusjs:core';
 import NoticesSchema from './notices_schema.js';
 
-export default Notices = new scorpius.collection("notices", {
+export default Notices = new scorpius.collection('notices', {
   singularName: 'notice',
   pluralName: 'notices',
   link: {
@@ -11,17 +11,17 @@ export default Notices = new scorpius.collection("notices", {
   tabular: {
     columns: [
       {
-        data: "severity",
-        title: "Severity"
+        data: 'severity',
+        title: 'Severity'
       },
       {
-        data: "startDatetime",
-        title: "Start Time"
+        data: 'startDatetime',
+        title: 'Start Time'
       },
 
       {
-        data: "endDatetime",
-        title: "End Time"
+        data: 'endDatetime',
+        title: 'End Time'
       },
       scorpius.attributeColumn('createdAt', 'submitted', 'Timestamp')
     ]
@@ -30,13 +30,13 @@ export default Notices = new scorpius.collection("notices", {
 
 Notices.allow({
   insert: function (userId, doc) {
-    return Roles.userHasRole(userId, "admin");
+    return Roles.userHasRole(userId, 'admin');
   },
   update: function (userId, doc, fields, modifier) {
-    return Roles.userHasRole(userId, "admin");
+    return Roles.userHasRole(userId, 'admin');
   },
   remove: function (userId, doc) {
-    return Roles.userHasRole(userId, "admin");
+    return Roles.userHasRole(userId, 'admin');
   }
 });
 

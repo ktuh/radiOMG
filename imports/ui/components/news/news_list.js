@@ -20,15 +20,16 @@ Template.newsList.onCreated(function () {
       perPage: 4
     });
     self.subscribe('posts', function() {
-      // This subscription is actually an incremental one. See kurounin:pagination
-      // docs for more information.
+      // This subscription is actually an incremental one.
+      // See kurounin:pagination  docs for more information.
       var latestFeaturedPost = Posts.findOne();
       self.subscribe('profileData', latestFeaturedPost.userId);
       self.subscribe('profileNamesById', _.uniq(Posts.find({
-        _id: { $ne: latestFeaturedPost._id
-      }, approved: true },{ sort: { submitted: -1 }}).fetch().map((p) => p.userId)));
+        _id: { $ne: latestFeaturedPost._id },
+        approved: true
+      }, { sort: { submitted: -1 } }).fetch().map((p) => p.userId)));
     });
-    self.subscribe('reviewsLimited', { limit: 6, sort: { submitted: -1 }});
+    self.subscribe('reviewsLimited', { limit: 6, sort: { submitted: -1 } });
   });
 });
 
@@ -39,17 +40,17 @@ Template.newsList.onRendered(function () {
 Template.newsList.helpers({
   newsPagePath: (slug) => FlowRouter.path('/radioblog/:slug', { slug: slug }),
   excerpt: (summary) => {
-    var regex = new RegExp("(([^\\s]+\\s\\s*){60})(.*)");
+    var regex = new RegExp('(([^\\s]+\\s\\s*){60})(.*)');
     var match = regex.exec(summary);
-    return (match && match[1] || summary) + "…";
+    return (match && match[1] || summary) + '…';
   },
   posts: () => Template.instance().pagination.getPage(),
   templatePagination: () => Template.instance().pagination,
   nextOnAir: () => Shows.find({}).fetch(),
   getStartEndTime: (startHour, startMinute, endHour, endMinute) =>
-    moment(startHour + ":" + startMinute, "HH:mm").format("h:mm") + "-" +
-    moment(endHour + ":" + endMinute, "HH:mm").format("h:mm A"),
+    moment(startHour + ':' + startMinute, 'HH:mm').format('h:mm') + '-' +
+    moment(endHour + ':' + endMinute, 'HH:mm').format('h:mm A'),
   featuredPost: () => Posts.findOne({ approved: true, featured: true },
-                                    { sort: { submitted: -1 }, limit: 1 }),
-  reviews: () => Reviews.find({}, {sort: {submitted: -1}})
+    { sort: { submitted: -1 }, limit: 1 }),
+  reviews: () => Reviews.find({}, { sort: { submitted: -1 } })
 });

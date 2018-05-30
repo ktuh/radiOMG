@@ -10,9 +10,9 @@ Meteor.publish('postsLimited', (options) => {
   return Posts.find({ featured: false, approved: true }, options);
 });
 
-Meteor.publish('latestFeaturedPost',
-              () => Posts.find({ approved: true, featured: true },
-                               { sort: { submitted: -1 }, limit: 1 }));
+Meteor.publish('latestFeaturedPost', () =>
+  Posts.find({ approved: true, featured: true },
+    { sort: { submitted: -1 }, limit: 1 }));
 
 Meteor.publish('singlePost', (slug) => {
   check(slug, String);
@@ -26,8 +26,8 @@ Meteor.publish('singlePostById', (id) => {
 
 Meteor.publish('postsByUser', (username) => {
   check(username, String);
-  return Posts.find({ author: username, approved: true }, { fields: { submitted: 1, title: 1,
-                                                      author: 1, userId: 1 }});
+  return Posts.find({ author: username, approved: true },
+    { fields: { submitted: 1, title: 1, author: 1, userId: 1 } });
 });
 
 publishPagination(Posts);

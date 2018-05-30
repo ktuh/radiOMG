@@ -32,7 +32,7 @@ export default Reviews = new scorpius.collection('reviews', {
       },
       {
         data: 'rating',
-        title: "Rating"
+        title: 'Rating'
       },
       {
         data: 'image',
@@ -45,13 +45,14 @@ export default Reviews = new scorpius.collection('reviews', {
 
 Reviews.allow({
   insert: function (userId, doc) {
-    return (userId && doc.userId === userId) || Meteor.user().hasRole("moderator");
+    return (userId && doc.userId === userId) ||
+      Meteor.user().hasRole('moderator');
   },
   update: function (userId, doc, fields, modifier) {
-    return doc.userId === userId || Meteor.user().hasRole("moderator");
+    return doc.userId === userId || Meteor.user().hasRole('moderator');
   },
   remove: function (userId, doc) {
-    return doc.userId === userId || Meteor.user().hasRole("moderator");
+    return doc.userId === userId || Meteor.user().hasRole('moderator');
   },
   fetch: ['userId']
 });

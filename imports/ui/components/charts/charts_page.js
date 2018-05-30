@@ -12,7 +12,7 @@ Template.chartPage.onCreated(function() {
 
 Template.chartPage.helpers({
   chart: () => Charts.findOne({}),
-  ifHas: (str) => str !== undefined ? str : 'N/A',
-  ifIs: (boo) => boo ? 'Yes' : 'No',
+  ifHas: (str) => { if (str !== undefined) return str; else return 'N/A'; },
+  ifIs: (boo) => { if (boo) return 'Yes'; else return 'No'; },
   plusOne: (i) => i + 1
 });

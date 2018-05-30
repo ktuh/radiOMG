@@ -38,7 +38,7 @@ export default PagesSchema = new SimpleSchema({
       type: 'hidden',
       label: false
     },
-    autoValue: () => moment.utc().utcOffset("-10:00").toDate()
+    autoValue: () => moment.utc().utcOffset('-10:00').toDate()
   },
   title: {
     type: String,
@@ -48,7 +48,10 @@ export default PagesSchema = new SimpleSchema({
       // This validation function is necessary for checking if there are naming
       // conflicts with existing routes. Shout-out to @todda00 for providing
       // parts of this function from his friendly-slugs package.
-      if (FlowRouter._routes.map((obj) => obj.path.substr(1)).indexOf(this.value.replace(/'/g, '').replace(/[^0-9a-z-]/g, '-').replace(/\-\-+/g, '-').replace(/^-+/, '').replace(/-+$/, '')) >= 0) return "Nope.";
+      if (FlowRouter._routes.map((obj) =>
+        obj.path.substr(1)).indexOf(this.value.replace(/'/g, '')
+        .replace(/[^0-9a-z-]/g, '-').replace(/\-\-+/g, '-')
+        .replace(/^-+/, '').replace(/-+$/, '')) >= 0) return 'Nope.';
     }
   },
   body: scorpius.attribute('summernote', {

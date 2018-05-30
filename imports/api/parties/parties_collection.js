@@ -12,7 +12,7 @@ export default Parties = new scorpius.collection('parties', {
         data: 'flyerFront',
         title: 'Flyer',
         render: function (val, type, doc) {
-          return "<img src=" + val.url + ">";
+          return '<img src=' + val.url + '>';
         }
       }, {
         data: 'title',
@@ -30,13 +30,16 @@ export default Parties = new scorpius.collection('parties', {
 
 Parties.allow({
   insert: function (userId, doc) {
-    return (userId && doc.userId === userId) || Meteor.user().hasRole("moderator");
+    return (userId && doc.userId === userId) ||
+      Meteor.user().hasRole('moderator');
   },
   update: function (userId, doc, fields, modifier) {
-    return doc.userId === userId || Meteor.user().hasRole("moderator");
+    return doc.userId === userId ||
+      Meteor.user().hasRole('moderator');
   },
   remove: function (userId, doc) {
-    return doc.userId === userId || Meteor.user().hasRole("moderator");
+    return doc.userId === userId ||
+      Meteor.user().hasRole('moderator');
   },
   fetch: ['userId']
 });

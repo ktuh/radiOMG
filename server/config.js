@@ -24,7 +24,8 @@ Meteor.startup(function () {
 
   Accounts.emailTemplates.verifyEmail.text = function(user, url) {
     return 'Hi, ' + user.username + ',\n\n'
-      + 'Mahalo for registering for the KTUH Honolulu website. Please click on the '
+      + 'Mahalo for registering for the KTUH Honolulu website. ' +
+        'Please click on the '
       + 'following link to verify your email address: \r\n\n' + url
       + '\n\n';
   };
@@ -51,7 +52,8 @@ Meteor.startup(function () {
         type.user.firstLogin = false;
         return true;
       } else {
-        throw new Meteor.Error(100001, 'Please verify your email address. (Check your inbox.)');
+        throw new Meteor.Error(100001,
+          'Please verify your email address. (Check your inbox.)');
         return false;
       }
     }
@@ -59,7 +61,7 @@ Meteor.startup(function () {
   });
 
   Accounts.onCreateUser((options, user) => {
-    var id = Profiles.insert({userId: user._id});
+    var id = Profiles.insert({ userId: user._id });
     Roles.addUserToRoles(user._id, ['member']);
     Profiles.update({ _id: id }, { $set: { photo: {
       url: '/img/ktuh-logo-white-alpha.png',
@@ -71,11 +73,13 @@ Meteor.startup(function () {
         primaryColor: '#000000',
         secondaryColor: '#000000'
       }
-    }}});
-    // We want to save email, user name, and first/last names if they used a login svc.
+    } } });
+    // We want to save email, user name, and first/last names
+    // if they used a login svc.
     if (user.services.facebook || user.services.google) {
-      var email = user.services.facebook ? user.services.facebook.email
-                                         : user.services.google.email;
+      var email;
+      if (user.services.facebook) email =  user.services.facebook.email;
+      else email = user.services.google.email;
       var username = email.substring(0, email.indexOf('@'));
       var existentUser = Meteor.users.findOne({ username: username });
 
@@ -83,29 +87,32 @@ Meteor.startup(function () {
         if (existentUser === undefined)
           break;
         var numStr = Number(i).toString();
-        username = username + "-" +  numStr;
+        username = username + '-' +  numStr;
         existentUser = Meteor.users.findOne({ username: username });
       }
 
       if (user.services.google && user.services.google.given_name &&
           user.services.google.given_name !== '') {
-        Profiles.update({ _id: id }, { $set: { name: user.services.google.name }});
+        Profiles.update({ _id: id },
+          { $set: { name: user.services.google.name } });
       }
       else if (user.services.facebook && user.services.facebook.name &&
                user.services.facebook.given_name !== '') {
-        Profiles.update({ _id: id }, { $set: { name: user.services.facebook.name }});
+        Profiles.update({ _id: id },
+          { $set: { name: user.services.facebook.name } });
       }
 
       user.username = username;
       user.emails = [{ address: email, verified: true }];
-      user.roles = [ "member" ];
+      user.roles = [ 'member' ];
     }
     return user;
   });
 
   Accounts.validateNewUser((user) =>
-     (user.services && user.services.facebook) || (user.services && user.services.google) ||
-     (user.username !== '' && user.emails !== undefined));
+    (user.services && user.services.facebook) ||
+    (user.services && user.services.google) ||
+    (user.username !== '' && user.emails !== undefined));
 
   ServiceConfiguration.configurations.remove({
     service: 'facebook'

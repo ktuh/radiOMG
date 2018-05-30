@@ -37,8 +37,8 @@ Template.header.onRendered(function () {
     }
   });
 
-  // This timeout kludge is necessary because the onRendered callback fires before
-  // some of the DOM is fully rendered.
+  // This timeout kludge is necessary because the onRendered callback fires
+  //before some of the DOM is fully rendered.
   setTimeout(function() {
     $('#audio-player').mediaelementplayer({
       pluginPath: '/mejs/',
@@ -59,7 +59,7 @@ Template.header.onRendered(function () {
           Session.set('paused', true);
         }, false);
 
-        $('.mejs__time-rail').append('<span class="mejs__broadcast">Live ' +
+        $('.mejs__time-rail').append('<span class=\'mejs__broadcast\'>Live ' +
         'Broadcast</span>');
         $('.mejs__time-slider').css('visibility', 'hidden');
         // Display what's playing if user clicks the player without loading
@@ -67,9 +67,11 @@ Template.header.onRendered(function () {
         $('.mejs__playpause-button').click(function () {
           if (Session.equals('defaultLoaded', true)) {
             var message = 'Now playing the ' +
-                scorpius.dictionary.get('mainPage.title', 'station\'s') + ' live stream';
+              scorpius.dictionary.get('mainPage.title', 'station\'s') +
+              ' live stream';
             Session.set('defaultLoaded', false);
-            Session.set('nowLoaded', scorpius.dictionary.get('mainPage.audioUrl', ''));
+            Session.set('nowLoaded',
+              scorpius.dictionary.get('mainPage.audioUrl', ''));
             if (!Session.get('playedStream')) {
               Bert.alert(message, 'default', 'growl-top-right', 'fa-music');
               Session.set('playedStream', true);
@@ -79,28 +81,34 @@ Template.header.onRendered(function () {
         player = mediaElement; // make it available for other functions
       },
       error: function () {
-        console.error('Encountered an error while initializing the media element.')
+        console.error('Error initializing the media element.');
       }
     });
   }, 1000);
 
   if (NowPlaying.findOne()) {
-    Session.set('timeout', moment().diff(moment(NowPlaying.findOne().timestamp)) > 360000);
+    Session.set('timeout',
+      moment().diff(moment(NowPlaying.findOne().timestamp)) > 360000);
   }
 
   setInterval(function() {
     if (NowPlaying.findOne()) {
-      if (moment().diff(moment(NowPlaying.findOne().timestamp)) > 360000 && !Session.get('timeout')) {
+      if (moment().diff(moment(NowPlaying.findOne().timestamp)) > 360000 &&
+          !Session.get('timeout')) {
         Session.set('timeout', true);
       }
-      else if (moment().diff(moment(NowPlaying.findOne().timestamp)) <= 360000 && Session.get('timeout')) {
-        Session.set('timeout', false);
+      else {
+        if (Session.get('timeout')) {
+          Session.set('timeout', false);
+        }
       }
     }
   }, 60000);
 
-  if ($("#resend-link")[0] === undefined)
-    $("#login-other-options").append("<a href='/resend' id='resend-link' class='pull-right'>Resend Verification Email</a>");
+  if ($('#resend-link')[0] === undefined)
+    $('#login-other-options')
+      .append('<a href="/resend" id="resend-link" class="pull-right">Resend ' +
+      'Verification Email</a>');
 });
 
 Template.header.helpers({
@@ -110,8 +118,11 @@ Template.header.helpers({
   showPage: () => FlowRouter.path('show'),
   reviewsPage: () => FlowRouter.path('reviewsPage'),
   nowPlaying: () => Session.get('nowPlaying'),
-  latestSong: () =>  (NowPlaying.findOne() !== undefined && !Session.get('timeout')) ?
-                     '<div>Last Played Song: ' + NowPlaying.findOne().current + '</div>' : ''
+  latestSong: () =>  {
+    if (NowPlaying.findOne() !== undefined && !Session.get('timeout'))
+      return '<div>Last Played Song: ' + NowPlaying.findOne().current + '</div>'
+    else return '';
+  }
 });
 
 Template.header.events({

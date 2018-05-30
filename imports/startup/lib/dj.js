@@ -7,7 +7,7 @@ DJ.allow('collections.shows.insert', true);
 DJ.allow('collections.shows.update', (userId, doc, fields, modifier) =>
   doc.userId === userId);
 DJ.allow('collections.shows.remove', (userId, doc, fields, modifier) =>
- doc.userId === userId);
+  doc.userId === userId);
 DJ.allow('collections.shows.showCreate', true);
 DJ.allow('collections.shows.showUpdate', true);
 DJ.allow('collections.shows.showRemove', true);
@@ -27,7 +27,7 @@ DJ.allow('collections.reviews.showUpdate', true);
 DJ.allow('collections.reviews.showRemove', true);
 
 DJ.deny('collections.reviews.update', (userId, doc, fields, modifier) => {
-  var user = Meteor.users.findOne({_id: userId});
+  var user = Meteor.users.findOne({ _id: userId });
   var roles = user && user.roles;
   return _.contains(fields, 'approved') && !_.contains(roles, 'moderator') &&
         !_.contains(roles, 'admin');
@@ -48,7 +48,7 @@ DJ.allow('collections.parties.showUpdate', true);
 DJ.allow('collections.parties.showRemove', true);
 
 DJ.deny('collections.parties.update', (userId, doc, fields, modifier) => {
-  var user = Meteor.users.findOne({_id: userId});
+  var user = Meteor.users.findOne({ _id: userId });
   var roles = user && user.roles;
   return _.contains(fields, 'approved') && !_.contains(roles, 'moderator') &&
         !_.contains(roles, 'admin');
@@ -70,7 +70,7 @@ DJ.allow('collections.posts.showUpdate', true);
 DJ.allow('collections.posts.showRemove', true);
 
 DJ.deny('collections.posts.update', (userId, doc, fields, modifier) => {
-  var user = Meteor.users.findOne({_id: userId});
+  var user = Meteor.users.findOne({ _id: userId });
   var roles = user && user.roles;
   return _.contains(fields, 'approved') && !_.contains(roles, 'moderator') &&
         !_.contains(roles, 'admin');

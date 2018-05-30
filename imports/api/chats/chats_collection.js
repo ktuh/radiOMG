@@ -3,8 +3,8 @@ import { Meteor } from 'meteor/meteor';
 import { scorpius } from 'meteor/scorpiusjs:core';
 
 export const ChatOptions = {
-    defaultUserName: 'Anonymous',
-    defaultDocId: 'openchat'
+  defaultUserName: 'Anonymous',
+  defaultDocId: 'openchat'
 };
 
-export const Chats = new Meteor.Collection("chats");
+export const Chats = new Meteor.Collection('chats');

@@ -6,13 +6,15 @@ import { pagination } from 'meteor/kurounin:pagination';
 
 Template.musicPlaylists.onCreated(function() {
   var self = this;
-  self.pagination = new Meteor.Pagination(Playlists, {sort: {showDate: -1}, perPage: 7});
+  self.pagination = new Meteor.Pagination(Playlists, {
+    sort: { showDate: -1 }, perPage: 7
+  });
   self.subscribe('shows');
 });
 
 Template.musicPlaylists.helpers({
-  img: (id) => Shows.findOne({showId: id}).featuredImage.url,
-  showName: (id) => Shows.findOne({showId: id}).showName,
+  img: (id) => Shows.findOne({ showId: id }).featuredImage.url,
+  showName: (id) => Shows.findOne({ showId: id }).showName,
   isSub: (id) => id === -1,
   shows: () => Shows.find(),
   ready: () => Template.instance().pagination.ready(),

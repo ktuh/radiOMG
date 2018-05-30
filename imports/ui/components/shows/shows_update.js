@@ -5,7 +5,8 @@ ReactiveTemplates.set('collections.shows.update', 'showsUpdate');
 
 Template.showsUpdate.onCreated(function (){
   var self = this;
-  self.subscribe('showById', location.href.substring(location.href.lastIndexOf('/') + 1));
+  self.subscribe('showById',
+    location.href.substring(location.href.lastIndexOf('/') + 1));
 });
 
 Template.showsUpdate.helpers({

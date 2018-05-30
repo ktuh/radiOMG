@@ -19,31 +19,32 @@ Template.commentSubmit.helpers({
     return Session.get('commentSubmitErrors')[field];
   },
   errorClass: function (field) {
-    return !!Session.get('commentSubmitErrors')[field] ? 'has-error' : '';
+    if (!!Session.get('commentSubmitErrors')[field]) return 'has-error';
+    else return '';
   }
 });
 
 Template.commentSubmit.events({
-  'submit form': function(e, template) {
+  'submit form': function(event) {
     e.preventDefault();
 
-    var $body = $(e.target).find('[name=body]');
+    var $body = $(event.target).find('[name=body]');
     var postId = null;
 
     // not an ideal solution; i'm just having trouble w/ parent Template data.
     switch(FlowRouter.getRouteName()) {
-      case "partyPage":
-          postId = Parties.findOne()._id;
-          break;
-      case "playlistPage":
-          postId = Playlists.findOne()._id;
-          break;
-      case "newsPage":
-          postId = Posts.findOne()._id;
-          break;
-      default:
-          throwError("Cannot comment on this page!");
-          return;
+    case 'partyPage':
+      postId = Parties.findOne()._id;
+      break;
+    case 'playlistPage':
+      postId = Playlists.findOne()._id;
+      break;
+    case 'newsPage':
+      postId = Posts.findOne()._id;
+      break;
+    default:
+      throwError('Cannot comment on this page!');
+      return;
     };
 
     var comment = {
@@ -53,12 +54,12 @@ Template.commentSubmit.events({
     };
     var errors = {};
     if (! comment.body) {
-      errors.body = "Please write something";
+      errors.body = 'Please write something.';
       return Session.set('commentSubmitErrors', errors);
     }
     Meteor.call('commentInsert', comment, function(error, commentId) {
       if (error){
-        throwError(error.reason, {type: 'danger'});
+        throwError(error.reason, { type: 'danger' });
       } else {
         $body.val('');
       }

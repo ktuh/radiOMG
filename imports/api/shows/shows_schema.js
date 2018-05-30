@@ -165,6 +165,6 @@ export default ShowsSchema = new SimpleSchema({
       type: 'hidden',
       label: false
     },
-    defaultValue: moment.utc().utcOffset("-10:00").toDate()
+    defaultValue: moment.utc().utcOffset('-10:00').toDate()
   }
 });
