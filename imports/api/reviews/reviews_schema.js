@@ -1,7 +1,8 @@
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { Meteor } from 'meteor/meteor';
 import { scorpius } from 'meteor/scorpiusjs:core';
-import { moment } from 'meteor/momentjs:moment';
+import moment from 'moment-timezone';
+import { moment as momentUtil } from 'meteor/momentjs:moment';
 import { thumbnailUrl } from '../../startup/lib/helpers.js';
 
 export default ReviewsSchema = new SimpleSchema({
@@ -41,7 +42,7 @@ export default ReviewsSchema = new SimpleSchema({
       type: 'hidden',
       label: false
     },
-    defaultValue: moment.utc().utcOffset('-10:00').toDate()
+    defaultValue: momentUtil(moment().tz('Pacific/Honolulu')).toDate()
   },
   artist: {
     type: String,
@@ -56,7 +57,7 @@ export default ReviewsSchema = new SimpleSchema({
   year: {
     type: Number,
     min: 0,
-    max: moment.utc().utcOffset('-10:00').toDate().getFullYear(),
+    max: momentUtil(moment().tz('Pacific/Honolulu')).year(),
     label: 'Year Released',
     optional: false
   },

@@ -7,7 +7,8 @@ import { Session } from 'meteor/session';
 import NowPlaying from '../../api/playlists/now_playing.js';
 import { HTTP } from 'meteor/http';
 import bodyParser from 'body-parser';
-import { moment } from 'meteor/momentjs:moment';
+import moment from 'moment-timezone';
+import { moment as momentUtil } from 'meteor/momentjs:moment';
 
 Picker.middleware(bodyParser.json());
 Picker.middleware(bodyParser.urlencoded({ extended: false }));
@@ -34,7 +35,7 @@ Picker.route('/spinitron/latest', function(params, req, res, next) {
           Playlists.insert({
             showId: showId,
             spinPlaylistId: playlistId,
-            showDate: moment.utc().utcOffset('-10:00').toDate(),
+            showDate: momentUtil(moment().tz('Pacific/Honolulu')).toDate(),
             startTime: result.OnairTime,
             endTime: result.OffairTime,
             djName: result.DJName
@@ -46,13 +47,13 @@ Picker.route('/spinitron/latest', function(params, req, res, next) {
 
   if (NowPlaying.find({}).count() < 1)
     NowPlaying.insert({
-      current: html, timestamp: moment.utc().utcOffset('-10:00').toDate()
+      current: html, timestamp: momentUtil(moment().tz('Pacific/Honolulu')).toDate()
     });
   else
     NowPlaying.update(NowPlaying.findOne()._id, {
       $set: {
         current: html,
-        timestamp: moment.utc().utcOffset('-10:00').toDate()
+        timestamp: momentUtil(moment().tz('Pacific/Honolulu')).toDate()
       }
     });
 });

@@ -5,7 +5,8 @@ import Posts from '../posts/posts_collection.js';
 import Comments from '../comments/comments_collection.js';
 import Shows from '../shows/shows_collection.js';
 import { FlowRouter } from 'meteor/kadira:flow-router';
-import { moment } from 'meteor/momentjs:moment';
+import moment from 'moment-timezone';
+import { moment as momentUtil } from 'meteor/momentjs:moment';
 
 Meteor.methods({
   commentInsert: function(commentAttributes) {
@@ -21,7 +22,7 @@ Meteor.methods({
       body: commentAttributes.body,
       userId: user._id,
       author: user.username,
-      submitted: moment.utc().utcOffset('-10:00').toDate()
+      submitted: momentUtil(moment().tz('Pacific/Honolulu')).toDate()
     };
     var to = '';
     var subject = '';

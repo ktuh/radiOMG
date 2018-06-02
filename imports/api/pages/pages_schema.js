@@ -1,7 +1,8 @@
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { scorpius } from 'meteor/scorpiusjs:core';
 import { FlowRouter } from 'meteor/kadira:flow-router';
-import { moment } from 'meteor/momentjs:moment';
+import moment from 'moment-timezone';
+import { moment as momentUtil } from 'meteor/momentjs:moment';
 
 export default PagesSchema = new SimpleSchema({
   isDraft: {
@@ -38,7 +39,7 @@ export default PagesSchema = new SimpleSchema({
       type: 'hidden',
       label: false
     },
-    autoValue: () => moment.utc().utcOffset('-10:00').toDate()
+    autoValue: () => momentUtil(moment().tz('Pacific/Honolulu')).toDate()
   },
   title: {
     type: String,
