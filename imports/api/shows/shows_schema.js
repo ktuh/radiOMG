@@ -2,7 +2,8 @@ import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { scorpius } from 'meteor/scorpiusjs:core';
 import { Meteor } from 'meteor/meteor';
 import Profiles from '../users/profiles_collection.js';
-import { moment } from 'meteor/momentjs:moment';
+import moment from 'moment-timezone';
+import { moment as momentUtil } from 'meteor/momentjs:moment';
 import { thumbnailUrl } from '../../startup/lib/helpers.js';
 
 export default ShowsSchema = new SimpleSchema({
@@ -165,6 +166,6 @@ export default ShowsSchema = new SimpleSchema({
       type: 'hidden',
       label: false
     },
-    defaultValue: moment.utc().utcOffset('-10:00').toDate()
+    defaultValue: momentUtil(moment().tz('Pacific/Honolulu')).toDate()
   }
 });

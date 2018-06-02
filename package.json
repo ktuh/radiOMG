@@ -24,6 +24,7 @@
     "crypto-js": "^3.1.9-1",
     "mediaelement": "^3.2.4",
     "meteor-node-stubs": "^0.4.1",
+    "moment-timezone": "^0.5.17",
     "node-pre-gyp": "^0.10.0",
     "underscore": "^1.9.0",
     "yubigen": "^1.0.3"

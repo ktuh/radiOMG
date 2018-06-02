@@ -1,5 +1,6 @@
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
-import { moment } from 'meteor/momentjs:moment';
+import moment from 'moment-timezone';
+import { moment as momentUtil } from 'meteor/momentjs:moment';
 import { thumbnailUrl } from '../../startup/lib/helpers.js';
 
 export default PostsSchema = new SimpleSchema({
@@ -47,7 +48,7 @@ export default PostsSchema = new SimpleSchema({
       type: 'hidden',
       label: false
     },
-    defaultValue: moment.utc().utcOffset('-10:00').toDate()
+    defaultValue: momentUtil(moment().tz('Pacific/Honolulu')).toDate()
   },
   title: {
     type: String,

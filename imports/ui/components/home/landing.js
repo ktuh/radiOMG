@@ -6,7 +6,8 @@ import Profiles from '../../../api/users/profiles_collection.js';
 import Playlists from '../../../api/playlists/playlists_collection.js';
 import { Template } from 'meteor/templating';
 import { Session } from 'meteor/session';
-import { moment } from 'meteor/momentjs:moment';
+import moment from 'moment-timezone';
+import { moment as momentUtil } from 'meteor/momentjs:moment';
 import { currentPlaylist, currentPlaylistFindOne, currentShow } from
   '../../../startup/lib/helpers.js';
 
@@ -39,7 +40,7 @@ Template.landing.onCreated(function() {
     });
     self.subscribe('nowPlaying');
     if (NowPlaying.findOne()) {
-      Session.set('timeout', moment.utc().utcOffset('-10:00')
+      Session.set('timeout', moment().tz('Pacific/Honolulu')
         .diff(moment(NowPlaying.findOne().timestamp)
           .utcOffset('-10:00')) > 360000);
     }
@@ -91,7 +92,7 @@ Template.landing.helpers({
     ) && Session.get('paused') === false;
   },
   background: () => {
-    var h = moment.utc().utcOffset('-10:00').toDate().getHours();
+    var h = momentUtil(moment().tz('Pacific/Honolulu')).toDate().getHours();
     var $landing = $('.landing');
 
     if (h >= 6 && h < 11) {

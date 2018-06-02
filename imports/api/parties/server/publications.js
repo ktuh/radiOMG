@@ -1,10 +1,11 @@
 import { Meteor } from 'meteor/meteor';
 import Parties from '../parties_collection.js';
-import { moment } from 'meteor/momentjs:moment';
+import moment from 'moment-timezone';
+import { moment as momentUtil } from 'meteor/momentjs:moment';
 
 Meteor.publish('approvedParties', function () {
   return Parties.find({ approved: true,
-    endTime: { $gt: moment.utc().utcOffset('-10:00').toDate() } });
+    endTime: { $gt: moment().tz('Pacific/Honolulu').toDate() } });
 });
 
 Meteor.publish('singleParty', function (selector) {

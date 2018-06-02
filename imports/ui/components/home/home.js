@@ -9,7 +9,7 @@ import Profiles from '../../../api/users/profiles_collection.js';
 import Reviews from '../../../api/reviews/reviews_collection.js';
 import Shows from '../../../api/shows/shows_collection.js';
 import { $, jQuery } from 'meteor/jquery';
-import { moment } from 'meteor/momentjs:moment';
+import { moment as momentUtil } from 'meteor/momentjs:moment';
 import { nextShow } from '../../../startup/lib/helpers.js';
 
 Template.home.onCreated(function () {
@@ -125,9 +125,9 @@ Template.home.helpers({
     var sp = '';
     if (startHour > endHour) sp = 'h:mm A'
     else sp = 'h:mm';
-    return moment(startHour + ':' + startMinute, 'HH:mm')
+    return momentUtil(startHour + ':' + startMinute, 'HH:mm')
       .format(sp) + '-' +
-    moment(endHour + ':' + endMinute, 'HH:mm').format('h:mm A'); },
+    momentUtil(endHour + ':' + endMinute, 'HH:mm').format('h:mm A'); },
   hasDjotm: () =>
     scorpius.dictionary.get('mainPage.monthlyDJName') !== undefined,
   djName: () => scorpius.dictionary.get('mainPage.monthlyDJName', ''),

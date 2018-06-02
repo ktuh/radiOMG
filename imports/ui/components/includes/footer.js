@@ -1,7 +1,8 @@
 import './footer.html';
 import { Template } from 'meteor/templating';
-import { moment } from 'meteor/momentjs:moment';
+import moment from 'moment-timezone';
+import { moment as momentUtil } from 'meteor/momentjs:moment';
 
 Template.footer.helpers({
-  year: () => moment.utc().utcOffset('-10:00').toDate().getFullYear()
+  year: () => momentUtil(moment().tz('Pacific/Honolulu')).year()
 });

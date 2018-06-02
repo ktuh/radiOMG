@@ -1,12 +1,13 @@
 import Playlists from '../../api/playlists/playlists_collection.js';
 import Shows from '../../api/shows/shows_collection.js';
-import { moment } from 'meteor/momentjs:moment';
+import moment from 'moment-timezone';
+import { moment as momentUtil } from 'meteor/momentjs:moment';
 import { Meteor } from 'meteor/meteor';
 
 export const currentPlaylist = function() {
   return Playlists.find({
     $where: function() {
-      var now = moment.utc().utcOffset('-10:00').toDate();
+      var now = momentUtil(moment().tz('Pacific/Honolulu')).toDate();
       return this.showDate.getYear() === now.getYear() &&
         this.showDate.getMonth() === now.getMonth() &&
         this.showDate.getDate() === now.getDate() &&
@@ -16,7 +17,7 @@ export const currentPlaylist = function() {
 };
 
 export const currentPlaylistFindOne = function() {
-  var now = moment.utc().utcOffset('-10:00').toDate();
+  var now = momentUtil(moment().tz('Pacific/Honolulu')).toDate();
   var playlist = Playlists.findOne({
     $where: function() {
       return this.showDate.getYear() === now.getYear() &&
@@ -35,7 +36,7 @@ export const currentPlaylistFindOne = function() {
 };
 
 export const currentShow = function() {
-  var now = moment.utc().utcOffset('-10:00').toDate();
+  var now = momentUtil(moment().tz('Pacific/Honolulu')).toDate();
   var show = Shows.findOne({ active: true, startDay: now.getDay(),
     startHour: { $lte: now.getHours() },
     endDay: now.getDay()
@@ -67,7 +68,7 @@ export const currentShow = function() {
 };
 
 export const nextShow = function() {
-  var now = moment.utc().utcOffset('-10:00').toDate();
+  var now = momentUtil(moment().tz('Pacific/Honolulu')).toDate();
   var sameDay = Shows.findOne({ active: true, startDay: now.getDay(),
     startHour: { $gt: now.getHours() }, endDay: now.getDay() });
   var tmr1 = Shows.findOne({ active: true, startDay: {
