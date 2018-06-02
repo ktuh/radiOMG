@@ -19,7 +19,8 @@ Template.showList.helpers({
     var day = FlowRouter.getQueryParam('day');
     var daze = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday',
       'Friday', 'Saturday'];
-    var date = getLocalTime();
+
+    var date = getLocalTime().toDate();
 
     // We're not routed to a particular day of the week
     if (day === undefined || $.inArray(day, daze) === -1) {

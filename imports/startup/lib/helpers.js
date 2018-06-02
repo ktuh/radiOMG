@@ -5,7 +5,7 @@ import { moment as momentUtil } from 'meteor/momentjs:moment';
 import { Meteor } from 'meteor/meteor';
 
 export const getLocalTime = () =>
-  momentUtil(moment(new Date(), moment.tz.guess()).tz('Pacific/Honolulu')); 
+  momentUtil(moment().tz('Pacific/Honolulu'));
 
 export const currentPlaylist = function() {
   return Playlists.find({
@@ -23,10 +23,6 @@ export const currentPlaylistFindOne = function() {
   var now = getLocalTime();
   var playlist = Playlists.findOne({
     $where: function() {
-      return this.showDate.getYear() === now.getYear() &&
-             this.showDate.getMonth() === now.getMonth() &&
-             this.showDate.getDate() === now.getDate() &&
-             parseInt(this.startTime.split(':')[0]) <= new Date().getHours();
       return this.showDate.getYear() === now.year() &&
              this.showDate.getMonth() === now.month() &&
              this.showDate.getDate() === now.date() &&
@@ -43,7 +39,7 @@ export const currentPlaylistFindOne = function() {
 };
 
 export const currentShow = function() {
-  var now = getLocalTime()
+  var now = getLocalTime();
   var show = Shows.findOne({ active: true, startDay: now.day(),
     startHour: { $lte: now.hour() },
     endDay: now.day() }, { sort: { startHour: -1 } });
