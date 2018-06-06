@@ -5,7 +5,7 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 import { Meteor } from 'meteor/meteor';
 import Shows from '../../../api/shows/shows_collection.js';
 import { $ } from 'meteor/jquery';
-import { getLocalTime } from '../../../startup/lib/helpers.js';
+import { getLocalTime } from '../../../startup/lib/helpers.js'
 
 Template.showList.onCreated(function() {
   var self = this;
@@ -19,18 +19,14 @@ Template.showList.helpers({
     var day = FlowRouter.getQueryParam('day');
     var daze = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday',
       'Friday', 'Saturday'];
+    var date = getLocalTime();
 
     var date = getLocalTime().toDate();
 
     // We're not routed to a particular day of the week
-    if (day === undefined || $.inArray(day, daze) === -1) {
-      if (d === daze[date.getDay()]) return 'active';
-      else return '';
-    }
-    else {
-      if (d === daze[$.inArray(day, daze)]) return 'active';
-      else return '';
-    }
+    if (day === undefined || $.inArray(day, daze) === -1)
+      return d === daze[date.day()] ? 'active' : '';
+    else return d === daze[$.inArray(day, daze)] ? 'active' : '';
   },
   daysShows: () => {
     var day = FlowRouter.getQueryParam('day');
@@ -55,10 +51,8 @@ Template.showList.events({
       'Friday', 'Saturday'];
     var date = getLocalTime();
     var prevDayNum = 0;
-    if (day === undefined || $.inArray(day, daze) < 0) {
-      if (date.getDay() - 1 < 0) prevDayNum = 0;
-      else prevDayNum = date.getDay() - 1;
-    }
+    if (day === undefined || $.inArray(day, daze) < 0)
+      prevDayNum = date.day() - 1 < 0 ? 6 : date.day() - 1;
     else {
       var dayNum = $.inArray(day, daze);
       if (dayNum - 1 < 0) prevDayNum = 0;
@@ -72,10 +66,8 @@ Template.showList.events({
       'Friday', 'Saturday'];
     var date = getLocalTime();
     var nextDayNum = 0;
-    if (day === undefined || $.inArray(day, daze) < 0) {
-      if (date.getDay() + 1 > 6) nextDayNum = 0;
-      else nextDayNum = date.getDay() + 1;
-    }
+    if (day === undefined || $.inArray(day, daze) < 0)
+      nextDayNum = date.day() + 1 > 6 ? 0 : date.day() + 1;
     else {
       var dayNum = $.inArray(day, daze);
       if (dayNum + 1 > 6) nextDayNum = 0;
