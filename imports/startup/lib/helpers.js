@@ -7,23 +7,27 @@ import { Meteor } from 'meteor/meteor';
 export const currentPlaylist = function() {
   return Playlists.find({
     $where: function() {
-      var now = momentUtil(moment().tz('Pacific/Honolulu')).toDate();
-      return this.showDate.getYear() === now.getYear() &&
-        this.showDate.getMonth() === now.getMonth() &&
-        this.showDate.getDate() === now.getDate() &&
-        parseInt(this.startTime.split(':')[0]) <= new Date().getHours();
+      var now = getLocalTime();
+      return this.showDate.getYear() === now.year() &&
+             this.showDate.getMonth() === now.month() &&
+             this.showDate.getDate() === now.date() &&
+             parseInt(this.startTime.split(':')[0]) <= now.hour();
     }
   }, { sort: { startTime: -1 } });
 };
 
 export const currentPlaylistFindOne = function() {
-  var now = momentUtil(moment().tz('Pacific/Honolulu')).toDate();
+  var now = getLocalTime();
   var playlist = Playlists.findOne({
     $where: function() {
       return this.showDate.getYear() === now.getYear() &&
              this.showDate.getMonth() === now.getMonth() &&
              this.showDate.getDate() === now.getDate() &&
              parseInt(this.startTime.split(':')[0]) <= new Date().getHours();
+      return this.showDate.getYear() === now.year() &&
+             this.showDate.getMonth() === now.month() &&
+             this.showDate.getDate() === now.date() &&
+             parseInt(this.startTime.split(':')[0]) <= now.hour();
     }
   }, { sort: { startTime: -1 } });
 
@@ -36,11 +40,10 @@ export const currentPlaylistFindOne = function() {
 };
 
 export const currentShow = function() {
-  var now = momentUtil(moment().tz('Pacific/Honolulu')).toDate();
-  var show = Shows.findOne({ active: true, startDay: now.getDay(),
-    startHour: { $lte: now.getHours() },
-    endDay: now.getDay()
-  }, { sort: { startHour: -1 } });
+  var now = getLocalTime()
+  var show = Shows.findOne({ active: true, startDay: now.day(),
+    startHour: { $lte: now.hour() },
+    endDay: now.day() }, { sort: { startHour: -1 } });
 
   if (show === undefined) return undefined;
 
@@ -56,10 +59,10 @@ export const currentShow = function() {
     actualEndHour = (actualEndHour + 1) % 24;
   }
 
-  if (actualEndHour > 0 && now.getHours() < actualEndHour) {
+  if (actualEndHour > 0 && now.hour() < actualEndHour) {
     return show;
   }
-  else if (actualEndHour === 0 && now.getHours() < 24) {
+  else if (actualEndHour === 0 && now.hour() < 24) {
     return show;
   }
   else {
@@ -68,11 +71,11 @@ export const currentShow = function() {
 };
 
 export const nextShow = function() {
-  var now = momentUtil(moment().tz('Pacific/Honolulu')).toDate();
-  var sameDay = Shows.findOne({ active: true, startDay: now.getDay(),
-    startHour: { $gt: now.getHours() }, endDay: now.getDay() });
+  var now = getLocalTime();
+  var sameDay = Shows.findOne({ active: true, startDay: now.day(),
+    startHour: { $gt: now.hour() }, endDay: now.day() });
   var tmr1 = Shows.findOne({ active: true, startDay: {
-    $gte: (now.getDay() + 1) % 7 }
+    $gte: (now.day() + 1) % 7 }
   }, { sort: { startDay: 1, startHour: 1, startMinute: 1 } });
   var tmr2 = Shows.findOne({ active: true, startDay: { $gte: 0 } },
     { sort: { startDay: 1, startHour: 1, startMinute: 1 } });

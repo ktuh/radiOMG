@@ -1,9 +1,6 @@
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { scorpius } from 'meteor/scorpiusjs:core';
-import moment from 'moment-timezone';
-import { moment as momentUtil } from 'meteor/momentjs:moment';
-
-import { thumbnailUrl } from '../../startup/lib/helpers.js';
+import { thumbnailUrl, getLocalTime } from '../../startup/lib/helpers.js';
 
 export default PartySchema = new SimpleSchema({
   title: {
@@ -78,7 +75,7 @@ export default PartySchema = new SimpleSchema({
       label: false,
       type: 'hidden'
     },
-    defaultValue: momentUtil(moment().tz('Pacific/Honolulu')).toDate()
+    defaultValue: () => getLocalTime().toDate()
   },
   userId: {
     type: String,

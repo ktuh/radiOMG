@@ -1,8 +1,9 @@
 import { Meteor } from 'meteor/meteor';
 import Notices from '../notices_collection.js'
+import { getLocalTime } from '../../../startup/lib/helpers.js';
 
 Meteor.publish('notices', function() {
-  var now = new Date();
+  var now = getLocalTime().toDate();
   return Notices.find({
     startDatetime: { $lt: now },
     endDatetime: { $gt: now }

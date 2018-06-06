@@ -1,6 +1,6 @@
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { scorpius } from 'meteor/scorpiusjs:core';
-import { thumbnailUrl } from '../../startup/lib/helpers.js';
+import { thumbnailUrl, getLocalTime } from '../../startup/lib/helpers.js';
 
 export default ProfilesSchema = new SimpleSchema({
   userId: {

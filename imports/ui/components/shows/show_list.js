@@ -5,8 +5,7 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 import { Meteor } from 'meteor/meteor';
 import Shows from '../../../api/shows/shows_collection.js';
 import { $ } from 'meteor/jquery';
-import moment from 'moment-timezone';
-import { moment as momentUtil } from 'meteor/momentjs:moment';
+import { getLocalTime } from '../../../startup/lib/helpers.js';
 
 Template.showList.onCreated(function() {
   var self = this;
@@ -20,7 +19,7 @@ Template.showList.helpers({
     var day = FlowRouter.getQueryParam('day');
     var daze = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday',
       'Friday', 'Saturday'];
-    var date = momentUtil(moment().tz('Pacific/Honolulu')).toDate();
+    var date = getLocalTime();
 
     // We're not routed to a particular day of the week
     if (day === undefined || $.inArray(day, daze) === -1) {
@@ -36,15 +35,15 @@ Template.showList.helpers({
     var day = FlowRouter.getQueryParam('day');
     var daze = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday',
       'Friday', 'Saturday'];
-    var date = momentUtil(moment().tz('Pacific/Honolulu')).toDate();
+    var date = getLocalTime();
     var dayNum = 0;
     if (day === undefined || $.inArray(day, daze) < 0) {
-      dayNum = date.getDay();
+      dayNum = date.day();
     } else {
       dayNum = $.inArray(day, daze);
     }
     return Shows.find({ startDay: dayNum },
-                      { sort: { startHour: 1, startMinute: 1 } });
+      { sort: { startHour: 1, startMinute: 1 } });
   }
 });
 
@@ -53,7 +52,7 @@ Template.showList.events({
     var day = FlowRouter.getQueryParam('day');
     var daze = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday',
       'Friday', 'Saturday'];
-    var date = momentUtil(moment().tz('Pacific/Honolulu')).toDate();
+    var date = getLocalTime();
     var prevDayNum = 0;
     if (day === undefined || $.inArray(day, daze) < 0) {
       if (date.getDay() - 1 < 0) prevDayNum = 0;
@@ -70,7 +69,7 @@ Template.showList.events({
     var day = FlowRouter.getQueryParam('day');
     var daze = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday',
       'Friday', 'Saturday'];
-    var date = momentUtil(moment().tz('Pacific/Honolulu')).toDate();
+    var date = getLocalTime();
     var nextDayNum = 0;
     if (day === undefined || $.inArray(day, daze) < 0) {
       if (date.getDay() + 1 > 6) nextDayNum = 0;

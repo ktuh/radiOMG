@@ -1,7 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import Shows from '../shows_collection.js';
-import moment from 'moment-timezone';
-import { moment as momentUtil } from 'meteor/momentjs:moment';
+import { getLocalTime } from '../../../startup/lib/helpers.js';
 
 Meteor.publish('shows', () => {
   return Shows.find({});
@@ -33,7 +32,7 @@ Meteor.publish('showNowPlaying', () => {
   // We are making a big assumption here! The assumption is that shows
   // do not air over midnight into the next day. Shows are to be cut off
   // at 11:59 and air entirely on a single day.
-  var now = momentUtil(moment().tz('Pacific/Honolulu'));
+  var now = getLocalTime();
   return Shows.find({ active: true, startDay: now.day(),
     startHour: { $lte: now.hour() },
     endDay: now.day()
@@ -43,7 +42,7 @@ Meteor.publish('showNowPlaying', () => {
 });
 
 Meteor.publish('nextOnAir', () => {
-  var now = momentUtil(moment().tz('Pacific/Honolulu'));
+  var now = getLocalTime();
   var sameDay = Shows.find({
     active: true, startDay: now.day(),
     startHour: { $gt: now.hour() },

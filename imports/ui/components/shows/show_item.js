@@ -2,7 +2,7 @@ import './show_item.html';
 import { Template } from 'meteor/templating';
 import { Meteor } from 'meteor/meteor';
 import Shows from '../../../api/shows/shows_collection.js';
-import { moment } from 'meteor/momentjs:moment';
+import { moment as momentUtil } from 'meteor/momentjs:moment';
 
 Template.showItem.onCreated(function() {
   var self = this;
