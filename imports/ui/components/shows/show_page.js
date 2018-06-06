@@ -4,7 +4,7 @@ import Playlists from '../../../api/playlists/playlists_collection.js';
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { FlowRouter } from 'meteor/kadira:flow-router';
-import { moment } from 'meteor/momentjs:moment';
+import { moment as momentUtil } from 'meteor/momentjs:moment';
 
 Template.showPage.onCreated(function() {
   var self = this;
@@ -41,7 +41,7 @@ Template.showPage.onCreated(function() {
 Template.showPage.helpers({
   show: () =>  Shows.findOne({ slug: FlowRouter.getParam('slug') }),
   lessThanTen: (n) => Math.abs(n) < 10,
-  time: (t) => moment(t).format('ddd. MMM. D, YYYY'),
+  time: (t) => momentUtil(t).format('ddd. MMM. D, YYYY'),
   playlists: () => Playlists.find({
     showId: Shows.findOne({ slug: FlowRouter.getParam('slug') }).showId
   }, { sort: { showDate: -1 } }),

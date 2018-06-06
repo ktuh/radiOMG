@@ -1,7 +1,5 @@
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
-import moment from 'moment-timezone';
-import { moment as momentUtil } from 'meteor/momentjs:moment';
-import { thumbnailUrl } from '../../startup/lib/helpers.js';
+import { thumbnailUrl, getLocalTime } from '../../startup/lib/helpers.js';
 
 export default PostsSchema = new SimpleSchema({
   userId: {
@@ -48,7 +46,7 @@ export default PostsSchema = new SimpleSchema({
       type: 'hidden',
       label: false
     },
-    defaultValue: momentUtil(moment().tz('Pacific/Honolulu')).toDate()
+    defaultValue: () => getLocalTime().toDate()
   },
   title: {
     type: String,

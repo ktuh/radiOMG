@@ -1,8 +1,7 @@
 import './footer.html';
 import { Template } from 'meteor/templating';
-import moment from 'moment-timezone';
-import { moment as momentUtil } from 'meteor/momentjs:moment';
+import { getLocalTime } from '../../../startup/lib/helpers.js';
 
 Template.footer.helpers({
-  year: () => momentUtil(moment().tz('Pacific/Honolulu')).year()
+  year: () => getLocalTime().year()
 });

@@ -1,11 +1,10 @@
 import { Meteor } from 'meteor/meteor';
 import Parties from '../parties_collection.js';
-import moment from 'moment-timezone';
-import { moment as momentUtil } from 'meteor/momentjs:moment';
+import { getLocalTime } from '../../../startup/lib/helpers.js';
 
 Meteor.publish('approvedParties', function () {
   return Parties.find({ approved: true,
-    endTime: { $gt: moment().tz('Pacific/Honolulu').toDate() } });
+    endTime: { $gt: getLocalTime().toDate() } });
 });
 
 Meteor.publish('singleParty', function (selector) {
