@@ -32,8 +32,8 @@ export default NoticesSchema = new SimpleSchema({
     autoform: {
       options: [
         { label: 'Light', value: 0 },
-        { label: 'Moderate', value: 1 },
-        { label: 'Severe', value: 2 }
+        { label: 'Medium', value: 1 },
+        { label: 'Dark', value: 2 }
       ]
     }
   }
