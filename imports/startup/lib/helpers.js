@@ -4,6 +4,9 @@ import moment from 'moment-timezone';
 import { moment as momentUtil } from 'meteor/momentjs:moment';
 import { Meteor } from 'meteor/meteor';
 
+export const getLocalTime = () =>
+  momentUtil(moment(new Date(), moment.tz.guess()).tz('Pacific/Honolulu')); 
+
 export const currentPlaylist = function() {
   return Playlists.find({
     $where: function() {
