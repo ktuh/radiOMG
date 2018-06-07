@@ -2879,25 +2879,25 @@ margin-bottom: 0 !important;
   height: 100%;
 }
 .banner.light {
+  background-color: white;
+  color: #333;
+}
+.banner.light a {
+  color: #333;
+}
+.banner.medium {
   background-color: #5940de;
   color: white;
 }
-.banner.light a {
+.banner.medium a {
   color: white;
 }
-.banner.moderate {
-  background-color: yellow;
-  color: black;
+.banner.dark {
+  background-color: #333;
+  color: #5940de;
 }
-.banner.moderate a {
-  color: black;
-}
-.banner.severe {
-  background-color: crimson;
-  color: white;
-}
-.banner.severe a {
-  color: white;
+.banner.dark a {
+  color: #5940de;
 }
 .banner a:hover {
   text-decoration: underline;
