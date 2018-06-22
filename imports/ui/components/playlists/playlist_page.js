@@ -23,7 +23,12 @@ Template.playlistPage.onCreated(function(){
         var playlist = Playlists.findOne({ spinPlaylistId: id });
         var parsedId = parseInt(playlist.spinPlaylistId);
 
-
+        Meteor.call('getPlaylistOrInfo', parsedId, true, function(error, result) {
+          if (!error && result) {
+            Session.set('currentPlaylist', result);
+            Session.set('playlistViewing', parsedId);
+          }
+        });
         self.subscribe('comments', playlist._id);
         if (playlist.showId > -1)
           self.subscribe('showBySpinitronId', playlist.showId);
