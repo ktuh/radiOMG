@@ -227,6 +227,15 @@ FlowRouter.route('/profile', {
   }
 });
 
+FlowRouter.route('/alumni', {
+  name: 'alumni',
+  action: async function() {
+    await import('../../ui/components/static_pages/alumni.js').then(function() {
+      BlazeLayout.render('layout', {content: 'alumni'});
+    });
+  }
+});
+
 FlowRouter.route('/about-us', {
   name: 'about',
   action: async function() {

@@ -1909,7 +1909,8 @@ margin-bottom: 0 !important;
   background-color: #1e1e1e;
 }
 .join__content,
-.about__content {
+.about__content,
+.alumni__content {
   padding: 30px 0;
 }
 .page__content {
@@ -2012,7 +2013,15 @@ margin-bottom: 0 !important;
 .playlist__sidebar-link a:hover {
   text-decoration: underline;
 }
-.about__desc p, .about__content p, .page__content p, .about__help,
+.alumni__img {
+  width: 100%;
+}
+.alumni__img img {
+  display: block;
+  margin: 0 auto;
+}
+.about__desc p, .about__content p, .alumni__img, .alumni__content p,
+.page__content p, .about__help,
 .join__desc p, .join__content p,
 .contact__content p, .contact__content h4, .contact__content form,
 .contact__content ul {
@@ -2380,12 +2389,13 @@ margin-bottom: 0 !important;
     max-width: 37em;
     justify-content: center;
   }
-  .about__desc, .about__content, .about__help, .join__desc, .join__content,
+  .about__desc, .about__content, .alumni__content,
+  .about__help, .join__desc, .join__content,
   .faq__content, .contact__content, .playlist__content, .content, .reviews__content
   #partyForm, #showForm, .show__wrapper, .news-list__wrapper, .page__content {
     padding: 20px 40px;
   }
-  .about__desc p, .about__content p,
+  .about__desc p, .about__content p, .alumni__img, .alumni__content p,
   .join__desc p, .join__content p,
   .faq__content p, .contact__content p, .page__content p, .contact__content h4,
   .contact__content ul {
