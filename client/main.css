@@ -2170,6 +2170,13 @@ margin-bottom: 0 !important;
 .music__playlists table {
   width: 100%;
 }
+.note-editable.panel-body ul {
+  padding-left: 20px;
+  list-style-type: disc;
+}
+.note-editable.panel-body ul li {
+  list-style-type: inherit;
+}
 @-webkit-keyframes fadeOut {
   0% {
     opacity: 0;
