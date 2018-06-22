@@ -1,6 +1,7 @@
 import './playlist_page.html';
 import './playlist_sidebar.js';
 import '../../../ui/components/comments/comment_submit.js';
+import '../../../ui/components/comments/comment_item.js';
 import { Meteor } from 'meteor/meteor';
 import Comments from '../../../api/comments/comments_collection.js';
 import Playlists from '../../../api/playlists/playlists_collection.js';
@@ -22,18 +23,10 @@ Template.playlistPage.onCreated(function(){
         var playlist = Playlists.findOne({ spinPlaylistId: id });
         var parsedId = parseInt(playlist.spinPlaylistId);
 
-        Meteor.call('getPlaylistOrInfo', parsedId, true,
-          function(error, result) {
-            if (!error && result) {
-              Session.set('currentPlaylist', result);
-              Session.set('playlistViewing', parsedId);
-            }
-          });
-        self.subscribe('showBySpinitronId', playlist.showId, {
-          onReady: function() {
-            self.subscribe('comments', playlist._id);
-          }
-        });
+
+        self.subscribe('comments', playlist._id);
+        if (playlist.showId > -1)
+          self.subscribe('showBySpinitronId', playlist.showId);
       }
     });
   });
