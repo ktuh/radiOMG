@@ -2888,12 +2888,14 @@ margin-bottom: 0 !important;
 .banner-container {
   width: 100vw;
   text-align: center;
-  font-size: 16px;
+  font-size: 1.125em;
   z-index: 19;
   height: 32px;
 }
 .banner {
   height: 100%;
+  padding-left: 45px;
+  padding-right: 45px;
 }
 .banner.light {
   background-color: white;
@@ -2920,19 +2922,19 @@ margin-bottom: 0 !important;
   text-decoration: underline;
 }
 .banner p {
-  padding: 5px 0;
+  padding: 5px 0px;
   margin: auto;
+  max-height: 100%;
 }
-@media screen and (min-width: 430px) and (max-width: 567px) {
-  .banner-container {
-    font-size: 14px;
+@media screen and (max-width: 480px) {
+  .banner {
+    padding-left: 20px;
+    padding-right: 20px;
   }
 }
-@media screen and (max-width: 429px) {
-  .banner-container {
-    font-size: 11.5px;
-  }
-  .banner p, .banner a {
-    padding: 0;
+@media screen and (min-width: 481px) and (max-width: 768px) {
+  .banner {
+    padding-left: 40px;
+    padding-right: 40px;
   }
 }
