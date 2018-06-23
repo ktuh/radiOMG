@@ -85,13 +85,13 @@ Template.showPage.helpers({
       endHour = (endHour + 1) % 24;
       endMinute = 0;
     }
-    var startGreater = startHour > endHour;
-    if (startGreater) startGreater = 'h:mmA';
-    else startGreater = 'h:mm';
-    return moment(startHour + ':' + startMinute, 'HH:mm').format(startGreater) +
-    '-' + moment(endHour + ':' + endMinute, 'HH:mm').format('h:mmA');
+    var ap = startHour > endHour;
+    if (ap) ap = 'h:mmA';
+    else ap = 'h:mm';
+    return momentUtil(startHour + ':' + startMinute, 'HH:mm').format(ap) +
+      '-' + momentUtil(endHour + ':' + endMinute, 'HH:mm').format('h:mmA');
   },
-  timeBeautify2: (h, m) => moment(h + ':' + m, 'HH:mm').format('h:mma'),
+  timeBeautify2: (h, m) => momentUtil(h + ':' + m, 'HH:mm').format('h:mma'),
   genreString: (genres) => genres.join(', '),
   actualPlaylist: () => Session.get('currentPlaylist')
 });

@@ -1919,7 +1919,7 @@ margin-bottom: 0 !important;
 .contact__content {
   padding: 30px;
 }
-.contact__content a:hover, .join__content a:hover {
+.contact__content a:hover, .join__content a:hover, .alumni__content a:hover {
   text-decoration: underline;
 }
 .at-form {

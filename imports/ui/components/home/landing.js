@@ -8,8 +8,8 @@ import { Template } from 'meteor/templating';
 import { Session } from 'meteor/session';
 import moment from 'moment-timezone';
 import { moment as momentUtil } from 'meteor/momentjs:moment';
-import { currentPlaylist, currentPlaylistFindOne, currentShow, getLocalTime } from
-  '../../../startup/lib/helpers.js';
+import { currentPlaylist, currentPlaylistFindOne, currentShow, getLocalTime }
+  from '../../../startup/lib/helpers.js';
 
 Template.landing.onCreated(function() {
   var self = this;
@@ -40,8 +40,10 @@ Template.landing.onCreated(function() {
     });
     self.subscribe('nowPlaying');
     if (NowPlaying.findOne()) {
-      Session.set('timeout', getLocalTime()
-        .diff(momentUtil(moment(NowPlaying.findOne().timestamp, "Pacific/Honolulu"))) > 360000);
+      Session.set('timeout',
+        getLocalTime().diff(momentUtil(
+          moment(NowPlaying.findOne().timestamp, 'Pacific/Honolulu'))
+        ) > 360000);
     }
   });
 });
