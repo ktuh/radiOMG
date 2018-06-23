@@ -1,3 +1,4 @@
 client/compatibility/jquery.truncate.js
 public/mejs/
 imports/ui/components/static_pages/contact.js
+packages/
