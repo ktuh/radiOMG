@@ -36,8 +36,6 @@ Meteor.startup(function () {
 
 AutoForm.addHooks(['partyForm'],{
   onSuccess: function(formType, result) {
-    console.log('Successfully submitted partyForm!\nthis.docId = ' +
-      this.docId);
     FlowRouter.go('/event' + this.docId);
   }
 });
@@ -46,11 +44,10 @@ Meteor.subscribe('bannedProfiles');
 
 Tracker.autorun(() => {
   if (Meteor.loggingIn() || Meteor.user()) {
-    if (Profiles.findOne({ userId: Meteor.userId() }) !== undefined) {
-      if (Profiles.findOne({ userId: Meteor.userId() }).banned) {
-        throwError('Login denied. This account is currently disabled.');
-        Meteor.logout();
-      }
+    var profile = Profiles.findOne({ userId: Meteor.userId() });
+    if (profile && profile.banned) {
+      throwError('Login denied. This account is currently disabled.');
+      Meteor.logout();
     }
   }
 });
