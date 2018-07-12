@@ -2,6 +2,8 @@ import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
 import Profiles from '../profiles_collection.js';
 import Posts from '../../posts/posts_collection.js';
+import Shows from '../../shows/shows_collection.js';
+
 import { _ } from 'underscore';
 
 Meteor.publish('userData', function(username) {
@@ -70,5 +72,21 @@ Meteor.publish('djProfiles', () => {
   return Profiles.find({ userId: { $in: userIds } });
 });
 
+Meteor.publish('activeDjProfiles', function() {
+  var activeShows = Shows.find({ active: true }).fetch();
+  var activeDjs = activeShows.map(function(shows) {
+    return shows.userId;
+  });
+  return Profiles.find({ userId: { $in: activeDjs } });
+});
+
 Meteor.publish('djs', () =>
   Meteor.users.find({ roles: 'dj' }, { fields: { 'username': 1 } }));
+
+Meteor.publish('activeDjs', function() {
+  var activeShows = Shows.find({ active: true }).fetch();
+  var activeDjs = activeShows.map(function(shows) {
+    return shows.userId;
+  });
+  return Meteor.users.find({ _id: { $in: activeDjs } });
+});
