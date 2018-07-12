@@ -1908,6 +1908,9 @@ margin-bottom: 0 !important;
   padding: 30px 0;
   background-color: #1e1e1e;
 }
+.join__content a {
+  color: #5940de;
+}
 .join__content,
 .about__content,
 .alumni__content {
