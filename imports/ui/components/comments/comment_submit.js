@@ -26,7 +26,7 @@ Template.commentSubmit.helpers({
 
 Template.commentSubmit.events({
   'submit form': function(event) {
-    e.preventDefault();
+    event.preventDefault();
 
     var $body = $(event.target).find('[name=body]');
     var postId = null;

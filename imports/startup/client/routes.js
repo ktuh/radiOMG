@@ -37,7 +37,7 @@ FlowRouter.route('/', {
 });
 
 FlowRouter.route('/radioblog/:slug', {
-  name: 'blogPage',
+  name: 'newsPage',
   action: async function () {
     await import('../../ui/components/news/news_item.js').then(function() {
       BlazeLayout.render('layout', { content: 'newsItem' });
