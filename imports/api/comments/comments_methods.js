@@ -44,7 +44,7 @@ Meteor.methods({
     switch(commentAttributes.type) {
     case 'partyPage':
       var party = Parties.findOne({ _id: commentAttributes.postId });
-      var url = url + 'news/' + post.slug;
+      var url = url + 'events/' + post.slug;
       var recipient = Meteor.users.findOne({ _id: party.userId });
 
       to = recipient.emails && recipient.emails[0].address;
@@ -78,8 +78,8 @@ Meteor.methods({
       Meteor.call('sendEmailNotification', to, subject, body, false);
       break;
     case 'newsPage':
-      var post = Posts.findOne(commentAttributes);
-      var url = url + 'events/' + post.slug;
+      var post = Posts.findOne({ _id: commentAttributes.postId });
+      var url = url + 'radioblog/' + post.slug;
       var recipient = Meteor.users.findOne({ _id: post.userId });
 
       to = recipient.emails && recipient.emails[0].address;

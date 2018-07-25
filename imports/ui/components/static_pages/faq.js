@@ -10,8 +10,8 @@ Template.faq.events({
       .children('.faq__answer').toggle(100);
   },
   'click .faq__question > span': function(event) {
-    var actual =
-      $(e.target).parent('.faq__question').parent('.faq__section-qna-content');
+    var actual = $(event.target).parent('.faq__question')
+      .parent('.faq__section-qna-content');
     var toggle = actual.siblings('.toggle'), btn;
     if ($(toggle).text() == '+') btn = '-';
     else btn = '+';
