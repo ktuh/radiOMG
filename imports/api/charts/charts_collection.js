@@ -21,15 +21,17 @@ export default Charts = new scorpius.collection('charts', {
 });
 
 Charts.friendlySlugs({
-  slugFrom: 'chartDate',
+  slugFrom: ['title', 'chartDate'],
   slugField: 'slug',
   distinct: true,
   updateSlug: true,
   slugGenerator: (defaultSlug) => {
-    var sec = defaultSlug.split('-');
+    console.log(defaultSlug);
+    var sec = defaultSlug.split('-').slice(2);
     var mons = ['jan','feb','mar','apr','may','jun',
       'jul','aug','sep','oct','nov','dec'];
-    return [sec[3], mons.indexOf(sec[1]) + 1, sec[2]].join('-');
+    return defaultSlug.replace(sec.join('-'),
+      [sec[3], mons.indexOf(sec[1]) + 1, sec[2]].join('-'));
   }
 });
 

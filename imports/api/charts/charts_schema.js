@@ -79,7 +79,8 @@ export default ChartsSchema = new SimpleSchema({
     optional: false
   }),
   body: scorpius.attribute('summernote', {
-    label: 'Body'
+    label: 'Body',
+    optional: true
   }),
   slug: {
     type: String,
