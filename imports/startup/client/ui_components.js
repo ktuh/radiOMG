@@ -11,3 +11,5 @@ import '../../ui/components/reviews/reviews_create.js';
 
 import '../../ui/components/shows/shows_update.js';
 import '../../ui/components/shows/shows_create.js';
+
+import '../../ui/components/charts/charts_create.js';
