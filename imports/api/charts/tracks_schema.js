@@ -3,11 +3,11 @@ import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 export default TracksSchema = new SimpleSchema({
   artist: {
     type: String,
-    optional: false
+    optional: true
   },
   song: {
     type: String,
-    optional: false
+    optional: true
   },
   release: {
     type: String,
@@ -15,12 +15,14 @@ export default TracksSchema = new SimpleSchema({
   },
   label: {
     type: String,
-    optional: false
+    optional: true
   },
   newRelease: {
-    type: Boolean
+    type: Boolean,
+    optional: true,
   },
   local: {
-    type: Boolean
+    type: Boolean,
+    optional: true
   }
 });

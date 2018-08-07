@@ -26,12 +26,16 @@ Charts.friendlySlugs({
   distinct: true,
   updateSlug: true,
   slugGenerator: (defaultSlug) => {
-    console.log(defaultSlug);
-    var sec = defaultSlug.split('-').slice(2);
+    var sec = defaultSlug.split('-').slice(-10);
+    var title = defaultSlug.split('-').slice();
     var mons = ['jan','feb','mar','apr','may','jun',
       'jul','aug','sep','oct','nov','dec'];
+    var mo = mons.indexOf(sec[1]) + 1;
+    if (mo < 10) {
+      mo = '0' + mo;
+    }
     return defaultSlug.replace(sec.join('-'),
-      [sec[3], mons.indexOf(sec[1]) + 1, sec[2]].join('-'));
+      [sec[3], mo, sec[2]].join('-'));
   }
 });
 

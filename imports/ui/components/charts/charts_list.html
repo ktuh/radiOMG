@@ -3,7 +3,7 @@
     <h2 class='general__header'>Charts</h2>
     <div class='playlist-list__latest'>
       {{#with latestChart}}
-        <h3 class='playlist__show-name'><a href='/charts/{{slug}}'>{{title}}</a></h3>
+        <h3 class='playlist__show-name'><a href='/charts/{{slug}}'>{{title}} - {{dateFmt chartDate}}</a></h3>
         <div>{{{body}}}</div>
         {{#if tracks.length}}
           <table class="playlist">
@@ -30,8 +30,7 @@
       <table class="playlist-list__table" border="1">
         {{#each otherCharts}}
           <a href="/charts/{{slug}}/">
-            <img src="{{featuredImage}}" />
-            <p class='home__title'>{{title}}</p>
+            <p class='home__title'>{{title}} - {{dateFmt chartDate}}</p>
           </a>
         {{/each}}
       </table>
