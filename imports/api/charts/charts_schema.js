@@ -12,14 +12,11 @@ export default ChartsSchema = new SimpleSchema({
     type: Date,
     optional: true,
     autoform: {
-      label: 'Chart Date'
+      label: 'Chart Date',
+      afFieldInput: {
+        type: 'bootstrap-datetimepicker'
+      }
     },
-    autoValue: function() {
-      if (this.isUpdate)
-        return this.value;
-      else
-        return getLocalTime().toDate();
-    }
   },
   createdAt: {
     type: Date,
@@ -72,11 +69,11 @@ export default ChartsSchema = new SimpleSchema({
   },
   tracks: {
     type: [TracksSchema],
-    optional: false
+    optional: true
   },
   featuredImage: scorpius.attribute('image', {
     label: 'Featured Image',
-    optional: false
+    optional: true
   }),
   body: scorpius.attribute('summernote', {
     label: 'Body',

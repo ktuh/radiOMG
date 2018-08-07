@@ -1,50 +1,53 @@
-import './charts_create.html';
-import { CSV } from 'meteor/clinical:csv';
-import { Session } from 'meteor/session';
+import './charts_update.html';
 import Charts from '../../../api/charts/charts_collection.js';
-import { $ } from 'meteor/jquery';
-import { AutoForm } from 'meteor/aldeed:autoform';
 import { moment as momentUtil } from 'meteor/momentjs:moment';
 import moment from 'moment-timezone';
 
-ReactiveTemplates.set('collections.charts.create', 'chartsCreate');
+ReactiveTemplates.set('collections.charts.update', 'chartsUpdate');
 
 AutoForm.hooks({
-  createChartForm: {
+  updateChartForm: {
+    onSuccess: function() {
+      RouterLayer.go(this.collection.indexPath());
+    },
     before: {
-      insert: function(doc) {
-        doc.slug = doc.title.toLowerCase().split(' ').join('-');
-        var daDate = moment(doc.chartDate, 'Pacific/Honolulu');
+      update: function(doc) {
+        doc.$set.slug = doc.$set.title.toLowerCase().split(' ').join('-');
+        var daDate = moment(doc.$set.chartDate, 'Pacific/Honolulu');
         var mo = daDate.month();
         if (daDate.month() < 10) {
           mo = '0' + mo;
         }
-        doc.slug += '-' + [daDate.year(), mo, daDate.day()].join('-');
-        doc.tracks = [];
+        doc.$set.slug += '-' + [daDate.year(), mo, daDate.day()].join('-');
+        doc.$set.tracks = [];
         if (Session.get('uploadedData'))
           Session.get('uploadedData').forEach(function(track, i) {
-            doc.tracks[i] = {};
-            doc.tracks[i].artist = track.Artist;
-            doc.tracks[i].release = track.Record;
-            doc.tracks[i].label = track.Label;
+            doc.$set.tracks[i] = {};
+            doc.$set.tracks[i].artist = track.Artist;
+            doc.$set.tracks[i].release = track.Record;
+            doc.$set.tracks[i].label = track.Label;
           });
+        this.result(doc);
         this.result(doc);
       }
     },
     onError: function (name, error, template) {
       console.log(name + ' error:', error);
-    },
-    onSuccess: function() {
-      RouterLayer.go(this.collection.indexPath());
     }
   }
 });
 
-Template.chartsCreate.helpers({
+Template.chartsUpdate.onCreated(function (){
+  var self = this;
+  self.subscribe('singleChart',
+    location.href.substring(location.href.lastIndexOf('/') + 1));
+});
+
+Template.chartsUpdate.helpers({
   collection: () => Charts
 });
 
-Template.chartsCreate.events({
+Template.chartsUpdate.events({
   'click #uploadCsv': function() {
     event.preventDefault();
     $('#hiddenUpload').click();
@@ -71,7 +74,7 @@ Template.chartsCreate.events({
       }
     }
   },
-  'click .submit-btn': function () {
-    $('#createChartForm').submit();
+  'click .save-btn': function () {
+    $('#updateChartForm').submit();
   }
 });
