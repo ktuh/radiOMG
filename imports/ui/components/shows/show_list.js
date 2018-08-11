@@ -25,8 +25,10 @@ Template.showList.helpers({
 
     // We're not routed to a particular day of the week
     if (day === undefined || $.inArray(day, daze) === -1)
-      return d === daze[date.day()] ? 'active' : '';
-    else return d === daze[$.inArray(day, daze)] ? 'active' : '';
+      if (d === daze[date.day()]) return 'active'; else return '';
+    else {
+      if (d === daze[$.inArray(day, daze)]) return 'active'; else return '';
+    }
   },
   daysShows: () => {
     var day = FlowRouter.getQueryParam('day');
@@ -52,7 +54,7 @@ Template.showList.events({
     var date = getLocalTime();
     var prevDayNum = 0;
     if (day === undefined || $.inArray(day, daze) < 0)
-      prevDayNum = date.day() - 1 < 0 ? 6 : date.day() - 1;
+      if (date.day() - 1 < 0) prevDayNum = 6; else prevDayNum = date.day() - 1;
     else {
       var dayNum = $.inArray(day, daze);
       if (dayNum - 1 < 0) prevDayNum = 0;
@@ -67,7 +69,7 @@ Template.showList.events({
     var date = getLocalTime();
     var nextDayNum = 0;
     if (day === undefined || $.inArray(day, daze) < 0)
-      nextDayNum = date.day() + 1 > 6 ? 0 : date.day() + 1;
+      if (date.day() + 1 > 6) return 0; else return date.day() + 1;
     else {
       var dayNum = $.inArray(day, daze);
       if (dayNum + 1 > 6) nextDayNum = 0;
