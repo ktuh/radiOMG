@@ -48,11 +48,12 @@ Template.chartsUpdate.helpers({
 });
 
 Template.chartsUpdate.events({
-  'click #uploadCsv': function() {
+  'click #uploadCsv': function(event) {
     event.preventDefault();
     $('#hiddenUpload').click();
   },
   'change #hiddenUpload': function(event, templateInstance) {
+    event.preventDefault();
     var files = event.currentTarget.files;
     if (files.length) {
       var file = files[0];
