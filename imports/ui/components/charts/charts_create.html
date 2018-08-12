@@ -7,7 +7,13 @@
       {{> afFieldInput name="title"}}
       {{> afFieldInput name="chartDate"}}
       {{> afFieldInput name="body"}}
-      <button id="uploadCsv">Upload Chart CSV File</button>
+      <button id="uploadCsv">
+        {{#unless csvUploaded}}
+          Upload Chart CSV File
+        {{else}}
+          Chart CSV Uploaded, Click to Reupload
+        {{/unless}}
+      </button>
       <input id="hiddenUpload" class="btn hidden" type="file" value="">
     {{/autoForm}}
   {{/Layout}}
