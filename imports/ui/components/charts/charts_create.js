@@ -41,7 +41,8 @@ AutoForm.hooks({
 });
 
 Template.chartsCreate.helpers({
-  collection: () => Charts
+  collection: () => Charts,
+  csvUploaded: () => Session.get('uploadedData') !== undefined
 });
 
 Template.chartsCreate.events({

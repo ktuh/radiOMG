@@ -44,7 +44,8 @@ Template.chartsUpdate.onCreated(function (){
 });
 
 Template.chartsUpdate.helpers({
-  collection: () => Charts
+  collection: () => Charts,
+  csvUploaded: () => Session.get('uploadedData') !== undefined
 });
 
 Template.chartsUpdate.events({
