@@ -19,15 +19,16 @@ AutoForm.hooks({
           mo = '0' + mo;
         }
         doc.$set.slug += '-' + [daDate.year(), mo, daDate.day()].join('-');
-        doc.$set.tracks = [];
-        if (Session.get('uploadedData'))
+
+        if (Session.get('uploadedData')) {
+          doc.$set.tracks = [];
           Session.get('uploadedData').forEach(function(track, i) {
             doc.$set.tracks[i] = {};
             doc.$set.tracks[i].artist = track.Artist;
             doc.$set.tracks[i].release = track.Record;
             doc.$set.tracks[i].label = track.Label;
           });
-        this.result(doc);
+        }
         this.result(doc);
       }
     },

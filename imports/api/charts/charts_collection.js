@@ -11,11 +11,7 @@ export default Charts = new scorpius.collection('charts', {
   tabular: {
     columns: [
       { data: 'title', title: 'Title' },
-      { data: 'createdAt', title: 'Created At' },
-      { data: 'createdBy', title: 'Created By' },
-      { data: 'editedAt', title: 'Edited At' },
-      { data: 'editedBy', title: 'Edited By' },
-      scorpius.attributeColumn('createdAt', 'editedAt', 'Timestamp')
+      { data: 'chartDate', title: 'Chart Date' }
     ]
   }
 });

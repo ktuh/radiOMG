@@ -14,9 +14,11 @@ Template.chartList.onCreated(function() {
 
 Template.chartList.helpers({
   latestChart: () => Charts.findOne({}, { sort: { chartDate: -1, title: 1 } }),
+  latestCharts:
+    () => Charts.find({}, { limit: 2, sort: { chartDate: -1, title: 1 } }),
   dateFmt: (date) => momentUtil(
     moment(date, 'Pacific/Honolulu')).format('MMMM DD, YYYY'),
-  otherCharts: () => Charts.find({}, { skip: 1 }).fetch(),
+  otherCharts: () => Charts.find({}, { skip: 2 }).fetch(),
   ifHas: (str) => { if (str !== undefined) return str; else return 'N/A'; },
   plusOne: (i) => i + 1
 });

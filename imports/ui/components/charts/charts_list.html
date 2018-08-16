@@ -2,7 +2,7 @@
   {{#if Template.subscriptionsReady}}
     <h2 class='general__header'>Charts</h2>
     <div class='playlist-list__latest'>
-      {{#with latestChart}}
+      {{#each latestCharts}}
         <h3 class='playlist__show-name'><a href='/charts/{{slug}}'>{{title}} - {{dateFmt chartDate}}</a></h3>
         <div>{{{body}}}</div>
         {{#if tracks.length}}
@@ -23,7 +23,7 @@
             {{/each}}
           </table>
         {{/if}}
-      {{/with}}
+      {{/each}}
     </div>
     <div class='playlist__sidebar'>
       <h6>More Charts</h6>
