@@ -10,7 +10,7 @@ export default ChartsSchema = new SimpleSchema({
   },
   chartDate: {
     type: Date,
-    optional: true,
+    optional: false,
     autoform: {
       label: 'Chart Date',
       afFieldInput: {
