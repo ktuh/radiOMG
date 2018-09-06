@@ -96,11 +96,8 @@ Template.landing.helpers({
     var h = getLocalTime().hour();
     var $landing = $('.landing');
 
-    if (h >= 6 && h < 11) {
+    if (h >= 6 && h < 18) {
       return 'url(\'/img/tantalus-morning.jpg\')';
-    }
-    else if (h >= 11 && h < 18) {
-      return 'url(\'/img/tantalus-day.jpg\')';
     }
     else if ((h >= 18 && h <= 23) || (h >= 0 && h < 6)) {
       return 'url(\'/img/tantalus-evening.jpg\')';
