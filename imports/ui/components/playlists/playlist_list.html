@@ -80,11 +80,19 @@
           <td><b>Song</b></td>
         </tr>
         {{#each latestSongs}}
-        <tr>
-          <td class='playlist__timestamp'>{{timeBeautify (truncated Timestamp)}}</td>
-          <td class='playlist__artist'>{{ArtistName}}</td>
-          <td class='playlist__title'>{{SongName}}</td>
-        </tr>
+        {{#if start}}
+          <tr>
+            <td class='playlist__timestamp'>{{timeBeautify (truncated start)}}</td>
+            <td class='playlist__artist'>{{artist}}</td>
+            <td class='playlist__title'>{{song}}</td>
+          </tr>
+        {{else}}
+          <tr>
+            <td class='playlist__timestamp'>{{timeBeautify (truncated Timestamp)}}</td>
+            <td class='playlist__artist'>{{ArtistName}}</td>
+            <td class='playlist__title'>{{SongName}}</td>
+          </tr>
+        {{/if}}
         {{/each}}
       </table>
     {{/if}}
