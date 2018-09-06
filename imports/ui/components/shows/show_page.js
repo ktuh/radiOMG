@@ -23,12 +23,22 @@ Template.showPage.onCreated(function() {
                 { sort: { showDate: -1 } });
 
               if (latest !== undefined) {
-                Meteor.call('getPlaylistOrInfo',
-                  parseInt(latest.spinPlaylistId),
-                  true, function(error, result) {
-                    if (!error && result)
-                      Session.set('currentPlaylist', result);
-                  });
+                var parsedId = parseInt(latest.spinPlaylistId);
+                if (parsedId < 10000) {
+                  Meteor.call('getPlaylistOrInfo',
+                    parsedId, true, function(error, result) {
+                      if (!error && result)
+                        Session.set('currentPlaylist',
+                          JSON.parse(result.content).results);
+                    });
+                }
+                else {
+                  Meteor.call('getPlaylistOrInfo2',
+                    parsedId, function(error, result) {
+                      if (!error && result)
+                        Session.set('currentPlaylist', result.data.items);
+                    });
+                }
               }
             }
           });

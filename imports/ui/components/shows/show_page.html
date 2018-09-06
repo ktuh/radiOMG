@@ -68,9 +68,15 @@
             </tr>
             {{#each actualPlaylist}}
               <tr class='alternating'>
+                {{#if start}}
+                <td class='playlist__timestamp'>{{timeBeautify2 start}}</td>
+                <td class='playlist__artist'>{{artist}}</td>
+                <td class='playlist__title'><i>{{song}}</i></td>
+                {{else}}
                 <td class='playlist__timestamp'>{{timeBeautify2 Timestamp}}</td>
                 <td class='playlist__artist'>{{ArtistName}}</td>
                 <td class='playlist__title'><i>{{SongName}}</i></td>
+                {{/if}}
               </tr>
             {{/each}}
           </table>

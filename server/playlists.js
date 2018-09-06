@@ -65,6 +65,17 @@ Meteor.methods({
     this.unblock();
     var res = HTTP.get('http://spinitron.com/public/spinpapi.php',
       { query: query });
-    return JSON.parse(res.content).results;
+    return res;
+  },
+  getPlaylistOrInfo2: function(id) {
+    check(id, Number);
+    this.unblock();
+    var res = HTTP.get('https://spinitron.com/api/spins?playlist_id=' + id, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + Meteor.settings.spinitronApiKey
+      }
+    });
+    return res;
   }
 });
