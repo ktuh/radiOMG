@@ -70,12 +70,24 @@ Meteor.methods({
   getPlaylistOrInfo2: function(id) {
     check(id, Number);
     this.unblock();
-    var res = HTTP.get('https://spinitron.com/api/spins?playlist_id=' + id, {
+    var res = HTTP.get('https://spinitron.com/api/playlists/' + id, {
       headers: {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + Meteor.settings.spinitronApiKey
       }
     });
+    return res;
+  },
+  getPlaylistSpins: function(id) {
+    check(id, Number);
+    this.unblock();
+    var res = HTTP.get(
+      'https://spinitron.com/api/spins?count=100&playlist_id=' + id, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + Meteor.settings.spinitronApiKey
+        }
+      });
     return res;
   }
 });

@@ -50,7 +50,6 @@ Picker.route('/spinitron/latest', function(params, req, res, next) {
       Meteor.call('getPlaylistOrInfo2', parseInt(params.query.playlistId),
         function(error, result) {
           if (!error && result) {
-            console.log(result.data);
             Playlists.insert({
               showId: showId,
               spinPlaylistId: playlistId,

@@ -5,6 +5,7 @@ import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { moment as momentUtil } from 'meteor/momentjs:moment';
+import moment from 'moment-timezone';
 
 Template.showPage.onCreated(function() {
   var self = this;
@@ -33,7 +34,7 @@ Template.showPage.onCreated(function() {
                     });
                 }
                 else {
-                  Meteor.call('getPlaylistOrInfo2',
+                  Meteor.call('getPlaylistSpins',
                     parsedId, function(error, result) {
                       if (!error && result)
                         Session.set('currentPlaylist', result.data.items);
@@ -98,12 +99,27 @@ Template.showPage.helpers({
     var ap = startHour > endHour;
     if (ap) ap = 'h:mmA';
     else ap = 'h:mm';
-    return momentUtil(startHour + ':' + startMinute, 'HH:mm').format(ap) +
-      '-' + momentUtil(endHour + ':' + endMinute, 'HH:mm').format('h:mmA');
+    return momentUtil(moment(momentUtil(startHour + ':' + startMinute, 'HH:mm'))
+      .tz('Pacific/Honolulu')).format(ap) +
+      '-' + momentUtil(moment(momentUtil(endHour + ':' + endMinute, 'HH:mm'),
+      'Pacific/Honolulu')).format('h:mmA');
   },
-  timeBeautify2: (h, m) => momentUtil(h + ':' + m, 'HH:mm').format('h:mma'),
+  timeBeautify2: (time) => momentUtil(moment(momentUtil(time),
+    'Pacific/Honolulu')).format('h:mma'),
   genreString: (genres) => genres.join(', '),
-  actualPlaylist: () => Session.get('currentPlaylist')
+  actualPlaylist: () => {
+    var retval = Session.get('currentPlaylist');
+    retval.sort(function(a,b) {
+      if (a.start > b.start) {
+        return 1;
+      }
+      else if (a.start < b.start) {
+        return -1;
+      }
+      else return 0;
+    });
+    return retval;
+  }
 });
 
 Template.showPage.events({

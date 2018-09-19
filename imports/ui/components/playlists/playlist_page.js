@@ -24,7 +24,7 @@ Template.playlistPage.onCreated(function(){
         var playlist = Playlists.findOne({ spinPlaylistId: id });
 
         if (id > 10000) {
-          Meteor.call('getPlaylistOrInfo2', id,
+          Meteor.call('getPlaylistSpins', id,
             function(error, result) {
               if (!error && result) {
                 Session.set('currentPlaylist', result.data.items);

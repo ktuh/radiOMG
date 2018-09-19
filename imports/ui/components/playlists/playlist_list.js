@@ -42,7 +42,7 @@ Template.playlistList.onCreated(function() {
               var parsedId = parseInt(playlist.spinPlaylistId);
 
               if (parsedId > 10000) {
-                Meteor.call('getPlaylistOrInfo2', parsedId,
+                Meteor.call('getPlaylistSpins', parsedId,
                   function(error, result) {
                     if (!error && result) {
                       Session.set('currentPlaylist', result.data.items);
