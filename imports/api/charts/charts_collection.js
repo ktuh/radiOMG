@@ -1,6 +1,7 @@
 import { Mongo } from 'meteor/mongo';
 import ChartsSchema from './charts_schema.js';
 import { scorpius } from 'meteor/scorpiusjs:core';
+import { moment } from 'meteor/momentjs:moment';
 
 export default Charts = new scorpius.collection('charts', {
   singularName: 'chart',
@@ -22,16 +23,16 @@ Charts.friendlySlugs({
   distinct: true,
   updateSlug: true,
   slugGenerator: (defaultSlug) => {
-    var sec = defaultSlug.split('-').slice(-10);
-    var title = defaultSlug.split('-').slice();
-    var mons = ['jan','feb','mar','apr','may','jun',
-      'jul','aug','sep','oct','nov','dec'];
-    var mo = mons.indexOf(sec[1]) + 1;
-    if (mo < 10) {
-      mo = '0' + mo;
-    }
-    return defaultSlug.replace(sec.join('-'),
-      [sec[3], mo, sec[2]].join('-'));
+    var year = defaultSlug.split('-').filter(function(node) {
+      return /20\d\d/.test(node);
+    })[0];
+    var yearIndex = defaultSlug.split('-').indexOf(year);
+    var theDate = defaultSlug.split('-').slice(yearIndex - 2, yearIndex + 1);
+    var fmt = moment(theDate, 'MMM-DD-YYYY').format('YYYY-MM-DD');
+    var dow = defaultSlug.substring(
+      defaultSlug.search(/sun|mon|tue|wed|thu|fri|sat/)
+    );
+    return defaultSlug.replace(dow, fmt);
   }
 });
 

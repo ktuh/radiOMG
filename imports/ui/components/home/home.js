@@ -97,14 +97,20 @@ Template.home.onDestroyed(function() {
 });
 
 Template.home.helpers({
-  posts: () => Posts.find({ featured: false }, { sort: { submitted: -1 } }),
-  reviews: () => Reviews.find({}, { sort: { submitted: -1 } }),
+  posts: () => {
+    var it = Posts.find({ featured: false }, { sort: { submitted: -1 } });
+    return it && it.fetch().length > 0 && it || undefined;
+  },
+  reviews: () => {
+    var it = Reviews.find({}, { sort: { submitted: -1 } });
+    return it && it.fetch().length > 0 && it || undefined;
+  },
   synopsis: (body) => body.replace(/(([^\s]+\s\s*){12})(.*)/,'$1…'),
   featuredPost: () => Posts.findOne({
-    approved: true, featured: true }, { sort: { submitted: -1 }, limit: 1 }),
+    approved: true, featured: true }, { sort: { submitted: -1 } }) || undefined,
   firstTag: () => {
     var featured = Posts.findOne({ approved: true, featured: true },
-      { sort: { submitted: -1 }, limit: 1 });
+      { sort: { submitted: -1 } });
     return featured && featured.tags &&
            featured.tags.length > 0 && featured.tags[0];
   },
@@ -113,7 +119,7 @@ Template.home.helpers({
     var match = regex.exec(summary);
     return (match && match[1] || summary) + '…';
   },
-  nextShow: () => nextShow(),
+  nextShow: () => nextShow() || undefined,
   startEndTime: (startHour, startMinute, endHour, endMinute) => {
     if (startMinute === 1) {
       startMinute--;

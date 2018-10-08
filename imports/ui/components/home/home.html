@@ -62,6 +62,7 @@
       </div>
     </div>
     <div class='home__sidebar'>
+      {{#if nextShow}}
       <div class='home__next-show'>
         {{#with nextShow}}
           <div class='home__next-show-deets'>
@@ -75,6 +76,7 @@
         {{/with}}
         <a href="/shows"><div class='home__next-show-link color-button transparent-button'>Program Schedule</div></a>
       </div>
+      {{/if}}
       {{#if hasDjotm}}
         <div class='djotm'>
           <h4>DJ OF THE MONTH</h4>

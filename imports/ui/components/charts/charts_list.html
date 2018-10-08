@@ -27,13 +27,7 @@
     </div>
     <div class='playlist__sidebar'>
       <h6>More Charts</h6>
-      <table class="playlist-list__table" border="1">
-        {{#each otherCharts}}
-          <a href="/charts/{{slug}}/">
-            <p class='home__title'>{{title}} - {{dateFmt chartDate}}</p>
-          </a>
-        {{/each}}
-      </table>
+      {{> chartsSidebar}}
     </div>
   {{else}}
     {{> spinner}}

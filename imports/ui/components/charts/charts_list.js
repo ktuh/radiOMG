@@ -1,4 +1,5 @@
 import './charts_list.html';
+import './charts_sidebar.js';
 import { Template } from 'meteor/templating';
 import Charts from '../../../api/charts/charts_collection.js';
 import { moment as momentUtil } from 'meteor/momentjs:moment';
@@ -18,7 +19,6 @@ Template.chartList.helpers({
     () => Charts.find({}, { limit: 2, sort: { chartDate: -1, title: 1 } }),
   dateFmt: (date) => momentUtil(
     moment(date, 'Pacific/Honolulu')).format('MMMM DD, YYYY'),
-  otherCharts: () => Charts.find({}, { skip: 2 }).fetch(),
   ifHas: (str) => { if (str !== undefined) return str; else return 'N/A'; },
   plusOne: (i) => i + 1
 });
