@@ -44,6 +44,10 @@ Template.chartsUpdate.onCreated(function (){
     location.href.substring(location.href.lastIndexOf('/') + 1));
 });
 
+Template.chartsUpdate.onRendered(function() {
+  Session.set('uploadedData', undefined);
+});
+
 Template.chartsUpdate.helpers({
   collection: () => Charts,
   csvUploaded: () => Session.get('uploadedData') !== undefined

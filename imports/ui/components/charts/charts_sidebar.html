@@ -1,0 +1,14 @@
+<template name='chartsSidebar'>
+  <table class="playlist-list__table" border="1">
+    {{#if isReady}}
+      {{#each charts}}
+        <a href="/charts/{{slug}}/">
+          <p class='home__title'>{{title}} - {{dateFmt chartDate}}</p>
+        </a>
+      {{/each}}
+      {{> defaultBootstrapPaginator pagination=templatePagination limit=8 containerClass="text-center" onClick=clickEvent}}
+    {{else}}
+      {{> spinner}}
+    {{/if}}
+  </table>
+</template>

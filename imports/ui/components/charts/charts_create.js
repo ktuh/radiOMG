@@ -40,6 +40,10 @@ AutoForm.hooks({
   }
 });
 
+Template.chartsCreate.onRendered(function() {
+  Session.set('uploadedData', undefined);
+});
+
 Template.chartsCreate.helpers({
   collection: () => Charts,
   csvUploaded: () => Session.get('uploadedData') !== undefined

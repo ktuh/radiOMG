@@ -29,8 +29,8 @@ Picker.route('/spinitron/latest', function(params, req, res, next) {
   var playlistId = parseInt(params.query.playlistId);
   var html = params.query.artist + ' - ' + params.query.song;
 
-  if (!Playlists.findOne({ showId: showId, spinPlaylistId: playlistId })) {
-    if (playlistId <= 10000) {
+  if (!Playlists.findOne({ spinPlaylistId: playlistId })) {
+    if (playlistId <= 1000000) {
       Meteor.call('getPlaylistOrInfo', parseInt(params.query.playlistId), false,
         function(error, result) {
           if (!error && result) {
@@ -51,7 +51,9 @@ Picker.route('/spinitron/latest', function(params, req, res, next) {
         function(error, result) {
           if (!error && result) {
             Playlists.insert({
-              showId: showId,
+              showId: (() => {
+                if (Shows.findOne({ showId: result.data.show_id }))
+                  return result.data.show_id; else return -1;})(),
               spinPlaylistId: playlistId,
               showDate: getLocalTime().toDate(),
               startTime:
