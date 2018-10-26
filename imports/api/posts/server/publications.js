@@ -27,7 +27,7 @@ Meteor.publish('singlePostById', (id) => {
 Meteor.publish('postsByUser', (username) => {
   check(username, String);
   return Posts.find({ author: username, approved: true },
-    { fields: { submitted: 1, title: 1, author: 1, userId: 1 } });
+    { fields: { submitted: 1, title: 1, author: 1, userId: 1, slug: 1 } });
 });
 
 publishPagination(Posts);
