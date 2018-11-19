@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Pages from '../../../api/pages/pages_collection.js';
+import { withTracker } from 'meteor/react-meteor-data';
 
 class PagesItem extends Component {
   constructor(props) {
@@ -7,6 +8,7 @@ class PagesItem extends Component {
   }
 
   render() {
+    if (this.props.ready)
     return [
       <h2 className='general__header' key='header-title'>
         {this.props.page.title}</h2>,
@@ -14,6 +16,7 @@ class PagesItem extends Component {
         dangerouslySetInnerHTML={{ __html: this.props.page.body }}
       />
     ];
+    else return null;
   }
 }
 
