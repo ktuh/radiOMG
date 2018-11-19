@@ -8,10 +8,6 @@ class HomeContentNews extends Component {
     super(props);
   }
 
-  componentWillUnmount() {
-    this.props.stop();
-  }
-
   render() {
     var self = this;
     if (this.props.ready)
@@ -36,13 +32,11 @@ class HomeContentNews extends Component {
 
 export default withTracker(() => {
   var s1 = Meteor.subscribe('postsLimited',
-    { limit: 6, sort: { submitted: -1 } });
+      { limit: 6, sort: { submitted: -1 } }),
+    s2 = Meteor.subscribe('djs'), s3 = Meteor.subscribe('djProfiles');
 
   return {
-    stop: function() {
-      s1.stop();
-    },
-    ready: s1.ready(),
+    ready: s1.ready() && s2.ready() && s3.ready(),
     posts:
       Posts.find({ featured: false }, { sort: { submitted: -1 } }).fetch()
   };

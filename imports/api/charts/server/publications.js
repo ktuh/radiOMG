@@ -1,6 +1,5 @@
 import { Meteor } from 'meteor/meteor';
 import Charts from '../charts_collection.js';
-import { publishPagination } from 'meteor/kurounin:pagination';
 
 Meteor.publish('chartsLimited', (options) => {
   check(options, {

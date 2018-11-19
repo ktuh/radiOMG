@@ -6,10 +6,6 @@ class PagesItem extends Component {
     super(props);
   }
 
-  componentWillUnmount() {
-    this.props.stop();
-  }
-
   render() {
     return [
       <h2 className='general__header' key='header-title'>
@@ -26,9 +22,6 @@ export default withTracker(() => {
     s1 = Meteor.subscribe('singlePage', slug);
 
   return {
-    stop: function() {
-      s1.stop();
-    },
     ready: s1.ready(),
     page: Pages.findOne({ slug: slug, isDraft: false })
   }
