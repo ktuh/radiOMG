@@ -1,15 +1,20 @@
 import { Meteor } from 'meteor/meteor';
 import { Picker } from 'meteor/meteorhacks:picker';
 import { check } from 'meteor/check';
+import Posts from '../../api/posts/posts_collection.js';
 import Shows from '../../api/shows/shows_collection.js';
+import Charts from '../../api/charts/charts_collection.js';
+import Comments from '../../api/comments/comments_collection.js';
 import Playlists from '../../api/playlists/playlists_collection.js';
-import { Session } from 'meteor/session';
-import NowPlaying from '../../api/playlists/now_playing.js';
 import { HTTP } from 'meteor/http';
 import bodyParser from 'body-parser';
 import { getLocalTime } from '../lib/helpers.js';
 import { moment as momentUtil } from 'meteor/momentjs:moment';
 import moment from 'moment-timezone';
+import React from 'react';
+import { Helmet } from 'react-helmet';
+import { renderToStaticMarkup } from 'react-dom/server';
+import SSRLayout from '../../ui/components/application/SSRLayout.jsx'
 
 Picker.middleware(bodyParser.json());
 Picker.middleware(bodyParser.urlencoded({ extended: false }));
@@ -69,7 +74,6 @@ Picker.route('/spinitron/latest', function(params, req, res, next) {
     }
   }
 
-
   if (NowPlaying.find({}).count() < 1)
     NowPlaying.insert({
       current: html, timestamp: getLocalTime().toDate()
@@ -80,5 +84,208 @@ Picker.route('/spinitron/latest', function(params, req, res, next) {
         current: html,
         timestamp: getLocalTime().toDate()
       }
+    });
+});
+
+// SEO Routes
+const SeoRouter = Picker.filter(function(request, response) {
+  var botAgents = [
+    /^facebookexternalhit/i, // Facebook
+    /^linkedinbot/i, // LinkedIn
+    /^twitterbot/i, // Twitter
+    /^slackbot-linkexpanding/i, // Slack,
+    /google/i, // Google
+    /varvy/i // Varvy
+  ];
+
+  var agent = request.headers['user-agent'];
+  var botIsUsed = false;
+
+  botAgents.forEach(function(botAgent) {
+    if (botAgent.test(agent)) botIsUsed = true;
+  });
+
+  var escapedFragmentIsUsed = /_escaped_fragment_/.test(request.url);
+
+  return escapedFragmentIsUsed || botIsUsed;
+});
+
+var renderOut = (component) => {
+  var html = renderToStaticMarkup(<SSRLayout content={component} />),
+    helmet = Helmet.renderStatic();
+  return `<!doctype html>
+    <html lang="en">
+      <head>
+        ${helmet.title.toString()}
+        ${helmet.meta.toString()}
+        ${helmet.link.toString()}
+      </head>
+      <body>
+        ${html}
+      </body>
+    </html>
+  `;
+};
+
+SeoRouter.route('/', async function(params, request, response) {
+  await import('../../ui/components/home/SSRHome.jsx').then(
+    function(SSRHome) {
+      var html = renderOut(SSRHome.default);
+      response.setHeader('Content-Type', 'text/html;charset=utf-8');
+      response.end(html);
+    }
+  );
+});
+
+SeoRouter.route('/radioblog/:slug', async function(params, request, response) {
+  console.log(params);
+  var post = Posts.findOne({ slug: params.slug });
+  await import('../../ui/components/news/SSRNewsPage.jsx').then(
+    function(SSRNewsPage) {
+      console.log(renderToStaticMarkup(SSRNewsPage.default(post)));
+      var html = renderOut(SSRNewsPage.default(post));
+      response.setHeader('Content-Type', 'text/html;charset=utf-8');
+      response.end(html);
+    }
+  );
+});
+
+SeoRouter.route('/events/:slug', async function(params, request, response) {
+  await import('../../ui/components/parties/SSRPartyPage.jsx').then(
+    function(SSRPartyPage) {
+      var party = Parties.findOne({ slug: params.slug });
+      var html = renderOut(SSRPartyPage.default(party));
+      response.setHeader('Content-Type', 'text/html;charset=utf-8');
+      response.end(html);
+    });
+});
+
+SeoRouter.route('/reviews/:slug', async function(params, request, response) {
+  await import('../../ui/components/reviews/SSRReviewPage.jsx').then(
+    function(SSRReviewPage) {
+      var review = Reviews.findOne({ slug: params.slug });
+      var html = renderOut(SSRReviewPage.default(review));
+      response.setHeader('Content-Type', 'text/html;charset=utf-8');
+      response.end(html);
+    }
+  );
+});
+
+SeoRouter.route('/shows/:slug', async function(params, request, response) {
+  await import('../../ui/components/shows/SSRShowPage.jsx').then(
+    (SSRShowPage) => {
+      var show = Shows.findOne({ slug: params.slug });
+      var html = renderOut(SSRShowPage.default(show));
+      response.setHeader('Content-Type', 'text/html;charset=utf-8');
+      response.end(html);
+    }
+  );
+});
+
+SeoRouter.route('/charts/:slug', async function(params, request, response) {
+  await import('../../ui/components/charts/SSRChartsPage.jsx').then(
+    function(SSRChartsPage) {
+      var chart = Charts.findOne({ slug: params.slug });
+      var html = renderOut(SSRChartsPage.default(chart));
+      response.setHeader('Content-Type', 'text/html;charset=utf-8');
+      response.end(html);
+    });
+});
+
+SeoRouter.route('/profile/:username',
+  async function(params, request, response) {
+    await import('../../ui/components/profile/SSRProfilePage.jsx').then(
+      (SSRProfilePage) => {
+        var profile = Profiles.findOne({
+          userId: Meteor.users.findOne({ username: params.username })._id });
+        var html = renderOut(SSRProfilePage.default(profile));
+        response.setHeader('Content-Type', 'text/html;charset=utf-8');
+        response.end(html);
+      }
+    );
+  }
+);
+
+SeoRouter.route('/alumni', async function(params, request, response){
+  await import('../../ui/components/static_pages/Alumni.jsx').then(
+    function(Alumni) {
+      var html = renderOut(<Alumni.default />);
+      response.setHeader('Content-Type', 'text/html;charset=utf-8');
+      response.end(html);
+    });
+});
+
+SeoRouter.route('/about-us', async function(params, request, response) {
+  await import('../../ui/components/static_pages/About.jsx').then(
+    function(About) {
+      var html = renderOut(<About.default />);
+      response.setHeader('Content-Type', 'text/html;charset=utf-8');
+      response.end(html);
+    });
+});
+
+SeoRouter.route('/join-ktuh', async function(params, request, response) {
+  await import('../../ui/components/static_pages/Join.jsx').then(
+    function(Join) {
+      var html = renderOut(<Join.default />);
+      response.setHeader('Content-Type', 'text/html;charset=utf-8');
+      response.end(html);
+    });
+});
+
+SeoRouter.route('/faq', async function(params, request, response) {
+  await import('../../ui/components/static_pages/FAQ.jsx').then(
+    function(FAQ) {
+      var html = renderOut(<FAQ.default />);
+      response.setHeader('Content-Type', 'text/html;charset=utf-8');
+      response.end(html);
+    });
+});
+
+SeoRouter.route('/staff', async function(params, request, response) {
+  await import('../../ui/components/static_pages/SSRStaff.jsx').then(
+    function(SSRStaff) {
+      var html = renderOut(SSRStaff.default);
+      response.setHeader('Content-Type', 'text/html;charset=utf-8');
+      response.end(html);
+    });
+});
+
+SeoRouter.route('/timeline', async function(params, request, response) {
+  await import('../../ui/components/static_pages/Timeline.jsx').then(
+    function(Timeline) {
+      var html = renderOut(<Timeline.default />);
+      response.setHeader('Content-Type', 'text/html;charset=utf-8');
+      response.end(html);
+    }
+  );
+});
+
+SeoRouter.route('/underwriting', async function(params, request, response) {
+  await import('../../ui/components/static_pages/Underwriting.jsx').then(
+    function(Underwriting) {
+      var html = renderOut(<Underwriting.default />);
+      response.setHeader('Content-Type', 'text/html;charset=utf-8');
+      response.end(html);
+    }
+  );
+});
+
+SeoRouter.route('/contact-us', async function(params, request, response) {
+  await import('../../ui/components/static_pages/SSRContact.jsx').then(
+    function(SSRContact) {
+      var html = renderOut(<SSRContact.default />);
+      response.setHeader('Content-Type', 'text/html;charset=utf-8');
+      response.end(html);
+    }
+  );
+});
+
+SeoRouter.route('/:slug', async function(params, request, response) {
+  await import('../../ui/components/pages/SSRPagesItem.jsx').then(
+    function(SSRPagesItem) {
+      var html = renderOut(SSRPagesItem.default(params.slug));
+      response.setHeader('Content-Type', 'text/html;charset=utf-8');
+      response.end(html);
     });
 });

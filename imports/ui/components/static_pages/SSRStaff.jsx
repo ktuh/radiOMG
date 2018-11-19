@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Profiles from '../../../api/users/profiles_collection.js';
 import Shows from '../../../api/shows/shows_collection.js';
-import { withTracker } from 'meteor/react-meteor-data';
 import { Helmet } from 'react-helmet';
 
 class StaffItem extends Component {
@@ -63,15 +62,8 @@ class Staff extends Component {
   }
 }
 
-export default withTracker(() => {
-  var s1 = Meteor.subscribe('djProfiles');
-  var s2 = Meteor.subscribe('djs');
-  var s3 = Meteor.subscribe('activeShows');
-
-  return {
-    ready: s1.ready() && s2.ready() && s3.ready(),
-    djs: Profiles.find({
-      userId: { $in: Shows.find().fetch().map((show) => show.userId) }
-    }, { sort: { name: 1 } }).fetch()
-  };
-})(Staff);
+export default <Staff
+  ready={true}
+  djs={Profiles.find({
+    userId: { $in: Shows.find().fetch().map((show) => show.userId) }
+  }, { sort: { name: 1 } }).fetch() } />

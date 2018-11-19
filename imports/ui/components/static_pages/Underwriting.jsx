@@ -1,8 +1,25 @@
 import React, { Component } from 'react';
+import { Helmet } from 'react-helmet';
 
 export default class Underwriting extends Component {
   render() {
     return [
+      <Helmet key="metadata">
+        <title>Underwriting - KTUH FM Honolulu | Radio for the People</title>
+        <meta property="og:title"
+          content="Underwriting - KTUH FM Honolulu | Radio for the People" />
+        <meta property="og:description" content="KTUH Underwriting Info" />
+        <meta name="twitter:title" content=
+          'Underwriting - KTUH FM Honolulu | Radio for the People' />
+        <meta name="twitter:url" content="https://ktuh.org" />
+        <meta name="twitter:description" content="KTUH Underwriting Info" />
+        <meta name="twitter:site" content="@ktuh_fm" />
+        <meta name="twitter:image" content={
+          'https://ktuh.org/img/ktuh-logo.jpg'
+        } />
+        <meta name="twitter:creator" content="@ktuh_fm" />
+        <meta property="description" content="KTUH Underwriting Info" />
+      </Helmet>,
       <h2 className='general__header'>Underwriting</h2>,
       <div className='contact__content'>
         <h4>What is Underwriting?</h4>

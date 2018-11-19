@@ -5,6 +5,7 @@ import Profiles from '../../../api/users/profiles_collection.js';
 import Reviews from '../../../api/reviews/reviews_collection.js';
 import { moment } from 'meteor/momentjs:moment';
 import { displayNameById, usernameById } from '../../../startup/lib/helpers.js';
+import { Helmet } from 'react-helmet';
 
 class ReviewPage extends Component {
   formattedRating(rating) {
@@ -15,6 +16,37 @@ class ReviewPage extends Component {
   render() {
     if (this.props.ready)
       return [
+        <Helmet key="metadata">
+          <title>
+            {'Review of "' + this.props.review.releaseName + '" by ' +
+            this.props.review.artist + ' - KTUH FM Honolulu | ' +
+            'Radio for the People'}
+          </title>
+          <meta property="og:title"
+            content={'Review of "' + this.props.review.releaseName + '" by ' +
+            this.props.review.artist + ' - KTUH FM Honolulu | ' +
+            'Radio for the People'}
+          />
+          <meta property="og:description" content={
+            'Review of ' + this.props.review.releaseName + ' by ' +
+            this.props.review.artist} />
+          <meta name="twitter:title" content={'Review of "' +
+            this.props.review.releaseName + '" by ' +
+            this.props.review.artist + ' - KTUH FM Honolulu | ' +
+            'Radio for the People'} />
+          <meta name="twitter:url" content="https://ktuh.org" />
+          <meta name="twitter:description" content={
+            'Review of "' + this.props.review.releaseName + '" by ' +
+            this.props.review.artist} />
+          <meta name="twitter:site" content="@ktuh_fm" />
+          <meta name="twitter:image" content={
+            this.props.review.thumbnail ||
+            'https://ktuh.org/img/ktuh-logo.jpg'} />
+          <meta name="twitter:creator" content="@ktuh_fm" />
+          <meta property="description" content={
+            'Review of "' + this.props.review.releaseName + '" by ' +
+            this.props.review.artist} />
+        </Helmet>,
         <h1 className="general__header">
           <b>{this.props.review.releaseName}</b>
           <br />{this.props.review.artist}</h1>,

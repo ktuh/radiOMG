@@ -1,8 +1,29 @@
 import React, { Component } from 'react';
+import { Helmet } from 'react-helmet';
 
 export default class Join extends Component {
   render() {
     return [
+      <Helmet key="metadata">
+        <title>
+          Join KTUH - KTUH FM Honolulu | Radio for the People
+        </title>
+        <meta property="og:title"
+          content={'Join KTUH' +
+            ' - KTUH FM Honolulu | Radio for the People'} />
+        <meta property="og:description" content="Join KTUH" />
+        <meta name="twitter:title" content=
+          {'Join KTUH - KTUH FM Honolulu' +
+          ' | Radio for the People'} />
+        <meta name="twitter:url" content="https://ktuh.org" />
+        <meta name="twitter:description" content="Join KTUH" />
+        <meta name="twitter:site" content="@ktuh_fm" />
+        <meta name="twitter:image" content={
+          'https://ktuh.org/img/ktuh-logo.jpg'
+        } />
+        <meta name="twitter:creator" content="@ktuh_fm" />
+        <meta property="description" content="Join KTUH" />
+      </Helmet>,
       <h2 className='general__header'>Join KTUH</h2>,
       <div className='join__desc'>
         <p>

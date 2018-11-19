@@ -8,17 +8,35 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { displayNameById, dateFormat } from '../../../startup/lib/helpers.js';
 import { _ } from 'underscore';
+import { Helmet } from 'react-helmet';
 
 class NewsPage extends Component {
-  shouldComponentUpdate(nextProps, nextState) {
-    return !_.isEqual(nextProps, this.props);
-  }
-
   render() {
     var self = this;
 
     if (this.props.ready)
       return [
+        <Helmet key="metadata">
+          <title>{this.props.post.title +
+            ' - KTUH FM Honolulu | Radio for the People'}</title>
+          <meta property="og:title"
+            content={this.props.post.title +
+              ' - KTUH FM Honolulu | Radio for the People'} />
+          <meta property="og:description" content={this.props.post.summary} />
+          <meta property="og:image" content={this.props.post.thumbnail ||
+            '/img/ktuh-logo.png' } />
+          <meta name="twitter:title" content={this.props.post.title +
+            ' - KTUH FM Honolulu | Radio for the People'} />
+          <meta name="twitter:url" content="https://ktuh.org" />
+          <meta name="twitter:description" content={this.props.post.summary} />
+          <meta name="twitter:site" content="@ktuh_fm" />
+          <meta name="twitter:image" content={
+            this.props.post.thumbnail ||
+            'https://ktuh.org/img/ktuh-logo.jpg'
+          } />
+          <meta name="twitter:creator" content="@ktuh_fm" />
+          <meta property="description" content={this.props.post.summary} />
+        </Helmet>,
         <h1 key="header-title" className='general__header'>
           {this.props.post.title}</h1>,
         <div key="radioblog-back-link" className='show__link'>
