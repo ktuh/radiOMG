@@ -9,7 +9,7 @@ export default PostsSchema = new SimpleSchema({
       label: false
     },
     autoValue: function() {
-      if (this.isUpdate)
+      if (this.isSet)
         return this.value;
       else
         return Meteor.userId();
@@ -22,7 +22,7 @@ export default PostsSchema = new SimpleSchema({
       label: false
     },
     autoValue: function() {
-      if (this.isUpdate)
+      if (this.isSet)
         return this.value;
       else
         return Meteor.user().username;

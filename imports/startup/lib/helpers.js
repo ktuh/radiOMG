@@ -3,6 +3,7 @@ import Shows from '../../api/shows/shows_collection.js';
 import moment from 'moment-timezone';
 import { moment as momentUtil } from 'meteor/momentjs:moment';
 import { Meteor } from 'meteor/meteor';
+import { FlowRouter } from 'meteor/kadira:flow-router';
 
 export const getLocalTime = () =>
   momentUtil(moment().tz('Pacific/Honolulu'));
@@ -89,4 +90,59 @@ export const thumbnailUrl = function(url, maxW) {
   return 'https://s3-' + Meteor.settings.awsRegion +
     '.amazonaws.com/' + Meteor.settings.bucket + '/thumbs/' +
     url.split('/').slice(-1)[0] + '.png';
+}
+
+export const displayNameById = (userId) => {
+  var profile = Profiles.findOne({ userId: userId });
+  if (profile) return profile.name;
+}
+
+export const usernameById = (userId) => {
+  var user = Meteor.users.findOne({ _id: userId });
+  if (user) return user.username;
+}
+
+export const usernameFromDisplayName = (name) => {
+  var profile = Profiles.findOne({ name: name });
+  var user = profile && Meteor.users.findOne({ _id: profile.userId });
+  return user && user.username;
+};
+
+export const displayNameFromUsername = (username) =>
+  Profiles.findOne({ userId: Meteor.users.findOne({
+    username: username
+  })._id }).name;
+
+export const showByShowId = (spinId) =>
+  Shows.findOne({ showId: spinId });
+
+export const timeDiffString = (str) => momentUtil(str).fromNow();
+
+export const dateFormat = (date, format) =>
+  momentUtil(date).format(format);
+
+export const renderSummary = function(summary, numWords) {
+  var regex = new RegExp('(([^\\s]+\\s\\s*){' + numWords + '})(.*)');
+  var match = regex.exec(summary);
+  return (match && match[1] || summary) + '…';
+}
+
+export const getPathBySlug = function(template, slug) {
+  return FlowRouter.path(template, { slug: slug });
+}
+
+export const pages = function(items, per) {
+  var retval = [], page = 0, counter = 0;
+  for (var i in items) {
+    if (counter === 0) {
+      retval.push([]);
+    }
+    retval[page].push(items[i]);
+    counter++;
+    if (counter === per) {
+      counter = 0;
+      page++;
+    }
+  }
+  return retval;
 }

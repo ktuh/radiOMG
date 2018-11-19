@@ -2,11 +2,14 @@ import { Meteor } from 'meteor/meteor';
 import Playlists from '../playlists_collection.js';
 import NowPlaying from '../now_playing.js';
 import { currentPlaylist } from '../../../startup/lib/helpers.js';
-import { publishPagination } from 'meteor/kurounin:pagination';
 
 Meteor.publish('playlist', function (id) {
   check(id, Number);
   return Playlists.find({ spinPlaylistId: id });
+});
+
+Meteor.publish('playlists', function() {
+  return Playlists.find({});
 });
 
 Meteor.publish('playlistsLimited', function(options) {
@@ -27,5 +30,3 @@ Meteor.publish('showPlaylists', function(id) {
   check(id, Number);
   return Playlists.find({ showId: id });
 });
-
-publishPagination(Playlists);

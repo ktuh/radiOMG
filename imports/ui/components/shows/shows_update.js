@@ -1,5 +1,6 @@
 import './shows_update.html';
 import Shows from '../../../api/shows/shows_collection.js';
+import 'meteor/summernote:standalone';
 
 ReactiveTemplates.set('collections.shows.update', 'showsUpdate');
 
