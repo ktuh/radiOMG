@@ -32,7 +32,6 @@
     "moment-timezone": "^0.5.23",
     "node-pre-gyp": "^0.12.0",
     "react": "^16.6.3",
-    "react-bootstrap-pagination": "github:dchan3/react-bootstrap-pagination",
     "react-dom": "^16.6.3",
     "react-helmet": "^5.2.0",
     "react-transition-group": "^2.5.0",

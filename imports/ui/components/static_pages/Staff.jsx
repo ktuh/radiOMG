@@ -31,10 +31,6 @@ class Staff extends Component {
     super(props);
   }
 
-  componentWillUnmount() {
-    this.props.stop();
-  }
-
   render() {
     if (this.props.ready) {
       return [
@@ -56,11 +52,6 @@ export default withTracker(() => {
   var s3 = Meteor.subscribe('activeShows');
 
   return {
-    stop: function() {
-      s1.stop();
-      s2.stop();
-      s3.stop();
-    },
     ready: s1.ready() && s2.ready() && s3.ready(),
     djs: Profiles.find({
       userId: { $in: Shows.find().fetch().map((show) => show.userId) }

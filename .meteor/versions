@@ -64,7 +64,6 @@ jquery@1.11.11
 kadira:blaze-layout@2.3.0
 kadira:flow-router@2.12.1
 kadira:react-layout@2.0.0
-kurounin:pagination@1.2.0
 launch-screen@1.1.1
 lepozepo:s3@5.2.8
 less@2.8.0

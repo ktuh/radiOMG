@@ -129,10 +129,6 @@ class Landing extends Component {
     }
   }
 
-  componentWillUnmount() {
-    this.props.stop();
-  }
-
   render() {
     var self = this;
     if (this.props.ready)
@@ -200,11 +196,6 @@ export default withTracker(() => {
   var s3 = Meteor.subscribe('nowPlaying');
 
   return {
-    ready: s1.ready() && s2.ready() && s3.ready(),
-    stop: function() {
-      s1.stop();
-      s2.stop();
-      s3.stop();
-    }
+    ready: s1.ready() && s2.ready() && s3.ready()
   };
 })(Landing);
