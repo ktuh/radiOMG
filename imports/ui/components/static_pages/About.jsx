@@ -1,8 +1,25 @@
 import React, { Component } from 'react';
+import { Helmet } from 'react-helmet';
 
 export default class About extends Component {
   render() {
     return ([
+      <Helmet key="metadata">
+        <title>About Us - KTUH FM Honolulu | Radio for the People</title>
+        <meta property="og:title"
+          content="About Us - KTUH FM Honolulu | Radio for the People" />
+        <meta property="og:description" content="About KTUH" />
+        <meta name="twitter:title" content=
+          'About Us - KTUH FM Honolulu | Radio for the People' />
+        <meta name="twitter:url" content="https://ktuh.org" />
+        <meta name="twitter:description" content="About KTUH" />
+        <meta name="twitter:site" content="@ktuh_fm" />
+        <meta name="twitter:image" content={
+          'https://ktuh.org/img/ktuh-logo.jpg'
+        } />
+        <meta name="twitter:creator" content="@ktuh_fm" />
+        <meta property="description" content="About KTUH" />
+      </Helmet>,
       <h2 className='general__header'>About KTUH</h2>,
       <div className='about__desc'>
         <p>

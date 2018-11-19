@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Helmet } from 'react-helmet';
 
 const timeline_data = [
   ['1968', 'Plans are developed for 10 watt noncommercial educational FM ' +
@@ -138,6 +139,22 @@ class TimelineNode extends Component {
 export default class Timeline extends Component {
   render() {
     return [
+      <Helmet key="metadata">
+        <title>Timeline - KTUH FM Honolulu | Radio for the People</title>
+        <meta property="og:title"
+          content="Timeline - KTUH FM Honolulu | Radio for the People" />
+        <meta property="og:description" content="KTUH Timeline" />
+        <meta name="twitter:title" content=
+          'Timeline - KTUH FM Honolulu | Radio for the People' />
+        <meta name="twitter:url" content="https://ktuh.org" />
+        <meta name="twitter:description" content="KTUH Timeline" />
+        <meta name="twitter:site" content="@ktuh_fm" />
+        <meta name="twitter:image" content={
+          'https://ktuh.org/img/ktuh-logo.jpg'
+        } />
+        <meta name="twitter:creator" content="@ktuh_fm" />
+        <meta property="description" content="KTUH Timeline" />
+      </Helmet>,
       <h2 className='general__header'>KTUH Timeline</h2>,
       <div className='timeline'>
         <div className='timeline__content'>

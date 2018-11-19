@@ -1,38 +1,12 @@
 import React, { Component } from 'react';
-import { Meteor } from 'meteor/meteor';
-import { FlowRouter } from 'meteor/kadira:flow-router';
 import Posts from '../../../api/posts/posts_collection.js';
 import Profiles from '../../../api/users/profiles_collection.js';
 import Shows from '../../../api/shows/shows_collection.js';
-import { Bert } from 'meteor/themeteorchef:bert';
-import { withTracker } from 'meteor/react-meteor-data';
 import { Helmet } from 'react-helmet';
 
-class ProfilePage extends Component {
-  handleBan(event) {
-    if (Meteor.user().hasRole('admin')) {
-      var username = FlowRouter.getParam('username');
-      var user = Meteor.users.findOne({ username: username });
-      var profile = Profiles.findOne({ userId: user._id });
-      Profiles.update(profile._id, { $set: { banned: true } });
-      Bert.alert('User @' + username + ' banned.', 'default');
-    }
-  }
-
-  handleUnban(event) {
-    if (Meteor.user().hasRole('admin')) {
-      var username = FlowRouter.getParam('username');
-      var user = Meteor.users.findOne({ username: username });
-      var profile = Profiles.findOne({ userId: user._id });
-      Profiles.update(profile._id, { $set: { banned: false } });
-      Bert.alert('User @' + username + '\'s ban lifted.', 'default');
-    }
-  }
-
+class SSRProfilePage extends Component {
   render() {
-    if (this.props.profile !== undefined &&
-      !this.props.profile.banned || Meteor.user() !== null &&
-      Meteor.user().hasRole('admin')) {
+    if (this.props.profile !== undefined && !this.props.profile.banned) {
       return [
         <Helmet key="metadata">
           <title>{this.props.profile.name + '\'s Profile - KTUH FM Honolulu' +
@@ -59,17 +33,6 @@ class ProfilePage extends Component {
         </Helmet>,
         <h2 className='general__header'>{this.props.profile.name}</h2>,
         <div className='profile'>
-          {Meteor.userId() && this.props.profile.userId === Meteor.userId() && (
-            <div>
-              <a href='/profile'>
-                <button type='button'
-                  className='btn btn-default btn-md party-header__button'>
-                  <span className='glyphicon glyphicon-edit'
-                    aria-hidden='true'></span>
-                  Edit
-                </button>
-              </a>
-            </div>) || null}
           <div className='profile__left'>
             {this.props.profile.photo && <img className='profile__pic'
               src={this.props.profile.thumbnail ||
@@ -125,14 +88,6 @@ class ProfilePage extends Component {
                   <a href={`/radioblog/${post.slug}`}>{post.title}</a>
                 </p>)}
             </div> || null}
-            {((Meteor.userId() &&
-              this.props.profile.userId === Meteor.userId()) ||
-              (Meteor.user() && Meteor.user().hasRole('admin')) &&
-              this.props.profile.userId === Meteor.userId()) &&
-              (!this.props.profile.banned &&
-              <input id='profile__ban-user' type="button" value="Ban User" /> ||
-              <input id='profile__unban-user' type="button"
-                value="Lift User Ban" />) || null}
           </div>
         </div>
       ];
@@ -143,37 +98,6 @@ class ProfilePage extends Component {
   }
 }
 
-export default withTracker(() => {
-  var username = FlowRouter.getParam('username')
-
-  Meteor.subscribe('userData', username, {
-    onReady: function() {
-      var user = Meteor.users.findOne({ username: username });
-      if (user !== undefined) {
-        Meteor.subscribe('profileData', user._id);
-        Meteor.subscribe('showByUserId', user._id);
-        Meteor.subscribe('postsByUser', username);
-      }
-    }
-  });
-
-  return {
-    profile: (function() {
-      var username = FlowRouter.getParam('username');
-      var user = Meteor.users.findOne({ username: username });
-      var profile = user && Profiles.findOne({ userId: user._id });
-
-      if (profile !== undefined) {
-        return profile;
-      } else return false;
-    })(),
-    posts: Posts.find({}, { sort: { submitted: -1 } }).fetch(),
-    show: (function() {
-      var user = Meteor.users.findOne({
-        username: FlowRouter.getParam('username')
-      });
-      if (user) return Shows.findOne({ userId: user._id });
-      else return false;
-    })()
-  };
-})(ProfilePage);
+export default (profile) => <SSRProfilePage profile={profile}
+  posts={Posts.find({ userId: profile.userId })}
+  show={Shows.findOne({ userId: profile.userId })}/>;

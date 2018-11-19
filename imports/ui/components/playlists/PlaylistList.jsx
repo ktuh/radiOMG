@@ -10,6 +10,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { moment as momentUtil } from 'meteor/momentjs:moment';
 import moment from 'moment-timezone';
 import { Session } from 'meteor/session';
+import { Helmet } from 'react-helmet';
 
 class PlaylistList extends Component {
   showByShowId() {
@@ -94,6 +95,23 @@ class PlaylistList extends Component {
     if (this.props.ready) {
       var latestShow = showByShowId(this.props.currentPlaylist.showId);
       return [
+        <Helmet key="metadata">
+          <title>
+            Show Playlists - KTUH FM Honolulu | Radio for the People</title>
+          <meta property="og:title"
+            content="Show Playlists - KTUH FM Honolulu | Radio for the People"
+          />
+          <meta property="og:description" content="KTUH Show Playlists" />
+          <meta name="twitter:title" content={'Show Playlists' +
+            ' - KTUH FM Honolulu | Radio for the People'} />
+          <meta name="twitter:url" content="https://ktuh.org" />
+          <meta name="twitter:description" content="KTUH Show Playlists" />
+          <meta name="twitter:site" content="@ktuh_fm" />
+          <meta name="twitter:image" content={
+            'https://ktuh.org/img/ktuh-logo.jpg'} />
+          <meta name="twitter:creator" content="@ktuh_fm" />
+          <meta property="description" content="KTUH Show Playlists" />
+        </Helmet>,
         <h2 className='general__header' key='header-title'>Playlists</h2>,
         <div className='playlist-list__latest' key='playlist-content'>
           {latestShow && latestShow.thumbnail && (
@@ -111,8 +129,8 @@ class PlaylistList extends Component {
                   {latestShow.showName}
                 </a> || latestShow.showName || 'Sub Show')}
           </h3>
-          {latestShow && latestShow.synopsis && <p>{latestShow.synopsis}</p> ||
-              null}
+          {latestShow && latestShow.synopsis &&
+            <p>{latestShow.synopsis}</p> || null}
           <h5 className='playlist-list__show-host'>
             {latestShow &&
               (this.renderHost(latestShow))}

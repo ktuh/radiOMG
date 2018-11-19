@@ -1,10 +1,27 @@
 import React, { Component } from 'react';
+import { Helmet } from 'react-helmet';
 
 export default class Alumni extends Component {
   render() {
     return [
+      <Helmet key="metadata">
+        <title>Alumni - KTUH FM Honolulu | Radio for the People</title>
+        <meta property="og:title"
+          content="Alumni - KTUH FM Honolulu | Radio for the People" />
+        <meta property="og:description" content="KTUH Alumni" />
+        <meta name="twitter:title" content=
+          'Alumni - KTUH FM Honolulu | Radio for the People' />
+        <meta name="twitter:url" content="https://ktuh.org" />
+        <meta name="twitter:description" content="KTUH Alumni" />
+        <meta name="twitter:site" content="@ktuh_fm" />
+        <meta name="twitter:image" content={
+          'https://ktuh.org/img/ktuh-logo.jpg'
+        } />
+        <meta name="twitter:creator" content="@ktuh_fm" />
+        <meta property="description" content="KTUH Alumni" />
+      </Helmet>,
       <h2 className='general__header'>KTUH Alumni</h2>,
-      <div classNamew='alumni__content'>
+      <div className='alumni__content'>
         <div className="alumni__img">
           <img src='/img/MNL.jpg' alt="1970 Staff Archive Photo" />
         </div>

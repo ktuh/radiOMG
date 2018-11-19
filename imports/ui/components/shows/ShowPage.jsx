@@ -7,6 +7,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import Playlists from '../../../api/playlists/playlists_collection.js';
 import Shows from '../../../api/shows/shows_collection.js';
 import { Bert } from 'meteor/themeteorchef:bert';
+import { Helmet } from 'react-helmet';
 
 class ShowPage extends Component {
   day(num) {
@@ -93,6 +94,30 @@ class ShowPage extends Component {
 
     if (this.props.ready)
       return [
+        <Helmet key="metadata">
+          <title>{this.props.show.showName + ' - KTUH FM Honolulu' +
+            ' | Radio for the People'}</title>
+          <meta property="og:title"
+            content={this.props.show.showName +
+              ' - KTUH FM Honolulu' +
+              ' | Radio for the People'} />
+          <meta property="og:description" content={
+            this.props.show.showName + ' on KTUH'} />
+          <meta name="twitter:title" content={this.props.show.showName +
+            ' - KTUH FM Honolulu | Radio for the People'} />
+          <meta name="twitter:url" content="https://ktuh.org" />
+          <meta name="twitter:description" content={
+            this.props.show.showName + ' on KTUH'}  />
+          <meta name="twitter:site" content="@ktuh_fm" />
+          <meta name="twitter:image" content={
+            (this.props.show.thumbnail || undefined) ||
+            (!this.props.show.thumbnail &&
+              'https://ktuh.org/img/ktuh-logo.jpg' || undefined)
+          } />
+          <meta name="twitter:creator" content="@ktuh_fm" />
+          <meta property="description" content={
+            this.props.show.showName + ' on KTUH'} />
+        </Helmet>,
         <h2 className='general__header' key='header-title'>
           <b>{this.props.show.showName} / {this.props.show.host}</b>
         </h2>,
@@ -247,8 +272,6 @@ export default withTracker(() => {
       }
     });
 
-  var show = Shows.findOne({ slug: slug });
-
   return {
     ready: s1.ready(),
     actualPlaylist: function() {
@@ -264,7 +287,7 @@ export default withTracker(() => {
       });
       return retval;
     },
-    show: show,
+    show: Shows.findOne({ slug: FlowRouter.getParam('slug') }),
     pastPlaylists: function(showId) {
       return Playlists.find({ showId: showId },
         { sort: { showDate: -1 }, skip: 1 }).fetch()

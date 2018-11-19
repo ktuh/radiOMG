@@ -11,6 +11,7 @@ import CommentSubmit from '../comments/CommentSubmit.jsx';
 import { withTracker } from 'meteor/react-meteor-data';
 import { moment as momentUtil } from 'meteor/momentjs:moment';
 import moment from 'moment-timezone';
+import { Helmet } from 'react-helmet';
 
 class PlaylistPage extends Component {
   showDateOfLatestPlaylist(date) {
@@ -39,8 +40,36 @@ class PlaylistPage extends Component {
   render() {
     if (this.props.ready) {
       var playlist = this.props.playlist;
-      var showIfAny = this.showIfAny.bind(this);
+      var showIfAny = this.showIfAny.bind(this), show = showIfAny();
+      var showString = this.showTime(playlist) + ' Sub Show with ' +
+        show.djName;
+      if (show) {
+        showString = show.showName + ' - ' +
+          this.showDateOfLatestPlaylist(playlist.showDate);
+      }
       return [
+        <Helmet key="metadata">
+          <title>{showString +
+            ' - KTUH FM Honolulu | Radio for the People'}</title>
+          <meta property="og:title"
+            content={showString +
+              ' - KTUH FM Honolulu | Radio for the People'} />
+          <meta property="og:description" content={showString} />
+          <meta property="og:image" content={show && show.thumbnail ||
+            '/img/ktuh-logo.png' } />
+          <meta name="twitter:title" content={showString +
+            ' - KTUH FM Honolulu | Radio for the People'} />
+          <meta name="twitter:url" content="https://ktuh.org" />
+          <meta name="twitter:description"
+            content={showString} />
+          <meta name="twitter:site" content="@ktuh_fm" />
+          <meta name="twitter:image" content={
+            show && show.thumbnail ||
+            'https://ktuh.org/img/ktuh-logo.jpg'
+          } />
+          <meta name="twitter:creator" content="@ktuh_fm" />
+          <meta property="description" content={showString} />
+        </Helmet>,
         <h2 className='general__header'>
           {showIfAny() &&
             [<a href={`/shows/${showIfAny().slug}`}>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Helmet } from 'react-helmet';
 
 export default class Resend extends Component {
   constructor(props) {
@@ -41,7 +42,28 @@ export default class Resend extends Component {
   }
 
   render() {
-    return [<h2 className='general__header'>Resend Verification Email</h2>,
+    return [
+      <Helmet key="metadata">
+        <title>
+          Resend Verification Email - KTUH FM Honolulu | Radio for the People
+        </title>
+        <meta property="og:title"
+          content={'Resend Verification Email' +
+            ' - KTUH FM Honolulu | Radio for the People'} />
+        <meta property="og:description" content="Resend Email" />
+        <meta name="twitter:title" content=
+          {'Resend Verification Email - KTUH FM Honolulu' +
+          ' | Radio for the People'} />
+        <meta name="twitter:url" content="https://ktuh.org" />
+        <meta name="twitter:description" content="Resend Email" />
+        <meta name="twitter:site" content="@ktuh_fm" />
+        <meta name="twitter:image" content={
+          'https://ktuh.org/img/ktuh-logo.jpg'
+        } />
+        <meta name="twitter:creator" content="@ktuh_fm" />
+        <meta property="description" content="Resend Email" />
+      </Helmet>,
+      <h2 className='general__header'>Resend Verification Email</h2>,
       <div className='resend__content'>
         {!verified && [
           <p>

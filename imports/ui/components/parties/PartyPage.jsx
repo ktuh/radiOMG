@@ -5,6 +5,7 @@ import CommentItem from '../comments/CommentItem.jsx';
 import CommentSubmit from '../comments/CommentSubmit.jsx';
 import Parties from '../../../api/parties/parties_collection.js';
 import { FlowRouter } from 'meteor/kadira:flow-router';
+import { Helmet } from 'react-helmet';
 
 class PartyPage extends Component {
   time(t) {
@@ -38,6 +39,28 @@ class PartyPage extends Component {
     var handleClickStar = this.handleClickStar.bind(this);
     if (this.props.ready) {
       return [
+        <Helmet key="metadata">
+          <title>{this.props.party.title +
+            ' - KTUH FM Honolulu | Radio for the People'}</title>
+          <meta property="og:title"
+            content={this.props.party.title +
+              ' - KTUH FM Honolulu | Radio for the People'} />
+          <meta property="og:description" content={this.props.party.summary} />
+          <meta property="og:image" content={this.props.party.thumbnail ||
+            '/img/ktuh-logo.png' } />
+          <meta name="twitter:title" content={this.props.party.title +
+            ' - KTUH FM Honolulu | Radio for the People'} />
+          <meta name="twitter:url" content="https://ktuh.org" />
+          <meta name="twitter:description"
+            content={this.props.party.description} />
+          <meta name="twitter:site" content="@ktuh_fm" />
+          <meta name="twitter:image" content={
+            this.props.party.thumbnail ||
+            'https://ktuh.org/img/ktuh-logo.jpg'
+          } />
+          <meta name="twitter:creator" content="@ktuh_fm" />
+          <meta property="description" content={this.props.party.description} />
+        </Helmet>,
         <h1 className='general__header'>{this.props.party.title}</h1>,
         <div className='event__link'>
           <a href='/events' className='back-to'>← all events</a>

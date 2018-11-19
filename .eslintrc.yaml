@@ -21,6 +21,6 @@ rules:
   quotes:
     - error
     - single
-  no-ternary: error
+  no-ternary: off
 parserOptions:
   ecmaVersion: 2017
