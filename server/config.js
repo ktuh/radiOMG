@@ -1,7 +1,6 @@
 import { Meteor } from 'meteor/meteor';
-import { AccountsServer } from 'meteor/accounts-base';
+import { AccountsServer, Accounts } from 'meteor/accounts-base';
 import { Bert } from 'meteor/themeteorchef:bert';
-import { _ } from 'meteor/underscore';
 import Profiles from '../imports/api/users/profiles_collection.js';
 import { ServiceConfiguration } from 'meteor/service-configuration';
 

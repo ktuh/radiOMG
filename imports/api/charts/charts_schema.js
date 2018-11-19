@@ -6,13 +6,18 @@ import { getLocalTime } from '../../startup/lib/helpers.js';
 export default ChartsSchema = new SimpleSchema({
   title: {
     type: String,
-    optional: false
+    optional: false,
+    autoform: {
+      label: 'Chart Title',
+      placeholder: 'Chart Title'
+    }
   },
   chartDate: {
     type: Date,
     optional: false,
     autoform: {
       label: 'Chart Date',
+      placeholder: 'Chart Date',
       afFieldInput: {
         type: 'bootstrap-datetimepicker'
       }

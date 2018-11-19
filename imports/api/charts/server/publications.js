@@ -10,9 +10,9 @@ Meteor.publish('chartsLimited', (options) => {
   return Charts.find({ }, options);
 });
 
+Meteor.publish('charts', () => Charts.find({ }));
+
 Meteor.publish('singleChart', (slug) => {
   check(slug, String);
   return Charts.find({ slug: slug });
 });
-
-publishPagination(Charts);

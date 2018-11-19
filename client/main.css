@@ -1978,8 +1978,11 @@ margin-bottom: 0 !important;
   text-transform: uppercase;
   margin-top: 0px;
 }
-.faq__answer {
+.faq__answer:not(.expanded) {
   display: none;
+}
+.faq__answer.expanded {
+  display: block;
 }
 .playlist-list__latest {
   width: 72%;
@@ -2179,6 +2182,44 @@ margin-bottom: 0 !important;
 }
 .note-editable.panel-body ul li {
   list-style-type: inherit;
+}
+.profile-edit__label{
+  font-family: 'alda', sans-serif;
+  font-weight: 900;
+}
+.custom__paginator {
+  list-style: none;
+  padding-left: 0;
+  display: inline;
+}
+.custom__paginator-btn {
+  text-align: center;
+  border: thin grey solid;
+  padding: 5px;
+  width: 35px;
+  height: 35px;
+  display: inline-block;
+  font-size: 1.15em;
+}
+.custom__paginator-btn:first-child {
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+.custom__paginator-btn:last-child {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+.custom__paginator-btn:hover:not(.active) {
+  color: white;
+  background-color: black;
+}
+.custom__paginator-btn.active {
+  background-color: #5940de;
+  color: white;
+}
+.custom__paginator-btn a {
+  color: inherit;
+  font-size: inherit;
 }
 @-webkit-keyframes fadeOut {
   0% {
@@ -2942,5 +2983,190 @@ margin-bottom: 0 !important;
   }
 }
 .playlist + .playlist__show-name {
-    margin-top: 25px;
+  margin-top: 25px;
+}
+
+/* transpiled from accounts_ui.styl from `ian:accounts-ui-bootstrap3` */
+#login-dropdown-list .dropdown-menu {
+  min-width: 300px;
+  padding: 15px;
+}
+#login-dropdown-list .dropdown-menu .or {
+  margin: 5px 0;
+  text-align: center;
+}
+#login-dropdown-list #forgot-password-link,
+#login-dropdown-list #signup-link {
+  margin-top: 10px;
+}
+#login-dropdown-list .btn {
+  margin-top: 5px;
+}
+#login-dropdown-list input {
+  margin: 0 0 -1px;
+  border-radius: 0px;
+  position: relative;
+  z-index: 1;
+}
+#login-dropdown-list input:first-of-type {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+#login-dropdown-list input:last-of-type {
+  margin-bottom: 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+#login-dropdown-list input:focus {
+  z-index: 2;
+}
+#login-dropdown-list label {
+  padding-left: 5px;
+}
+.modal-backdrop {
+  opacity: 0.75;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=75);
+}
+.modal-footer .btn {
+  margin: 0;
+}
+#login-buttons-reset-password-modal .modal-dialog,
+#login-buttons-reset-password-modal-success .modal-dialog,
+#login-buttons-enroll-account-modal .modal-dialog,
+#login-buttons-email-address-verified-modal .modal-dialog {
+  width: 400px;
+}
+#login-buttons-reset-password-modal .modal-dialog .modal-content,
+#login-buttons-reset-password-modal-success .modal-dialog .modal-content,
+#login-buttons-enroll-account-modal .modal-dialog .modal-content,
+#login-buttons-email-address-verified-modal .modal-dialog .modal-content {
+  margin-top: 30%;
+}
+.login-buttons-dropdown-align-left#login-buttons + li .dropdown-menu {
+  float: left;
+  left: 0;
+  right: auto;
+}
+.login-buttons-dropdown-align-right#login-buttons + li .dropdown-menu {
+  float: right;
+  right: 0;
+  left: auto;
+}
+#login-buttons {
+  display: none;
+}
+#login-dropdown-list a {
+  cursor: pointer;
+}
+.btn-Facebook {
+  color: #fff;
+  background-color: #3b5998;
+}
+.btn-Google {
+  color: #fff;
+  background-color: #d34836;
+}
+.btn-Twitter {
+  color: #fff;
+  background-color: #4099ff;
+}
+.scorpius-materialize-admin {
+  display: inline;
+  width: 100%;
+}
+.scorpius-materialize-admin .sidebar .materialize-sidebar {
+  padding-left: 2px;
+  width: 100%;
+}
+.scorpius-materialize-admin .sidebar {
+  width: 240px;
+  display: inline-block;
+  color: black;
+}
+#nav-mobile {
+  padding: 2px 24px;
+  box-shadow: 0 2px 2px 0;
+  border: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  color: black;
+}
+.scorpius-materialize-admin .admin-content {
+  padding-left: 0 !important;
+  display: inline-block;
+  vertical-align: top;
+  width: calc(100% - 244px);
+}
+.scorpius-materialize-admin .header-container {
+    padding: 1rem;
+    font-size: 32px;
+}
+div.dataTables_length {
+  margin-top: 0;
+}
+div.dataTables_length label {
+  font-size: 14px;
+}
+div.dataTables_length select {
+  height: 30px;
+}
+.scorpius-materialize-admin .row {
+  margin-bottom: 20px;
+}
+.input-field.col label {
+  font-size: 14px;
+  top: -12px;
+}
+.scorpius-materialize-admin input {
+  margin-bottom: 15px;
+}
+.scorpiusSummernote + label {
+  top: -40px !important;
+}
+.scorpius-materialize-admin form input[type="checkbox"] {
+  opacity: 1;
+  margin-top: 5px;
+}
+.scorpius-materialize-admin form input[type="checkbox"] + label {
+  font-size: 14px;
+  padding-left: 18px;
+}
+.scorpius-materialize-admin .materialize-content-container {
+  padding: 3.25rem 4rem;
+}
+.scorpius-materialize-admin .materialize-buttons-container {
+  padding: 0 4rem;
+}
+.materialize-content-container form .input-field.col.s12 {
+  margin: 0;
+}
+.materialize-content-container form .input-field.col.s12 select {
+  display: block;
+  font-family: inherit;
+}
+.materialize-content-container form .input-field.col.s12 select + label {
+  top: -40px;
+}
+.materialize-content-container form .collection {
+  margin-bottom: 2.5rem;
+}
+.scorpius-materialize-admin .btn.btn-xs,
+.scorpius-materialize-admin .btn.btn-small {
+  font-size: 14px;
+  padding: 8px 12px;
+}
+.scorpius-materialize-admin .label {
+  padding: 5px 8px;
+  font-size: 14px;
+}
+.scorpius-materialize-admin .index-table tbody tr td {
+  padding: 12px;
+  vertical-align: middle;
+}
+.paginate_button.waves-effect.active a {
+  height: 100%;
+  padding: 9px;
+}
+.scorpius-materialize-admin .floating-btn-onheader {
+  top: -6rem;
 }
