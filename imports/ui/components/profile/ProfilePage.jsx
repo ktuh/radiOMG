@@ -71,9 +71,13 @@ class ProfilePage extends Component {
               </a>
             </div>) || null}
           <div className='profile__left'>
-            {this.props.profile.photo && <img className='profile__pic'
-              src={this.props.profile.thumbnail ||
-              this.props.profile.photo.url} /> || null}
+            <img className='profile__pic'
+              src={((this.props.profile.thumbnail || null) ||
+              (this.props.profile.photo &&
+              this.props.profile.photo.url || null)) ||
+              ((!this.props.profile.thumbnail && !this.props.profile.photo) &&
+              'https://ktuh.org/img/ktuh-logo.jpg' ||
+              null)} />
             {(this.props.profile.website || this.props.profile.twitter ||
               this.props.profile.facebook || this.props.profile.snapchat ||
               this.props.profile.soundcloud || this.props.profile.instagram) &&

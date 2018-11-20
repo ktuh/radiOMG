@@ -4,8 +4,17 @@ import { withTracker } from 'meteor/react-meteor-data';
 import Shows from '../../../api/shows/shows_collection.js';
 import Playlists from '../../../api/playlists/playlists_collection.js';
 import { moment } from 'meteor/momentjs:moment';
+import { $ } from 'meteor/jquery';
 
 class PlaylistSidebar extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loaded: false,
+      sidebar: null
+    };
+  }
+
   getSidebarData() {
     var viewingPlaylistId = Session.get('playlistViewing'), playlistDates;
     if (viewingPlaylistId) {
@@ -65,38 +74,68 @@ class PlaylistSidebar extends Component {
     return moment(date).format('ddd. MMMM DD, YYYY');
   }
 
+  handleClick() {
+    this.setState({ loaded: false });
+  }
+
+  componentWillMount() {
+    var sidebar = this.getSidebarData();
+    var stateObj =  sidebar.length ? { loaded: true, sidebar: sidebar } :
+      { loaded: false, sidebar: null }
+    this.setState(stateObj);
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return !this.state.loaded || (this.props.ready !== nextProps.ready);
+  }
+
+  componentWillUpdate() {
+    var sidebar = this.getSidebarData();
+    var stateObj =  sidebar.length ? { loaded: true, sidebar: sidebar } :
+      { loaded: false, sidebar: null }
+    this.setState(stateObj);
+  }
+
   render() {
-    return (
-      <div className='playlist__sidebar corner'>
-        <h4 className='playlist__sidebar-header'>Browse Latest</h4>
-        {this.getSidebarData().map((listItem) => [
-          <hr />,
-          <h4 className='playlist__sidebar-date'>
-            {this.dateFormat(listItem.date)}
-          </h4>,
-          listItem.shows.map((show) => (
-            <div>
-              <p className='playlist__sidebar-link'>
-                <a href={`/playlists/${show.spinPlaylistId}`}>
-                  {(show.showId > -1) && this.showById(show.showId) && [
-                    this.timeFromHours(this.showById(show.showId).startHour,
-                      this.showById(show.showId).startMinute,
-                      this.showById(show.showId).endHour,
-                      this.showById(show.showId).endMinute), ' '  + 
-                    this.showById(show.showId).showName] || [
-                    this.timeFromHMS(show.startTime, show.endTime) + ' w/ ' +
-                show.djName]}
-                </a>
-              </p>
-            </div>))
-        ])}
-      </div>
-    );
+    var handleClick = this.handleClick.bind(this);
+
+    if (this.props.ready) {
+      return (
+        <div className='playlist__sidebar corner'>
+          <h4 className='playlist__sidebar-header'>Browse Latest</h4>
+          {!!this.state.sidebar && this.state.sidebar.map((listItem) => [
+            <hr />,
+            <h4 className='playlist__sidebar-date'>
+              {this.dateFormat(listItem.date)}
+            </h4>,
+            listItem.shows.map((show) => (
+              <div>
+                <p className='playlist__sidebar-link'>
+                  <a href={`/playlists/${show.spinPlaylistId}`}
+                    onClick={handleClick}>
+                    {(show.showId > -1) && this.showById(show.showId) && [
+                      this.timeFromHours(this.showById(show.showId).startHour,
+                        this.showById(show.showId).startMinute,
+                        this.showById(show.showId).endHour,
+                        this.showById(show.showId).endMinute), ' '  +
+                      this.showById(show.showId).showName] || [
+                      this.timeFromHMS(show.startTime, show.endTime) + ' w/ ' +
+                  show.djName] || null}
+                  </a>
+                </p>
+              </div>))
+          ])}
+        </div>
+      );
+    }
+    else return null;
   }
 }
 
 export default withTracker(() => {
+  var s1 = Meteor.subscribe('playlistsLimited', {
+    sort: { showDate: -1, spinPlaylistId: -1 }, limit: 12 });
   return {
-
+    ready: s1.ready()
   };
 })(PlaylistSidebar)

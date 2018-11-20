@@ -65,6 +65,7 @@ export default withTracker(() => {
     ready: s1.ready() && s2.ready() && s3.ready(),
     pages: pages(Posts.find((s2.ready() && { _id:
        { $ne: featuredPost._id }, approved: true } || null) ||
-       (!s2.ready && { approved: true } || null)).fetch(), 4)
+       (!s2.ready && { approved: true } || null),
+    { sort: { submitted: -1 } }).fetch(), 4)
   };
 })(NewsListContent);

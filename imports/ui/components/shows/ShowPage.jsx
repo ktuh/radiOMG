@@ -79,12 +79,38 @@ class ShowPage extends Component {
   handleProfileClick() {
     var id = Shows.findOne({ slug: FlowRouter.getParam('slug') }).userId;
     var user = Meteor.users.findOne({ _id: id });
-    FlowRouter.go('/profile/' + user.username);
+    if (user !== undefined) FlowRouter.go('/profile/' + user.username);
   }
 
   latestPlaylist() {
-    var showId = Shows.findOne({ slug: FlowRouter.getParam('slug') }).showId;
-    return Playlists.findOne({ showId: showId }, { $sort: { showDate: -1 } });
+    var show = Shows.findOne({ slug: FlowRouter.getParam('slug') }),
+      showId = show && show.showId;
+    return showId &&
+      Playlists.findOne({ showId: showId }, { $sort: { showDate: -1 } });
+  }
+
+  componentWillMount() {
+    var latest = this.latestPlaylist();
+    if (latest) {
+      if (latest !== undefined) {
+        var parsedId = parseInt(latest.spinPlaylistId);
+        if (parsedId < 10000) {
+          Meteor.call('getPlaylistOrInfo',
+            parsedId, true, function(error, result) {
+              if (!error && result)
+                Session.set('currentPlaylist',
+                  JSON.parse(result.content).results);
+            });
+        }
+        else {
+          Meteor.call('getPlaylistSpins', parsedId,
+            function(error, result) {
+              if (!error && result)
+                Session.set('currentPlaylist', result.data.items);
+            });
+        }
+      }
+    }
   }
 
   render() {
@@ -92,7 +118,7 @@ class ShowPage extends Component {
       handleSelectChange = this.handleSelectChange.bind(this),
       handleProfileClick = this.handleProfileClick.bind(this);
 
-    if (this.props.ready)
+    if (this.props.ready) {
       return [
         <Helmet key="metadata">
           <title>{this.props.show.showName + ' - KTUH FM Honolulu' +
@@ -204,78 +230,62 @@ class ShowPage extends Component {
                 </select>) || null}
             <div className='show__latest-playlist' key='latest-playlist'>
               <table className='playlist'>
-                <tr className='playlist__info-row'>
-                  <td><b>
-                    <i className="fa fa-clock-o" aria-hidden="true"></i>
-                  </b></td>
-                  <td><b>Artist</b></td>
-                  <td><b>Title</b></td>
-                </tr>
-                {this.props.actualPlaylist().map((track) => (
-                  <tr className='alternating'>
-                    {track.start && [
-                      <td className='playlist__timestamp'>
-                        {this.timeBeautify2(track.start)}
-                      </td>,
-                      <td className='playlist__artist'>{track.artist}</td>,
-                      <td className='playlist__title'><i>{track.song}</i></td>
-                    ] || [
-                      <td className='playlist__timestamp'>
-                        {this.timeBeautify2(track.Timestamp)}
-                      </td>,
-                      <td className='playlist__artist'>{track.ArtistName}</td>,
-                      <td className='playlist__title'>
-                        <i>{track.SongName}</i></td>
-                    ]}
-                  </tr>))}
+                <thead>
+                  <tr className='playlist__info-row'>
+                    <td><b>
+                      <i className="fa fa-clock-o" aria-hidden="true"></i>
+                    </b></td>
+                    <td><b>Artist</b></td>
+                    <td><b>Title</b></td>
+                  </tr>
+                </thead>
+                <tbody>
+                  {this.props.actualPlaylist(Session.get('currentPlaylist'))
+                    .map((track) => (
+                      <tr className='alternating'>
+                        {track.start && [
+                          <td className='playlist__timestamp'>
+                            {this.timeBeautify2(track.start)}
+                          </td>,
+                          <td className='playlist__artist'>{track.artist}</td>,
+                          <td className='playlist__title'><i>
+                            {track.song}</i></td>
+                        ] || [
+                          <td className='playlist__timestamp'>
+                            {this.timeBeautify2(track.Timestamp)}
+                          </td>,
+                          <td className='playlist__artist'>
+                            {track.ArtistName}</td>,
+                          <td className='playlist__title'>
+                            <i>{track.SongName}</i></td>
+                        ]}
+                      </tr>))}
+                </tbody>
               </table>
             </div>
           </div>) || null];
+    }
     else return null;
   }
 }
 
 export default withTracker(() => {
   var slug = FlowRouter.getParam('slug'),
-    s1 = Meteor.subscribe('singleShow', slug, {
+    s0, s2, s1 = Meteor.subscribe('singleShow', slug, {
       onReady: function() {
         var show = Shows.findOne({ slug: slug });
         if (show) {
-          Meteor.subscribe('comments', show._id);
-          Meteor.subscribe('userById', show.userId);
-          Meteor.subscribe('showPlaylists', show.showId, {
-            onReady: function() {
-              var latest = Playlists.findOne({ showId: show.showId },
-                { sort: { showDate: -1 } });
-
-              if (latest !== undefined) {
-                var parsedId = parseInt(latest.spinPlaylistId);
-                if (parsedId < 10000) {
-                  Meteor.call('getPlaylistOrInfo',
-                    parsedId, true, function(error, result) {
-                      if (!error && result)
-                        Session.set('currentPlaylist',
-                          JSON.parse(result.content).results);
-                    });
-                }
-                else {
-                  Meteor.call('getPlaylistSpins', parsedId,
-                    function(error, result) {
-                      if (!error && result)
-                        Session.set('currentPlaylist', result.data.items);
-                    });
-                }
-              }
-            }
-          });
+          s0 = Meteor.subscribe('userById', show.userId);
+          s2 = Meteor.subscribe('showPlaylists', show.showId);
         }
       }
     });
 
   return {
-    ready: s1.ready(),
-    actualPlaylist: function() {
-      var retval = Session.get('currentPlaylist');
+    ready: s1.ready() && (s0 && s0.ready()) && (s2 && s2.ready()),
+    actualPlaylist: function(playlistData) {
+      if (playlistData === undefined) return [];
+      var retval = playlistData;
       retval.sort(function(a,b) {
         if (a.start > b.start) {
           return 1;
