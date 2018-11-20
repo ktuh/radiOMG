@@ -74,7 +74,6 @@ class CustomLoginButtons extends Component {
 
     Meteor.loginWithPassword(loginSelector, password, (error, result) => {
       if (error) {
-        console.log(error);
         self.setState({ errorMessage: error });
       }
     });

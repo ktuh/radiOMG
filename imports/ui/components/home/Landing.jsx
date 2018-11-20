@@ -5,6 +5,8 @@ import { withTracker } from 'meteor/react-meteor-data';
 import NowPlaying from '../../../api/playlists/now_playing.js';
 import { Session } from 'meteor/session';
 import { FlowRouter } from 'meteor/kadira:flow-router';
+import { moment as momentUtil } from 'meteor/momentjs:moment';
+import moment from 'moment-timezone';
 
 function isSubShow() {
   var show = currentShow();
@@ -39,9 +41,16 @@ function showActualHost() {
 
 class LandingInfo extends Component {
   nowPlaying() {
-    if (NowPlaying.findOne() !== undefined && !Session.get('timeout'))
-      return NowPlaying.findOne().current;
+    if (this.props.nowPlaying !== undefined &&
+      !(this.timeout(this.props.nowPlaying)))
+      return this.props.nowPlaying.current;
     else return false;
+  }
+
+  timeout(np) {
+    return getLocalTime().diff(momentUtil(
+      moment(np.timestamp, 'Pacific/Honolulu'))
+    ) > 360000;
   }
 
   render() {
@@ -70,13 +79,14 @@ class LandingInfo extends Component {
               </a> ||
               currentShow().host}
             </p>,
-          (self.nowPlaying() && [<p className="landing__song-title caps"
-            key='landing-song-title'>
-            {self.nowPlaying().split(' - ')[1]}
-          </p>,
-          <p className="landing__song-artist caps" key='landing-sort-artist'>
-            {' by ' + self.nowPlaying().split(' - ')[0]}
-          </p>] || null)] ||
+          (self.nowPlaying() &&
+            [<p className="landing__song-title caps"
+              key='landing-song-title'>
+              {self.nowPlaying().split(' - ')[1]}
+            </p>,
+            <p className="landing__song-artist caps" key='landing-sort-artist'>
+              {' by ' + self.nowPlaying().split(' - ')[0]}
+            </p>] || null)] ||
             self.nowPlaying() &&
               [<p className='landing__now-playing' key='landing-onair-text'>
                 On Air Now:</p>,
@@ -119,16 +129,6 @@ class Landing extends Component {
       'mainPage.audioUrl', '') && Session.get('paused') === false;
   }
 
-  componentDidMount() {
-    if (NowPlaying.findOne()) {
-      Session.set('timeout',
-        getLocalTime().diff(momentUtil(
-          moment(NowPlaying.findOne().timestamp, 'Pacific/Honolulu'))
-        ) > 360000
-      );
-    }
-  }
-
   render() {
     var self = this;
     if (this.props.ready)
@@ -149,7 +149,8 @@ class Landing extends Component {
                 );
               })()}
             </div>
-            <LandingInfo host={showActualHost()} />
+            <LandingInfo host={showActualHost()}
+              nowPlaying={this.props.nowPlaying} timeout={this.props.timeout}/>
           </div>
           <h4 className='landing__freq landing__hnl-freq'>90.1 FM Honolulu</h4>
           <h4 className='landing__freq landing__ns-freq'>91.1 FM Waialua </h4>
@@ -196,6 +197,7 @@ export default withTracker(() => {
   var s3 = Meteor.subscribe('nowPlaying');
 
   return {
-    ready: s1.ready() && s2.ready() && s3.ready()
+    ready: s1.ready() && s2.ready() && s3.ready(),
+    nowPlaying: NowPlaying.findOne()
   };
 })(Landing);

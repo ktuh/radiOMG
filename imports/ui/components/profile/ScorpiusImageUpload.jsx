@@ -32,7 +32,6 @@ export default class ScorpiusImageUpload extends Component {
       uploader: 'image-attribute'
     });
     Tracker.autorun(function(comp) {
-      console.log(upload.progress());
       if (upload.ready()) {
         if (upload.error) {
           Bert.alert('There was an error uploading the image.');
