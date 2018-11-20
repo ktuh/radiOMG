@@ -138,11 +138,9 @@ SeoRouter.route('/', async function(params, request, response) {
 });
 
 SeoRouter.route('/radioblog/:slug', async function(params, request, response) {
-  console.log(params);
   var post = Posts.findOne({ slug: params.slug });
   await import('../../ui/components/news/SSRNewsPage.jsx').then(
     function(SSRNewsPage) {
-      console.log(renderToStaticMarkup(SSRNewsPage.default(post)));
       var html = renderOut(SSRNewsPage.default(post));
       response.setHeader('Content-Type', 'text/html;charset=utf-8');
       response.end(html);

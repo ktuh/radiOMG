@@ -103,7 +103,6 @@ class PlaylistList extends Component {
     var parsedId = this.props.currentPlaylist.spinPlaylistId;
 
     if (parsedId > 10000) {
-      console.log('Requesting Spin Data');
       Meteor.call('getPlaylistSpins', parsedId,
         function(error, result) {
           if (!error && result) {

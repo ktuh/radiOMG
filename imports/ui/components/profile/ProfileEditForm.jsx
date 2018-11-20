@@ -21,8 +21,6 @@ export default class ProfileEditForm extends Component {
   }
 
   updateCollection(data) {
-    console.log(data);
-    console.log($('.note-editable.panel-body').html());
     if ($('.note-editable.panel-body').html() !== '') {
       data.bio = $('.note-editable.panel-body').html();
     }
@@ -31,7 +29,6 @@ export default class ProfileEditForm extends Component {
   }
 
   handleChange(changes) {
-    console.log(changes);
     this.setState(changes);
   }
 
