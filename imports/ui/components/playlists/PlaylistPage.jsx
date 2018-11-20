@@ -12,8 +12,17 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { moment as momentUtil } from 'meteor/momentjs:moment';
 import moment from 'moment-timezone';
 import { Helmet } from 'react-helmet';
+import { FlowRouter } from 'meteor/kadira:flow-router'
 
 class PlaylistPage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      playlistLoadInit: false,
+      playlistLoaded: false
+    };
+  }
+
   showDateOfLatestPlaylist(date) {
     return momentUtil(moment(date).tz('Pacific/Honolulu')).format('LL');
   }
@@ -37,12 +46,54 @@ class PlaylistPage extends Component {
     return Comments.find({ postId: playlist.showId }).fetch();
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    return (nextProps.playlist && this.props.playlist &&
+      nextProps.playlist.spinPlaylistId !==
+      this.props.playlist.spinPlaylistId) || !this.state.playlistLoaded;
+  }
+
+  componentWillUpdate() {
+    if (this.state.playlistLoaded) {
+      this.setState({ playlistLoaded: false });
+    }
+  }
+
+  requestSpinData() {
+    var self = this;
+
+    var parsedId = parseInt(FlowRouter.getParam('id'));
+    Session.set('playlistViewing', parsedId);
+    if (parsedId > 10000) {
+      Meteor.call('getPlaylistSpins', parsedId,
+        function(error, result) {
+          if (!error && result) {
+            Session.set('currentPlaylist', result.data.items);
+
+            self.setState({ playlistLoaded: true, playlistLoadInit: true });
+          }
+        });
+    }
+    else {
+      Meteor.call('getPlaylistOrInfo', parsedId, true,
+        function(error, result) {
+          if (!error && result) {
+            Session.set('currentPlaylist',
+              JSON.parse(result.content).results);
+            self.setState({ playlistLoaded: true, playlistLoadInit: true });
+          }
+        });
+    }
+  }
+
   render() {
+    var requestSpinData = this.requestSpinData.bind(this);
+
     if (this.props.ready) {
+      if (!this.state.playlistLoaded) requestSpinData();
       var playlist = this.props.playlist;
       var showIfAny = this.showIfAny.bind(this), show = showIfAny();
       var showString = this.showTime(playlist) + ' Sub Show with ' +
-        show.djName;
+        playlist.djName;
       if (show) {
         showString = show.showName + ' - ' +
           this.showDateOfLatestPlaylist(playlist.showDate);
@@ -64,8 +115,8 @@ class PlaylistPage extends Component {
             content={showString} />
           <meta name="twitter:site" content="@ktuh_fm" />
           <meta name="twitter:image" content={
-            show && show.thumbnail ||
-            'https://ktuh.org/img/ktuh-logo.jpg'
+            (show && show.thumbnail || null) ||
+            (!show && 'https://ktuh.org/img/ktuh-logo.jpg' || null)
           } />
           <meta name="twitter:creator" content="@ktuh_fm" />
           <meta property="description" content={showString} />
@@ -86,10 +137,17 @@ class PlaylistPage extends Component {
           {showIfAny() &&
             <a href={`/shows/${showIfAny().slug}`}>
               <img className='playlist__show-image'
-                src={showIfAny().thumbnail ||
-                  showIfAny().featuredImage.url} />
+                src={
+                  showIfAny &&
+                (!!showIfAny().thumbnail && showIfAny().thumbnail || null) ||
+                (!showIfAny().thumbnail && !!showIfAny().featuredImage &&
+                showIfAny().featuredImage.url || null) ||
+                (!showIfAny().thumbnail && !showIfAny().featuredImage &&
+                'https://ktuh.org/img/ktuh-logo.jpg' || null)} />
             </a> || null}
-          <PlaylistTable tracks={this.props.songs} onPage={true}/>
+          <PlaylistTable tracks={
+            Session.get('currentPlaylist') || []
+          } onPage={true}/>
           <div className='comments'>
             <h3 className='comments__header'>Comments</h3>
             {this.comments().length > 0 &&
@@ -110,44 +168,23 @@ class PlaylistPage extends Component {
 }
 
 export default withTracker(() => {
-  var id = parseInt(FlowRouter.getParam('id'));
-
-  var s0;
-
-  var s1 = Meteor.subscribe('playlist', id, {
+  var id = parseInt(FlowRouter.getParam('id')), s0,
+    s1 = Meteor.subscribe('playlist', id, {
       onReady: function() {
         var playlist = Playlists.findOne({ spinPlaylistId: id });
-
-        if (id > 10000) {
-          Meteor.call('getPlaylistSpins', id,
-            function(error, result) {
-              if (!error && result) {
-                Session.set('currentPlaylist', result.data.items);
-                Session.set('playlistViewing', id);
-              }
-            });
-        }
-        else {
-          Meteor.call('getPlaylistOrInfo', id, true,
-            function(error, result) {
-              if (!error && result) {
-                Session.set('currentPlaylist',
-                  JSON.parse(result.content).results);
-                Session.set('playlistViewing', id);
-              }
-            });
-        }
-
-        s0 = Meteor.subscribe('comments', playlist._id);
+        if (playlist)
+          s0 = Meteor.subscribe('comments', playlist._id);
       }
-    }), s2 = Meteor.subscribe('playlistsLimited', {
-      sort: { showDate: -1, spinPlaylistId: -1 }, limit: 12 }),
+    }),
     s3 = Meteor.subscribe('activeShows');
 
   return {
-    ready: (s0 && s0.ready() || false)
-      && s1.ready() && s2.ready() && s3.ready(),
-    playlist: Playlists.findOne({ spinPlaylistId: id }),
-    songs: Session.get('currentPlaylist') || []
+    playlistId: parseInt(FlowRouter.getParam('id')),
+    ready: (s0 && s0.ready() || true)
+      && s1.ready() && s3.ready(),
+    playlist: Playlists.findOne({ spinPlaylistId: id },
+      {
+        sort: { showDate: -1, spinPlaylistId: -1 }
+      })
   }
 })(PlaylistPage);

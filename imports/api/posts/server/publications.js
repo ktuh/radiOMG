@@ -10,7 +10,7 @@ Meteor.publish('postsLimited', (options) => {
 });
 
 Meteor.publish('posts', function() {
-  return Posts.find({});
+  return Posts.find({ approved: true }, { sort: { submitted: -1 } });
 });
 
 Meteor.publish('latestFeaturedPost', () =>

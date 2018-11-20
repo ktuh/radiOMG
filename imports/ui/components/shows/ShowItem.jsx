@@ -36,8 +36,12 @@ export default class ShowItem extends Component {
         <div className='show-item__image-div'>
           <a href={'/shows/' + this.props.show.slug}>
             <img className='show-item__image'
-              src={this.props.show.thumbnail ||
-                this.props.show.featuredImage.url} />
+              src={((this.props.show.thumbnail || null) ||
+                  (this.props.show.featuredImage &&
+                  this.props.show.featuredImage.url || null)) ||
+                  (!this.props.show.thumbnail &&
+                  !this.props.show.featuredImage &&
+                  'https://ktuh.org/img/ktuh-logo.jpg' || null)} />
           </a>
         </div>
         <div className='show-item__info-container'>

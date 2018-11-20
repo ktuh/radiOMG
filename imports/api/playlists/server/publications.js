@@ -28,5 +28,5 @@ Meteor.publish('nowPlaying', function() {
 
 Meteor.publish('showPlaylists', function(id) {
   check(id, Number);
-  return Playlists.find({ showId: id });
+  return Playlists.find({ showId: id }, { sort: { showDate: -1 } });
 });

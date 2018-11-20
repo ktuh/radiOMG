@@ -13,6 +13,13 @@ import { Session } from 'meteor/session';
 import { Helmet } from 'react-helmet';
 
 class PlaylistList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      playlistLoaded: false
+    };
+  }
+
   showByShowId() {
     return Shows.findOne({
       showId: this.props.currentPlaylist.showId
@@ -90,9 +97,41 @@ class PlaylistList extends Component {
     else return null;
   }
 
+  requestSpinData() {
+    var self = this;
+
+    var parsedId = this.props.currentPlaylist.spinPlaylistId;
+
+    if (parsedId > 10000) {
+      console.log('Requesting Spin Data');
+      Meteor.call('getPlaylistSpins', parsedId,
+        function(error, result) {
+          if (!error && result) {
+            Session.set('currentPlaylist', result.data.items);
+            Session.set('playlistViewing', parsedId);
+            self.setState({ playlistLoaded: true });
+          }
+        });
+    }
+    else {
+      Meteor.call('getPlaylistOrInfo', parsedId, true,
+        function(error, result) {
+          if (!error && result) {
+            Session.set('currentPlaylist',
+              JSON.parse(result.content).results);
+            Session.set('playlistViewing', parsedId);
+            self.setState({ playlistLoaded: true });
+          }
+        });
+    }
+  }
+
   render() {
-    var self = this, showByShowId = this.showByShowId.bind(this);
+    var self = this, showByShowId = this.showByShowId.bind(this),
+      requestSpinData = this.requestSpinData.bind(this);
+
     if (this.props.ready) {
+      if (!this.state.playlistLoaded) requestSpinData();
       var latestShow = showByShowId(this.props.currentPlaylist.showId);
       return [
         <Helmet key="metadata">
@@ -135,7 +174,9 @@ class PlaylistList extends Component {
             {latestShow &&
               (this.renderHost(latestShow))}
           </h5>
-          <PlaylistTable tracks={this.props.songs || []} onPage={false}/>
+          {this.state.playlistLoaded &&
+            <PlaylistTable tracks={Session.get('currentPlaylist') || []}
+              onPage={false}/> || null}
         </div>,
         <PlaylistSidebar key='playlist-sidebar' />
       ];
@@ -161,34 +202,11 @@ export default withTracker(() => {
           Meteor.subscribe('profileDataByUsername', playlist.djName);
           Meteor.subscribe('userByDisplayName', playlist.djName);
         }
-
-        var parsedId = parseInt(playlist.spinPlaylistId);
-
-        if (parsedId > 10000) {
-          Meteor.call('getPlaylistSpins', parsedId,
-            function(error, result) {
-              if (!error && result) {
-                Session.set('currentPlaylist', result.data.items);
-                Session.set('playlistViewing', parsedId);
-              }
-            });
-        }
-        else {
-          Meteor.call('getPlaylistOrInfo', parsedId, true,
-            function(error, result) {
-              if (!error && result) {
-                Session.set('currentPlaylist',
-                  JSON.parse(result.content).results);
-                Session.set('playlistViewing', parsedId);
-              }
-            });
-        }
       }
     });
 
   return {
     ready: s1.ready() && s2.ready(),
-    currentPlaylist: Playlists.findOne({}, { sort: { showDate: -1 } }),
-    songs: Session.get('currentPlaylist') || []
+    currentPlaylist: Playlists.findOne({}, { sort: { showDate: -1 } })
   };
 })(PlaylistList);
