@@ -80,7 +80,7 @@ class ShowList extends Component {
                 <a href={'/shows?day=' + day }
                   onClick={(e) => handleClick(e)(i)}>
                   <span className={`shows__day ${active(day)}`}>
-                    {day}</span>
+                    {day.substring(0,3)}</span>
                 </a>
               );
             })}
