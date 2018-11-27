@@ -18,7 +18,6 @@ class PlaylistPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      playlistLoadInit: false,
       playlistLoaded: false
     };
   }
@@ -69,7 +68,7 @@ class PlaylistPage extends Component {
           if (!error && result) {
             Session.set('currentPlaylist', result.data.items);
 
-            self.setState({ playlistLoaded: true, playlistLoadInit: true });
+            self.setState({ playlistLoaded: true });
           }
         });
     }
@@ -79,7 +78,7 @@ class PlaylistPage extends Component {
           if (!error && result) {
             Session.set('currentPlaylist',
               JSON.parse(result.content).results);
-            self.setState({ playlistLoaded: true, playlistLoadInit: true });
+            self.setState({ playlistLoaded: true });
           }
         });
     }

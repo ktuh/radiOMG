@@ -7,6 +7,8 @@ import { Session } from 'meteor/session';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { moment as momentUtil } from 'meteor/momentjs:moment';
 import moment from 'moment-timezone';
+import { $ } from 'meteor/jquery';
+import { scorpius } from 'meteor/scorpiusjs:core';
 
 function isSubShow() {
   var show = currentShow();
@@ -110,6 +112,16 @@ class LandingInfo extends Component {
 class Landing extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      playing: false
+    }
+  }
+
+  componentDidMount() {
+    this.setState({
+      playing: player && (!player.getPaused() &&
+        player.getSrc() === 'http://stream.ktuh.org:8000/stream-mp3') || false
+    });
   }
 
   background() {
@@ -125,29 +137,54 @@ class Landing extends Component {
   }
 
   isPlaying() {
-    return Session.get('nowLoaded') === scorpius.dictionary.get(
-      'mainPage.audioUrl', '') && Session.get('paused') === false;
+    return player.getSrc() === scorpius.dictionary.get(
+      'mainPage.audioUrl', '') && !player.getPaused();
+  }
+
+  handleClickDownArrow(event) {
+    var position = $('#main').offset().top;
+    var navHeight = $('.navbar-header').height();
+    $('HTML, BODY').animate({ scrollTop: position - navHeight + 2 }, 600);
+  }
+
+  handlePlayBtn(event) {
+    var paused = player.getPaused();
+    if (player.getSrc() !== 'http://stream.ktuh.org:8000/stream-mp3') {
+      player.setSrc('http://stream.ktuh.org:8000/stream-mp3');
+      player.play();
+      this.setState({ playing: true });
+      return;
+    }
+
+    if (paused) {
+      player.play();
+      this.setState({ playing: true });
+    }
+    else {
+      player.pause();
+      this.setState({ playing: false });
+    }
   }
 
   render() {
-    var self = this;
+    var self = this, handlePlayBtn = this.handlePlayBtn.bind(this),
+      handleClickDownArrow = this.handleClickDownArrow.bind(this);
+
     if (this.props.ready)
       return (
         <div className='landing' style={{ backgroundImage: this.background() }}>
           <div className='landing__box'>
-            <div className='landing__play-btn-outer'>
-              {(() => {
-                if (self.isPlaying()) return [
-                  <div className='landing__pause-btn-l'
-                    key='pause-button-left'></div>,
-                  <div className='landing__pause-btn-r'
-                    key='pause-button-right'></div>
-                ]; else return (
-                  <div className='landing__play-btn' key='play-button'>
-                    <div className='landing__play-btn-triangle'></div>
-                  </div>
-                );
-              })()}
+            <div className='landing__play-btn-outer' onClick={handlePlayBtn}>
+              {this.state.playing ? [
+                <div className='landing__pause-btn-l'
+                  key='pause-button-left'></div>,
+                <div className='landing__pause-btn-r'
+                  key='pause-button-right'></div>
+              ] : (
+                <div className='landing__play-btn' key='play-button'>
+                  <div className='landing__play-btn-triangle'></div>
+                </div>
+              )}
             </div>
             <LandingInfo host={showActualHost()}
               nowPlaying={this.props.nowPlaying} timeout={this.props.timeout}/>
@@ -162,7 +199,8 @@ class Landing extends Component {
               <span className='glyphicon glyphicon-eye-open'></span>
             </h6>
           </a>
-          <div className='landing__down-arrow'></div>
+          <div className='landing__down-arrow'
+            onClick={handleClickDownArrow}></div>
         </div>
       );
     else return null;

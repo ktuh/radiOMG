@@ -79,7 +79,15 @@ class ReviewPage extends Component {
 
 export default withTracker(() => {
   var slug = FlowRouter.getParam('slug');
-  var s1 = Meteor.subscribe('singleReview', slug);
+  var s1 = Meteor.subscribe('singleReview', slug, {
+    onReady: function() {
+      var review = Reviews.findOne({ slug: slug });
+      if (!review) {
+        FlowRouter.go('/not-found');
+        return;
+      }
+    }
+  });
 
   return {
     ready: s1.ready(),

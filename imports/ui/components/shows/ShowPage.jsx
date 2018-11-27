@@ -10,13 +10,20 @@ import { Bert } from 'meteor/themeteorchef:bert';
 import { Helmet } from 'react-helmet';
 
 class ShowPage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      playlistLoaded: false
+    };
+  }
+
   day(num) {
     return ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday',
       'Saturday'][num];
   }
 
   isPlaying(mp3) {
-    return Session.get('nowLoaded') == mp3 && Session.get('paused') === false;
+    return player.getSrc() === mp3 && !player.getPaused();
   }
 
   timeBeautify(startHour, startMinute, endHour, endMinute) {
@@ -46,10 +53,9 @@ class ShowPage extends Component {
   }
 
   handlePlayClick(event) {
-    event.stopImmediatePropagation();
     event.preventDefault();
-    var mp3Url = $(event.currentTarget).data('path');
-    var nowLoaded = Session.get('nowLoaded');
+    var mp3Url = $(event.target).data('path');
+    var nowLoaded = player.getSrc();
 
     if (nowLoaded != mp3Url) {
       var show = Shows.findOne({ slug: FlowRouter.getParam('slug') });
@@ -59,7 +65,7 @@ class ShowPage extends Component {
       var message = 'Now playing the latest episode of ' +
         this.props.show.showName;
       Session.set('defaultLoaded', false);
-      Session.set('nowLoaded', mp3Url);
+      player.setSrc(mp3Url);
       if (!Session.get('playedStream')) Session.set('playedStream', true);
       Bert.alert(message, 'default', 'growl-top-right', 'fa-music');
     }
@@ -89,36 +95,51 @@ class ShowPage extends Component {
       Playlists.findOne({ showId: showId }, { $sort: { showDate: -1 } });
   }
 
-  componentWillMount() {
-    var latest = this.latestPlaylist();
-    if (latest) {
-      if (latest !== undefined) {
-        var parsedId = parseInt(latest.spinPlaylistId);
-        if (parsedId < 10000) {
-          Meteor.call('getPlaylistOrInfo',
-            parsedId, true, function(error, result) {
-              if (!error && result)
-                Session.set('currentPlaylist',
-                  JSON.parse(result.content).results);
-            });
-        }
-        else {
-          Meteor.call('getPlaylistSpins', parsedId,
-            function(error, result) {
-              if (!error && result)
-                Session.set('currentPlaylist', result.data.items);
-            });
-        }
+  requestSpinData() {
+    var latest = this.latestPlaylist(), self = this;
+
+    if (latest !== undefined) {
+      var parsedId = parseInt(latest.spinPlaylistId);
+      if (parsedId < 10000) {
+        Meteor.call('getPlaylistOrInfo',
+          parsedId, true, function(error, result) {
+            if (!error && result) {
+              Session.set('currentPlaylist',
+                JSON.parse(result.content).results);
+              self.setState({ playlistLoaded: true })
+            }
+          });
       }
+      else {
+        Meteor.call('getPlaylistSpins', parsedId,
+          function(error, result) {
+            if (!error && result) {
+              Session.set('currentPlaylist', result.data.items);
+              self.setState({ playlistLoaded: true });
+            }
+          });
+      }
+    }
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return !this.state.playlistLoaded;
+  }
+
+  componentWillUpdate() {
+    if (this.state.playlistLoaded) {
+      this.setState({ playlistLoaded: false });
     }
   }
 
   render() {
     var self = this, handlePlayClick = this.handlePlayClick.bind(this),
       handleSelectChange = this.handleSelectChange.bind(this),
-      handleProfileClick = this.handleProfileClick.bind(this);
+      handleProfileClick = this.handleProfileClick.bind(this),
+      requestSpinData = this.requestSpinData.bind(this);
 
     if (this.props.ready) {
+      if (!this.state.playlistLoaded) requestSpinData();
       return [
         <Helmet key="metadata">
           <title>{this.props.show.showName + ' - KTUH FM Honolulu' +
@@ -277,6 +298,10 @@ export default withTracker(() => {
         if (show) {
           s0 = Meteor.subscribe('userById', show.userId);
           s2 = Meteor.subscribe('showPlaylists', show.showId);
+        }
+        else {
+          FlowRouter.go('/not-found');
+          return;
         }
       }
     });

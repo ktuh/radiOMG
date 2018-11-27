@@ -284,6 +284,17 @@ FlowRouter.route('/resend', {
   }
 });
 
+FlowRouter.route('/not-found', {
+  name: 'notFound',
+  action: async function() {
+    await import('../../ui/components/application/NotFound.jsx').then(
+      function(NotFound) {
+        ReactLayout.render(Layout, { content: <NotFound.default /> });
+      }
+    );
+  }
+});
+
 FlowRouter.route('/:slug', {
   name: 'page',
   action: async function() {
