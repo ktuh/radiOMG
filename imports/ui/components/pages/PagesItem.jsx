@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Pages from '../../../api/pages/pages_collection.js';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Helmet } from 'react-helmet';
+import { FlowRouter } from 'meteor/kadira:flow-router';
 
 class PagesItem extends Component {
   constructor(props) {
@@ -42,7 +43,11 @@ class PagesItem extends Component {
 
 export default withTracker(() => {
   var slug = FlowRouter.getParam('slug'),
-    s1 = Meteor.subscribe('singlePage', slug);
+    s1 = Meteor.subscribe('singlePage', slug, {
+      onStop: function() {
+        FlowRouter.go('/not-found');
+      }
+    });
 
   return {
     ready: s1.ready(),

@@ -81,7 +81,10 @@ export default withTracker(() => {
   var s0, s1, handle = Meteor.subscribe('singlePost', slug, {
     onReady: function() {
       var post = Posts.findOne({ slug: slug, approved: true });
-
+      if (!post) {
+        FlowRouter.go('/radioblog');
+        return;
+      }
       s0 = Meteor.subscribe('comments', post._id);
       s1 = Meteor.subscribe('profileData', post.userId);
     }

@@ -4,7 +4,8 @@ import { _ } from 'underscore';
 import { Session } from 'meteor/session';
 import { $ } from 'meteor/jquery';
 import CustomLoginButtons from './CustomLoginButtons.jsx';
-import 'mediaelement';
+import MediaElement from './MediaElement.js';
+import { scorpius } from 'meteor/scorpiusjs:core';
 
 function activePage() {
   // includes Spacebars.kw but that's OK because the route name ain't that.
@@ -18,11 +19,17 @@ export default class Header extends Component {
     super(props);
   }
 
-  componentDidMount() {
-    var $searchInput = $('.nav__search input');
-    var mp3 = $('#audio-player').attr('src');
+  componentDidUpdate() {
+    if (player.getSrc() ===
+      scorpius.dictionary.get('mainPage.audioUrl', ''))
+      $('.mejs__time-rail').append(
+        '<span class="mejs__broadcast">Live Broadcast</span>');
+    else $('.mejs__time-slider').css('visibility', 'hidden');
+  }
 
-    Session.set('nowLoaded', mp3);
+  componentDidMount() {
+    var self = this;
+    var $searchInput = $('.nav__search input');
     Session.set('nowPlaying', 'Live audio stream.');
     $searchInput.css('font-family', 'Glyphicons Halflings');
     $searchInput.attr('placeholder', '\ue003');
@@ -40,52 +47,6 @@ export default class Header extends Component {
       }
       if (!Session.get('mouseIsOverTag')) {
         $('.tags').addClass('hidden');
-      }
-    });
-
-    $('#audio-player').mediaelementplayer({
-      pluginPath: '/mejs/',
-      alwaysShowControls: true,
-      features: ['playpause', 'progress'],
-      type: 'audio/mp3',
-      src: 'http://stream.ktuh.org:8000/stream-mp3',
-      audioWidth: 200,
-      audioHeight: 20,
-      iPadUseNativeControls: false,
-      iPhoneUseNativeControls: false,
-      AndroidUseNativeControls: false,
-      success: function (mediaElement, domObject) {
-        mediaElement.addEventListener('play', function(e) {
-          Session.set('paused', false);
-        }, false);
-        mediaElement.addEventListener('pause', function(e) {
-          Session.set('paused', true);
-        }, false);
-
-        $('.mejs__time-rail').append(
-          '<span class="mejs__broadcast">Live Broadcast</span>');
-
-        $('.mejs__time-slider').css('visibility', 'hidden');
-        // Display what's playing if user clicks the player without loading
-        // another song first.
-        $('.mejs__playpause-button').click(function () {
-          if (Session.equals('defaultLoaded', true)) {
-            var message = 'Now playing the ' +
-              scorpius.dictionary.get('mainPage.title', 'station\'s') +
-              ' live stream';
-            Session.set('defaultLoaded', false);
-            Session.set('nowLoaded',
-              scorpius.dictionary.get('mainPage.audioUrl', ''));
-            if (!Session.get('playedStream')) {
-              Bert.alert(message, 'default', 'growl-top-right', 'fa-music');
-              Session.set('playedStream', true);
-            }
-          }
-        });
-        global.player = mediaElement; // make it available for other functions
-      },
-      error: function () {
-        console.error('Error initializing the media element.');
       }
     });
 
@@ -107,11 +68,6 @@ export default class Header extends Component {
         }
       }
     }, 60000);
-
-    if ($('#resend-link')[0] === undefined)
-      $('#login-other-options').append(
-        '<a href="/resend" id="resend-link" class="pull-right">Resend ' +
-        'Verification Email</a>');
   }
 
   render() {
@@ -198,12 +154,17 @@ export default class Header extends Component {
           </ul>
           <ul className='nav navbar-nav'>
             <li className='nav-item'>
-              <div className='audio-player'>
-                <audio id='audio-player' preload='none' controls>
-                  <source src='http://stream.ktuh.org:8000/stream-mp3'
-                    type='audio/mp3' />
-                </audio>
-              </div>
+              <MediaElement id="audio-player"
+                src={this.props.loaded}
+                options={{
+                  alwaysShowControls: true,
+                  audioWidth: 200,
+                  audioHeight: 20,
+                  features: ['playpause', 'progress'],
+                  iPadUseNativeControls: false,
+                  iPhoneUseNativeControls: false,
+                  AndroidUseNativeControls: false,
+                }}/>
             </li>
             <CustomLoginButtons />
           </ul>

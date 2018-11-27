@@ -14,6 +14,11 @@ export default class Layout extends Component {
     return FlowRouter.getRouteName() === 'home';
   }
 
+  componentDidMount() {
+    var self = this;
+    player.setSrc('http://stream.ktuh.org:8000/stream-mp3');
+  }
+
   render() {
     return [
       <div className='container' key='container'>
@@ -21,7 +26,7 @@ export default class Layout extends Component {
           <div className='spacer-lg' key='lg'/>] ||
           <div className='spacer-sm' key='sm' />}
         <Header key='header' />
-        <script src='/mejs/mediaelement-and-player.min.js'></script> 
+        <script src='/mejs/mediaelement-and-player.min.js'></script>
         <div id='main'>
           {this.props.content}
         </div>
