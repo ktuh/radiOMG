@@ -42,8 +42,8 @@ export default class Join extends Component {
         <p>
           If you’d like to become a KTUH DJ, swing by our office in Hemenway 203
           (above Ba-Le) during regular business hours and fill out an
-          application or download the application
-          <a target="_blank" href="/files/ktuh_personnel_application_form.pdf">
+          application or download the application <a target="_blank"
+            href="/files/ktuh_personnel_application_form.pdf">
             here
           </a>.
         </p>
@@ -70,8 +70,7 @@ export default class Join extends Component {
           department at (808) 956-5288 or <a href=
           'mailto:&#112;&#100;&#64;&#107;&#116;&#117;&#104;&#46;&#111;&#114;&#103;'>
             &#112;&#100;&#64;&#107;&#116;&#117;&#104;&#46;&#111;&#114;&#103;
-          </a>
-          for information on ways you can get involved off air.
+          </a> for information on ways you can get involved off air.
         </p>
       </div>
     ];

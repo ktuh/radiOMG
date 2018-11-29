@@ -37,7 +37,11 @@ export default class Layout extends Component {
           },
           { 'name': 'viewport',
             'content':'width=device-width, initial-scale=1' }
-        ]} />,
+        ]} link={[{
+          'rel': 'stylesheet',
+          'type': 'text/css',
+          'href': '/main.css'
+        }]} />,
       <div className='container' key='container'>
         <div className='spacer-sm' key='sm' />
         <SSRHeader key='header' />
