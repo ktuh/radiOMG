@@ -119,6 +119,8 @@ var renderOut = (component) => {
         ${helmet.title.toString()}
         ${helmet.meta.toString()}
         ${helmet.link.toString()}
+        <script src="https://use.typekit.net/kdq4qji.js"></script>
+        <script>try{Typekit.load({ async: true });}catch(e){}</script>
       </head>
       <body>
         ${html}

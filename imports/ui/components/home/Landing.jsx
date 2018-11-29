@@ -208,7 +208,6 @@ class Landing extends Component {
 }
 
 export default withTracker(() => {
-  var s1 = Meteor.subscribe('notices');
   var s2 = Meteor.subscribe('showNowPlaying', {
     onReady: function() {
       Meteor.subscribe('currentPlaylist', {
@@ -235,7 +234,7 @@ export default withTracker(() => {
   var s3 = Meteor.subscribe('nowPlaying');
 
   return {
-    ready: s1.ready() && s2.ready() && s3.ready(),
+    ready: s2.ready() && s3.ready(),
     nowPlaying: NowPlaying.findOne()
   };
 })(Landing);

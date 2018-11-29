@@ -4,6 +4,7 @@ import Header from '../includes/Header.jsx';
 import Footer from '../includes/Footer.jsx';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { Meteor } from 'meteor/meteor';
+import Banner from '../includes/Banner.jsx';
 
 export default class Layout extends Component {
   constructor(props) {
@@ -21,6 +22,7 @@ export default class Layout extends Component {
 
   render() {
     return [
+      this.home() ? <Banner /> : null,
       <div className='container' key='container'>
         {this.home() && [<Landing key='landing' />,
           <div className='spacer-lg' key='lg'/>] ||

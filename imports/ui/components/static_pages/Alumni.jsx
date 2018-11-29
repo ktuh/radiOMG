@@ -29,23 +29,16 @@ export default class Alumni extends Component {
           <b>Get on the List!</b>
           If you are a KTUH alumnus or alumna and would like to
           be added to the KTUH alumni email list, please send your email address
-          to
-          <a href={'mailto:&#97;&#108;&#117;&#109;&#110;&#105;&#64;&#107;' +
-            '&#116;&#117;&#104;&#46;&#111;&#114;&#103;'}>
-            {'&#97;&#108;&#117;&#109;&#110;&#105;&#64;&#107;&#116;&#117;&#104;'+
-            '&#46;&#111;&#114;&#103;'}
+          to <a href='mailto:&#97;&#108;&#117;&#109;&#110;&#105;&#64;&#107;&#116;&#117;&#104;&#46;&#111;&#114;&#103;'>
+            &#97;&#108;&#117;&#109;&#110;&#105;&#64;&#107;&#116;&#117;&#104;&#46;&#111;&#114;&#103;
           </a>. You will receive occasional emails regarding alumni
           news and upcoming alumni events, such as reunions
           (the list is not shared with anyone).
         </p>
         <p>
-          <b>Got News?</b>
-          Alumni news, that is... If you would like to share any KTUH alumni
-          news items, please email them to
-          <a href={'mailto:&#97;&#108;&#117;&#109;&#110;&#105;&#64;&#107' +
-            '&#116;&#117;&#104;&#46;&#111;&#114;&#103;'}>
-            {'&#97;&#108;&#117;&#109;&#110;&#105;&#64;&#107;&#116;&#117;&#104;'+
-              '&#46;&#111;&#114;&#103;'}
+          <b>Got News?</b> Alumni news, that is... If you would like to share any KTUH alumni
+          news items, please email them to <a href='mailto:&#97;&#108;&#117;&#109;&#110;&#105;&#64;&#107;&#116;&#117;&#104;&#46;&#111;&#114;&#103;'>
+            &#97;&#108;&#117;&#109;&#110;&#105;&#64;&#107;&#116;&#117;&#104;&#46;&#111;&#114;&#103;
           </a>.
         </p>
 
@@ -197,8 +190,8 @@ export default class Alumni extends Component {
 
         <p>
           KTUH's General Manager at the time, Jay-me Morita, sent this URL
-          around in an email and it really applies to KTUH's alumni:
-          <a href={'http://www.buzzfeed.com/mariasherm/' +
+          around in an email and it really applies to KTUH's alumni: <a href={
+            'http://www.buzzfeed.com/mariasherm/' +
             '26-signs-you-were-a-college-radio-dj'}>
             {'http://www.buzzfeed.com/mariasherm/' +
               '26-signs-you-were-a-college-radio-dj'}

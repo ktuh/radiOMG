@@ -34,7 +34,10 @@ export default class Underwriting extends Component {
           KTUH underwriting is a way for your business, corporation, foundation
           or organization to expand your network, awareness, and customer base.
           Radio is one of the most accessible ways to reach a diverse audience
-          connecting the community to local businesses.
+          connecting the community to local businesses. Contact <a
+            href="&#109;&#097;&#105;&#108;&#116;&#111;&#058;&#117;&#110;&#100;&#101;&#114;&#119;&#114;&#105;&#116;&#105;&#110;&#103;&#064;&#107;&#116;&#117;&#104;&#046;&#111;&#114;&#103;">
+            &#117;&#110;&#100;&#101;&#114;&#119;&#114;&#105;&#116;&#105;&#110;&#103;&#064;&#107;&#116;&#117;&#104;&#046;&#111;&#114;&#103;
+          </a> for more information.
         </p>
         <p>
           Through KTUH Underwriting, your business or organization will be

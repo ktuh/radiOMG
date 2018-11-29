@@ -14,12 +14,14 @@ class StaffItem extends Component {
   }
 
   render() {
+    var usernameById = this.usernameById.bind(this);
+
     return (
       <div className='staff__item'>
         <h4>
           <a className="staff__item-textlink" href=
-            {`/profile/${this.usernameById.bind(this, this.props.userId)}`}>
-            {this.props.name}
+            {`/profile/${usernameById(this.props.dj.userId)}`}>
+            {this.props.dj.name}
           </a>
         </h4>
       </div>
@@ -54,7 +56,7 @@ class Staff extends Component {
         <h2 className='general__header'>KTUH Staff</h2>,
         <div className='staff__content'>
           {this.props.djs.map((dj) => {
-            return <StaffItem userId={dj.userId} name={dj.name}/>
+            return <StaffItem dj={dj} />
           })}
         </div>
       ];
