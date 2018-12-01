@@ -38,7 +38,7 @@ export default class MediaElement extends Component {
   render() {
     const props = this.props;
     const mediaBody = `<source src="${props.src}" type="audio/mp3">`,
-      mediaHtml = `<audio id="${props.id}" width="${props.width}" controls>
+      mediaHtml = `<audio id="${props.id}" controls>
         ${mediaBody}
       </audio>`;
 
@@ -56,6 +56,11 @@ export default class MediaElement extends Component {
     const options = Object.assign({}, this.props.options, {
     // Read the Notes below for more explanation about how to set up the path for shims
       pluginPath: '/mejs/',
+      alwaysShowControls: true,
+      features: ['playpause', 'progress'],
+      iPadUseNativeControls: false,
+      iPhoneUseNativeControls: false,
+      AndroidUseNativeControls: false,
       success: (media, node, instance) => this.success(media, node, instance),
       error: (media, node) => this.error(media, node)
     });
