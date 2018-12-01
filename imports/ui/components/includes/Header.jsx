@@ -154,17 +154,7 @@ export default class Header extends Component {
           </ul>
           <ul className='nav navbar-nav'>
             <li className='nav-item'>
-              <MediaElement id="audio-player"
-                src={this.props.loaded}
-                options={{
-                  alwaysShowControls: true,
-                  audioWidth: 200,
-                  audioHeight: 20,
-                  features: ['playpause', 'progress'],
-                  iPadUseNativeControls: false,
-                  iPhoneUseNativeControls: false,
-                  AndroidUseNativeControls: false,
-                }}/>
+              <MediaElement id="audio-player" src={this.props.loaded} />
             </li>
             <CustomLoginButtons />
           </ul>

@@ -647,6 +647,10 @@ audio {
   font-family: 'nimbus-sans' !important;
   font-size: 11px !important;
   text-transform: none !important;
+  top: 7px !important;
+}
+.mejs__time-handle, .mejs__time-handle-content {
+  left: 0 !important;
 }
 /* play/pause control */
 .mejs__button {
@@ -676,7 +680,7 @@ audio {
   display: block;
   width: 78px;
   height: 5px;
-  top: 7px;
+  top: 5px;
   left: 20px;
   cursor: pointer;
 }
