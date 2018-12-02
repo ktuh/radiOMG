@@ -5,6 +5,16 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 import { withTracker } from 'meteor/react-meteor-data';
 import { _ } from 'underscore';
 
+class LoginErrorMessage extends Component {
+  render() {
+    return <div
+      style={{ backgroundColor: 'pink', color: 'red',
+        border: 'thin red solid' }}>
+      {this.props.errorMessage}
+    </div>;
+  }
+}
+
 class CustomLoginButtons extends Component {
   constructor(props) {
     super(props);
@@ -74,7 +84,10 @@ class CustomLoginButtons extends Component {
 
     Meteor.loginWithPassword(loginSelector, password, (error, result) => {
       if (error) {
-        self.setState({ errorMessage: error });
+        $('#login-dropdown-list').addClass('open');
+        $('#login-dropdown-list .dropdown-toggle').attr(
+          'aria-expanded', 'true');
+        self.setState({ errorMessage: error.reason });
       }
     });
   }
@@ -172,6 +185,10 @@ class CustomLoginButtons extends Component {
 
   handleCreateClick(event) {
     event.preventDefault();
+    $('#login-dropdown-list').addClass('open');
+    $('#login-dropdown-list .dropdown-toggle').attr(
+      'aria-expanded', 'true');
+    this.setState({ signup: !this.state.signup });
   }
 
   logoutClick(event) {
@@ -214,6 +231,9 @@ class CustomLoginButtons extends Component {
         </a>
         {((!!self.props.currentUser && (!this.state.change &&
           <div className="dropdown-menu">
+            {this.state.errorMessage ?
+              <LoginErrorMessage errorMessage={this.state.errorMessage} />
+              : null}
             <button className="btn btn-default btn-block"
               id="login-buttons-view-profile" onClick={handleView}>
               View profile
@@ -230,6 +250,9 @@ class CustomLoginButtons extends Component {
           </div>
         || null) || (this.state.change &&
           <div className="dropdown-menu">
+            {this.state.errorMessage ?
+              <LoginErrorMessage errorMessage={this.state.errorMessage} />
+              : null}
             <input id="login-old-password" type="password"
               placeholder="Old Password" className="form-control" />
             <input id="login-password" type="password"
@@ -246,6 +269,9 @@ class CustomLoginButtons extends Component {
         || null)) || null) ||
         (!self.props.currentUser && (self.state.signup && (
           <div className="dropdown-menu">
+            {this.state.errorMessage ?
+              <LoginErrorMessage errorMessage={this.state.errorMessage} />
+              : null}
             <button className="login-button btn btn-block btn-Facebook">
               Sign in with Facebook
             </button>
@@ -275,6 +301,9 @@ class CustomLoginButtons extends Component {
             (!self.state.signup &&
             (
               <div className="dropdown-menu">
+                {this.state.errorMessage ?
+                  <LoginErrorMessage errorMessage={this.state.errorMessage} />
+                  : null}
                 <button className="login-button btn btn-block btn-Facebook">
                   Sign in with Facebook
                 </button>

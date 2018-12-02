@@ -22,8 +22,8 @@ class SSRShowPage extends Component {
     var ap = startHour > endHour;
     if (ap) ap = 'h:mmA';
     else ap = 'h:mm';
-    return momentUtil(moment(momentUtil(startHour + ':' + startMinute, 'HH:mm'))
-      .tz('Pacific/Honolulu')).format(ap) +
+    return momentUtil(moment(momentUtil(startHour + ':' + startMinute, 'HH:mm'),
+      'Pacific/Honolulu')).format(ap) +
       '-' + momentUtil(moment(momentUtil(endHour + ':' + endMinute, 'HH:mm'),
       'Pacific/Honolulu')).format('h:mmA');
   }
