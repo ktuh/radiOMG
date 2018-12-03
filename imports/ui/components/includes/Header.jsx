@@ -20,11 +20,10 @@ export default class Header extends Component {
   }
 
   componentDidUpdate() {
-    if (player.getSrc() ===
-      scorpius.dictionary.get('mainPage.audioUrl', ''))
+    if (player.getSrc() === 'http://stream.ktuh.org:8000/stream-mp3')
       $('.mejs__time-rail').append(
         '<span class="mejs__broadcast">Live Broadcast</span>');
-    else $('.mejs__time-slider').css('visibility', 'hidden');
+    else $('.mejs__time-slider').css('visibility', 'visible');
   }
 
   componentDidMount() {
