@@ -78,7 +78,7 @@ export default class Resend extends Component {
               <label for="at-field-email">Email</label>
               <input className="validate"
                 type="email" id="at-field-email" name="at-field-email"
-                autocapitalize="none" autocorrect="off"
+                autoCapitalize="none" autoCorrect="off"
                 onKeyUp={this.handleKeyUp} />
               <button type="submit"
                 className="at-btn submit waves-effect waves-light btn"

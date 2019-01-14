@@ -82,7 +82,7 @@ Meteor.startup(function () {
       var username = email.substring(0, email.indexOf('@'));
       var existentUser = Meteor.users.findOne({ username: username });
 
-      for (i = 1; i < 1000000; i++) {
+      for (var i = 1; i < 1000000; i++) {
         if (existentUser === undefined)
           break;
         var numStr = Number(i).toString();
