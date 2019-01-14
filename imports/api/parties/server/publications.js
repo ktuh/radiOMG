@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import Parties from '../parties_collection.js';
 import { getLocalTime } from '../../../startup/lib/helpers.js';
+import { check } from 'meteor/check';
 
 Meteor.publish('approvedParties', function () {
   return Parties.find({ approved: true,

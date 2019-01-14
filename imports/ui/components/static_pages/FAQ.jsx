@@ -236,7 +236,7 @@ export default class FAQ extends Component {
         <meta property="description" content="KTUH FAQ" />
       </Helmet>,
       <h2 className='general__header'>Frequently Asked Questions</h2>,
-      <div className='faq__content'>
+      <div className='faq__content' key='faq-content'>
         {faq_data.map((node) => (
           <QASection title={node.title} pairs={node.pairs} />
         ))}

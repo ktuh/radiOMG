@@ -65,7 +65,7 @@ class Staff extends Component {
           <meta property="description" content="KTUH Staff List" />
         </Helmet>,
         <h2 className='general__header'>KTUH Staff</h2>,
-        <div className='staff__content'>
+        <div className='staff__content' key="staff-content">
           {this.props.djs.map((dj) => {
             return <StaffItem dj={dj} />
           })}

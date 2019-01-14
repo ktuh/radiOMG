@@ -29,7 +29,7 @@ export default class Join extends Component {
         <meta property="description" content="Join KTUH" />
       </Helmet>,
       <h2 className='general__header'>Join KTUH</h2>,
-      <div className='join__desc'>
+      <div className='join__desc' key="join-desc">
         <p>
           <span className='copy__caps'>Want to</span> be a DJ? Are you a UHM
           student who wants to learn more about broadcast radio, or who just
@@ -42,7 +42,7 @@ export default class Join extends Component {
           a 24-hour, 7-day-a-week radio station.
         </p>
       </div>,
-      <div className='join__content'>
+      <div className='join__content' key="join-content">
         <p>
           If you’d like to become a KTUH DJ, swing by our office in Hemenway 203
           (above Ba-Le) during regular business hours and fill out an

@@ -65,17 +65,17 @@ export default class Resend extends Component {
         <meta property="description" content="Resend Email" />
       </Helmet>,
       <h2 className='general__header'>Resend Verification Email</h2>,
-      <div className='resend__content'>
+      <div className='resend__content' key="resend-content">
         {!verified && [
           <p>
             Lost your verification email? Type in your email address to send the
             verification email again. Be sure to check your spam folders and
             inbox.
           </p>,
-          <div className="at-pwd-form">
-            <form role="form" id="at-pwd-form" novalidate="" action="#"
+          <div className="at-pwd-form" key="pwd-form">
+            <form role="form" id="at-pwd-form" noValidate="" action="#"
               method="POST">
-              <label for="at-field-email">Email</label>
+              <label htmlFor="at-field-email">Email</label>
               <input className="validate"
                 type="email" id="at-field-email" name="at-field-email"
                 autoCapitalize="none" autoCorrect="off"

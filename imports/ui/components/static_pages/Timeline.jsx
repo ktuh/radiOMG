@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 
 const timeline_data = [
@@ -118,6 +119,11 @@ const timeline_data = [
 ;
 
 class TimelineNode extends Component {
+  static propTypes = {
+    title: PropTypes.string,
+    body: PropTypes.string
+  }
+
   constructor(props) {
     super(props);
   }
@@ -160,7 +166,7 @@ export default class Timeline extends Component {
         <meta property="description" content="KTUH Timeline" />
       </Helmet>,
       <h2 className='general__header'>KTUH Timeline</h2>,
-      <div className='timeline'>
+      <div className='timeline' key='timeline'>
         <div className='timeline__content'>
           {timeline_data.map(function(node) {
             return <TimelineNode title={node[0]} body={node[1]} />

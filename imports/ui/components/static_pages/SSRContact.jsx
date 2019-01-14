@@ -21,7 +21,7 @@ export default class Contact extends Component {
         <meta property="description" content="Contact KTUH" />
       </Helmet>,
       <h2 className='general__header'>Contact Us</h2>,
-      <div className='contact__content'>
+      <div className='contact__content' key='contact-content'>
         <p>
         Got a question or comment? Drop us a line and let us know what you
         think of our programming!
