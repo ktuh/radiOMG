@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
 import PartyItem from './PartyItem.jsx';
 import Parties from '../../../api/parties/parties_collection.js';
@@ -6,6 +7,11 @@ import { Meteor } from 'meteor/meteor';
 import { Helmet } from 'react-helmet';
 
 class PartyList extends Component {
+  static propTypes = {
+    ready: PropTypes.bool,
+    parties: PropTypes.array
+  }
+
   render() {
     if (this.props.ready) return [
       <Helmet key="metadata">

@@ -9,7 +9,7 @@ export default PostsSchema = new SimpleSchema({
       label: false
     },
     autoValue: function() {
-      if (this.isSet)
+      if (this.isUpdate)
         return this.value;
       else
         return Meteor.userId();
@@ -22,7 +22,7 @@ export default PostsSchema = new SimpleSchema({
       label: false
     },
     autoValue: function() {
-      if (this.isSet)
+      if (this.isUpdate)
         return this.value;
       else
         return Meteor.user().username;
@@ -37,7 +37,7 @@ export default PostsSchema = new SimpleSchema({
     optional: true,
     autoValue: function() {
       var url = this.siblingField('photo.url').value;
-      if (url) return thumbnailUrl(url, 667);
+      if (url) return thumbnailUrl(url, 320);
     }
   },
   submitted: {
@@ -46,7 +46,9 @@ export default PostsSchema = new SimpleSchema({
       type: 'hidden',
       label: false
     },
-    defaultValue: () => getLocalTime().toDate()
+    autoValue: function () {
+      return this.isUpdate ?  this.value : getLocalTime().toDate();
+    }
   },
   title: {
     type: String,

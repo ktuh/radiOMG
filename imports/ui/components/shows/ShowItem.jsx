@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
+import { moment } from 'meteor/momentjs:moment';
 
 export default class ShowItem extends Component {
+  static propTypes = {
+    show: PropTypes.object
+  }
+
   formattedTime(startHour, startMinute, endHour, endMinute) {
     if (startMinute === 1) {
       startMinute--;

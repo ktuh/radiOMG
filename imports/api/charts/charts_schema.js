@@ -2,6 +2,7 @@ import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import TracksSchema from './tracks_schema.js';
 import { Meteor } from 'meteor/meteor';
 import { getLocalTime } from '../../startup/lib/helpers.js';
+import { scorpius } from 'meteor/scorpiusjs:core';
 
 export default ChartsSchema = new SimpleSchema({
   title: {

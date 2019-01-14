@@ -2039,6 +2039,21 @@ margin-bottom: 0 !important;
 .contact__content ul {
   padding: 5px 192px;
 }
+.aspect-ratio {
+  padding: 5px 192px 51% 192px;
+  position: relative;
+  width: 100%;
+  height: 0;
+}
+.about__youtube {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  text-align: center;
+  padding: 5px 192px;
+}
 .copy__caps {
   font-family: 'nimbus-sans-extended', sans-serif;
   font-weight: 900;
@@ -3173,7 +3188,7 @@ div.dataTables_length select {
 }
 .paginate_button.waves-effect.active a {
   height: 100%;
-  padding: 9px;
+  padding-top: 0px;
 }
 .scorpius-materialize-admin .floating-btn-onheader {
   top: -6rem;

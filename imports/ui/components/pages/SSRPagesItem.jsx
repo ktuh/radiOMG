@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Pages from '../../../api/pages/pages_collection.js';
 import { Helmet } from 'react-helmet';
 
 class SSRPagesItem extends Component {
+  static propTypes = {
+    page: PropTypes.object
+  }
+
   constructor(props) {
     super(props);
   }
@@ -37,4 +42,5 @@ class SSRPagesItem extends Component {
   }
 }
 
-export default (slug) => <PagesItem page={Pages.findOne({ slug: slug })} />;
+export default (slug) =>
+  <SSRPagesItem page={Pages.findOne({ slug: slug })} />;

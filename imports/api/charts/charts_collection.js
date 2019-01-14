@@ -1,4 +1,3 @@
-import { Mongo } from 'meteor/mongo';
 import ChartsSchema from './charts_schema.js';
 import { scorpius } from 'meteor/scorpiusjs:core';
 import { moment } from 'meteor/momentjs:moment';

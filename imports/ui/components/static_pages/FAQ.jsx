@@ -144,6 +144,10 @@ class QAPair extends Component {
     };
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    return nextState.expanded !== this.state.expanded;
+  }
+
   handleClick() {
     this.setState({ expanded: !this.state.expanded });
   }

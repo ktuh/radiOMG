@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Comments from '../../../api/comments/comments_collection.js';
 import CommentItem from '../comments/CommentItem.jsx';
-import Parties from '../../../api/parties/parties_collection.js';
-import { FlowRouter } from 'meteor/kadira:flow-router';
 import { Helmet } from 'react-helmet';
+import { moment } from 'meteor/momentjs:moment';
 
 class SSRPartyPage extends Component {
+  static propTypes = {
+    party: PropTypes.object
+  }
+
   time(t) {
     return moment(t).format('dddd, MMMM Do YYYY, h:mm a');
   }

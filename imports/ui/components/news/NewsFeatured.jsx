@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Posts from '../../../api/posts/posts_collection.js';
 import { usernameById, displayNameById, timeDiffString, renderSummary,
   getPathBySlug } from '../../../startup/lib/helpers.js';
@@ -6,11 +7,17 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { Meteor } from 'meteor/meteor';
 
 class NewsFeatured extends Component {
+  static propTypes = {
+    featuredPost: PropTypes.object,
+    ready: PropTypes.bool
+  }
+
   render() {
     var path = getPathBySlug('/radioblog/:slug',
         this.props.featuredPost.slug),
       synopsis = renderSummary(this.props.featuredPost.summary, 60),
-      username = usernameById(this.props.featuredPost.userId),
+      username = this.props.featuredPost.userId ?
+        usernameById(this.props.featuredPost.userId) : undefined,
       displayName = displayNameById(this.props.featuredPost.userId),
       timeDiff = timeDiffString(this.props.featuredPost.submitted);
 
@@ -36,8 +43,9 @@ class NewsFeatured extends Component {
               </a>
             </p>
             <p className='news-list__byline'>{'by '}
-              <a href={`/profile/${username}`}>
-                {displayName || username}</a>{' / '}
+              {username ? <a href={`/profile/${username}`}>
+                {displayName || username}</a> :
+                this.props.featuredPost.author}{' / '}
               {timeDiff}</p>
           </div>
         </div>

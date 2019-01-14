@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { scorpius } from 'meteor/scorpiusjs:core';
 
 export default class ScorpiusImageUpload extends Component {
+  static propTypes = {
+    value: PropTypes.string,
+    onChange: PropTypes.func,
+    label: PropTypes.string
+  }
+
   constructor(props) {
     super(props);
     this.state = {

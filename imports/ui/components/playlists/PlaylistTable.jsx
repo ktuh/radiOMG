@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
-import { moment as momentUtil } from 'meteor/momentjs:moment';
 import moment from 'moment-timezone';
 
 export default class PlaylistTable extends Component {
   timeBeautify(time) {
-    return momentUtil(
-      moment(momentUtil(time), 'Pacific/Honolulu')
-    ).format('hh:mma');
+    return moment.tz(time.replace(/-\d{4}$/, ''), 'Etc/UTC')
+      .tz('Pacific/Honolulu').format('hh:mma');
   }
 
   truncated(str) {

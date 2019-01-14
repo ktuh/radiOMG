@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import { getLocalTime } from '../../../startup/lib/helpers.js';
 
 export default class Footer extends Component {
+  shouldComponentUpdate() {
+    return false;
+  }
+
   render() {
     return (
       <div className='footer'>

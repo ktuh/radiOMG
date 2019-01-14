@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Notifications from
+  '../../../api/notifications/notifications_collection.js';
 
 export default class NotificationItem extends Component {
   handleClick(event) {

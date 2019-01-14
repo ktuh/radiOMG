@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { _ } from 'underscore';
-import { Session } from 'meteor/session';
 
 export default class SSRHeader extends Component {
   constructor(props) {
@@ -11,8 +9,8 @@ export default class SSRHeader extends Component {
     return (
       <nav className='navbar navbar-default' role='navigation'>
         <div className='info-box'>
-          <a className='info-box__link' href='/'>
-            <img alt='KTUH FM' src='/img/ktuh-fm-logo.png' />
+          <a className='info-box__link' href='https://ktuh.org/'>
+            <img alt='KTUH FM' src='https://ktuh.org/img/ktuh-fm-logo.png' />
           </a>
         </div>
         <div className='navbar-header'>

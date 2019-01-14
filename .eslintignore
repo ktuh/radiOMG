@@ -1,4 +1,5 @@
-client/compatibility/jquery.truncate.js
-public/mejs/
+client/compatibility/
+public/
 imports/ui/components/static_pages/Contact.jsx
 packages/
+client/helpers/

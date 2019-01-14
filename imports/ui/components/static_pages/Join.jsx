@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import { Helmet } from 'react-helmet';
 
 export default class Join extends Component {
+  shouldComponentUpdate() {
+    return false;
+  }
+
   render() {
     return [
       <Helmet key="metadata">

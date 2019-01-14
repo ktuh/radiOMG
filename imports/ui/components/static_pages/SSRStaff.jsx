@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Profiles from '../../../api/users/profiles_collection.js';
 import Shows from '../../../api/shows/shows_collection.js';
 import { Helmet } from 'react-helmet';
+import { Meteor } from 'meteor/meteor';
 
 class StaffItem extends Component {
+  static propTypes = {
+    dj: PropTypes.object,
+    ready: PropTypes.bool
+  }
+
   constructor(props) {
     super(props);
   }
@@ -29,6 +36,11 @@ class StaffItem extends Component {
 }
 
 class Staff extends Component {
+  static propTypes = {
+    ready: PropTypes.bool,
+    djs: PropTypes.array
+  }
+
   constructor(props) {
     super(props);
   }

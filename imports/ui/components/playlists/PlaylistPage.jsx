@@ -60,7 +60,7 @@ class PlaylistPage extends Component {
   requestSpinData() {
     var self = this;
 
-    var parsedId = parseInt(FlowRouter.getParam('id'));
+    var parsedId = parseInt(FlowRouter.getParam('id'), 10);
     Session.set('playlistViewing', parsedId);
     if (parsedId > 10000) {
       Meteor.call('getPlaylistSpins', parsedId,
@@ -167,7 +167,7 @@ class PlaylistPage extends Component {
 }
 
 export default withTracker(() => {
-  var id = parseInt(FlowRouter.getParam('id')), s0,
+  var id = parseInt(FlowRouter.getParam('id'), 10), s0,
     s1 = Meteor.subscribe('playlist', id, {
       onReady: function() {
         var playlist = Playlists.findOne({ spinPlaylistId: id });
@@ -178,7 +178,7 @@ export default withTracker(() => {
     s3 = Meteor.subscribe('activeShows');
 
   return {
-    playlistId: parseInt(FlowRouter.getParam('id')),
+    playlistId: parseInt(FlowRouter.getParam('id'), 10),
     ready: (s0 && s0.ready() || true)
       && s1.ready() && s3.ready(),
     playlist: Playlists.findOne({ spinPlaylistId: id },

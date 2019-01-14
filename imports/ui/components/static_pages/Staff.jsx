@@ -66,9 +66,9 @@ class Staff extends Component {
 }
 
 export default withTracker(() => {
-  var s1 = Meteor.subscribe('djProfiles');
-  var s2 = Meteor.subscribe('djs');
-  var s3 = Meteor.subscribe('activeShows');
+  var s1 = Meteor.subscribe('djProfiles'),
+    s2 = Meteor.subscribe('djs'),
+    s3 = Meteor.subscribe('activeShows');
 
   return {
     ready: s1.ready() && s2.ready() && s3.ready(),

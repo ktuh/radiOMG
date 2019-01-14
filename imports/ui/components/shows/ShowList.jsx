@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { Meteor } from 'meteor/meteor';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import Shows from '../../../api/shows/shows_collection.js';
 import { getLocalTime } from '../../../startup/lib/helpers.js';
@@ -8,6 +10,10 @@ import ShowItem from './ShowItem.jsx';
 import { Helmet } from 'react-helmet';
 
 class ShowList extends Component {
+  static propTypes = {
+    ready: PropTypes.bool
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -82,7 +88,7 @@ class ShowList extends Component {
           <meta property="description" content={
             'Show Schedule on KTUH'} />
         </Helmet>,
-        <h2 className='general__header'>Show Schedule</h2>,
+        <h2 className='general__header' key='header'>Show Schedule</h2>,
         <div className='shows'>
           <div className='shows__days shows__days__wide'>
             {['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday',

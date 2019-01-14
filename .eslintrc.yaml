@@ -2,10 +2,15 @@ env:
   es6: true
   node: true
 parser: babel-eslint
-extends: plugin:meteor/recommended
+extends:
+  - eslint:recommended
+  - plugin:meteor/recommended
+  - plugin:react/recommended
 plugins:
   - meteor
+  - react
 rules:
+  no-console: error
   meteor/template-names: off
   meteor/no-session: off
   indent:

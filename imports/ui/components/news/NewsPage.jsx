@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Profiles from '../../../api/users/profiles_collection.js';
 import Posts from '../../../api/posts/posts_collection.js';
 import Comments from '../../../api/comments/comments_collection.js';
@@ -7,13 +8,17 @@ import CommentSubmit from '../comments/CommentSubmit.jsx';
 import { withTracker } from 'meteor/react-meteor-data';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { displayNameById, dateFormat } from '../../../startup/lib/helpers.js';
-import { _ } from 'underscore';
 import { Helmet } from 'react-helmet';
+import { Meteor } from 'meteor/meteor';
 
 class NewsPage extends Component {
-  render() {
-    var self = this;
+  static propTypes = {
+    ready: PropTypes.bool,
+    post: PropTypes.object,
+    comments: PropTypes.array
+  }
 
+  render() {
     if (this.props.ready)
       return [
         <Helmet key="metadata">
@@ -45,9 +50,10 @@ class NewsPage extends Component {
         <div className='news-item' key="name-submitted">
           <p className='news-item__author'>
             {this.props.post.author &&
-              <b>Posted by <a href={`/profile/${this.props.post.author}`}>
-                {displayNameById(this.props.post.userId) ||
-                  this.props.post.author}</a>
+              <b>Posted by {this.props.post.userId ?
+                <a href={`/profile/${this.props.post.author}`}>
+                  {displayNameById(this.props.post.userId) ||
+                  this.props.post.author}</a> : this.props.post.author}
               </b> || null}
             <br />
             {dateFormat(this.props.post.submitted, 'dddd, MMMM DD, YYYY')}
@@ -86,13 +92,13 @@ export default withTracker(() => {
         return;
       }
       s0 = Meteor.subscribe('comments', post._id);
-      s1 = Meteor.subscribe('profileData', post.userId);
+      if (post.userId) s1 = Meteor.subscribe('profileData', post.userId);
     }
   });
 
   return {
     ready: handle.ready() && (s0 && s0.ready() || false) &&
-      (s1 && s1.ready() || false),
+      (s1 && s1.ready() || s1 === undefined),
     comments: Comments.find().fetch(),
     post: Posts.findOne({ slug: slug })
   };
