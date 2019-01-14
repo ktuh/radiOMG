@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class ChartTableRow extends Component {
+  static propTypes = {
+    track: PropTypes.object
+  }
+
   constructor(props) {
     super(props);
   }
@@ -8,16 +13,20 @@ class ChartTableRow extends Component {
   render() {
     return (
       <tr>
-        <td className='playlist__title'>{this.props.index + 1}</td>
-        <td className='playlist__title'>{this.props.artist}</td>
-        <td className='playlist__title'>{this.props.release || 'N/A'}</td>
-        <td className='playlist__title'>{this.props.label}</td>
+        <td className='playlist__title'>{this.props.track.index + 1}</td>
+        <td className='playlist__title'>{this.props.track.artist}</td>
+        <td className='playlist__title'>{this.props.track.release || 'N/A'}</td>
+        <td className='playlist__title'>{this.props.track.label}</td>
       </tr>
     );
   }
 }
 
 export default class ChartTable extends Component {
+  static propTypes = {
+    tracks: PropTypes.array
+  }
+
   constructor(props) {
     super(props);
   }
@@ -37,8 +46,7 @@ export default class ChartTable extends Component {
           {this.props.tracks.map((track, i) =>
             <ChartTableRow key={
               `${i}. ${track.artist} - ${track.artist} [${track.label}]`}
-            index={i} artist={track.artist} release={track.release || undefined}
-            label={track.label} />)}
+            track={track} />)}
         </tbody>
       </table>
     );

@@ -5,7 +5,6 @@ import { Session } from 'meteor/session';
 import { $ } from 'meteor/jquery';
 import CustomLoginButtons from './CustomLoginButtons.jsx';
 import MediaElement from './MediaElement.js';
-import { scorpius } from 'meteor/scorpiusjs:core';
 
 function activePage() {
   // includes Spacebars.kw but that's OK because the route name ain't that.

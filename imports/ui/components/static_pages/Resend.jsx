@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Helmet } from 'react-helmet';
+import { Meteor } from 'meteor/meteor';
 
 export default class Resend extends Component {
   constructor(props) {

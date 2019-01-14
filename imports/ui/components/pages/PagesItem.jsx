@@ -1,10 +1,17 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { Meteor } from 'meteor/meteor';
 import Pages from '../../../api/pages/pages_collection.js';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Helmet } from 'react-helmet';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 
 class PagesItem extends Component {
+  static propTypes = {
+    ready: PropTypes.bool,
+    page: PropTypes.object
+  }
+
   constructor(props) {
     super(props);
   }

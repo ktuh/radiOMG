@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { renderSummary } from '../../../startup/lib/helpers.js';
 import { withTracker } from 'meteor/react-meteor-data';
 import Posts from '../../../api/posts/posts_collection.js';
 import { Meteor } from 'meteor/meteor';
 
 class HomeFeaturedPost extends Component {
+  static propTypes = {
+    ready: PropTypes.bool,
+    post: PropTypes.object
+  }
+
   render() {
     if (this.props.ready && this.props.post) return (
       <div className='home__featured'>

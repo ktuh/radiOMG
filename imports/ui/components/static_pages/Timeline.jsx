@@ -137,6 +137,10 @@ class TimelineNode extends Component {
 }
 
 export default class Timeline extends Component {
+  shouldComponentUpdate() {
+    return false;
+  }
+
   render() {
     return [
       <Helmet key="metadata">

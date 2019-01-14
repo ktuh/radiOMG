@@ -8,6 +8,10 @@ import moment from 'moment-timezone';
 import { Helmet } from 'react-helmet';
 
 class ChartsPage extends Component {
+  shouldComponentUpdate(nextProps, nextState) {
+    return !this.props.ready;
+  }
+
   dateFmt(date) {
     return momentUtil(moment(date, 'Pacific/Honolulu')).format('MMMM DD, YYYY');
   }

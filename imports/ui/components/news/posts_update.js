@@ -1,5 +1,6 @@
 import './posts_update.html';
 import Posts from '../../../api/posts/posts_collection.js';
+import { AutoForm } from 'meteor/aldeed:autoform';
 
 ReactiveTemplates.set('collections.posts.update', 'postsUpdate');
 
@@ -20,8 +21,10 @@ Template.postsUpdate.events({
   }
 });
 
-AutoForm.addHooks('updatePostForm', {
-  onSuccess: function() {
-    RouterLayer.go(this.collection.indexPath());
+AutoForm.hooks({
+  updatePostForm: {
+    onSuccess: function() {
+      RouterLayer.go(this.collection.indexPath());
+    }
   }
 });

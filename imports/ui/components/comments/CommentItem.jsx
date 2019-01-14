@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { moment } from 'meteor/momentjs:moment';
 
 export default class CommentItem extends Component {
+  static propTypes = {
+    comment: PropTypes.object
+  }
+
   timeDiff() {
     var timeStr = this.props.comment.submitted.toString().substring(0, 24);
     var timestamp = moment(timeStr, 'ddd MMM DD YYYY HH:mm:ss');

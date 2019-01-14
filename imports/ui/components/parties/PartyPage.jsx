@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import Comments from '../../../api/comments/comments_collection.js';
 import CommentItem from '../comments/CommentItem.jsx';
@@ -6,8 +8,14 @@ import CommentSubmit from '../comments/CommentSubmit.jsx';
 import Parties from '../../../api/parties/parties_collection.js';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { Helmet } from 'react-helmet';
+import { moment } from 'meteor/momentjs:moment';
 
 class PartyPage extends Component {
+  static propTypes = {
+    ready: PropTypes.bool,
+    party: PropTypes.object
+  }
+
   time(t) {
     return moment(t).format('dddd, MMMM Do YYYY, h:mm a');
   }
@@ -19,7 +27,7 @@ class PartyPage extends Component {
 
     if (i >= 0) {
       r = 'upvoted';
-    };
+    }
 
     return r;
   }

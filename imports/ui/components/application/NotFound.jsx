@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 
 export default class NotFound extends Component {
+  shouldComponentUpdate() {
+    return false;
+  }
+
   render() {
     return (
       <div className="not-found page jumbotron">

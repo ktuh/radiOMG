@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
-import Charts from '../../../api/charts/charts_collection.js';
+import PropTypes from 'prop-types';
 import ChartTable from './ChartTable.jsx';
 import { moment as momentUtil } from 'meteor/momentjs:moment';
 import moment from 'moment-timezone';
 import { Helmet } from 'react-helmet';
 
 class SSRChartsPage extends Component {
+  static propTypes = {
+    chart: PropTypes.object
+  }
+
   dateFmt(date) {
     return momentUtil(moment(date, 'Pacific/Honolulu')).format('MMMM DD, YYYY');
   }

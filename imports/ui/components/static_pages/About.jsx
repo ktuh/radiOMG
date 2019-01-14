@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import { Helmet } from 'react-helmet';
 
 export default class About extends Component {
+  shouldComponentUpdate() {
+    return false;
+  }
+
   render() {
     return ([
       <Helmet key="metadata">
@@ -46,7 +50,8 @@ export default class About extends Component {
           KTUH began as a standing committee of the Associated Students of the
           University of Hawaiʻi (ASUH) in 1966. For the first three years, KTUH
           was entirely an ASUH committee, both in funding and operation. As an
-          AM closed circuit operation, it reached UH dorms. On September 28,
+          AM closed circuit operation, it reached UH dorms and the Hemenway Hall
+          lounge. On September 28,
           1967, the ASUH passed a resolution asking then-UH President Thomas
           Hamilton to apply for an FM educational license.
         </p>
@@ -106,6 +111,17 @@ export default class About extends Component {
           August 16, KTUH returned to the airwaves at 3,000 watts! The first
           song to broadcast was 'Change is Gonna Come' by Otis Redding.
         </p>
+        <p>
+          It currently broadcasts on 90.1 MHz with an effective radiated power
+          of 7.0 kW (as of March 19, 2016) from Mount Tantalus.
+        </p>
+        <div class="aspect-ratio">
+          <iframe class="about__youtube"
+            src="https://www.youtube.com/embed/HvslPiSeeKk"
+            frameborder="0"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen />
+        </div>
       </div>,
       <div className='about__help'>
         <div><h3 className='about__help__lighter'>I want to:</h3></div>

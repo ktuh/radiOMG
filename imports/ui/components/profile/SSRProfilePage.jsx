@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Posts from '../../../api/posts/posts_collection.js';
 import Profiles from '../../../api/users/profiles_collection.js';
 import Shows from '../../../api/shows/shows_collection.js';
 import { Helmet } from 'react-helmet';
 
 class SSRProfilePage extends Component {
+  static propTypes = {
+    profile: PropTypes.object
+  }
+
   render() {
     if (this.props.profile !== undefined && !this.props.profile.banned) {
       return [

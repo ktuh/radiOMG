@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import Posts from '../posts_collection.js'
+import { check } from 'meteor/check';
 
 Meteor.publish('postsLimited', (options) => {
   check(options, {

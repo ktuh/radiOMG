@@ -19,7 +19,7 @@ export default class Layout extends Component {
           },
           {
             'name': 'keywords',
-            'content': 'hardstyle, DJ, Honolulu, Hawaii'
+            'content': '90.1 FM,KTUH,college radio,Honolulu,Hawaii,radio,University of Hawaii'
           },
           {
             'name': 'msapplication-TileColor',
@@ -40,7 +40,7 @@ export default class Layout extends Component {
         ]} link={[{
           'rel': 'stylesheet',
           'type': 'text/css',
-          'href': '/main.css'
+          'href': 'https://ktuh.org/main.css'
         }]} />,
       <div className='container' key='container'>
         <div className='spacer-sm' key='sm' />

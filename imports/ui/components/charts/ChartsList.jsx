@@ -8,12 +8,21 @@ import moment from 'moment-timezone';
 import { Helmet } from 'react-helmet';
 
 class ChartsList extends Component {
+  constructor(props) {
+    super(props);
+    this.dateFmt = this.dateFmt.bind(this);
+  }
+
   dateFmt(date) {
     return momentUtil(moment(date, 'Pacific/Honolulu')).format('MMMM DD, YYYY');
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    return !this.props.ready;
+  }
+
   render() {
-    var dateFmt = this.dateFmt.bind(this);
+    var dateFmt = this.dateFmt;
 
     return [
       <Helmet key="metadata">

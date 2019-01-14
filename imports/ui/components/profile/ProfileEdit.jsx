@@ -1,10 +1,16 @@
 import { Meteor } from 'meteor/meteor';
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ProfileEditForm from './ProfileEditForm.jsx';
 import Profiles from '../../../api/users/profiles_collection.js';
 import { withTracker } from 'meteor/react-meteor-data';
 
 class ProfileEdit extends Component {
+  static propTypes = {
+    ready: PropTypes.bool,
+    profile: PropTypes.object
+  }
+
   render() {
     if (this.props.ready) {
       return (
