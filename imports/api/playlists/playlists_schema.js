@@ -1,5 +1,4 @@
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
-import Shows from '../shows/shows_collection.js';
 
 export default PlaylistsSchema = new SimpleSchema({
   showId: {

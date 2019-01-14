@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { displayNameById, usernameById, timeDiffString, renderSummary,
   getPathBySlug } from '../../../startup/lib/helpers.js';
 
 export default class NewsItem extends Component {
+  static propTypes = {
+    item: PropTypes.object
+  }
+
   shouldComponentUpdate(nextProps, nextState) {
     return true;
   }

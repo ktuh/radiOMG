@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import Playlists from '../playlists_collection.js';
 import NowPlaying from '../now_playing.js';
 import { currentPlaylist } from '../../../startup/lib/helpers.js';
+import { check } from 'meteor/check';
 
 Meteor.publish('playlist', function (id) {
   check(id, Number);
