@@ -115,8 +115,8 @@ export default class About extends Component {
           It currently broadcasts on 90.1 MHz with an effective radiated power
           of 7.0 kW (as of March 19, 2016) from Mount Tantalus.
         </p>
-        <div class="aspect-ratio">
-          <iframe class="about__youtube"
+        <div className="aspect-ratio">
+          <iframe className="about__youtube"
             src="https://www.youtube.com/embed/HvslPiSeeKk"
             frameborder="0"
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"

@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { Meteor } from 'meteor/meteor';
 import Charts from '../../../api/charts/charts_collection.js';
 import { withTracker } from 'meteor/react-meteor-data';
 import { moment as momentUtil } from 'meteor/momentjs:moment';
@@ -7,6 +9,11 @@ import { pages } from '../../../startup/lib/helpers.js';
 import EverAfter from 'react-everafter';
 
 class ChartsSidebar extends Component {
+  static propTypes = {
+    ready: PropTypes.bool,
+    charts: PropTypes.array
+  }
+
   constructor(props) {
     super(props);
   }

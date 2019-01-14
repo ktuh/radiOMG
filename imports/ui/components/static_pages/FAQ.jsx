@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 
 const faq_data = [
@@ -137,6 +138,11 @@ const faq_data = [
 ]
 
 class QAPair extends Component {
+  static propTypes = {
+    question: PropTypes.string,
+    answer: PropTypes.string
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -181,6 +187,11 @@ class QAPair extends Component {
 }
 
 class QASection extends Component {
+  static propTypes = {
+    title: PropTypes.string,
+    pairs: PropTypes.array
+  }
+
   constructor(props) {
     super(props);
   }

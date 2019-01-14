@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { moment as momentUtil } from 'meteor/momentjs:moment';
 import moment from 'moment-timezone';
-import Playlists from '../../../api/playlists/playlists_collection.js';
-import Shows from '../../../api/shows/shows_collection.js';
 import { Helmet } from 'react-helmet';
 
 class SSRShowPage extends Component {

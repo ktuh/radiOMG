@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { Meteor } from 'meteor/meteor';
 import Profiles from '../../../api/users/profiles_collection.js';
 import Shows from '../../../api/shows/shows_collection.js';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Helmet } from 'react-helmet';
 
 class StaffItem extends Component {
+  static propTypes = {
+    dj: PropTypes.object
+  }
+
   constructor(props) {
     super(props);
   }
@@ -30,6 +36,11 @@ class StaffItem extends Component {
 }
 
 class Staff extends Component {
+  static propTypes = {
+    ready: PropTypes.bool,
+    djs: PropTypes.array
+  }
+
   constructor(props) {
     super(props);
   }
