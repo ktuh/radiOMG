@@ -22,11 +22,10 @@ Meteor.startup(function () {
   };
 
   Accounts.emailTemplates.verifyEmail.text = function(user, url) {
-    return 'Hi, ' + user.username + ',\n\n'
-      + 'Mahalo for registering for the KTUH Honolulu website. ' +
-        'Please click on the '
-      + 'following link to verify your email address: \r\n\n' + url
-      + '\n\n';
+    return `Hi ${user.username},` + '\n\n' +
+    'Mahalo for registering for the KTUH Honolulu website.\n' +
+    'Please click on the following link to verify your email address:\n\n' +
+    url;
   };
 
   Accounts.emailTemplates.resetPassword.from = function() {
@@ -53,7 +52,6 @@ Meteor.startup(function () {
       } else {
         throw new Meteor.Error(100001,
           'Please verify your email address. (Check your inbox.)');
-        return false;
       }
     }
     return true;

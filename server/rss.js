@@ -1,3 +1,5 @@
+import { RssFeed } from 'meteor/raix:rssfeed';
+
 RssFeed.publish('podcast', function() {
   var self = this;
 

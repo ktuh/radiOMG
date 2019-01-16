@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { currentPlaylistFindOne } from '../../../startup/lib/helpers.js';
+import PropTypes from 'prop-types';
 import PlaylistSidebar from './PlaylistSidebar.jsx';
 import PlaylistTable from './PlaylistTable.jsx';
 import Playlists from '../../../api/playlists/playlists_collection.js';
@@ -11,10 +11,15 @@ import CommentSubmit from '../comments/CommentSubmit.jsx';
 import { withTracker } from 'meteor/react-meteor-data';
 import { moment as momentUtil } from 'meteor/momentjs:moment';
 import moment from 'moment-timezone';
-import { Helmet } from 'react-helmet';
+import { Metamorph } from 'react-metamorph';
 import { FlowRouter } from 'meteor/kadira:flow-router'
 
 class PlaylistPage extends Component {
+  static propTypes = {
+    playlist: PropTypes.object,
+    ready: PropTypes.bool
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -45,7 +50,7 @@ class PlaylistPage extends Component {
     return Comments.find({ postId: playlist.showId }).fetch();
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
+  shouldComponentUpdate(nextProps) {
     return (nextProps.playlist && this.props.playlist &&
       nextProps.playlist.spinPlaylistId !==
       this.props.playlist.spinPlaylistId) || !this.state.playlistLoaded;
@@ -98,28 +103,10 @@ class PlaylistPage extends Component {
           this.showDateOfLatestPlaylist(playlist.showDate);
       }
       return [
-        <Helmet key="metadata">
-          <title>{showString +
-            ' - KTUH FM Honolulu | Radio for the People'}</title>
-          <meta property="og:title"
-            content={showString +
-              ' - KTUH FM Honolulu | Radio for the People'} />
-          <meta property="og:description" content={showString} />
-          <meta property="og:image" content={show && show.thumbnail ||
-            '/img/ktuh-logo.png' } />
-          <meta name="twitter:title" content={showString +
-            ' - KTUH FM Honolulu | Radio for the People'} />
-          <meta name="twitter:url" content="https://ktuh.org" />
-          <meta name="twitter:description"
-            content={showString} />
-          <meta name="twitter:site" content="@ktuh_fm" />
-          <meta name="twitter:image" content={
-            (show && show.thumbnail || null) ||
-            (!show && 'https://ktuh.org/img/ktuh-logo.jpg' || null)
-          } />
-          <meta name="twitter:creator" content="@ktuh_fm" />
-          <meta property="description" content={showString} />
-        </Helmet>,
+        <Metamorph title={showString +
+          ' - KTUH FM Honolulu | Radio for the People'}
+        description={showString} image={show && show.thumbnail ||
+            'https://ktuh.org/img/ktuh-logo.png'} />,
         <h2 className='general__header'>
           {showIfAny() &&
             [<a href={`/shows/${showIfAny().slug}`}>

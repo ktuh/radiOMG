@@ -17,7 +17,7 @@ export default class MediaElement extends Component {
     this.state = {};
   }
 
-  success(mediaElement, node, instance) {
+  success(mediaElement) {
     $('.mejs__time-rail').append(
       '<span class="mejs__broadcast">Live Broadcast</span>');
 
@@ -39,7 +39,7 @@ export default class MediaElement extends Component {
     global.player = mediaElement;
   }
 
-  error(media) {
+  error() {
     console.error('Error initializing the media element.');
   }
 

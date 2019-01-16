@@ -1,8 +1,8 @@
-import { Mongo } from 'meteor/mongo';
 import { scorpius } from 'meteor/scorpiusjs:core';
 import NoticesSchema from './notices_schema.js';
+import { Roles } from 'meteor/nicolaslopezj:roles';
 
-export default Notices = new scorpius.collection('notices', {
+var Notices = new scorpius.collection('notices', {
   singularName: 'notice',
   pluralName: 'notices',
   link: {
@@ -29,15 +29,17 @@ export default Notices = new scorpius.collection('notices', {
 });
 
 Notices.allow({
-  insert: function (userId, doc) {
+  insert: function (userId) {
     return Roles.userHasRole(userId, 'admin');
   },
-  update: function (userId, doc, fields, modifier) {
+  update: function (userId) {
     return Roles.userHasRole(userId, 'admin');
   },
-  remove: function (userId, doc) {
+  remove: function (userId) {
     return Roles.userHasRole(userId, 'admin');
   }
 });
 
 Notices.attachSchema(NoticesSchema);
+
+export default Notices;

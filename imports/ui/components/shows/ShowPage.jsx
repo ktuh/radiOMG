@@ -9,7 +9,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import Playlists from '../../../api/playlists/playlists_collection.js';
 import Shows from '../../../api/shows/shows_collection.js';
 import { Bert } from 'meteor/themeteorchef:bert';
-import { Helmet } from 'react-helmet';
+import { Metamorph } from 'react-metamorph';
 import { _ } from 'underscore';
 import { $ } from 'meteor/jquery';
 
@@ -133,7 +133,7 @@ class ShowPage extends Component {
     }
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
+  shouldComponentUpdate() {
     return !this.state.playlistLoaded;
   }
 
@@ -152,30 +152,10 @@ class ShowPage extends Component {
     if (this.props.ready) {
       if (!this.state.playlistLoaded) requestSpinData();
       return [
-        <Helmet key="metadata">
-          <title>{this.props.show.showName + ' - KTUH FM Honolulu' +
-            ' | Radio for the People'}</title>
-          <meta property="og:title"
-            content={this.props.show.showName +
-              ' - KTUH FM Honolulu' +
-              ' | Radio for the People'} />
-          <meta property="og:description" content={
-            this.props.show.showName + ' on KTUH'} />
-          <meta name="twitter:title" content={this.props.show.showName +
-            ' - KTUH FM Honolulu | Radio for the People'} />
-          <meta name="twitter:url" content="https://ktuh.org" />
-          <meta name="twitter:description" content={
-            this.props.show.showName + ' on KTUH'}  />
-          <meta name="twitter:site" content="@ktuh_fm" />
-          <meta name="twitter:image" content={
-            (this.props.show.thumbnail || undefined) ||
-            (!this.props.show.thumbnail &&
-              'https://ktuh.org/img/ktuh-logo.jpg' || undefined)
-          } />
-          <meta name="twitter:creator" content="@ktuh_fm" />
-          <meta property="description" content={
-            this.props.show.showName + ' on KTUH'} />
-        </Helmet>,
+        <Metamorph title={this.props.show.showName + ' - KTUH FM Honolulu' +
+          ' | Radio for the People'} description={this.props.show.showName +
+          ' on KTUH'} image={this.props.show.thumbnail ||
+          'https://ktuh.org/img/ktuh-logo.jpg'} />,
         <h2 className='general__header' key='header-title'>
           <b>{this.props.show.showName} / {this.props.show.host}</b>
         </h2>,

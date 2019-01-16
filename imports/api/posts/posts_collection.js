@@ -1,8 +1,7 @@
-import { Mongo } from 'meteor/mongo';
 import { scorpius } from 'meteor/scorpiusjs:core';
 import PostsSchema from './posts_schema.js';
 
-export default Posts = new scorpius.collection('posts', {
+var Posts = new scorpius.collection('posts', {
   singularName: 'post',
   pluralName: 'posts',
   link: {
@@ -30,7 +29,7 @@ Posts.allow({
     return (userId && doc.userId === userId) ||
       Meteor.user().hasRole('moderator');
   },
-  update: function (userId, doc, fields, modifier) {
+  update: function (userId, doc) {
     return (userId && doc.userId === userId) ||
       Meteor.user().hasRole('moderator');
   },
@@ -49,3 +48,5 @@ Posts.friendlySlugs({
 });
 
 Posts.attachSchema(PostsSchema);
+
+export default Posts;

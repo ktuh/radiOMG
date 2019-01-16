@@ -4,7 +4,7 @@ import { Meteor } from 'meteor/meteor';
 import Profiles from '../../../api/users/profiles_collection.js';
 import Shows from '../../../api/shows/shows_collection.js';
 import { withTracker } from 'meteor/react-meteor-data';
-import { Helmet } from 'react-helmet';
+import { Metamorph } from 'react-metamorph';
 
 class StaffItem extends Component {
   static propTypes = {
@@ -48,22 +48,9 @@ class Staff extends Component {
   render() {
     if (this.props.ready) {
       return [
-        <Helmet key="metadata">
-          <title>Staff - KTUH FM Honolulu | Radio for the People</title>
-          <meta property="og:title"
-            content="Staff - KTUH FM Honolulu | Radio for the People" />
-          <meta property="og:description" content="KTUH Staff List" />
-          <meta name="twitter:title" content=
-            'Staff - KTUH FM Honolulu | Radio for the People' />
-          <meta name="twitter:url" content="https://ktuh.org" />
-          <meta name="twitter:description" content="KTUH Staff List" />
-          <meta name="twitter:site" content="@ktuh_fm" />
-          <meta name="twitter:image" content={
-            'https://ktuh.org/img/ktuh-logo.jpg'
-          } />
-          <meta name="twitter:creator" content="@ktuh_fm" />
-          <meta property="description" content="KTUH Staff List" />
-        </Helmet>,
+        <Metamorph title="Staff - KTUH FM Honolulu | Radio for the People"
+          description="KTUH Staff List" image=
+            'https://ktuh.org/img/ktuh-logo.jpg' />,
         <h2 className='general__header'>KTUH Staff</h2>,
         <div className='staff__content' key="staff-content">
           {this.props.djs.map((dj) => {

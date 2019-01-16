@@ -1,8 +1,7 @@
-import { Mongo } from 'meteor/mongo';
 import { scorpius } from 'meteor/scorpiusjs:core';
 import PagesSchema from './pages_schema.js';
 
-export default Pages = new scorpius.collection('pages', {
+var Pages = new scorpius.collection('pages', {
   singularName: 'page',
   pluralName: 'pages',
   link: {
@@ -29,7 +28,7 @@ Pages.allow({
   insert: function (userId, doc) {
     return (userId && doc.userId === userId);
   },
-  update: function (userId, doc, fields, modifier) {
+  update: function (userId, doc) {
     return doc.userId === userId;
   },
   remove: function (userId, doc) {
@@ -46,3 +45,5 @@ Pages.friendlySlugs({
 });
 
 Pages.attachSchema(PagesSchema);
+
+export default Pages;

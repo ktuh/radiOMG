@@ -56,7 +56,7 @@ export default class CommentSubmit extends Component {
       errors.body = 'Please write something.';
       return this.setState({ commentSubmitErrors: errors });
     }
-    Meteor.call('commentInsert', comment, function(error, commentId) {
+    Meteor.call('commentInsert', comment, function(error) {
       if (error){
         throwError(error.reason, { type: 'danger' });
       } else {

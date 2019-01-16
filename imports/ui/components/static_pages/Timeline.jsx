@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Helmet } from 'react-helmet';
+import { Metamorph } from 'react-metamorph';
 
 const timeline_data = [
   ['1968', 'Plans are developed for 10 watt noncommercial educational FM ' +
@@ -149,22 +149,9 @@ export default class Timeline extends Component {
 
   render() {
     return [
-      <Helmet key="metadata">
-        <title>Timeline - KTUH FM Honolulu | Radio for the People</title>
-        <meta property="og:title"
-          content="Timeline - KTUH FM Honolulu | Radio for the People" />
-        <meta property="og:description" content="KTUH Timeline" />
-        <meta name="twitter:title" content=
-          'Timeline - KTUH FM Honolulu | Radio for the People' />
-        <meta name="twitter:url" content="https://ktuh.org" />
-        <meta name="twitter:description" content="KTUH Timeline" />
-        <meta name="twitter:site" content="@ktuh_fm" />
-        <meta name="twitter:image" content={
-          'https://ktuh.org/img/ktuh-logo.jpg'
-        } />
-        <meta name="twitter:creator" content="@ktuh_fm" />
-        <meta property="description" content="KTUH Timeline" />
-      </Helmet>,
+      <Metamorph title="Timeline - KTUH FM Honolulu | Radio for the People"
+        description="KTUH Timeline" image='https://ktuh.org/img/ktuh-logo.jpg'
+      />,
       <h2 className='general__header'>KTUH Timeline</h2>,
       <div className='timeline' key='timeline'>
         <div className='timeline__content'>

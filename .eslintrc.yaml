@@ -5,18 +5,35 @@ env:
   meteor: true
   mongo: true
   jquery: true
+globals:
+  player: true
+  S3: true
+  ReactiveTemplates: true
+  AutoForm: true
+  RouterLayer: true
+  AccountsTemplates: true
+  Mongo: true
+settings:
+  react:
+    pragma: React
+    version: detect
 parser: babel-eslint
 extends:
   - eslint:recommended
   - plugin:meteor/recommended
   - plugin:react/recommended
 plugins:
+  - import
   - meteor
   - react
 rules:
-  no-console: error
+  import/prefer-default-export: error
+  no-console: off
   meteor/template-names: off
   meteor/no-session: off
+  react/jsx-key: off
+  react/display-name: off
+  react/no-unescaped-entities: off
   indent:
     - error
     - 2

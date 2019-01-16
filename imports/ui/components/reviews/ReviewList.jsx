@@ -5,7 +5,7 @@ import ReviewItem from './ReviewItem.jsx';
 import Reviews from '../../../api/reviews/reviews_collection.js';
 import { Meteor } from 'meteor/meteor';
 import EverAfter from 'react-everafter';
-import { Helmet } from 'react-helmet';
+import { Metamorph } from 'react-metamorph';
 
 class ReviewList extends Component {
   static propTypes = {
@@ -20,23 +20,9 @@ class ReviewList extends Component {
   render() {
     if (this.props.ready) {
       return [
-        <Helmet key="metadata">
-          <title>
-            Reviews - KTUH FM Honolulu | Radio for the People</title>
-          <meta property="og:title"
-            content="Reviews - KTUH FM Honolulu | Radio for the People"
-          />
-          <meta property="og:description" content="KTUH Reviews" />
-          <meta name="twitter:title" content={'Reviews' +
-            ' - KTUH FM Honolulu | Radio for the People'} />
-          <meta name="twitter:url" content="https://ktuh.org" />
-          <meta name="twitter:description" content="KTUH Reviews" />
-          <meta name="twitter:site" content="@ktuh_fm" />
-          <meta name="twitter:image" content={
-            'https://ktuh.org/img/ktuh-logo.jpg'} />
-          <meta name="twitter:creator" content="@ktuh_fm" />
-          <meta property="description" content="KTUH Reviews" />
-        </Helmet>,
+        <Metamorph title="Reviews - KTUH FM Honolulu | Radio for the People"
+          description="KTUH Reviews" image='https://ktuh.org/img/ktuh-logo.jpg'
+        />,
         <h2 className="general__header" key="header-title">Reviews</h2>,
         <div className="reviews__content" key="reviews-content">
           <EverAfter.Paginator wrapper={ReviewItem} perPage={8}

@@ -1,6 +1,7 @@
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
+import { scorpius } from 'meteor/scorpiusjs:core';
 
-export default CommentsSchema = new SimpleSchema({
+var CommentsSchema = new SimpleSchema({
   postId: {
     type: String,
     label: 'Post ID',
@@ -27,3 +28,5 @@ export default CommentsSchema = new SimpleSchema({
     optional: false
   })
 });
+
+export default CommentsSchema;

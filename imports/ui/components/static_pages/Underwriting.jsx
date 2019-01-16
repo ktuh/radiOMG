@@ -1,29 +1,24 @@
 import React, { Component } from 'react';
-import { Helmet } from 'react-helmet';
+import { Metamorph } from 'react-metamorph';
 
 export default class Underwriting extends Component {
   shouldComponentUpdate() {
     return false;
   }
 
+  email() {
+    return '<a href="&#109;&#097;&#105;&#108;&#116;&#111;&#058;&#117;&#110;' +
+      '&#100;&#101;&#114;&#119;&#114;&#105;&#116;&#105;&#110;&#103;&#064;' +
+      '&#107;&#116;&#117;&#104;&#046;&#111;&#114;&#103;">' +
+      '&#117;&#110;&#100;&#101;&#114;&#119;&#114;&#105;&#116;&#105;&#110;' +
+      '&#103;&#064;&#107;&#116;&#117;&#104;&#046;&#111;&#114;&#103;</a>';
+  }
+
   render() {
     return [
-      <Helmet key="metadata">
-        <title>Underwriting - KTUH FM Honolulu | Radio for the People</title>
-        <meta property="og:title"
-          content="Underwriting - KTUH FM Honolulu | Radio for the People" />
-        <meta property="og:description" content="KTUH Underwriting Info" />
-        <meta name="twitter:title" content=
-          'Underwriting - KTUH FM Honolulu | Radio for the People' />
-        <meta name="twitter:url" content="https://ktuh.org" />
-        <meta name="twitter:description" content="KTUH Underwriting Info" />
-        <meta name="twitter:site" content="@ktuh_fm" />
-        <meta name="twitter:image" content={
-          'https://ktuh.org/img/ktuh-logo.jpg'
-        } />
-        <meta name="twitter:creator" content="@ktuh_fm" />
-        <meta property="description" content="KTUH Underwriting Info" />
-      </Helmet>,
+      <Metamorph title="Underwriting - KTUH FM Honolulu | Radio for the People"
+        description="KTUH Underwriting Info"
+        image='https://ktuh.org/img/ktuh-logo.jpg' />,
       <h2 className='general__header'>Underwriting</h2>,
       <div className='contact__content'>
         <h4>What is Underwriting?</h4>
@@ -34,15 +29,12 @@ export default class Underwriting extends Component {
           KTUH to broadcast 20-30 second spots that acknowledge sponsors who
           donate funds to the station.
         </p>
-        <p>
-          KTUH underwriting is a way for your business, corporation, foundation
-          or organization to expand your network, awareness, and customer base.
-          Radio is one of the most accessible ways to reach a diverse audience
-          connecting the community to local businesses. Contact <a
-            href="&#109;&#097;&#105;&#108;&#116;&#111;&#058;&#117;&#110;&#100;&#101;&#114;&#119;&#114;&#105;&#116;&#105;&#110;&#103;&#064;&#107;&#116;&#117;&#104;&#046;&#111;&#114;&#103;">
-            &#117;&#110;&#100;&#101;&#114;&#119;&#114;&#105;&#116;&#105;&#110;&#103;&#064;&#107;&#116;&#117;&#104;&#046;&#111;&#114;&#103;
-          </a> for more information.
-        </p>
+        <p dangerouslySetInnerHTML={{ __html: 'KTUH underwriting is a way for' +
+          ' your business, corporation, foundation or organization to expand ' +
+          'your network, awareness, and customer base. Radio is one of the ' +
+          'most accessible ways to reach a diverse audience connecting the ' +
+          'community to local businesses. Contact ' + this.email() +
+          ' for more information.' }} />
         <p>
           Through KTUH Underwriting, your business or organization will be
           recognized as a supporter of a college radio station, which enhances
@@ -51,7 +43,7 @@ export default class Underwriting extends Component {
         </p>
         <ul className="underwriting__list">
           <li>Surf &amp; Sea</li>
-          <li>Arts at Mark's Garage</li>
+          <li>{'Arts at Mark\'s Garage'}</li>
           <li>Incubator</li>
           <li>eBikes</li>
           <li>Bar 35</li>

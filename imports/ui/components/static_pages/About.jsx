@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Helmet } from 'react-helmet';
+import { Metamorph } from 'react-metamorph';
 
 export default class About extends Component {
   shouldComponentUpdate() {
@@ -8,22 +8,8 @@ export default class About extends Component {
 
   render() {
     return ([
-      <Helmet key="metadata">
-        <title>About Us - KTUH FM Honolulu | Radio for the People</title>
-        <meta property="og:title"
-          content="About Us - KTUH FM Honolulu | Radio for the People" />
-        <meta property="og:description" content="About KTUH" />
-        <meta name="twitter:title" content=
-          'About Us - KTUH FM Honolulu | Radio for the People' />
-        <meta name="twitter:url" content="https://ktuh.org" />
-        <meta name="twitter:description" content="About KTUH" />
-        <meta name="twitter:site" content="@ktuh_fm" />
-        <meta name="twitter:image" content={
-          'https://ktuh.org/img/ktuh-logo.jpg'
-        } />
-        <meta name="twitter:creator" content="@ktuh_fm" />
-        <meta property="description" content="About KTUH" />
-      </Helmet>,
+      <Metamorph title="About Us - KTUH FM Honolulu | Radio for the People"
+        description="About KTUH" image='https://ktuh.org/img/ktuh-logo.jpg' />,
       <h2 className='general__header'>About KTUH</h2>,
       <div className='about__desc'>
         <p>
@@ -117,10 +103,9 @@ export default class About extends Component {
         </p>
         <div className="aspect-ratio">
           <iframe className="about__youtube"
-            src="https://www.youtube.com/embed/HvslPiSeeKk"
-            frameborder="0"
-            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen />
+            src="https://www.youtube.com/embed/HvslPiSeeKk" frameBorder="0"
+            allow={'accelerometer; autoplay; encrypted-media; ' +
+              'gyroscope; picture-in-picture'} allowFullScreen />
         </div>
       </div>,
       <div className='about__help'>

@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import Support from '../includes/Support.jsx';
 import HomeFeaturedPost from './HomeFeaturedPost.jsx';
 import HomeContent from './HomeContent.jsx';
-import { Meteor } from 'meteor/meteor';
 import { _ } from 'underscore';
-import { Helmet } from 'react-helmet';
+import { Metamorph } from 'react-metamorph';
 
 export default class Home extends Component {
   componentDidMount() {
@@ -54,7 +53,7 @@ export default class Home extends Component {
     }
 
     /* Bind to the document scroll detection. */
-    window.onscroll = function(e) {
+    window.onscroll = function() {
       offSetManager();
     }
 
@@ -79,22 +78,9 @@ export default class Home extends Component {
 
   render() {
     return [
-      <Helmet key="metadata">
-        <title>KTUH FM Honolulu | Radio for the People</title>
-        <meta property="og:title"
-          content="KTUH FM Honolulu | Radio for the People" />
-        <meta property="og:description" content="KTUH Homepage" />
-        <meta name="twitter:title" content=
-          'KTUH FM Honolulu | Radio for the People' />
-        <meta name="twitter:url" content="https://ktuh.org" />
-        <meta name="twitter:description" content="KTUH Homepage" />
-        <meta name="twitter:site" content="@ktuh_fm" />
-        <meta name="twitter:image" content={
-          'https://ktuh.org/img/ktuh-logo.jpg'
-        } />
-        <meta name="twitter:creator" content="@ktuh_fm" />
-        <meta property="description" content="KTUH Homepage" />
-      </Helmet>,
+      <Metamorph title='KTUH FM Honolulu | Radio for the People'
+        image="https://ktuh.org/img/ktuh-logo.jpg"
+        description="KTUH Homepage" />,
       <HomeFeaturedPost key='featured-post' />,
       <HomeContent key='main-content' />,
       <Support key='support' />

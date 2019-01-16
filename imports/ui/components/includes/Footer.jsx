@@ -2,18 +2,21 @@ import React, { Component } from 'react';
 import { getLocalTime } from '../../../startup/lib/helpers.js';
 
 export default class Footer extends Component {
+  constructor() {
+    super();
+    this.officeEmail = this.officeEmail.bind(this);
+  }
+
   shouldComponentUpdate() {
     return false;
   }
 
-  officeEmailInnerText() {
-    return '&#111;&#102;&#102;&#105;&#99;&#101;&#64;&#107;&#116;&#117;&#104;' +
-      '&#46;&#111;&#114;&#103;'
-  }
-
-  officeEmail() { return <a href='&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#
-    111;&#102;&#102;&#105;&#99;&#101;&#64;&#107;&#116;&#117;&#104;&#46;&#111
-    ;&#114;&#103;'>{this.officeEmailInnerText()}</a>
+  officeEmail() {
+    return '<a href=\'&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#' +
+      '111;&#102;&#102;&#105;&#99;&#101;&#64;&#107;&#116;&#117;&#104;&#46;' +
+      '&#111;&#114;&#103;\'>' + [6,0,0,5,3,9,22,24,4,1,23].map(
+      (i) => ((function(e) { return '@hk' + e; })+[]).split('')[i]).join('') +
+      '.org</a>';
   }
 
   render() {
@@ -48,7 +51,9 @@ export default class Footer extends Component {
             </p>
             <br />
             <p><a href='tel:18089567261'>Request + 808.956.7261</a></p><br />
-            <br /><p>{this.officeEmail.bind(this)}</p></div>
+            <br />
+            <p dangerouslySetInnerHTML={{ __html: this.officeEmail() }} />
+          </div>
           <div className='footer__links footer__links__clear'>
             <h5 className='footer__subheading'>UHM Student Media</h5>
             <p><a href='http://hawaiireview.org/'>Hawaii Review</a></p>
