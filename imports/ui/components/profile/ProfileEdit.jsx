@@ -34,6 +34,6 @@ export default withTracker(() => {
 
   return {
     ready: s1.ready(),
-    profile: Profiles.findOne()
+    profile: Profiles.findOne({ userId: userId })
   }
 })(ProfileEdit);

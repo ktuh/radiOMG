@@ -5,6 +5,8 @@ import Header from '../includes/Header.jsx';
 import Footer from '../includes/Footer.jsx';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import Banner from '../includes/Banner.jsx';
+import { Blaze } from 'meteor/gadicc:blaze-react-component';
+import './blaze_layout.js';
 
 export default class Layout extends Component {
   static propTypes = {
@@ -36,7 +38,9 @@ export default class Layout extends Component {
           {this.props.content}
         </div>
       </div>,
-      <Footer key='footer' />
+      <Footer key='footer' />,
+      ['atResetPwd', 'atSignIn'].includes(FlowRouter._current.route.name) ?
+        <Blaze template="layout" /> : null
     ];
   }
 }

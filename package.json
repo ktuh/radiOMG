@@ -33,7 +33,7 @@
     "node-pre-gyp": "^0.12.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
-    "react-everafter": "^0.3.0",
+    "react-everafter": "^0.3.1",
     "react-helmet": "^5.2.0",
     "react-metamorph": "^0.1.1",
     "react-transition-group": "^2.5.2",
