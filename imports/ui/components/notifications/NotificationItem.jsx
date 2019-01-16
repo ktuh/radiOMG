@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Notifications from
   '../../../api/notifications/notifications_collection.js';
 
 export default class NotificationItem extends Component {
-  handleClick(event) {
+  static propTypes = {
+    _id: PropTypes.string,
+    notificationPostPath: PropTypes.string,
+    commenterName: PropTypes.string
+  }
+
+  handleClick() {
     Notifications.update(this.props._id, { $set: { read: true } });
   }
 
