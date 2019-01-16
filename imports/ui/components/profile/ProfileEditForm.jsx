@@ -1,15 +1,21 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { Meteor } from 'meteor/meteor';
+import { FlowRouter } from 'meteor/kadira:flow-router';
 import Text from 'simple-react-form-material-ui/lib/text';
 import ScorpiusImageUpload from './ScorpiusImageUpload.jsx';
 import SummernoteTextEdit from './SummernoteTextEdit.jsx';
 import ObjectComponent from 'simple-react-form-material-ui/lib/object';
 import { Form, Field } from 'simple-react-form';
 import Profiles from '../../../api/users/profiles_collection.js';
-import { Bert } from 'meteor/themeteorchef:bert';
 import { $ } from 'meteor/jquery';
 import 'meteor/summernote:standalone';
 
 export default class ProfileEditForm extends Component {
+  static propTypes = {
+    doc: PropTypes.object
+  }
+
   constructor(props) {
     super(props);
     this.state = this.props.doc;
@@ -42,8 +48,7 @@ export default class ProfileEditForm extends Component {
         onSubmit={(data) => {
           updateCollection(data);
           FlowRouter.go('/profile/' + Meteor.user().username);
-        }}
-        ref='form' type="update">
+        }} ref='form' type="update">
         <h4 className="profile-edit__label">Display Name</h4>
         <Field fieldName='name' label="Display Name" type={Text}
           value={this.state.name} />

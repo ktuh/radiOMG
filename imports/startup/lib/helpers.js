@@ -1,12 +1,15 @@
 import Playlists from '../../api/playlists/playlists_collection.js';
 import Shows from '../../api/shows/shows_collection.js';
+import Profiles from '../../api/users/profiles_collection.js';
 import moment from 'moment-timezone';
 import { moment as momentUtil } from 'meteor/momentjs:moment';
 import { Meteor } from 'meteor/meteor';
 import { FlowRouter } from 'meteor/kadira:flow-router';
+import { $ } from 'meteor/jquery';
 
-export const getLocalTime = () =>
-  momentUtil(moment().tz('Pacific/Honolulu'));
+export const getLocalTime = function() {
+  return moment.tz('Pacific/Honolulu');
+}
 
 export const currentPlaylist = function() {
   return Playlists.find({
@@ -15,7 +18,7 @@ export const currentPlaylist = function() {
       return this.showDate.getYear() === now.year() &&
              this.showDate.getMonth() === now.month() &&
              this.showDate.getDate() === now.date() &&
-             parseInt(this.startTime.split(':')[0]) <= now.hour();
+             parseInt(this.startTime.split(':')[0], 10) <= now.hour();
     }
   }, { sort: { startTime: -1 } });
 };
@@ -27,11 +30,12 @@ export const currentPlaylistFindOne = function() {
       return this.showDate.getYear() === now.year() &&
              this.showDate.getMonth() === now.month() &&
              this.showDate.getDate() === now.date() &&
-             parseInt(this.startTime.split(':')[0]) <= now.hour();
+             parseInt(this.startTime.split(':')[0], 10) <= now.hour();
     }
   }, { sort: { startTime: -1 } });
 
-  if (playlist && now.getHours() >= parseInt(playlist.endTime.split(':')[0])) {
+  if (playlist &&
+    now.getHours() >= parseInt(playlist.endTime.split(':')[0], 10)) {
     return undefined;
   }
   else {
@@ -47,8 +51,8 @@ export const currentShow = function() {
 
   if (show === undefined) return undefined;
 
-  var actualEndMinute = show.endMinute, actualEndHour = show.endHour;
-  var actualStartMinute = show.startHour, actualStartMinute = show.startMinute;
+  var actualEndMinute = show.endMinute, actualEndHour = show.endHour,
+    actualStartMinute = show.startMinute;
 
   if (actualStartMinute === 1) {
     actualStartMinute--;
@@ -122,6 +126,9 @@ export const dateFormat = (date, format) =>
   momentUtil(date).format(format);
 
 export const renderSummary = function(summary, numWords) {
+  if (summary.indexOf('<') > -1) {
+    summary = $.parseHTML(summary).map(node => node.innerText).join(' ');
+  }
   var regex = new RegExp('(([^\\s]+\\s\\s*){' + numWords + '})(.*)');
   var match = regex.exec(summary);
   return (match && match[1] || summary) + '…';

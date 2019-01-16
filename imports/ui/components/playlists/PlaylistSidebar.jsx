@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Session } from 'meteor/session';
 import { withTracker } from 'meteor/react-meteor-data';
 import Shows from '../../../api/shows/shows_collection.js';
 import Playlists from '../../../api/playlists/playlists_collection.js';
 import { moment } from 'meteor/momentjs:moment';
-import { $ } from 'meteor/jquery';
 
 class PlaylistSidebar extends Component {
+  static propTypes = {
+    ready: PropTypes.bool
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -85,7 +89,7 @@ class PlaylistSidebar extends Component {
     this.setState(stateObj);
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
+  shouldComponentUpdate(nextProps) {
     return !this.state.loaded || (this.props.ready !== nextProps.ready);
   }
 

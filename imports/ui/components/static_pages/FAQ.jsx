@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Helmet } from 'react-helmet';
+import PropTypes from 'prop-types';
+import { Metamorph } from 'react-metamorph';
 
 const faq_data = [
   {
@@ -137,11 +138,20 @@ const faq_data = [
 ]
 
 class QAPair extends Component {
+  static propTypes = {
+    question: PropTypes.string,
+    answer: PropTypes.string
+  }
+
   constructor(props) {
     super(props);
     this.state = {
       expanded: false
     };
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return nextState.expanded !== this.state.expanded;
   }
 
   handleClick() {
@@ -177,6 +187,11 @@ class QAPair extends Component {
 }
 
 class QASection extends Component {
+  static propTypes = {
+    title: PropTypes.string,
+    pairs: PropTypes.array
+  }
+
   constructor(props) {
     super(props);
   }
@@ -200,28 +215,11 @@ class QASection extends Component {
 export default class FAQ extends Component {
   render() {
     return [
-      <Helmet key="metadata">
-        <title>
-          Frequently Asked Questions - KTUH FM Honolulu | Radio for the People
-        </title>
-        <meta property="og:title"
-          content={'Frequently Asked Questions' +
-            ' - KTUH FM Honolulu | Radio for the People'} />
-        <meta property="og:description" content="KTUH FAQ" />
-        <meta name="twitter:title" content=
-          {'Frequently Asked Questions - KTUH FM Honolulu' +
-          ' | Radio for the People'} />
-        <meta name="twitter:url" content="https://ktuh.org" />
-        <meta name="twitter:description" content="KTUH FAQ" />
-        <meta name="twitter:site" content="@ktuh_fm" />
-        <meta name="twitter:image" content={
-          'https://ktuh.org/img/ktuh-logo.jpg'
-        } />
-        <meta name="twitter:creator" content="@ktuh_fm" />
-        <meta property="description" content="KTUH FAQ" />
-      </Helmet>,
+      <Metamorph title=
+        'Frequently Asked Questions - KTUH FM Honolulu | Radio for the People'
+      description="KTUH FAQ" image='https://ktuh.org/img/ktuh-logo.jpg' />,
       <h2 className='general__header'>Frequently Asked Questions</h2>,
-      <div className='faq__content'>
+      <div className='faq__content' key='faq-content'>
         {faq_data.map((node) => (
           <QASection title={node.title} pairs={node.pairs} />
         ))}

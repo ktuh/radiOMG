@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { ReactLayout } from 'meteor/kadira:react-layout';
 import Layout from '../../ui/components/application/Layout.jsx';
+import { $ } from 'meteor/jquery';
 
 FlowRouter.notFound = {
   action: async function() {

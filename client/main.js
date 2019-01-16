@@ -6,6 +6,7 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 import Profiles from '../imports/api/users/profiles_collection.js';
 import { throwError } from './helpers/errors.js';
 import { $ } from 'meteor/jquery';
+import { Session } from 'meteor/session';
 
 var IGNORE_CONNECTION_ISSUE_KEY = 'ignoreConnectionIssue';
 var CONNECTION_ISSUE_TIMEOUT = 5000;
@@ -36,7 +37,7 @@ Meteor.startup(function () {
 });
 
 AutoForm.addHooks(['partyForm'],{
-  onSuccess: function(formType, result) {
+  onSuccess: function() {
     FlowRouter.go('/event' + this.docId);
   }
 });

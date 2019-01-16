@@ -1,10 +1,9 @@
 import { Meteor } from 'meteor/meteor';
-import { Mongo } from 'meteor/mongo';
 import { scorpius } from 'meteor/scorpiusjs:core';
 import { Template } from 'meteor/templating';
 import CommentsSchema from './comments_schema.js';
 
-export default Comments = new scorpius.collection('comments', {
+var Comments = new scorpius.collection('comments', {
   singularName: 'comment',
   pluralName: 'comments',
   link: {
@@ -29,3 +28,5 @@ export default Comments = new scorpius.collection('comments', {
 });
 
 Comments.attachSchema(CommentsSchema);
+
+export default Comments;

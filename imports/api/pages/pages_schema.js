@@ -1,9 +1,9 @@
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { scorpius } from 'meteor/scorpiusjs:core';
 import { FlowRouter } from 'meteor/kadira:flow-router';
-import { thumbnailUrl, getLocalTime } from '../../startup/lib/helpers.js';
+import { getLocalTime } from '../../startup/lib/helpers.js';
 
-export default PagesSchema = new SimpleSchema({
+var PagesSchema = new SimpleSchema({
   isDraft: {
     type: Boolean,
     optional: true,
@@ -50,7 +50,7 @@ export default PagesSchema = new SimpleSchema({
       // parts of this function from his friendly-slugs package.
       if (FlowRouter._routes.map((obj) =>
         obj.path.substr(1)).indexOf(this.value.replace(/'/g, '')
-        .replace(/[^0-9a-z-]/g, '-').replace(/\-\-+/g, '-')
+        .replace(/[^0-9a-z-]/g, '-').replace(/--+/g, '-')
         .replace(/^-+/, '').replace(/-+$/, '')) >= 0) return 'Nope.';
     }
   },
@@ -67,3 +67,5 @@ export default PagesSchema = new SimpleSchema({
     }
   }
 });
+
+export default PagesSchema;

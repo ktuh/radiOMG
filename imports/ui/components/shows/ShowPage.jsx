@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { Meteor } from 'meteor/meteor';
 import { moment as momentUtil } from 'meteor/momentjs:moment';
 import moment from 'moment-timezone';
 import { Session } from 'meteor/session';
@@ -7,9 +9,19 @@ import { withTracker } from 'meteor/react-meteor-data';
 import Playlists from '../../../api/playlists/playlists_collection.js';
 import Shows from '../../../api/shows/shows_collection.js';
 import { Bert } from 'meteor/themeteorchef:bert';
-import { Helmet } from 'react-helmet';
+import { Metamorph } from 'react-metamorph';
+import { _ } from 'underscore';
+import { $ } from 'meteor/jquery';
 
 class ShowPage extends Component {
+  static propTypes = {
+    show: PropTypes.object,
+    pastPlaylists: PropTypes.func,
+    playlistsByYear: PropTypes.func,
+    ready: PropTypes.bool,
+    actualPlaylist: PropTypes.func
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -48,8 +60,8 @@ class ShowPage extends Component {
   }
 
   timeBeautify2(time) {
-    return momentUtil(moment(momentUtil(time),
-      'Pacific/Honolulu')).format('h:mma');
+    return moment.tz(time.replace(/-\d{4}$/, ''), 'Etc/UTC')
+      .tz('Pacific/Honolulu').format('hh:mma');
   }
 
   handlePlayClick(event) {
@@ -58,7 +70,6 @@ class ShowPage extends Component {
     var nowLoaded = player.getSrc();
 
     if (nowLoaded != mp3Url) {
-      var show = Shows.findOne({ slug: FlowRouter.getParam('slug') });
       $('.mejs__time-slider').css('visibility', 'visible');
       $('.mejs__broadcast').css('visibility', 'hidden');
       player.setSrc(mp3Url);
@@ -99,7 +110,7 @@ class ShowPage extends Component {
     var latest = this.latestPlaylist(), self = this;
 
     if (latest !== undefined) {
-      var parsedId = parseInt(latest.spinPlaylistId);
+      var parsedId = parseInt(latest.spinPlaylistId, 10);
       if (parsedId < 10000) {
         Meteor.call('getPlaylistOrInfo',
           parsedId, true, function(error, result) {
@@ -122,7 +133,7 @@ class ShowPage extends Component {
     }
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
+  shouldComponentUpdate() {
     return !this.state.playlistLoaded;
   }
 
@@ -141,30 +152,10 @@ class ShowPage extends Component {
     if (this.props.ready) {
       if (!this.state.playlistLoaded) requestSpinData();
       return [
-        <Helmet key="metadata">
-          <title>{this.props.show.showName + ' - KTUH FM Honolulu' +
-            ' | Radio for the People'}</title>
-          <meta property="og:title"
-            content={this.props.show.showName +
-              ' - KTUH FM Honolulu' +
-              ' | Radio for the People'} />
-          <meta property="og:description" content={
-            this.props.show.showName + ' on KTUH'} />
-          <meta name="twitter:title" content={this.props.show.showName +
-            ' - KTUH FM Honolulu | Radio for the People'} />
-          <meta name="twitter:url" content="https://ktuh.org" />
-          <meta name="twitter:description" content={
-            this.props.show.showName + ' on KTUH'}  />
-          <meta name="twitter:site" content="@ktuh_fm" />
-          <meta name="twitter:image" content={
-            (this.props.show.thumbnail || undefined) ||
-            (!this.props.show.thumbnail &&
-              'https://ktuh.org/img/ktuh-logo.jpg' || undefined)
-          } />
-          <meta name="twitter:creator" content="@ktuh_fm" />
-          <meta property="description" content={
-            this.props.show.showName + ' on KTUH'} />
-        </Helmet>,
+        <Metamorph title={this.props.show.showName + ' - KTUH FM Honolulu' +
+          ' | Radio for the People'} description={this.props.show.showName +
+          ' on KTUH'} image={this.props.show.thumbnail ||
+          'https://ktuh.org/img/ktuh-logo.jpg'} />,
         <h2 className='general__header' key='header-title'>
           <b>{this.props.show.showName} / {this.props.show.host}</b>
         </h2>,
@@ -236,15 +227,16 @@ class ShowPage extends Component {
             {this.props.pastPlaylists(this.props.show.showId).length > 0 &&
               (
                 <select onChange={handleSelectChange}>
-                  <option value="" disabled={true} selected={true}>
+                  <option value="" disabled={true}>
                   Past Playlists &#x25BC;
                   </option>
                   {this.props.playlistsByYear(this.props.show.showId)
                     .map((playlistGroup) => ([
-                      <option value="" disabled={true}>
+                      <option value="" disabled={true}
+                        key={`${playlistGroup.year}`}>
                         {playlistGroup.year}</option>,
-                      playlistGroup.shows.map((show) => (
-                        <option value={show.spinPlaylistId}>
+                      playlistGroup.shows.map((show, i) => (
+                        <option value={show.spinPlaylistId} key={i}>
                           {self.time(show.showDate)}
                         </option>))
                     ]))}
@@ -262,22 +254,25 @@ class ShowPage extends Component {
                 </thead>
                 <tbody>
                   {this.props.actualPlaylist(Session.get('currentPlaylist'))
-                    .map((track) => (
-                      <tr className='alternating'>
+                    .map((track, i) => (
+                      <tr className='alternating' key={i}>
                         {track.start && [
-                          <td className='playlist__timestamp'>
+                          <td className='playlist__timestamp'
+                            key={`timestamp-${i}`}>
                             {this.timeBeautify2(track.start)}
                           </td>,
-                          <td className='playlist__artist'>{track.artist}</td>,
-                          <td className='playlist__title'><i>
+                          <td className='playlist__artist' key={`artist-${i}`}>
+                            {track.artist}</td>,
+                          <td className='playlist__title' key={`title-${i}`}><i>
                             {track.song}</i></td>
                         ] || [
-                          <td className='playlist__timestamp'>
+                          <td className='playlist__timestamp'
+                            key={`artist-${i}`}>
                             {this.timeBeautify2(track.Timestamp)}
                           </td>,
-                          <td className='playlist__artist'>
+                          <td className='playlist__artist' key={`artist-${i}`}>
                             {track.ArtistName}</td>,
-                          <td className='playlist__title'>
+                          <td className='playlist__title' key={`title-${i}`}>
                             <i>{track.SongName}</i></td>
                         ]}
                       </tr>))}

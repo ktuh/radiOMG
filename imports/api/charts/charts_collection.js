@@ -1,9 +1,8 @@
-import { Mongo } from 'meteor/mongo';
 import ChartsSchema from './charts_schema.js';
 import { scorpius } from 'meteor/scorpiusjs:core';
 import { moment } from 'meteor/momentjs:moment';
 
-export default Charts = new scorpius.collection('charts', {
+var Charts = new scorpius.collection('charts', {
   singularName: 'chart',
   pluralName: 'charts',
   link: {
@@ -37,3 +36,5 @@ Charts.friendlySlugs({
 });
 
 Charts.attachSchema(ChartsSchema);
+
+export default Charts 

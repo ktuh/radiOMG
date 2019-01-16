@@ -4,7 +4,6 @@ import { Session } from 'meteor/session';
 import Charts from '../../../api/charts/charts_collection.js';
 import { $ } from 'meteor/jquery';
 import { AutoForm } from 'meteor/aldeed:autoform';
-import { moment as momentUtil } from 'meteor/momentjs:moment';
 import moment from 'moment-timezone';
 
 ReactiveTemplates.set('collections.charts.create', 'chartsCreate');
@@ -31,7 +30,7 @@ AutoForm.hooks({
         this.result(doc);
       }
     },
-    onError: function (name, error, template) {
+    onError: function (name, error) {
       console.log(name + ' error:', error);
     },
     onSuccess: function() {
@@ -54,7 +53,7 @@ Template.chartsCreate.events({
     event.preventDefault();
     $('#hiddenUpload').click();
   },
-  'change #hiddenUpload': function(event, templateInstance) {
+  'change #hiddenUpload': function(event) {
     event.preventDefault();
     var files = event.currentTarget.files;
     if (files.length) {
@@ -62,7 +61,7 @@ Template.chartsCreate.events({
 
       if (file.type === 'text/csv') {
         var reader = new FileReader();
-        reader.onload = function(e) {
+        reader.onload = function() {
           var csvJson = CSV.parse(
             reader.result.substring(0, reader.result.length - 1), {
               header: true,
@@ -70,7 +69,7 @@ Template.chartsCreate.events({
             });
           Session.set('uploadedData', csvJson.data);
         }
-        reader.onerror = function(e) {
+        reader.onerror = function() {
           throw 'Error reading CSV.';
         }
         reader.readAsText(file);

@@ -339,9 +339,10 @@ h1, h2, h3, h4, h5 {
   background: #333;
   border: 1px solid #444;
 }
-#login-dropdown-list {
+#login-dropdown-list, #login-dropdown-list .fixed-theme {
   padding: 0;
   margin: 0;
+  font-weight: normal;
 }
 #login-dropdown-list .dropdown-menu {
   min-width: 150px !important;
@@ -582,7 +583,7 @@ h1, h2, h3, h4, h5 {
   position: relative;
   width: 100%;
 }
-.icon-sync. .title-notification {
+.icon-sync .title-notification {
   padding-left: 40px;
 }
 .title-notification {
@@ -647,6 +648,10 @@ audio {
   font-family: 'nimbus-sans' !important;
   font-size: 11px !important;
   text-transform: none !important;
+  top: 7px !important;
+}
+.mejs__time-handle, .mejs__time-handle-content {
+  left: 0 !important;
 }
 /* play/pause control */
 .mejs__button {
@@ -676,7 +681,7 @@ audio {
   display: block;
   width: 78px;
   height: 5px;
-  top: 7px;
+  top: 5px;
   left: 20px;
   cursor: pointer;
 }
@@ -2034,6 +2039,21 @@ margin-bottom: 0 !important;
 .contact__content ul {
   padding: 5px 192px;
 }
+.aspect-ratio {
+  padding: 5px 192px 51% 192px;
+  position: relative;
+  width: 100%;
+  height: 0;
+}
+.about__youtube {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  text-align: center;
+  padding: 5px 192px;
+}
 .copy__caps {
   font-family: 'nimbus-sans-extended', sans-serif;
   font-weight: 900;
@@ -3168,7 +3188,7 @@ div.dataTables_length select {
 }
 .paginate_button.waves-effect.active a {
   height: 100%;
-  padding: 9px;
+  padding-top: 0px;
 }
 .scorpius-materialize-admin .floating-btn-onheader {
   top: -6rem;

@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
+import { Meteor } from 'meteor/meteor';
+import { FlowRouter } from 'meteor/kadira:flow-router';
+import Parties from '../../../api/parties/parties_collection.js';
+import Playlists from '../../../api/playlists/playlists_collection.js';
+import Posts from '../../../api/posts/posts_collection.js';
 import { throwError } from '../../../../client/helpers/errors.js';
+import { $ } from 'meteor/jquery';
 
 export default class CommentSubmit extends Component {
   constructor(props) {
@@ -38,7 +44,7 @@ export default class CommentSubmit extends Component {
     default:
       throwError('Cannot comment on this page!');
       return;
-    };
+    }
 
     var comment = {
       body: $body.val(),
@@ -50,7 +56,7 @@ export default class CommentSubmit extends Component {
       errors.body = 'Please write something.';
       return this.setState({ commentSubmitErrors: errors });
     }
-    Meteor.call('commentInsert', comment, function(error, commentId) {
+    Meteor.call('commentInsert', comment, function(error) {
       if (error){
         throwError(error.reason, { type: 'danger' });
       } else {

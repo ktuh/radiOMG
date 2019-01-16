@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { Meteor } from 'meteor/meteor';
 import Notifications from
   '../../../api/notifications/notifications_collection.js';
 import NotificationItem from './NotificationItem.jsx';
 import { withTracker } from 'meteor/react-meteor-data';
 
 class NotificationsBox extends Component {
+  static propTypes = {
+    notifications: PropTypes.array
+  }
+
   render() {
     return [<a href="#" className="dropdown-toggle" data-toggle="dropdown">
       Notifications

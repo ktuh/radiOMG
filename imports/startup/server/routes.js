@@ -1,12 +1,14 @@
 import { Meteor } from 'meteor/meteor';
 import { Picker } from 'meteor/meteorhacks:picker';
-import { check } from 'meteor/check';
+import { check, Match } from 'meteor/check';
 import Posts from '../../api/posts/posts_collection.js';
+import Reviews from '../../api/reviews/reviews_collection.js';
 import Shows from '../../api/shows/shows_collection.js';
 import Charts from '../../api/charts/charts_collection.js';
-import Comments from '../../api/comments/comments_collection.js';
-import Playlists from '../../api/playlists/playlists_collection.js';
-import { HTTP } from 'meteor/http';
+import Profiles from '../../api/users/profiles_collection.js';
+import Playlists from '../../api/playlists/now_playing.js';
+import Parties from '../../api/parties/parties_collection.js';
+import NowPlaying from '../../api/playlists/now_playing.js';
 import bodyParser from 'body-parser';
 import { getLocalTime } from '../lib/helpers.js';
 import { moment as momentUtil } from 'meteor/momentjs:moment';
@@ -19,7 +21,7 @@ import SSRLayout from '../../ui/components/application/SSRLayout.jsx'
 Picker.middleware(bodyParser.json());
 Picker.middleware(bodyParser.urlencoded({ extended: false }));
 
-Picker.route('/spinitron/latest', function(params, req, res, next) {
+Picker.route('/spinitron/latest', function(params) {
   check(params.query, { playlistId: Match.Where(function(str) {
     check(str, String);
     return /[0-9]+/.test(str);
@@ -74,21 +76,23 @@ Picker.route('/spinitron/latest', function(params, req, res, next) {
     }
   }
 
-  if (NowPlaying.find({}).count() < 1)
+  if (NowPlaying.find({}).count() < 1) {
     NowPlaying.insert({
       current: html, timestamp: getLocalTime().toDate()
     });
-  else
+  }
+  else {
     NowPlaying.update(NowPlaying.findOne()._id, {
       $set: {
         current: html,
         timestamp: getLocalTime().toDate()
       }
     });
+  }
 });
 
 // SEO Routes
-const SeoRouter = Picker.filter(function(request, response) {
+const SeoRouter = Picker.filter(function(request) {
   var botAgents = [
     /^facebookexternalhit/i, // Facebook
     /^linkedinbot/i, // LinkedIn

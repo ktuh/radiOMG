@@ -1,6 +1,4 @@
-import { Mongo } from 'meteor/mongo';
 import { Meteor } from 'meteor/meteor';
-import { scorpius } from 'meteor/scorpiusjs:core';
 
 export const ChatOptions = {
   defaultUserName: 'Anonymous',

@@ -1,6 +1,6 @@
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
-export default TracksSchema = new SimpleSchema({
+var TracksSchema = new SimpleSchema({
   artist: {
     type: String,
     optional: true
@@ -26,3 +26,5 @@ export default TracksSchema = new SimpleSchema({
     optional: true
   }
 });
+
+export default TracksSchema;

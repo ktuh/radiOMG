@@ -1,31 +1,42 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { displayNameById, usernameById, timeDiffString, renderSummary,
   getPathBySlug } from '../../../startup/lib/helpers.js';
 
 export default class NewsItem extends Component {
+  static propTypes = {
+    item: PropTypes.object
+  }
+
+  shouldComponentUpdate() {
+    return true;
+  }
+
   render() {
-    var path = getPathBySlug('/radioblog/:slug', this.props.post.slug),
-      synopsis = renderSummary(this.props.post.summary, 60),
-      username = usernameById(this.props.post.userId),
-      displayName = displayNameById(this.props.post.userId),
-      timeDiff = timeDiffString(this.props.post.submitted);
+    var path = getPathBySlug('/radioblog/:slug', this.props.item.slug),
+      synopsis = this.props.item.summary.length > 0 ?
+        renderSummary(this.props.item.summary, 60) :
+        renderSummary(this.props.item.body, 60),
+      username = usernameById(this.props.item.userId),
+      displayName = displayNameById(this.props.item.userId),
+      timeDiff = timeDiffString(this.props.item.submitted);
 
     return (
       <div className='news-list__post'>
         <div className='news-list__post-image'>
-          <span className='purple-tag'>{this.props.post.category}</span>
+          <span className='purple-tag'>{this.props.item.category}</span>
           <a className="news-list__photo-link"
             href={path}>
             <img className='news-list__photo'
-              src={this.props.post.thumbnail ||
-              (this.props.post.photo && this.props.post.photo.url) ||
+              src={this.props.item.thumbnail ||
+              (this.props.item.photo && this.props.item.photo.url) ||
               '/mstile-310x310.png'} />
           </a>
         </div>
         <div className='news-list__info'>
           <a className='news-list__title'
             href={path}>
-            <h3>{this.props.post.title}</h3>
+            <h3>{this.props.item.title}</h3>
           </a>
           <p className='news-list__excerpt'>
             {synopsis}
@@ -36,8 +47,8 @@ export default class NewsItem extends Component {
           </p>
           <br />
           <p className='news-list__byline'>by{' '}
-            <a href={`/profile/${username}`}>
-              {displayName}</a>{' / '}
+            {username ? <a href={`/profile/${username}`}>
+              {displayName}</a> : this.props.item.author}{' / '}
             {timeDiff}
           </p>
         </div>

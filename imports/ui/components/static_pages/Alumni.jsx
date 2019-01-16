@@ -1,46 +1,36 @@
 import React, { Component } from 'react';
-import { Helmet } from 'react-helmet';
+import { Metamorph } from 'react-metamorph';
 
 export default class Alumni extends Component {
+  shouldComponentUpdate() {
+    return false;
+  }
+
   render() {
     return [
-      <Helmet key="metadata">
-        <title>Alumni - KTUH FM Honolulu | Radio for the People</title>
-        <meta property="og:title"
-          content="Alumni - KTUH FM Honolulu | Radio for the People" />
-        <meta property="og:description" content="KTUH Alumni" />
-        <meta name="twitter:title" content=
-          'Alumni - KTUH FM Honolulu | Radio for the People' />
-        <meta name="twitter:url" content="https://ktuh.org" />
-        <meta name="twitter:description" content="KTUH Alumni" />
-        <meta name="twitter:site" content="@ktuh_fm" />
-        <meta name="twitter:image" content={
-          'https://ktuh.org/img/ktuh-logo.jpg'
-        } />
-        <meta name="twitter:creator" content="@ktuh_fm" />
-        <meta property="description" content="KTUH Alumni" />
-      </Helmet>,
+      <Metamorph title="Alumni - KTUH FM Honolulu | Radio for the People"
+        description="KTUH Alumni" image='https://ktuh.org/img/ktuh-logo.jpg' />,
       <h2 className='general__header'>KTUH Alumni</h2>,
       <div className='alumni__content'>
         <div className="alumni__img">
           <img src='/img/MNL.jpg' alt="1970 Staff Archive Photo" />
         </div>
-        <p>
-          <b>Get on the List!</b>
-          If you are a KTUH alumnus or alumna and would like to
-          be added to the KTUH alumni email list, please send your email address
-          to <a href='mailto:&#97;&#108;&#117;&#109;&#110;&#105;&#64;&#107;&#116;&#117;&#104;&#46;&#111;&#114;&#103;'>
-            &#97;&#108;&#117;&#109;&#110;&#105;&#64;&#107;&#116;&#117;&#104;&#46;&#111;&#114;&#103;
-          </a>. You will receive occasional emails regarding alumni
-          news and upcoming alumni events, such as reunions
-          (the list is not shared with anyone).
-        </p>
-        <p>
-          <b>Got News?</b> Alumni news, that is... If you would like to share any KTUH alumni
-          news items, please email them to <a href='mailto:&#97;&#108;&#117;&#109;&#110;&#105;&#64;&#107;&#116;&#117;&#104;&#46;&#111;&#114;&#103;'>
-            &#97;&#108;&#117;&#109;&#110;&#105;&#64;&#107;&#116;&#117;&#104;&#46;&#111;&#114;&#103;
-          </a>.
-        </p>
+        <p dangerouslySetInnerHTML={{ __html:
+          '<b>Get on the List!</b>\n' +
+          'If you are a KTUH alumnus or alumna and would like to be added to ' +
+          'the KTUH alumni email list, please send your email address to <a ' +
+          'href=\'mailto:&#97;&#108;&#117;&#109;&#110;&#105;&#64;&#107;&#116;' +
+          '&#117;&#104;&#46;&#111;&#114;&#103;\'>&#97;&#108;&#117;&#109;&#110;'+
+          '&#105;&#64;&#107;&#116;&#117;&#104;&#46;&#111;&#114;&#103;</a>. ' +
+          'You will receive occasional emails regarding alumni news and ' +
+          'upcoming alumni events, such as reunions (the list is not shared ' +
+          'with anyone).' }} />
+        <p dangerouslySetInnerHTML={{ __html:
+          '<b>Got News?</b> Alumni news, that is... If you would like to ' +
+          'share any KTUH alumni news items, please email them to <a href=\'ma'+
+          'ilto:&#97;&#108;&#117;&#109;&#110;&#105;&#64;&#107;&#116;&#117;&#10'+
+          '4;&#46;&#111;&#114;&#103;\'>&#97;&#108;&#117;&#109;&#110;&#105;&#64'+
+          ';&#107;&#116;&#117;&#104;&#46;&#111;&#114;&#103;</a>.' }} />
 
         <p><b>Would you like to see reunion and archive photos?</b></p>
 

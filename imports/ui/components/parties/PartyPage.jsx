@@ -1,13 +1,23 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import Comments from '../../../api/comments/comments_collection.js';
 import CommentItem from '../comments/CommentItem.jsx';
 import CommentSubmit from '../comments/CommentSubmit.jsx';
 import Parties from '../../../api/parties/parties_collection.js';
 import { FlowRouter } from 'meteor/kadira:flow-router';
-import { Helmet } from 'react-helmet';
+import { Metamorph } from 'react-metamorph';
+import { Bert } from 'meteor/themeteorchef:bert';
+import { moment } from 'meteor/momentjs:moment';
 
 class PartyPage extends Component {
+  static propTypes = {
+    ready: PropTypes.bool,
+    party: PropTypes.object,
+    comments: PropTypes.array
+  }
+
   time(t) {
     return moment(t).format('dddd, MMMM Do YYYY, h:mm a');
   }
@@ -19,7 +29,7 @@ class PartyPage extends Component {
 
     if (i >= 0) {
       r = 'upvoted';
-    };
+    }
 
     return r;
   }
@@ -39,28 +49,11 @@ class PartyPage extends Component {
     var handleClickStar = this.handleClickStar.bind(this);
     if (this.props.ready) {
       return [
-        <Helmet key="metadata">
-          <title>{this.props.party.title +
-            ' - KTUH FM Honolulu | Radio for the People'}</title>
-          <meta property="og:title"
-            content={this.props.party.title +
-              ' - KTUH FM Honolulu | Radio for the People'} />
-          <meta property="og:description" content={this.props.party.summary} />
-          <meta property="og:image" content={this.props.party.thumbnail ||
-            '/img/ktuh-logo.png' } />
-          <meta name="twitter:title" content={this.props.party.title +
-            ' - KTUH FM Honolulu | Radio for the People'} />
-          <meta name="twitter:url" content="https://ktuh.org" />
-          <meta name="twitter:description"
-            content={this.props.party.description} />
-          <meta name="twitter:site" content="@ktuh_fm" />
-          <meta name="twitter:image" content={
-            this.props.party.thumbnail ||
-            'https://ktuh.org/img/ktuh-logo.jpg'
-          } />
-          <meta name="twitter:creator" content="@ktuh_fm" />
-          <meta property="description" content={this.props.party.description} />
-        </Helmet>,
+        <Metamorph title={this.props.party.title +
+          ' - KTUH FM Honolulu | Radio for the People'}
+        image={this.props.party.thumbnail ||
+          'https://ktuh.org/img/ktuh-logo.png'}
+        description={this.props.party.summary} />,
         <h1 className='general__header'>{this.props.party.title}</h1>,
         <div className='event__link'>
           <a href='/events' className='back-to'>← all events</a>
@@ -121,7 +114,7 @@ export default withTracker(() => {
     });
 
   return {
-    ready: s1.ready(),
+    ready: s1.ready() && (s0 !== undefined && s0.ready() || true),
     party: Parties.findOne({ slug: FlowRouter.getParam('slug') }),
     comments: Comments.find().fetch()
   };

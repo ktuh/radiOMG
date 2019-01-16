@@ -1,15 +1,23 @@
 import React, { Component } from 'react';
+import { Bert } from 'meteor/themeteorchef:bert';
+import PropTypes from 'prop-types';
 import { $ } from 'meteor/jquery';
 import 'mediaelement';
 import { Session } from 'meteor/session';
+import { scorpius } from 'meteor/scorpiusjs:core';
 
 export default class MediaElement extends Component {
+  static propTypes = {
+    options: PropTypes.object,
+    id: PropTypes.string
+  }
+
   constructor(props) {
     super(props);
     this.state = {};
   }
 
-  success(mediaElement, node, instance) {
+  success(mediaElement) {
     $('.mejs__time-rail').append(
       '<span class="mejs__broadcast">Live Broadcast</span>');
 
@@ -31,7 +39,7 @@ export default class MediaElement extends Component {
     global.player = mediaElement;
   }
 
-  error(media) {
+  error() {
     console.error('Error initializing the media element.');
   }
 
@@ -54,7 +62,8 @@ export default class MediaElement extends Component {
     }
 
     const options = Object.assign({}, this.props.options, {
-    // Read the Notes below for more explanation about how to set up the path for shims
+      // Read the Notes below for more explanation
+      // about how to set up the path for shims
       pluginPath: '/mejs/',
       alwaysShowControls: true,
       features: ['playpause', 'progress'],

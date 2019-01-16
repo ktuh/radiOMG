@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { moment as momentUtil } from 'meteor/momentjs:moment';
 import moment from 'moment-timezone';
-import Playlists from '../../../api/playlists/playlists_collection.js';
-import Shows from '../../../api/shows/shows_collection.js';
-import { Helmet } from 'react-helmet';
+import { Metamorph } from 'react-metamorph';
 
 class SSRShowPage extends Component {
+  static propTypes = {
+    show: PropTypes.object
+  }
+
   day(num) {
     return ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday',
       'Saturday'][num];
@@ -38,33 +41,11 @@ class SSRShowPage extends Component {
   }
 
   render() {
-    var self = this;
-
     return [
-      <Helmet key="metadata">
-        <title>{this.props.show.showName + ' - KTUH FM Honolulu' +
-          ' | Radio for the People'}</title>
-        <meta property="og:title"
-          content={this.props.show.showName +
-            ' - KTUH FM Honolulu' +
-            ' | Radio for the People'} />
-        <meta property="og:description" content={
-          this.props.show.showName + ' on KTUH'} />
-        <meta name="twitter:title" content={this.props.show.showName +
-          ' - KTUH FM Honolulu | Radio for the People'} />
-        <meta name="twitter:url" content="https://ktuh.org" />
-        <meta name="twitter:description" content={
-          this.props.show.showName + ' on KTUH'}  />
-        <meta name="twitter:site" content="@ktuh_fm" />
-        <meta name="twitter:image" content={
-          (this.props.show.thumbnail || undefined) ||
-          (!this.props.show.thumbnail &&
-            'https://ktuh.org/img/ktuh-logo.jpg' || undefined)
-        } />
-        <meta name="twitter:creator" content="@ktuh_fm" />
-        <meta property="description" content={
-          this.props.show.showName + ' on KTUH'} />
-      </Helmet>,
+      <Metamorph title={this.props.show.showName + ' - KTUH FM Honolulu' +
+        ' | Radio for the People'} description={this.props.show.showName +
+        ' on KTUH'} image={this.props.show.thumbnail ||
+        'https://ktuh.org/img/ktuh-logo.jpg'} />,
       <h2 className='general__header' key='header-title'>
         <b>{this.props.show.showName} / {this.props.show.host}</b>
       </h2>,

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import Posts from '../../../api/posts/posts_collection.js';
@@ -6,10 +7,16 @@ import Profiles from '../../../api/users/profiles_collection.js';
 import Shows from '../../../api/shows/shows_collection.js';
 import { Bert } from 'meteor/themeteorchef:bert';
 import { withTracker } from 'meteor/react-meteor-data';
-import { Helmet } from 'react-helmet';
+import { Metamorph } from 'react-metamorph';
 
 class ProfilePage extends Component {
-  handleBan(event) {
+  static propTypes = {
+    profile: PropTypes.object,
+    show: PropTypes.object,
+    posts: PropTypes.array
+  }
+
+  handleBan() {
     if (Meteor.user().hasRole('admin')) {
       var username = FlowRouter.getParam('username');
       var user = Meteor.users.findOne({ username: username });
@@ -19,7 +26,7 @@ class ProfilePage extends Component {
     }
   }
 
-  handleUnban(event) {
+  handleUnban() {
     if (Meteor.user().hasRole('admin')) {
       var username = FlowRouter.getParam('username');
       var user = Meteor.users.findOne({ username: username });
@@ -34,29 +41,11 @@ class ProfilePage extends Component {
       !this.props.profile.banned || Meteor.user() !== null &&
       Meteor.user().hasRole('admin')) {
       return [
-        <Helmet key="metadata">
-          <title>{this.props.profile.name + '\'s Profile - KTUH FM Honolulu' +
-            ' | Radio for the People'}</title>
-          <meta property="og:title"
-            content={this.props.profile.name +
-              '\'s Profile - KTUH FM Honolulu' +
-              ' | Radio for the People'} />
-          <meta property="og:description" content={
-            this.props.profile.name + '\'s Profile'} />
-          <meta name="twitter:title" content={this.props.profile.name +
-            '\'s Profile - KTUH FM Honolulu | Radio for the People'} />
-          <meta name="twitter:url" content="https://ktuh.org" />
-          <meta name="twitter:description" content={
-            this.props.profile.name + '\'s Profile'}  />
-          <meta name="twitter:site" content="@ktuh_fm" />
-          <meta name="twitter:image" content={
-            this.props.profile.photo && this.props.profile.photo.url ||
-            'https://ktuh.org/img/ktuh-logo.jpg'
-          } />
-          <meta name="twitter:creator" content="@ktuh_fm" />
-          <meta property="description" content={
-            this.props.profile.name + '\'s Profile'} />
-        </Helmet>,
+        <Metamorph title={this.props.profile.name +
+          '\'s Profile - KTUH FM Honolulu | Radio for the People'}
+        description={this.props.profile.name + '\'s Profile'}
+        image={this.props.profile.photo && this.props.profile.photo.url ||
+          'https://ktuh.org/img/ktuh-logo.jpg'} />,
         <h2 className='general__header'>{this.props.profile.name}</h2>,
         <div className='profile'>
           {Meteor.userId() && this.props.profile.userId === Meteor.userId() && (

@@ -2,6 +2,23 @@ import React, { Component } from 'react';
 import { getLocalTime } from '../../../startup/lib/helpers.js';
 
 export default class Footer extends Component {
+  constructor() {
+    super();
+    this.officeEmail = this.officeEmail.bind(this);
+  }
+
+  shouldComponentUpdate() {
+    return false;
+  }
+
+  officeEmail() {
+    return '<a href=\'&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#' +
+      '111;&#102;&#102;&#105;&#99;&#101;&#64;&#107;&#116;&#117;&#104;&#46;' +
+      '&#111;&#114;&#103;\'>' + [6,0,0,5,3,9,22,24,4,1,23].map(
+      (i) => ((function(e) { return '@hk' + e; })+[]).split('')[i]).join('') +
+      '.org</a>';
+  }
+
   render() {
     return (
       <div className='footer'>
@@ -13,9 +30,8 @@ export default class Footer extends Component {
             <h5 className='footer__subheading'>Our Mission</h5>
             <p className='mission__body'>
               To provide the people of Honolulu with alternative
-              programming for the cultural and educational
-              enrichment of the students of the university system
-              and the community.
+              programming for the cultural and educational enrichment of the
+              students of the university system and the community.
             </p>
           </div>
         </div>
@@ -30,17 +46,13 @@ export default class Footer extends Component {
           </div>
           <div className='footer__phone'>
             <h5 className='footer__subheading'>Contact</h5>
-            <p><a href='tel:18089565288'>Office + 808.956.5288</a></p>
-            <br />
-            <p><a href='tel:18089567261'>Request + 808.956.7261</a></p>
-            <br />
-            <br />
             <p>
-              <a href=
-              '&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#111;&#102;&#102;&#105;&#99;&#101;&#64;&#107;&#116;&#117;&#104;&#46;&#111;&#114;&#103;'>
-                &#111;&#102;&#102;&#105;&#99;&#101;&#64;&#107;&#116;&#117;&#104;&#46;&#111;&#114;&#103;
-              </a>
+              <a href='tel:18089565288'>Office + 808.956.5288</a>
             </p>
+            <br />
+            <p><a href='tel:18089567261'>Request + 808.956.7261</a></p><br />
+            <br />
+            <p dangerouslySetInnerHTML={{ __html: this.officeEmail() }} />
           </div>
           <div className='footer__links footer__links__clear'>
             <h5 className='footer__subheading'>UHM Student Media</h5>
@@ -51,20 +63,20 @@ export default class Footer extends Component {
           </div>
         </div>
         <div className='footer__social'>
-          <a href='http://instagram.com/ktuh_fm' target="_blank">
+          <a href='http://instagram.com/ktuh_fm' target="_blank" rel=
+            "noopener noreferrer">
             <img src='/img/instagram-white.png' />
           </a>
-          <a href='https://www.facebook.com/ktuh.honolulu' target="_blank">
+          <a href='https://www.facebook.com/ktuh.honolulu' target="_blank" rel=
+            "noopener noreferrer">
             <img src='/img/facebook-white.png' />
           </a>
-          <a href='http://twitter.com/ktuh_fm' target="_blank">
+          <a href='http://twitter.com/ktuh_fm' target="_blank" rel=
+            "noopener noreferrer">
             <img src='/img/twitter-white.png' />
           </a>
         </div>
         <p className='footer__copyright'>
-          {'COPYRIGHT © ' + getLocalTime().year() + ' KTUH FM Honolulu'}
-        </p>
-      </div>
-    );
+          {`COPYRIGHT © ${getLocalTime().year()} KTUH FM Honolulu`}</p></div>);
   }
 }

@@ -1,8 +1,7 @@
-import { Mongo } from 'meteor/mongo';
 import ShowsSchema from './shows_schema.js';
 import { scorpius } from 'meteor/scorpiusjs:core';
 
-export default Shows = new scorpius.collection('shows', {
+var Shows = new scorpius.collection('shows', {
   singularName: 'show',
   pluralName: 'shows',
   link: {
@@ -25,11 +24,7 @@ export default Shows = new scorpius.collection('shows', {
       {
         data: 'featuredImage',
         title: 'Featured Image',
-        render: function (val, type, doc) {
-          if (!val)
-            return;
-          return '<img src=' + val.url + '>';
-        }
+        render: val => `<img src='${val.url}'>`
       },
       scorpius.attributeColumn('createdAt', 'submitted', 'Timestamp')
     ]
@@ -44,3 +39,5 @@ Shows.friendlySlugs({
 });
 
 Shows.attachSchema(ShowsSchema);
+
+export default Shows;

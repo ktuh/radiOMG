@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
 import Errors from '../../../../client/helpers/errors.js';
+import Notifications from
+  '../../../api/notifications/notifications_collection.js';
 import { Meteor } from 'meteor/meteor';
 import { Session } from 'meteor/session';
 
 const IGNORE_CONNECTION_ISSUE_KEY = 'ignoreConnectionIssue';
 
 class Error extends Component {
+  static propTypes = {
+    error: PropTypes.object
+  }
+
   componentDidMount() {
     var error = this.props.error;
     Meteor.setTimeout(function () {
@@ -27,13 +34,18 @@ class Error extends Component {
 }
 
 class ErrorsBox extends Component {
+  static propTypes = {
+    notifications: PropTypes.array,
+    errors: PropTypes.array
+  }
+
   connected() {
     return Session.get(IGNORE_CONNECTION_ISSUE_KEY) ||
       Meteor.status().connected;
   }
 
   render() {
-    var self = this, connected = this.connected.bind(this);
+    var connected = this.connected.bind(this);
     return [
       <div className='notifications' key='notifications-box'>
         {(() => {

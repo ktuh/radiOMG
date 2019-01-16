@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { _ } from 'underscore';
 import { Session } from 'meteor/session';
 import { $ } from 'meteor/jquery';
 import CustomLoginButtons from './CustomLoginButtons.jsx';
 import MediaElement from './MediaElement.js';
-import { scorpius } from 'meteor/scorpiusjs:core';
+import NowPlaying from '../../../api/playlists/playlists_collection.js';
+import { moment } from 'meteor/momentjs:moment';
 
 function activePage() {
   // includes Spacebars.kw but that's OK because the route name ain't that.
@@ -15,6 +17,10 @@ function activePage() {
 }
 
 export default class Header extends Component {
+  static propTypes = {
+    loaded: PropTypes.bool
+  }
+
   constructor(props) {
     super(props);
   }
@@ -27,7 +33,6 @@ export default class Header extends Component {
   }
 
   componentDidMount() {
-    var self = this;
     var $searchInput = $('.nav__search input');
     Session.set('nowPlaying', 'Live audio stream.');
     $searchInput.css('font-family', 'Glyphicons Halflings');

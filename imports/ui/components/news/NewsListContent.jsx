@@ -1,50 +1,30 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import NewsItem from './NewsItem.jsx';
 import NewsFeatured from './NewsFeatured.jsx';
 import Posts from '../../../api/posts/posts_collection.js';
-import { pages } from '../../../startup/lib/helpers.js';
-import CustomPaginator from '../reusables/CustomPaginator.jsx';
+import EverAfter from 'react-everafter';
 
 class NewsListContent extends Component {
+  static propTypes = {
+    ready: PropTypes.bool,
+    posts: PropTypes.array
+  }
+
   constructor(props) {
     super(props);
-    this.state = {
-      currentPage: 1
-    }
-  }
-
-  handleClick(page) {
-    this.setState({ currentPage: page });
-  }
-
-  handlePreviousClick(event) {
-    this.setState({ currentPage: this.state.currentPage - 1 });
-  }
-
-  handleNextClick(event) {
-    this.setState({ currentPage: this.state.currentPage + 1 });
   }
 
   render() {
-    var handleClick = this.handleClick.bind(this),
-      handleNextClick = this.handleNextClick.bind(this),
-      handlePreviousClick = this.handlePreviousClick.bind(this),
-      self = this;
-
     if (this.props.ready) {
       return (
         <div className='news-list__content'>
           <div className='news-list'>
             <NewsFeatured />
-            {(this.props.pages)[this.state.currentPage - 1].map((post) =>
-              <NewsItem post={post} key={post._id} />)}
-            <div className='news-list__paginator'>
-              <CustomPaginator currentPage={this.state.currentPage}
-                pages={this.props.pages} handleClick={handleClick}
-                handleNextClick={handleNextClick}
-                handlePreviousClick={handlePreviousClick} />
-            </div>
+            <EverAfter.Paginator wrapper={NewsItem} perPage={4}
+              items={this.props.posts} truncate={true} />
           </div>
         </div>
       );
@@ -64,9 +44,8 @@ export default withTracker(() => {
 
   return {
     ready: s1.ready() && s2.ready() && s3.ready() && s4.ready(),
-    pages: pages(Posts.find((s2.ready() && { _id:
-       { $ne: featuredPost._id }, approved: true } || null) ||
-       (!s2.ready && { approved: true } || null),
-    { sort: { submitted: -1 } }).fetch(), 4)
+    posts: Posts.find((s2.ready() && featuredPost && { _id:
+       { $ne: featuredPost._id }, approved: true } || { approved: true }),
+    { sort: { submitted: -1 } }).fetch()
   };
 })(NewsListContent);

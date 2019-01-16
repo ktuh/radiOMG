@@ -1,6 +1,6 @@
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
-export default NoticesSchema = new SimpleSchema({
+var NoticesSchema = new SimpleSchema({
   body: {
     type: String,
     autoform: {
@@ -38,3 +38,5 @@ export default NoticesSchema = new SimpleSchema({
     }
   }
 });
+
+export default NoticesSchema;
