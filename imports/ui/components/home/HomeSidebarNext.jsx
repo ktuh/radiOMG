@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { nextShow, usernameById, displayNameById }
   from '../../../startup/lib/helpers.js';
 import { moment as momentUtil } from 'meteor/momentjs:moment';
 import { withTracker } from 'meteor/react-meteor-data';
 
 class HomeSidebarNext extends Component {
+  static propTypes = {
+    ready: PropTypes.bool
+  }
+
   startEndTime(startHour, startMinute, endHour, endMinute) {
     if (startMinute === 1) {
       startMinute--;
@@ -66,6 +71,6 @@ export default withTracker(() => {
   });
 
   return {
-    ready: s1.ready() && (s2 && s2.ready()) && (s3 && s3.ready()) 
+    ready: s1.ready() && (s2 && s2.ready()) && (s3 && s3.ready())
   };
 })(HomeSidebarNext);

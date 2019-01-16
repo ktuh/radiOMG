@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import HomeContentNewsItem from './HomeContentNewsItem.jsx';
 import { withTracker } from 'meteor/react-meteor-data';
 import Posts from '../../../api/posts/posts_collection.js';
-import Profiles from '../../../api/users/profiles_collection.js';
 import { Meteor } from 'meteor/meteor';
 
 class HomeContentNews extends Component {

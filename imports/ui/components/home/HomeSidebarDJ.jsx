@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { scorpius } from 'meteor/scorpiusjs:core';
 
 export default class HomeSidebarDJ extends Component {
   render() {
