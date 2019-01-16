@@ -227,12 +227,12 @@ class ShowPage extends Component {
             {this.props.pastPlaylists(this.props.show.showId).length > 0 &&
               (
                 <select onChange={handleSelectChange}>
-                  <option value="" disabled={true}>
+                  <option value="" disabled={true} selected={true}>
                   Past Playlists &#x25BC;
                   </option>
                   {this.props.playlistsByYear(this.props.show.showId)
                     .map((playlistGroup) => ([
-                      <option value="" disabled={true}
+                      <option value={`${playlistGroup.year}`} disabled={true}
                         key={`${playlistGroup.year}`}>
                         {playlistGroup.year}</option>,
                       playlistGroup.shows.map((show, i) => (
