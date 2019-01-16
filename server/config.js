@@ -46,7 +46,7 @@ Meteor.startup(function () {
 
   Accounts.validateLoginAttempt(function(type) {
     if (type.user && type.user.emails && !type.user.emails[0].verified ) {
-      if (type.user && type.user.firstLogin == true) {
+      if (type.user.firstLogin) {
         type.user.firstLogin = false;
         return true;
       } else {

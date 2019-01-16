@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { getPathBySlug } from '../../../startup/lib/helpers.js';
 
 export default class NewsListLatestReviewsItem extends Component {
+  static propTypes = {
+    review: PropTypes.object
+  }
+
   render() {
     return (
       <div className='news-list__latest-review' key={this.props.review._id}>
