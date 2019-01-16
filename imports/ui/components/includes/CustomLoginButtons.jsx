@@ -5,20 +5,7 @@ import { Accounts } from 'meteor/accounts-base';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { withTracker } from 'meteor/react-meteor-data';
 import { $ } from 'meteor/jquery';
-
-class LoginErrorMessage extends Component {
-  static propTypes = {
-    errorMessage: PropTypes.string
-  }
-
-  render() {
-    return <div
-      style={{ backgroundColor: 'pink', color: 'red',
-        border: 'thin red solid' }}>
-      {this.props.errorMessage}
-    </div>;
-  }
-}
+import LoginErrorMessage from './LoginErrorMessage.jsx';
 
 class CustomLoginButtons extends Component {
   static propTypes = {
@@ -226,131 +213,144 @@ class CustomLoginButtons extends Component {
     this.setState({ change: !this.state.change });
   }
 
+  handleForgot(event) {
+    event.preventDefault();
+    this.setState({ forgot: !this.state.forgot });
+  }
+
+  menuLoggedInChange() {
+    return [
+      <input id="login-old-password" type="password"
+        placeholder="Old Password" className="form-control" />,
+      <input id="login-password" type="password"
+        placeholder="New Password" className="form-control" />,
+      <input id="login-password-again" type="password"
+        placeholder="New Password Again" className="form-control" />,
+      <button className="btn btn-default btn-block"
+        id="login-buttons-open-change-password"
+        onClick={this.handleChangePwd.bind(this)}>Change password</button>,
+      <button className="btn btn-block btn-primary"
+        onClick={this.handleChangePwdFlow.bind(this)}
+        id="login-buttons-logout">Sign out</button>
+    ];
+  }
+
+  menuLoggedInNoChange() {
+    return [
+      <button className="btn btn-default btn-block"
+        id="login-buttons-view-profile" onClick={this.handleView.bind(this)}>
+        View profile
+      </button>,
+      <button className="btn btn-default btn-block"
+        id="login-buttons-edit-profile" onClick={this.handleEdit.bind(this)}>
+        Edit profile
+      </button>,
+      <button className="btn btn-default btn-block"
+        id="login-buttons-open-change-password"
+        onClick={this.handleChangePwdFlow.bind(this)}>Change password</button>,
+      <button className="btn btn-block btn-primary"
+        onClick={this.logoutClick.bind(this)}
+        id="login-buttons-Cancel">Sign out</button>];
+  }
+
+  menuNone() {
+    return [
+      <button className="login-button btn btn-block btn-Facebook">
+        Sign in with Facebook
+      </button>,
+      <button className="login-button btn btn-block btn-Google">
+        Sign in with Google
+      </button>,
+      <div className="or">
+        <span className="hline">{'          '}</span>
+        <span className="or-text">or</span>
+        <span className="hline">{'          '}</span>
+      </div>,
+      <input id="login-username-or-email" type="text"
+        placeholder="Username or Email" className="form-control" />,
+      <input id="login-password" type="password"
+        placeholder="Password" className="form-control"
+        onKeyPress={this.handleKeyPress.bind(this)}/>,
+      <button className="btn btn-primary col-xs-12 col-sm-12"
+        id="login-buttons-password" type="button"
+        onClick={this.handleClick.bind(this)}>
+        Sign in
+      </button>,
+      <div id="login-other-options">
+        <a id="forgot-password-link" className="pull-left"
+          onClick={this.handleForgot.bind(this)}>
+          Forgot password?
+        </a>
+        <a id="signup-link" onClick={this.handleCreateClick.bind(this)}
+          className="pull-right">
+          Create account
+        </a>
+      </div>];
+  }
+
+  menuSignup() {
+    return [
+      <button className="login-button btn btn-block btn-Facebook">
+        Sign in with Facebook
+      </button>,
+      <button className="login-button btn btn-block btn-Google">
+        Sign in with Google
+      </button>,
+      <div className="or">
+        <span className="hline">{'          '}</span>
+        <span className="or-text">or</span>
+        <span className="hline">{'          '}</span>
+      </div>,
+      <input id="login-username" type="text" placeholder="Username"
+        className="form-control" />,
+      <input id="login-email" type="email" placeholder="Email"
+        className="form-control" />,
+      <input id="login-password" type="password" placeholder="Password"
+        className="form-control" />,
+      <button className="btn btn-primary col-xs-12 col-sm-12"
+        id="login-buttons-password" type="button"
+        onClick={this.handleClick.bind(this)}>
+        Create
+      </button>,
+      <button id="back-to-login-link"
+        onClick={this.handleCreateClick.bind(this)}
+        className="btn btn-default col-xs-12 col-sm-12">Cancel
+      </button>];
+  }
+
+  menuForgot() {
+    return [<input id="forgot-password-email" type="email" placeholder="Email"
+      className="form-control" />, <button className=
+      "btn btn-primary col-xs-12 col-sm-12" id="login-buttons-password" type=
+      "button" onClick={this.forgotPassword.bind(this)}>
+        Confirm
+    </button>, <button id="back-to-login-link" onClick=
+      {this.handleForgot.bind(this)} className=
+      "btn btn-default col-xs-12 col-sm-12">Cancel</button>];
+  }
+
   render() {
-    var self = this, handleCreateClick = this.handleCreateClick.bind(this),
-      handleClick = this.handleClick.bind(this),
-      handleView = this.handleView.bind(this),
-      handleEdit = this.handleEdit.bind(this),
-      logoutClick = this.logoutClick.bind(this),
-      handleKeyPress = this.handleKeyPress.bind(this),
-      handleChangePwd = this.handleChangePwd.bind(this),
-      handleChangePwdFlow = this.handleChangePwdFlow.bind(this);
+    var menuLoggedInChange = this.menuLoggedInChange.bind(this),
+      menuLoggedInNoChange = this.menuLoggedInNoChange.bind(this),
+      menuSignup = this.signup.bind(this),
+      menuNone = this.menuNone.bind(this), menuForgot =
+      this.menuForgot.bind(this);
 
     return (
       <li id="login-dropdown-list" className='dropdown'>
         <a className="dropdown-toggle" data-toggle="dropdown">
-          {(!!self.props.currentUser &&
-            self.props.currentUser.username) ||
-          (!self.props.currentUser && 'Sign in / Join') || null}
+          {(this.props.currentUser ? this.props.currentUser.username :
+            'Sign in / Join')}
           <b className="caret"></b>
         </a>
-        {((!!self.props.currentUser && (!this.state.change &&
-          <div className="dropdown-menu">
-            {this.state.errorMessage ?
-              <LoginErrorMessage errorMessage={this.state.errorMessage} />
-              : null}
-            <button className="btn btn-default btn-block"
-              id="login-buttons-view-profile" onClick={handleView}>
-              View profile
-            </button>
-            <button className="btn btn-default btn-block"
-              id="login-buttons-edit-profile" onClick={handleEdit}>
-              Edit profile
-            </button>
-            <button className="btn btn-default btn-block"
-              id="login-buttons-open-change-password"
-              onClick={handleChangePwdFlow}>Change password</button>
-            <button className="btn btn-block btn-primary" onClick={logoutClick}
-              id="login-buttons-Cancel">Sign out</button>
-          </div>
-        || null) || (this.state.change &&
-          <div className="dropdown-menu">
-            {this.state.errorMessage ?
-              <LoginErrorMessage errorMessage={this.state.errorMessage} />
-              : null}
-            <input id="login-old-password" type="password"
-              placeholder="Old Password" className="form-control" />
-            <input id="login-password" type="password"
-              placeholder="New Password" className="form-control" />
-            <input id="login-password-again" type="password"
-              placeholder="New Password Again" className="form-control" />
-            <button className="btn btn-default btn-block"
-              id="login-buttons-open-change-password"
-              onClick={handleChangePwd}>Change password</button>
-            <button className="btn btn-block btn-primary"
-              onClick={handleChangePwdFlow}
-              id="login-buttons-logout">Sign out</button>
-          </div>
-        || null)) || null) ||
-        (!self.props.currentUser && (self.state.signup && (
-          <div className="dropdown-menu">
-            {this.state.errorMessage ?
-              <LoginErrorMessage errorMessage={this.state.errorMessage} />
-              : null}
-            <button className="login-button btn btn-block btn-Facebook">
-              Sign in with Facebook
-            </button>
-            <button className="login-button btn btn-block btn-Google">
-              Sign in with Google
-            </button>
-            <div className="or">
-              <span className="hline">{'          '}</span>
-              <span className="or-text">or</span>
-              <span className="hline">{'          '}</span>
-            </div>
-            <input id="login-username" type="text" placeholder="Username"
-              className="form-control" />
-            <input id="login-email" type="email" placeholder="Email"
-              className="form-control" />
-            <input id="login-password" type="password" placeholder="Password"
-              className="form-control" />
-            <button className="btn btn-primary col-xs-12 col-sm-12"
-              id="login-buttons-password" type="button" onClick={handleClick}>
-              Create
-            </button>
-            <button id="back-to-login-link" onClick={handleCreateClick}
-              className="btn btn-default col-xs-12 col-sm-12">Cancel
-            </button>
-          </div>
-        ) || null) ||
-            (!self.state.signup &&
-            (
-              <div className="dropdown-menu">
-                {this.state.errorMessage ?
-                  <LoginErrorMessage errorMessage={this.state.errorMessage} />
-                  : null}
-                <button className="login-button btn btn-block btn-Facebook">
-                  Sign in with Facebook
-                </button>
-                <button className="login-button btn btn-block btn-Google">
-                  Sign in with Google
-                </button>
-                <div className="or">
-                  <span className="hline">{'          '}</span>
-                  <span className="or-text">or</span>
-                  <span className="hline">{'          '}</span>
-                </div>
-                <input id="login-username-or-email" type="text"
-                  placeholder="Username or Email" className="form-control" />
-                <input id="login-password" type="password"
-                  placeholder="Password" className="form-control"
-                  onKeyPress={handleKeyPress}/>
-                <button className="btn btn-primary col-xs-12 col-sm-12"
-                  id="login-buttons-password" type="button"
-                  onClick={handleClick}>
-                  Sign in
-                </button>
-                <div id="login-other-options">
-                  <a id="forgot-password-link" className="pull-left">
-                    Forgot password?
-                  </a>
-                  <a id="signup-link" onClick={handleCreateClick}
-                    className="pull-right">
-                    Create account
-                  </a>
-                </div>
-              </div>
-            ) || null))}
+        <div className="dropdown-menu">
+          {this.state.errorMessage ?
+            <LoginErrorMessage errorMessage={this.state.errorMessage} />
+            : null}
+          {this.props.currentUser ? (this.state.change ? menuLoggedInChange() :
+            menuLoggedInNoChange()) : (this.state.signup ? menuSignup() :
+            (this.state.forgot ? menuForgot() : menuNone()))}
+        </div>
       </li>
     );
   }
