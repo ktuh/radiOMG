@@ -1,5 +1,8 @@
 import { Template } from 'meteor/templating';
 import Profiles from '../../api/users/profiles_collection.js';
+import Shows from '../../api/shows/shows_collection.js';
+import { Meteor } from 'meteor/meteor';
+import { moment } from 'meteor/momentjs:moment';
 
 Template.registerHelper('displayNameById', (userId) =>
   Profiles.findOne({ userId: userId }).name);

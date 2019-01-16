@@ -4,7 +4,6 @@ import { Session } from 'meteor/session';
 import Charts from '../../../api/charts/charts_collection.js';
 import { $ } from 'meteor/jquery';
 import { AutoForm } from 'meteor/aldeed:autoform';
-import { moment as momentUtil } from 'meteor/momentjs:moment';
 import moment from 'moment-timezone';
 
 ReactiveTemplates.set('collections.charts.create', 'chartsCreate');

@@ -2,11 +2,13 @@ import { Meteor } from 'meteor/meteor';
 import { Picker } from 'meteor/meteorhacks:picker';
 import { check } from 'meteor/check';
 import Posts from '../../api/posts/posts_collection.js';
+import Reviews from '../../api/reviews/reviews_collection.js';
 import Shows from '../../api/shows/shows_collection.js';
 import Charts from '../../api/charts/charts_collection.js';
 import Profiles from '../../api/users/profiles_collection.js';
 import Playlists from '../../api/playlists/now_playing.js';
-import NowPlaying from '../../api/playlists/playlists_collection.js';
+import Parties from '../../api/parties/parties_collection.js';
+import NowPlaying from '../../api/playlists/now_playing.js';
 import bodyParser from 'body-parser';
 import { getLocalTime } from '../lib/helpers.js';
 import { moment as momentUtil } from 'meteor/momentjs:moment';
@@ -74,17 +76,19 @@ Picker.route('/spinitron/latest', function(params, req, res, next) {
     }
   }
 
-  if (NowPlaying.find({}).count() < 1)
+  if (NowPlaying.find({}).count() < 1) {
     NowPlaying.insert({
       current: html, timestamp: getLocalTime().toDate()
     });
-  else
+  }
+  else {
     NowPlaying.update(NowPlaying.findOne()._id, {
       $set: {
         current: html,
         timestamp: getLocalTime().toDate()
       }
     });
+  }
 });
 
 // SEO Routes
