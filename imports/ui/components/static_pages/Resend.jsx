@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Helmet } from 'react-helmet';
+import { Metamorph } from 'react-metamorph';
 import { Meteor } from 'meteor/meteor';
 
 export default class Resend extends Component {
@@ -22,6 +22,7 @@ export default class Resend extends Component {
 
   handleSubmit(event) {
     var self = this;
+    event.preventDefault();
     Meteor.call('resendVerificationLink', this.state.email,
       (error, result) => {
         var newText = '';
@@ -43,29 +44,13 @@ export default class Resend extends Component {
   }
 
   render() {
-    var verified = this.verified;
+    var verified = this.verified, handleKeyUp = this.handleKeyUp.bind(this),
+      handleSubmit = this.handleSubmit.bind(this);
 
     return [
-      <Helmet key="metadata">
-        <title>
-          Resend Verification Email - KTUH FM Honolulu | Radio for the People
-        </title>
-        <meta property="og:title"
-          content={'Resend Verification Email' +
-            ' - KTUH FM Honolulu | Radio for the People'} />
-        <meta property="og:description" content="Resend Email" />
-        <meta name="twitter:title" content=
-          {'Resend Verification Email - KTUH FM Honolulu' +
-          ' | Radio for the People'} />
-        <meta name="twitter:url" content="https://ktuh.org" />
-        <meta name="twitter:description" content="Resend Email" />
-        <meta name="twitter:site" content="@ktuh_fm" />
-        <meta name="twitter:image" content={
-          'https://ktuh.org/img/ktuh-logo.jpg'
-        } />
-        <meta name="twitter:creator" content="@ktuh_fm" />
-        <meta property="description" content="Resend Email" />
-      </Helmet>,
+      <Metamorph title=
+        'Resend Verification Email - KTUH FM Honolulu | Radio for the People'
+      description="Resend Email" image='https://ktuh.org/img/ktuh-logo.jpg' />,
       <h2 className='general__header'>Resend Verification Email</h2>,
       <div className='resend__content' key="resend-content">
         {!verified() && [<p>
@@ -74,12 +59,12 @@ export default class Resend extends Component {
           inbox.
         </p>,
         <div className="at-pwd-form" key="pwd-form">
-          <form role="form" id="at-pwd-form" noValidate="" action="#"
-            method="POST">
+          <form role="form" id="at-pwd-form" noValidate=""
+            onSubmit={handleSubmit}>
             <label htmlFor="at-field-email">Email</label>
             <input className="validate" type="email" id="at-field-email"
               name="at-field-email" autoCapitalize="none" autoCorrect="off"
-              onKeyUp={this.handleKeyUp} />
+              onKeyUp={handleKeyUp} />
             <button type="submit"
               className="at-btn submit waves-effect waves-light btn" id="at-btn"
               disabled={!this.state.submitEnabled}>

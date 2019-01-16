@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Comments from '../../../api/comments/comments_collection.js';
 import CommentItem from '../comments/CommentItem.jsx';
-import { Helmet } from 'react-helmet';
+import { Metamorph } from 'react-metamorph';
 import { moment } from 'meteor/momentjs:moment';
 
 class SSRPartyPage extends Component {
   static propTypes = {
-    party: PropTypes.object
+    party: PropTypes.object,
+    comments: PropTypes.array
   }
 
   time(t) {
@@ -16,28 +17,11 @@ class SSRPartyPage extends Component {
 
   render() {
     return [
-      <Helmet key="metadata">
-        <title>{this.props.party.title +
-          ' - KTUH FM Honolulu | Radio for the People'}</title>
-        <meta property="og:title"
-          content={this.props.party.title +
-            ' - KTUH FM Honolulu | Radio for the People'} />
-        <meta property="og:description" content={this.props.party.summary} />
-        <meta property="og:image" content={this.props.party.thumbnail ||
-          '/img/ktuh-logo.png' } />
-        <meta name="twitter:title" content={this.props.party.title +
-          ' - KTUH FM Honolulu | Radio for the People'} />
-        <meta name="twitter:url" content="https://ktuh.org" />
-        <meta name="twitter:description"
-          content={this.props.party.description} />
-        <meta name="twitter:site" content="@ktuh_fm" />
-        <meta name="twitter:image" content={
-          this.props.party.thumbnail ||
-          'https://ktuh.org/img/ktuh-logo.jpg'
-        } />
-        <meta name="twitter:creator" content="@ktuh_fm" />
-        <meta property="description" content={this.props.party.description} />
-      </Helmet>,
+      <Metamorph title={this.props.party.title +
+        ' - KTUH FM Honolulu | Radio for the People'}
+      image={this.props.party.thumbnail ||
+        'https://ktuh.org/img/ktuh-logo.png'}
+      description={this.props.party.summary} />,
       <h1 className='general__header'>{this.props.party.title}</h1>,
       <div className='event__link'>
         <a href='/events' className='back-to'>← all events</a>

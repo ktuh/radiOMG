@@ -4,7 +4,7 @@ const Member = new Roles.Role('member');
 
 Member.allow('filesystem.upload', true);
 
-Member.allow('collections.profiles.update', (userId, doc, fields, modifier) =>
+Member.allow('collections.profiles.update', (userId, doc) =>
   doc.userId === userId);
 
 export default Member;

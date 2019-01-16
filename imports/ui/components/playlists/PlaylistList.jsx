@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { currentPlaylistFindOne } from '../../../startup/lib/helpers.js';
+import PropTypes from 'prop-types';
+import { currentPlaylistFindOne, showByShowId } from
+  '../../../startup/lib/helpers.js';
 import { Meteor } from 'meteor/meteor';
 import PlaylistSidebar from './PlaylistSidebar.jsx';
 import PlaylistTable from './PlaylistTable.jsx';
@@ -10,20 +12,19 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { moment as momentUtil } from 'meteor/momentjs:moment';
 import moment from 'moment-timezone';
 import { Session } from 'meteor/session';
-import { Helmet } from 'react-helmet';
+import { Metamorph } from 'react-metamorph';
 
 class PlaylistList extends Component {
+  static propTypes = {
+    currentPlaylist: PropTypes.object,
+    ready: PropTypes.bool
+  }
+
   constructor(props) {
     super(props);
     this.state = {
       playlistLoaded: false
     };
-  }
-
-  showByShowId() {
-    return Shows.findOne({
-      showId: this.props.currentPlaylist.showId
-    });
   }
 
   isPlaylistCurrent() {
@@ -55,9 +56,8 @@ class PlaylistList extends Component {
   }
 
   truncated(str) {
-    return
-    (/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\+\d{4}/.exec(str) === null) &&
-      str.substring(0, str.length - 3) || str;
+    return (/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\+\d{4}/.exec(str) === null) ?
+      str.substring(0, str.length - 3) : str;
   }
 
   usernameFromDisplayName(name) {
@@ -73,6 +73,8 @@ class PlaylistList extends Component {
   }
 
   renderHost(show) {
+    var latestShow = showByShowId(this.props.currentPlaylist.showId);
+
     if (this.usernameById(show.userId)) {
       if (this.actualShowHost(show.showId)) {
         return [this.showTime(show.startDay, show.startHour) +
@@ -126,30 +128,16 @@ class PlaylistList extends Component {
   }
 
   render() {
-    var self = this, showByShowId = this.showByShowId.bind(this),
-      requestSpinData = this.requestSpinData.bind(this);
+    var requestSpinData = this.requestSpinData.bind(this);
 
     if (this.props.ready) {
       if (!this.state.playlistLoaded) requestSpinData();
       var latestShow = showByShowId(this.props.currentPlaylist.showId);
       return [
-        <Helmet key="metadata">
-          <title>
-            Show Playlists - KTUH FM Honolulu | Radio for the People</title>
-          <meta property="og:title"
-            content="Show Playlists - KTUH FM Honolulu | Radio for the People"
-          />
-          <meta property="og:description" content="KTUH Show Playlists" />
-          <meta name="twitter:title" content={'Show Playlists' +
-            ' - KTUH FM Honolulu | Radio for the People'} />
-          <meta name="twitter:url" content="https://ktuh.org" />
-          <meta name="twitter:description" content="KTUH Show Playlists" />
-          <meta name="twitter:site" content="@ktuh_fm" />
-          <meta name="twitter:image" content={
-            'https://ktuh.org/img/ktuh-logo.jpg'} />
-          <meta name="twitter:creator" content="@ktuh_fm" />
-          <meta property="description" content="KTUH Show Playlists" />
-        </Helmet>,
+        <Metamorph
+          title="Show Playlists - KTUH FM Honolulu | Radio for the People"
+          description="KTUH Show Playlists"
+          image='https://ktuh.org/img/ktuh-logo.jpg' />,
         <h2 className='general__header' key='header-title'>Playlists</h2>,
         <div className='playlist-list__latest' key='playlist-content'>
           {latestShow && latestShow.thumbnail && (
@@ -182,7 +170,7 @@ class PlaylistList extends Component {
     }
     else return null;
   }
-};
+}
 
 export default withTracker(() => {
   var s1 = Meteor.subscribe('activeShows'),

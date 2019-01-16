@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { scorpius } from 'meteor/scorpiusjs:core';
+import { Bert } from 'meteor/themeteorchef:bert';
 
 export default class ScorpiusImageUpload extends Component {
   static propTypes = {
@@ -20,7 +21,7 @@ export default class ScorpiusImageUpload extends Component {
     this.setTrue = this.setTrue.bind(this);
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
+  shouldComponentUpdate() {
     return true;
   }
 
@@ -60,8 +61,7 @@ export default class ScorpiusImageUpload extends Component {
       <div>
         <p>{this.props.label}</p>
         <div><img id="urlImage" src={this.state.value} /></div>
-        <input type="file"
-          onChange={(event, key, value) => this.handleChange(event)} />
+        <input type="file" onChange={(event) => this.handleChange(event)} />
         <input type="text" disabled={true} value={this.state.value} />
       </div>
     );

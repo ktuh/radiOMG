@@ -1,17 +1,21 @@
 import React, { Component } from 'react';
-import { withTracker } from 'meteor/react-meteor-data';
+import PropTypes from 'prop-types';
 import moment from 'moment-timezone';
 
 export default class PlaylistTable extends Component {
+  static propTypes = {
+    tracks: PropTypes.array,
+    onPage: PropTypes.bool
+  }
+
   timeBeautify(time) {
     return moment.tz(time.replace(/-\d{4}$/, ''), 'Etc/UTC')
       .tz('Pacific/Honolulu').format('hh:mma');
   }
 
   truncated(str) {
-    return
-    (/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\+\d{4}/.exec(str) === null) &&
-      str.substring(0, str.length - 3) || str;
+    return (/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\+\d{4}/.exec(str) === null) ?
+      str.substring(0, str.length - 3) : str;
   }
 
   songsSorted() {
@@ -45,7 +49,7 @@ export default class PlaylistTable extends Component {
           </tr>
         </thead>
         <tbody>
-          {this.songsSorted().map((track, i) => {
+          {this.songsSorted().map((track) => {
             return track.start &&
           <tr key=
             {`${track.start} | ${track.artist} - ${track.artist}`}>

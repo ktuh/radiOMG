@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Helmet } from 'react-helmet';
+import { Metamorph } from 'react-metamorph';
 
 const faq_data = [
   {
@@ -215,26 +215,9 @@ class QASection extends Component {
 export default class FAQ extends Component {
   render() {
     return [
-      <Helmet key="metadata">
-        <title>
-          Frequently Asked Questions - KTUH FM Honolulu | Radio for the People
-        </title>
-        <meta property="og:title"
-          content={'Frequently Asked Questions' +
-            ' - KTUH FM Honolulu | Radio for the People'} />
-        <meta property="og:description" content="KTUH FAQ" />
-        <meta name="twitter:title" content=
-          {'Frequently Asked Questions - KTUH FM Honolulu' +
-          ' | Radio for the People'} />
-        <meta name="twitter:url" content="https://ktuh.org" />
-        <meta name="twitter:description" content="KTUH FAQ" />
-        <meta name="twitter:site" content="@ktuh_fm" />
-        <meta name="twitter:image" content={
-          'https://ktuh.org/img/ktuh-logo.jpg'
-        } />
-        <meta name="twitter:creator" content="@ktuh_fm" />
-        <meta property="description" content="KTUH FAQ" />
-      </Helmet>,
+      <Metamorph title=
+        'Frequently Asked Questions - KTUH FM Honolulu | Radio for the People'
+      description="KTUH FAQ" image='https://ktuh.org/img/ktuh-logo.jpg' />,
       <h2 className='general__header'>Frequently Asked Questions</h2>,
       <div className='faq__content' key='faq-content'>
         {faq_data.map((node) => (

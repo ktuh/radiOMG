@@ -1,7 +1,8 @@
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { thumbnailUrl, getLocalTime } from '../../startup/lib/helpers.js';
+import { scorpius } from 'meteor/scorpiusjs:core';
 
-export default PostsSchema = new SimpleSchema({
+var PostsSchema = new SimpleSchema({
   userId: {
     type: String,
     autoform: {
@@ -108,3 +109,5 @@ export default PostsSchema = new SimpleSchema({
     label: 'Approved'
   }
 });
+
+export default PostsSchema;

@@ -6,7 +6,7 @@ import ChartTable from './ChartTable.jsx';
 import { withTracker } from 'meteor/react-meteor-data';
 import { moment as momentUtil } from 'meteor/momentjs:moment';
 import moment from 'moment-timezone';
-import { Helmet } from 'react-helmet';
+import { Metamorph } from 'react-metamorph';
 
 class ChartsList extends Component {
   static propTypes = {
@@ -23,7 +23,7 @@ class ChartsList extends Component {
     return momentUtil(moment(date, 'Pacific/Honolulu')).format('MMMM DD, YYYY');
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
+  shouldComponentUpdate() {
     return !this.props.ready;
   }
 
@@ -31,22 +31,8 @@ class ChartsList extends Component {
     var dateFmt = this.dateFmt;
 
     return [
-      <Helmet key="metadata">
-        <title>Charts - KTUH FM Honolulu | Radio for the People</title>
-        <meta property="og:title"
-          content="Charts - KTUH FM Honolulu | Radio for the People" />
-        <meta property="og:description" content="KTUH Charts" />
-        <meta name="twitter:title" content={'Charts' +
-          ' - KTUH FM Honolulu | Radio for the People'} />
-        <meta name="twitter:url" content="https://ktuh.org" />
-        <meta name="twitter:description" content="KTUH Charts" />
-        <meta name="twitter:site" content="@ktuh_fm" />
-        <meta name="twitter:image" content={
-          'https://ktuh.org/img/ktuh-logo.jpg'
-        } />
-        <meta name="twitter:creator" content="@ktuh_fm" />
-        <meta property="description" content="KTUH Charts" />
-      </Helmet>,
+      <Metamorph title="Charts - KTUH FM Honolulu | Radio for the People"
+        description="KTUH Charts" image='https://ktuh.org/img/ktuh-logo.jpg' />,
       <h2 className='general__header' key='header-title'>Charts</h2>,
       <div className='playlist-list__latest' key='playlist-list-conent'>
         {this.props.latestCharts.map((chart) =>

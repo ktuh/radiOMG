@@ -1,41 +1,24 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Posts from '../../../api/posts/posts_collection.js';
-import Profiles from '../../../api/users/profiles_collection.js';
 import Shows from '../../../api/shows/shows_collection.js';
-import { Helmet } from 'react-helmet';
+import { Metamorph } from 'react-metamorph';
 
 class SSRProfilePage extends Component {
   static propTypes = {
-    profile: PropTypes.object
+    profile: PropTypes.object,
+    show: PropTypes.object,
+    posts: PropTypes.array
   }
 
   render() {
     if (this.props.profile !== undefined && !this.props.profile.banned) {
       return [
-        <Helmet key="metadata">
-          <title>{this.props.profile.name + '\'s Profile - KTUH FM Honolulu' +
-            ' | Radio for the People'}</title>
-          <meta property="og:title"
-            content={this.props.profile.name +
-              '\'s Profile - KTUH FM Honolulu' +
-              ' | Radio for the People'} />
-          <meta property="og:description" content={
-            this.props.profile.name + '\'s Profile'} />
-          <meta name="twitter:title" content={this.props.profile.name +
-            '\'s Profile - KTUH FM Honolulu | Radio for the People'} />
-          <meta name="twitter:url" content="https://ktuh.org" />
-          <meta name="twitter:description" content={
-            this.props.profile.name + '\'s Profile'}  />
-          <meta name="twitter:site" content="@ktuh_fm" />
-          <meta name="twitter:image" content={
-            this.props.profile.photo && this.props.profile.photo.url ||
-            'https://ktuh.org/img/ktuh-logo.jpg'
-          } />
-          <meta name="twitter:creator" content="@ktuh_fm" />
-          <meta property="description" content={
-            this.props.profile.name + '\'s Profile'} />
-        </Helmet>,
+        <Metamorph title={this.props.profile.name +
+          '\'s Profile - KTUH FM Honolulu | Radio for the People'}
+        description={this.props.profile.name + '\'s Profile'}
+        image={this.props.profile.photo && this.props.profile.photo.url ||
+          'https://ktuh.org/img/ktuh-logo.jpg'} />,
         <h2 className='general__header'>{this.props.profile.name}</h2>,
         <div className='profile'>
           <div className='profile__left'>

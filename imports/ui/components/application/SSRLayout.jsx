@@ -6,7 +6,7 @@ import { Helmet } from 'react-helmet';
 
 export default class Layout extends Component {
   static propTypes = {
-    content: PropTypes.func
+    content: PropTypes.object
   }
 
   constructor(props) {
@@ -23,7 +23,10 @@ export default class Layout extends Component {
       { 'name': 'msapplication-TileColor', 'content': '#da532c' },
       { 'name': 'msapplication-TileImage', 'content': '/mstile-144x144.png' },
       { 'name': 'msapplication-config', 'content': '/browserconfig.xml' },
-      { 'name': 'theme-color', 'content': '#ffffff' }]} link={[{
+      { 'name': 'theme-color', 'content': '#ffffff' },
+      { 'name': 'twitter:url', 'content': 'https://ktuh.org' },
+      { 'name': 'twitter:url', 'content': '@ktuh_fm' },
+      { 'name': 'twitter:creator', 'content': '@ktuh_fm' }]} link={[{
         'rel': 'stylesheet', 'type': 'text/css',
         'href': 'https://ktuh.org/main.css'
       }]} />,

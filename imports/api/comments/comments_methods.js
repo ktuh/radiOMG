@@ -4,7 +4,6 @@ import Playlists from '../playlists/playlists_collection.js';
 import Posts from '../posts/posts_collection.js';
 import Comments from '../comments/comments_collection.js';
 import Shows from '../shows/shows_collection.js';
-import { FlowRouter } from 'meteor/kadira:flow-router';
 import { getLocalTime } from '../../startup/lib/helpers.js';
 
 Meteor.methods({
@@ -26,13 +25,11 @@ Meteor.methods({
     var to = '';
     var subject = '';
     var body = '';
-    var url = Meteor.absoluteUrl()  ;
+    var url = Meteor.absoluteUrl();
 
-    if (!(commentAttributes.type === 'partyPage' ||
-          commentAttributes.type === 'playlistPage' ||
-          commentAttributes.type === 'newsPage')) {
-      throwError('Cannot comment on this page!');
-      return;
+    if (!['partyPage', 'playlistPage', 'newsPage']
+      .includes(commentAttributes.type)) {
+      throw new Error('Cannot comment on this page!');
     }
 
     // create the comment, save the id
@@ -41,11 +38,13 @@ Meteor.methods({
     if (this.isSimulation)
       return comment._id;
 
+    var recipient = '';
+
     switch(commentAttributes.type) {
     case 'partyPage':
       var party = Parties.findOne({ _id: commentAttributes.postId });
-      var url = url + 'events/' + post.slug;
-      var recipient = Meteor.users.findOne({ _id: party.userId });
+      url += 'events/' + post.slug;
+      recipient = Meteor.users.findOne({ _id: party.userId });
 
       to = recipient.emails && recipient.emails[0].address;
       // So we don't email if the party page's author is commenting.
@@ -63,9 +62,9 @@ Meteor.methods({
       // TODO: Sort out the issue with using FlowRouter.url() to generate the
       // path dynamically. It was failing to substitute the route and params
       // when given a route name. For now, we've hard-coded in the url.
-      var url = url + 'playlist/' + playlist.spinPlaylistId;
+      url += 'playlist/' + playlist.spinPlaylistId;
       var show = Shows.findOne({ showId: playlist.showId });
-      var recipient = Meteor.users.findOne({ _id: show.userId });
+      recipient = Meteor.users.findOne({ _id: show.userId });
 
       to = recipient.emails && recipient.emails[0].address;
       if (comment.userId === show.userId)
@@ -79,8 +78,8 @@ Meteor.methods({
       break;
     case 'newsPage':
       var post = Posts.findOne({ _id: commentAttributes.postId });
-      var url = url + 'radioblog/' + post.slug;
-      var recipient = Meteor.users.findOne({ _id: post.userId });
+      url += 'radioblog/' + post.slug;
+      recipient = Meteor.users.findOne({ _id: post.userId });
 
       to = recipient.emails && recipient.emails[0].address;
       if (post.userId === comment.userId) break;
@@ -91,7 +90,7 @@ Meteor.methods({
       '">Click here to view this comment in context.</a>';
       Meteor.call('sendEmailNotification', to, subject, body, false);
       break;
-    };
+    }
 
     // createCommentNotification(comment);
     return comment._id;

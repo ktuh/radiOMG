@@ -4,7 +4,7 @@ const Moderator = new Roles.Role('moderator');
 
 Moderator.allow('collections.reviews.index', true);
 Moderator.allow('collections.review.insert', true);
-Moderator.allow('collections.reviews.update', (userId, doc, fields, modifier) =>
+Moderator.allow('collections.reviews.update', (userId, doc) =>
   doc.userId === userId);
 Moderator.allow('collections.reviews.remove', true);
 Moderator.allow('collections.reviews.showCreate', true);

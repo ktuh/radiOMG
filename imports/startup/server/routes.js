@@ -1,6 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Picker } from 'meteor/meteorhacks:picker';
-import { check } from 'meteor/check';
+import { check, Match } from 'meteor/check';
 import Posts from '../../api/posts/posts_collection.js';
 import Reviews from '../../api/reviews/reviews_collection.js';
 import Shows from '../../api/shows/shows_collection.js';
@@ -21,7 +21,7 @@ import SSRLayout from '../../ui/components/application/SSRLayout.jsx'
 Picker.middleware(bodyParser.json());
 Picker.middleware(bodyParser.urlencoded({ extended: false }));
 
-Picker.route('/spinitron/latest', function(params, req, res, next) {
+Picker.route('/spinitron/latest', function(params) {
   check(params.query, { playlistId: Match.Where(function(str) {
     check(str, String);
     return /[0-9]+/.test(str);
@@ -92,7 +92,7 @@ Picker.route('/spinitron/latest', function(params, req, res, next) {
 });
 
 // SEO Routes
-const SeoRouter = Picker.filter(function(request, response) {
+const SeoRouter = Picker.filter(function(request) {
   var botAgents = [
     /^facebookexternalhit/i, // Facebook
     /^linkedinbot/i, // LinkedIn

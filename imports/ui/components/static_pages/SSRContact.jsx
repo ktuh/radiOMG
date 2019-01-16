@@ -1,25 +1,12 @@
 import React, { Component } from 'react';
-import { Helmet } from 'react-helmet';
+import { Metamorph } from 'react-metamorph';
 
 export default class Contact extends Component {
   render() {
     return [
-      <Helmet key="metadata">
-        <title>Contact Us - KTUH FM Honolulu | Radio for the People</title>
-        <meta property="og:title"
-          content="Contact Us - KTUH FM Honolulu | Radio for the People" />
-        <meta property="og:description" content="Contact KTUH" />
-        <meta name="twitter:title" content=
-          'Contact Us - KTUH FM Honolulu | Radio for the People' />
-        <meta name="twitter:url" content="https://ktuh.org" />
-        <meta name="twitter:description" content="Contact KTUH" />
-        <meta name="twitter:site" content="@ktuh_fm" />
-        <meta name="twitter:image" content={
-          'https://ktuh.org/img/ktuh-logo.jpg'
-        } />
-        <meta name="twitter:creator" content="@ktuh_fm" />
-        <meta property="description" content="Contact KTUH" />
-      </Helmet>,
+      <Metamorph title="Contact Us - KTUH FM Honolulu | Radio for the People"
+        description="Contact KTUH" image='https://ktuh.org/img/ktuh-logo.jpg'
+      />,
       <h2 className='general__header'>Contact Us</h2>,
       <div className='contact__content' key='contact-content'>
         <p>
@@ -30,7 +17,8 @@ export default class Contact extends Component {
 
         <p>
         Have an event to include in our on-air calendars? Fill out our
-          <a href='https://docs.google.com/forms/d/e/1FAIpQLSefFe5zO_bJsjuS2vKkKslU2aKEVdf8M6Vo9cplNLXV7rO2iA/viewform'>
+          <a href={'https://docs.google.com/forms/d/e/' +
+          '1FAIpQLSefFe5zO_bJsjuS2vKkKslU2aKEVdf8M6Vo9cplNLXV7rO2iA/viewform'}>
             <b>KTUH Production Request Form!</b>
           </a>
         For questions, email Productions.

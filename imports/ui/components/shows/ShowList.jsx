@@ -7,7 +7,7 @@ import { getLocalTime } from '../../../startup/lib/helpers.js';
 import { $ } from 'meteor/jquery';
 import { withTracker } from 'meteor/react-meteor-data';
 import ShowItem from './ShowItem.jsx';
-import { Helmet } from 'react-helmet';
+import { Metamorph } from 'react-metamorph';
 
 class ShowList extends Component {
   static propTypes = {
@@ -66,28 +66,9 @@ class ShowList extends Component {
 
     if (this.props.ready)
       return [
-        <Helmet key="metadata">
-          <title>{'Show Schedule - KTUH FM Honolulu' +
-            ' | Radio for the People'}</title>
-          <meta property="og:title"
-            content={'Show Schedule ' +
-              ' - KTUH FM Honolulu' +
-              ' | Radio for the People'} />
-          <meta property="og:description" content={
-            'Show Schedule on KTUH'} />
-          <meta name="twitter:title" content={'Show Schedule' +
-            ' - KTUH FM Honolulu | Radio for the People'} />
-          <meta name="twitter:url" content="https://ktuh.org" />
-          <meta name="twitter:description" content={
-            'Show Schedule on KTUH'}  />
-          <meta name="twitter:site" content="@ktuh_fm" />
-          <meta name="twitter:image" content={
-            'https://ktuh.org/img/ktuh-logo.jpg'
-          } />
-          <meta name="twitter:creator" content="@ktuh_fm" />
-          <meta property="description" content={
-            'Show Schedule on KTUH'} />
-        </Helmet>,
+        <Metamorph title=
+          'Show Schedule - KTUH FM Honolulu | Radio for the People' description=
+          'Show Schedule on KTUH' image='https://ktuh.org/img/ktuh-logo.jpg' />,
         <h2 className='general__header' key='header'>Show Schedule</h2>,
         <div className='shows'>
           <div className='shows__days shows__days__wide'>

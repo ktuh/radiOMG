@@ -1,36 +1,23 @@
 import React, { Component } from 'react';
-import Profiles from '../../../api/users/profiles_collection.js';
-import Posts from '../../../api/posts/posts_collection.js';
+import PropTypes from 'prop-types';
 import Comments from '../../../api/comments/comments_collection.js';
 import CommentItem from '../comments/CommentItem.jsx';
 import { displayNameById, dateFormat } from '../../../startup/lib/helpers.js';
-import { Helmet } from 'react-helmet';
+import { Metamorph } from 'react-metamorph';
 
 class SSRNewsPage extends Component {
+  static propTypes = {
+    post: PropTypes.object,
+    comments: PropTypes.array
+  }
+
   render() {
-    var self = this;
     return [
-      <Helmet key="metadata">
-        <title>{this.props.post.title +
-          ' - KTUH FM Honolulu | Radio for the People'}</title>
-        <meta property="og:title"
-          content={this.props.post.title +
-            ' - KTUH FM Honolulu | Radio for the People'} />
-        <meta property="og:description" content={this.props.post.summary} />
-        <meta property="og:image" content={this.props.post.thumbnail ||
-          '/img/ktuh-logo.png' } />
-        <meta name="twitter:title" content={this.props.post.title +
-          ' - KTUH FM Honolulu | Radio for the People'} />
-        <meta name="twitter:url" content="https://ktuh.org" />
-        <meta name="twitter:description" content={this.props.post.summary} />
-        <meta name="twitter:site" content="@ktuh_fm" />
-        <meta name="twitter:image" content={
-          this.props.post.thumbnail ||
-          'https://ktuh.org/img/ktuh-logo.jpg'
-        } />
-        <meta name="twitter:creator" content="@ktuh_fm" />
-        <meta property="description" content={this.props.post.summary} />
-      </Helmet>,
+      <Metamorph title={this.props.post.title +
+        ' - KTUH FM Honolulu | Radio for the People'}
+      description={this.props.post.summary}
+      image={this.props.post.thumbnail ||
+          'https://ktuh.org/img/ktuh-logo.png'} />,
       <h1 key="header-title" className='general__header'>
         {this.props.post.title}</h1>,
       <div key="radioblog-back-link" className='show__link'>
@@ -66,6 +53,4 @@ class SSRNewsPage extends Component {
 }
 
 export default (post) =>
-  <SSRNewsPage
-    post={post}
-    comments={Comments.find({ _id: post._id })} />;
+  <SSRNewsPage post={post} comments={Comments.find({ _id: post._id })} />;

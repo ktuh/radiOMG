@@ -1,8 +1,7 @@
-import { Mongo } from 'meteor/mongo';
 import { scorpius } from 'meteor/scorpiusjs:core';
 import ProfilesSchema from './profiles_schema';
 
-export default Profiles = new scorpius.collection('profiles', {
+var Profiles = new scorpius.collection('profiles', {
   singularName: 'profile',
   pluralName: 'profiles',
   link: {
@@ -19,13 +18,15 @@ export default Profiles = new scorpius.collection('profiles', {
 });
 
 Profiles.allow({
-  insert: (userId, doc, fieldNames, modifier) => {
+  insert: (userId, doc) => {
     return userId === doc.userId;
   },
-  update: function (userId, doc, fieldNames, modifier) {
+  update: function (userId, doc) {
     return userId === doc.userId;
   }
 });
 
 
 Profiles.attachSchema(ProfilesSchema);
+
+export default Profiles;

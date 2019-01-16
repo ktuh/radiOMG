@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { moment } from 'meteor/momentjs:moment';
 import { displayNameById, usernameById } from '../../../startup/lib/helpers.js';
-import { Helmet } from 'react-helmet';
+import { Metamorph } from 'react-metamorph';
 
 class SSRReviewPage extends Component {
   static propTypes = {
@@ -16,37 +16,12 @@ class SSRReviewPage extends Component {
 
   render() {
     return [
-      <Helmet key="metadata">
-        <title>
-          {'Review of "' + this.props.review.releaseName + '" by ' +
-          this.props.review.artist + ' - KTUH FM Honolulu | ' +
-          'Radio for the People'}
-        </title>
-        <meta property="og:title"
-          content={'Review of "' + this.props.review.releaseName + '" by ' +
-          this.props.review.artist + ' - KTUH FM Honolulu | ' +
-          'Radio for the People'}
-        />
-        <meta property="og:description" content={
-          'Review of ' + this.props.review.releaseName + ' by ' +
-          this.props.review.artist} />
-        <meta name="twitter:title" content={'Review of "' +
-          this.props.review.releaseName + '" by ' +
-          this.props.review.artist + ' - KTUH FM Honolulu | ' +
-          'Radio for the People'} />
-        <meta name="twitter:url" content="https://ktuh.org" />
-        <meta name="twitter:description" content={
-          'Review of "' + this.props.review.releaseName + '" by ' +
-          this.props.review.artist} />
-        <meta name="twitter:site" content="@ktuh_fm" />
-        <meta name="twitter:image" content={
-          this.props.review.thumbnail ||
-          'https://ktuh.org/img/ktuh-logo.jpg'} />
-        <meta name="twitter:creator" content="@ktuh_fm" />
-        <meta property="description" content={
-          'Review of "' + this.props.review.releaseName + '" by ' +
-          this.props.review.artist} />
-      </Helmet>,
+      <Metamorph title={'Review of "' + this.props.review.releaseName +
+        '" by ' + this.props.review.artist + ' - KTUH FM Honolulu | ' +
+      'Radio for the People'} description={'Review of ' +
+        this.props.review.releaseName + ' by ' + this.props.review.artist}
+      image={this.props.review.thumbnail ||
+        'https://ktuh.org/img/ktuh-logo.jpg'} />,
       <h1 className="general__header" key="header">
         <b>{this.props.review.releaseName}</b>
         <br />{this.props.review.artist}</h1>,

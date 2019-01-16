@@ -3,7 +3,7 @@ import { Meteor } from 'meteor/meteor';
 import { scorpius } from 'meteor/scorpiusjs:core';
 import { thumbnailUrl, getLocalTime } from '../../startup/lib/helpers.js';
 
-export default ReviewsSchema = new SimpleSchema({
+var ReviewsSchema = new SimpleSchema({
   userId: {
     type: String,
     autoform: {
@@ -97,3 +97,5 @@ export default ReviewsSchema = new SimpleSchema({
     label: 'Approved'
   }
 });
+
+export default ReviewsSchema;

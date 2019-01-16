@@ -37,11 +37,11 @@ class CustomLoginButtons extends Component {
     }
   }
 
-  handleView(event) {
+  handleView() {
     FlowRouter.go('profilePage', { username: this.props.currentUser.username });
   }
 
-  handleEdit(event) {
+  handleEdit() {
     FlowRouter.go('profileEdit');
   }
 
@@ -93,7 +93,7 @@ class CustomLoginButtons extends Component {
       Error('Unexpected -- no element to use as a login user selector');
     }
 
-    Meteor.loginWithPassword(loginSelector, password, (error, result) => {
+    Meteor.loginWithPassword(loginSelector, password, (error) => {
       if (error) {
         $('#login-dropdown-list').addClass('open');
         $('#login-dropdown-list .dropdown-toggle').attr(
@@ -217,7 +217,7 @@ class CustomLoginButtons extends Component {
     }
   }
 
-  handleChangePwd(event) {
+  handleChangePwd() {
     this.changePassword();
   }
 

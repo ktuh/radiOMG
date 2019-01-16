@@ -1,9 +1,8 @@
-import { Mongo } from 'meteor/mongo';
 import { scorpius } from 'meteor/scorpiusjs:core';
 
 import PartySchema from './parties_schema.js';
 
-export default Parties = new scorpius.collection('parties', {
+var Parties = new scorpius.collection('parties', {
   singularName: 'party',
   pluralName: 'parties',
   tabular: {
@@ -11,7 +10,7 @@ export default Parties = new scorpius.collection('parties', {
       {
         data: 'flyerFront',
         title: 'Flyer',
-        render: function (val, type, doc) {
+        render: function (val) {
           return '<img src=' + val.url + '>';
         }
       }, {
@@ -33,7 +32,7 @@ Parties.allow({
     return (userId && doc.userId === userId) ||
       Meteor.user().hasRole('moderator');
   },
-  update: function (userId, doc, fields, modifier) {
+  update: function (userId, doc) {
     return doc.userId === userId ||
       Meteor.user().hasRole('moderator');
   },
@@ -52,3 +51,5 @@ Parties.friendlySlugs({
 });
 
 Parties.attachSchema(PartySchema);
+
+export default Parties;

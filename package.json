@@ -35,6 +35,7 @@
     "react-dom": "^16.7.0",
     "react-everafter": "^0.3.0",
     "react-helmet": "^5.2.0",
+    "react-metamorph": "^0.1.1",
     "react-transition-group": "^2.5.2",
     "simple-react-form": "github:dchan3/simple-react-form",
     "simple-react-form-material-ui": "github:dchan3/simple-react-form-material-ui",
@@ -45,6 +46,7 @@
   "devDependencies": {
     "babel-eslint": "^10.0.1",
     "eslint": "^5.12.0",
+    "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-meteor": "^5.1.0",
     "eslint-plugin-react": "^7.12.3",
     "url": "^0.11.0"

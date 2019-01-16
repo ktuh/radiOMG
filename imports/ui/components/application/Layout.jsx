@@ -8,7 +8,7 @@ import Banner from '../includes/Banner.jsx';
 
 export default class Layout extends Component {
   static propTypes = {
-    content: PropTypes.func
+    content: PropTypes.object
   }
 
   constructor(props) {

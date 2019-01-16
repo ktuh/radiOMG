@@ -1,8 +1,7 @@
-import { Mongo } from 'meteor/mongo';
 import { scorpius } from 'meteor/scorpiusjs:core';
 import ReviewsSchema from './reviews_schema';
 
-export default Reviews = new scorpius.collection('reviews', {
+var Reviews = new scorpius.collection('reviews', {
   singularName: 'review',
   pluralName: 'reviews',
   link: {
@@ -48,7 +47,7 @@ Reviews.allow({
     return (userId && doc.userId === userId) ||
       Meteor.user().hasRole('moderator');
   },
-  update: function (userId, doc, fields, modifier) {
+  update: function (userId, doc) {
     return doc.userId === userId || Meteor.user().hasRole('moderator');
   },
   remove: function (userId, doc) {
@@ -65,3 +64,5 @@ Reviews.friendlySlugs({
 });
 
 Reviews.attachSchema(ReviewsSchema);
+
+export default Reviews;

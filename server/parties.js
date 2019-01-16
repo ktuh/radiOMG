@@ -12,7 +12,6 @@ Meteor.methods({
     if (!p) {
       throw new Meteor.Error(100003,
         'Party not found during upvote operation.');
-      return;
     }
 
     if (p.upvoters.indexOf && p.upvoters.indexOf(u.username) >= 0) {
