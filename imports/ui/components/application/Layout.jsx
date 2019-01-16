@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Landing from '../home/Landing.jsx';
 import Header from '../includes/Header.jsx';
 import Footer from '../includes/Footer.jsx';
@@ -6,6 +7,10 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 import Banner from '../includes/Banner.jsx';
 
 export default class Layout extends Component {
+  static propTypes = {
+    content: PropTypes.func
+  }
+
   constructor(props) {
     super(props);
   }

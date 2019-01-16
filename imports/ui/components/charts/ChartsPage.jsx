@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { FlowRouter } from 'meteor/kadira:flow-router';
 import Charts from '../../../api/charts/charts_collection.js';
 import ChartsSidebar from './ChartsSidebar.jsx';
 import ChartTable from './ChartTable.jsx';
@@ -8,6 +10,11 @@ import moment from 'moment-timezone';
 import { Helmet } from 'react-helmet';
 
 class ChartsPage extends Component {
+  static propTypes = {
+    ready: PropTypes.bool,
+    chart: PropTypes.object
+  }
+
   shouldComponentUpdate(nextProps, nextState) {
     return !this.props.ready;
   }

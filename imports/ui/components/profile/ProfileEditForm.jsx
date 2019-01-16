@@ -8,7 +8,6 @@ import SummernoteTextEdit from './SummernoteTextEdit.jsx';
 import ObjectComponent from 'simple-react-form-material-ui/lib/object';
 import { Form, Field } from 'simple-react-form';
 import Profiles from '../../../api/users/profiles_collection.js';
-import { Bert } from 'meteor/themeteorchef:bert';
 import { $ } from 'meteor/jquery';
 import 'meteor/summernote:standalone';
 

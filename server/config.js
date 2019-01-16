@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
-import { AccountsServer, Accounts } from 'meteor/accounts-base';
-import { Bert } from 'meteor/themeteorchef:bert';
+import { Accounts } from 'meteor/accounts-base';
 import Profiles from '../imports/api/users/profiles_collection.js';
+import { Roles } from 'meteor/nicolaslopezj:roles';
 import { ServiceConfiguration } from 'meteor/service-configuration';
 
 Meteor.startup(function () {
@@ -17,7 +17,7 @@ Meteor.startup(function () {
     return 'KTUH Accounts <webmaster@ktuh.org>';
   };
 
-  Accounts.emailTemplates.verifyEmail.subject = function(user) {
+  Accounts.emailTemplates.verifyEmail.subject = function() {
     return 'Confirm Your Email Address for KTUH Honolulu';
   };
 
@@ -33,7 +33,7 @@ Meteor.startup(function () {
     return 'KTUH Accounts <webmaster@ktuh.org>';
   };
 
-  Accounts.emailTemplates.resetPassword.subject = function(user) {
+  Accounts.emailTemplates.resetPassword.subject = function() {
     return 'Reset Your Password on KTUH Honolulu';
   };
 

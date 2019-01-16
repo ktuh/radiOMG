@@ -1,6 +1,6 @@
 import './charts_update.html';
+import { CSV } from 'meteor/clinical:csv';
 import Charts from '../../../api/charts/charts_collection.js';
-import { moment as momentUtil } from 'meteor/momentjs:moment';
 import moment from 'moment-timezone';
 
 ReactiveTemplates.set('collections.charts.update', 'chartsUpdate');

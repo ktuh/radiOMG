@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Charts from '../../../api/charts/charts_collection.js';
 import ChartsSidebar from './ChartsSidebar.jsx';
 import ChartTable from './ChartTable.jsx';
@@ -8,6 +9,11 @@ import moment from 'moment-timezone';
 import { Helmet } from 'react-helmet';
 
 class ChartsList extends Component {
+  static propTypes = {
+    ready: PropTypes.bool,
+    latestCharts: PropTypes.array
+  }
+
   constructor(props) {
     super(props);
     this.dateFmt = this.dateFmt.bind(this);

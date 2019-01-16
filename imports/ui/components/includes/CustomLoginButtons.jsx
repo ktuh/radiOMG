@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { withTracker } from 'meteor/react-meteor-data';
-import { _ } from 'underscore';
+import { $ } from 'meteor/jquery';
 
 class LoginErrorMessage extends Component {
+  static propTypes = {
+    errorMessage: PropTypes.string
+  }
+
   render() {
     return <div
       style={{ backgroundColor: 'pink', color: 'red',
@@ -16,6 +21,10 @@ class LoginErrorMessage extends Component {
 }
 
 class CustomLoginButtons extends Component {
+  static propTypes = {
+    currentUser: PropTypes.object
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -38,10 +47,12 @@ class CustomLoginButtons extends Component {
 
   trimmedElementValueById(id) {
     const element = document.getElementById(id);
-    if (!element)
+    if (!element) {
       return null;
-    else
+    }
+    else {
       return element.value.replace(/^\s*|\s*$/g, '');
+    }
   }
 
   elementValueById(id) {
@@ -108,7 +119,11 @@ class CustomLoginButtons extends Component {
     } else {
       this.state.set({ errorMessage: 'Invalid email' });
     }
-  };
+  }
+
+  validateEmail(email) {
+    return /[A-Za-z0-9._-]+@[A-Za-z0-9._-]/.test(email);
+  }
 
   signup() {
     const options = {}; // to be passed to Accounts.createUser
@@ -279,10 +294,10 @@ class CustomLoginButtons extends Component {
               Sign in with Google
             </button>
             <div className="or">
-    		      <span className="hline">{'          '}</span>
-    		      <span className="or-text">or</span>
-    		      <span className="hline">{'          '}</span>
-    	      </div>
+              <span className="hline">{'          '}</span>
+              <span className="or-text">or</span>
+              <span className="hline">{'          '}</span>
+            </div>
             <input id="login-username" type="text" placeholder="Username"
               className="form-control" />
             <input id="login-email" type="email" placeholder="Email"
@@ -291,8 +306,8 @@ class CustomLoginButtons extends Component {
               className="form-control" />
             <button className="btn btn-primary col-xs-12 col-sm-12"
               id="login-buttons-password" type="button" onClick={handleClick}>
-      				Create
-    		    </button>
+              Create
+            </button>
             <button id="back-to-login-link" onClick={handleCreateClick}
               className="btn btn-default col-xs-12 col-sm-12">Cancel
             </button>
