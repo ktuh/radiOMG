@@ -8,7 +8,7 @@ export default class NewsItem extends Component {
     item: PropTypes.object
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
+  shouldComponentUpdate() {
     return true;
   }
 

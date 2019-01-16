@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import NewsListLatestReviewsItem from './NewsListLatestReviewsItem.jsx';
 import Reviews from '../../../api/reviews/reviews_collection.js';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Meteor } from 'meteor/meteor';
 
 class NewsListLatestReviews extends Component {
+  static propTypes = {
+    ready: PropTypes.bool,
+    reviews: PropTypes.array
+  }
+
   render() {
     if (this.props.ready && this.props.reviews.length > 0) return (
       <div className='news-list__latest-reviews'>
