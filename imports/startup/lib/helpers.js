@@ -34,7 +34,8 @@ export const currentPlaylistFindOne = function() {
     }
   }, { sort: { startTime: -1 } });
 
-  if (playlist && now.getHours() >= parseInt(playlist.endTime.split(':')[0])) {
+  if (playlist &&
+    now.getHours() >= parseInt(playlist.endTime.split(':')[0], 10)) {
     return undefined;
   }
   else {

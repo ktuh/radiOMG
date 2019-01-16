@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
 import Reviews from '../../../api/reviews/reviews_collection.js';
 import HomeContentReviewsItem from './HomeContentReviewsItem.jsx';
 import { Meteor } from 'meteor/meteor';
 
 class HomeContentReviews extends Component {
+  static propTypes = {
+    reviews: PropTypes.array
+  }
+
   constructor(props) {
     super(props);
   }

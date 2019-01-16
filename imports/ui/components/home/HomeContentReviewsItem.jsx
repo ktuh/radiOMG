@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export default class HomeContentReviewsItem extends Component {
+  static propTypes = {
+    item: PropTypes.object
+  }
+
   render() {
     return (
       <div key={this.props.item._id} className='home__reviews-item'>

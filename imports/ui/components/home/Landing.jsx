@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { currentPlaylist, currentPlaylistFindOne, currentShow, getLocalTime,
+import PropTypes from 'prop-types';
+import { currentPlaylistFindOne, currentShow, getLocalTime,
   usernameFromDisplayName } from '../../../startup/lib/helpers.js';
 import { withTracker } from 'meteor/react-meteor-data';
 import NowPlaying from '../../../api/playlists/now_playing.js';
-import { Session } from 'meteor/session';
-import { FlowRouter } from 'meteor/kadira:flow-router';
 import { moment as momentUtil } from 'meteor/momentjs:moment';
 import moment from 'moment-timezone';
 import { $ } from 'meteor/jquery';
@@ -42,6 +41,10 @@ function showActualHost() {
 }
 
 class LandingInfo extends Component {
+  static propTypes = {
+    nowPlaying: PropTypes.object
+  }
+
   nowPlaying() {
     if (this.props.nowPlaying !== undefined &&
       !(this.timeout(this.props.nowPlaying)))
@@ -110,6 +113,11 @@ class LandingInfo extends Component {
 }
 
 class Landing extends Component {
+  static propTypes = {
+    ready: PropTypes.bool,
+    nowPlaying: PropTypes.object
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -126,7 +134,6 @@ class Landing extends Component {
 
   background() {
     var h = getLocalTime().hour();
-    var $landing = $('.landing');
 
     if (h >= 6 && h < 18) {
       return 'url(\'/img/tantalus-morning.jpg\')';
@@ -141,13 +148,13 @@ class Landing extends Component {
       'mainPage.audioUrl', '') && !player.getPaused();
   }
 
-  handleClickDownArrow(event) {
+  handleClickDownArrow() {
     var position = $('#main').offset().top;
     var navHeight = $('.navbar-header').height();
     $('HTML, BODY').animate({ scrollTop: position - navHeight + 2 }, 600);
   }
 
-  handlePlayBtn(event) {
+  handlePlayBtn() {
     var paused = player.getPaused();
     if (player.getSrc() !== 'http://stream.ktuh.org:8000/stream-mp3') {
       player.setSrc('http://stream.ktuh.org:8000/stream-mp3');
@@ -167,7 +174,7 @@ class Landing extends Component {
   }
 
   render() {
-    var self = this, handlePlayBtn = this.handlePlayBtn.bind(this),
+    var handlePlayBtn = this.handlePlayBtn.bind(this),
       handleClickDownArrow = this.handleClickDownArrow.bind(this);
 
     if (this.props.ready)
@@ -187,7 +194,7 @@ class Landing extends Component {
               )}
             </div>
             <LandingInfo host={showActualHost()}
-              nowPlaying={this.props.nowPlaying} timeout={this.props.timeout}/>
+              nowPlaying={this.props.nowPlaying} />
           </div>
           <h4 className='landing__freq landing__hnl-freq'>90.1 FM Honolulu</h4>
           <h4 className='landing__freq landing__ns-freq'>91.1 FM Waialua </h4>
