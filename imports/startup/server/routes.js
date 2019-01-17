@@ -1,12 +1,12 @@
 import { Meteor } from 'meteor/meteor';
 import { Picker } from 'meteor/meteorhacks:picker';
-import { check, Match } from 'meteor/check';
+import { check } from 'meteor/check';
 import Posts from '../../api/posts/posts_collection.js';
 import Reviews from '../../api/reviews/reviews_collection.js';
 import Shows from '../../api/shows/shows_collection.js';
 import Charts from '../../api/charts/charts_collection.js';
 import Profiles from '../../api/users/profiles_collection.js';
-import Playlists from '../../api/playlists/now_playing.js';
+import Playlists from '../../api/playlists/playlists_collection.js';
 import Parties from '../../api/parties/parties_collection.js';
 import NowPlaying from '../../api/playlists/now_playing.js';
 import bodyParser from 'body-parser';
@@ -21,7 +21,7 @@ import SSRLayout from '../../ui/components/application/SSRLayout.jsx'
 Picker.middleware(bodyParser.json());
 Picker.middleware(bodyParser.urlencoded({ extended: false }));
 
-Picker.route('/spinitron/latest', function(params) {
+Picker.route('/spinitron/latest', function(params, req, res, next) {
   check(params.query, { playlistId: Match.Where(function(str) {
     check(str, String);
     return /[0-9]+/.test(str);
@@ -54,7 +54,7 @@ Picker.route('/spinitron/latest', function(params) {
       );
     }
     else {
-      Meteor.call('getPlaylistOrInfo2', parseInt(params.query.playlistId),
+      Meteor.call('getPlaylistOrInfo2', playlistId,
         function(error, result) {
           if (!error && result) {
             Playlists.insert({
@@ -89,6 +89,9 @@ Picker.route('/spinitron/latest', function(params) {
       }
     });
   }
+
+  res.statusCode = 200;
+  res.end();
 });
 
 // SEO Routes
