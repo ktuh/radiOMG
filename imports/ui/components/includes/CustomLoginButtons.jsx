@@ -22,6 +22,22 @@ class CustomLoginButtons extends Component {
       errorMessage: '',
       infoMessage: ''
     }
+
+    this.handleClick = this.handleClick.bind(this);
+    this.handleView = this.handleView.bind(this);
+    this.handleEdit = this.handleEdit.bind(this);
+    this.handleForgot = this.handleForgot.bind(this);
+    this.handleCreateClick = this.handleCreateClick.bind(this);
+    this.menuLoggedInChange = this.menuLoggedInChange.bind(this);
+    this.menuLoggedInNoChange = this.menuLoggedInNoChange.bind(this);
+    this.menuSignup = this.menuSignup.bind(this);
+    this.menuNone = this.menuNone.bind(this);
+    this.menuForgot = this.menuForgot.bind(this);
+    this.handleChangePwdFlow = this.handleChangePwdFlow.bind(this);
+    this.logout = this.logout.bind(this);
+    this.logoutClick = this.logoutClick.bind(this);
+    this.forgotPassword = this.forgotPassword.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this)
   }
 
   handleView() {
@@ -228,9 +244,9 @@ class CustomLoginButtons extends Component {
         placeholder="New Password Again" className="form-control" />,
       <button className="btn btn-default btn-block"
         id="login-buttons-open-change-password"
-        onClick={this.handleChangePwd.bind(this)}>Change password</button>,
+        onClick={this.handleChangePwd}>Change password</button>,
       <button className="btn btn-block btn-primary"
-        onClick={this.handleChangePwdFlow.bind(this)}
+        onClick={this.handleChangePwdFlow}
         id="login-buttons-logout">Sign out</button>
     ];
   }
@@ -238,18 +254,18 @@ class CustomLoginButtons extends Component {
   menuLoggedInNoChange() {
     return [
       <button className="btn btn-default btn-block"
-        id="login-buttons-view-profile" onClick={this.handleView.bind(this)}>
+        id="login-buttons-view-profile" onClick={this.handleView}>
         View profile
       </button>,
       <button className="btn btn-default btn-block"
-        id="login-buttons-edit-profile" onClick={this.handleEdit.bind(this)}>
+        id="login-buttons-edit-profile" onClick={this.handleEdit}>
         Edit profile
       </button>,
       <button className="btn btn-default btn-block"
         id="login-buttons-open-change-password"
-        onClick={this.handleChangePwdFlow.bind(this)}>Change password</button>,
+        onClick={this.handleChangePwdFlow}>Change password</button>,
       <button className="btn btn-block btn-primary"
-        onClick={this.logoutClick.bind(this)}
+        onClick={this.logoutClick}
         id="login-buttons-Cancel">Sign out</button>];
   }
 
@@ -270,18 +286,18 @@ class CustomLoginButtons extends Component {
         placeholder="Username or Email" className="form-control" />,
       <input id="login-password" type="password"
         placeholder="Password" className="form-control"
-        onKeyPress={this.handleKeyPress.bind(this)}/>,
+        onKeyPress={this.handleKeyPress}/>,
       <button className="btn btn-primary col-xs-12 col-sm-12"
         id="login-buttons-password" type="button"
-        onClick={this.handleClick.bind(this)}>
+        onClick={this.handleClick}>
         Sign in
       </button>,
       <div id="login-other-options">
         <a id="forgot-password-link" className="pull-left"
-          onClick={this.handleForgot.bind(this)}>
+          onClick={this.handleForgot}>
           Forgot password?
         </a>
-        <a id="signup-link" onClick={this.handleCreateClick.bind(this)}
+        <a id="signup-link" onClick={this.handleCreateClick}
           className="pull-right">
           Create account
         </a>
@@ -309,11 +325,11 @@ class CustomLoginButtons extends Component {
         className="form-control" />,
       <button className="btn btn-primary col-xs-12 col-sm-12"
         id="login-buttons-password" type="button"
-        onClick={this.handleClick.bind(this)}>
+        onClick={this.handleClick}>
         Create
       </button>,
       <button id="back-to-login-link"
-        onClick={this.handleCreateClick.bind(this)}
+        onClick={this.handleCreateClick}
         className="btn btn-default col-xs-12 col-sm-12">Cancel
       </button>];
   }
@@ -322,20 +338,14 @@ class CustomLoginButtons extends Component {
     return [<input id="forgot-password-email" type="email" placeholder="Email"
       className="form-control" />, <button className=
       "btn btn-primary col-xs-12 col-sm-12" id="login-buttons-password" type=
-      "button" onClick={this.forgotPassword.bind(this)}>
+      "button" onClick={this.forgotPassword}>
         Confirm
     </button>, <button id="back-to-login-link" onClick=
-      {this.handleForgot.bind(this)} className=
+      {this.handleForgot} className=
       "btn btn-default col-xs-12 col-sm-12">Cancel</button>];
   }
 
   render() {
-    var menuLoggedInChange = this.menuLoggedInChange.bind(this),
-      menuLoggedInNoChange = this.menuLoggedInNoChange.bind(this),
-      menuSignup = this.signup.bind(this),
-      menuNone = this.menuNone.bind(this), menuForgot =
-      this.menuForgot.bind(this);
-
     return (
       <li id="login-dropdown-list" className='dropdown'>
         <a className="dropdown-toggle" data-toggle="dropdown">
@@ -347,9 +357,11 @@ class CustomLoginButtons extends Component {
           {this.state.errorMessage ?
             <LoginErrorMessage errorMessage={this.state.errorMessage} />
             : null}
-          {this.props.currentUser ? (this.state.change ? menuLoggedInChange() :
-            menuLoggedInNoChange()) : (this.state.signup ? menuSignup() :
-            (this.state.forgot ? menuForgot() : menuNone()))}
+          {this.props.currentUser ?
+            (this.state.change ? this.menuLoggedInChange() :
+              this.menuLoggedInNoChange()) :
+            (this.state.signup ? this.menuSignup() :
+              (this.state.forgot ? this.menuForgot() : this.menuNone()))}
         </div>
       </li>
     );

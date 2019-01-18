@@ -10,6 +10,11 @@ export default class NotificationItem extends Component {
     commenterName: PropTypes.string
   }
 
+  constructor(props) {
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
   handleClick() {
     Notifications.update(this.props._id, { $set: { read: true } });
   }
@@ -17,7 +22,7 @@ export default class NotificationItem extends Component {
   render() {
     return (
       <li>
-        <a onClick={this.handleClick.bind(this)}
+        <a onClick={this.handleClick}
           href={this.props.notificationPostPath}>
           <strong>{this.props.commenterName}</strong> commented on your post
         </a>

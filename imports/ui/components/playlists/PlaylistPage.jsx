@@ -13,6 +13,7 @@ import { moment as momentUtil } from 'meteor/momentjs:moment';
 import moment from 'moment-timezone';
 import { Metamorph } from 'react-metamorph';
 import { FlowRouter } from 'meteor/kadira:flow-router'
+import { requestSpinData } from '../../../startup/lib/helpers.js';
 
 class PlaylistPage extends Component {
   static propTypes = {
@@ -25,6 +26,8 @@ class PlaylistPage extends Component {
     this.state = {
       playlistLoaded: false
     };
+
+    this.showIfAny = this.showIfAny.bind(this);
   }
 
   showDateOfLatestPlaylist(date) {
@@ -62,45 +65,26 @@ class PlaylistPage extends Component {
     }
   }
 
-  requestSpinData() {
-    var self = this;
-
-    var parsedId = parseInt(FlowRouter.getParam('id'), 10);
-    Session.set('playlistViewing', parsedId);
-    if (parsedId > 10000) {
-      Meteor.call('getPlaylistSpins', parsedId,
-        function(error, result) {
-          if (!error && result) {
-            Session.set('currentPlaylist', result.data.items);
-
-            self.setState({ playlistLoaded: true });
-          }
-        });
-    }
-    else {
-      Meteor.call('getPlaylistOrInfo', parsedId, true,
-        function(error, result) {
-          if (!error && result) {
-            Session.set('currentPlaylist',
-              JSON.parse(result.content).results);
-            self.setState({ playlistLoaded: true });
-          }
-        });
-    }
-  }
-
   render() {
-    var requestSpinData = this.requestSpinData.bind(this);
-
     if (this.props.ready) {
-      if (!this.state.playlistLoaded) requestSpinData();
-      var playlist = this.props.playlist;
-      var showIfAny = this.showIfAny.bind(this), show = showIfAny();
-      var showString = this.showTime(playlist) + ' Sub Show with ' +
-        playlist.djName;
+      var playlist = this.props.playlist, pid = playlist.spinPlaylistId,
+        show = this.showIfAny(), showString =
+          `${this.showTime(playlist)} Sub Show with ${playlist.djName}`;
       if (show) {
         showString = show.showName + ' - ' +
           this.showDateOfLatestPlaylist(playlist.showDate);
+      }
+      if (!this.state.playlistLoaded) {
+        requestSpinData(pid, (error, result) => {
+          if (!error && result) {
+            Session.set('currentPlaylist',
+              pid > 10000 ?
+                result.data.items :
+                JSON.parse(result.content).results);
+            Session.set('playlistViewing', pid);
+            self.setState({ playlistLoaded: true });
+          }
+        });
       }
       return [
         <Metamorph title={showString +
@@ -108,9 +92,9 @@ class PlaylistPage extends Component {
         description={showString} image={show && show.thumbnail ||
             'https://ktuh.org/img/ktuh-logo.png'} />,
         <h2 className='general__header'>
-          {showIfAny() &&
-            [<a href={`/shows/${showIfAny().slug}`}>
-              {showIfAny().showName}
+          {this.showIfAny() &&
+            [<a href={`/shows/${this.showIfAny().slug}`}>
+              {this.showIfAny().showName}
             </a>, ' playlist - ' +
             this.showDateOfLatestPlaylist(playlist.showDate)] ||
             [this.showTime(playlist) + ' w/ ' + playlist.djName +
@@ -120,23 +104,20 @@ class PlaylistPage extends Component {
           <a href='/playlists' className='back-to'>← Back to Playlists</a>
         </div>,
         <div className='playlist__content'>
-          {showIfAny() &&
-            <a href={`/shows/${showIfAny().slug}`}>
+          {this.showIfAny() ?
+            <a href={`/shows/${this.showIfAny().slug}`}>
               <img className='playlist__show-image'
-                src={
-                  showIfAny &&
-                (!!showIfAny().thumbnail && showIfAny().thumbnail || null) ||
-                (!showIfAny().thumbnail && !!showIfAny().featuredImage &&
-                showIfAny().featuredImage.url || null) ||
-                (!showIfAny().thumbnail && !showIfAny().featuredImage &&
-                'https://ktuh.org/img/ktuh-logo.jpg' || null)} />
-            </a> || null}
+                src={(this.showIfAny().thumbnail ||
+                (this.showIfAny().featuredImage &&
+                  this.showIfAny().featuredImage.url) :
+                'https://ktuh.org/img/ktuh-logo.jpg')} />
+            </a> : null}
           <PlaylistTable tracks={
             Session.get('currentPlaylist') || []
           } onPage={true}/>
           <div className='comments'>
             <h3 className='comments__header'>Comments</h3>
-            {this.comments().length > 0 &&
+            {this.comments().length &&
                 <ul className='comments__list'>
                   {this.comments().comments.map((comment) =>
                     <CommentItem comment={comment}/>)}

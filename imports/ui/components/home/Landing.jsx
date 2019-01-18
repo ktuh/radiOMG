@@ -58,50 +58,53 @@ class LandingInfo extends Component {
     ) > 360000;
   }
 
+  currentShowName() {
+    <p className='landing__show-name caps' key='landing-show-name'>
+      <a href={`/shows/${currentShow().slug}`}>
+        {currentShow().showName}
+      </a>
+    </p>
+  }
+
+  currentShowHost() {
+    var hostDisplayName = showActualHost() || currentShow().host, hostUsername =
+      usernameFromDisplayName(isSubShow() ?
+        showActualHost() :
+        currentShow().host) || undefined;
+
+    return <p className='landing__show-host caps' key='landing-show-host'>with
+      {hostUsername ?
+        <a href={'/profile/' + hostUsername}>
+          {hostDisplayName}
+        </a> : hostDisplayName}
+    </p>;
+  }
+
+  renderNowPlaying() {
+    var nowPlaying = this.nowPlaying().split(' - '),
+      artist = nowPlaying[0], title = nowPlaying[1];
+
+    return [
+      <p className="landing__song-title caps"
+        key='landing-song-title'>
+        {title}
+      </p>,
+      <p className="landing__song-artist caps" key='landing-sort-artist'>
+        {` by ${artist}`}
+      </p>
+    ];
+  }
+
   render() {
-    var self = this;
     return (
       <div className='landing__info'>
-        {currentShow() && [
-          <p className='landing__show-name caps' key='landing-show-name'>
-            <a href={`/shows/${currentShow().slug}`}>
-              {currentShow().showName}
-            </a>
-          </p>,
-          isSubShow() && (
-            <p className='landing__show-host caps' key='landing-show-host'>with
-              {usernameFromDisplayName(showActualHost()) &&
-                <a href={'/profile/' +
-                  usernameFromDisplayName(showActualHost())}>
-                  {showActualHost()}
-                </a> || showActualHost()}
-            </p>) ||
-            <p className='landing__show-host caps' key='landing-show-host'>
-              with {usernameFromDisplayName(currentShow().host) &&
-              <a href={'/profile/' +
-                usernameFromDisplayName(currentShow().host)}>
-                {currentShow().host}
-              </a> ||
-              currentShow().host}
-            </p>,
-          (self.nowPlaying() &&
-            [<p className="landing__song-title caps"
-              key='landing-song-title'>
-              {self.nowPlaying().split(' - ')[1]}
-            </p>,
-            <p className="landing__song-artist caps" key='landing-sort-artist'>
-              {' by ' + self.nowPlaying().split(' - ')[0]}
-            </p>] || null)] ||
-            self.nowPlaying() &&
-              [<p className='landing__now-playing' key='landing-onair-text'>
-                On Air Now:</p>,
-              <p className="landing__song-title caps" key='landing-song-title'>
-                {self.nowPlaying().split(' - ')[1]}
-              </p>,
-              <p className="landing__song-artist caps"
-                key='landing-song-artist'>
-                {' by ' + self.nowPlaying().split(' - ')[0]}
-              </p>] || [
+        {currentShow() ? [
+          this.currentShowName(),
+          this.currentShowHost()] :
+          this.nowPlaying() ?
+            <p className='landing__now-playing' key='landing-onair-text'>
+              On Air Now:</p> : null}
+        {this.nowPlaying() ? this.renderNowPlaying() : [
           <p className='landing__show-host' key='landing-show-host'>
             <b>Welcome to KTUH<br />FM Honolulu</b>
           </p>,
@@ -123,6 +126,9 @@ class Landing extends Component {
     this.state = {
       playing: false
     }
+
+    this.handlePlayBtn = this.handlePlayBtn.bind(this);
+    this.handleClickDownArrow = this.handleClickDownArrow.bind(this);
   }
 
   componentDidMount() {
@@ -174,14 +180,12 @@ class Landing extends Component {
   }
 
   render() {
-    var handlePlayBtn = this.handlePlayBtn.bind(this),
-      handleClickDownArrow = this.handleClickDownArrow.bind(this);
-
     if (this.props.ready)
       return (
         <div className='landing' style={{ backgroundImage: this.background() }}>
           <div className='landing__box'>
-            <div className='landing__play-btn-outer' onClick={handlePlayBtn}>
+            <div className='landing__play-btn-outer'
+              onClick={this.handlePlayBtn}>
               {this.state.playing ? [
                 <div className='landing__pause-btn-l'
                   key='pause-button-left'></div>,
@@ -207,7 +211,7 @@ class Landing extends Component {
             </h6>
           </a>
           <div className='landing__down-arrow'
-            onClick={handleClickDownArrow}></div>
+            onClick={this.handleClickDownArrow}></div>
         </div>
       );
     else return null;

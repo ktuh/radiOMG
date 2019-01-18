@@ -39,23 +39,24 @@ class ErrorsBox extends Component {
     errors: PropTypes.array
   }
 
+  constructor(props) {
+    super(props);
+    this.connected = this.connected.bind(this);
+  }
+
   connected() {
     return Session.get(IGNORE_CONNECTION_ISSUE_KEY) ||
       Meteor.status().connected;
   }
 
   render() {
-    var connected = this.connected.bind(this);
     return [
       <div className='notifications' key='notifications-box'>
-        {(() => {
-          if (!connected()) return (
-            <div className='notification'>
-              <span className='title-notification'>Trying to connect</span>
-              <span className='glyphicon glyphicon-refresh'></span>
-            </div>);
-          else return null;
-        })()}
+        {!this.connected() ? (
+          <div className='notification'>
+            <span className='title-notification'>Trying to connect</span>
+            <span className='glyphicon glyphicon-refresh'></span>
+          </div>) : null}
         {this.props.notifications.map((item) => (
           <div className='notification' key='item'>
             <a className='btn-primary js-notification-action'>{item.action}</a>
