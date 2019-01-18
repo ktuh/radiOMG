@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Profiles from '../../../api/users/profiles_collection.js';
 import Shows from '../../../api/shows/shows_collection.js';
 import { Metamorph } from 'react-metamorph';
-import { Meteor } from 'meteor/meteor';
+import { usernameById } from '../../../startup/lib/helpers.js';
 
 class StaffItem extends Component {
   static propTypes = {
@@ -15,13 +15,7 @@ class StaffItem extends Component {
     super(props);
   }
 
-  usernameById(userId) {
-    return Meteor.users.findOne({ _id: userId }).username;
-  }
-
   render() {
-    var usernameById = this.usernameById.bind(this);
-
     return (
       <div className='staff__item'>
         <h4>

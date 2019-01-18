@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { currentPlaylistFindOne, showByShowId } from
+import { currentPlaylistFindOne, showByShowId, requestSpinData } from
   '../../../startup/lib/helpers.js';
 import { Meteor } from 'meteor/meteor';
 import PlaylistSidebar from './PlaylistSidebar.jsx';
@@ -99,39 +99,22 @@ class PlaylistList extends Component {
     else return null;
   }
 
-  requestSpinData() {
+  render() {
     var self = this;
-
-    var parsedId = this.props.currentPlaylist.spinPlaylistId;
-
-    if (parsedId > 10000) {
-      Meteor.call('getPlaylistSpins', parsedId,
-        function(error, result) {
-          if (!error && result) {
-            Session.set('currentPlaylist', result.data.items);
-            Session.set('playlistViewing', parsedId);
-            self.setState({ playlistLoaded: true });
-          }
-        });
-    }
-    else {
-      Meteor.call('getPlaylistOrInfo', parsedId, true,
-        function(error, result) {
+    if (self.props.ready) {
+      var pid = this.props.currentPlaylist.spinPlaylistId;
+      if (!self.state.playlistLoaded) {
+        requestSpinData(pid, (error, result) => {
           if (!error && result) {
             Session.set('currentPlaylist',
-              JSON.parse(result.content).results);
-            Session.set('playlistViewing', parsedId);
+              pid > 10000 ?
+                result.data.items :
+                JSON.parse(result.content).results);
+            Session.set('playlistViewing', pid);
             self.setState({ playlistLoaded: true });
           }
         });
-    }
-  }
-
-  render() {
-    var requestSpinData = this.requestSpinData.bind(this);
-
-    if (this.props.ready) {
-      if (!this.state.playlistLoaded) requestSpinData();
+      }
       var latestShow = showByShowId(this.props.currentPlaylist.showId);
       return [
         <Metamorph
@@ -146,8 +129,8 @@ class PlaylistList extends Component {
                 src={latestShow.thumbnail} />
             </a>)}
           <h5 className='playlist-list__current'>
-            {this.isPlaylistCurrent() &&
-              'CURRENT PLAYLIST' || 'LAST LOGGED PLAYLIST'}
+            {this.isPlaylistCurrent() ?
+              'CURRENT PLAYLIST' : 'LAST LOGGED PLAYLIST'}
           </h5>
           <h3 className='playlist-list__show-name'>
             {latestShow && ((latestShow.slug && latestShow.showName) &&

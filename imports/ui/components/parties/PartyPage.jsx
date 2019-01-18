@@ -18,6 +18,11 @@ class PartyPage extends Component {
     comments: PropTypes.array
   }
 
+  constructor(props) {
+    super(props);
+    this.handleClickStar = this.handleClickStar.bind(this);
+  }
+
   time(t) {
     return moment(t).format('dddd, MMMM Do YYYY, h:mm a');
   }
@@ -46,7 +51,6 @@ class PartyPage extends Component {
   }
 
   render() {
-    var handleClickStar = this.handleClickStar.bind(this);
     if (this.props.ready) {
       return [
         <Metamorph title={this.props.party.title +
@@ -77,7 +81,7 @@ class PartyPage extends Component {
               {this.props.party.tags.map((tag) => `#${tag} `)}
             </p>
             <div className='party-info__details'>
-              <span onClick={handleClickStar} className=
+              <span onClick={this.handleClickStar} className=
                 {'party-info__star glyphicon glyphicon-star ' +
                   this.upvoted(this.props.party.upvoters)}>
               </span>

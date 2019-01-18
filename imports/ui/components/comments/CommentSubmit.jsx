@@ -10,6 +10,9 @@ import { $ } from 'meteor/jquery';
 export default class CommentSubmit extends Component {
   constructor(props) {
     super(props);
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+
     this.state = {
       commentSubmitErrors: {}
     }
@@ -66,8 +69,6 @@ export default class CommentSubmit extends Component {
   }
 
   render() {
-    var handleSubmit = this.handleSubmit.bind(this);
-
     return (
       <form name='comment' className='comment-form form'>
         <div className={'form-group ' + this.errorClass('body')}>
@@ -81,7 +82,7 @@ export default class CommentSubmit extends Component {
           </div>
         </div>
         <button type='submit' className='btn btn-primary'
-          onClick={handleSubmit}>
+          onClick={this.handleSubmit}>
           Add Comment
         </button>
       </form>

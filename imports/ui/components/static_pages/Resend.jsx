@@ -10,6 +10,10 @@ export default class Resend extends Component {
       submitEnabled: true,
       email: ''
     };
+
+    this.verified = this.verified.bind(this);
+    this.handleKeyUp = this.handleKeyUp.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   verified() {
@@ -44,27 +48,24 @@ export default class Resend extends Component {
   }
 
   render() {
-    var verified = this.verified, handleKeyUp = this.handleKeyUp.bind(this),
-      handleSubmit = this.handleSubmit.bind(this);
-
     return [
       <Metamorph title=
         'Resend Verification Email - KTUH FM Honolulu | Radio for the People'
       description="Resend Email" image='https://ktuh.org/img/ktuh-logo.jpg' />,
       <h2 className='general__header'>Resend Verification Email</h2>,
       <div className='resend__content' key="resend-content">
-        {!verified() && [<p>
+        {!this.verified() && [<p>
           Lost your verification email? Type in your email address to send the
           verification email again. Be sure to check your spam folders and
           inbox.
         </p>,
         <div className="at-pwd-form" key="pwd-form">
           <form role="form" id="at-pwd-form" noValidate=""
-            onSubmit={handleSubmit}>
+            onSubmit={this.handleSubmit}>
             <label htmlFor="at-field-email">Email</label>
             <input className="validate" type="email" id="at-field-email"
               name="at-field-email" autoCapitalize="none" autoCorrect="off"
-              onKeyUp={handleKeyUp} />
+              onKeyUp={this.handleKeyUp} />
             <button type="submit"
               className="at-btn submit waves-effect waves-light btn" id="at-btn"
               disabled={!this.state.submitEnabled}>

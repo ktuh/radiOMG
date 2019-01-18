@@ -153,3 +153,12 @@ export const pages = function(items, per) {
   }
   return retval;
 }
+
+export const requestSpinData = function(playlistId, cb) {
+  if (playlistId < 10000) {
+    Meteor.call('getPlaylistOrInfo', playlistId, true, cb);
+  }
+  else {
+    Meteor.call('getPlaylistSpins', playlistId, cb);
+  }
+}
