@@ -93,7 +93,7 @@ export const thumbnailUrl = function(url, maxW) {
   });
   return 'https://s3-' + Meteor.settings.awsRegion +
     '.amazonaws.com/' + Meteor.settings.bucket + '/thumbs/' +
-    url.split('/').slice(-1)[0] + '.png';
+    url.split('/').slice(-1)[0] + '.jpg';
 }
 
 export const displayNameById = (userId) => {
