@@ -59,7 +59,7 @@ class LandingInfo extends Component {
   }
 
   currentShowName() {
-    <p className='landing__show-name caps' key='landing-show-name'>
+    return <p className='landing__show-name caps' key='landing-show-name'>
       <a href={`/shows/${currentShow().slug}`}>
         {currentShow().showName}
       </a>
@@ -72,7 +72,8 @@ class LandingInfo extends Component {
         showActualHost() :
         currentShow().host) || undefined;
 
-    return <p className='landing__show-host caps' key='landing-show-host'>with
+    return <p className='landing__show-host caps' key='landing-show-host'>
+      with{' '}
       {hostUsername ?
         <a href={'/profile/' + hostUsername}>
           {hostDisplayName}
