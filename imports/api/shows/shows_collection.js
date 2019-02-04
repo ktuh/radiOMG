@@ -24,7 +24,8 @@ var Shows = new scorpius.collection('shows', {
       {
         data: 'featuredImage',
         title: 'Featured Image',
-        render: val => `<img src='${val.url}'>`
+        render: val => val ? `<img src='${val.url}'>` :
+          '<p>No picture available</p>'
       },
       scorpius.attributeColumn('createdAt', 'submitted', 'Timestamp')
     ]
