@@ -63,15 +63,15 @@ export default class Footer extends Component {
           </div>
         </div>
         <div className='footer__social'>
-          <a href='http://instagram.com/ktuh_fm' target="_blank" rel=
+          <a href='http://instagram.com/ktuhfm' target="_blank" rel=
             "noopener noreferrer">
             <img src='/img/instagram-white.png' />
           </a>
-          <a href='https://www.facebook.com/ktuh.honolulu' target="_blank" rel=
+          <a href='https://www.facebook.com/ktuhfm' target="_blank" rel=
             "noopener noreferrer">
             <img src='/img/facebook-white.png' />
           </a>
-          <a href='http://twitter.com/ktuh_fm' target="_blank" rel=
+          <a href='http://twitter.com/ktuhfm' target="_blank" rel=
             "noopener noreferrer">
             <img src='/img/twitter-white.png' />
           </a>
