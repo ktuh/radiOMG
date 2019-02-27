@@ -4,7 +4,7 @@ const requiredPackages = {
   react: '16.x',
   'react-dom': '16.x',
   'react-transition-group': '2.x',
-  'immutability-helper': '2.9.0'
+  'immutability-helper': '2.9.1'
 };
 
 import { checkNpmVersions } from 'meteor/tmeasday:check-npm-versions';

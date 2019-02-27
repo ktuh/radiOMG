@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Metamorph } from 'react-metamorph';
+import AlumniListForm from './AlumniListForm';
 
 export default class Alumni extends Component {
   shouldComponentUpdate() {
@@ -13,18 +14,27 @@ export default class Alumni extends Component {
       <h2 className='general__header'>KTUH Alumni</h2>,
       <div className='alumni__content'>
         <div className="alumni__img">
-          <img src='/img/MNL.jpg' alt="1970 Staff Archive Photo" />
+          <img src='/img/Group45.jpg'
+            alt={'Question: Why are these people smiling? ' +
+              'Answer: they all attended the “KTUH 45” ' +
+              'Alumni gathering in 2014!'} />
         </div>
         <p dangerouslySetInnerHTML={{ __html:
-          '<b>Get on the List!</b>\n' +
-          'If you are a KTUH alumnus or alumna and would like to be added to ' +
-          'the KTUH alumni email list, please send your email address to <a ' +
+          '<b>KTUH-FM will be 50 years old this year</b> ' +
+          'We will celebrate this fall with a big event on the first weekend ' +
+          'in October. All KTUH alumni are invited to attend. This web page ' +
+          'will be updated with general event information, but full details ' +
+          'will be emailed to alumni as they become available, so you’ll ' +
+          'want to be sure that your current email address is on the KTUH ' +
+          'alumni email list (you should have received an alumni email ' +
+          'message last month if you are on the list). If you need to update ' +
+          'your address or to be added to the alumni list, please complete ' +
+          'the form below or email <a ' +
           'href=\'mailto:&#97;&#108;&#117;&#109;&#110;&#105;&#64;&#107;&#116;' +
           '&#117;&#104;&#46;&#111;&#114;&#103;\'>&#97;&#108;&#117;&#109;&#110;'+
-          '&#105;&#64;&#107;&#116;&#117;&#104;&#46;&#111;&#114;&#103;</a>. ' +
-          'You will receive occasional emails regarding alumni news and ' +
-          'upcoming alumni events, such as reunions (the list is not shared ' +
-          'with anyone).' }} />
+          '&#105;&#64;&#107;&#116;&#117;&#104;&#46;&#111;&#114;&#103;</a>.' }}
+        />
+        <AlumniListForm />
         <p dangerouslySetInnerHTML={{ __html:
           '<b>Got News?</b> Alumni news, that is... If you would like to ' +
           'share any KTUH alumni news items, please email them to <a href=\'ma'+
@@ -145,7 +155,7 @@ export default class Alumni extends Component {
           <img src="/img/WildBros0811.jpg"
             alt={'KTUH alumni Dave Wild (left, on piano) and Ken Wild (right, '+
               'on upright bass) playing at Vitelloís in Studio City, CA ' +
-              '(2011).Eric Marienthal (sax) is in the center.'} />
+              '(2011). Eric Marienthal (sax) is in the center.'} />
         </div>
         <p>
           Dave ended up in central Texas, where he plays piano, writes and has a
