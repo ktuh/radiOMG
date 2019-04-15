@@ -2,24 +2,27 @@ import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import TracksSchema from './tracks_schema.js';
 import { Meteor } from 'meteor/meteor';
 import { getLocalTime } from '../../startup/lib/helpers.js';
+import { scorpius } from 'meteor/scorpiusjs:core';
 
-export default ChartsSchema = new SimpleSchema({
+var ChartsSchema = new SimpleSchema({
   title: {
     type: String,
-    optional: false
+    optional: false,
+    autoform: {
+      label: 'Chart Title',
+      placeholder: 'Chart Title'
+    }
   },
   chartDate: {
     type: Date,
-    optional: true,
+    optional: false,
     autoform: {
-      label: 'Chart Date'
+      label: 'Chart Date',
+      placeholder: 'Chart Date',
+      afFieldInput: {
+        type: 'bootstrap-datetimepicker'
+      }
     },
-    autoValue: function() {
-      if (this.isUpdate)
-        return this.value;
-      else
-        return getLocalTime().toDate();
-    }
   },
   createdAt: {
     type: Date,
@@ -72,14 +75,15 @@ export default ChartsSchema = new SimpleSchema({
   },
   tracks: {
     type: [TracksSchema],
-    optional: false
+    optional: true
   },
   featuredImage: scorpius.attribute('image', {
     label: 'Featured Image',
-    optional: false
+    optional: true
   }),
   body: scorpius.attribute('summernote', {
-    label: 'Body'
+    label: 'Body',
+    optional: true
   }),
   slug: {
     type: String,
@@ -89,3 +93,5 @@ export default ChartsSchema = new SimpleSchema({
     }
   }
 });
+
+export default ChartsSchema;

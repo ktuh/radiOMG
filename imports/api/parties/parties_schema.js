@@ -2,7 +2,7 @@ import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { scorpius } from 'meteor/scorpiusjs:core';
 import { thumbnailUrl, getLocalTime } from '../../startup/lib/helpers.js';
 
-export default PartySchema = new SimpleSchema({
+var PartySchema = new SimpleSchema({
   title: {
     type: String,
     label: 'Title'
@@ -127,3 +127,5 @@ export default PartySchema = new SimpleSchema({
     }
   }
 });
+
+export default PartySchema;

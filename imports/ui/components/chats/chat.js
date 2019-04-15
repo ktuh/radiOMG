@@ -25,8 +25,6 @@ Template.chatForm.onCreated(function() {
 
 Template.chatForm.helpers({
   chat: function() {
-    var docId = Session.get('chat-docid');
-
     return Chats.find({},{
       sort: {
         chatDate: 1

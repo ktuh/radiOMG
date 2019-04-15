@@ -1,8 +1,7 @@
 import { Meteor } from 'meteor/meteor';
-import { AccountsServer } from 'meteor/accounts-base';
-import { Bert } from 'meteor/themeteorchef:bert';
-import { _ } from 'meteor/underscore';
+import { Accounts } from 'meteor/accounts-base';
 import Profiles from '../imports/api/users/profiles_collection.js';
+import { Roles } from 'meteor/nicolaslopezj:roles';
 import { ServiceConfiguration } from 'meteor/service-configuration';
 
 Meteor.startup(function () {
@@ -18,23 +17,22 @@ Meteor.startup(function () {
     return 'KTUH Accounts <webmaster@ktuh.org>';
   };
 
-  Accounts.emailTemplates.verifyEmail.subject = function(user) {
+  Accounts.emailTemplates.verifyEmail.subject = function() {
     return 'Confirm Your Email Address for KTUH Honolulu';
   };
 
   Accounts.emailTemplates.verifyEmail.text = function(user, url) {
-    return 'Hi, ' + user.username + ',\n\n'
-      + 'Mahalo for registering for the KTUH Honolulu website. ' +
-        'Please click on the '
-      + 'following link to verify your email address: \r\n\n' + url
-      + '\n\n';
+    return `Hi ${user.username},` + '\n\n' +
+    'Mahalo for registering for the KTUH Honolulu website.\n' +
+    'Please click on the following link to verify your email address:\n\n' +
+    url;
   };
 
   Accounts.emailTemplates.resetPassword.from = function() {
     return 'KTUH Accounts <webmaster@ktuh.org>';
   };
 
-  Accounts.emailTemplates.resetPassword.subject = function(user) {
+  Accounts.emailTemplates.resetPassword.subject = function() {
     return 'Reset Your Password on KTUH Honolulu';
   };
 
@@ -48,13 +46,12 @@ Meteor.startup(function () {
 
   Accounts.validateLoginAttempt(function(type) {
     if (type.user && type.user.emails && !type.user.emails[0].verified ) {
-      if (type.user && type.user.firstLogin == true) {
+      if (type.user.firstLogin) {
         type.user.firstLogin = false;
         return true;
       } else {
         throw new Meteor.Error(100001,
           'Please verify your email address. (Check your inbox.)');
-        return false;
       }
     }
     return true;
@@ -83,7 +80,7 @@ Meteor.startup(function () {
       var username = email.substring(0, email.indexOf('@'));
       var existentUser = Meteor.users.findOne({ username: username });
 
-      for (i = 1; i < 1000000; i++) {
+      for (var i = 1; i < 1000000; i++) {
         if (existentUser === undefined)
           break;
         var numStr = Number(i).toString();

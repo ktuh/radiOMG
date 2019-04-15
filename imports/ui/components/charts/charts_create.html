@@ -1,0 +1,24 @@
+<template name='chartsCreate'>
+  {{#Layout template=materializeHeader}}
+    {{collection.title}}
+  {{/Layout}}
+  {{#Layout template=materializeContent}}
+    {{#autoForm collection=collection id="createChartForm" type="insert"}}
+      {{> afFieldInput name="title"}}
+      {{> afFieldInput name="chartDate"}}
+      {{> afFieldInput name="body"}}
+      <button id="uploadCsv">
+        {{#unless csvUploaded}}
+          Upload Chart CSV File
+        {{else}}
+          Chart CSV Uploaded, Click to Reupload
+        {{/unless}}
+      </button>
+      <input id="hiddenUpload" class="btn hidden" type="file" value="">
+    {{/autoForm}}
+  {{/Layout}}
+  {{# Layout template=materializeButtons }}
+    <a class="waves-effect waves-light btn cancel-btn" href="#">{{ i18n 'global.back'}}</a>
+    <a class="waves-effect waves-light btn light-blue accent-4 submit-btn" href="#">{{ i18n 'global.create' }}</a>
+  {{/ Layout }}
+</template>

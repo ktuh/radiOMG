@@ -1,8 +1,11 @@
 import { Meteor } from 'meteor/meteor';
+import { check } from 'meteor/check';
 
 Meteor.methods({
   sendEmailNotification: function(to, subject, body, form) {
-    check([to, subject, body], [String]);
+    check(to, String);
+    check(subject, String);
+    check(body, String);
     check(form, Boolean);
     var sender =  Meteor.settings.emailUsername;
     var replyTo = undefined;

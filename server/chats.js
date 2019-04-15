@@ -1,6 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
-import { Chats } from '../imports/api/chats/chats_collection.js';
+import { Chats, ChatOptions } from '../imports/api/chats/chats_collection.js';
 
 Meteor.methods({
   enterChat: function(chatText,chatDoc,chatUser) {

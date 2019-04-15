@@ -2,9 +2,19 @@ import { Roles } from 'meteor/nicolaslopezj:roles';
 
 const Moderator = new Roles.Role('moderator');
 
+Moderator.allow('collections.shows.index', true);
+Moderator.allow('collections.shows.insert', true);
+Moderator.allow('collections.shows.update', (userId, doc) =>
+  doc.userId === userId);
+Moderator.allow('collections.shows.remove', true);
+Moderator.allow('collections.shows.showCreate', true);
+Moderator.allow('collections.shows.showUpdate', true);
+Moderator.allow('collections.shows.showRemove', true);
+Moderator.helper('collections.shows.indexFilter', () => ({ }));
+
 Moderator.allow('collections.reviews.index', true);
 Moderator.allow('collections.review.insert', true);
-Moderator.allow('collections.reviews.update', (userId, doc, fields, modifier) =>
+Moderator.allow('collections.reviews.update', (userId, doc) =>
   doc.userId === userId);
 Moderator.allow('collections.reviews.remove', true);
 Moderator.allow('collections.reviews.showCreate', true);

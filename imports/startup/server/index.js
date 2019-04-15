@@ -1,2 +1,2 @@
-import './routes.js';
 import './register_apis.js';
+import './routes.js';

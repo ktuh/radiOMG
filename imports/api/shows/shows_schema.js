@@ -4,7 +4,7 @@ import { Meteor } from 'meteor/meteor';
 import Profiles from '../users/profiles_collection.js';
 import { thumbnailUrl, getLocalTime } from '../../startup/lib/helpers.js';
 
-export default ShowsSchema = new SimpleSchema({
+var ShowsSchema = new SimpleSchema({
   showName: {
     type: String,
     label: 'Show Name',
@@ -167,3 +167,5 @@ export default ShowsSchema = new SimpleSchema({
     defaultValue: () => getLocalTime().toDate()
   }
 });
+
+export default ShowsSchema;

@@ -13,7 +13,24 @@
       {{> afQuickField name="tags"}}
       {{> afQuickField name="summary"}}
       {{> afFieldInput name="body"}}
-      {{> afFieldInput name="photo"}}
+      <div class="row">
+        <div class="image-attribute col m6 col-sm-6">
+          <p>
+            <span class="btn btn-default btn-file btn-xs input-field">
+              Choose image <input type="file" id="photo-input" accept="image/*">
+            </span>
+          </p>
+        </div>
+        <div class="image-attribute col m6 col-sm-6" name="photo.url"
+          style='visibility: hidden;' data-schema-key="photo.url">
+          <p>
+            <span class="btn btn-default btn-file btn-xs input-field">
+              <input type="url" id="photo-url-input">
+            </span>
+          </p>
+        </div>
+      </div>
+
     {{/autoForm}}
   {{/Layout}}
   {{# Layout template=materializeButtons }}

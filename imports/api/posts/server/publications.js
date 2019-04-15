@@ -1,6 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import Posts from '../posts_collection.js'
-import { publishPagination } from 'meteor/kurounin:pagination';
+import { check } from 'meteor/check';
 
 Meteor.publish('postsLimited', (options) => {
   check(options, {
@@ -8,6 +8,10 @@ Meteor.publish('postsLimited', (options) => {
     limit: Number
   });
   return Posts.find({ featured: false, approved: true }, options);
+});
+
+Meteor.publish('posts', function() {
+  return Posts.find({ approved: true }, { sort: { submitted: -1 } });
 });
 
 Meteor.publish('latestFeaturedPost', () =>
@@ -27,7 +31,5 @@ Meteor.publish('singlePostById', (id) => {
 Meteor.publish('postsByUser', (username) => {
   check(username, String);
   return Posts.find({ author: username, approved: true },
-    { fields: { submitted: 1, title: 1, author: 1, userId: 1 } });
+    { fields: { submitted: 1, title: 1, author: 1, userId: 1, slug: 1 } });
 });
-
-publishPagination(Posts);

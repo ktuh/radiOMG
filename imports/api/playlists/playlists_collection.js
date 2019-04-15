@@ -1,8 +1,7 @@
-import { Mongo } from 'meteor/mongo';
 import { scorpius } from 'meteor/scorpiusjs:core';
 import PlaylistsSchema from './playlists_schema.js';
 
-export default Playlists = new scorpius.collection('playlists', {
+var Playlists = new scorpius.collection('playlists', {
   singularName: 'playlist',
   pluralName: 'playlists',
   link: {
@@ -27,3 +26,5 @@ export default Playlists = new scorpius.collection('playlists', {
 });
 
 Playlists.attachSchema(PlaylistsSchema);
+
+export default Playlists

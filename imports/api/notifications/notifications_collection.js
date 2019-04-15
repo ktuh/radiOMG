@@ -1,7 +1,6 @@
 import { Mongo } from 'meteor/mongo';
-import { scorpius } from 'meteor/scorpiusjs:core';
 
-export default Notifications = new Mongo.Collection('notifications');
+var Notifications = new Mongo.Collection('notifications');
 
 Notifications.allow({
   update: (userId, doc, fieldNames) => {
@@ -20,3 +19,5 @@ export const createCommentNotification = (comment) => {
     read: false
   });
 };
+
+export default Notifications;

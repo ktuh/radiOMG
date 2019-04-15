@@ -5,3 +5,5 @@ build
 .meteor/dev_bundle
 *.tar.gz
 /**/.DS_Store
+dump/
+wp-content/
