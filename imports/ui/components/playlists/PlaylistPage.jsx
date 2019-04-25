@@ -19,7 +19,7 @@ class PlaylistPage extends Component {
   static propTypes = {
     playlist: PropTypes.object,
     ready: PropTypes.bool
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -69,7 +69,8 @@ class PlaylistPage extends Component {
     if (this.props.ready) {
       var playlist = this.props.playlist, pid = playlist.spinPlaylistId,
         show = this.showIfAny(), showString =
-          `${this.showTime(playlist)} Sub Show with ${playlist.djName}`;
+          `${this.showTime(playlist)} Sub Show with ${playlist.djName}`,
+        self = this;
       if (show) {
         showString = show.showName + ' - ' +
           this.showDateOfLatestPlaylist(playlist.showDate);
