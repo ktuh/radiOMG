@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment-timezone';
+import { moment as momentUtil } from 'meteor/momentjs:moment';
 
 export default class PlaylistTable extends Component {
   static propTypes = {
     tracks: PropTypes.array,
     onPage: PropTypes.bool
-  }
+  };
 
   timeBeautify(time) {
-    return moment.tz(time.replace(/-\d{4}$/, ''), 'Etc/UTC')
-      .tz('Pacific/Honolulu').format('hh:mma');
+    return momentUtil(
+      moment(momentUtil(time)).tz('Pacific/Honolulu')).format('h:mma');
   }
 
   truncated(str) {
