@@ -48,6 +48,7 @@ rules:
     - error
     - single
   no-ternary: off
+  prefer-template: error
 parserOptions:
   ecmaVersion: 2017
   sourceType: module
