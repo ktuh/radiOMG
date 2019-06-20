@@ -49,10 +49,12 @@ class ShowPage extends Component {
     var ap = startHour > endHour;
     if (ap) ap = 'h:mmA';
     else ap = 'h:mm';
-    return momentUtil(moment(momentUtil(startHour + ':' + startMinute, 'HH:mm'),
-      'Pacific/Honolulu')).format(ap) +
-      '-' + momentUtil(moment(momentUtil(endHour + ':' + endMinute, 'HH:mm'),
-      'Pacific/Honolulu')).format('h:mmA');
+
+    return `${
+      momentUtil(moment(momentUtil(`${startHour}:${startMinute}`, 'HH:mm'),
+        'Pacific/Honolulu')).format(ap)}-${
+      momentUtil(moment(momentUtil(`${endHour}:${endMinute}`, 'HH:mm'),
+        'Pacific/Honolulu')).format('h:mmA')}`;
   }
 
   time(t) {
@@ -60,8 +62,8 @@ class ShowPage extends Component {
   }
 
   timeBeautify2(time) {
-    return moment.tz(time.replace(/-\d{4}$/, ''), 'Etc/UTC')
-      .tz('Pacific/Honolulu').format('hh:mma');
+    return momentUtil(
+      moment(momentUtil(time)).tz('Pacific/Honolulu')).format('hh:mma');
   }
 
   handlePlayClick(event) {
@@ -73,8 +75,8 @@ class ShowPage extends Component {
       $('.mejs__time-slider').css('visibility', 'visible');
       $('.mejs__broadcast').css('visibility', 'hidden');
       player.setSrc(mp3Url);
-      var message = 'Now playing the latest episode of ' +
-        this.props.show.showName;
+      var message = `Now playing the latest episode of ${
+        this.props.show.showName}`;
       Session.set('defaultLoaded', false);
       player.setSrc(mp3Url);
       if (!Session.get('playedStream')) Session.set('playedStream', true);
@@ -90,13 +92,13 @@ class ShowPage extends Component {
   }
 
   handleSelectChange(event) {
-    FlowRouter.go('/playlists/' + $(event.target).val());
+    FlowRouter.go(`/playlists/${$(event.target).val()}`);
   }
 
   handleProfileClick() {
     var id = Shows.findOne({ slug: FlowRouter.getParam('slug') }).userId;
     var user = Meteor.users.findOne({ _id: id });
-    if (user !== undefined) FlowRouter.go('/profile/' + user.username);
+    if (user !== undefined) FlowRouter.go(`/profile/${user.username}`);
   }
 
   latestPlaylist() {
@@ -152,9 +154,10 @@ class ShowPage extends Component {
     if (this.props.ready) {
       if (!this.state.playlistLoaded) requestSpinData();
       return [
-        <Metamorph title={this.props.show.showName + ' - KTUH FM Honolulu' +
-          ' | Radio for the People'} description={this.props.show.showName +
-          ' on KTUH'} image={this.props.show.thumbnail ||
+        <Metamorph title={`${
+          this.props.show.showName} - KTUH FM Honolulu | Radio for the People`}
+        description={`${this.props.show.showName} on KTUH`}
+        image={this.props.show.thumbnail ||
           'https://ktuh.org/img/ktuh-logo.jpg'} />,
         <h2 className='general__header' key='header-title'>
           <b>{this.props.show.showName} / {this.props.show.host}</b>
@@ -181,7 +184,7 @@ class ShowPage extends Component {
               {this.props.show.genres && this.props.show.genres.length > 0 &&
               <div className='show-item__genres'>
                 <span className='glyphicon glyphicon-music'></span>
-                {' ' +  this.props.show.genres.join(', ')}
+                {` ${this.props.show.genres.join(', ')}`}
               </div> || null}
               <div className='show__buttons'>
                 {this.props.show.latestEpisodeUrl &&
@@ -195,9 +198,9 @@ class ShowPage extends Component {
                       aria-label="Left Align">
                       <span
                         className=
-                          {'glyphicon ' +
+                          {`glyphicon ${
                             (this.isPlaying(this.props.show.latestEpisodeUrl) &&
-                          'glyphicon-pause' || 'glyphicon-play')}
+                          'glyphicon-pause' || 'glyphicon-play')}`}
                         aria-hidden="true"></span> {' '}Play latest episode
                     </button>
                   </p>

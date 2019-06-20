@@ -141,8 +141,7 @@ export default class Header extends Component {
             </li>
             <li className={activePage('radioblog', 'blogPage') +
               ' nav-item nav-item__news'}>
-              <a href={FlowRouter.path('radioblog')}>Radioblog</a><
-            /li>
+              <a href={FlowRouter.path('radioblog')}>Radioblog</a></li>
           </ul>
           <ul className='nav navbar-nav navbar-right'>
             <li className='nav-item'>

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Metamorph } from 'react-metamorph';
-import AlumniListForm from './AlumniListForm';
 
 export default class Alumni extends Component {
   shouldComponentUpdate() {
@@ -34,7 +33,6 @@ export default class Alumni extends Component {
           '&#117;&#104;&#46;&#111;&#114;&#103;\'>&#97;&#108;&#117;&#109;&#110;'+
           '&#105;&#64;&#107;&#116;&#117;&#104;&#46;&#111;&#114;&#103;</a>.' }}
         />
-        <AlumniListForm />
         <p dangerouslySetInnerHTML={{ __html:
           '<b>Got News?</b> Alumni news, that is... If you would like to ' +
           'share any KTUH alumni news items, please email them to <a href=\'ma'+
