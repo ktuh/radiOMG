@@ -139,8 +139,8 @@ export default class Header extends Component {
               'partyEdit')}' nav-item nav-item__parties`}>
               <a href={FlowRouter.path('party')}>Events</a>
             </li>
-            <li className={activePage('radioblog', 'blogPage') +
-              ' nav-item nav-item__news'}>
+            <li className={`${activePage('radioblog', 'blogPage')
+            } nav-item nav-item__news`}>
               <a href={FlowRouter.path('radioblog')}>Radioblog</a></li>
           </ul>
           <ul className='nav navbar-nav navbar-right'>

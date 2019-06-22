@@ -35,13 +35,12 @@ class PlaylistPage extends Component {
   }
 
   showTime(playlist) {
-    return playlist && ((momentUtil(
+    return playlist && (`${(momentUtil(
       moment(
         momentUtil(playlist.startTime, 'HH:mm:ss')).tz('Pacific/Honolulu'))
-    ).format('h:mm') + '-' +
-      momentUtil(
-        moment(momentUtil(playlist.endTime, 'HH:mm:ss'))
-          .tz('Pacific/Honolulu')).format('h:mm a'));
+    ).format('h:mm')}-${momentUtil(
+      moment(momentUtil(playlist.endTime, 'HH:mm:ss'))
+        .tz('Pacific/Honolulu')).format('h:mm a')}`);
   }
 
   showIfAny() {
@@ -72,8 +71,8 @@ class PlaylistPage extends Component {
           `${this.showTime(playlist)} Sub Show with ${playlist.djName}`,
         self = this;
       if (show) {
-        showString = show.showName + ' - ' +
-          this.showDateOfLatestPlaylist(playlist.showDate);
+        showString = `${show.showName} - ${ 
+          this.showDateOfLatestPlaylist(playlist.showDate)}`;
       }
       if (!this.state.playlistLoaded) {
         requestSpinData(pid, (error, result) => {
@@ -88,18 +87,18 @@ class PlaylistPage extends Component {
         });
       }
       return [
-        <Metamorph title={showString +
-          ' - KTUH FM Honolulu | Radio for the People'}
+        <Metamorph title={`${showString
+        } - KTUH FM Honolulu | Radio for the People`}
         description={showString} image={show && show.thumbnail ||
             'https://ktuh.org/img/ktuh-logo.png'} />,
         <h2 className='general__header'>
           {this.showIfAny() &&
             [<a href={`/shows/${this.showIfAny().slug}`}>
               {this.showIfAny().showName}
-            </a>, ' playlist - ' +
-            this.showDateOfLatestPlaylist(playlist.showDate)] ||
-            [this.showTime(playlist) + ' w/ ' + playlist.djName +
-          ' playlist - ' + this.showDateOfLatestPlaylist(playlist.showDate)]}
+            </a>, ` playlist - ${
+              this.showDateOfLatestPlaylist(playlist.showDate)}`] ||
+            [`${this.showTime(playlist)} w/ ${playlist.djName
+            } playlist - ${this.showDateOfLatestPlaylist(playlist.showDate)}`]}
         </h2>,
         <div className='playlist__link'>
           <a href='/playlists' className='back-to'>← Back to Playlists</a>
