@@ -3,8 +3,8 @@ import { Meteor } from 'meteor/meteor';
 const requiredPackages = {
   react: '16.x',
   'react-dom': '16.x',
-  'react-transition-group': '2.x',
-  'immutability-helper': '2.9.1'
+  'react-transition-group': '4.x',
+  'immutability-helper': '3.x'
 };
 
 import { checkNpmVersions } from 'meteor/tmeasday:check-npm-versions';

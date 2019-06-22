@@ -7,7 +7,7 @@ import { $ } from 'meteor/jquery';
 import CustomLoginButtons from './CustomLoginButtons.jsx';
 import MediaElement from './MediaElement.js';
 import NowPlaying from '../../../api/playlists/playlists_collection.js';
-import { moment } from 'meteor/momentjs:moment';
+import { default as moment } from 'moment';
 
 function activePage() {
   // includes Spacebars.kw but that's OK because the route name ain't that.

@@ -71,7 +71,7 @@ export default class CommentSubmit extends Component {
   render() {
     return (
       <form name='comment' className='comment-form form'>
-        <div className={'form-group ' + this.errorClass('body')}>
+        <div className={`form-group ${this.errorClass('body')}`}>
           <div className='controls'>
             <label htmlFor='body' className='comment__controls-label'>
               Comment on this post

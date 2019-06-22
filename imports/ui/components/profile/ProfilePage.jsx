@@ -22,7 +22,7 @@ class ProfilePage extends Component {
       var user = Meteor.users.findOne({ username: username });
       var profile = Profiles.findOne({ userId: user._id });
       Profiles.update(profile._id, { $set: { banned: true } });
-      Bert.alert('User @' + username + ' banned.', 'default');
+      Bert.alert(`User @${username} banned.`, 'default');
     }
   }
 
@@ -32,7 +32,7 @@ class ProfilePage extends Component {
       var user = Meteor.users.findOne({ username: username });
       var profile = Profiles.findOne({ userId: user._id });
       Profiles.update(profile._id, { $set: { banned: false } });
-      Bert.alert('User @' + username + '\'s ban lifted.', 'default');
+      Bert.alert(`User @${username}'s ban lifted.`, 'default');
     }
   }
 
@@ -41,9 +41,9 @@ class ProfilePage extends Component {
       !this.props.profile.banned || Meteor.user() !== null &&
       Meteor.user().hasRole('admin')) {
       return [
-        <Metamorph title={this.props.profile.name +
-          '\'s Profile - KTUH FM Honolulu | Radio for the People'}
-        description={this.props.profile.name + '\'s Profile'}
+        <Metamorph title={`${this.props.profile.name
+        }'s Profile - KTUH FM Honolulu | Radio for the People`}
+        description={`${this.props.profile.name}'s Profile`}
         image={this.props.profile.photo && this.props.profile.photo.url ||
           'https://ktuh.org/img/ktuh-logo.jpg'} />,
         <h2 className='general__header'>{this.props.profile.name}</h2>,

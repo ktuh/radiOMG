@@ -47,7 +47,7 @@ export default class ProfileEditForm extends Component {
         onChange={handleChange}
         onSubmit={(data) => {
           updateCollection(data);
-          FlowRouter.go('/profile/' + Meteor.user().username);
+          FlowRouter.go(`/profile/${Meteor.user().username}`);
         }} ref='form' type="update">
         <h4 className="profile-edit__label">Display Name</h4>
         <Field fieldName='name' label="Display Name" type={Text}

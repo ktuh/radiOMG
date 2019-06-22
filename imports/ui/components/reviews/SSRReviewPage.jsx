@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { moment } from 'meteor/momentjs:moment';
+import { default as moment } from 'moment';
 import { displayNameById, usernameById } from '../../../startup/lib/helpers.js';
 import { Metamorph } from 'react-metamorph';
 

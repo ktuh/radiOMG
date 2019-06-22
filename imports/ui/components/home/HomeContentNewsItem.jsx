@@ -15,7 +15,7 @@ export default class HomeContentNewsItem extends Component {
   render() {
     return (
       <div className='home__news-item'>
-        <a href={'/radioblog/' + this.props.item.slug}>
+        <a href={`/radioblog/${this.props.item.slug}`}>
           <img className='home__news-img'
             src={this.props.item.thumbnail ||
             (this.props.item.photo && this.props.item.photo.url) ||
@@ -29,7 +29,7 @@ export default class HomeContentNewsItem extends Component {
         </p>
         <p className='home__byline'>
           by {this.props.item.userId ?
-            <a href={'/profile/' + usernameById(this.props.item.userId)}>
+            <a href={`/profile/${usernameById(this.props.item.userId)}`}>
               {displayNameById(this.props.item.userId)}
             </a> : this.props.item.author} / {timeDiffString(
             this.props.item.submitted)}

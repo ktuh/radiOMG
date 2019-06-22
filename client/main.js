@@ -15,7 +15,7 @@ Session.setDefault(IGNORE_CONNECTION_ISSUE_KEY, true);
 
 // Global audio player because it causes stack overflow when wrapped into a
 // session variable.
-player = null;
+global.player = null;
 
 Session.set('hashesOpen', false);
 Session.set('isSearching', false);
@@ -38,7 +38,7 @@ Meteor.startup(function () {
 
 AutoForm.addHooks(['partyForm'],{
   onSuccess: function() {
-    FlowRouter.go('/event' + this.docId);
+    FlowRouter.go(`/events/${this.docId}`);
   }
 });
 

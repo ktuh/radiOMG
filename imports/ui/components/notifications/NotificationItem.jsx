@@ -1,32 +1,25 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Notifications from
   '../../../api/notifications/notifications_collection.js';
 
-export default class NotificationItem extends Component {
-  static propTypes = {
-    _id: PropTypes.string,
-    notificationPostPath: PropTypes.string,
-    commenterName: PropTypes.string
+export default function NotificationItem(
+  { _id, notificationPostPath, commenterName }) {
+  function handleClick() {
+    Notifications.update(_id, { $set: { read: true } });
   }
 
-  constructor(props) {
-    super(props);
-    this.handleClick = this.handleClick.bind(this);
-  }
+  return (
+    <li>
+      <a onClick={handleClick} href={notificationPostPath}>
+        <strong>{commenterName}</strong> commented on your post
+      </a>
+    </li>
+  );
+}
 
-  handleClick() {
-    Notifications.update(this.props._id, { $set: { read: true } });
-  }
-
-  render() {
-    return (
-      <li>
-        <a onClick={this.handleClick}
-          href={this.props.notificationPostPath}>
-          <strong>{this.props.commenterName}</strong> commented on your post
-        </a>
-      </li>
-    );
-  }
+NotificationItem.propTypes = {
+  _id: PropTypes.string,
+  notificationPostPath: PropTypes.string,
+  commenterName: PropTypes.string
 }

@@ -9,7 +9,7 @@ import Comments from '../../../api/comments/comments_collection.js';
 import CommentItem from '../comments/CommentItem.jsx';
 import CommentSubmit from '../comments/CommentSubmit.jsx';
 import { withTracker } from 'meteor/react-meteor-data';
-import { moment as momentUtil } from 'meteor/momentjs:moment';
+import { default as momentUtil } from 'moment';
 import moment from 'moment-timezone';
 import { Metamorph } from 'react-metamorph';
 import { FlowRouter } from 'meteor/kadira:flow-router'

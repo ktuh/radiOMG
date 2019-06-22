@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Comments from '../../../api/comments/comments_collection.js';
 import CommentItem from '../comments/CommentItem.jsx';
 import { Metamorph } from 'react-metamorph';
-import { moment } from 'meteor/momentjs:moment';
+import { default as moment } from 'moment';
 
 class SSRPartyPage extends Component {
   static propTypes = {

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Meteor } from 'meteor/meteor';
 import Reviews from '../../../api/reviews/reviews_collection.js';
-import { moment } from 'meteor/momentjs:moment';
+import { default as moment } from 'moment';
 import { displayNameById, usernameById } from '../../../startup/lib/helpers.js';
 import { Metamorph } from 'react-metamorph';
 import { FlowRouter } from 'meteor/kadira:flow-router';
@@ -15,18 +15,17 @@ class ReviewPage extends Component {
   }
 
   formattedRating(rating) {
-    if (rating % 1 !== .5) return Number(rating).toString() + '.0';
+    if (rating % 1 !== .5) return `${Number(rating).toString()}.0`;
     else return rating;
   }
 
   render() {
     if (this.props.ready)
       return [
-        <Metamorph title={'Review of "' + this.props.review.releaseName +
-          '" by ' + this.props.review.artist + ' - KTUH FM Honolulu | ' +
-        'Radio for the People'} description={'Review of ' +
-          this.props.review.releaseName + ' by ' + this.props.review.artist}
-        image={this.props.review.thumbnail ||
+        <Metamorph title={`Review of "${this.props.review.releaseName} by ${
+          this.props.review.artist} - KTUH FM Honolulu |Radio for the People`}
+        description={`Review of ${this.props.review.releaseName} by ${
+          this.props.review.artist}`} image={this.props.review.thumbnail ||
           'https://ktuh.org/img/ktuh-logo.jpg'} />,
         <h1 className="general__header" key='header'>
           <b>{this.props.review.releaseName}</b>
@@ -40,14 +39,14 @@ class ReviewPage extends Component {
               (this.props.review.image && this.props.review.image.url)} />
           <div className='review-page__copy'>
             <h4 className='review-page__rating'>
-              {this.formattedRating(this.props.review.rating) + ' / 5.0'}</h4>
+              {`${this.formattedRating(this.props.review.rating)} / 5.0`}</h4>
             <div className='review-page__byline'>
               {'Review by '}
-              <a href={'/profile/' + usernameById(this.props.review.userId)}>
+              <a href={`/profile/${usernameById(this.props.review.userId)}`}>
                 {displayNameById(this.props.review.userId) ||
                   usernameById(this.props.review.userId)}
               </a>
-              {' • ' + moment(this.props.review.submitted).fromNow()}
+              {` • ${moment(this.props.review.submitted).fromNow()}`}
             </div>
             <div className='review-page__body' dangerouslySetInnerHTML=
               {{ __html: this.props.review.body }}/>

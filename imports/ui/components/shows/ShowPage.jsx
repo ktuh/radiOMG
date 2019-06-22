@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
-import { moment as momentUtil } from 'meteor/momentjs:moment';
+import { default as momentUtil } from 'moment';
 import moment from 'moment-timezone';
 import { Session } from 'meteor/session';
 import { FlowRouter } from 'meteor/kadira:flow-router';

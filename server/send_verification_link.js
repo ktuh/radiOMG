@@ -1,5 +1,5 @@
 import { Meteor } from 'meteor/meteor';
-import { moment } from 'meteor/momentjs:moment';
+import { default as moment } from 'moment';
 import { check } from 'meteor/check';
 
 Meteor.methods({

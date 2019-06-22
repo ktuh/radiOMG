@@ -1,16 +1,14 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types'; 
+import React from 'react';
+import PropTypes from 'prop-types';
 
-export default class LoginErrorMessage extends Component {
-  static propTypes = {
-    errorMessage: PropTypes.string
-  }
+export default function LoginErrorMessage({ errorMessage }) {
+  return <div
+    style={{ backgroundColor: 'pink', color: 'red',
+      border: 'thin red solid' }}>
+    {errorMessage}
+  </div>;
+}
 
-  render() {
-    return <div
-      style={{ backgroundColor: 'pink', color: 'red',
-        border: 'thin red solid' }}>
-      {this.props.errorMessage}
-    </div>;
-  }
+LoginErrorMessage.propTypes = {
+  errorMessage: PropTypes.string
 }

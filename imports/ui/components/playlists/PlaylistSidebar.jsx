@@ -4,7 +4,7 @@ import { Session } from 'meteor/session';
 import { withTracker } from 'meteor/react-meteor-data';
 import Shows from '../../../api/shows/shows_collection.js';
 import Playlists from '../../../api/playlists/playlists_collection.js';
-import { moment } from 'meteor/momentjs:moment';
+import { default as moment } from 'moment';
 
 class PlaylistSidebar extends Component {
   static propTypes = {

@@ -25,9 +25,8 @@ export default class MediaElement extends Component {
 
     $('.mejs__playpause-button').click(function () {
       if (Session.equals('defaultLoaded', true)) {
-        var message = 'Now playing the ' +
-          scorpius.dictionary.get('mainPage.title', 'station\'s') +
-          ' live stream';
+        var message = `Now playing the ${
+          scorpius.dictionary.get('mainPage.title', 'station\'s')} live stream`;
         Session.set('defaultLoaded', false);
 
         if (!Session.get('playedStream')) {

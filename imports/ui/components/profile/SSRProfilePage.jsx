@@ -14,9 +14,10 @@ class SSRProfilePage extends Component {
   render() {
     if (this.props.profile !== undefined && !this.props.profile.banned) {
       return [
-        <Metamorph title={this.props.profile.name +
-          '\'s Profile - KTUH FM Honolulu | Radio for the People'}
-        description={this.props.profile.name + '\'s Profile'}
+        <Metamorph title={`${
+          this.props.profile.name
+        }'s Profile - KTUH FM Honolulu | Radio for the People`}
+        description={`${this.props.profile.name}'s Profile`}
         image={this.props.profile.photo && this.props.profile.photo.url ||
           'https://ktuh.org/img/ktuh-logo.jpg'} />,
         <h2 className='general__header'>{this.props.profile.name}</h2>,

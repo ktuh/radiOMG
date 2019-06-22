@@ -1,11 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export default class SummernoteTextEdit extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return <div id="summernote" />;
-  }
+export default function SummernoteTextEdit() {
+  return <div id="summernote" />;
 }

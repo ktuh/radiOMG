@@ -11,8 +11,8 @@ Meteor.methods({
     var keys = Object.keys(queryObj);
     var query = [];
     for (var k = 0; k < keys.length; k++) {
-      query.push(encodeURIComponent(keys[k]) + '=' +
-        encodeURIComponent(queryObj[keys[k]]));
+      query.push(`${encodeURIComponent(keys[k])}=${
+        encodeURIComponent(queryObj[keys[k]])}`);
     }
     query = query.join('&');
     this.unblock();

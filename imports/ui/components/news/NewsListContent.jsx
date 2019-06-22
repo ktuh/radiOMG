@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
@@ -7,30 +7,24 @@ import NewsFeatured from './NewsFeatured.jsx';
 import Posts from '../../../api/posts/posts_collection.js';
 import EverAfter from 'react-everafter';
 
-class NewsListContent extends Component {
-  static propTypes = {
-    ready: PropTypes.bool,
-    posts: PropTypes.array
-  }
-
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    if (this.props.ready) {
-      return (
-        <div className='news-list__content'>
-          <div className='news-list'>
-            <NewsFeatured />
-            <EverAfter.Paginator wrapper={NewsItem} perPage={4}
-              items={this.props.posts} truncate={true} />
-          </div>
+function NewsListContent({ ready, posts }) {
+  if (ready) {
+    return (
+      <div className='news-list__content'>
+        <div className='news-list'>
+          <NewsFeatured />
+          <EverAfter.Paginator wrapper={NewsItem} perPage={4}
+            items={posts} truncate={true} />
         </div>
-      );
-    }
-    else return null;
+      </div>
+    );
   }
+  else return null;
+}
+
+NewsListContent.propTypes = {
+  ready: PropTypes.bool,
+  posts: PropTypes.array
 }
 
 export default withTracker(() => {

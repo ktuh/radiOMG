@@ -5,11 +5,11 @@ import { Roles } from 'meteor/nicolaslopezj:roles';
 import { ServiceConfiguration } from 'meteor/service-configuration';
 
 Meteor.startup(function () {
-  process.env.MAIL_URL = 'smtp://' +
-    encodeURIComponent(Meteor.settings.emailUsername) + ':' +
-    encodeURIComponent(Meteor.settings.emailPassword) + '@' +
-    encodeURIComponent(Meteor.settings.emailServer) + ':'  +
-    Meteor.settings.emailPort;
+  process.env.MAIL_URL = `smtp://${
+    encodeURIComponent(Meteor.settings.emailUsername)}:${
+    encodeURIComponent(Meteor.settings.emailPassword)}@${
+    encodeURIComponent(Meteor.settings.emailServer)}:${
+    Meteor.settings.emailPort}`;
 
   Accounts.emailTemplates.siteName = 'KTUH Honolulu';
 
@@ -22,10 +22,12 @@ Meteor.startup(function () {
   };
 
   Accounts.emailTemplates.verifyEmail.text = function(user, url) {
-    return `Hi ${user.username},` + '\n\n' +
-    'Mahalo for registering for the KTUH Honolulu website.\n' +
-    'Please click on the following link to verify your email address:\n\n' +
-    url;
+    return `Hi ${user.username},
+
+Mahalo for registering for the KTUH Honolulu website.
+Please click on the following link to verify your email address:
+
+${url}`;
   };
 
   Accounts.emailTemplates.resetPassword.from = function() {
@@ -84,7 +86,7 @@ Meteor.startup(function () {
         if (existentUser === undefined)
           break;
         var numStr = Number(i).toString();
-        username = username + '-' +  numStr;
+        username += `-${numStr}`;
         existentUser = Meteor.users.findOne({ username: username });
       }
 

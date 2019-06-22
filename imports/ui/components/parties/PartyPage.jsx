@@ -9,7 +9,7 @@ import Parties from '../../../api/parties/parties_collection.js';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { Metamorph } from 'react-metamorph';
 import { Bert } from 'meteor/themeteorchef:bert';
-import { moment } from 'meteor/momentjs:moment';
+import { default as moment } from 'moment';
 
 class PartyPage extends Component {
   static propTypes = {

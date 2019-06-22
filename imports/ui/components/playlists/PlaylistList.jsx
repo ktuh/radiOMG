@@ -9,7 +9,7 @@ import Shows from '../../../api/shows/shows_collection.js';
 import Profiles from '../../../api/users/profiles_collection.js';
 import Playlists from '../../../api/playlists/playlists_collection.js';
 import { withTracker } from 'meteor/react-meteor-data';
-import { moment as momentUtil } from 'meteor/momentjs:moment';
+import { default as momentUtil } from 'moment';
 import moment from 'moment-timezone';
 import { Session } from 'meteor/session';
 import { Metamorph } from 'react-metamorph';
@@ -35,8 +35,8 @@ class PlaylistList extends Component {
   showTime(startDay, startHour) {
     var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday',
       'Friday', 'Saturday'];
-    return days[startDay] + 's at ' +
-      momentUtil().hour(startHour).format('h A');
+    return `${days[startDay]}s at ${
+      momentUtil().hour(startHour).format('h A')}`;
   }
 
   actualShowHost(showId) {
@@ -47,12 +47,9 @@ class PlaylistList extends Component {
   }
 
   timeHMS(date, startTime, endTime) {
-    return momentUtil(moment(date, 'Pacific/Honolulu'))
-      .format('ddd. MMM DD, YYYY') + ' ' +
-      momentUtil(startTime, 'HH:mm:ss')
-        .format('hh:mm') +  '-' +
-      momentUtil(endTime, 'HH:mm:ss')
-        .format('hh:mm A');
+    return `${momentUtil(moment(date, 'Pacific/Honolulu'))
+      .format('ddd. MMM DD, YYYY')} ${momentUtil(startTime, 'HH:mm:ss')
+      .format('hh:mm')}-${momentUtil(endTime, 'HH:mm:ss').format('hh:mm A')}`;
   }
 
   truncated(str) {
@@ -77,22 +74,24 @@ class PlaylistList extends Component {
 
     if (this.usernameById(show.userId)) {
       if (this.actualShowHost(show.showId)) {
-        return [this.showTime(show.startDay, show.startHour) +
-        ' • Hosted by ', <a href={'/profile/' + this.usernameById(show.userId)}>
+        return [`${
+          this.showTime(show.startDay, show.startHour)} • Hosted by `,
+        <a href={`/profile/${this.usernameById(show.userId)}`}>
           {this.actualShowHost(show.showId)}
         </a>];
       }
-      else return [this.showTime(latestShow.startDay, latestShow.startHour) +
-      ' • Hosted by ', <a href={`/profile/${this.usernameById(show.userId)}`}>
+      else return [`${
+        this.showTime(latestShow.startDay, latestShow.startHour)} • Hosted by `,
+      <a href={`/profile/${this.usernameById(show.userId)}`}>
         {show.host}</a>];
     }
     else if (this.props.currentPlaylist) {
-      return [this.timeHMS(this.props.currentPlaylist.showDate,
+      return [`${this.timeHMS(this.props.currentPlaylist.showDate,
         this.props.currentPlaylist.startTime,
-        this.props.currentPlaylist.endTime) + ' • Hosted by ',
+        this.props.currentPlaylist.endTime)} • Hosted by `,
       (this.usernameFromDisplayName(this.props.currentPlaylist.djName) && (
-        <a href={'/profile/' + this.usernameFromDisplayName(
-          this.props.currentPlaylist.djName)}>
+        <a href={`/profile/${this.usernameFromDisplayName(
+          this.props.currentPlaylist.djName)}`}>
           {this.props.currentPlaylist.djName}
         </a>) || this.props.currentPlaylist.djName)];
     }

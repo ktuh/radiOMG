@@ -11,7 +11,7 @@ import Parties from '../../api/parties/parties_collection.js';
 import NowPlaying from '../../api/playlists/now_playing.js';
 import bodyParser from 'body-parser';
 import { getLocalTime } from '../lib/helpers.js';
-import { moment as momentUtil } from 'meteor/momentjs:moment';
+import { default as momentUtil } from 'moment';
 import moment from 'moment-timezone';
 import React from 'react';
 import { Helmet } from 'react-helmet';
@@ -21,7 +21,7 @@ import SSRLayout from '../../ui/components/application/SSRLayout.jsx'
 Picker.middleware(bodyParser.json());
 Picker.middleware(bodyParser.urlencoded({ extended: false }));
 
-Picker.route('/spinitron/latest', function(params, req, res, next) {
+Picker.route('/spinitron/latest', function(params, req, res) {
   check(params.query, { playlistId: Match.Where(function(str) {
     check(str, String);
     return /[0-9]+/.test(str);
@@ -34,7 +34,7 @@ Picker.route('/spinitron/latest', function(params, req, res, next) {
   var showItself = Shows.findOne({ showId: showId });
   if (!showItself) showId = -1;
   var playlistId = parseInt(params.query.playlistId);
-  var html = params.query.artist + ' - ' + params.query.song;
+  var html = `${params.query.artist} - ${params.query.song}`;
 
   if (!Playlists.findOne({ spinPlaylistId: playlistId })) {
     if (playlistId <= 1000000) {

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
 import Notifications from
@@ -6,28 +6,23 @@ import Notifications from
 import NotificationItem from './NotificationItem.jsx';
 import { withTracker } from 'meteor/react-meteor-data';
 
-class NotificationsBox extends Component {
-  static propTypes = {
-    notifications: PropTypes.array
-  }
+function NotificationsBox({  notifications }) {
+  return [<a href="#" className="dropdown-toggle" data-toggle="dropdown">
+    Notifications
+    {notifications.length &&
+      <span className="badge badge-inverse">
+        {notifications.length}</span> || null}
+    <b className="caret"></b>
+  </a>,
+  <ul className="notification dropdown-menu">
+    {notifications.length && notifications.map(
+      ({ commenterName, notificationPostPath, _id }) =>
+        <NotificationItem {...{ commenterName, notificationPostPath, _id }} />)
+        || <li><span>No Notifications</span></li>}</ul>];
+}
 
-  render() {
-    return [<a href="#" className="dropdown-toggle" data-toggle="dropdown">
-      Notifications
-      {this.props.notifications.length > 0 &&
-        <span className="badge badge-inverse">
-          {this.props.notifications.length}</span> || null}
-      <b className="caret"></b>
-    </a>,
-    <ul className="notification dropdown-menu">
-      {this.props.notifications.length > 0 &&
-        this.props.notifications.map((notification) =>
-          <NotificationItem commenterName={notification.commenterName}
-            notificationPostPath={notification.notificationPostPath}
-            _id={notification._id} />) ||
-            <li><span>No Notifications</span></li> }
-    </ul>];
-  }
+NotificationsBox.propTypes = {
+  notifications: PropTypes.array
 }
 
 export default withTracker(() => {

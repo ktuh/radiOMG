@@ -75,7 +75,7 @@ class ShowList extends Component {
             {['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday',
               'Friday', 'Saturday'].map(function(day, i) {
               return (
-                <a href={'/shows?day=' + day }
+                <a href={`/shows?day=${day}` }
                   onClick={(e) => handleClick(e)(i)}>
                   <span className={`shows__day ${active(day)}`}>
                     {day}</span>
@@ -87,7 +87,7 @@ class ShowList extends Component {
             {['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday',
               'Friday', 'Saturday'].map(function(day, i) {
               return (
-                <a href={'/shows?day=' + day }
+                <a href={`/shows?day=${day}` }
                   onClick={(e) => handleClick(e)(i)}>
                   <span className={`shows__day ${active(day)}`}>
                     {day.substring(0,3)}</span>

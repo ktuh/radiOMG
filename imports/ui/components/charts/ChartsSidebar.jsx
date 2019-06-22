@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
 import Charts from '../../../api/charts/charts_collection.js';
 import { withTracker } from 'meteor/react-meteor-data';
-import { moment as momentUtil } from 'meteor/momentjs:moment';
+import { default as momentUtil } from 'moment';
 import moment from 'moment-timezone';
 import { pages } from '../../../startup/lib/helpers.js';
 import EverAfter from 'react-everafter';
@@ -33,9 +33,9 @@ class ChartsSidebar extends Component {
             perPage={8} items={this.props.charts}
             truncate={true} columns={[{
               headerText: '',
-              display: (item) => <a href={'/charts/' + item.slug}>
+              display: (item) => <a href={`/charts/${item.slug}`}>
                 <p className='home__title'>
-                  {item.title + ' - ' + dateFmt(item.chartDate)}
+                  {`${item.title} - ${dateFmt(item.chartDate)}`}
                 </p>
               </a>
             }]} />

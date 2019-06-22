@@ -43,17 +43,17 @@ Meteor.methods({
     switch(commentAttributes.type) {
     case 'partyPage':
       var party = Parties.findOne({ _id: commentAttributes.postId });
-      url += 'events/' + post.slug;
+      url += `events/${post.slug}`;
       recipient = Meteor.users.findOne({ _id: party.userId });
 
       to = recipient.emails && recipient.emails[0].address;
       // So we don't email if the party page's author is commenting.
       if (party.userId === comment.userId)
         break;
-      subject = 'New Comment on Your Event "' + party.title + '"';
+      subject = `New Comment on Your Event "${party.title}"`;
       body = 'Hello,<br><br>You have a new comment on your event, ' +
-          party.title + '. User ' + comment.author + ' said: <br><br>"' +
-          comment.body + '".<br><br><a target="_blank" href="' + url +
+          `${party.title}. User ${comment.author} said: <br><br>"` +
+          `${comment.body}".<br><br><a target="_blank" href="${url}` +
           '">Click here to view this comment in context.</a>';
       Meteor.call('sendEmailNotification', to, subject, body, false);
       break;
@@ -62,7 +62,7 @@ Meteor.methods({
       // TODO: Sort out the issue with using FlowRouter.url() to generate the
       // path dynamically. It was failing to substitute the route and params
       // when given a route name. For now, we've hard-coded in the url.
-      url += 'playlist/' + playlist.spinPlaylistId;
+      url += `playlists/${playlist.spinPlaylistId}`;
       var show = Shows.findOne({ showId: playlist.showId });
       recipient = Meteor.users.findOne({ _id: show.userId });
 
@@ -71,22 +71,22 @@ Meteor.methods({
         break;
       subject = 'New Comment on Your Playlist';
       body = 'Hello,<br><br>You have a new comment on a playlist for ' +
-          show.showName + '. User ' + comment.author + ' said: <br><br>"' +
-          comment.body +  '".<br><br><a target="_blank" href="' + url +
+          `${show.showName}. User ${comment.author} said: <br><br>"` +
+          `${comment.body}".<br><br><a target="_blank" href="${url}` +
           '">Click here to view this comment in context.</a>';
       Meteor.call('sendEmailNotification', to, subject, body, false);
       break;
     case 'newsPage':
       var post = Posts.findOne({ _id: commentAttributes.postId });
-      url += 'radioblog/' + post.slug;
+      url += `radioblog/${post.slug}`;
       recipient = Meteor.users.findOne({ _id: post.userId });
 
       to = recipient.emails && recipient.emails[0].address;
       if (post.userId === comment.userId) break;
-      subject = 'New Comment on Your Post, "' + post.title + '"';
+      subject = `New Comment on Your Post, "${post.title}"`;
       body = 'Hello,<br><br>You have a new comment on your post, ' +
-      post.title + '. User ' + comment.author + ' said: <br><br>"' +
-      comment.body + '".<br><br><a target="_blank" href="' + url +
+      `${post.title}. User ${comment.author} said: <br><br>"` +
+      `${comment.body}".<br><br><a target="_blank" href="${url}` +
       '">Click here to view this comment in context.</a>';
       Meteor.call('sendEmailNotification', to, subject, body, false);
       break;

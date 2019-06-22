@@ -1,12 +1,11 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import Support from '../includes/Support.jsx';
 import HomeFeaturedPost from './HomeFeaturedPost.jsx';
 import HomeContent from './HomeContent.jsx';
-import { _ } from 'underscore';
 import { Metamorph } from 'react-metamorph';
 
-export default class Home extends Component {
-  componentDidMount() {
+export default function Home() {
+  useEffect(function() {
     /* This next section makes our sticky nav possible. */
     var myNavBar = {
       flagAdd: true,
@@ -60,30 +59,24 @@ export default class Home extends Component {
     /* We have to do a first detectation of offset because the page
      * could be load with scroll down set. */
     offSetManager();
-  }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    return !_.isEqual(nextProps, this.props) ||
-      !_.isEqual(nextState, this.state);
-  }
 
-  componentWillUnmount() {
-    var objs = [$('.navbar'), $('.navbar-default'), $('.dropdown-menu')]
-    for (var i = 0; i < objs.length; i++) {
-      objs[i].removeClass('fixed-theme');
+    return function cleanup() {
+      var objs = [$('.navbar'), $('.navbar-default'), $('.dropdown-menu')]
+      for (var i = 0; i < objs.length; i++) {
+        objs[i].removeClass('fixed-theme');
+      }
+      window.scroll(0, 0);
+      window.onscroll = null;
     }
-    window.scroll(0, 0);
-    window.onscroll = null;
-  }
+  });
 
-  render() {
-    return [
-      <Metamorph title='KTUH FM Honolulu | Radio for the People'
-        image="https://ktuh.org/img/ktuh-logo.jpg"
-        description="KTUH Homepage" />,
-      <HomeFeaturedPost key='featured-post' />,
-      <HomeContent key='main-content' />,
-      <Support key='support' />
-    ];
-  }
+  return [
+    <Metamorph title='KTUH FM Honolulu | Radio for the People'
+      image="https://ktuh.org/img/ktuh-logo.jpg"
+      description="KTUH Homepage" />,
+    <HomeFeaturedPost key='featured-post' />,
+    <HomeContent key='main-content' />,
+    <Support key='support' />
+  ];
 }

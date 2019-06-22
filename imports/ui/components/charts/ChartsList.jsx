@@ -4,7 +4,7 @@ import Charts from '../../../api/charts/charts_collection.js';
 import ChartsSidebar from './ChartsSidebar.jsx';
 import ChartTable from './ChartTable.jsx';
 import { withTracker } from 'meteor/react-meteor-data';
-import { moment as momentUtil } from 'meteor/momentjs:moment';
+import { default as momentUtil } from 'moment';
 import moment from 'moment-timezone';
 import { Metamorph } from 'react-metamorph';
 
@@ -38,11 +38,11 @@ class ChartsList extends Component {
         {this.props.latestCharts.map((chart) =>
           [
             <h3 className='playlist__show-name' key={chart._id}>
-              <a href={'/charts/' + chart.slug}>
-                {chart.title + ' - ' + dateFmt(chart.chartDate)}
+              <a href={`/charts/${chart.slug}`}>
+                {`${chart.title} - ${dateFmt(chart.chartDate)}`}
               </a>
             </h3>,
-            <ChartTable tracks={chart.tracks} key={chart._id + ' tracks'}/>
+            <ChartTable tracks={chart.tracks} key={`${chart._id} tracks`}/>
           ])}
       </div>,
       <ChartsSidebar key="chart-sidebar" />
