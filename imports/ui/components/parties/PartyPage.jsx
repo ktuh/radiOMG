@@ -53,8 +53,8 @@ class PartyPage extends Component {
   render() {
     if (this.props.ready) {
       return [
-        <Metamorph title={this.props.party.title +
-          ' - KTUH FM Honolulu | Radio for the People'}
+        <Metamorph title={`${this.props.party.title
+        } - KTUH FM Honolulu | Radio for the People`}
         image={this.props.party.thumbnail ||
           'https://ktuh.org/img/ktuh-logo.png'}
         description={this.props.party.summary} />,
@@ -82,8 +82,8 @@ class PartyPage extends Component {
             </p>
             <div className='party-info__details'>
               <span onClick={this.handleClickStar} className=
-                {'party-info__star glyphicon glyphicon-star ' +
-                  this.upvoted(this.props.party.upvoters)}>
+                {`party-info__star glyphicon glyphicon-star ${ 
+                  this.upvoted(this.props.party.upvoters)}`}>
               </span>
               <span className='party-info__upvotes-count'>
                 {this.props.party.upvoters.length}
