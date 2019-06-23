@@ -81,7 +81,6 @@ export default class Header extends Component {
   }
 
   render() {
-    console.log(Meteor.isClient);
     return (
       <nav className='navbar navbar-default' role='navigation'>
         <div className='info-box'>
