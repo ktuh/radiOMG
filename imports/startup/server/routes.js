@@ -17,10 +17,7 @@ import moment from 'moment-timezone';
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { renderToString } from 'react-dom/server';
-import Layout from '../../ui/components/application/Layout.jsx'
 import SSRLayout from '../../ui/components/application/SSRLayout.jsx';
-import fs from 'fs';
-import path from 'path';
 
 Picker.middleware(bodyParser.json());
 Picker.middleware(bodyParser.urlencoded({ extended: false }));
@@ -121,9 +118,8 @@ const SeoRouter = Picker.filter(function(request) {
   return escapedFragmentIsUsed || botIsUsed;
 });
 
-var renderOut = (component, layout) => {
-  var Lout = layout || SSRLayout;
-  var html = renderToString(<Lout content={component} />),
+var renderOut = (component) => {
+  var html = renderToString(<SSRLayout content={component} />),
     helmet = Helmet.renderStatic();
   return `<!doctype html><html lang="en">
 <head>
@@ -135,17 +131,6 @@ ${helmet.link.toString()}
 rel="stylesheet" href="https://`+
 `stackpath.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
 <link rel="stylesheet" href="https://ktuh.org/main.css" />
-${process.env.NODE_ENV === 'development' ?
-    ['<script src="/app/app.js" defer></script>', ...fs.readdirSync(
-      path.resolve(process.env.PWD,
-        '.meteor/local/build/programs/web.browser/packages')).filter(
-      fn => /\.js$/.test(fn)).map(fn =>
-      `<script src="/packages/${fn}" defer></script>`)].join('\n') :
-    `<script src="${fs.readdirSync(
-      path.resolve(process.env.PWD,
-        'programs/web.browser/')).filter(function(fn) {
-      return /\.js$/.test(fn);
-    })[0]}" defer></script>`}
 </head>
 <body>
   ${html}
