@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ChartTable from './ChartTable.jsx';
-import { moment as momentUtil } from 'meteor/momentjs:moment';
+import { default as momentUtil } from 'moment';
 import moment from 'moment-timezone';
 import { Metamorph } from 'react-metamorph';
 
@@ -17,14 +17,14 @@ class SSRChartsPage extends Component {
   render() {
     var dateFmt = this.dateFmt;
     return [
-      <Metamorph title={this.props.chart.title + ' - ' +
-        dateFmt(this.props.chart.chartDate) + ' - ' +
-        'KTUH FM Honolulu | Radio for the People'} description={
-        this.props.chart.title + ' - ' + dateFmt(this.props.chart.chartDate)
+      <Metamorph title={`${this.props.chart.title} - ${
+        dateFmt(this.props.chart.chartDate)
+      } - KTUH FM Honolulu | Radio for the People`} description={
+        `${this.props.chart.title} - ${dateFmt(this.props.chart.chartDate)}`
       } image='https://ktuh.org/img/ktuh-logo.jpg' />,
       <h1 className='general__header' key='header-title'>
-        {this.props.chart.title + ' - ' +
-          dateFmt(this.props.chart.chartDate)}</h1>,
+        {`${this.props.chart.title} - ${
+          dateFmt(this.props.chart.chartDate)}`}</h1>,
       <div className='chart__link' key='charts-link'>
         <a href='/charts' className='back-to'>← Back to Charts</a>
       </div>,

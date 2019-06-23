@@ -2,7 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { HTTP } from 'meteor/http';
 import CryptoJS from 'crypto-js';
 import '/node_modules/crypto-js/enc-base64.js';
-import { moment } from 'meteor/momentjs:moment';
+import { default as moment } from 'moment';
 import { check } from 'meteor/check';
 
 /*
@@ -48,20 +48,20 @@ Meteor.methods({
 
     // Form query string
     for (var k = 0; k < keys.length; k++) {
-      query.push(encodeURIComponent(keys[k]) + '=' +
-        encodeURIComponent(params[keys[k]]));
+      query.push(`${encodeURIComponent(keys[k])}=${
+        encodeURIComponent(params[keys[k]])}`);
     }
     query = query.join('&');
-    var subject = 'spinitron.com\n/public/spinpapi.php\n' + query;
+    var subject = `spinitron.com\n/public/spinpapi.php\n${query}`,
 
-    // Encode above variable to form signature
-    var sig = CryptoJS.HmacSHA256(subject, Meteor.settings.spinitronSecret);
+      // Encode above variable to form signature
+      sig = CryptoJS.HmacSHA256(subject, Meteor.settings.spinitronSecret);
     sig = sig.toString(CryptoJS.enc.Base64);
     sig = encodeURIComponent(sig);
 
     params.signature = sig;
-    var q_sig = encodeURIComponent('signature') + '=' + sig;
-    query = query + '&' + q_sig;
+    var q_sig = `${encodeURIComponent('signature')}=${sig}`;
+    query += `&${q_sig}`;
     this.unblock();
     var res = HTTP.get('http://spinitron.com/public/spinpapi.php',
       { query: query });
@@ -70,10 +70,10 @@ Meteor.methods({
   getPlaylistOrInfo2: function(id) {
     check(id, Number);
     this.unblock();
-    var res = HTTP.get('https://spinitron.com/api/playlists/' + id, {
+    var res = HTTP.get(`https://spinitron.com/api/playlists/${id}`, {
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + Meteor.settings.spinitronApiKey
+        'Authorization': `Bearer ${Meteor.settings.spinitronApiKey}`
       }
     });
     return res;
@@ -82,10 +82,10 @@ Meteor.methods({
     check(id, Number);
     this.unblock();
     var res = HTTP.get(
-      'https://spinitron.com/api/spins?count=100&playlist_id=' + id, {
+      `https://spinitron.com/api/spins?count=100&playlist_id=${id}`, {
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + Meteor.settings.spinitronApiKey
+          'Authorization': `Bearer ${Meteor.settings.spinitronApiKey}`
         }
       });
     return res;

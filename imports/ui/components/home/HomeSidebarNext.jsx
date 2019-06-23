@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { nextShow, usernameById, displayNameById }
   from '../../../startup/lib/helpers.js';
-import { moment as momentUtil } from 'meteor/momentjs:moment';
+import { default as momentUtil } from 'moment';
 import { withTracker } from 'meteor/react-meteor-data';
 
 class HomeSidebarNext extends Component {
@@ -21,9 +21,9 @@ class HomeSidebarNext extends Component {
     var sp = '';
     if (startHour > endHour) sp = 'h:mm A'
     else sp = 'h:mm';
-    return momentUtil(startHour + ':' + startMinute, 'HH:mm')
-      .format(sp) + '-' +
-    momentUtil(endHour + ':' + endMinute, 'HH:mm').format('h:mm A');
+    return `${momentUtil(`${startHour}:${startMinute}`, 'HH:mm')
+      .format(sp)}-${
+      momentUtil(`${endHour}:${endMinute}`, 'HH:mm').format('h:mm A')}`;
   }
 
   render() {
@@ -32,13 +32,12 @@ class HomeSidebarNext extends Component {
         <div className='home__next-show-deets'>
           <p className="home__next-on-air">Next On Air</p>
           <p className='home__next-show-name'>
-            <a href={'/shows/' + nextShow().slug}>
+            <a href={`/shows/${nextShow().slug}`}>
               {nextShow().showName}
             </a>
           </p>
           <p className='home__next-show-host'>
-            hosted by <a href={'/profile/' +
-              usernameById(nextShow().userId)}>
+            hosted by <a href={`/profile/${usernameById(nextShow().userId)}`}>
               {displayNameById(nextShow().userId)}</a>
           </p>
           <p className='home__next-show-time'>

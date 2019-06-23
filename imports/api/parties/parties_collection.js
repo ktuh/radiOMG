@@ -10,8 +10,8 @@ var Parties = new scorpius.collection('parties', {
       {
         data: 'flyerFront',
         title: 'Flyer',
-        render: function (val) {
-          return '<img src=' + val.url + '>';
+        render: function ({ url }) {
+          return `<img src=${url} />`;
         }
       }, {
         data: 'title',

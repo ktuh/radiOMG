@@ -1,46 +1,37 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { useEffect } from 'react';
+import { oneOfType, object, func } from 'prop-types';
 import Landing from '../home/Landing.jsx';
 import Header from '../includes/Header.jsx';
 import Footer from '../includes/Footer.jsx';
-import { FlowRouter } from 'meteor/kadira:flow-router';
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import Banner from '../includes/Banner.jsx';
-import { Blaze } from 'meteor/gadicc:blaze-react-component';
-import './blaze_layout.js';
 
-export default class Layout extends Component {
-  static propTypes = {
-    content: PropTypes.object
-  }
-
-  constructor(props) {
-    super(props);
-  }
-
-  home() {
+export default function Layout({ content }) {
+  function home() {
     return FlowRouter.getRouteName() === 'home';
   }
 
-  componentDidMount() {
-    player.setSrc('http://stream.ktuh.org:8000/stream-mp3');
-  }
+  useEffect(function() {
+    if (global.player)
+      global.player.setSrc('http://stream.ktuh.org:8000/stream-mp3');
+  }, [Meteor.isClient]);
 
-  render() {
-    return [
-      this.home() ? <Banner /> : null,
-      <div className='container' key='container'>
-        {this.home() && [<Landing key='landing' />,
-          <div className='spacer-lg' key='lg'/>] ||
-          <div className='spacer-sm' key='sm' />}
-        <Header key='header' />
-        <script src='/mejs/mediaelement-and-player.min.js'></script>
-        <div id='main'>
-          {this.props.content}
-        </div>
-      </div>,
-      <Footer key='footer' />,
-      ['atResetPwd', 'atSignIn'].includes(FlowRouter._current.route.name) ?
-        <Blaze template="layout" /> : null
-    ];
-  }
+  return [
+    home() ? <Banner /> : null,
+    <div className='container' key='container'>
+      {home() && [<Landing key='landing' />,
+        <div className='spacer-lg' key='lg'/>] ||
+        <div className='spacer-sm' key='sm' />}
+      <Header key='header' />
+      <script src='/mejs/mediaelement-and-player.min.js'></script>
+      <div id='main'>
+        {content}
+      </div>
+    </div>,
+    <Footer key='footer' />
+  ];
+}
+
+Layout.propTypes = {
+  content: oneOfType([object, func])
 }

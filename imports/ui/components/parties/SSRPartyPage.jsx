@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Comments from '../../../api/comments/comments_collection.js';
 import CommentItem from '../comments/CommentItem.jsx';
 import { Metamorph } from 'react-metamorph';
-import { moment } from 'meteor/momentjs:moment';
+import { default as moment } from 'moment';
 
 class SSRPartyPage extends Component {
   static propTypes = {
@@ -17,8 +17,8 @@ class SSRPartyPage extends Component {
 
   render() {
     return [
-      <Metamorph title={this.props.party.title +
-        ' - KTUH FM Honolulu | Radio for the People'}
+      <Metamorph title={`${this.props.party.title
+      } - KTUH FM Honolulu | Radio for the People`}
       image={this.props.party.thumbnail ||
         'https://ktuh.org/img/ktuh-logo.png'}
       description={this.props.party.summary} />,

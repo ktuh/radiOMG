@@ -9,12 +9,12 @@ Meteor.methods({
     yubigen.s3Put({
       accessKeyId: Meteor.settings.awsKey,
       secretAccessKey: Meteor.settings.awsSecret
-    }, Meteor.settings.bucket, 'thumbs/' + url.split('/').slice(-1)[0] + '.jpg',
+    }, Meteor.settings.bucket, `thumbs/${url.split('/').slice(-1)[0]}.jpg`,
     url, { resizeParams: [maxW], imageMagick: true, format: 'JPEG' },
     (result, err) => {
       if (err) console.log(err);
     });
-    return 'https://s3-' + Meteor.settings.awsRegion + '.amazonaws.com/' +
-    Meteor.settings.bucket + '/thumbs/' + url.split('/').slice(-1)[0] + '.jpg'
+    return `https://s3-${Meteor.settings.awsRegion}.amazonaws.com/${
+      Meteor.settings.bucket}/thumbs/${url.split('/').slice(-1)[0]}.jpg`
   }
 });

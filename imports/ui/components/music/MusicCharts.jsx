@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Charts from '../../../api/charts/charts_collection.js';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Meteor } from 'meteor/meteor';
-import { moment as momentUtil } from 'meteor/momentjs:moment';
+import { default as momentUtil } from 'moment';
 import EverAfter from 'react-everafter';
 
 class MusicCharts extends Component {

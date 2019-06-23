@@ -20,9 +20,10 @@ class Banner extends Component {
     if (this.props.ready && this.props.notice &&
       this.within(this.props.notice.startDatetime,
         this.props.notice.endDatetime)) {
-      return <div className='banner-container'><div className={'banner ' +
-          ['light', 'medium', 'dark'][this.props.notice.severity]}
-      dangerouslySetInnerHTML={{ __html: this.props.notice.body }} /></div>;
+      return <div className='banner-container'>
+        <div className={`banner ${
+          ['light', 'medium', 'dark'][this.props.notice.severity]}`}
+        dangerouslySetInnerHTML={{ __html: this.props.notice.body }} /></div>;
     }
     else return null;
   }

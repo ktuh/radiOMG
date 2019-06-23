@@ -16,9 +16,9 @@ AutoForm.hooks({
         var daDate = moment(doc.chartDate, 'Pacific/Honolulu');
         var mo = daDate.month();
         if (daDate.month() < 10) {
-          mo = '0' + mo;
+          mo = `0${mo}`;
         }
-        doc.slug += '-' + [daDate.year(), mo, daDate.day()].join('-');
+        doc.slug += `-${[daDate.year(), mo, daDate.day()].join('-')}`;
         doc.tracks = [];
         if (Session.get('uploadedData'))
           Session.get('uploadedData').forEach(function(track, i) {
@@ -31,7 +31,7 @@ AutoForm.hooks({
       }
     },
     onError: function (name, error) {
-      console.log(name + ' error:', error);
+      console.log(`${name} error: `, error);
     },
     onSuccess: function() {
       RouterLayer.go(this.collection.indexPath());

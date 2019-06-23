@@ -16,9 +16,9 @@ AutoForm.hooks({
         var daDate = moment(doc.$set.chartDate, 'Pacific/Honolulu');
         var mo = daDate.month();
         if (daDate.month() < 10) {
-          mo = '0' + mo;
+          mo = `0${mo}`;
         }
-        doc.$set.slug += '-' + [daDate.year(), mo, daDate.day()].join('-');
+        doc.$set.slug += `-${[daDate.year(), mo, daDate.day()].join('-')}`;
 
         if (Session.get('uploadedData')) {
           doc.$set.tracks = [];
@@ -33,7 +33,7 @@ AutoForm.hooks({
       }
     },
     onError: function (name, error) {
-      console.log(name + ' error:', error);
+      console.log(`${name} error: `, error);
     }
   }
 });

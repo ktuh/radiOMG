@@ -4,7 +4,7 @@ import { Session } from 'meteor/session';
 import { withTracker } from 'meteor/react-meteor-data';
 import Shows from '../../../api/shows/shows_collection.js';
 import Playlists from '../../../api/playlists/playlists_collection.js';
-import { moment } from 'meteor/momentjs:moment';
+import { default as moment } from 'moment';
 
 class PlaylistSidebar extends Component {
   static propTypes = {
@@ -62,12 +62,12 @@ class PlaylistSidebar extends Component {
     var ap = h1 > h2;
     if (ap) ap = 'hA';
     else ap = 'h';
-    return moment(h1, 'HH').format(ap) + '-' + moment(h2, 'HH').format('hA');
+    return `${moment(h1, 'HH').format(ap)}-${moment(h2, 'HH').format('hA')}`;
   }
 
   timeFromHMS(str1, str2) {
-    return moment(str1, 'HH:mm:ss').format('h') + '-' +
-      moment(str2, 'HH:mm:ss').format('hA');
+    return `${moment(str1, 'HH:mm:ss').format('h')}-${
+      moment(str2, 'HH:mm:ss').format('hA')}`;
   }
 
   showById(id) {
@@ -121,10 +121,10 @@ class PlaylistSidebar extends Component {
                       this.timeFromHours(this.showById(show.showId).startHour,
                         this.showById(show.showId).startMinute,
                         this.showById(show.showId).endHour,
-                        this.showById(show.showId).endMinute), ' '  +
-                      this.showById(show.showId).showName] || [
-                      this.timeFromHMS(show.startTime, show.endTime) + ' w/ ' +
-                  show.djName] || null}
+                        this.showById(show.showId).endMinute), ` ${
+                        this.showById(show.showId).showName}`] || [
+                      `${this.timeFromHMS(show.startTime, show.endTime) } w/ ${
+                        show.djName}`] || null}
                   </a>
                 </p>
               </div>))

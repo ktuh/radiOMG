@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
-import { FlowRouter } from 'meteor/kadira:flow-router';
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import Text from 'simple-react-form-material-ui/lib/text';
 import ScorpiusImageUpload from './ScorpiusImageUpload.jsx';
 import SummernoteTextEdit from './SummernoteTextEdit.jsx';
@@ -47,7 +47,7 @@ export default class ProfileEditForm extends Component {
         onChange={handleChange}
         onSubmit={(data) => {
           updateCollection(data);
-          FlowRouter.go('/profile/' + Meteor.user().username);
+          FlowRouter.go(`/profile/${Meteor.user().username}`);
         }} ref='form' type="update">
         <h4 className="profile-edit__label">Display Name</h4>
         <Field fieldName='name' label="Display Name" type={Text}

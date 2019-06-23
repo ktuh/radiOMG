@@ -1,14 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { moment } from 'meteor/momentjs:moment';
+import { default as moment } from 'moment';
 
-export default class CommentItem extends Component {
-  static propTypes = {
-    comment: PropTypes.object
-  }
-
-  timeDiff() {
-    var timeStr = this.props.comment.submitted.toString().substring(0, 24);
+export default function CommentItem({ comment: { body, submitted, author } }) {
+  function timeDiff() {
+    var timeStr = submitted.toString().substring(0, 24);
     var timestamp = moment(timeStr, 'ddd MMM DD YYYY HH:mm:ss');
     var now = moment();
     var diff = moment.duration(timestamp.diff(now), 'milliseconds')
@@ -16,15 +12,17 @@ export default class CommentItem extends Component {
     return diff;
   }
 
-  render() {
-    return (
-      <li className='comment'>
-        <p className='comment__text'>{this.props.comment.body}</p>
-        <p>
-          <span className='comment__author'>{this.props.comment.author}</span>
-          <span className='comment__date'>{this.timeDiff()}</span>
-        </p>
-      </li>
-    );
-  }
+  return (
+    <li className='comment'>
+      <p className='comment__text'>{body}</p>
+      <p>
+        <span className='comment__author'>{author}</span>
+        <span className='comment__date'>{timeDiff()}</span>
+      </p>
+    </li>
+  );
+}
+
+CommentItem.propTypes = {
+  comment: PropTypes.object
 }

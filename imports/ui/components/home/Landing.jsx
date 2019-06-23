@@ -4,7 +4,7 @@ import { currentPlaylistFindOne, currentShow, getLocalTime,
   usernameFromDisplayName } from '../../../startup/lib/helpers.js';
 import { withTracker } from 'meteor/react-meteor-data';
 import NowPlaying from '../../../api/playlists/now_playing.js';
-import { moment as momentUtil } from 'meteor/momentjs:moment';
+import { default as momentUtil } from 'moment';
 import moment from 'moment-timezone';
 import { $ } from 'meteor/jquery';
 import { scorpius } from 'meteor/scorpiusjs:core';
@@ -75,7 +75,7 @@ class LandingInfo extends Component {
     return <p className='landing__show-host caps' key='landing-show-host'>
       with{' '}
       {hostUsername ?
-        <a href={'/profile/' + hostUsername}>
+        <a href={`/profile/${hostUsername}`}>
           {hostDisplayName}
         </a> : hostDisplayName}
     </p>;
@@ -134,8 +134,9 @@ class Landing extends Component {
 
   componentDidMount() {
     this.setState({
-      playing: player && (!player.getPaused() &&
-        player.getSrc() === 'http://stream.ktuh.org:8000/stream-mp3') || false
+      playing: global.player && (!global.player.getPaused() &&
+        global.player.getSrc() === 'http://stream.ktuh.org:8000/stream-mp3')
+          || false
     });
   }
 
@@ -151,8 +152,8 @@ class Landing extends Component {
   }
 
   isPlaying() {
-    return player.getSrc() === scorpius.dictionary.get(
-      'mainPage.audioUrl', '') && !player.getPaused();
+    return global.player.getSrc() === scorpius.dictionary.get(
+      'mainPage.audioUrl', '') && !global.player.getPaused();
   }
 
   handleClickDownArrow() {
@@ -162,20 +163,20 @@ class Landing extends Component {
   }
 
   handlePlayBtn() {
-    var paused = player.getPaused();
-    if (player.getSrc() !== 'http://stream.ktuh.org:8000/stream-mp3') {
-      player.setSrc('http://stream.ktuh.org:8000/stream-mp3');
-      player.play();
+    var paused = global.player.getPaused();
+    if (global.player.getSrc() !== 'http://stream.ktuh.org:8000/stream-mp3') {
+      global.player.setSrc('http://stream.ktuh.org:8000/stream-mp3');
+      global.player.play();
       this.setState({ playing: true });
       return;
     }
 
     if (paused) {
-      player.play();
+      global.player.play();
       this.setState({ playing: true });
     }
     else {
-      player.pause();
+      global.player.pause();
       this.setState({ playing: false });
     }
   }

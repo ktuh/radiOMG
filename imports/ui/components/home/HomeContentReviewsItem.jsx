@@ -1,23 +1,20 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-export default class HomeContentReviewsItem extends Component {
-  static propTypes = {
-    item: PropTypes.object
-  }
+export default function HomeContentReviewsItem(
+  { item: { slug, thumbnail, image, _id, artist, releaseName } }) {
+  return (
+    <div key={_id} className='home__reviews-item'>
+      <a href={`/reviews/${slug}`}>
+        <img className='home__reviews-img' src={thumbnail ||
+          (image && image.url) || '/mstile-310x310.png'} />
+        <p className='home__title'>{artist}</p>
+        <p className='home__subtitle'>{releaseName}</p>
+      </a>
+    </div>
+  );
+}
 
-  render() {
-    return (
-      <div key={this.props.item._id} className='home__reviews-item'>
-        <a href={'/reviews/' + this.props.item.slug}>
-          <img className='home__reviews-img'
-            src={this.props.item.thumbnail ||
-            (this.props.item.image && this.props.item.image.url) ||
-            '/mstile-310x310.png'} />
-          <p className='home__title'>{this.props.item.artist}</p>
-          <p className='home__subtitle'>{this.props.item.releaseName}</p>
-        </a>
-      </div>
-    );
-  }
+HomeContentReviewsItem.propTypes = {
+  item: PropTypes.object
 }

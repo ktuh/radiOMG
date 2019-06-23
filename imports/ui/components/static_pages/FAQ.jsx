@@ -177,7 +177,7 @@ class QAPair extends Component {
           <p onClick={this.handleClick.bind(this)} className='faq__question'>
             <span>{this.props.question}</span>
           </p>
-          <p className={'faq__answer' + expanded()} dangerouslySetInnerHTML={
+          <p className={`faq__answer${expanded()}`} dangerouslySetInnerHTML={
             { __html: this.props.answer }
           } />
         </div>

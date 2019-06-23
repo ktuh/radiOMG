@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { moment as momentUtil } from 'meteor/momentjs:moment';
+import { default as momentUtil } from 'moment';
 import moment from 'moment-timezone';
 import { Metamorph } from 'react-metamorph';
 
@@ -25,10 +25,10 @@ class SSRShowPage extends Component {
     var ap = startHour > endHour;
     if (ap) ap = 'h:mmA';
     else ap = 'h:mm';
-    return momentUtil(moment(momentUtil(startHour + ':' + startMinute, 'HH:mm'),
-      'Pacific/Honolulu')).format(ap) +
-      '-' + momentUtil(moment(momentUtil(endHour + ':' + endMinute, 'HH:mm'),
-      'Pacific/Honolulu')).format('h:mmA');
+    return `${momentUtil(moment(momentUtil(`${startHour}:${startMinute}`,
+      'HH:mm'),'Pacific/Honolulu')).format(ap)
+    }-${momentUtil(moment(momentUtil(`${endHour}:${endMinute}`, 'HH:mm'),
+      'Pacific/Honolulu')).format('h:mmA')}`;
   }
 
   time(t) {
@@ -42,9 +42,9 @@ class SSRShowPage extends Component {
 
   render() {
     return [
-      <Metamorph title={this.props.show.showName + ' - KTUH FM Honolulu' +
-        ' | Radio for the People'} description={this.props.show.showName +
-        ' on KTUH'} image={this.props.show.thumbnail ||
+      <Metamorph title={`${this.props.show.showName} - KTUH FM Honolulu` +
+        ' | Radio for the People'} description={`${this.props.show.showName
+      } on KTUH`} image={this.props.show.thumbnail ||
         'https://ktuh.org/img/ktuh-logo.jpg'} />,
       <h2 className='general__header' key='header-title'>
         <b>{this.props.show.showName} / {this.props.show.host}</b>
@@ -71,7 +71,7 @@ class SSRShowPage extends Component {
             {this.props.show.genres && this.props.show.genres.length > 0 &&
             <div className='show-item__genres'>
               <span className='glyphicon glyphicon-music'></span>
-              {' ' +  this.props.show.genres.join(', ')}
+              {` ${this.props.show.genres.join(', ')}`}
             </div> || null}
             <p className='show__body' dangerouslySetInnerHTML=
               {{ __html: this.props.show.body }} />

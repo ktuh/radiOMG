@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Metamorph } from 'react-metamorph';
 
@@ -118,48 +118,36 @@ const timeline_data = [
 ]
 ;
 
-class TimelineNode extends Component {
-  static propTypes = {
-    title: PropTypes.string,
-    body: PropTypes.string
-  }
-
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <div className='timeline__node'>
-        <div className='timeline__node-title'>
-          {this.props.title}
-        </div>
-        <div className='timeline__node-body'>
-          {this.props.body}
-        </div>
+function TimelineNode({ title, body }) {
+  return (
+    <div className='timeline__node'>
+      <div className='timeline__node-title'>
+        {title}
       </div>
-    );
-  }
+      <div className='timeline__node-body'>
+        {body}
+      </div>
+    </div>
+  );
 }
 
-export default class Timeline extends Component {
-  shouldComponentUpdate() {
-    return false;
-  }
+TimelineNode.propTypes = {
+  title: PropTypes.string,
+  body: PropTypes.string
+}
 
-  render() {
-    return [
-      <Metamorph title="Timeline - KTUH FM Honolulu | Radio for the People"
-        description="KTUH Timeline" image='https://ktuh.org/img/ktuh-logo.jpg'
-      />,
-      <h2 className='general__header'>KTUH Timeline</h2>,
-      <div className='timeline' key='timeline'>
-        <div className='timeline__content'>
-          {timeline_data.map(function(node) {
-            return <TimelineNode title={node[0]} body={node[1]} />
-          })}
-        </div>
+export default function Timeline() {
+  return [
+    <Metamorph title="Timeline - KTUH FM Honolulu | Radio for the People"
+      description="KTUH Timeline" image='https://ktuh.org/img/ktuh-logo.jpg'
+    />,
+    <h2 className='general__header'>KTUH Timeline</h2>,
+    <div className='timeline' key='timeline'>
+      <div className='timeline__content'>
+        {timeline_data.map(function([title, body]) {
+          return <TimelineNode {...{ title, body }} />
+        })}
       </div>
-    ];
-  }
+    </div>
+  ];
 }

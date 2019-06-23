@@ -37,7 +37,7 @@ class NewsFeatured extends Component {
                 {this.props.featuredPost.title}
               </h2>
             </a>
-            <p>{synopsis + '  '}
+            <p>{`${synopsis}  `}
               <a className='purple-text' href={path}>
                 <i>Read On</i>
               </a>

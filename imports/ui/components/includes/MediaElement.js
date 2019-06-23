@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Bert } from 'meteor/themeteorchef:bert';
 import PropTypes from 'prop-types';
 import { $ } from 'meteor/jquery';
-import 'mediaelement';
 import { Session } from 'meteor/session';
 import { scorpius } from 'meteor/scorpiusjs:core';
 
@@ -25,9 +24,8 @@ export default class MediaElement extends Component {
 
     $('.mejs__playpause-button').click(function () {
       if (Session.equals('defaultLoaded', true)) {
-        var message = 'Now playing the ' +
-          scorpius.dictionary.get('mainPage.title', 'station\'s') +
-          ' live stream';
+        var message = `Now playing the ${
+          scorpius.dictionary.get('mainPage.title', 'station\'s')} live stream`;
         Session.set('defaultLoaded', false);
 
         if (!Session.get('playedStream')) {

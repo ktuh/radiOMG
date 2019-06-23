@@ -26,7 +26,7 @@ class HomeFeaturedPost extends Component {
             <p className='home__featured-category'>
               {this.props.post.category}
             </p>
-            <a href={'/radioblog/' + this.props.post.slug}>
+            <a href={`/radioblog/${this.props.post.slug}`}>
               <h3 className='home__title'>{this.props.post.title}</h3>
             </a>
             <p className='home__synopsis'>

@@ -2,9 +2,9 @@ import Playlists from '../../api/playlists/playlists_collection.js';
 import Shows from '../../api/shows/shows_collection.js';
 import Profiles from '../../api/users/profiles_collection.js';
 import moment from 'moment-timezone';
-import { moment as momentUtil } from 'meteor/momentjs:moment';
+import { default as momentUtil } from 'moment';
 import { Meteor } from 'meteor/meteor';
-import { FlowRouter } from 'meteor/kadira:flow-router';
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import { $ } from 'meteor/jquery';
 
 export const getLocalTime = function() {
@@ -91,9 +91,8 @@ export const thumbnailUrl = function(url, maxW) {
   Meteor.call('requestFrom', url, maxW, (err, data) => {
     if (!err) return data;
   });
-  return 'https://s3-' + Meteor.settings.awsRegion +
-    '.amazonaws.com/' + Meteor.settings.bucket + '/thumbs/' +
-    url.split('/').slice(-1)[0] + '.jpg';
+  return `https://s3-${Meteor.settings.awsRegion}.amazonaws.com/${
+    Meteor.settings.bucket}/thumbs/${url.split('/').slice(-1)[0]}.jpg`;
 }
 
 export const displayNameById = (userId) => {
@@ -129,9 +128,9 @@ export const renderSummary = function(summary, numWords) {
   if (summary.indexOf('<') > -1) {
     summary = $.parseHTML(summary).map(node => node.innerText).join(' ');
   }
-  var regex = new RegExp('(([^\\s]+\\s\\s*){' + numWords + '})(.*)');
+  var regex = new RegExp(`(([^\\s]+\\s\\s*){${numWords}})(.*)`);
   var match = regex.exec(summary);
-  return (match && match[1] || summary) + '…';
+  return `${match && match[1] || summary}…`;
 }
 
 export const getPathBySlug = function(template, slug) {

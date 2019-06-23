@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { FlowRouter } from 'meteor/kadira:flow-router';
+import { Meteor } from 'meteor/meteor';
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import { _ } from 'underscore';
 import { Session } from 'meteor/session';
 import { $ } from 'meteor/jquery';
 import CustomLoginButtons from './CustomLoginButtons.jsx';
 import MediaElement from './MediaElement.js';
 import NowPlaying from '../../../api/playlists/playlists_collection.js';
-import { moment } from 'meteor/momentjs:moment';
+import { default as moment } from 'moment';
 
 function activePage() {
   // includes Spacebars.kw but that's OK because the route name ain't that.
@@ -25,8 +26,13 @@ export default class Header extends Component {
     super(props);
   }
 
+  shouldComponentUpdate() {
+    return true;
+  }
+
   componentDidUpdate() {
-    if (player.getSrc() === 'http://stream.ktuh.org:8000/stream-mp3')
+    if (global.player && global.player.getSrc() ===
+      'http://stream.ktuh.org:8000/stream-mp3')
       $('.mejs__time-rail').append(
         '<span class="mejs__broadcast">Live Broadcast</span>');
     else $('.mejs__time-slider').css('visibility', 'visible');
@@ -75,6 +81,7 @@ export default class Header extends Component {
   }
 
   render() {
+    console.log(Meteor.isClient);
     return (
       <nav className='navbar navbar-default' role='navigation'>
         <div className='info-box'>
@@ -139,8 +146,8 @@ export default class Header extends Component {
               'partyEdit')}' nav-item nav-item__parties`}>
               <a href={FlowRouter.path('party')}>Events</a>
             </li>
-            <li className={activePage('radioblog', 'blogPage') +
-              ' nav-item nav-item__news'}>
+            <li className={`${activePage('radioblog', 'blogPage')
+            } nav-item nav-item__news`}>
               <a href={FlowRouter.path('radioblog')}>Radioblog</a></li>
           </ul>
           <ul className='nav navbar-nav navbar-right'>

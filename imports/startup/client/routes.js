@@ -1,18 +1,8 @@
 import React from 'react';
-import { FlowRouter } from 'meteor/kadira:flow-router';
-import { ReactLayout } from 'meteor/kadira:react-layout';
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
+import { mount } from 'react-mounter';
 import Layout from '../../ui/components/application/Layout.jsx';
 import { $ } from 'meteor/jquery';
-
-FlowRouter.notFound = {
-  action: async function() {
-    await import('../../ui/components/application/NotFound.jsx').then(
-      function(NotFound) {
-        ReactLayout.render(Layout, { content: <NotFound.default /> });
-      }
-    );
-  }
-};
 
 FlowRouter.triggers.enter(
   [
@@ -28,7 +18,7 @@ FlowRouter.route('/', {
   action: async function () {
     await import('../../ui/components/home/Home.jsx').then(
       function(Home) {
-        ReactLayout.render(Layout, { content: <Home.default /> });
+        mount(Layout, { content: <Home.default /> });
       }
     );
   }
@@ -39,7 +29,7 @@ FlowRouter.route('/radioblog/:slug', {
   action: async function () {
     await import('../../ui/components/news/NewsPage.jsx').then(
       function(NewsPage) {
-        ReactLayout.render(Layout, { content: <NewsPage.default /> });
+        mount(Layout, { content: <NewsPage.default /> });
       });
   }
 });
@@ -49,7 +39,7 @@ FlowRouter.route('/radioblog', {
   action: async function () {
     await import('../../ui/components/news/NewsList.jsx').then(
       function(NewsList) {
-        ReactLayout.render(Layout, { content: <NewsList.default /> });
+        mount(Layout, { content: <NewsList.default /> });
       });
   }
 });
@@ -59,7 +49,7 @@ FlowRouter.route('/events/:slug', {
   action: async function () {
     await import('../../ui/components/parties/PartyPage.jsx').then(
       function(PartyPage) {
-        ReactLayout.render(Layout, { content: <PartyPage.default /> });
+        mount(Layout, { content: <PartyPage.default /> });
       });
   }
 });
@@ -69,7 +59,7 @@ FlowRouter.route('/events', {
   action: async function () {
     await import('../../ui/components/parties/PartyList.jsx').then(
       function(PartyList) {
-        ReactLayout.render(Layout, { content: <PartyList.default /> });
+        mount(Layout, { content: <PartyList.default /> });
       });
   }
 });
@@ -79,7 +69,7 @@ FlowRouter.route('/playlists/:id', {
   action: async function () {
     await import('../../ui/components/playlists/PlaylistPage.jsx').then(
       function(PlaylistPage) {
-        ReactLayout.render(Layout, { content: <PlaylistPage.default /> });
+        mount(Layout, { content: <PlaylistPage.default /> });
       }
     );
   }
@@ -90,7 +80,7 @@ FlowRouter.route('/playlists', {
   action: async function () {
     await import('../../ui/components/playlists/PlaylistList.jsx').then(
       function(PlaylistList) {
-        ReactLayout.render(Layout, { content: <PlaylistList.default /> });
+        mount(Layout, { content: <PlaylistList.default /> });
       }
     );
   }
@@ -101,7 +91,7 @@ FlowRouter.route('/reviews/:slug', {
   action: async function() {
     await import('../../ui/components/reviews/ReviewPage.jsx').then(
       function(ReviewPage) {
-        ReactLayout.render(Layout, { content: <ReviewPage.default /> });
+        mount(Layout, { content: <ReviewPage.default /> });
       }
     );
   }
@@ -112,7 +102,7 @@ FlowRouter.route('/reviews/', {
   action: async function() {
     await import('../../ui/components/reviews/ReviewList.jsx').then(
       function(ReviewList) {
-        ReactLayout.render(Layout, { content: <ReviewList.default /> });
+        mount(Layout, { content: <ReviewList.default /> });
       });
   }
 });
@@ -122,7 +112,7 @@ FlowRouter.route('/shows/:slug', {
   action: async function() {
     await import('../../ui/components/shows/ShowPage.jsx').then(
       (ShowPage) => {
-        ReactLayout.render(Layout, { content: <ShowPage.default /> });
+        mount(Layout, { content: <ShowPage.default /> });
       }
     );
   }
@@ -133,7 +123,7 @@ FlowRouter.route('/shows', {
   action: async function() {
     await import('../../ui/components/shows/ShowList.jsx').then(
       (ShowList) => {
-        ReactLayout.render(Layout, { content: <ShowList.default /> });
+        mount(Layout, { content: <ShowList.default /> });
       }
     );
   }
@@ -144,7 +134,7 @@ FlowRouter.route('/charts/:slug', {
   action: async function () {
     await import('../../ui/components/charts/ChartsPage.jsx').then(
       function(ChartsPage) {
-        ReactLayout.render(Layout, { content: <ChartsPage.default /> });
+        mount(Layout, { content: <ChartsPage.default /> });
       });
   }
 });
@@ -154,7 +144,7 @@ FlowRouter.route('/charts', {
   action: async function () {
     await import('../../ui/components/charts/ChartsList.jsx').then(
       function(ChartsList) {
-        ReactLayout.render(Layout, { content: <ChartsList.default /> });
+        mount(Layout, { content: <ChartsList.default /> });
       });
   }
 });
@@ -164,7 +154,7 @@ FlowRouter.route('/music', {
   action: async function() {
     await import('../../ui/components/music/Music.jsx').then(
       function(Music) {
-        ReactLayout.render(Layout, { content: <Music.default /> });
+        mount(Layout, { content: <Music.default /> });
       }
     );
   }
@@ -175,7 +165,7 @@ FlowRouter.route('/profile/:username', {
   action: async function () {
     await import('../../ui/components/profile/ProfilePage.jsx').then(
       (ProfilePage) => {
-        ReactLayout.render(Layout, { content: <ProfilePage.default /> });
+        mount(Layout, { content: <ProfilePage.default /> });
       }
     );
   }
@@ -186,7 +176,7 @@ FlowRouter.route('/profile', {
   action: async function () {
     await import('../../ui/components/profile/ProfileEdit.jsx').then(
       function(ProfileEdit) {
-        ReactLayout.render(Layout, { content: <ProfileEdit.default /> });
+        mount(Layout, { content: <ProfileEdit.default /> });
       }
     );
   }
@@ -197,7 +187,7 @@ FlowRouter.route('/alumni', {
   action: async function() {
     await import('../../ui/components/static_pages/Alumni.jsx').then(
       function(Alumni) {
-        ReactLayout.render(Layout, { content: <Alumni.default /> });
+        mount(Layout, { content: <Alumni.default /> });
       });
   }
 });
@@ -207,7 +197,7 @@ FlowRouter.route('/about-us', {
   action: async function() {
     await import('../../ui/components/static_pages/About.jsx').then(
       function(About) {
-        ReactLayout.render(Layout, { content: <About.default /> });
+        mount(Layout, { content: <About.default /> });
       });
   }
 });
@@ -217,7 +207,7 @@ FlowRouter.route('/join-ktuh', {
   action: async function() {
     await import('../../ui/components/static_pages/Join.jsx').then(
       function(Join) {
-        ReactLayout.render(Layout, { content: <Join.default /> });
+        mount(Layout, { content: <Join.default /> });
       });
   }
 });
@@ -227,7 +217,7 @@ FlowRouter.route('/faq', {
   action: async function() {
     await import('../../ui/components/static_pages/FAQ.jsx').then(
       function(FAQ) {
-        ReactLayout.render(Layout, { content: <FAQ.default /> });
+        mount(Layout, { content: <FAQ.default /> });
       });
   }
 });
@@ -237,7 +227,7 @@ FlowRouter.route('/contact-us', {
   action: async function() {
     await import('../../ui/components/static_pages/Contact.jsx').then(
       function(Contact) {
-        ReactLayout.render(Layout, { content: <Contact.default /> });
+        mount(Layout, { content: <Contact.default /> });
       }
     );
   }
@@ -248,7 +238,7 @@ FlowRouter.route('/staff', {
   action: async function() {
     await import('../../ui/components/static_pages/Staff.jsx').then(
       function(Staff) {
-        ReactLayout.render(Layout, { content: <Staff.default /> });
+        mount(Layout, { content: <Staff.default /> });
       });
   }
 });
@@ -258,7 +248,7 @@ FlowRouter.route('/timeline', {
   action: async function() {
     await import('../../ui/components/static_pages/Timeline.jsx').then(
       function(Timeline) {
-        ReactLayout.render(Layout, { content: <Timeline.default /> });
+        mount(Layout, { content: <Timeline.default /> });
       }
     );
   }
@@ -269,7 +259,7 @@ FlowRouter.route('/underwriting', {
   action: async function() {
     await import('../../ui/components/static_pages/Underwriting.jsx').then(
       function(Underwriting) {
-        ReactLayout.render(Layout, { content: <Underwriting.default /> });
+        mount(Layout, { content: <Underwriting.default /> });
       }
     );
   }
@@ -280,7 +270,7 @@ FlowRouter.route('/resend', {
   action: async function() {
     await import('../../ui/components/static_pages/Resend.jsx').then(
       function(Resend) {
-        ReactLayout.render(Layout, { content: <Resend.default /> });
+        mount(Layout, { content: <Resend.default /> });
       });
   }
 });
@@ -290,7 +280,7 @@ FlowRouter.route('/not-found', {
   action: async function() {
     await import('../../ui/components/application/NotFound.jsx').then(
       function(NotFound) {
-        ReactLayout.render(Layout, { content: <NotFound.default /> });
+        mount(Layout, { content: <NotFound.default /> });
       }
     );
   }
@@ -301,7 +291,17 @@ FlowRouter.route('/:slug', {
   action: async function() {
     await import('../../ui/components/pages/PagesItem.jsx').then(
       function(PagesItem) {
-        ReactLayout.render(Layout, { content: <PagesItem.default /> });
+        mount(Layout, { content: <PagesItem.default /> });
       });
+  }
+});
+
+FlowRouter.route('*', {
+  action: async function() {
+    await import('../../ui/components/application/NotFound.jsx').then(
+      function(NotFound) {
+        mount(Layout, { content: <NotFound.default /> });
+      }
+    );
   }
 });

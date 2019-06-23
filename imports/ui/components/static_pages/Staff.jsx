@@ -7,27 +7,17 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { Metamorph } from 'react-metamorph';
 import { usernameById } from '../../../startup/lib/helpers.js';
 
-class StaffItem extends Component {
-  static propTypes = {
-    dj: PropTypes.object
-  }
-
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <div className='staff__item'>
-        <h4>
-          <a className="staff__item-textlink" href=
-            {`/profile/${usernameById(this.props.dj.userId)}`}>
-            {this.props.dj.name}
-          </a>
-        </h4>
-      </div>
-    );
-  }
+function StaffItem({ dj: { userId, name } }) {
+  return (
+    <div className='staff__item'>
+      <h4>
+        <a className="staff__item-textlink" href=
+          {`/profile/${usernameById(userId)}`}>
+          {name}
+        </a>
+      </h4>
+    </div>
+  );
 }
 
 class Staff extends Component {
@@ -56,6 +46,10 @@ class Staff extends Component {
     }
     else return null;
   }
+}
+
+StaffItem.propTypes = {
+  dj: PropTypes.object
 }
 
 export default withTracker(() => {

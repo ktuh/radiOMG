@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { moment } from 'meteor/momentjs:moment';
+import { default as moment } from 'moment';
 import { displayNameById, usernameById } from '../../../startup/lib/helpers.js';
 import { Metamorph } from 'react-metamorph';
 
@@ -10,16 +10,16 @@ class SSRReviewPage extends Component {
   }
 
   formattedRating(rating) {
-    if (rating % 1 !== .5) return Number(rating).toString() + '.0';
+    if (rating % 1 !== .5) return `${Number(rating).toString()}.0`;
     else return rating;
   }
 
   render() {
     return [
-      <Metamorph title={'Review of "' + this.props.review.releaseName +
-        '" by ' + this.props.review.artist + ' - KTUH FM Honolulu | ' +
-      'Radio for the People'} description={'Review of ' +
-        this.props.review.releaseName + ' by ' + this.props.review.artist}
+      <Metamorph title={`Review of "${this.props.review.releaseName
+      }" by ${this.props.review.artist} - KTUH FM Honolulu | ` +
+      'Radio for the People'} description={`Review of ${
+        this.props.review.releaseName} by ${this.props.review.artist}`}
       image={this.props.review.thumbnail ||
         'https://ktuh.org/img/ktuh-logo.jpg'} />,
       <h1 className="general__header" key="header">
@@ -34,14 +34,14 @@ class SSRReviewPage extends Component {
             (this.props.review.image && this.props.review.image.url)} />
         <div className='review-page__copy'>
           <h4 className='review-page__rating'>
-            {this.formattedRating(this.props.review.rating) + ' / 5.0'}</h4>
+            {`${this.formattedRating(this.props.review.rating)} / 5.0`}</h4>
           <div className='review-page__byline'>
             {'Review by '}
-            <a href={'/profile/' + usernameById(this.props.review.userId)}>
+            <a href={`/profile/${usernameById(this.props.review.userId)}`}>
               {displayNameById(this.props.review.userId) ||
                 usernameById(this.props.review.userId)}
             </a>
-            {' • ' + moment(this.props.review.submitted).fromNow()}
+            {` • ${moment(this.props.review.submitted).fromNow()}`}
           </div>
           <div className='review-page__body' dangerouslySetInnerHTML=
             {{ __html: this.props.review.body }}/>

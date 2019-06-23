@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
-import { FlowRouter } from 'meteor/kadira:flow-router';
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import Shows from '../../../api/shows/shows_collection.js';
 import { getLocalTime } from '../../../startup/lib/helpers.js';
 import { $ } from 'meteor/jquery';
@@ -75,7 +75,7 @@ class ShowList extends Component {
             {['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday',
               'Friday', 'Saturday'].map(function(day, i) {
               return (
-                <a href={'/shows?day=' + day }
+                <a href={`/shows?day=${day}` }
                   onClick={(e) => handleClick(e)(i)}>
                   <span className={`shows__day ${active(day)}`}>
                     {day}</span>
@@ -87,7 +87,7 @@ class ShowList extends Component {
             {['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday',
               'Friday', 'Saturday'].map(function(day, i) {
               return (
-                <a href={'/shows?day=' + day }
+                <a href={`/shows?day=${day}` }
                   onClick={(e) => handleClick(e)(i)}>
                   <span className={`shows__day ${active(day)}`}>
                     {day.substring(0,3)}</span>

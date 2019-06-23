@@ -6,10 +6,10 @@ import Comments from '../../../api/comments/comments_collection.js';
 import CommentItem from '../comments/CommentItem.jsx';
 import CommentSubmit from '../comments/CommentSubmit.jsx';
 import Parties from '../../../api/parties/parties_collection.js';
-import { FlowRouter } from 'meteor/kadira:flow-router';
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import { Metamorph } from 'react-metamorph';
 import { Bert } from 'meteor/themeteorchef:bert';
-import { moment } from 'meteor/momentjs:moment';
+import { default as moment } from 'moment';
 
 class PartyPage extends Component {
   static propTypes = {
@@ -53,8 +53,8 @@ class PartyPage extends Component {
   render() {
     if (this.props.ready) {
       return [
-        <Metamorph title={this.props.party.title +
-          ' - KTUH FM Honolulu | Radio for the People'}
+        <Metamorph title={`${this.props.party.title
+        } - KTUH FM Honolulu | Radio for the People`}
         image={this.props.party.thumbnail ||
           'https://ktuh.org/img/ktuh-logo.png'}
         description={this.props.party.summary} />,
@@ -82,8 +82,8 @@ class PartyPage extends Component {
             </p>
             <div className='party-info__details'>
               <span onClick={this.handleClickStar} className=
-                {'party-info__star glyphicon glyphicon-star ' +
-                  this.upvoted(this.props.party.upvoters)}>
+                {`party-info__star glyphicon glyphicon-star ${
+                  this.upvoted(this.props.party.upvoters)}`}>
               </span>
               <span className='party-info__upvotes-count'>
                 {this.props.party.upvoters.length}

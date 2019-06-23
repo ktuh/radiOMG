@@ -13,7 +13,7 @@ export default class ReviewItem extends Component {
   render() {
     return (
       <div className='review-item'>
-        <a href={'/reviews/' + this.props.item.slug}>
+        <a href={`/reviews/${this.props.item.slug}`}>
           <img className='review-item__image'
             src={this.props.item.thumbnail ||
               (this.props.item.image && this.props.item.image.url) ||

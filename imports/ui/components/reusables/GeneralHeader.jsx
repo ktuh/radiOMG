@@ -1,22 +1,20 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
+import { any, bool } from 'prop-types';
 
-export default class GeneralHeader extends Component {
-  static propTypes = {
-    children: PropTypes.any,
-    big: PropTypes.bool
+export default function GeneralHeader() {
+  if (this.props.big) {
+    return <h1 className="general__header">{this.props.children}</h1>;
   }
+  else {
+    return <h2 className="general__header">{this.props.children}</h2>;
+  }
+}
 
-  static defaultProps = {
-    big: false
-  }
+GeneralHeader.propTypes = {
+  children: any,
+  big: bool
+}
 
-  render() {
-    if (this.props.big) {
-      return <h1 className="general__header">{this.props.children}</h1>;
-    }
-    else {
-      return <h2 className="general__header">{this.props.children}</h2>;
-    }
-  }
+GeneralHeader.defaultProps = {
+  big: false
 }

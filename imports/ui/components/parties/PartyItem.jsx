@@ -1,22 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-export default class PartyItem extends Component {
-  static propTypes = {
-    party: PropTypes.object
-  }
+export default function PartyItem({ party: {
+  title, slug, thumbnail, flyerFront } }) {
+  return (
+    <div className='events-item'>
+      <a href={`/events/${slug}`}>
+        <img className='events-item__photo' src={thumbnail || flyerFront.url} />
+      </a>
+      <p><a href={`/events/${slug}`}>{title}</a></p>
+    </div>
+  );
+}
 
-  render() {
-    return (
-      <div className='events-item'>
-        <a href={'/events/' + this.props.party.slug}>
-          <img className='events-item__photo'
-            src={this.props.party.thumbnail || this.props.party.flyerFront.url}
-          />
-        </a>
-        <p><a href={'/events/' + this.props.party.slug}>
-          {this.props.party.title}</a></p>
-      </div>
-    );
-  }
+PartyItem.propTypes = {
+  party: PropTypes.object
 }
