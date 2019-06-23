@@ -343,81 +343,15 @@ const BrowserFilter = Picker.filter(function(request) {
   return /^mozilla/i.test(agent);
 });
 
-BrowserFilter.route('/packages/:file', function(params, request, response) {
-  response.end(fs.readFileSync(
-    path.resolve(process.env.PWD,
-      '.meteor/local/build/programs/web.browser/packages', params.file)));
-});
-
-BrowserFilter.route('/mejs/:file', function(params, request, response) {
-  if (process.env.NODE_ENV === 'development') {
-    response.end(fs.readFileSync(
-      path.resolve(process.env.PWD,
-        '.meteor/local/build/programs/web.browser/app/mejs', params.file)));
+BrowserFilter.route('/:slug', async function(params, request, response, next) {
+  var static_routes = [
+    'alumni', 'about-us', 'join-ktuh', 'faq', 'resend', 'staff', 'timeline',
+    'underwriting', 'contact-us', 'radioblog', 'shows', 'playlists', 'events',
+    'reviews', 'profile',
+  ];
+  if (!params.slug.match(/\.[a-z0-9]+$/i) &&
+      !static_routes.includes[params.slug]) {
+    response.statusCode = 404;
   }
-  else response.end(fs.readFileSync(
-    path.resolve(process.env.PWD,
-      'programs/web.browser/app/mejs', params.file)));
-});
-
-BrowserFilter.route('/app/:file', function(params, request, response) {
-  if (process.env.NODE_ENV === 'development') {
-    response.end(fs.readFileSync(
-      path.resolve(process.env.PWD,
-        '.meteor/local/build/programs/web.browser/app', params.file)));
-  }
-  else response.end();
-});
-
-BrowserFilter.route('/:slug', async function(params, request, response) {
-  var hex = /^[0-9a-f]+/.test(params.slug);
-  if (params.slug.match(/(js|css|json)$/)) {
-    return response.end(fs.readFileSync(
-      process.env.NODE_ENV === 'development' ?
-        path.resolve(process.env.PWD,
-          '.meteor/local/build/programs/web.browser', params.slug) :
-        path.resolve(process.env.PWD,
-          'programs/web.browser/', `${(hex ? '' : 'app/') + params.slug}`)));
-  }
-  var page = Pages.findOne({ slug: params.slug });
-  if (page)
-    return await import('../../ui/components/pages/PagesItem.jsx').then(
-      function(PagesItem) {
-        return response.end(renderOut(
-          <PagesItem.default ready={true} page={page} />, Layout));
-      }
-    );
-
-  var static_route_data = {
-    'alumni': 'Alumni',
-    'about-us': 'About',
-    'contact-us': 'Contact',
-    'faq': 'FAQ',
-    'join-ktuh': 'Join',
-    'resend': 'Resend',
-    'staff': 'Staff',
-    'timeline': 'Timeline',
-    'underwriting': 'Underwriting'
-  };
-
-  if (static_route_data[params.slug]) {
-    return await import(
-      `../../ui/components/static_pages/${static_route_data[params.slug]}.jsx`)
-      .then(
-        function(C) {
-          return response.end(renderOut(<C.default />, Layout));
-        }
-      );
-  }
-
-  return await import('../../ui/components/application/NotFound.jsx').then(
-    function(NotFound) {
-      response.statusCode = 404;
-      return response.end(renderOut(<NotFound.default />, Layout));
-    });
-});
-
-BrowserFilter.route('*', function(params, request, response) {
-  response.statusCode = 404;
-  response.end();
+  return next();
 });
