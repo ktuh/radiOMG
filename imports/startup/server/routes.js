@@ -9,14 +9,15 @@ import Profiles from '../../api/users/profiles_collection.js';
 import Playlists from '../../api/playlists/playlists_collection.js';
 import Parties from '../../api/parties/parties_collection.js';
 import NowPlaying from '../../api/playlists/now_playing.js';
+import Pages from '../../api/pages/pages_collection.js';
 import bodyParser from 'body-parser';
 import { getLocalTime } from '../lib/helpers.js';
 import { default as momentUtil } from 'moment';
 import moment from 'moment-timezone';
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import { renderToStaticMarkup } from 'react-dom/server';
-import SSRLayout from '../../ui/components/application/SSRLayout.jsx'
+import { renderToString } from 'react-dom/server';
+import SSRLayout from '../../ui/components/application/SSRLayout.jsx';
 
 Picker.middleware(bodyParser.json());
 Picker.middleware(bodyParser.urlencoded({ extended: false }));
@@ -118,21 +119,22 @@ const SeoRouter = Picker.filter(function(request) {
 });
 
 var renderOut = (component) => {
-  var html = renderToStaticMarkup(<SSRLayout content={component} />),
+  var html = renderToString(<SSRLayout content={component} />),
     helmet = Helmet.renderStatic();
-  return `<!doctype html>
-    <html lang="en">
-      <head>
-        ${helmet.title.toString()}
-        ${helmet.meta.toString()}
-        ${helmet.link.toString()}
-        <script src="https://use.typekit.net/kdq4qji.js"></script>
-        <script>try{Typekit.load({ async: true });}catch(e){}</script>
-      </head>
-      <body>
-        ${html}
-      </body>
-    </html>
+  return `<!doctype html><html lang="en">
+<head>
+${helmet.title.toString()}
+${helmet.meta.toString()}
+${helmet.link.toString()}
+<script src="https://use.typekit.net/kdq4qji.js"></script>
+<script>try{Typekit.load({ async: true });}catch(e){}</script><link
+rel="stylesheet" href="https://`+
+`stackpath.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<link rel="stylesheet" href="https://ktuh.org/main.css" />
+</head>
+<body>
+  ${html}
+</body></html>
   `;
 };
 
@@ -150,20 +152,32 @@ SeoRouter.route('/radioblog/:slug', async function(params, request, response) {
   var post = Posts.findOne({ slug: params.slug });
   await import('../../ui/components/news/SSRNewsPage.jsx').then(
     function(SSRNewsPage) {
-      var html = renderOut(SSRNewsPage.default(post));
-      response.setHeader('Content-Type', 'text/html;charset=utf-8');
-      response.end(html);
+      if (post) {
+        var html = renderOut(SSRNewsPage.default(post));
+        response.setHeader('Content-Type', 'text/html;charset=utf-8');
+        response.end(html);
+      }
+      else {
+        response.statusCode = 404;
+        response.end();
+      }
     }
   );
 });
 
 SeoRouter.route('/events/:slug', async function(params, request, response) {
+  var party = Parties.findOne({ slug: params.slug });
   await import('../../ui/components/parties/SSRPartyPage.jsx').then(
     function(SSRPartyPage) {
-      var party = Parties.findOne({ slug: params.slug });
-      var html = renderOut(SSRPartyPage.default(party));
-      response.setHeader('Content-Type', 'text/html;charset=utf-8');
-      response.end(html);
+      if (party) {
+        var html = renderOut(SSRPartyPage.default(party));
+        response.setHeader('Content-Type', 'text/html;charset=utf-8');
+        response.end(html);
+      }
+      else {
+        response.statusCode = 404;
+        response.end();
+      }
     });
 });
 
@@ -291,8 +305,38 @@ SeoRouter.route('/contact-us', async function(params, request, response) {
 SeoRouter.route('/:slug', async function(params, request, response) {
   await import('../../ui/components/pages/SSRPagesItem.jsx').then(
     function(SSRPagesItem) {
-      var html = renderOut(SSRPagesItem.default(params.slug));
-      response.setHeader('Content-Type', 'text/html;charset=utf-8');
-      response.end(html);
+      var page = Pages.findOne({ slug: params.slug });
+      if (page) {
+        var html = renderOut(SSRPagesItem.default(params.slug));
+        response.setHeader('Content-Type', 'text/html;charset=utf-8');
+        response.end(html);
+      }
+      else {
+        response.statusCode = 404;
+        response.end('Not Found');
+      }
     });
+});
+
+SeoRouter.route('*', function(params, request, response) {
+  response.statusCode = 404;
+  response.end();
+});
+
+const BrowserFilter = Picker.filter(function(request) {
+  var agent = request.headers['user-agent'];
+  return /^mozilla/i.test(agent);
+});
+
+BrowserFilter.route('/:slug', async function(params, request, response, next) {
+  var static_routes = [
+    'alumni', 'about-us', 'join-ktuh', 'faq', 'resend', 'staff', 'timeline',
+    'underwriting', 'contact-us', 'radioblog', 'shows', 'playlists', 'events',
+    'reviews', 'profile',
+  ];
+  if (!params.slug.match(/\.[a-z0-9]+$/i) &&
+      !static_routes.includes[params.slug]) {
+    response.statusCode = 404;
+  }
+  return next();
 });

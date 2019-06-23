@@ -27,7 +27,7 @@ Template.React.onRendered(function () {
 
     var props = data;
     props.component = undefined;
-    ReactDOM.render(React.createElement(comp, props), container);
+    ReactDOM.hydrate(React.createElement(comp, props), container);
   });
 });
 

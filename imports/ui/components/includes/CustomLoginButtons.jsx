@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base';
-import { FlowRouter } from 'meteor/kadira:flow-router';
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import { withTracker } from 'meteor/react-meteor-data';
 import { $ } from 'meteor/jquery';
 import LoginErrorMessage from './LoginErrorMessage.jsx';
@@ -370,6 +370,6 @@ class CustomLoginButtons extends Component {
 
 export default withTracker(() => {
   return {
-    currentUser: Meteor.user()
+    currentUser: Meteor.isClient ? Meteor.user() : null
   };
 })(CustomLoginButtons);

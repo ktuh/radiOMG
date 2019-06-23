@@ -5,7 +5,7 @@ import Comments from '../../../api/comments/comments_collection.js';
 import CommentItem from '../comments/CommentItem.jsx';
 import CommentSubmit from '../comments/CommentSubmit.jsx';
 import { withTracker } from 'meteor/react-meteor-data';
-import { FlowRouter } from 'meteor/kadira:flow-router';
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import { displayNameById, dateFormat } from '../../../startup/lib/helpers.js';
 import { Metamorph } from 'react-metamorph';
 import { Meteor } from 'meteor/meteor';

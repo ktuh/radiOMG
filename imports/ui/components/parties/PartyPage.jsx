@@ -6,7 +6,7 @@ import Comments from '../../../api/comments/comments_collection.js';
 import CommentItem from '../comments/CommentItem.jsx';
 import CommentSubmit from '../comments/CommentSubmit.jsx';
 import Parties from '../../../api/parties/parties_collection.js';
-import { FlowRouter } from 'meteor/kadira:flow-router';
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import { Metamorph } from 'react-metamorph';
 import { Bert } from 'meteor/themeteorchef:bert';
 import { default as moment } from 'moment';
@@ -82,7 +82,7 @@ class PartyPage extends Component {
             </p>
             <div className='party-info__details'>
               <span onClick={this.handleClickStar} className=
-                {`party-info__star glyphicon glyphicon-star ${ 
+                {`party-info__star glyphicon glyphicon-star ${
                   this.upvoted(this.props.party.upvoters)}`}>
               </span>
               <span className='party-info__upvotes-count'>

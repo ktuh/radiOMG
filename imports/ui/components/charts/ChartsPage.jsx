@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { FlowRouter } from 'meteor/kadira:flow-router';
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import Charts from '../../../api/charts/charts_collection.js';
 import ChartsSidebar from './ChartsSidebar.jsx';
 import ChartTable from './ChartTable.jsx';

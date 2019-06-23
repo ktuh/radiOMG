@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
-import { FlowRouter } from 'meteor/kadira:flow-router';
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import Shows from '../../../api/shows/shows_collection.js';
 import { getLocalTime } from '../../../startup/lib/helpers.js';
 import { $ } from 'meteor/jquery';

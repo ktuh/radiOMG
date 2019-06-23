@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Bert } from 'meteor/themeteorchef:bert';
 import PropTypes from 'prop-types';
 import { $ } from 'meteor/jquery';
-import 'mediaelement';
 import { Session } from 'meteor/session';
 import { scorpius } from 'meteor/scorpiusjs:core';
 

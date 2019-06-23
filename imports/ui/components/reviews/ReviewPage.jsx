@@ -6,7 +6,7 @@ import Reviews from '../../../api/reviews/reviews_collection.js';
 import { default as moment } from 'moment';
 import { displayNameById, usernameById } from '../../../startup/lib/helpers.js';
 import { Metamorph } from 'react-metamorph';
-import { FlowRouter } from 'meteor/kadira:flow-router';
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 
 class ReviewPage extends Component {
   static propTypes = {
