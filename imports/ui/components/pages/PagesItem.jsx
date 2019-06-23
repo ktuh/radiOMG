@@ -4,7 +4,7 @@ import { Meteor } from 'meteor/meteor';
 import Pages from '../../../api/pages/pages_collection.js';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Metamorph } from 'react-metamorph';
-import { FlowRouter } from 'meteor/kadira:flow-router';
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 
 function PagesItem({ ready, page }) {
   if (ready)

@@ -12,7 +12,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { default as momentUtil } from 'moment';
 import moment from 'moment-timezone';
 import { Metamorph } from 'react-metamorph';
-import { FlowRouter } from 'meteor/kadira:flow-router'
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra'
 import { requestSpinData } from '../../../startup/lib/helpers.js';
 
 class PlaylistPage extends Component {
@@ -71,7 +71,7 @@ class PlaylistPage extends Component {
           `${this.showTime(playlist)} Sub Show with ${playlist.djName}`,
         self = this;
       if (show) {
-        showString = `${show.showName} - ${ 
+        showString = `${show.showName} - ${
           this.showDateOfLatestPlaylist(playlist.showDate)}`;
       }
       if (!this.state.playlistLoaded) {

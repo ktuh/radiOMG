@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { FlowRouter } from 'meteor/kadira:flow-router';
+import { Meteor } from 'meteor/meteor';
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import { _ } from 'underscore';
 import { Session } from 'meteor/session';
 import { $ } from 'meteor/jquery';
@@ -25,8 +26,13 @@ export default class Header extends Component {
     super(props);
   }
 
+  shouldComponentUpdate() {
+    return true;
+  }
+
   componentDidUpdate() {
-    if (player.getSrc() === 'http://stream.ktuh.org:8000/stream-mp3')
+    if (global.player && global.player.getSrc() ===
+      'http://stream.ktuh.org:8000/stream-mp3')
       $('.mejs__time-rail').append(
         '<span class="mejs__broadcast">Live Broadcast</span>');
     else $('.mejs__time-slider').css('visibility', 'visible');
@@ -75,6 +81,7 @@ export default class Header extends Component {
   }
 
   render() {
+    console.log(Meteor.isClient);
     return (
       <nav className='navbar navbar-default' role='navigation'>
         <div className='info-box'>

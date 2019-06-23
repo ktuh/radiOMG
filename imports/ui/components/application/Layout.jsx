@@ -1,12 +1,10 @@
 import React, { useEffect } from 'react';
-import { object } from 'prop-types';
+import { oneOfType, object, func } from 'prop-types';
 import Landing from '../home/Landing.jsx';
 import Header from '../includes/Header.jsx';
 import Footer from '../includes/Footer.jsx';
-import { FlowRouter } from 'meteor/kadira:flow-router';
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import Banner from '../includes/Banner.jsx';
-import { Blaze } from 'meteor/gadicc:blaze-react-component';
-import './blaze_layout.js';
 
 export default function Layout({ content }) {
   function home() {
@@ -14,8 +12,9 @@ export default function Layout({ content }) {
   }
 
   useEffect(function() {
-    global.player.setSrc('http://stream.ktuh.org:8000/stream-mp3');
-  }, []);
+    if (global.player)
+      global.player.setSrc('http://stream.ktuh.org:8000/stream-mp3');
+  }, [Meteor.isClient]);
 
   return [
     home() ? <Banner /> : null,
@@ -29,12 +28,10 @@ export default function Layout({ content }) {
         {content}
       </div>
     </div>,
-    <Footer key='footer' />,
-    ['atResetPwd', 'atSignIn'].includes(FlowRouter._current.route.name) ?
-      <Blaze template="layout" /> : null
+    <Footer key='footer' />
   ];
 }
 
 Layout.propTypes = {
-  content: object
+  content: oneOfType([object, func])
 }

@@ -66,7 +66,7 @@ ReactLayout._renderClient = function(layoutClass, regions) {
   this._ready(function() {
     var rootNode = self._getRootNode();
     var el = React.createElement(layoutClass, regions);
-    ReactDOM.render(el, rootNode);
+    ReactDOM.hydrate(el, rootNode);
   });
 };
 

@@ -9,14 +9,18 @@ import Profiles from '../../api/users/profiles_collection.js';
 import Playlists from '../../api/playlists/playlists_collection.js';
 import Parties from '../../api/parties/parties_collection.js';
 import NowPlaying from '../../api/playlists/now_playing.js';
+import Pages from '../../api/pages/pages_collection.js';
 import bodyParser from 'body-parser';
 import { getLocalTime } from '../lib/helpers.js';
 import { default as momentUtil } from 'moment';
 import moment from 'moment-timezone';
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import { renderToStaticMarkup } from 'react-dom/server';
-import SSRLayout from '../../ui/components/application/SSRLayout.jsx'
+import { renderToString } from 'react-dom/server';
+import Layout from '../../ui/components/application/Layout.jsx'
+import SSRLayout from '../../ui/components/application/SSRLayout.jsx';
+import fs from 'fs';
+import path from 'path';
 
 Picker.middleware(bodyParser.json());
 Picker.middleware(bodyParser.urlencoded({ extended: false }));
@@ -117,22 +121,35 @@ const SeoRouter = Picker.filter(function(request) {
   return escapedFragmentIsUsed || botIsUsed;
 });
 
-var renderOut = (component) => {
-  var html = renderToStaticMarkup(<SSRLayout content={component} />),
+var renderOut = (component, layout) => {
+  var Lout = layout || SSRLayout;
+  var html = renderToString(<Lout content={component} />),
     helmet = Helmet.renderStatic();
-  return `<!doctype html>
-    <html lang="en">
-      <head>
-        ${helmet.title.toString()}
-        ${helmet.meta.toString()}
-        ${helmet.link.toString()}
-        <script src="https://use.typekit.net/kdq4qji.js"></script>
-        <script>try{Typekit.load({ async: true });}catch(e){}</script>
-      </head>
-      <body>
-        ${html}
-      </body>
-    </html>
+  return `<!doctype html><html lang="en">
+<head>
+${helmet.title.toString()}
+${helmet.meta.toString()}
+${helmet.link.toString()}
+<script src="https://use.typekit.net/kdq4qji.js"></script>
+<script>try{Typekit.load({ async: true });}catch(e){}</script><link
+rel="stylesheet" href="https://`+
+`stackpath.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<link rel="stylesheet" href="https://ktuh.org/main.css" />
+${process.env.NODE_ENV === 'development' ?
+    ['<script src="/app/app.js" defer></script>', ...fs.readdirSync(
+      path.resolve(process.env.PWD,
+        '.meteor/local/build/programs/web.browser/packages')).filter(
+      fn => /\.js$/.test(fn)).map(fn =>
+      `<script src="/packages/${fn}" defer></script>`)].join('\n') :
+    `<script src="${fs.readdirSync(
+      path.resolve(process.env.PWD,
+        'programs/web.browser/')).filter(function(fn) {
+      return /\.js$/.test(fn);
+    })[0]}" defer></script>`}
+</head>
+<body>
+  ${html}
+</body></html>
   `;
 };
 
@@ -150,20 +167,32 @@ SeoRouter.route('/radioblog/:slug', async function(params, request, response) {
   var post = Posts.findOne({ slug: params.slug });
   await import('../../ui/components/news/SSRNewsPage.jsx').then(
     function(SSRNewsPage) {
-      var html = renderOut(SSRNewsPage.default(post));
-      response.setHeader('Content-Type', 'text/html;charset=utf-8');
-      response.end(html);
+      if (post) {
+        var html = renderOut(SSRNewsPage.default(post));
+        response.setHeader('Content-Type', 'text/html;charset=utf-8');
+        response.end(html);
+      }
+      else {
+        response.statusCode = 404;
+        response.end();
+      }
     }
   );
 });
 
 SeoRouter.route('/events/:slug', async function(params, request, response) {
+  var party = Parties.findOne({ slug: params.slug });
   await import('../../ui/components/parties/SSRPartyPage.jsx').then(
     function(SSRPartyPage) {
-      var party = Parties.findOne({ slug: params.slug });
-      var html = renderOut(SSRPartyPage.default(party));
-      response.setHeader('Content-Type', 'text/html;charset=utf-8');
-      response.end(html);
+      if (party) {
+        var html = renderOut(SSRPartyPage.default(party));
+        response.setHeader('Content-Type', 'text/html;charset=utf-8');
+        response.end(html);
+      }
+      else {
+        response.statusCode = 404;
+        response.end();
+      }
     });
 });
 
@@ -291,8 +320,104 @@ SeoRouter.route('/contact-us', async function(params, request, response) {
 SeoRouter.route('/:slug', async function(params, request, response) {
   await import('../../ui/components/pages/SSRPagesItem.jsx').then(
     function(SSRPagesItem) {
-      var html = renderOut(SSRPagesItem.default(params.slug));
-      response.setHeader('Content-Type', 'text/html;charset=utf-8');
-      response.end(html);
+      var page = Pages.findOne({ slug: params.slug });
+      if (page) {
+        var html = renderOut(SSRPagesItem.default(params.slug));
+        response.setHeader('Content-Type', 'text/html;charset=utf-8');
+        response.end(html);
+      }
+      else {
+        response.statusCode = 404;
+        response.end('Not Found');
+      }
     });
+});
+
+SeoRouter.route('*', function(params, request, response) {
+  response.statusCode = 404;
+  response.end();
+});
+
+const BrowserFilter = Picker.filter(function(request) {
+  var agent = request.headers['user-agent'];
+  return /^mozilla/i.test(agent);
+});
+
+BrowserFilter.route('/packages/:file', function(params, request, response) {
+  response.end(fs.readFileSync(
+    path.resolve(process.env.PWD,
+      '.meteor/local/build/programs/web.browser/packages', params.file)));
+});
+
+BrowserFilter.route('/mejs/:file', function(params, request, response) {
+  if (process.env.NODE_ENV === 'development') {
+    response.end(fs.readFileSync(
+      path.resolve(process.env.PWD,
+        '.meteor/local/build/programs/web.browser/app/mejs', params.file)));
+  }
+  else response.end(fs.readFileSync(
+    path.resolve(process.env.PWD,
+      'programs/web.browser/app/mejs', params.file)));
+});
+
+BrowserFilter.route('/app/:file', function(params, request, response) {
+  if (process.env.NODE_ENV === 'development') {
+    response.end(fs.readFileSync(
+      path.resolve(process.env.PWD,
+        '.meteor/local/build/programs/web.browser/app', params.file)));
+  }
+  else response.end();
+});
+
+BrowserFilter.route('/:slug', async function(params, request, response) {
+  var hex = /^[0-9a-f]+/.test(params.slug);
+  if (params.slug.match(/(js|css|json)$/)) {
+    return response.end(fs.readFileSync(
+      process.env.NODE_ENV === 'development' ?
+        path.resolve(process.env.PWD,
+          '.meteor/local/build/programs/web.browser', params.slug) :
+        path.resolve(process.env.PWD,
+          'programs/web.browser/', `${(hex ? '' : 'app/') + params.slug}`)));
+  }
+  var page = Pages.findOne({ slug: params.slug });
+  if (page)
+    return await import('../../ui/components/pages/PagesItem.jsx').then(
+      function(PagesItem) {
+        return response.end(renderOut(
+          <PagesItem.default ready={true} page={page} />, Layout));
+      }
+    );
+
+  var static_route_data = {
+    'alumni': 'Alumni',
+    'about-us': 'About',
+    'contact-us': 'Contact',
+    'faq': 'FAQ',
+    'join-ktuh': 'Join',
+    'resend': 'Resend',
+    'staff': 'Staff',
+    'timeline': 'Timeline',
+    'underwriting': 'Underwriting'
+  };
+
+  if (static_route_data[params.slug]) {
+    return await import(
+      `../../ui/components/static_pages/${static_route_data[params.slug]}.jsx`)
+      .then(
+        function(C) {
+          return response.end(renderOut(<C.default />, Layout));
+        }
+      );
+  }
+
+  return await import('../../ui/components/application/NotFound.jsx').then(
+    function(NotFound) {
+      response.statusCode = 404;
+      return response.end(renderOut(<NotFound.default />, Layout));
+    });
+});
+
+BrowserFilter.route('*', function(params, request, response) {
+  response.statusCode = 404;
+  response.end();
 });

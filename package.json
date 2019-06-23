@@ -37,6 +37,7 @@
     "react-everafter": "^1.0.2",
     "react-helmet": "^5.2.1",
     "react-metamorph": "^1.0.0",
+    "react-mounter": "github:dchan3/react-mounter",
     "react-transition-group": "^4.1.1",
     "simple-react-form": "github:dchan3/simple-react-form",
     "simple-react-form-material-ui": "github:dchan3/simple-react-form-material-ui",

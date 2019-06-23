@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
-import { FlowRouter } from 'meteor/kadira:flow-router';
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import Parties from '../../../api/parties/parties_collection.js';
 import Playlists from '../../../api/playlists/playlists_collection.js';
 import Posts from '../../../api/posts/posts_collection.js';
