@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
+import { FlowRouter } from 'meteor/kadira:flow-router';
 import Charts from '../../../api/charts/charts_collection.js';
 import ChartsSidebar from './ChartsSidebar.jsx';
 import ChartTable from './ChartTable.jsx';
@@ -9,44 +9,36 @@ import { default as momentUtil } from 'moment';
 import moment from 'moment-timezone';
 import { Metamorph } from 'react-metamorph';
 
-class ChartsPage extends Component {
-  static propTypes = {
-    ready: PropTypes.bool,
-    chart: PropTypes.object
-  }
+function ChartsPage({ ready, chart }) {
 
-  shouldComponentUpdate() {
-    return !this.props.ready;
-  }
-
-  dateFmt(date) {
+  function dateFmt(date) {
     return momentUtil(moment(date, 'Pacific/Honolulu')).format('MMMM DD, YYYY');
   }
 
-  render() {
-    var dateFmt = this.dateFmt;
-    if(this.props.ready) {
-      return [
-        <Metamorph title={`${this.props.chart.title} - ${
-          dateFmt(this.props.chart.chartDate)
-        } - KTUH FM Honolulu | Radio for the People`} description={
-          `${this.props.chart.title} - ${dateFmt(this.props.chart.chartDate)}`
-        } image='https://ktuh.org/img/ktuh-logo.jpg' />,
-        <h1 className='general__header' key='header-title'>
-          {`${this.props.chart.title} - ${
-            dateFmt(this.props.chart.chartDate)}`}</h1>,
-        <div className='chart__link' key='charts-link'>
-          <a href='/charts' className='back-to'>← Back to Charts</a>
-        </div>,
-        <div className='playlist-list__latest' key='playlist-content'>
-          {this.props.chart.tracks.length > 0 &&
-            <ChartTable tracks={this.props.chart.tracks} /> || null}
-        </div>,
-        <ChartsSidebar key="chart-sidebar" />
-      ];
-    }
-    else return null;
+  if (ready) {
+    let { title, chartDate, tracks } = chart, dateStr = dateFmt(chartDate);
+
+    return [
+      <Metamorph title={`${title} - ${dateStr
+      } - KTUH FM Honolulu | Radio for the People`} description={
+        `${title} - ${dateStr}`} image='https://ktuh.org/img/ktuh-logo.jpg' />,
+      <h1 className='general__header' key='header-title'>
+        {`${title} - ${dateStr}`}</h1>,
+      <div className='chart__link' key='charts-link'>
+        <a href='/charts' className='back-to'>← Back to Charts</a>
+      </div>,
+      <div className='playlist-list__latest' key='playlist-content'>
+        {tracks.length && <ChartTable { ...{ tracks }} /> || null}
+      </div>,
+      <ChartsSidebar key="chart-sidebar" />
+    ];
   }
+  else return null;
+}
+
+ChartsPage.propTypes = {
+  ready: PropTypes.bool,
+  chart: PropTypes.object
 }
 
 export default withTracker(() => {

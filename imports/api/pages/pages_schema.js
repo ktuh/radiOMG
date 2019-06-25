@@ -1,6 +1,6 @@
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { scorpius } from 'meteor/scorpiusjs:core';
-import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
+import { FlowRouter } from 'meteor/kadira:flow-router';
 import { getLocalTime } from '../../startup/lib/helpers.js';
 
 var PagesSchema = new SimpleSchema({

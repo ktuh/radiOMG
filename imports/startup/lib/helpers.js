@@ -4,7 +4,7 @@ import Profiles from '../../api/users/profiles_collection.js';
 import moment from 'moment-timezone';
 import { default as momentUtil } from 'moment';
 import { Meteor } from 'meteor/meteor';
-import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
+import { FlowRouter } from 'meteor/kadira:flow-router';
 import { $ } from 'meteor/jquery';
 
 export const getLocalTime = function() {

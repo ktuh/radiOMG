@@ -3,7 +3,8 @@
   FlowRouter: false
 */
 'use strict';
-var FlowRouter = Package['ostrio:flow-router-extra'].FlowRouter;
+var FlowRouter = (Package['ostrio:flow-router-extra'] ||
+  Package['kadira:flow-router']).FlowRouter;
 AccountsTemplates.atInputRendered.push(function(){
   var fieldId = this.data._id;
   var queryKey = this.data.options && this.data.options.queryKey || fieldId;

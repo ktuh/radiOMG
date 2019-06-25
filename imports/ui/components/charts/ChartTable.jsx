@@ -27,7 +27,7 @@ export default function ChartTable({ tracks }) {
         {tracks.map((track, i) =>
           <ChartTableRow key={
             `${i}. ${track.artist} - ${track.artist} [${track.label}]`}
-          track={track} />)}
+          track={{ ...track, index: i }} />)}
       </tbody>
     </table>
   );

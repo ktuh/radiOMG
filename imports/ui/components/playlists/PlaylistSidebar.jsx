@@ -83,9 +83,9 @@ class PlaylistSidebar extends Component {
   }
 
   componentWillMount() {
-    var sidebar = this.getSidebarData();
-    var stateObj =  sidebar.length ? { loaded: true, sidebar: sidebar } :
-      { loaded: false, sidebar: null }
+    var sidebar = this.getSidebarData(),
+      stateObj =  sidebar.length ? { loaded: true, sidebar: sidebar } :
+        { loaded: false, sidebar: null }
     this.setState(stateObj);
   }
 

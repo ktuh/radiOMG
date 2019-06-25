@@ -7,7 +7,8 @@
 */
 'use strict';
 
-var FlowRouter = Package['ostrio:flow-router-extra'].FlowRouter;
+var FlowRouter = (Package['ostrio:flow-router-extra'] ||
+  Package['kadira:flow-router']).FlowRouter;
 // Previous path used for redirect after form submit
 AccountsTemplates._prevPath = null;
 

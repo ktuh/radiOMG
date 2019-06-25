@@ -61,4 +61,6 @@ raix:rssfeed
 meteorhacks:ssr
 react-meteor-data
 gadicc:blaze-react-component
-ostrio:flow-router-extra
+kadira:flow-router
+kadira:blaze-layout
+kadira:react-layout

@@ -3,7 +3,7 @@ import { oneOfType, object, func } from 'prop-types';
 import Landing from '../home/Landing.jsx';
 import Header from '../includes/Header.jsx';
 import Footer from '../includes/Footer.jsx';
-import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
+import { FlowRouter } from 'meteor/kadira:flow-router';
 import Banner from '../includes/Banner.jsx';
 
 export default function Layout({ content }) {
@@ -14,7 +14,7 @@ export default function Layout({ content }) {
   useEffect(function() {
     if (global.player)
       global.player.setSrc('http://stream.ktuh.org:8000/stream-mp3');
-  }, [Meteor.isClient]);
+  }, []);
 
   return [
     home() ? <Banner /> : null,

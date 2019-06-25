@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
 import Profiles from '../../../api/users/profiles_collection.js';
@@ -20,36 +20,26 @@ function StaffItem({ dj: { userId, name } }) {
   );
 }
 
-class Staff extends Component {
-  static propTypes = {
-    ready: PropTypes.bool,
-    djs: PropTypes.array
+function Staff({ ready, djs }) {
+  if (ready) {
+    return [<Metamorph title="Staff - KTUH FM Honolulu | Radio for the People"
+      description="KTUH Staff List"
+      image='https://ktuh.org/img/ktuh-logo.jpg' />,
+    <h2 className='general__header'>KTUH Staff</h2>,
+    <div className='staff__content' key="staff-content">
+      {djs.map((dj) => <StaffItem dj={dj} />)}
+    </div>];
   }
-
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    if (this.props.ready) {
-      return [
-        <Metamorph title="Staff - KTUH FM Honolulu | Radio for the People"
-          description="KTUH Staff List" image=
-            'https://ktuh.org/img/ktuh-logo.jpg' />,
-        <h2 className='general__header'>KTUH Staff</h2>,
-        <div className='staff__content' key="staff-content">
-          {this.props.djs.map((dj) => {
-            return <StaffItem dj={dj} />
-          })}
-        </div>
-      ];
-    }
-    else return null;
-  }
+  else return null;
 }
 
 StaffItem.propTypes = {
   dj: PropTypes.object
+}
+
+Staff.propTypes = {
+  ready: PropTypes.bool,
+  djs: PropTypes.array
 }
 
 export default withTracker(() => {

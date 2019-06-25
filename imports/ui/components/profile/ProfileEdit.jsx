@@ -7,15 +7,13 @@ import { withTracker } from 'meteor/react-meteor-data';
 
 function ProfileEdit({ ready, profile }) {
   if (ready) {
-    return (
-      <div id="main">
-        <h2 className='general__header'>Edit Profile</h2>
-        <div className='profile-edit'>
-          {profile && <ProfileEditForm doc={profile} /> ||
-          <p>Please login (or signup) to edit your profile.</p>}
-        </div>
+    return <div id="main">
+      <h2 className='general__header'>Edit Profile</h2>
+      <div className='profile-edit'>
+        {profile && <ProfileEditForm doc={profile} /> ||
+        <p>Please login (or signup) to edit your profile.</p>}
       </div>
-    );
+    </div>;
   }
   else return null;
 }

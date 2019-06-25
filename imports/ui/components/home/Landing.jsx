@@ -21,8 +21,7 @@ function isSubShow() {
 }
 
 function showActualHost() {
-  var show = currentShow();
-  var playlist = currentPlaylistFindOne();
+  var show = currentShow(), playlist = currentPlaylistFindOne();
   if (show && playlist) {
     if (show.host === playlist.djName) {
       return show.host;
@@ -40,25 +39,20 @@ function showActualHost() {
   else return undefined;
 }
 
-class LandingInfo extends Component {
-  static propTypes = {
-    nowPlaying: PropTypes.object
-  }
-
-  nowPlaying() {
-    if (this.props.nowPlaying !== undefined &&
-      !(this.timeout(this.props.nowPlaying)))
-      return this.props.nowPlaying.current;
-    else return false;
-  }
-
-  timeout(np) {
+function LandingInfo({ nowPlaying }) {
+  function timeout({ timestamp }) {
     return getLocalTime().diff(momentUtil(
-      moment(np.timestamp, 'Pacific/Honolulu'))
+      moment(timestamp, 'Pacific/Honolulu'))
     ) > 360000;
   }
 
-  currentShowName() {
+  function whatsNowPlaying() {
+    if (nowPlaying !== undefined && !timeout(nowPlaying))
+      return nowPlaying.current;
+    else return false;
+  }
+
+  function currentShowName() {
     return <p className='landing__show-name caps' key='landing-show-name'>
       <a href={`/shows/${currentShow().slug}`}>
         {currentShow().showName}
@@ -66,10 +60,9 @@ class LandingInfo extends Component {
     </p>
   }
 
-  currentShowHost() {
+  function currentShowHost() {
     var hostDisplayName = showActualHost() || currentShow().host, hostUsername =
-      usernameFromDisplayName(isSubShow() ?
-        showActualHost() :
+      usernameFromDisplayName(isSubShow() ? showActualHost() :
         currentShow().host) || undefined;
 
     return <p className='landing__show-host caps' key='landing-show-host'>
@@ -81,7 +74,7 @@ class LandingInfo extends Component {
     </p>;
   }
 
-  renderNowPlaying() {
+  function renderNowPlaying() {
     var nowPlaying = this.nowPlaying().split(' - '),
       artist = nowPlaying[0], title = nowPlaying[1];
 
@@ -96,24 +89,22 @@ class LandingInfo extends Component {
     ];
   }
 
-  render() {
-    return (
-      <div className='landing__info'>
-        {currentShow() ? [
-          this.currentShowName(),
-          this.currentShowHost()] :
-          this.nowPlaying() ?
-            <p className='landing__now-playing' key='landing-onair-text'>
-              On Air Now:</p> : null}
-        {this.nowPlaying() ? this.renderNowPlaying() : [
-          <p className='landing__show-host' key='landing-show-host'>
-            <b>Welcome to KTUH<br />FM Honolulu</b>
-          </p>,
-          <p className='landing__host-name' key="landing-host-name">
-            Radio for the People</p>]}
-      </div>
-    );
-  }
+  return <div className='landing__info'>
+    {currentShow() ? [currentShowName(), currentShowHost()] :
+      whatsNowPlaying() ?
+        <p className='landing__now-playing' key='landing-onair-text'>
+          On Air Now:</p> : null}
+    {whatsNowPlaying() ? renderNowPlaying() : [
+      <p className='landing__show-host' key='landing-show-host'>
+        <b>Welcome to KTUH<br />FM Honolulu</b>
+      </p>,
+      <p className='landing__host-name' key="landing-host-name">
+        Radio for the People</p>]}
+  </div>;
+}
+
+LandingInfo.propTypes = {
+  nowPlaying: PropTypes.object
 }
 
 class Landing extends Component {

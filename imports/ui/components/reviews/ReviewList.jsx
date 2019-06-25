@@ -15,8 +15,7 @@ function ReviewList({ ready, reviews }) {
       />,
       <h2 className="general__header" key="header-title">Reviews</h2>,
       <div className="reviews__content" key="reviews-content">
-        <EverAfter.Paginator wrapper={ReviewItem} perPage={8}
-          items={reviews} />
+        <EverAfter.Paginator wrapper={ReviewItem} perPage={8} items={reviews} />
       </div>
     ];
   }

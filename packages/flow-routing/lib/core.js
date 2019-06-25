@@ -12,7 +12,8 @@
 // ---------------------------------------------------------------------------------
 
 var mount = require('react-mounter').mount,
-  FlowRouter = Package['ostrio:flow-router-extra'].FlowRouter;
+  FlowRouter = (Package['ostrio:flow-router-extra'] ||
+    Package['kadira:flow-router']).FlowRouter;
 
 // Add new configuration options
 _.extend(AccountsTemplates.CONFIG_PAT, {

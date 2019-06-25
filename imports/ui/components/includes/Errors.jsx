@@ -21,7 +21,7 @@ function Error({ error }) {
       <button type='button' className='close' data-dismiss='alert'>
         &times;
       </button>
-      {this.props.error.message}
+      {error.message}
     </div>
   );
 }

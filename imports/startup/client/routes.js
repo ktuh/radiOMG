@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
+import { FlowRouter } from 'meteor/kadira:flow-router';
 import { mount } from 'react-mounter';
 import Layout from '../../ui/components/application/Layout.jsx';
 import { $ } from 'meteor/jquery';
@@ -296,7 +296,7 @@ FlowRouter.route('/:slug', {
   }
 });
 
-FlowRouter.route('*', {
+FlowRouter.notFound = {
   action: async function() {
     await import('../../ui/components/application/NotFound.jsx').then(
       function(NotFound) {
@@ -304,4 +304,4 @@ FlowRouter.route('*', {
       }
     );
   }
-});
+}

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
-import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
+import { FlowRouter } from 'meteor/kadira:flow-router';
 import Text from 'simple-react-form-material-ui/lib/text';
 import ScorpiusImageUpload from './ScorpiusImageUpload.jsx';
 import SummernoteTextEdit from './SummernoteTextEdit.jsx';

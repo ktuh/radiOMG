@@ -15,9 +15,6 @@ class MusicPlaylists extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      currentPage: 1
-    };
   }
 
   showFromId(id) {

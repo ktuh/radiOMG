@@ -7,21 +7,19 @@ import { Meteor } from 'meteor/meteor';
 
 function HomeContentNews({ ready, posts }) {
   if (ready)
-    return (
-      <div className='home__news'>
-        <a href='/radioblog'>
-          <h3 className='home__section'>RADIOBLOG</h3>
-        </a>
-        <a href='/radioblog' className='home__more'>
-          MORE NEWS{'  '}
-          <span className='glyphicon glyphicon-arrow-right'></span>
-        </a>
-        <div className='home__news-content'>
-          {posts.map((item) => (
-            <HomeContentNewsItem item={item} />))}
-        </div>
+    return <div className='home__news'>
+      <a href='/radioblog'>
+        <h3 className='home__section'>RADIOBLOG</h3>
+      </a>
+      <a href='/radioblog' className='home__more'>
+        MORE NEWS{'  '}
+        <span className='glyphicon glyphicon-arrow-right'></span>
+      </a>
+      <div className='home__news-content'>
+        {posts.map((item) => (
+          <HomeContentNewsItem item={item} />))}
       </div>
-    );
+    </div>;
   else return null;
 }
 

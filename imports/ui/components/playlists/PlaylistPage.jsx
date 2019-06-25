@@ -12,7 +12,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { default as momentUtil } from 'moment';
 import moment from 'moment-timezone';
 import { Metamorph } from 'react-metamorph';
-import { FlowRouter } from 'meteor/ostrio:flow-router-extra'
+import { FlowRouter } from 'meteor/kadira:flow-router'
 import { requestSpinData } from '../../../startup/lib/helpers.js';
 
 class PlaylistPage extends Component {

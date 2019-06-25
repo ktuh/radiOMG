@@ -71,12 +71,10 @@ export default function Home() {
     }
   });
 
-  return [
-    <Metamorph title='KTUH FM Honolulu | Radio for the People'
-      image="https://ktuh.org/img/ktuh-logo.jpg"
-      description="KTUH Homepage" />,
-    <HomeFeaturedPost key='featured-post' />,
-    <HomeContent key='main-content' />,
-    <Support key='support' />
-  ];
+  return [<Metamorph title='KTUH FM Honolulu | Radio for the People'
+    image="https://ktuh.org/img/ktuh-logo.jpg"
+    description="KTUH Homepage" />,
+  <HomeFeaturedPost key='featured-post' />,
+  <HomeContent key='main-content' />,
+  <Support key='support' />];
 }

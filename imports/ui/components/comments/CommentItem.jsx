@@ -4,11 +4,10 @@ import { default as moment } from 'moment';
 
 export default function CommentItem({ comment: { body, submitted, author } }) {
   function timeDiff() {
-    var timeStr = submitted.toString().substring(0, 24);
-    var timestamp = moment(timeStr, 'ddd MMM DD YYYY HH:mm:ss');
-    var now = moment();
-    var diff = moment.duration(timestamp.diff(now), 'milliseconds')
-      .humanize(true);
+    var timeStr = submitted.toString().substring(0, 24),
+      timestamp = moment(timeStr, 'ddd MMM DD YYYY HH:mm:ss'), now = moment(),
+      diff = moment.duration(timestamp.diff(now), 'milliseconds')
+        .humanize(true);
     return diff;
   }
 

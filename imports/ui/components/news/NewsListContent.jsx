@@ -9,15 +9,13 @@ import EverAfter from 'react-everafter';
 
 function NewsListContent({ ready, posts }) {
   if (ready) {
-    return (
-      <div className='news-list__content'>
-        <div className='news-list'>
-          <NewsFeatured />
-          <EverAfter.Paginator wrapper={NewsItem} perPage={4}
-            items={posts} truncate={true} />
-        </div>
+    return <div className='news-list__content'>
+      <div className='news-list'>
+        <NewsFeatured />
+        <EverAfter.Paginator wrapper={NewsItem} perPage={4}
+          items={posts} truncate={true} />
       </div>
-    );
+    </div>;
   }
   else return null;
 }

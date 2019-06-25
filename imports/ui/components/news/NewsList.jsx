@@ -7,8 +7,7 @@ import { Metamorph } from 'react-metamorph';
 export default function NewsList() {
   return [
     <Metamorph title="Radioblog - KTUH FM Honolulu | Radio for the People"
-      description="KTUH Radioblog" image='https://ktuh.org/img/ktuh-logo.jpg'
-    />,
+      description="KTUH Radioblog" image='https://ktuh.org/img/ktuh-logo.jpg'/>,
     <h2 className='general__header' key='header-title'>KTUH Radioblog</h2>,
     <div className='news-list__wrapper' key='news-content'>
       <NewsListContent />

@@ -9,13 +9,11 @@ export default function NotificationItem(
     Notifications.update(_id, { $set: { read: true } });
   }
 
-  return (
-    <li>
-      <a onClick={handleClick} href={notificationPostPath}>
-        <strong>{commenterName}</strong> commented on your post
-      </a>
-    </li>
-  );
+  return <li>
+    <a onClick={handleClick} href={notificationPostPath}>
+      <strong>{commenterName}</strong> commented on your post
+    </a>
+  </li>;
 }
 
 NotificationItem.propTypes = {

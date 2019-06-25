@@ -3,6 +3,7 @@ import { Bert } from 'meteor/themeteorchef:bert';
 import PropTypes from 'prop-types';
 import { $ } from 'meteor/jquery';
 import { Session } from 'meteor/session';
+import 'mediaelement';
 import { scorpius } from 'meteor/scorpiusjs:core';
 
 export default class MediaElement extends Component {

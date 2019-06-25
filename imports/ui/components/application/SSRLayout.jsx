@@ -28,8 +28,7 @@ export default function Layout({ content }) {
       {content}
     </div>
   </div>,
-  <Footer key='footer' />
-  ];
+  <Footer key='footer' />];
 }
 
 Layout.propTypes = {

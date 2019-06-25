@@ -1,11 +1,8 @@
 import '../imports/startup/client';
 import { Meteor } from 'meteor/meteor';
-import React from 'react';
-import Layout from '../imports/ui/components/application/Layout.jsx';
-import { hydrate } from 'react-dom';
 import { Bert } from 'meteor/themeteorchef:bert';
 import { AutoForm } from 'meteor/aldeed:autoform';
-import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
+import { FlowRouter } from 'meteor/kadira:flow-router';
 import Profiles from '../imports/api/users/profiles_collection.js';
 import { throwError } from './helpers/errors.js';
 import { $ } from 'meteor/jquery';
@@ -82,5 +79,3 @@ Tracker.autorun(() => {
     }
   }
 });
-
-hydrate(<Layout />, document.getElementById('react-root'));

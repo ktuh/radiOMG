@@ -1,54 +1,39 @@
-import React, { Component } from 'react';
+import React, { useReducer } from 'react';
 import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base';
-import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
+import { FlowRouter } from 'meteor/kadira:flow-router';
 import { withTracker } from 'meteor/react-meteor-data';
 import { $ } from 'meteor/jquery';
 import LoginErrorMessage from './LoginErrorMessage.jsx';
 
-class CustomLoginButtons extends Component {
-  static propTypes = {
-    currentUser: PropTypes.object
+function CustomLoginButtons({ currentUser }) {
+  function reducer(state, { attr, toggle, value }) {
+    let newState = Object.assign({}, state);
+    if (toggle) newState[attr] = !newState[attr];
+    else newState[attr] = value;
+    return newState;
   }
 
-  constructor(props) {
-    super(props);
-    this.state = {
+  let initialState = {
       signup: false,
       open: false,
       change: false,
       forgot: false,
       errorMessage: '',
       infoMessage: ''
-    }
+    }, [ state, dispatch ] = useReducer(reducer, initialState)
 
-    this.handleClick = this.handleClick.bind(this);
-    this.handleView = this.handleView.bind(this);
-    this.handleEdit = this.handleEdit.bind(this);
-    this.handleForgot = this.handleForgot.bind(this);
-    this.handleCreateClick = this.handleCreateClick.bind(this);
-    this.menuLoggedInChange = this.menuLoggedInChange.bind(this);
-    this.menuLoggedInNoChange = this.menuLoggedInNoChange.bind(this);
-    this.menuSignup = this.menuSignup.bind(this);
-    this.menuNone = this.menuNone.bind(this);
-    this.menuForgot = this.menuForgot.bind(this);
-    this.handleChangePwdFlow = this.handleChangePwdFlow.bind(this);
-    this.logout = this.logout.bind(this);
-    this.logoutClick = this.logoutClick.bind(this);
-    this.forgotPassword = this.forgotPassword.bind(this);
-    this.handleKeyPress = this.handleKeyPress.bind(this)
+  function handleView() {
+    var { username } = currentUser;
+    FlowRouter.go('profilePage', { username });
   }
 
-  handleView() {
-    FlowRouter.go('profilePage', { username: this.props.currentUser.username });
-  }
-
-  handleEdit() {
+  function handleEdit() {
     FlowRouter.go('profileEdit');
   }
 
-  trimmedElementValueById(id) {
+  function trimmedElementValueById(id) {
     const element = document.getElementById(id);
     if (!element) {
       return null;
@@ -58,7 +43,7 @@ class CustomLoginButtons extends Component {
     }
   }
 
-  elementValueById(id) {
+  function elementValueById(id) {
     const element = document.getElementById(id);
     if (!element)
       return null;
@@ -66,14 +51,13 @@ class CustomLoginButtons extends Component {
       return element.value;
   }
 
-  login() {
-    var self = this;
-    const username = this.trimmedElementValueById('login-username');
-    const email = this.trimmedElementValueById('login-email');
+  function login() {
+    const username = trimmedElementValueById('login-username');
+    const email = trimmedElementValueById('login-email');
     const usernameOrEmail =
-      this.trimmedElementValueById('login-username-or-email');
+      trimmedElementValueById('login-username-or-email');
     // notably not trimmed. a password could (?) start or end with a space
-    const password = this.elementValueById('login-password');
+    const password = elementValueById('login-password');
 
     let loginSelector;
     if (username !== null) {
@@ -101,37 +85,38 @@ class CustomLoginButtons extends Component {
         $('#login-dropdown-list').addClass('open');
         $('#login-dropdown-list .dropdown-toggle').attr(
           'aria-expanded', 'true');
-        self.setState({ errorMessage: error.reason });
+        dispatch({ attr: 'errorMessage', value: error.reason });
       }
+      else dispatch({ attr: 'errorMessage', value: '' });
     });
   }
 
-  logout() {
+  function logout() {
     Meteor.logout();
   }
 
-  forgotPassword() {
-    const email = this.trimmedElementValueById('forgot-password-email');
+  function forgotPassword() {
+    const email = trimmedElementValueById('forgot-password-email');
     if (email.includes('@')) {
       Accounts.forgotPassword({ email: email }, error => {
         if (error)
-          this.state.set({ errorMessage: error.reason || 'Unknown error' });
+          state.set({ errorMessage: error.reason || 'Unknown error' });
         else
-          this.state.set({ infoMessage: 'Email sent' });
+          state.set({ infoMessage: 'Email sent' });
       });
     } else {
-      this.state.set({ errorMessage: 'Invalid email' });
+      state.set({ errorMessage: 'Invalid email' });
     }
   }
 
-  validateEmail(email) {
+  function validateEmail(email) {
     return /[A-Za-z0-9._-]+@[A-Za-z0-9._-]/.test(email);
   }
 
-  signup() {
+  function signup() {
     const options = {}; // to be passed to Accounts.createUser
 
-    const username = this.trimmedElementValueById('login-username');
+    const username = trimmedElementValueById('login-username');
     if (username !== null) {
       if (username.length < 3)
         return;
@@ -139,15 +124,15 @@ class CustomLoginButtons extends Component {
         options.username = username;
     }
 
-    const email = this.trimmedElementValueById('login-email');
+    const email = trimmedElementValueById('login-email');
     if (email !== null) {
-      if (!this.validateEmail(email))
+      if (!validateEmail(email))
         return;
       else
         options.email = email;
     }
 
-    const password = this.elementValueById('login-password');
+    const password = elementValueById('login-password');
     if (password.length < 6)
       return;
     else
@@ -155,40 +140,42 @@ class CustomLoginButtons extends Component {
 
     Accounts.createUser(options, error => {
       if (error) {
-        this.setState({ errorMessage: error.reason || 'Unknown error' });
+        dispatch({ attr: 'errorMessage',
+          value: error.reason || 'Unknown error' });
       }
     });
   }
 
-  loginOrSignup() {
-    if (this.state.signup) {
-      this.signup();
-      this.setState({ infoMessage: 'Please verify email.' });
+  function loginOrSignup() {
+    if (state.signup) {
+      signup();
+      dispatch({ attr: 'infoMessage', value: 'Please verify email.' });
     }
     else {
-      this.login();
+      login();
     }
   }
 
-  changePassword() {
+  function changePassword() {
     // notably not trimmed. a password could (?) start or end with a space
-    const oldPassword = this.elementValueById('login-old-password');
+    const oldPassword = elementValueById('login-old-password');
 
     // notably not trimmed. a password could (?) start or end with a space
-    const password = this.elementValueById('login-password');
+    const password = elementValueById('login-password');
     if (password.length < 6)
       return;
 
-    if (this.elementValueById('login-password-again') !== password) {
-      this.setState({ errorMessage: 'Passwords don\'t match' });
+    if (elementValueById('login-password-again') !== password) {
+      dispatch({ attr: 'errorMessage', value: 'Passwords don\'t match' });
       return;
     }
 
     Accounts.changePassword(oldPassword, password, error => {
       if (error) {
-        this.setState({ errorMessage: error.reason || 'Unknown error' });
+        dispatch({ attr: 'errorMessage',
+          value: error.reason || 'Unknown error' });
       } else {
-        this.setState({ infoMessage: 'Password changed' });
+        dispatch({ attr: 'infoMessage', value: 'Password changed' });
         document.getElementById('login-old-password').value = '';
         document.getElementById('login-password').value = '';
         document.getElementById('login-password-again').value = '';
@@ -196,45 +183,45 @@ class CustomLoginButtons extends Component {
     });
   }
 
-  handleClick(event) {
+  function handleClick(event) {
     event.preventDefault();
-    this.loginOrSignup();
+    loginOrSignup();
   }
 
-  handleCreateClick(event) {
+  function handleCreateClick(event) {
     event.preventDefault();
     $('#login-dropdown-list').addClass('open');
     $('#login-dropdown-list .dropdown-toggle').attr(
       'aria-expanded', 'true');
-    this.setState({ signup: !this.state.signup });
+    dispatch({ attr: 'signup', toggle: true });
   }
 
-  logoutClick(event) {
+  function logoutClick(event) {
     event.preventDefault();
-    this.logout();
+    logout();
   }
 
-  handleKeyPress(event) {
+  function handleKeyPress(event) {
     if (event.charCode === 13 && event.target.value !== '') {
-      if (!this.state.signup) this.login();
+      if (!state.signup) login();
     }
   }
 
-  handleChangePwd() {
-    this.changePassword();
+  function handleChangePwd() {
+    changePassword();
   }
 
-  handleChangePwdFlow(event) {
+  function handleChangePwdFlow(event) {
     event.preventDefault();
-    this.setState({ change: !this.state.change });
+    dispatch({ attr: 'change', toggle: true });
   }
 
-  handleForgot(event) {
+  function handleForgot(event) {
     event.preventDefault();
-    this.setState({ forgot: !this.state.forgot });
+    dispatch({ attr: 'forgot', toggle: true });
   }
 
-  menuLoggedInChange() {
+  function menuLoggedInChange() {
     return [
       <input id="login-old-password" type="password"
         placeholder="Old Password" className="form-control" />,
@@ -244,32 +231,32 @@ class CustomLoginButtons extends Component {
         placeholder="New Password Again" className="form-control" />,
       <button className="btn btn-default btn-block"
         id="login-buttons-open-change-password"
-        onClick={this.handleChangePwd}>Change password</button>,
+        onClick={handleChangePwd}>Change password</button>,
       <button className="btn btn-block btn-primary"
-        onClick={this.handleChangePwdFlow}
+        onClick={handleChangePwdFlow}
         id="login-buttons-logout">Sign out</button>
     ];
   }
 
-  menuLoggedInNoChange() {
+  function menuLoggedInNoChange() {
     return [
       <button className="btn btn-default btn-block"
-        id="login-buttons-view-profile" onClick={this.handleView}>
+        id="login-buttons-view-profile" onClick={handleView}>
         View profile
       </button>,
       <button className="btn btn-default btn-block"
-        id="login-buttons-edit-profile" onClick={this.handleEdit}>
+        id="login-buttons-edit-profile" onClick={handleEdit}>
         Edit profile
       </button>,
       <button className="btn btn-default btn-block"
         id="login-buttons-open-change-password"
-        onClick={this.handleChangePwdFlow}>Change password</button>,
+        onClick={handleChangePwdFlow}>Change password</button>,
       <button className="btn btn-block btn-primary"
-        onClick={this.logoutClick}
+        onClick={logoutClick}
         id="login-buttons-Cancel">Sign out</button>];
   }
 
-  menuNone() {
+  function menuNone() {
     return [
       <button className="login-button btn btn-block btn-Facebook">
         Sign in with Facebook
@@ -286,25 +273,25 @@ class CustomLoginButtons extends Component {
         placeholder="Username or Email" className="form-control" />,
       <input id="login-password" type="password"
         placeholder="Password" className="form-control"
-        onKeyPress={this.handleKeyPress}/>,
+        onKeyPress={handleKeyPress}/>,
       <button className="btn btn-primary col-xs-12 col-sm-12"
         id="login-buttons-password" type="button"
-        onClick={this.handleClick}>
+        onClick={handleClick}>
         Sign in
       </button>,
       <div id="login-other-options">
         <a id="forgot-password-link" className="pull-left"
-          onClick={this.handleForgot}>
+          onClick={handleForgot}>
           Forgot password?
         </a>
-        <a id="signup-link" onClick={this.handleCreateClick}
+        <a id="signup-link" onClick={handleCreateClick}
           className="pull-right">
           Create account
         </a>
       </div>];
   }
 
-  menuSignup() {
+  function menuSignup() {
     return [
       <button className="login-button btn btn-block btn-Facebook">
         Sign in with Facebook
@@ -325,47 +312,49 @@ class CustomLoginButtons extends Component {
         className="form-control" />,
       <button className="btn btn-primary col-xs-12 col-sm-12"
         id="login-buttons-password" type="button"
-        onClick={this.handleClick}>
+        onClick={handleClick}>
         Create
       </button>,
       <button id="back-to-login-link"
-        onClick={this.handleCreateClick}
+        onClick={handleCreateClick}
         className="btn btn-default col-xs-12 col-sm-12">Cancel
       </button>];
   }
 
-  menuForgot() {
+  function menuForgot() {
     return [<input id="forgot-password-email" type="email" placeholder="Email"
       className="form-control" />, <button className=
       "btn btn-primary col-xs-12 col-sm-12" id="login-buttons-password" type=
-      "button" onClick={this.forgotPassword}>
+      "button" onClick={forgotPassword}>
         Confirm
     </button>, <button id="back-to-login-link" onClick=
-      {this.handleForgot} className=
+      {handleForgot} className=
       "btn btn-default col-xs-12 col-sm-12">Cancel</button>];
   }
 
-  render() {
-    return (
-      <li id="login-dropdown-list" className='dropdown'>
-        <a className="dropdown-toggle" data-toggle="dropdown">
-          {(this.props.currentUser ? this.props.currentUser.username :
-            'Sign in / Join')}
-          <b className="caret"></b>
-        </a>
-        <div className="dropdown-menu">
-          {this.state.errorMessage ?
-            <LoginErrorMessage errorMessage={this.state.errorMessage} />
-            : null}
-          {this.props.currentUser ?
-            (this.state.change ? this.menuLoggedInChange() :
-              this.menuLoggedInNoChange()) :
-            (this.state.signup ? this.menuSignup() :
-              (this.state.forgot ? this.menuForgot() : this.menuNone()))}
-        </div>
-      </li>
-    );
-  }
+  return (
+    <li id="login-dropdown-list" className='dropdown'>
+      <a className="dropdown-toggle" data-toggle="dropdown">
+        {(currentUser ? currentUser.username :
+          'Sign in / Join')}
+        <b className="caret"></b>
+      </a>
+      <div className="dropdown-menu">
+        {state.errorMessage ?
+          <LoginErrorMessage errorMessage={state.errorMessage} />
+          : null}
+        {currentUser ?
+          (state.change ? menuLoggedInChange() :
+            menuLoggedInNoChange()) :
+          (state.signup ? menuSignup() :
+            (state.forgot ? menuForgot() : menuNone()))}
+      </div>
+    </li>
+  );
+}
+
+CustomLoginButtons.propTypes = {
+  currentUser: PropTypes.object
 }
 
 export default withTracker(() => {
