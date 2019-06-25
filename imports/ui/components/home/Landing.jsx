@@ -75,7 +75,7 @@ function LandingInfo({ nowPlaying }) {
   }
 
   function renderNowPlaying() {
-    var nowPlaying = this.nowPlaying().split(' - '),
+    var nowPlaying = whatsNowPlaying().split(' - '),
       artist = nowPlaying[0], title = nowPlaying[1];
 
     return [
