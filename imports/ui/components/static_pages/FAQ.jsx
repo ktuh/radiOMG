@@ -167,7 +167,7 @@ function QAPair({ question, answer }) {
           if (state.expanded) return '-'; else return '+'; })()}
       </span>
       <div className='faq__section-qna-content'>
-        <p onClick={this.handleClick.bind(this)} className='faq__question'>
+        <p onClick={handleClick.bind(this)} className='faq__question'>
           <span>{question}</span>
         </p>
         <p className={`faq__answer${expanded()}`} dangerouslySetInnerHTML={
