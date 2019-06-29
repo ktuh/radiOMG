@@ -1,25 +1,19 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Session } from 'meteor/session';
 import { withTracker } from 'meteor/react-meteor-data';
 import Shows from '../../../api/shows/shows_collection.js';
 import Playlists from '../../../api/playlists/playlists_collection.js';
 import { default as moment } from 'moment';
+import { uniq, map, pluck } from 'underscore';
 
-class PlaylistSidebar extends Component {
-  static propTypes = {
-    ready: PropTypes.bool
-  }
+function PlaylistSidebar({ ready }) {
+  let [state, setState] = useState({
+    loaded: false,
+    sidebar: null
+  });
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      loaded: false,
-      sidebar: null
-    };
-  }
-
-  getSidebarData() {
+  function getSidebarData() {
     var viewingPlaylistId = Session.get('playlistViewing'), playlistDates;
     if (viewingPlaylistId) {
       playlistDates = Playlists.find({ spinPlaylistId: {
@@ -34,15 +28,14 @@ class PlaylistSidebar extends Component {
         limit: 12
       }).fetch();
     }
-    var uniqDates =
-      _.uniq(_.map(_.pluck(playlistDates, 'showDate'),
-        (date) => {
-          date.setSeconds(0);
-          date.setMilliseconds(0);
-          date.setHours(0);
-          date.setMinutes(0);
-          return date;
-        }), true, (date) => +date);
+    var uniqDates = uniq(map(pluck(playlistDates, 'showDate'),
+      (date) => {
+        date.setSeconds(0);
+        date.setMilliseconds(0);
+        date.setHours(0);
+        date.setMinutes(0);
+        return date;
+      }), true, (date) => +date);
 
     var a = [];
     for (var p = 0; p < uniqDates.length; p++) {
@@ -55,7 +48,7 @@ class PlaylistSidebar extends Component {
     return a;
   }
 
-  timeFromHours(h1, m1, h2, m2) {
+  function timeFromHours(h1, m1, h2, m2) {
     if (m2 === 59) {
       h2 = (h2 + 1) % 24;
     }
@@ -65,75 +58,63 @@ class PlaylistSidebar extends Component {
     return `${moment(h1, 'HH').format(ap)}-${moment(h2, 'HH').format('hA')}`;
   }
 
-  timeFromHMS(str1, str2) {
+  function timeFromHMS(str1, str2) {
     return `${moment(str1, 'HH:mm:ss').format('h')}-${
       moment(str2, 'HH:mm:ss').format('hA')}`;
   }
 
-  showById(id) {
+  function showById(id) {
     return Shows.findOne({ showId: id });
   }
 
-  dateFormat(date) {
+  function dateFormat(date) {
     return moment(date).format('ddd. MMMM DD, YYYY');
   }
 
-  handleClick() {
-    this.setState({ loaded: false });
+  function handleClick() {
+    setState({ loaded: false, sidebar: state.sidebar });
   }
 
-  componentWillMount() {
-    var sidebar = this.getSidebarData(),
+  useEffect(function() {
+    var sidebar = getSidebarData(),
       stateObj =  sidebar.length ? { loaded: true, sidebar: sidebar } :
         { loaded: false, sidebar: null }
-    this.setState(stateObj);
-  }
+    setState(stateObj);
+  }, [state.loaded, ready]);
 
-  shouldComponentUpdate(nextProps) {
-    return !this.state.loaded || (this.props.ready !== nextProps.ready);
+  if (ready) {
+    return (
+      <div className='playlist__sidebar corner'>
+        <h4 className='playlist__sidebar-header'>Browse Latest</h4>
+        {!!state.sidebar && state.sidebar.map(({ date, shows }) => [
+          <hr />,
+          <h4 className='playlist__sidebar-date'>
+            {dateFormat(date)}
+          </h4>,
+          shows.map(({ showId, spinPlaylistId, startTime, endTime, djName
+          }) => {
+            if (showId > -1) {
+              var { startMinute, startHour, endHour, endMinute, showName } =
+                showById(showId);
+              return <div><p className='playlist__sidebar-link'>
+                <a href={`/playlists/${spinPlaylistId}`} onClick={handleClick}>
+                  {[timeFromHours(startHour, startMinute, endHour, endMinute),
+                    ` ${showName}`] || [
+                    `${timeFromHMS(startTime, endTime) } w/ ${djName}`] || null}
+                </a>
+              </p>
+              </div>;
+            }
+          })
+        ])}
+      </div>
+    );
   }
+  else return null;
+}
 
-  componentWillUpdate() {
-    var sidebar = this.getSidebarData();
-    var stateObj =  sidebar.length ? { loaded: true, sidebar: sidebar } :
-      { loaded: false, sidebar: null }
-    this.setState(stateObj);
-  }
-
-  render() {
-    var handleClick = this.handleClick.bind(this);
-
-    if (this.props.ready) {
-      return (
-        <div className='playlist__sidebar corner'>
-          <h4 className='playlist__sidebar-header'>Browse Latest</h4>
-          {!!this.state.sidebar && this.state.sidebar.map((listItem) => [
-            <hr />,
-            <h4 className='playlist__sidebar-date'>
-              {this.dateFormat(listItem.date)}
-            </h4>,
-            listItem.shows.map((show) => (
-              <div>
-                <p className='playlist__sidebar-link'>
-                  <a href={`/playlists/${show.spinPlaylistId}`}
-                    onClick={handleClick}>
-                    {(show.showId > -1) && this.showById(show.showId) && [
-                      this.timeFromHours(this.showById(show.showId).startHour,
-                        this.showById(show.showId).startMinute,
-                        this.showById(show.showId).endHour,
-                        this.showById(show.showId).endMinute), ` ${
-                        this.showById(show.showId).showName}`] || [
-                      `${this.timeFromHMS(show.startTime, show.endTime) } w/ ${
-                        show.djName}`] || null}
-                  </a>
-                </p>
-              </div>))
-          ])}
-        </div>
-      );
-    }
-    else return null;
-  }
+PlaylistSidebar.propTypes = {
+  ready: PropTypes.bool
 }
 
 export default withTracker(() => {

@@ -1,38 +1,19 @@
-import React, { Component } from 'react';
-import { string, func } from 'prop-types';
+import React, { useState, forwardRef } from 'react';
 import { scorpius } from 'meteor/scorpiusjs:core';
 import { Bert } from 'meteor/themeteorchef:bert';
 
-export default class ScorpiusImageUpload extends Component {
-  static propTypes = {
-    value: string,
-    onChange: func,
-    label: string
+function ScorpiusImageUpload({ value, onChange, label }, ref) {
+  let [state, setState] = useState({
+    value, ready: true
+  });
+
+  function setTrue(url) {
+    setState({ ready: true, value: url });
+    onChange(url);
   }
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: this.props.value,
-      ready: true
-    };
-    this.uploadHelper = this.uploadHelper.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.setTrue = this.setTrue.bind(this);
-  }
-
-  shouldComponentUpdate() {
-    return true;
-  }
-
-  setTrue(url) {
-    this.setState({ ready: true, value: url });
-    this.props.onChange(url);
-  }
-
-  uploadHelper(files) {
-    this.setState({ ready: false });
-    var set = this.setTrue;
+  function uploadHelper(files) {
+    setState({ ready: false, value: state.value });
     if (scorpius.filesystem.isUploading()) return;
     var upload = scorpius.filesystem.upload({
       fileList: files,
@@ -45,25 +26,25 @@ export default class ScorpiusImageUpload extends Component {
           Bert.alert('There was an error uploading the image.');
         }
         if (upload.progress() === 100) {
-          set(upload.url);
+          setTrue(upload.url);
           comp.stop();
         }
       }
     });
   }
 
-  handleChange(event) {
-    this.uploadHelper(event.target.files);
+  function handleChange(event) {
+    uploadHelper(event.target.files);
   }
 
-  render() {
-    return (
-      <div>
-        <p>{this.props.label}</p>
-        <div><img id="urlImage" src={this.state.value} /></div>
-        <input type="file" onChange={(event) => this.handleChange(event)} />
-        <input type="text" disabled={true} value={this.state.value} />
-      </div>
-    );
-  }
+  return (
+    <div ref={ref}>
+      <p>{label}</p>
+      <div><img id="urlImage" src={state.value} /></div>
+      <input type="file" onChange={(event) => handleChange(event)} />
+      <input type="text" disabled={true} value={state.value} />
+    </div>
+  );
 }
+
+export default forwardRef(ScorpiusImageUpload);

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { currentPlaylistFindOne, currentShow, getLocalTime,
   usernameFromDisplayName } from '../../../startup/lib/helpers.js';
@@ -7,7 +7,6 @@ import NowPlaying from '../../../api/playlists/now_playing.js';
 import { default as momentUtil } from 'moment';
 import moment from 'moment-timezone';
 import { $ } from 'meteor/jquery';
-import { scorpius } from 'meteor/scorpiusjs:core';
 
 function isSubShow() {
   var show = currentShow();
@@ -107,31 +106,18 @@ LandingInfo.propTypes = {
   nowPlaying: PropTypes.object
 }
 
-class Landing extends Component {
-  static propTypes = {
-    ready: PropTypes.bool,
-    nowPlaying: PropTypes.object
-  }
+function Landing({ ready, nowPlaying }) {
+  let [state, setState] = useState({ playing: false });
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      playing: false
-    }
-
-    this.handlePlayBtn = this.handlePlayBtn.bind(this);
-    this.handleClickDownArrow = this.handleClickDownArrow.bind(this);
-  }
-
-  componentDidMount() {
-    this.setState({
+  useEffect(function() {
+    setState({
       playing: global.player && (!global.player.getPaused() &&
         global.player.getSrc() === 'http://stream.ktuh.org:8000/stream-mp3')
           || false
     });
-  }
+  });
 
-  background() {
+  function background() {
     var h = getLocalTime().hour();
 
     if (h >= 6 && h < 18) {
@@ -142,73 +128,68 @@ class Landing extends Component {
     }
   }
 
-  isPlaying() {
-    return global.player.getSrc() === scorpius.dictionary.get(
-      'mainPage.audioUrl', '') && !global.player.getPaused();
-  }
-
-  handleClickDownArrow() {
+  function handleClickDownArrow() {
     var position = $('#main').offset().top;
     var navHeight = $('.navbar-header').height();
     $('HTML, BODY').animate({ scrollTop: position - navHeight + 2 }, 600);
   }
 
-  handlePlayBtn() {
+  function handlePlayBtn() {
     var paused = global.player.getPaused();
     if (global.player.getSrc() !== 'http://stream.ktuh.org:8000/stream-mp3') {
       global.player.setSrc('http://stream.ktuh.org:8000/stream-mp3');
       global.player.play();
-      this.setState({ playing: true });
+      setState({ playing: true });
       return;
     }
 
     if (paused) {
       global.player.play();
-      this.setState({ playing: true });
     }
     else {
       global.player.pause();
-      this.setState({ playing: false });
     }
+
+    setState({ playing: !paused });
   }
 
-  render() {
-    if (this.props.ready)
-      return (
-        <div className='landing' style={{ backgroundImage: this.background() }}>
-          <div className='landing__box'>
-            <div className='landing__play-btn-outer'
-              onClick={this.handlePlayBtn}>
-              {this.state.playing ? [
-                <div className='landing__pause-btn-l'
-                  key='pause-button-left'></div>,
-                <div className='landing__pause-btn-r'
-                  key='pause-button-right'></div>
-              ] : (
-                <div className='landing__play-btn' key='play-button'>
-                  <div className='landing__play-btn-triangle'></div>
-                </div>
-              )}
+  if (ready)
+    return <div className='landing' style={{ backgroundImage: background() }}>
+      <div className='landing__box'>
+        <div className='landing__play-btn-outer'
+          onClick={handlePlayBtn}>
+          {state.playing ? [
+            <div className='landing__pause-btn-l'
+              key='pause-button-left'></div>,
+            <div className='landing__pause-btn-r'
+              key='pause-button-right'></div>
+          ] : (
+            <div className='landing__play-btn' key='play-button'>
+              <div className='landing__play-btn-triangle'></div>
             </div>
-            <LandingInfo host={showActualHost()}
-              nowPlaying={this.props.nowPlaying} />
-          </div>
-          <h4 className='landing__freq landing__hnl-freq'>90.1 FM Honolulu</h4>
-          <h4 className='landing__freq landing__ns-freq'>91.1 FM Waialua </h4>
-          <a href='/playlists'>
-            <h6 className='landing__current-playlist'>
-              <span className='landing__view-current'>
-                View Current{' '}
-              </span>Playlist{'  '}
-              <span className='glyphicon glyphicon-eye-open'></span>
-            </h6>
-          </a>
-          <div className='landing__down-arrow'
-            onClick={this.handleClickDownArrow}></div>
+          )}
         </div>
-      );
-    else return null;
-  }
+        <LandingInfo host={showActualHost()} nowPlaying={nowPlaying} />
+      </div>
+      <h4 className='landing__freq landing__hnl-freq'>90.1 FM Honolulu</h4>
+      <h4 className='landing__freq landing__ns-freq'>91.1 FM Waialua </h4>
+      <a href='/playlists'>
+        <h6 className='landing__current-playlist'>
+          <span className='landing__view-current'>
+            View Current{' '}
+          </span>Playlist{'  '}
+          <span className='glyphicon glyphicon-eye-open'></span>
+        </h6>
+      </a>
+      <div className='landing__down-arrow'
+        onClick={handleClickDownArrow}></div>
+    </div>;
+  else return null;
+}
+
+Landing.propTypes = {
+  ready: PropTypes.bool,
+  nowPlaying: PropTypes.object
 }
 
 export default withTracker(() => {

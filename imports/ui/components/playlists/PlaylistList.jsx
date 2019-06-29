@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { currentPlaylistFindOne, showByShowId, requestSpinData } from
   '../../../startup/lib/helpers.js';
@@ -14,144 +14,127 @@ import moment from 'moment-timezone';
 import { Session } from 'meteor/session';
 import { Metamorph } from 'react-metamorph';
 
-class PlaylistList extends Component {
-  static propTypes = {
-    currentPlaylist: PropTypes.object,
-    ready: PropTypes.bool
-  }
+function PlaylistList({ currentPlaylist, ready }) {
+  let [state, setState] = useState({ playlistLoaded: false });
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      playlistLoaded: false
-    };
-  }
-
-  isPlaylistCurrent() {
+  function isPlaylistCurrent() {
     var current = currentPlaylistFindOne();
     return current !== undefined;
   }
 
-  showTime(startDay, startHour) {
+  function showTime(startDay, startHour) {
     var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday',
       'Friday', 'Saturday'];
     return `${days[startDay]}s at ${
       momentUtil().hour(startHour).format('h A')}`;
   }
 
-  actualShowHost(showId) {
-    var showHost = Shows.findOne({ showId: showId }).host;
+  function actualShowHost(showId) {
+    var showHost = Shows.findOne({ showId }).host;
     var playlistDJ = Playlists.findOne({}, { sort: { showDate: -1 } }).djName;
     if (showHost !== playlistDJ) return playlistDJ;
     else return showHost;
   }
 
-  timeHMS(date, startTime, endTime) {
+  function timeHMS(date, startTime, endTime) {
     return `${momentUtil(moment(date, 'Pacific/Honolulu'))
       .format('ddd. MMM DD, YYYY')} ${momentUtil(startTime, 'HH:mm:ss')
       .format('hh:mm')}-${momentUtil(endTime, 'HH:mm:ss').format('hh:mm A')}`;
   }
 
-  truncated(str) {
-    return (/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\+\d{4}/.exec(str) === null) ?
-      str.substring(0, str.length - 3) : str;
-  }
-
-  usernameFromDisplayName(name) {
-    var profile = Profiles.findOne({ name: name });
+  function usernameFromDisplayName(name) {
+    var profile = Profiles.findOne({ name });
     var user = profile && Meteor.users.findOne({ _id: profile.userId });
     return user && user.username;
   }
 
-  usernameById(id) {
+  function usernameById(id) {
     var user = Meteor.users.findOne({ _id: id });
     if (user) return user.username;
     else return undefined;
   }
 
-  renderHost(show) {
-    var latestShow = showByShowId(this.props.currentPlaylist.showId);
+  function renderHost({ userId, showId, startDay, startHour, host }) {
+    var { showDate, startTime, endTime, djName } = currentPlaylist;
+    var latestShow = showByShowId(showId);
 
-    if (this.usernameById(show.userId)) {
-      if (this.actualShowHost(show.showId)) {
-        return [`${
-          this.showTime(show.startDay, show.startHour)} • Hosted by `,
-        <a href={`/profile/${this.usernameById(show.userId)}`}>
-          {this.actualShowHost(show.showId)}
-        </a>];
+    if (usernameById(userId)) {
+      if (actualShowHost(showId)) {
+        return [`${showTime(startDay, startHour)} • Hosted by `,
+          <a href={`/profile/${usernameById(userId)}`}>
+            {actualShowHost(showId)}
+          </a>];
       }
       else return [`${
-        this.showTime(latestShow.startDay, latestShow.startHour)} • Hosted by `,
-      <a href={`/profile/${this.usernameById(show.userId)}`}>
-        {show.host}</a>];
+        showTime(latestShow.startDay, latestShow.startHour)} • Hosted by `,
+      <a href={`/profile/${usernameById(userId)}`}>{host}</a>];
     }
-    else if (this.props.currentPlaylist) {
-      return [`${this.timeHMS(this.props.currentPlaylist.showDate,
-        this.props.currentPlaylist.startTime,
-        this.props.currentPlaylist.endTime)} • Hosted by `,
-      (this.usernameFromDisplayName(this.props.currentPlaylist.djName) && (
-        <a href={`/profile/${this.usernameFromDisplayName(
-          this.props.currentPlaylist.djName)}`}>
-          {this.props.currentPlaylist.djName}
-        </a>) || this.props.currentPlaylist.djName)];
+    else if (currentPlaylist) {
+
+      return [`${timeHMS(showDate, startTime, endTime)} • Hosted by `,
+        (usernameFromDisplayName(djName) && (
+          <a href={`/profile/${usernameFromDisplayName(djName)}`}>
+            {djName}
+          </a>) || djName)];
     }
     else return null;
   }
 
-  render() {
-    var self = this;
-    if (self.props.ready) {
-      var pid = this.props.currentPlaylist.spinPlaylistId;
-      if (!self.state.playlistLoaded) {
-        requestSpinData(pid, (error, result) => {
-          if (!error && result) {
-            Session.set('currentPlaylist',
-              pid > 10000 ?
-                result.data.items :
-                JSON.parse(result.content).results);
-            Session.set('playlistViewing', pid);
-            self.setState({ playlistLoaded: true });
-          }
-        });
-      }
-      var latestShow = showByShowId(this.props.currentPlaylist.showId);
-      return [
-        <Metamorph
-          title="Show Playlists - KTUH FM Honolulu | Radio for the People"
-          description="KTUH Show Playlists"
-          image='https://ktuh.org/img/ktuh-logo.jpg' />,
-        <h2 className='general__header' key='header-title'>Playlists</h2>,
-        <div className='playlist-list__latest' key='playlist-content'>
-          {latestShow && latestShow.thumbnail && (
-            <a href={`/shows/${latestShow.slug}`}>
-              <img className='playlist__show-image'
-                src={latestShow.thumbnail} />
-            </a>)}
-          <h5 className='playlist-list__current'>
-            {this.isPlaylistCurrent() ?
-              'CURRENT PLAYLIST' : 'LAST LOGGED PLAYLIST'}
-          </h5>
-          <h3 className='playlist-list__show-name'>
-            {latestShow && ((latestShow.slug && latestShow.showName) &&
-                <a href={`/shows/${latestShow.slug}`}>
-                  {latestShow.showName}
-                </a> || latestShow.showName || 'Sub Show')}
-          </h3>
-          {latestShow && latestShow.synopsis &&
-            <p>{latestShow.synopsis}</p> || null}
-          <h5 className='playlist-list__show-host'>
-            {latestShow &&
-              (this.renderHost(latestShow))}
-          </h5>
-          {this.state.playlistLoaded &&
-            <PlaylistTable tracks={Session.get('currentPlaylist') || []}
-              onPage={false}/> || null}
-        </div>,
-        <PlaylistSidebar key='playlist-sidebar' />
-      ];
+  if (ready) {
+    var pid = currentPlaylist.spinPlaylistId;
+    if (!state.playlistLoaded) {
+      requestSpinData(pid, (error, result) => {
+        if (!error && result) {
+          Session.set('currentPlaylist',
+            pid > 10000 ?
+              result.data.items :
+              JSON.parse(result.content).results);
+          Session.set('playlistViewing', pid);
+          setState({ playlistLoaded: true });
+        }
+      });
     }
-    else return null;
+    var latestShow = showByShowId(currentPlaylist.showId);
+    return [
+      <Metamorph
+        title="Show Playlists - KTUH FM Honolulu | Radio for the People"
+        description="KTUH Show Playlists"
+        image='https://ktuh.org/img/ktuh-logo.jpg' />,
+      <h2 className='general__header' key='header-title'>Playlists</h2>,
+      <div className='playlist-list__latest' key='playlist-content'>
+        {latestShow && latestShow.thumbnail && (
+          <a href={`/shows/${latestShow.slug}`}>
+            <img className='playlist__show-image'
+              src={latestShow.thumbnail} />
+          </a>)}
+        <h5 className='playlist-list__current'>
+          {isPlaylistCurrent() ?
+            'CURRENT PLAYLIST' : 'LAST LOGGED PLAYLIST'}
+        </h5>
+        <h3 className='playlist-list__show-name'>
+          {latestShow && ((latestShow.slug && latestShow.showName) &&
+              <a href={`/shows/${latestShow.slug}`}>
+                {latestShow.showName}
+              </a> || latestShow.showName || 'Sub Show')}
+        </h3>
+        {latestShow && latestShow.synopsis &&
+          <p>{latestShow.synopsis}</p> || null}
+        <h5 className='playlist-list__show-host'>
+          {latestShow && renderHost(latestShow)}
+        </h5>
+        {state.playlistLoaded &&
+          <PlaylistTable tracks={Session.get('currentPlaylist') || []}
+            onPage={false}/> || null}
+      </div>,
+      <PlaylistSidebar key='playlist-sidebar' />
+    ];
   }
+  else return null;
+}
+
+PlaylistList.propTypes = {
+  currentPlaylist: PropTypes.object,
+  ready: PropTypes.bool
 }
 
 export default withTracker(() => {

@@ -1,23 +1,15 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Bert } from 'meteor/themeteorchef:bert';
-import PropTypes from 'prop-types';
+import { string, object } from 'prop-types';
 import { $ } from 'meteor/jquery';
 import { Session } from 'meteor/session';
 import 'mediaelement';
 import { scorpius } from 'meteor/scorpiusjs:core';
 
-export default class MediaElement extends Component {
-  static propTypes = {
-    options: PropTypes.object,
-    id: PropTypes.string
-  }
+export default function MediaElement({ options, id, src }) {
+  let [, setState] = useState({ });
 
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
-  success(mediaElement) {
+  function success(mediaElement) {
     $('.mejs__time-rail').append(
       '<span class="mejs__broadcast">Live Broadcast</span>');
 
@@ -38,29 +30,18 @@ export default class MediaElement extends Component {
     global.player = mediaElement;
   }
 
-  error() {
+  function error() {
     console.error('Error initializing the media element.');
   }
 
-  render() {
-    const props = this.props;
-    const mediaBody = `<source src="${props.src}" type="audio/mp3">`,
-      mediaHtml = `<audio id="${props.id}" controls>
-        ${mediaBody}
-      </audio>`;
-
-    return (<div className="audio-player"
-      dangerouslySetInnerHTML={{ __html: mediaHtml }}></div>);
-  }
-
-  componentDidMount() {
+  useEffect(function() {
     const { MediaElementPlayer } = global;
 
     if (!MediaElementPlayer) {
       return;
     }
 
-    const options = Object.assign({}, this.props.options, {
+    const newOptions = Object.assign({}, options, {
       // Read the Notes below for more explanation
       // about how to set up the path for shims
       pluginPath: '/mejs/',
@@ -69,13 +50,24 @@ export default class MediaElement extends Component {
       iPadUseNativeControls: false,
       iPhoneUseNativeControls: false,
       AndroidUseNativeControls: false,
-      success: (media, node, instance) => this.success(media, node, instance),
-      error: (media, node) => this.error(media, node)
+      success, error
     });
 
-    this.setState({ player: new MediaElementPlayer(this.props.id, options) });
+    setState({ player: new MediaElementPlayer(id, newOptions) });
 
     $('.mejs__time-rail').append(
       '<span class="mejs__broadcast">Live Broadcast</span>');
-  }
+  }, []);
+
+  const mediaBody = `<source src="${src}" type="audio/mp3">`,
+    mediaHtml = `<audio id="${id}" controls>${mediaBody}</audio>`;
+
+  return (<div className="audio-player"
+    dangerouslySetInnerHTML={{ __html: mediaHtml }}></div>);
+}
+
+MediaElement.propTypes = {
+  options: object,
+  id: string,
+  src: string
 }

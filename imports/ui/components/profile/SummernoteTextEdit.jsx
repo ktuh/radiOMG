@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 
-export default function SummernoteTextEdit() {
-  return <div id="summernote" />;
+function SummernoteTextEdit(props, ref) {
+  return <div ref={ref} id="summernote" />;
 }
+
+export default forwardRef(SummernoteTextEdit);

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
 import { FlowRouter } from 'meteor/kadira:flow-router';
@@ -9,21 +9,15 @@ import { withTracker } from 'meteor/react-meteor-data';
 import ShowItem from './ShowItem.jsx';
 import { Metamorph } from 'react-metamorph';
 
-class ShowList extends Component {
-  static propTypes = {
-    ready: PropTypes.bool
-  }
+function ShowList({ ready }) {
+  let [, setState] = useState({
+    day: $.inArray(FlowRouter.getQueryParam('day'),
+      ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday',
+        'Friday', 'Saturday'])
+  });
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      day: $.inArray(FlowRouter.getQueryParam('day'),
-        ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday',
-          'Friday', 'Saturday'])
-    };
-  }
 
-  active(d) {
+  function active(d) {
     var day = FlowRouter.getQueryParam('day');
     var daze = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday',
       'Friday', 'Saturday'];
@@ -37,7 +31,7 @@ class ShowList extends Component {
     }
   }
 
-  daysShows() {
+  function daysShows() {
     var day = FlowRouter.getQueryParam('day');
     var daze = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday',
       'Friday', 'Saturday'];
@@ -52,55 +46,50 @@ class ShowList extends Component {
       { sort: { startHour: 1, startMinute: 1 } }).fetch();
   }
 
-  handleClick(event) {
+  function handleClick(event) {
     event.preventDefault();
-    var self = this;
     return function(day) {
-      self.setState({ day: day });
+      setState({ day });
     }
   }
 
-  render() {
-    var handleClick = this.handleClick.bind(this),
-      active = this.active.bind(this);
-
-    if (this.props.ready)
-      return [
-        <Metamorph title=
-          'Show Schedule - KTUH FM Honolulu | Radio for the People' description=
-          'Show Schedule on KTUH' image='https://ktuh.org/img/ktuh-logo.jpg' />,
-        <h2 className='general__header' key='header'>Show Schedule</h2>,
-        <div className='shows'>
-          <div className='shows__days shows__days__wide'>
-            {['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday',
-              'Friday', 'Saturday'].map(function(day, i) {
-              return (
-                <a href={`/shows?day=${day}` }
-                  onClick={(e) => handleClick(e)(i)}>
-                  <span className={`shows__day ${active(day)}`}>
-                    {day}</span>
-                </a>
-              );
-            })}
-          </div>
-          <div className='shows__days shows__days__narrow'>
-            {['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday',
-              'Friday', 'Saturday'].map(function(day, i) {
-              return (
-                <a href={`/shows?day=${day}` }
-                  onClick={(e) => handleClick(e)(i)}>
-                  <span className={`shows__day ${active(day)}`}>
-                    {day.substring(0,3)}</span>
-                </a>
-              );
-            })}
-          </div>
-          {this.daysShows().map((show) =>
-            <ShowItem show={show} key={show._id} />)}
+  if (ready)
+    return [
+      <Metamorph title=
+        'Show Schedule - KTUH FM Honolulu | Radio for the People' description=
+        'Show Schedule on KTUH' image='https://ktuh.org/img/ktuh-logo.jpg' />,
+      <h2 className='general__header' key='header'>Show Schedule</h2>,
+      <div className='shows'>
+        <div className='shows__days shows__days__wide'>
+          {['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday',
+            'Friday', 'Saturday'].map(function(day, i) {
+            return (
+              <a href={`/shows?day=${day}` } onClick={(e) => handleClick(e)(i)}>
+                <span className={`shows__day ${active(day)}`}>{day}</span>
+              </a>
+            );
+          })}
         </div>
-      ];
-    else return null;
-  }
+        <div className='shows__days shows__days__narrow'>
+          {['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday',
+            'Friday', 'Saturday'].map(function(day, i) {
+            return (
+              <a href={`/shows?day=${day}` }
+                onClick={(e) => handleClick(e)(i)}>
+                <span className={`shows__day ${active(day)}`}>
+                  {day.substring(0,3)}</span>
+              </a>
+            );
+          })}
+        </div>
+        {daysShows().map((show) => <ShowItem show={show} key={show._id} />)}
+      </div>
+    ];
+  else return null;
+}
+
+ShowList.propTypes = {
+  ready: PropTypes.bool
 }
 
 export default withTracker(() => {

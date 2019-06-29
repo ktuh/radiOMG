@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useReducer, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Metamorph } from 'react-metamorph';
 
@@ -137,93 +137,80 @@ const faq_data = [
   }
 ]
 
-class QAPair extends Component {
-  static propTypes = {
-    question: PropTypes.string,
-    answer: PropTypes.string
+function QAPair({ question, answer }) {
+  let [state, dispatch] = useReducer(function(state, str) {
+    if (str === 'toggle') {
+      return { expanded: !state.expanded };
+    }
+  }, {
+    expanded: false
+  });
+
+  useEffect(function() {
+
+  }, [state.expanded])
+
+  function handleClick() {
+    dispatch('toggle');
   }
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      expanded: false
-    };
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return nextState.expanded !== this.state.expanded;
-  }
-
-  handleClick() {
-    this.setState({ expanded: !this.state.expanded });
-  }
-
-  expanded() {
-    if (this.state.expanded) return ' expanded';
+  function expanded() {
+    if (state.expanded) return ' expanded';
     return '';
   }
 
-  render() {
-    var expanded = this.expanded.bind(this);
-
-    return (
-      <div className='faq__section-qna-pair'>
-        <span className='toggle'
-          onClick={this.handleClick.bind(this)}>
-          {(() => {
-            if (this.state.expanded) return '-'; else return '+'; })()}
-        </span>
-        <div className='faq__section-qna-content'>
-          <p onClick={this.handleClick.bind(this)} className='faq__question'>
-            <span>{this.props.question}</span>
-          </p>
-          <p className={`faq__answer${expanded()}`} dangerouslySetInnerHTML={
-            { __html: this.props.answer }
-          } />
-        </div>
+  return (
+    <div className='faq__section-qna-pair'>
+      <span className='toggle'
+        onClick={handleClick.bind(this)}>
+        {(() => {
+          if (state.expanded) return '-'; else return '+'; })()}
+      </span>
+      <div className='faq__section-qna-content'>
+        <p onClick={this.handleClick.bind(this)} className='faq__question'>
+          <span>{question}</span>
+        </p>
+        <p className={`faq__answer${expanded()}`} dangerouslySetInnerHTML={
+          { __html: answer }
+        } />
       </div>
-    );
-  }
+    </div>
+  );
 }
 
-class QASection extends Component {
-  static propTypes = {
-    title: PropTypes.string,
-    pairs: PropTypes.array
-  }
-
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <div className='faq__section'>
-        <div className='faq__section-header'>
-          <h4>{this.props.title}</h4>
-        </div>
-        <div className='faq__section-qna'>
-          {this.props.pairs.map((pair) =>
-            <QAPair question={pair[0]} answer={pair[1]} />
-          )}
-        </div>
-      </div>
-    )
-  }
+QAPair.propTypes = {
+  question: PropTypes.string,
+  answer: PropTypes.string
 }
 
-export default class FAQ extends Component {
-  render() {
-    return [
-      <Metamorph title=
-        'Frequently Asked Questions - KTUH FM Honolulu | Radio for the People'
-      description="KTUH FAQ" image='https://ktuh.org/img/ktuh-logo.jpg' />,
-      <h2 className='general__header'>Frequently Asked Questions</h2>,
-      <div className='faq__content' key='faq-content'>
-        {faq_data.map((node) => (
-          <QASection title={node.title} pairs={node.pairs} />
-        ))}
+function QASection({ title, pairs }) {
+  return (
+    <div className='faq__section'>
+      <div className='faq__section-header'>
+        <h4>{title}</h4>
       </div>
-    ];
-  }
+      <div className='faq__section-qna'>
+        {pairs.map(([question, answer]) =>
+          <QAPair {...{ question, answer }} />
+        )}
+      </div>
+    </div>
+  )
+}
+
+QASection.propTypes = {
+  title: PropTypes.string,
+  pairs: PropTypes.array
+}
+
+export default function FAQ() {
+  return [<Metamorph title=
+    'Frequently Asked Questions - KTUH FM Honolulu | Radio for the People'
+  description="KTUH FAQ" image='https://ktuh.org/img/ktuh-logo.jpg' />,
+  <h2 className='general__header'>Frequently Asked Questions</h2>,
+  <div className='faq__content' key='faq-content'>
+    {faq_data.map((node) => (
+      <QASection title={node.title} pairs={node.pairs} />
+    ))}
+  </div>];
 }

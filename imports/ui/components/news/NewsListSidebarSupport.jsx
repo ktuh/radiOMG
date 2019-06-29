@@ -15,8 +15,7 @@ export default function NewsListSidebarSupport() {
         <a className='color-button purple-button'
           href=
             {'https://www.uhfoundation.org/give/giving-gift.aspx' +
-            '?school_code=ktuh'}>
-            Donate Today</a>
+            '?school_code=ktuh'}>Donate Today</a>
       </div>
     </div>
   );

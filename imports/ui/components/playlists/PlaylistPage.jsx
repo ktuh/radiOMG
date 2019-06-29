@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import PlaylistSidebar from './PlaylistSidebar.jsx';
 import PlaylistTable from './PlaylistTable.jsx';
@@ -15,26 +15,16 @@ import { Metamorph } from 'react-metamorph';
 import { FlowRouter } from 'meteor/kadira:flow-router'
 import { requestSpinData } from '../../../startup/lib/helpers.js';
 
-class PlaylistPage extends Component {
-  static propTypes = {
-    playlist: PropTypes.object,
-    ready: PropTypes.bool
-  };
+function PlaylistPage({ playlist, ready }) {
+  let [state, setState] = useState({
+    playlistLoaded: false
+  });
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      playlistLoaded: false
-    };
-
-    this.showIfAny = this.showIfAny.bind(this);
-  }
-
-  showDateOfLatestPlaylist(date) {
+  function showDateOfLatestPlaylist(date) {
     return momentUtil(moment(date).tz('Pacific/Honolulu')).format('LL');
   }
 
-  showTime(playlist) {
+  function showTime(playlist) {
     return playlist && (`${(momentUtil(
       moment(
         momentUtil(playlist.startTime, 'HH:mm:ss')).tz('Pacific/Honolulu'))
@@ -43,96 +33,86 @@ class PlaylistPage extends Component {
         .tz('Pacific/Honolulu')).format('h:mm a')}`);
   }
 
-  showIfAny() {
-    return Shows.findOne({ showId: this.props.playlist.showId });
+  function showIfAny() {
+    return Shows.findOne({ showId: playlist.showId });
   }
 
-  comments() {
-    var playlist = this.props.playlist;
+  function comments() {
     return Comments.find({ postId: playlist.showId }).fetch();
   }
 
-  shouldComponentUpdate(nextProps) {
-    return (nextProps.playlist && this.props.playlist &&
-      nextProps.playlist.spinPlaylistId !==
-      this.props.playlist.spinPlaylistId) || !this.state.playlistLoaded;
-  }
-
-  componentWillUpdate() {
-    if (this.state.playlistLoaded) {
-      this.setState({ playlistLoaded: false });
+  useEffect(function() {
+    if (state.playlistLoaded) {
+      setState({ playlistLoaded: false });
     }
-  }
+  }, [playlist, state.playlistLoaded]);
 
-  render() {
-    if (this.props.ready) {
-      var playlist = this.props.playlist, pid = playlist.spinPlaylistId,
-        show = this.showIfAny(), showString =
-          `${this.showTime(playlist)} Sub Show with ${playlist.djName}`,
-        self = this;
-      if (show) {
-        showString = `${show.showName} - ${
-          this.showDateOfLatestPlaylist(playlist.showDate)}`;
-      }
-      if (!this.state.playlistLoaded) {
-        requestSpinData(pid, (error, result) => {
-          if (!error && result) {
-            Session.set('currentPlaylist',
-              pid > 10000 ?
-                result.data.items :
-                JSON.parse(result.content).results);
-            Session.set('playlistViewing', pid);
-            self.setState({ playlistLoaded: true });
-          }
-        });
-      }
-      return [
-        <Metamorph title={`${showString
-        } - KTUH FM Honolulu | Radio for the People`}
-        description={showString} image={show && show.thumbnail ||
-            'https://ktuh.org/img/ktuh-logo.png'} />,
-        <h2 className='general__header'>
-          {this.showIfAny() &&
-            [<a href={`/shows/${this.showIfAny().slug}`}>
-              {this.showIfAny().showName}
+  if (ready) {
+    var pid = playlist.spinPlaylistId, show = showIfAny(), showString =
+        `${showTime(playlist)} Sub Show with ${playlist.djName}`;
+    if (show) {
+      showString = `${show.showName} - ${
+        showDateOfLatestPlaylist(playlist.showDate)}`;
+    }
+    if (!state.playlistLoaded) {
+      requestSpinData(pid, (error, result) => {
+        if (!error && result) {
+          Session.set('currentPlaylist',
+            pid > 10000 ?
+              result.data.items :
+              JSON.parse(result.content).results);
+          Session.set('playlistViewing', pid);
+          self.setState({ playlistLoaded: true });
+        }
+      });
+    }
+    return [
+      <Metamorph title={`${showString
+      } - KTUH FM Honolulu | Radio for the People`}
+      description={showString} image={show && show.thumbnail ||
+          'https://ktuh.org/img/ktuh-logo.png'} />,
+      <h2 className='general__header'>
+        {showIfAny() &&
+            [<a href={`/shows/${showIfAny().slug}`}>
+              {showIfAny().showName}
             </a>, ` playlist - ${
-              this.showDateOfLatestPlaylist(playlist.showDate)}`] ||
-            [`${this.showTime(playlist)} w/ ${playlist.djName
-            } playlist - ${this.showDateOfLatestPlaylist(playlist.showDate)}`]}
-        </h2>,
-        <div className='playlist__link'>
-          <a href='/playlists' className='back-to'>← Back to Playlists</a>
-        </div>,
-        <div className='playlist__content'>
-          {this.showIfAny() ?
-            <a href={`/shows/${this.showIfAny().slug}`}>
-              <img className='playlist__show-image'
-                src={(this.showIfAny().thumbnail ||
-                (this.showIfAny().featuredImage &&
-                  this.showIfAny().featuredImage.url) :
-                'https://ktuh.org/img/ktuh-logo.jpg')} />
-            </a> : null}
-          <PlaylistTable tracks={
-            Session.get('currentPlaylist') || []
-          } onPage={true}/>
-          <div className='comments'>
-            <h3 className='comments__header'>Comments</h3>
-            {this.comments().length &&
-                <ul className='comments__list'>
-                  {this.comments().comments.map((comment) =>
-                    <CommentItem comment={comment}/>)}
-                </ul> || null}
-            {Meteor.user() && <CommentSubmit />  ||
-              <p className='comments__text'>
-                <i>Please log in to leave a comment.</i>
-              </p>}
-          </div>
-        </div>,
-        <PlaylistSidebar />];
-    }
-    else return null;
+              showDateOfLatestPlaylist(playlist.showDate)}`] ||
+            [`${showTime(playlist)} w/ ${playlist.djName
+            } playlist - ${showDateOfLatestPlaylist(playlist.showDate)}`]}
+      </h2>,
+      <div className='playlist__link'>
+        <a href='/playlists' className='back-to'>← Back to Playlists</a>
+      </div>,
+      <div className='playlist__content'>
+        {showIfAny() ? <a href={`/shows/${showIfAny().slug}`}>
+          <img className='playlist__show-image' src={(showIfAny().thumbnail ||
+            (showIfAny().featuredImage && showIfAny().featuredImage.url) :
+            'https://ktuh.org/img/ktuh-logo.jpg')} />
+        </a> : null}
+        <PlaylistTable tracks={Session.get('currentPlaylist') || []}
+          onPage={true}/>
+        <div className='comments'>
+          <h3 className='comments__header'>Comments</h3>
+          {comments().length &&
+              <ul className='comments__list'>
+                {comments().comments.map((comment) =>
+                  <CommentItem comment={comment}/>)}
+              </ul> || null}
+          {Meteor.user() && <CommentSubmit />  ||
+            <p className='comments__text'>
+              <i>Please log in to leave a comment.</i>
+            </p>}
+        </div>
+      </div>,
+      <PlaylistSidebar />];
   }
+  else return null;
 }
+
+PlaylistPage.propTypes = {
+  playlist: PropTypes.object,
+  ready: PropTypes.bool
+};
 
 export default withTracker(() => {
   var id = parseInt(FlowRouter.getParam('id'), 10), s0,
