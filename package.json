@@ -19,7 +19,7 @@
   "dependencies": {
     "@babel/runtime": "^7.4.3",
     "@material-ui/core": "^3.9.3",
-    "aws-sdk": "^2.442.0",
+    "aws-sdk": "^2.1693.0",
     "bcrypt": "^3.0.6",
     "body-parser": "^1.18.3",
     "buffer": "^5.2.1",
